@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      // "@restorecommerce/ui-components": [
+        // "dist/restorecommerce/ui-components/restorecommerce-ui-components",
+        // "dist/restorecommerce/ui-components"
+      // ]
+      "@restorecommerce/ui-components": ["projects/restorecommerce/ui-components/src"],
+      "@restorecommerce/ui-components/*": ["projects/restorecommerce/ui-components/src/*"],
+
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

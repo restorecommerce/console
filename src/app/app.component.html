@@ -1,0 +1,79 @@
+<rc-app>
+  <rc-header>
+    <rc-toggle-drawer></rc-toggle-drawer>
+    <rc-banner logoUrl="https://raw.githubusercontent.com/restore-commerce/branding/master/restore_commerce_logo.png">
+      Restore Commerce
+    </rc-banner>
+
+    <rc-header-navigation *ngIf="!smallDevice">
+      <rc-header-navigation-item [routerLink]="'/'"
+                                 [selected]="currentRoute === 'default'">
+        Home
+      </rc-header-navigation-item>
+      <rc-header-navigation-item [routerLink]="'/drawer-demo'"
+                                 [selected]="currentRoute === 'drawer-demo'">
+        Drawer
+      </rc-header-navigation-item>
+    </rc-header-navigation>
+
+    <div class="flex"></div>
+    <rc-header-toolbar>
+      <button vcl-button class="half-transparent">
+        <vcl-icogram>
+          <vcl-icon icon="mdi:account"></vcl-icon>
+          User
+          <vcl-icon icon="mdi:chevron-down"></vcl-icon>
+        </vcl-icogram>
+      </button>
+    </rc-header-toolbar>
+  </rc-header>
+
+  <rc-drawer-navigation (selectItem)="onSelectItem()">
+    <vcl-select *ngIf="smallDevice">
+      <vcl-select-list  [value]="currentRoute" (valueChange)="navigateTo($event)">
+        <vcl-select-list-item value="default">
+          <vcl-select-list-label>Home</vcl-select-list-label>
+        </vcl-select-list-item>
+        <vcl-select-list-item value="drawer-demo">
+          <vcl-select-list-label>Drawer Demos</vcl-select-list-label>
+        </vcl-select-list-item>
+      </vcl-select-list>
+    </vcl-select>
+
+    <!-- root -->
+    <ng-container *ngIf="currentRoute === 'default'">
+      <rc-drawer-navigation-item icon="mdi:home" [routerLink]="'/'" [routerLinkActive]="['selected']" [routerLinkActiveOptions]="{exact: true}">Home</rc-drawer-navigation-item>
+      <rc-drawer-navigation-item icon="mdi:arrow-split-vertical" [routerLink]="'/layout'" [routerLinkActive]="['selected']">Layout</rc-drawer-navigation-item>
+      <rc-drawer-navigation-item icon="mdi:arrow-split-vertical" [routerLink]="'/overflow'" [routerLinkActive]="['selected']">Overflow</rc-drawer-navigation-item>
+    </ng-container>
+
+    <!-- drawer -->
+    <ng-container *ngIf="currentRoute === 'drawer-demo'">
+      <rc-drawer-navigation-item icon="mdi:city" [routerLink]="'/drawer-demo/addresses'" [routerLinkActive]="['selected']">Addresses</rc-drawer-navigation-item>
+      <rc-drawer-navigation-item icon="mdi:map-marker-outline" [routerLinkActive]="['selected']">
+        Locations
+        <rc-drawer-navigation-item icon="mdi:map-marker-outline" [routerLink]="'/drawer-demo/locations/1'" [routerLinkActive]="['selected']">Locations 1</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:map-marker-outline" [routerLink]="'/drawer-demo/locations/2'" [routerLinkActive]="['selected']">Locations 2</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:map-marker-outline" [routerLink]="'/drawer-demo/locations/3'" [routerLinkActive]="['selected']">Locations 3</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:map-marker-outline" [routerLink]="'/drawer-demo/locations/4'" [routerLinkActive]="['selected']">Locations 4</rc-drawer-navigation-item>
+      </rc-drawer-navigation-item>
+      <rc-drawer-navigation-item icon="mdi:domain" [routerLinkActive]="['selected']">
+        Countries
+        <rc-drawer-navigation-item icon="mdi:domain" [routerLink]="'/drawer-demo/countries/1'" [routerLinkActive]="['selected']">Countries 1</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:domain" [routerLink]="'/drawer-demo/countries/2'" [routerLinkActive]="['selected']">Countries 2</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:domain" [routerLink]="'/drawer-demo/countries/3'" [routerLinkActive]="['selected']">Countries 3</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:domain" [routerLink]="'/drawer-demo/countries/4'" [routerLinkActive]="['selected']">Countries 4</rc-drawer-navigation-item>
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item icon="mdi:settings" [routerLinkActive]="['selected']">
+        Access Control
+        <rc-drawer-navigation-item icon="mdi:account-multiple-outline" [routerLink]="'/drawer-demo/teams'" [routerLinkActive]="['selected']">Teams</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:account-key" [routerLink]="'/drawer-demo/roles'" [routerLinkActive]="['selected']">Roles</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:account-convert" [routerLink]="'/drawer-demo/rules'" [routerLinkActive]="['selected']">Rules</rc-drawer-navigation-item>
+        <rc-drawer-navigation-item icon="mdi:folder-account" [routerLink]="'/drawer-demo/policies'" [routerLinkActive]="['selected']">Policies</rc-drawer-navigation-item>
+      </rc-drawer-navigation-item>
+    </ng-container>
+  </rc-drawer-navigation>
+
+  <router-outlet></router-outlet>
+</rc-app>

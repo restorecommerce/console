@@ -1,0 +1,10 @@
+<ng-content select="rc-header"></ng-content>
+<vcl-drawer-container class="flex">
+  <vcl-drawer [mode]="drawerService.mode$ | async" [opened]="drawerService.opened$ | async" (openedChange)="drawerService.opened = $event">
+    <ng-content select="rc-drawer-navigation"></ng-content>
+  </vcl-drawer>
+  <main class="flex content-area h-100p scrollable y">
+    <ng-content></ng-content>
+  </main>
+</vcl-drawer-container>
+<ng-content select="rc-footer"></ng-content>
