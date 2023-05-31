@@ -8,7 +8,7 @@ export interface IRouterItem {
   name: string;
   path: string;
   link: string;
-  getLink: (params?: { id?: string; slug?: string }) => TRouterLink;
+  getLink: (params?: { id?: number | string; slug?: string }) => TRouterLink;
   params?: TRouterParams;
   queryParams?: TRouterQueryParams;
   children?: Record<string, IRouterItem>;
@@ -40,7 +40,15 @@ export interface IRouter {
           link: string;
           getLink: () => TRouterLink;
           children: {
-            addresses: IRouterItem;
+            addresses: {
+              name: string;
+              path: string;
+              link: string;
+              getLink: () => TRouterLink;
+              children: {
+                address: IRouterItem;
+              };
+            };
             locations: {
               name: string;
               path: string;
