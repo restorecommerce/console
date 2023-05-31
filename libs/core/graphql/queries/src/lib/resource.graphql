@@ -1,0 +1,22 @@
+query Resource($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  resource {
+    locale {
+      Read(input: $input) {
+        details {
+          totalCount
+          items {
+            payload {
+              id
+              value
+              description
+            }
+            status {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+}

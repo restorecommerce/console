@@ -1,6 +1,6 @@
 {
   "name": "core-graphql-queries",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/core/graphql/queries/src",
   "projectType": "library",
   "targets": {

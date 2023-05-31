@@ -1,8 +1,0 @@
-mutation signUpNewsletter($input: signUpNewsletterInput!) {
-  signUpNewsletter(input: $input) {
-    error {
-      code
-      message
-    }
-  }
-}
