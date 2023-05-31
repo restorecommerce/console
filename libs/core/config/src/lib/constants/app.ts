@@ -1,6 +1,6 @@
 import { IAppConstant, ILanguage } from '@console/types';
 
-const name = 'Website Next';
+const name = 'Console';
 
 const supported: ILanguage[] = [
   {
