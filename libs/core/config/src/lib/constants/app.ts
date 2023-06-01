@@ -1,6 +1,6 @@
 import { IAppConstant, ILanguage } from '@console/types';
 
-const name = 'Console';
+const name = 'Restore Commerce';
 
 const supported: ILanguage[] = [
   {
