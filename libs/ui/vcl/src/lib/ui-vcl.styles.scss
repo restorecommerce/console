@@ -1,0 +1,26 @@
+@use '@vcl/vcl/app/normalize' as normalize;
+
+@use '@vcl/vcl/restore-theme' with (
+  $app-area-max-width: 100%
+);
+
+/* VCL */
+@use '@vcl/vcl';
+
+/* Material Design Icons */
+@use '@mdi/font/scss/materialdesignicons' with (
+  $mdi-font-path: '~@mdi/font/fonts'
+);
+
+/* App Style */
+@use './styles/index.scss';
+
+@use '@angular/cdk/overlay-prebuilt';
+@use '@angular/cdk/a11y-prebuilt';
+
+// Global or important stuff
+// $app-area-max-width: 100%
+// $app-area-bg-color: $white
+
+// Local vars
+// $drawer-bg-color: var(--gray-light-6);
