@@ -1,0 +1,31 @@
+<div class="row grid-gutterx-3 px-3">
+  <div class="rc-flex-sidebar">
+    <rc-toolbar>
+      Sidebar Toolbar
+      <button
+        vcl-square-button
+        class="half-transparent"
+        rcAppend
+      >
+        <vcl-icon icon="mdi:refresh"></vcl-icon>
+      </button>
+    </rc-toolbar>
+    <rc-search-bar></rc-search-bar>
+    <rc-datalist>
+      <rc-datalist-item>
+        <rc-datalist-label>Label</rc-datalist-label>
+        <rc-datalist-sublabel>Sublabel</rc-datalist-sublabel>
+      </rc-datalist-item>
+    </rc-datalist>
+  </div>
+
+  <div class="flex">
+    <rc-toolbar> Content Toolbar </rc-toolbar>
+    <ng-content></ng-content>
+  </div>
+
+  <div class="w-25p">
+    <rc-toolbar> Meta Toolbar </rc-toolbar>
+    Meta
+  </div>
+</div>
