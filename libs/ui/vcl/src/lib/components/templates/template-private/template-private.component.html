@@ -59,7 +59,7 @@
       *ngIf="currentRoute === ROUTER.pages.private.children.home.link"
     >
       <rc-drawer-navigation-item
-        icon="mdi:home"
+        icon="mdi mdi-home"
         [routerLink]="'/'"
         [routerLinkActive]="['selected']"
         [routerLinkActiveOptions]="{ exact: true }"
@@ -67,13 +67,13 @@
         Home</rc-drawer-navigation-item
       >
       <rc-drawer-navigation-item
-        icon="mdi:arrow-split-vertical"
+        icon="mdi mdi-arrow-split-vertical"
         [routerLink]="ROUTER.pages.private.children.layout.link"
         [routerLinkActive]="['selected']"
         >Layout</rc-drawer-navigation-item
       >
       <rc-drawer-navigation-item
-        icon="mdi:arrow-split-vertical"
+        icon="mdi mdi-arrow-split-vertical"
         [routerLink]="'/overflow'"
         [routerLinkActive]="['selected']"
         >Overflow</rc-drawer-navigation-item
@@ -93,12 +93,12 @@
         >Addresses</rc-drawer-navigation-item
       >
       <rc-drawer-navigation-item
-        icon="mdi:map-marker-outline"
+        icon="mdi mdi-map-marker-outline"
         [routerLinkActive]="['selected']"
       >
         Locations
         <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
+          icon="mdi mdi-map-marker-outline"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.locations.children.location.getLink(
               { id: 1 }
@@ -108,7 +108,7 @@
           >Locations 1</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
+          icon="mdi mdi-map-marker-outline"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.locations.children.location.getLink(
               { id: 2 }
@@ -118,7 +118,7 @@
           >Locations 2</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
+          icon="mdi mdi-map-marker-outline"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.locations.children.location.getLink(
               { id: 3 }
@@ -128,7 +128,7 @@
           >Locations 3</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
+          icon="mdi mdi-map-marker-outline"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.locations.children.location.getLink(
               { id: 4 }
@@ -139,12 +139,12 @@
         >
       </rc-drawer-navigation-item>
       <rc-drawer-navigation-item
-        icon="mdi:domain"
+        icon="mdi mdi-domain"
         [routerLinkActive]="['selected']"
       >
         Countries
         <rc-drawer-navigation-item
-          icon="mdi:domain"
+          icon="mdi mdi-domain"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.countries.children.country.getLink(
               { id: 1 }
@@ -154,7 +154,7 @@
           >Countries 1</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:domain"
+          icon="mdi mdi-domain"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.countries.children.country.getLink(
               { id: 2 }
@@ -164,7 +164,7 @@
           >Countries 2</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:domain"
+          icon="mdi mdi-domain"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.countries.children.country.getLink(
               { id: 3 }
@@ -174,7 +174,7 @@
           >Countries 3</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:domain"
+          icon="mdi mdi-domain"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.countries.children.country.getLink(
               { id: 4 }
@@ -186,12 +186,12 @@
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item
-        icon="mdi:settings"
+        icon="mdi mdi-account-settings"
         [routerLinkActive]="['selected']"
       >
         Access Control
         <rc-drawer-navigation-item
-          icon="mdi:account-multiple-outline"
+          icon="mdi mdi-account-multiple"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.teams.link
           "
@@ -199,7 +199,7 @@
           >Teams</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:account-key"
+          icon="mdi mdi-account-key"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.roles.link
           "
@@ -207,7 +207,7 @@
           >Roles</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:account-convert"
+          icon="mdi mdi-account-convert"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.rules.link
           "
@@ -215,7 +215,7 @@
           >Rules</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:folder-account"
+          icon="mdi mdi-folder-account"
           [routerLink]="
             ROUTER.pages.private.children.drawer.children.polices.link
           "
