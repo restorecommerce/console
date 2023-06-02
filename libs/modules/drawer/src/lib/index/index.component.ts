@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-module-drawer-index',
   template: `
     <div>
-      <h1>Drawer</h1>
+      <h2>Drawer</h2>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

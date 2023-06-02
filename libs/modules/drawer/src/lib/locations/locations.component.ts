@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-module-drawer-locations',
   template: `
     <div>
-      <h1>Locations</h1>
+      <h2>Locations</h2>
     </div>
   `,
   styles: [],

@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { ModulesSharedModule } from '@console/modules/shared';
 
 import { AddressComponent } from './addresses/address.component';
 import { AddressesComponent } from './addresses/addresses.component';
@@ -39,6 +40,6 @@ import { DrawerTemplateComponent } from './template/drawer-template.component';
     PolicesComponent,
     PolicyComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(modulesDrawerRoutes)],
+  imports: [ModulesSharedModule, RouterModule.forChild(modulesDrawerRoutes)],
 })
 export class ModulesDrawerModule {}

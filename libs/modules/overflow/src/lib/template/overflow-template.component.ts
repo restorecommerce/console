@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-module-overflow-template',
   template: `
-    <h1>OverflowTemplateComponent</h1>
-    <router-outlet></router-outlet>
+    <rc-page-overflow>
+      <router-outlet></router-outlet>
+    </rc-page-overflow>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-module-layout-index',
   template: `
     <div>
-      <h1>Layout</h1>
+      <h2>Layout</h2>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

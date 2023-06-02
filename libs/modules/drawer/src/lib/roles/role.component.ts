@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-module-drawer-role',
   template: `
     <div>
-      <h1>Role 1</h1>
+      <h2>Role 1</h2>
     </div>
   `,
   styles: [],

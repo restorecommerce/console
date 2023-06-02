@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-module-drawer-rule',
   template: `
     <div>
-      <h1>Rule 1</h1>
+      <h2>Rule 1</h2>
     </div>
   `,
   styles: [],
