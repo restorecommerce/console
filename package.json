@@ -1,0 +1,89 @@
+{
+  "name": "console-base",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "console:serve:dev": "nx run restorecommerce:serve --configuration=development",
+    "console:serve:prod": "nx run restorecommerce:serve --configuration=production",
+    "console:build:dev": "nx run restorecommerce:build --configuration=development",
+    "console:build:prod": "nx run restorecommerce:build --configuration=production",
+    "console:lint": "npx nx run-many --target=lint --all=true",
+    "graphql:generate": "nx run core-graphql-codegen:generate",
+    "prepare": "husky install"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~15.2.0",
+    "@angular/common": "~15.2.0",
+    "@angular/compiler": "~15.2.0",
+    "@angular/core": "~15.2.0",
+    "@angular/forms": "~15.2.0",
+    "@angular/platform-browser": "~15.2.0",
+    "@angular/platform-browser-dynamic": "~15.2.0",
+    "@angular/router": "~15.2.0",
+    "@nx/angular": "^16.0.3",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.12.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~15.2.0",
+    "@angular-devkit/core": "~15.2.0",
+    "@angular-devkit/schematics": "~15.2.0",
+    "@angular-eslint/eslint-plugin": "~15.0.0",
+    "@angular-eslint/eslint-plugin-template": "~15.0.0",
+    "@angular-eslint/template-parser": "~15.0.0",
+    "@angular/cli": "~15.2.0",
+    "@angular/compiler-cli": "~15.2.0",
+    "@angular/language-service": "~15.2.0",
+    "@nx/cypress": "16.0.3",
+    "@nx/eslint-plugin": "16.0.3",
+    "@nx/jest": "16.0.3",
+    "@nx/js": "16.0.3",
+    "@nx/linter": "16.0.3",
+    "@nx/web": "16.0.3",
+    "@schematics/angular": "~15.2.0",
+    "@types/jest": "^29.4.0",
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "cypress": "^12.2.0",
+    "eslint": "~8.15.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1",
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1",
+    "jest-preset-angular": "~13.0.0",
+    "lint-staged": "^13.2.2",
+    "ng-packagr": "~15.2.2",
+    "nx": "16.0.3",
+    "postcss": "^8.4.16",
+    "postcss-scss": "^4.0.4",
+    "prettier": "^2.8.8",
+    "pretty-quick": "^3.1.3",
+    "stylelint": "^14.11.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-scss": "^7.0.0",
+    "stylelint-config-standard": "^28.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~4.9.5"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "lint-staged": {
+    "{apps,packages}/**/*.{ts,tsx,js,jsx,html}": [
+      "echo \"[Husky] code pre-commit\"",
+      "pretty-quick --staged",
+      "eslint --max-warnings=0"
+    ],
+    "{apps,packages}/**/*.scss": [
+      "echo \"[Husky] styles pre-commit\"",
+      "stylelint"
+    ]
+  }
+}
