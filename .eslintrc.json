@@ -55,7 +55,7 @@
                 "position": "after"
               },
               {
-                "pattern": "@console-modules/**",
+                "pattern": "@console-{core,modules}/**",
                 "group": "internal",
                 "position": "before"
               }

@@ -1,0 +1,23 @@
+h1 {
+  color: blue;
+}
+
+h3 {
+  color: red;
+}
+
+nav {
+  background-color: #666;
+  padding: 10px;
+
+  ul {
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  }
+}

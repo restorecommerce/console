@@ -1,0 +1,22 @@
+mutation Identity($input: IIoRestorecommerceUserLoginRequest!) {
+  identity {
+    user {
+      Login(input: $input) {
+        details {
+          status {
+            code
+            message
+          }
+          payload {
+            id
+            name
+            email
+            active
+            firstName
+            lastName
+          }
+        }
+      }
+    }
+  }
+}
