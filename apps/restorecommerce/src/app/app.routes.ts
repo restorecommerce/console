@@ -1,23 +1,27 @@
 import { Route } from '@angular/router';
 
+import { ROUTER } from '@console-core/config';
+
 export const appRoutes: Route[] = [
   {
     path: '',
-    loadChildren: () =>
-      import('@console-modules/home').then((m) => m.ModulesHomeModule),
-  },
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
-  },
-  {
-    path: 'user',
-    loadChildren: () =>
-      import('@console-modules/profile').then((m) => m.ModulesProfileModule),
+    children: [
+      {
+        path: ROUTER.pages.private.path,
+        loadChildren: () =>
+          import('@console-modules/private').then(
+            (m) => m.ModulesPrivateModule
+          ),
+      },
+      {
+        path: ROUTER.pages.public.path,
+        loadChildren: () =>
+          import('@console-modules/public').then((m) => m.ModulesPublicModule),
+      },
+    ],
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: ROUTER.pages.private.children.home.path,
   },
 ];

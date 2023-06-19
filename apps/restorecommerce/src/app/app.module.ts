@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { VCLDateAdapterModule } from '@vcl/ng-vcl';
+
 import { CoreGraphQLModule } from '@console-core/graphql';
-import { ModulesUiModule } from '@console-modules/ui';
+import { ModulesUiCoreModule, ModulesUiModule } from '@console-modules/ui';
 
 import { environment } from '../environments/environment';
 
@@ -20,7 +22,9 @@ import { appRoutes } from './app.routes';
     CoreGraphQLModule.forRoot({
       api: environment.graphql.api,
     }),
-    ModulesUiModule,
+    ModulesUiCoreModule,
+    ModulesUiModule.forRoot(),
+    VCLDateAdapterModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { IEnvironment } from '@console-core/config';
+import { IEnvironment } from '@console-core/types';
 
 export const environment: Readonly<IEnvironment> = {
   production: false,
