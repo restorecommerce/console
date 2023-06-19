@@ -1,4 +1,4 @@
-import { IConstant, ILanguage } from '../types/interfaces';
+import { IConstant, ILanguage } from '@console-core/types';
 
 const name = 'Restore Commerce';
 

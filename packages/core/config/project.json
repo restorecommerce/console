@@ -2,8 +2,8 @@
   "name": "core-config",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/core/config/src",
+  "tags": ["type:config", "scope:shared"],
   "projectType": "library",
-  "tags": ["core-config"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
