@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/core/graphql/src",
   "prefix": "app",
-  "tags": ["core-graphql"],
+  "tags": ["type:graphql", "scope:shared"],
   "projectType": "library",
   "targets": {
     "generate": {
