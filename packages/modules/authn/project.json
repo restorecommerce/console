@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/modules/authn/src",
   "prefix": "app",
-  "tags": ["module-authn"],
+  "tags": ["type:feature", "scope:authn"],
   "projectType": "library",
   "targets": {
     "build": {

@@ -8,11 +8,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { modulesProfileRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(modulesProfileRoutes),
-    RouterModule.forChild(modulesProfileRoutes),
-  ],
+  imports: [CommonModule, RouterModule.forChild(modulesProfileRoutes)],
   declarations: [ProfileTemplateComponent, ProfileComponent, SettingsComponent],
 })
 export class ModulesProfileModule {}

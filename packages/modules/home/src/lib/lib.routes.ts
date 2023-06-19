@@ -1,22 +1,19 @@
 import { Route } from '@angular/router';
 
+import { ROUTER } from '@console-core/config';
+
+import { HomeTemplateComponent } from './components//template/home-template.component';
 import { HomeComponent } from './components/home/home.component';
-import { HomeTemplateComponent } from './components/home-template.component';
 
 export const modulesHomeRoutes: Route[] = [
   {
-    path: '',
+    path: ROUTER.pages.private.children.home.path,
     component: HomeTemplateComponent,
     children: [
       {
-        path: 'home',
+        path: ROUTER.pages.private.children.home.path,
         pathMatch: 'full',
         component: HomeComponent,
-      },
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
       },
     ],
   },

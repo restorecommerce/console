@@ -1,23 +1,26 @@
-h1 {
-  color: blue;
-}
+@use '@vcl/vcl/app/normalize' as *;
 
-h3 {
-  color: red;
-}
+@use '@vcl/vcl/restore-theme' with (
+  $app-area-max-width: 100%
+);
 
-nav {
-  background-color: #666;
-  padding: 10px;
+/* VCL */
+@use '@vcl/vcl';
 
-  ul {
-    a {
-      color: #fff;
-      text-decoration: none;
+/* Material Design Icons */
+@use '@mdi/font/scss/materialdesignicons' with (
+  $mdi-font-path: '~@mdi/font/fonts'
+);
 
-      &.active {
-        text-decoration: underline;
-      }
-    }
-  }
-}
+/* App Style */
+@use './styles/index.scss';
+
+@use '@angular/cdk/overlay-prebuilt';
+@use '@angular/cdk/a11y-prebuilt';
+
+// Global or important stuff
+// $app-area-max-width: 100%
+// $app-area-bg-color: $white
+
+// Local vars
+// $drawer-bg-color: var(--gray-light-6);

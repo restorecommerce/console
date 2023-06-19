@@ -1,0 +1,78 @@
+// Sidebar stuff
+.drawer-content {
+  $color-alpha: 0.4;
+
+  // Workaround to support drawer content margin left
+  margin-left: 0 !important;
+
+  .drawer-open + main.rc-main {
+    margin-left: 147px !important;
+    transition: 0.3s;
+  }
+
+  .rc-drawer-navigation {
+    /* background-color: var(--sidebar-bg-color) */
+    height: 100%;
+
+    & .navigation {
+      /* height: 100% */
+      overflow: hidden;
+
+      &:hover {
+        overflow-y: auto;
+        overflow-y: overlay;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+      }
+
+      margin-bottom: 0;
+
+      & .navigation-item {
+        text-align: center;
+
+        & vcl-icogram,
+        & vcl-icon,
+        & .icogram,
+        & .icon {
+          display: block;
+
+          .icon {
+            font-size: 2.3em;
+            margin: 0;
+            display: block;
+          }
+
+          .text {
+            font-size: 0.85em;
+            width: 9em;
+            display: inline-block;
+            overflow: hidden;
+            white-space: normal;
+            margin-top: 0.6em;
+          }
+        }
+      }
+
+      // Workaround to support programmatic hovering
+      // Removes the :hover effect of a nav label if the .hovered class is not present
+      & .navigation-item:not(.selected) {
+        & .navigation-item-label:hover:not(.hovered) {
+          color: inherit;
+          background-color: transparent;
+        }
+      }
+    }
+
+    & .level2 {
+      background-color: rgba(250, 250, 250, $color-alpha);
+      z-index: 1;
+      box-shadow: 3px 0 3px 0 rgba(0, 0, 0, $color-alpha);
+    }
+
+    & .rc-drawer-navigation-submenu-arrow {
+      text-align: right;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

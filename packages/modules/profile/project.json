@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/modules/profile/src",
   "prefix": "app",
-  "tags": ["module-profile"],
+  "tags": ["type:feature", "scope:profile"],
   "projectType": "library",
   "targets": {
     "build": {

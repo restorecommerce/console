@@ -1,0 +1,33 @@
+<vcl-form-control-group>
+  <div class="help-wrapper">
+    <vcl-icon
+      vclPrepend
+      icon="mdi mdi-magnify"
+    ></vcl-icon>
+    <vcl-input-field>
+      <input
+        vclInput
+        autocomplete="off"
+        class="no-border"
+        [value]="value"
+        (input)="updateValue($event)"
+      />
+    </vcl-input-field>
+    <button
+      vcl-button
+      square
+      class="transparent"
+      type="button"
+      (input)="clearValue($event)"
+    >
+      <vcl-icon
+        vclPrepend
+        icon="vcl:close"
+      ></vcl-icon>
+    </button>
+  </div>
+  <vcl-hint-error error="required">Name is required</vcl-hint-error>
+  <vcl-hint-error error="minlength"
+    >Name must have a length of at least 2 characters</vcl-hint-error
+  >
+</vcl-form-control-group>
