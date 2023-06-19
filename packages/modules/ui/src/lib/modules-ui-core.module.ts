@@ -1,6 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { IconResolverService } from '@vcl/ng-vcl';
+import {
+  IconResolverService,
+  MaterialDesignIconResolverService,
+  MaterialDesignVCLIconAliasResolverService,
+} from '@vcl/ng-vcl';
 
 import { DrawerService } from './services/drawer.service';
 import { RCMdiIconResolverService } from './services/icon-resolve.service';
@@ -11,6 +15,16 @@ import { RCMdiIconResolverService } from './services/icon-resolve.service';
     {
       provide: IconResolverService,
       useClass: RCMdiIconResolverService,
+      multi: true,
+    },
+    {
+      provide: IconResolverService,
+      useClass: MaterialDesignIconResolverService,
+      multi: true,
+    },
+    {
+      provide: IconResolverService,
+      useClass: MaterialDesignVCLIconAliasResolverService,
       multi: true,
     },
   ],
