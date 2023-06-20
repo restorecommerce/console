@@ -2,7 +2,8 @@
   <rc-header>
     <rc-toggle-drawer></rc-toggle-drawer>
     <rc-banner
-      logoUrl="https://raw.githubusercontent.com/restorecommerce/branding/master/Logo/restore_commerce_logo.png"
+      [logoUrl]="logoUrl"
+      [logoLink]="ROUTER.pages.private.children.home.link"
     >
       {{ APP.name }}
     </rc-banner>

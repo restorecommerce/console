@@ -24,11 +24,14 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   APP = APP;
   ROUTER = ROUTER;
 
+  logoUrl =
+    'https://raw.githubusercontent.com/restorecommerce/branding/master/Logo/restore_commerce_logo.png';
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private drawerService: DrawerService,
-    private cdRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   private readonly subscriptions = new SubSink();
@@ -87,8 +90,8 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
       )
       .subscribe((currentRoute: string) => {
         this.currentRoute = currentRoute;
-        this.cdRef.markForCheck();
-        this.cdRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
+        this.changeDetectorRef.detectChanges();
       });
   }
 }
