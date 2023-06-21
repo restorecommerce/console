@@ -1,0 +1,30 @@
+mutation IdentityUserRegister($input: IIoRestorecommerceUserRegisterRequest!) {
+  identity {
+    user {
+      Register(input: $input) {
+        details {
+          status {
+            code
+            message
+          }
+          payload {
+            id
+            email
+            firstName
+            lastName
+            activationCode
+            tokens {
+              name
+              type
+              token
+              scopes
+              lastLogin
+              expiresIn
+              interactive
+            }
+          }
+        }
+      }
+    }
+  }
+}
