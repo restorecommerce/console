@@ -7,7 +7,7 @@
     "console:serve:prod": "nx run restorecommerce:serve --configuration=production",
     "console:build:dev": "nx run restorecommerce:build --configuration=development",
     "console:build:prod": "nx run restorecommerce:build --configuration=production",
-    "graphql:generate": "nx run core-graphql:generate",
+    "console:graphql:generate": "nx run core-graphql:generate",
     "console:lint": " nx run-many --target=lint --all=true",
     "console:test": " nx run-many --target=test --all=true",
     "console:e2e": " nx run-many --target=e2e",
