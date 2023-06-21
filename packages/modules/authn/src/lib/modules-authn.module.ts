@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { ModulesSharedModule } from '@console-modules/shared';
 
 import { ActivationComponent } from './components/activation/activation.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
@@ -11,7 +12,7 @@ import { AuthnTemplateComponent } from './components/template/authn-template.com
 import { modulesAuthnRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(modulesAuthnRoutes)],
+  imports: [ModulesSharedModule, RouterModule.forChild(modulesAuthnRoutes)],
   declarations: [
     AuthnTemplateComponent,
     SignInComponent,
