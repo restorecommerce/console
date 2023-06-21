@@ -29,6 +29,7 @@
       "@console-modules/profile": ["packages/modules/profile/src/index.ts"],
       "@console-modules/public": ["packages/modules/public/src/index.ts"],
       "@console-modules/shared": ["packages/modules/shared/src/index.ts"],
+      "@console-modules/store": ["packages/core/store/src/index.ts"],
       "@console-modules/ui": ["packages/modules/ui/src/index.ts"]
     }
   },

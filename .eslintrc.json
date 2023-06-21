@@ -25,6 +25,14 @@
                 "onlyDependOnLibsWithTags": ["type:graph", "type:types"]
               },
               {
+                "sourceTag": "type:store",
+                "onlyDependOnLibsWithTags": [
+                  "type:config",
+                  "type:graph",
+                  "type:types"
+                ]
+              },
+              {
                 "sourceTag": "type:types",
                 "onlyDependOnLibsWithTags": ["type:types"]
               },
@@ -36,6 +44,7 @@
                   "type:config",
                   "type:graphql",
                   "type:state",
+                  "type:store",
                   "type:types",
                   "type:shared"
                 ]
@@ -45,6 +54,7 @@
                 "onlyDependOnLibsWithTags": [
                   "type:ui",
                   "type:config",
+                  "type:store",
                   "type:types"
                 ]
               },
