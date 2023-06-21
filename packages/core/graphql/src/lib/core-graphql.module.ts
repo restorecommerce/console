@@ -7,13 +7,15 @@ import {
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
-import { ICoreGraphql } from './types/interfaces';
+import { IGraphqlConfig } from './types/interfaces';
 
 @NgModule({
   exports: [ApolloModule],
 })
 export class CoreGraphQLModule {
-  static forRoot(config: ICoreGraphql): ModuleWithProviders<CoreGraphQLModule> {
+  static forRoot(
+    config: IGraphqlConfig
+  ): ModuleWithProviders<CoreGraphQLModule> {
     return {
       ngModule: CoreGraphQLModule,
       providers: [

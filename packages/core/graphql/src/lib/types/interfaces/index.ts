@@ -1,1 +1,1 @@
-export * from './core-graphql';
+export * from './graphql';
