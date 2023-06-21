@@ -1,0 +1,37 @@
+<a
+  [class.hovered]="hovered$ | async"
+  class="navigation-item-label"
+  role="menuitem"
+>
+  <vcl-icogram>
+    <vcl-icon
+      vclPrepend
+      [icon]="icon"
+    ></vcl-icon>
+    <ng-content></ng-content>
+    <vcl-icon
+      vclAppend
+      class="rc-drawer-navigation-submenu-arrow"
+      [icon]="hasNestedNavItems ? 'mdi mdi-menu-right' : undefined"
+    ></vcl-icon>
+  </vcl-icogram>
+</a>
+
+<ng-template
+  cdk-portal
+  #overlayTemplate="cdkPortal"
+>
+  <div
+    class="rc-drawer-navigation"
+    #sidebar
+  >
+    <div
+      class="navigation m-0 level2"
+      role="menu"
+      (mouseenter)="onSidebarMouseEnter()"
+      (mouseleave)="onSidebarMouseLeave()"
+    >
+      <ng-content select="rc-drawer-navigation-item"></ng-content>
+    </div>
+  </div>
+</ng-template>

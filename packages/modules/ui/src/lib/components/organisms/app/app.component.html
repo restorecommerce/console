@@ -1,0 +1,25 @@
+<ng-content select="rc-header"></ng-content>
+<vcl-drawer-container class="flex">
+  <ng-container
+    *ngIf="{
+      mode: mode$ | async,
+      opened: opened$ | async
+    } as vm"
+  >
+    <vcl-drawer
+      *ngIf="vm.mode && vm.opened !== null"
+      [mode]="vm.mode"
+      [opened]="vm.opened"
+      (openedChange)="drawerService.opened = $event"
+    >
+      <ng-content select="rc-drawer-navigation"></ng-content>
+    </vcl-drawer>
+  </ng-container>
+  <main
+    rcGridCell
+    class="flex rc-main"
+  >
+    <ng-content></ng-content>
+  </main>
+</vcl-drawer-container>
+<ng-content select="rc-footer"></ng-content>

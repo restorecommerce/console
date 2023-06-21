@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.3
 
-FROM node:16.3.0-alpine as build
+FROM node:18.16.0-alpine as build
 
 WORKDIR /app
 
@@ -11,12 +11,12 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
-RUN npm run build
+RUN npm run console:build:prod
 
 
 FROM nginx:alpine
 
-COPY --from=build /app/dist/console-base /usr/share/nginx/html
+COPY --from=build /app/dist/apps/restorecommerce /usr/share/nginx/html
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080

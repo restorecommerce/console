@@ -1,0 +1,22 @@
+{
+  "overwrite": true,
+  "schema": "https://api.restorecommerce.io/graphql",
+  "generates": {
+    "packages/core/graphql/src/lib/generated/generated.ts": {
+      "config": {
+        "addExplicitOverride": true,
+        "declarationKind": "interface",
+        "defaultScalarType": "unknown"
+      },
+      "documents": "packages/modules/**/*.graphql",
+      "hooks": {
+        "afterOneFileWrite": ["pretty-quick"]
+      },
+      "plugins": [
+        "typescript",
+        "typescript-operations",
+        "typescript-apollo-angular"
+      ]
+    }
+  }
+}

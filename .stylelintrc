@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended-scss",
+    "stylelint-config-prettier"
+  ],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "string-quotes": "single"
+  }
+}
