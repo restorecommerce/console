@@ -9,7 +9,10 @@
     "console:build:prod": "nx run restorecommerce:build --configuration=production",
     "graphql:generate": "nx run core-graphql:generate",
     "console:lint": " nx run-many --target=lint --all=true",
+    "console:test": " nx run-many --target=test --all=true",
+    "console:e2e": " nx run-many --target=e2e",
     "console:graph": "nx graph restorecommerce",
+    "console:list": "nx list",
     "prepare": "husky install"
   },
   "private": true,
