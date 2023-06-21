@@ -3,7 +3,7 @@
 Administrative Console for the [Restorecommerce](https://about.restorecommerce.io/)
 e-commerce suite based on [Angular](https://angular.io/).
 
-**Live demo at [cdemo.restorecommerce.io](https://cdemo.restorecommerce.io/)**.
+**Live demo at [console.restorecommerce.io](https://console.restorecommerce.io/)**.
 
 ## Goals and Features
 
@@ -20,26 +20,48 @@ The goal is to make it as convenient and efficient as possible for these tasks.
 
 ## Development
 
-### Development Server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
 ### Code Scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To generate code using Nx Angular, you can utilize the following commands:
+
+- Generate a component: Run `npx nx g @nx/angular:component` component-name to generate a new component.
+- Generate a directive: Use `npx nx g @nx/angular:directive` directive-name to generate a new directive.
+- Generate a pipe: Execute `npx nx g @nx/angular:pipe` pipe-name to generate a new pipe.
+- Generate a service: Run `npx nx g @nx/angular:service` service-name to generate a new service.
+- Generate a class: Use `npx nx g @nx/angular:class` class-name to generate a new class.
+- Generate a guard: Execute `npx nx g @nx/angular:guard` guard-name to generate a new guard.
+- Generate an interface: Use `npx nx g @nx/angular:interface` interface-name to generate a new interface.
+- Generate an enum: Execute `npx nx g @nx/angular:enum` enum-name to generate a new enum.
+- Generate a module: Run `npx nx g @nx/angular:module` module-name to generate a new module.
+
+For each command, replace component-name, directive-name, and so on, with the desired names for your code artifacts.
+
+These commands utilize the @nx/angular plugin provided by Nx to generate the respective code files. Nx Angular follows best practices and conventions, making it easier to generate and manage your Angular code. For more information, you can visit the [Nx Angular documentation](https://nx.dev/packages/angular) for detailed instructions and examples.
+
+### Development Server
+
+To start the development server, run `npm run console:serve:dev`. Navigate to `http://localhost:4200/`. The app will automatically reload if you make any changes to the source files.
 
 ### Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To build the project for production, run npm `run console:build:prod`. The build artifacts will be stored in the `dist/` directory.
+
+### Running Linting
+
+Run `npm run console:lint` to execute linting using [TSLint](https://palantir.github.io/tslint/) and [ESLint](https://eslint.org/) .
 
 ### Running Unit Tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run console:test` to execute the unit tests using [Jest](https://jestjs.io/).
 
 ### Running End-to-end Tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm run console:e2e` to execute the end-to-end tests using [Cypress](https://www.cypress.io/).
 
 ### Additional Help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+For more information and help regarding Nx Angular, use `npm run console:list` to list all available local workspace plugins, installed plugins, and their associated commands.
+
+To find out more about a specific plugin, use the command "`npx nx list [plugin name]`".
+
+You can also visit the [Nx Angular documentation](https://nx.dev/packages/angular) for more details.
