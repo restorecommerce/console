@@ -21,10 +21,4 @@ export const APP: Readonly<IConstant> = {
     },
     supported,
   },
-  ngrx: {
-    storeDevtoolsModule: {
-      name: `${name} | NgRx Store DevTools`,
-      maxAge: 25,
-    },
-  },
 };

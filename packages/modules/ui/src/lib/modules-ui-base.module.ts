@@ -29,11 +29,11 @@ import { RCMdiIconResolverService } from './services/icon-resolve.service';
     },
   ],
 })
-export class ModulesUiCoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: ModulesUiCoreModule) {
+export class ModulesUiBaseModule {
+  constructor(@Optional() @SkipSelf() parentModule: ModulesUiBaseModule) {
     if (parentModule) {
       throw new Error(
-        'ModulesUiCoreModule is already loaded. Import it in the AppModule only.'
+        'ModulesUiBaseModule is already loaded. Import it in the AppModule only.'
       );
     }
   }

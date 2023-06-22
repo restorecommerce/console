@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 COPY --chown=node:node . .
 

@@ -10,6 +10,11 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": [
+          "ngrx-store-logger",
+          "ngrx-store-localstorage",
+          "deepmerge"
+        ],
         "outputPath": "dist/apps/restorecommerce",
         "index": "apps/restorecommerce/src/index.html",
         "main": "apps/restorecommerce/src/main.ts",

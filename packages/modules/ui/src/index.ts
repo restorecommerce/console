@@ -1,5 +1,5 @@
+export * from './lib/modules-ui-base.module';
 export * from './lib/modules-ui.module';
-export * from './lib/modules-ui-core.module';
 
 // Components
 export * from './lib/components/organisms/index';

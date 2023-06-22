@@ -8,6 +8,6 @@ import { modulesPrivateRoutes } from './lib.routes';
 
 @NgModule({
   declarations: [PrivateTemplateComponent],
-  imports: [RouterModule.forChild(modulesPrivateRoutes), ModulesSharedModule],
+  imports: [ModulesSharedModule, RouterModule.forChild(modulesPrivateRoutes)],
 })
 export class ModulesPrivateModule {}

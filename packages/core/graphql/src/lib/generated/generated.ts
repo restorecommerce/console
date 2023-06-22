@@ -4349,11 +4349,54 @@ export interface SchedulingQuery {
   job: SchedulingJobQuery;
 }
 
-export type IdentityMutationVariables = Exact<{
+export type RegisterMutationVariables = Exact<{
+  input: IIoRestorecommerceUserRegisterRequest;
+}>;
+
+export type RegisterMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      Register?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserResponse';
+          status?: {
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          payload?: {
+            __typename?: 'IoRestorecommerceUserUser';
+            id?: string | null;
+            email?: string | null;
+            firstName?: string | null;
+            lastName?: string | null;
+            activationCode?: string | null;
+            tokens?: Array<{
+              __typename?: 'IoRestorecommerceAuthTokens';
+              name?: string | null;
+              type?: string | null;
+              token?: string | null;
+              scopes?: Array<string> | null;
+              lastLogin?: number | null;
+              expiresIn?: number | null;
+              interactive?: boolean | null;
+            }> | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type LoginMutationVariables = Exact<{
   input: IIoRestorecommerceUserLoginRequest;
 }>;
 
-export type IdentityMutation = {
+export type LoginMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -4383,8 +4426,54 @@ export type IdentityMutation = {
   };
 };
 
-export const IdentityDocument = gql`
-  mutation Identity($input: IIoRestorecommerceUserLoginRequest!) {
+export const RegisterDocument = gql`
+  mutation Register($input: IIoRestorecommerceUserRegisterRequest!) {
+    identity {
+      user {
+        Register(input: $input) {
+          details {
+            status {
+              code
+              message
+            }
+            payload {
+              id
+              email
+              firstName
+              lastName
+              activationCode
+              tokens {
+                name
+                type
+                token
+                scopes
+                lastLogin
+                expiresIn
+                interactive
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RegisterGQL extends Apollo.Mutation<
+  RegisterMutation,
+  RegisterMutationVariables
+> {
+  override document = RegisterDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const LoginDocument = gql`
+  mutation Login($input: IIoRestorecommerceUserLoginRequest!) {
     identity {
       user {
         Login(input: $input) {
@@ -4411,11 +4500,11 @@ export const IdentityDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class IdentityGQL extends Apollo.Mutation<
-  IdentityMutation,
-  IdentityMutationVariables
+export class LoginGQL extends Apollo.Mutation<
+  LoginMutation,
+  LoginMutationVariables
 > {
-  override document = IdentityDocument;
+  override document = LoginDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
