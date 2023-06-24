@@ -34,7 +34,7 @@
     "@ngrx/router-store": "~15.3.0",
     "@ngrx/store": "~15.3.0",
     "@nx/angular": "^16.3.2",
-    "@vcl/ng-vcl": "^2.6.2",
+    "@vcl/ng-vcl": "^2.6.3",
     "@vcl/vcl": "^2.5.0",
     "apollo-angular": "^5.0.0",
     "ngrx-store-localstorage": "^16.0.0",
