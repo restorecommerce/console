@@ -1,8 +1,6 @@
 @use '@vcl/vcl/app/normalize' as *;
 
-@use '@vcl/vcl/restore-theme' with (
-  $app-area-max-width: 100%
-);
+@use './styles/theme/console-theme.scss';
 
 /* VCL */
 @use '@vcl/vcl';

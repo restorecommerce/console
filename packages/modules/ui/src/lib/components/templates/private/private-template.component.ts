@@ -81,11 +81,11 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
         startWith(this.router.url), // Emit the current route immediately
 
         map((url: string) => {
-          if (url.startsWith(ROUTER.pages.private.children.management.link)) {
-            return ROUTER.pages.private.children.management.link;
+          if (url.startsWith(ROUTER.pages.main.children.management.link)) {
+            return ROUTER.pages.main.children.management.link;
           }
 
-          return ROUTER.pages.private.children.home.link;
+          return ROUTER.pages.main.children.home.link;
         })
       )
       .subscribe((currentRoute: string) => {

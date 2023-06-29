@@ -1,0 +1,114 @@
+<form
+  vclForm
+  class="form m-0"
+  [formGroup]="signUpForm"
+  (ngSubmit)="onClickSignUp(signUpForm.value)"
+>
+  <vcl-form-control-group>
+    <vcl-label>First name</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="firstName.hasError('required') && firstName.touched"
+        formControlName="firstName"
+        type="text"
+        name="firstName"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <vcl-form-control-group>
+    <vcl-label>Last name</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="lastName.hasError('required') && lastName.touched"
+        formControlName="lastName"
+        type="text"
+        name="lastName"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <vcl-form-control-group>
+    <vcl-label>E-Mail</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="email.hasError('required') && email.touched"
+        formControlName="email"
+        type="text"
+        name="email"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <vcl-form-control-group>
+    <vcl-label>Password</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="password.hasError('required') && password.touched"
+        type="password"
+        formControlName="password"
+        name="password"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <vcl-form-control-group>
+    <vcl-label>Confirm password</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="
+          passwordConfirmation.hasError('required') &&
+          passwordConfirmation.touched
+        "
+        type="password"
+        formControlName="passwordConfirmation"
+        name="passwordConfirmation"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <div class="row justify-between">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <p>
+            <a
+              [routerLink]="
+                ROUTER.pages.main.children.auth.children.signIn.link
+              "
+            >
+              <button
+                type="button"
+                class="button half-transparent"
+              >
+                Already have an account? Sign in!
+              </button>
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button
+            vcl-button
+            type="submit"
+            [disabled]="!signUpForm.valid"
+            class="button"
+          >
+            Sign up
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
