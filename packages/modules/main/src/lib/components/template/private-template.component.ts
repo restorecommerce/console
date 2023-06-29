@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-authn-template',
+  selector: 'app-module-main-private-template',
   template: `
-    <rc-public-template>
+    <rc-private-template>
       <router-outlet></router-outlet>
-    </rc-public-template>
+    </rc-private-template>
   `,
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthnTemplateComponent {}
+export class PrivateTemplateComponent {}

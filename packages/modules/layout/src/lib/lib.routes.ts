@@ -11,7 +11,7 @@ export const modulesLayoutRoutes: Route[] = [
     component: LayoutTemplateComponent,
     children: [
       {
-        path: ROUTER.pages.private.children.layout.path,
+        path: ROUTER.pages.main.children.layout.path,
         pathMatch: 'full',
         component: LayoutComponent,
       },

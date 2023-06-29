@@ -8,7 +8,6 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthnTemplateComponent } from './components/template/authn-template.component';
-import { PublicGuard } from './guards/public.guard';
 
 export const modulesAuthnRoutes: Route[] = [
   {
@@ -16,31 +15,29 @@ export const modulesAuthnRoutes: Route[] = [
     component: AuthnTemplateComponent,
     children: [
       {
-        path: ROUTER.pages.public.children.auth.children.signIn.path,
-        canActivate: [PublicGuard],
+        path: '',
+        redirectTo: ROUTER.pages.main.children.auth.children.signIn.path,
+        pathMatch: 'full',
+      },
+      {
+        path: ROUTER.pages.main.children.auth.children.signIn.path,
         component: SignInComponent,
       },
       {
-        path: ROUTER.pages.public.children.auth.children.signUp.path,
-        canActivate: [PublicGuard],
+        path: ROUTER.pages.main.children.auth.children.signUp.path,
         component: SignUpComponent,
       },
       {
-        path: ROUTER.pages.public.children.auth.children.passwordRecovery.path,
-        canActivate: [PublicGuard],
+        path: ROUTER.pages.main.children.auth.children.passwordRecovery.path,
         component: PasswordRecoveryComponent,
       },
       {
-        path: ROUTER.pages.public.children.auth.children.activation.path,
+        path: ROUTER.pages.main.children.auth.children.activation.path,
         component: ActivationComponent,
       },
       {
-        path: ROUTER.pages.public.children.auth.children.confirmEmail.path,
+        path: ROUTER.pages.main.children.auth.children.confirmEmail.path,
         component: ConfirmEmailComponent,
-      },
-      {
-        path: '**',
-        redirectTo: ROUTER.pages.public.children.auth.children.signIn.path,
       },
     ],
   },

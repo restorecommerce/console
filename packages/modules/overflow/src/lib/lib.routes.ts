@@ -11,7 +11,7 @@ export const modulesOverflowRoutes: Route[] = [
     component: OverflowTemplateComponent,
     children: [
       {
-        path: ROUTER.pages.private.children.overflow.path,
+        path: ROUTER.pages.main.children.overflow.path,
         pathMatch: 'full',
         component: OverflowComponent,
       },

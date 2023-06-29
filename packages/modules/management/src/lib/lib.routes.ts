@@ -30,65 +30,65 @@ export const modulesManagementRoutes: Route[] = [
         component: ManagementComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.addresses.path,
+        path: ROUTER.pages.main.children.management.children.addresses.path,
         component: AddressesComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.addresses
-          .children.address.path,
+        path: ROUTER.pages.main.children.management.children.addresses.children
+          .address.path,
         component: AddressComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.locations.path,
+        path: ROUTER.pages.main.children.management.children.locations.path,
         component: LocationsComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.locations
-          .children.location.path,
+        path: ROUTER.pages.main.children.management.children.locations.children
+          .location.path,
         component: LocationComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.countries.path,
+        path: ROUTER.pages.main.children.management.children.countries.path,
         component: CountriesComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.countries
-          .children.country.path,
+        path: ROUTER.pages.main.children.management.children.countries.children
+          .country.path,
         component: CountryComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.teams.path,
+        path: ROUTER.pages.main.children.management.children.teams.path,
         component: TeamsComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.teams.children
-          .team.path,
+        path: ROUTER.pages.main.children.management.children.teams.children.team
+          .path,
         component: TeamComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.roles.path,
+        path: ROUTER.pages.main.children.management.children.roles.path,
         component: RolesComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.roles.children
-          .role.path,
+        path: ROUTER.pages.main.children.management.children.roles.children.role
+          .path,
         component: RoleComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.rules.path,
+        path: ROUTER.pages.main.children.management.children.rules.path,
         component: RulesComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.rules.children
-          .rule.path,
+        path: ROUTER.pages.main.children.management.children.rules.children.rule
+          .path,
         component: RuleComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.polices.path,
+        path: ROUTER.pages.main.children.management.children.polices.path,
         component: PolicesComponent,
       },
       {
-        path: ROUTER.pages.private.children.management.children.polices.children
+        path: ROUTER.pages.main.children.management.children.polices.children
           .policy.path,
         component: PolicyComponent,
       },
