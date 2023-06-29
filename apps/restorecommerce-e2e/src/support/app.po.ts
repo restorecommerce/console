@@ -1,1 +1,1 @@
-export const getLogo = () => cy.get('h1.app-name');
+export const getLogo = () => cy.get('h1');
