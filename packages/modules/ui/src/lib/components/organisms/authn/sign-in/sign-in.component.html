@@ -1,0 +1,59 @@
+<form
+  vclForm
+  class="form m-0"
+  [formGroup]="signinForm"
+  (ngSubmit)="onClickSignIn(signinForm.value)"
+>
+  <vcl-form-control-group>
+    <vcl-label>E-Mail</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="email.hasError('required') && email.touched"
+        formControlName="email"
+        type="text"
+        name="email"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <vcl-form-control-group>
+    <vcl-label>Password</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="password.hasError('required') && password.touched"
+        type="password"
+        formControlName="password"
+        name="password"
+        autocomplete="true"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+  <div class="row justify-between">
+    <p>
+      <a
+        [routerLink]="
+          ROUTER.pages.main.children.auth.children.passwordRecovery.link
+        "
+      >
+        <button
+          type="button"
+          class="button half-transparent"
+        >
+          Forgot your password?
+        </button>
+      </a>
+    </p>
+    <button
+      vcl-button
+      type="submit"
+      [disabled]="!signinForm.valid"
+      class="button"
+    >
+      Sign in
+    </button>
+  </div>
+</form>

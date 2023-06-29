@@ -1,8 +1,14 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'rc-banner',
   templateUrl: 'banner.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcBannerComponent {
   @HostBinding('class.row')

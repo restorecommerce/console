@@ -3,15 +3,15 @@
     <rc-toggle-drawer></rc-toggle-drawer>
     <rc-banner
       [logoUrl]="logoUrl"
-      [logoLink]="ROUTER.pages.private.children.home.link"
+      [logoLink]="ROUTER.pages.main.children.home.link"
     >
       {{ APP.name }}
     </rc-banner>
 
     <rc-header-navigation *ngIf="!smallDevice">
       <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.private.children.home.link"
-        [selected]="currentRoute === ROUTER.pages.private.children.home.link"
+        [routerLink]="ROUTER.pages.main.children.home.link"
+        [selected]="currentRoute === ROUTER.pages.main.children.home.link"
       >
         <div class="icogram">
           <div
@@ -23,10 +23,8 @@
         </div>
       </rc-header-navigation-item>
       <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.private.children.management.link"
-        [selected]="
-          currentRoute === ROUTER.pages.private.children.management.link
-        "
+        [routerLink]="ROUTER.pages.main.children.management.link"
+        [selected]="currentRoute === ROUTER.pages.main.children.management.link"
       >
         <div class="icogram">
           <div
@@ -60,11 +58,11 @@
         [value]="currentRoute"
         (valueChange)="navigateTo($event)"
       >
-        <vcl-select-list-item [value]="ROUTER.pages.private.children.home.link">
+        <vcl-select-list-item [value]="ROUTER.pages.main.children.home.link">
           Home
         </vcl-select-list-item>
         <vcl-select-list-item
-          [value]="ROUTER.pages.private.children.management.link"
+          [value]="ROUTER.pages.main.children.management.link"
         >
           Management
         </vcl-select-list-item>
@@ -72,12 +70,10 @@
     </vcl-select>
 
     <!-- root -->
-    <ng-container
-      *ngIf="currentRoute === ROUTER.pages.private.children.home.link"
-    >
+    <ng-container *ngIf="currentRoute === ROUTER.pages.main.children.home.link">
       <rc-drawer-navigation-item
         icon="mdi:home"
-        [routerLink]="ROUTER.pages.private.children.home.link"
+        [routerLink]="ROUTER.pages.main.children.home.link"
         [routerLinkActive]="['selected']"
         [routerLinkActiveOptions]="{ exact: true }"
       >
@@ -85,7 +81,7 @@
       >
       <rc-drawer-navigation-item
         icon="mdi:arrow-split-vertical"
-        [routerLink]="ROUTER.pages.private.children.layout.link"
+        [routerLink]="ROUTER.pages.main.children.layout.link"
         [routerLinkActive]="['selected']"
         >Layout</rc-drawer-navigation-item
       >
@@ -99,12 +95,12 @@
 
     <!-- drawer -->
     <ng-container
-      *ngIf="currentRoute === ROUTER.pages.private.children.management.link"
+      *ngIf="currentRoute === ROUTER.pages.main.children.management.link"
     >
       <rc-drawer-navigation-item
         icon="mdi:city"
         [routerLink]="
-          ROUTER.pages.private.children.management.children.addresses.link
+          ROUTER.pages.main.children.management.children.addresses.link
         "
         [routerLinkActive]="['selected']"
         >Addresses</rc-drawer-navigation-item
@@ -117,7 +113,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
               { id: 1 }
             )
           "
@@ -127,7 +123,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
               { id: 2 }
             )
           "
@@ -137,7 +133,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
               { id: 3 }
             )
           "
@@ -147,7 +143,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
               { id: 4 }
             )
           "
@@ -163,7 +159,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
               { id: 1 }
             )
           "
@@ -173,7 +169,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
               { id: 2 }
             )
           "
@@ -183,7 +179,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
               { id: 3 }
             )
           "
@@ -193,7 +189,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
               { id: 4 }
             )
           "
@@ -210,7 +206,7 @@
         <rc-drawer-navigation-item
           icon="mdi:account-multiple"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.teams.link
+            ROUTER.pages.main.children.management.children.teams.link
           "
           [routerLinkActive]="['selected']"
           >Teams</rc-drawer-navigation-item
@@ -218,7 +214,7 @@
         <rc-drawer-navigation-item
           icon="mdi:account-key"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.roles.link
+            ROUTER.pages.main.children.management.children.roles.link
           "
           [routerLinkActive]="['selected']"
           >Roles</rc-drawer-navigation-item
@@ -226,7 +222,7 @@
         <rc-drawer-navigation-item
           icon="mdi:account-convert"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.rules.link
+            ROUTER.pages.main.children.management.children.rules.link
           "
           [routerLinkActive]="['selected']"
           >Rules</rc-drawer-navigation-item
@@ -234,7 +230,7 @@
         <rc-drawer-navigation-item
           icon="mdi:folder-account"
           [routerLink]="
-            ROUTER.pages.private.children.management.children.polices.link
+            ROUTER.pages.main.children.management.children.polices.link
           "
           [routerLinkActive]="['selected']"
           >Policies</rc-drawer-navigation-item
@@ -243,6 +239,5 @@
     </ng-container>
   </rc-drawer-navigation>
 
-  <!-- <router-outlet></router-outlet> -->
   <ng-content></ng-content>
 </rc-app>

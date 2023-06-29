@@ -1,6 +1,7 @@
 export interface IStoreConstant {
   readonly states: {
     readonly appState: 'appStateV1';
+    readonly securityState: 'securityStateV1';
     readonly routerState: 'routerStateV1';
   };
   readonly ngrx: {

@@ -5,6 +5,7 @@ import { APP } from './app';
 export const STORE: Readonly<IStoreConstant> = {
   states: {
     appState: 'appStateV1',
+    securityState: 'securityStateV1',
     routerState: 'routerStateV1',
   },
   ngrx: {

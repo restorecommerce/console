@@ -16,12 +16,13 @@ export interface IRouterItem {
 
 export interface IRouter {
   pages: {
-    public: {
+    main: {
       name: string;
       path: string;
       link: string;
       getLink: () => TRouterLink;
       children: {
+        home: IRouterItem;
         auth: {
           name: string;
           path: string;
@@ -35,15 +36,6 @@ export interface IRouter {
             confirmEmail: IRouterItem;
           };
         };
-      };
-    };
-    private: {
-      name: string;
-      path: string;
-      link: string;
-      getLink: () => TRouterLink;
-      children: {
-        home: IRouterItem;
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {
@@ -115,16 +107,6 @@ export interface IRouter {
                 policy: IRouterItem;
               };
             };
-          };
-        };
-        user: {
-          name: string;
-          path: string;
-          link: string;
-          getLink: () => TRouterLink;
-          children: {
-            profile: IRouterItem;
-            settings: IRouterItem;
           };
         };
       };

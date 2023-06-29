@@ -7,11 +7,11 @@ import { HomeComponent } from './components/home/home.component';
 
 export const modulesHomeRoutes: Route[] = [
   {
-    path: ROUTER.pages.private.children.home.path,
+    path: ROUTER.pages.main.children.home.path,
     component: HomeTemplateComponent,
     children: [
       {
-        path: ROUTER.pages.private.children.home.path,
+        path: ROUTER.pages.main.children.home.path,
         pathMatch: 'full',
         component: HomeComponent,
       },

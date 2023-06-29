@@ -1,8 +1,9 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'rc-datalist-item',
   templateUrl: 'datalist-item.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListItemComponent {
   @HostBinding('class.data-list-item')
