@@ -4,24 +4,12 @@ import { ROUTER } from '@console-core/config';
 
 export const appRoutes: Route[] = [
   {
-    path: '',
-    children: [
-      {
-        path: ROUTER.pages.private.path,
-        loadChildren: () =>
-          import('@console-modules/private').then(
-            (m) => m.ModulesPrivateModule
-          ),
-      },
-      {
-        path: ROUTER.pages.public.path,
-        loadChildren: () =>
-          import('@console-modules/public').then((m) => m.ModulesPublicModule),
-      },
-    ],
+    path: ROUTER.pages.main.path,
+    loadChildren: () =>
+      import('@console-modules/main').then((m) => m.ModulesMainModule),
   },
   {
     path: '**',
-    redirectTo: ROUTER.pages.private.children.home.path,
+    redirectTo: ROUTER.pages.main.path,
   },
 ];

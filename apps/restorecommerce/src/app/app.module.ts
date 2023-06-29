@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
 
 import { CoreGraphQLModule } from '@console-core/graphql';
-import { CoreStoreModule } from '@console-modules/store';
 import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
 import { environment } from '../environments/environment';
@@ -25,12 +24,10 @@ import { AppStoreModule } from './app.store.module';
       api: environment.graphql.api,
     }),
     AppStoreModule,
-    CoreStoreModule,
     ModulesUiBaseModule,
     ModulesUiModule.forRoot(),
     VCLDateAdapterModule.forRoot(),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
