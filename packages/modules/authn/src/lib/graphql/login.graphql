@@ -1,4 +1,4 @@
-mutation IdentityUserLogin($input: IIoRestorecommerceUserLoginRequest!) {
+mutation Login($input: IIoRestorecommerceUserLoginRequest!) {
   identity {
     user {
       Login(input: $input) {

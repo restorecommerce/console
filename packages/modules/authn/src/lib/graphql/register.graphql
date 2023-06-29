@@ -1,4 +1,4 @@
-mutation IdentityUserRegister($input: IIoRestorecommerceUserRegisterRequest!) {
+mutation Register($input: IIoRestorecommerceUserRegisterRequest!) {
   identity {
     user {
       Register(input: $input) {
