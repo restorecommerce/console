@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'core-store',
-  preset: '../../../jest.preset.js',
+  displayName: 'core-store-security',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/packages/core/store',
+  coverageDirectory: '../../../../coverage/packages/core/store/security',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

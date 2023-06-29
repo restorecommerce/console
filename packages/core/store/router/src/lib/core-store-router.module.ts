@@ -4,9 +4,12 @@ import { StoreModule } from '@ngrx/store';
 
 import { STORE } from '@console-core/config';
 
+import { RouterFacade } from './+state';
+
 @NgModule({
   imports: [
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
   ],
+  providers: [RouterFacade],
 })
-export class CoreStoreModule {}
+export class CoreStoreRouterModule {}

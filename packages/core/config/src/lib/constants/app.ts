@@ -1,6 +1,6 @@
 import { IConstant, ILanguage } from '@console-core/types';
 
-const name = 'Restore Commerce';
+const name = 'Restorecommerce';
 
 const supported: ILanguage[] = [
   {
