@@ -38,6 +38,10 @@ For each command, replace component-name, directive-name, and so on, with the de
 
 These commands utilize the @nx/angular plugin provided by Nx to generate the respective code files. Nx Angular follows best practices and conventions, making it easier to generate and manage your Angular code. For more information, you can visit the [Nx Angular documentation](https://nx.dev/packages/angular) for detailed instructions and examples.
 
+### GraphQL Code Generation
+
+To generate code from GraphQL schemas, you can utilize the following command: `npm run console:graphql:generate`. This command will generate TypeScript types and Angular services for GraphQL schemas and operations located in `./packages/modules/` with extension `.graphql`.
+
 ### Development Server
 
 To start the development server, run `npm run console:serve:dev`. Navigate to `http://localhost:4200/`. The app will automatically reload if you make any changes to the source files.
