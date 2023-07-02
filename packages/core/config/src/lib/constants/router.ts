@@ -87,6 +87,57 @@ export const ROUTER: Readonly<IRouter> = {
                 },
               },
             },
+            contactPoints: {
+              name: 'MAIN_MANAGEMENT_CONTACT_POINTS_ROUTE',
+              path: 'contact-points',
+              link: '/management/contact-points',
+              getLink: () => ['', 'management', 'contact-points'],
+              children: {
+                contactPoint: {
+                  name: 'MAIN_MANAGEMENT_CONTACT_POINT_ROUTE',
+                  path: 'contact-points/:id',
+                  link: '/management/contact-points/:id',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'contact-points', params.id]
+                      : ['', 'management', 'contact-points'],
+                },
+              },
+            },
+            contracts: {
+              name: 'MAIN_MANAGEMENT_CONTRACTS_ROUTE',
+              path: 'contracts',
+              link: '/management/contracts',
+              getLink: () => ['', 'management', 'contracts'],
+              children: {
+                contract: {
+                  name: 'MAIN_MANAGEMENT_CONTRACT_ROUTE',
+                  path: 'contracts/:id',
+                  link: '/management/contracts/:id',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'contracts', params.id]
+                      : ['', 'management', 'contracts'],
+                },
+              },
+            },
+            commands: {
+              name: 'MAIN_MANAGEMENT_COMMANDS_ROUTE',
+              path: 'commands',
+              link: '/management/commands',
+              getLink: () => ['', 'management', 'commands'],
+              children: {
+                command: {
+                  name: 'MAIN_MANAGEMENT_COMMAND_ROUTE',
+                  path: 'commands/:id',
+                  link: '/management/commands/:id',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'commands', params.id]
+                      : ['', 'management', 'commands'],
+                },
+              },
+            },
             locations: {
               name: 'MAIN_MANAGEMENT_LOCATIONS_ROUTE',
               path: 'locations',

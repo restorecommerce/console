@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-drawer-rules',
+  selector: 'app-module-management-rules',
   template: `
     <div>
       <h2>Rules</h2>

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-module-drawer-country',
+  selector: 'app-module-management-country',
   template: `
     <div>
       <h2>Country {{ id$ | async }}</h2>

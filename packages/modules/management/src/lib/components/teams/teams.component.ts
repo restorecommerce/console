@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-drawer-teams',
+  selector: 'app-module-management-teams',
   template: `
     <div>
       <h2>Teams</h2>

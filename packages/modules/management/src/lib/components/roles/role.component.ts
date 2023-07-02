@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-drawer-role',
+  selector: 'app-module-management-role',
   template: `
     <div>
       <h2>Role 1</h2>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-drawer-locations',
+  selector: 'app-module-management-locations',
   template: `
     <div>
       <h2>Locations</h2>

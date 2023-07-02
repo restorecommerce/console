@@ -4,6 +4,12 @@ import { ROUTER } from '@console-core/config';
 
 import { AddressComponent } from './components/addresses/address.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
+import { CommandComponent } from './components/commands/command.component';
+import { CommandsComponent } from './components/commands/commands.component';
+import { ContactPointComponent } from './components/contact-points/contact-point.component';
+import { ContactPointsComponent } from './components/contact-points/contact-points.component';
+import { ContractComponent } from './components/contracts/contract.component';
+import { ContractsComponent } from './components/contracts/contracts.component';
 import { CountriesComponent } from './components/countries/countries.component';
 import { CountryComponent } from './components/countries/country.component';
 import { LocationComponent } from './components/locations/location.component';
@@ -55,6 +61,33 @@ export const modulesManagementRoutes: Route[] = [
         path: ROUTER.pages.main.children.management.children.countries.children
           .country.path,
         component: CountryComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.commands.path,
+        component: CommandsComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.commands.children
+          .command.path,
+        component: CommandComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.contactPoints.path,
+        component: ContactPointsComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.contactPoints
+          .children.contactPoint.path,
+        component: ContactPointComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.contracts.path,
+        component: ContractsComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.contracts.children
+          .contract.path,
+        component: ContractComponent,
       },
       {
         path: ROUTER.pages.main.children.management.children.teams.path,

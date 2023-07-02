@@ -71,6 +71,33 @@ export interface IRouter {
                 country: IRouterItem;
               };
             };
+            contactPoints: {
+              name: string;
+              path: string;
+              link: string;
+              getLink: () => TRouterLink;
+              children: {
+                contactPoint: IRouterItem;
+              };
+            };
+            contracts: {
+              name: string;
+              path: string;
+              link: string;
+              getLink: () => TRouterLink;
+              children: {
+                contract: IRouterItem;
+              };
+            };
+            commands: {
+              name: string;
+              path: string;
+              link: string;
+              getLink: () => TRouterLink;
+              children: {
+                command: IRouterItem;
+              };
+            };
             teams: {
               name: string;
               path: string;

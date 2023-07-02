@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-module-drawer-address',
+  selector: 'app-module-management-address',
   template: `
     <div>
       <h2>Address {{ id$ | async }}</h2>

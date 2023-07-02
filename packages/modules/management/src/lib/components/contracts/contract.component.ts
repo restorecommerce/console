@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-management-polices',
+  selector: 'app-module-management-contract',
   template: `
     <div>
-      <h2>Polices</h2>
+      <h2>Contract 1</h2>
     </div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PolicesComponent {}
+export class ContractComponent {}

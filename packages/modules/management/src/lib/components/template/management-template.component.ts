@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-drawer-template',
+  selector: 'app-module-management-template',
   template: `
     <rc-page-home>
       <router-outlet></router-outlet>
