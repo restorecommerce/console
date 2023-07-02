@@ -4,7 +4,11 @@ export interface Point {
 }
 
 export class Triangle {
-  constructor(private a: Point, private b: Point, private c: Point) {}
+  constructor(
+    private readonly a: Point,
+    private readonly b: Point,
+    private readonly c: Point
+  ) {}
 
   containsPoint(point: Point) {
     const v0 = [this.c.x - this.a.x, this.c.y - this.a.y];
