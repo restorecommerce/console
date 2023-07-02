@@ -2,11 +2,6 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { ActivationComponent } from './components/activation/activation.component';
-import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
-import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthnTemplateComponent } from './components/template/authn-template.component';
 
 export const modulesAuthnRoutes: Route[] = [
@@ -21,23 +16,38 @@ export const modulesAuthnRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.auth.children.signIn.path,
-        component: SignInComponent,
+        loadChildren: () =>
+          import('./components/sign-in/sign-in.module').then(
+            (m) => m.SignInModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.auth.children.signUp.path,
-        component: SignUpComponent,
+        loadChildren: () =>
+          import('./components/sign-up/sign-up.module').then(
+            (m) => m.SignUpModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.auth.children.passwordRecovery.path,
-        component: PasswordRecoveryComponent,
+        loadChildren: () =>
+          import(
+            './components/password-recovery/password-recovery.module'
+          ).then((m) => m.PasswordRecoveryModule),
       },
       {
         path: ROUTER.pages.main.children.auth.children.activation.path,
-        component: ActivationComponent,
+        loadChildren: () =>
+          import('./components/activation/activation.module').then(
+            (m) => m.ActivationModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.auth.children.confirmEmail.path,
-        component: ConfirmEmailComponent,
+        loadChildren: () =>
+          import('./components/confirm-email/confirm-email.module').then(
+            (m) => m.ConfirmEmailModule
+          ),
       },
     ],
   },
