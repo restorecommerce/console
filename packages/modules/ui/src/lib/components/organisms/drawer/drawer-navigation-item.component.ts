@@ -66,17 +66,17 @@ export class RcDrawerNavigationItemComponent
   private readonly subscriptions = new SubSink();
 
   constructor(
-    public elementRef: ElementRef,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
+    public readonly elementRef: ElementRef,
+    private readonly overlay: Overlay,
+    private readonly viewContainerRef: ViewContainerRef,
     @Inject(RcDrawerNavigationItemComponent)
     @Optional()
     @SkipSelf()
-    public parent: RcDrawerNavigationItemComponent,
+    public readonly parent: RcDrawerNavigationItemComponent,
     @Inject(RcDrawerNavigationComponent)
     @SkipSelf()
-    public nc: RcDrawerNavigationComponent,
-    private navigationStateService: NavigationStateService
+    public readonly nc: RcDrawerNavigationComponent,
+    private readonly navigationStateService: NavigationStateService
   ) {}
 
   ngOnInit(): void {

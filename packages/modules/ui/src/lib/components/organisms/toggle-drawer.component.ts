@@ -18,5 +18,5 @@ export class RcToggleDrawerComponent {
   @HostBinding('class.px-2')
   _hostClasses = true;
 
-  constructor(public drawerService: DrawerService) {}
+  constructor(public readonly drawerService: DrawerService) {}
 }

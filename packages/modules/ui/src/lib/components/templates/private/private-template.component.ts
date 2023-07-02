@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Input,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, startWith } from 'rxjs/operators';
@@ -15,12 +16,16 @@ import { VCLBreakpoints } from '@vcl/ng-vcl';
 import { APP, ROUTER } from '@console-core/config';
 
 import { DrawerService } from '../../../services/drawer.service';
+
 @Component({
   selector: 'rc-private-template',
   templateUrl: './private-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
+  @Input()
+  logout!: () => void;
+
   APP = APP;
   ROUTER = ROUTER;
 
@@ -28,10 +33,10 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     'https://raw.githubusercontent.com/restorecommerce/branding/master/Logo/restore_commerce_logo.png';
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
-    private router: Router,
-    private drawerService: DrawerService,
-    private changeDetectorRef: ChangeDetectorRef
+    private readonly breakpointObserver: BreakpointObserver,
+    private readonly router: Router,
+    private readonly drawerService: DrawerService,
+    private readonly changeDetectorRef: ChangeDetectorRef
   ) {}
 
   private readonly subscriptions = new SubSink();

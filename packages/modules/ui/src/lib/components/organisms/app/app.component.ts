@@ -15,7 +15,7 @@ export class RcAppComponent {
     map((opened) => Boolean(opened))
   );
 
-  constructor(public drawerService: DrawerService) {}
+  constructor(public readonly drawerService: DrawerService) {}
 
   @HostBinding('class.app')
   @HostBinding('class.col')

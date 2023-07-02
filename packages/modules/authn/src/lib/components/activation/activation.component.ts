@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-authn-activation',
-  templateUrl: './activation.component.html',
+  template: `<p>activation works!</p>`,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
