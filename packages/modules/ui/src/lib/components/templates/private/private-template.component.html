@@ -161,6 +161,7 @@
           >Locations 4</rc-drawer-navigation-item
         >
       </rc-drawer-navigation-item>
+
       <rc-drawer-navigation-item
         icon="mdi:domain"
         [routerLinkActive]="['selected']"
@@ -206,6 +207,36 @@
           [routerLinkActive]="['selected']"
           >Countries 4</rc-drawer-navigation-item
         >
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
+        icon="mdi:card-account-mail"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.contactPoints.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Contact Points
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
+        icon="mdi:certificate"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.contracts.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Contracts
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
+        icon="mdi:pound"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.commands.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Commands
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item
