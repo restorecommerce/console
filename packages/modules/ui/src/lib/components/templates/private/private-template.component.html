@@ -113,10 +113,54 @@
           ROUTER.pages.main.children.management.children.addresses.link
         "
         [routerLinkActive]="['selected']"
-        >Addresses</rc-drawer-navigation-item
-      >
+        >Addresses
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.addresses.children.address.getLink(
+              { id: 1 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Address 1</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.addresses.children.address.getLink(
+              { id: 2 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Address 2</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.addresses.children.address.getLink(
+              { id: 3 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Address 3</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.addresses.children.address.getLink(
+              { id: 4 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Address 4</rc-drawer-navigation-item
+        >
+      </rc-drawer-navigation-item>
+
       <rc-drawer-navigation-item
         icon="mdi:map-marker-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.locations.link
+        "
         [routerLinkActive]="['selected']"
       >
         Locations
@@ -164,6 +208,9 @@
 
       <rc-drawer-navigation-item
         icon="mdi:domain"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.countries.link
+        "
         [routerLinkActive]="['selected']"
       >
         Countries
@@ -241,13 +288,17 @@
 
       <rc-drawer-navigation-item
         icon="mdi:account-settings"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.accessControl.link
+        "
         [routerLinkActive]="['selected']"
       >
         Access Control
         <rc-drawer-navigation-item
           icon="mdi:account-multiple"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.teams.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.teams.link
           "
           [routerLinkActive]="['selected']"
           >Teams</rc-drawer-navigation-item
@@ -255,7 +306,8 @@
         <rc-drawer-navigation-item
           icon="mdi:account-key"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.roles.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.roles.link
           "
           [routerLinkActive]="['selected']"
           >Roles</rc-drawer-navigation-item
@@ -263,7 +315,8 @@
         <rc-drawer-navigation-item
           icon="mdi:account-convert"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.rules.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.rules.link
           "
           [routerLinkActive]="['selected']"
           >Rules</rc-drawer-navigation-item
@@ -271,7 +324,8 @@
         <rc-drawer-navigation-item
           icon="mdi:folder-account"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.polices.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.polices.link
           "
           [routerLinkActive]="['selected']"
           >Policies</rc-drawer-navigation-item

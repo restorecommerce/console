@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
+import { AccessControlComponent } from './components/access-control/access-control.component';
 import { AddressComponent } from './components/addresses/address.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { CommandComponent } from './components/commands/command.component';
@@ -32,7 +33,7 @@ export const modulesManagementRoutes: Route[] = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
+        // pathMatch: 'full',
         component: ManagementComponent,
       },
       {
@@ -90,39 +91,47 @@ export const modulesManagementRoutes: Route[] = [
         component: ContractComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.teams.path,
+        path: ROUTER.pages.main.children.management.children.accessControl.path,
+        component: AccessControlComponent,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.teams.path,
         component: TeamsComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.teams.children.team
-          .path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.teams.children.team.path,
         component: TeamComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.roles.path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.roles.path,
         component: RolesComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.roles.children.role
-          .path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.roles.children.role.path,
         component: RoleComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.rules.path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.rules.path,
         component: RulesComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.rules.children.rule
-          .path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.rules.children.rule.path,
         component: RuleComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.polices.path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.polices.path,
         component: PolicesComponent,
       },
       {
-        path: ROUTER.pages.main.children.management.children.polices.children
-          .policy.path,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.polices.children.policy.path,
         component: PolicyComponent,
       },
     ],

@@ -98,40 +98,48 @@ export interface IRouter {
                 command: IRouterItem;
               };
             };
-            teams: {
+            accessControl: {
               name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                team: IRouterItem;
-              };
-            };
-            roles: {
-              name: string;
-              path: string;
-              link: string;
-              getLink: () => TRouterLink;
-              children: {
-                role: IRouterItem;
-              };
-            };
-            rules: {
-              name: string;
-              path: string;
-              link: string;
-              getLink: () => TRouterLink;
-              children: {
-                rule: IRouterItem;
-              };
-            };
-            polices: {
-              name: string;
-              path: string;
-              link: string;
-              getLink: () => TRouterLink;
-              children: {
-                policy: IRouterItem;
+                teams: {
+                  name: string;
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    team: IRouterItem;
+                  };
+                };
+                roles: {
+                  name: string;
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    role: IRouterItem;
+                  };
+                };
+                rules: {
+                  name: string;
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    rule: IRouterItem;
+                  };
+                };
+                polices: {
+                  name: string;
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    policy: IRouterItem;
+                  };
+                };
               };
             };
           };

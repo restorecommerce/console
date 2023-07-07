@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { ModulesSharedModule } from '@console-modules/shared';
 
+import { AccessControlComponent } from './components/access-control/access-control.component';
 import { AddressComponent } from './components/addresses/address.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { CommandComponent } from './components/commands/command.component';
@@ -29,19 +30,20 @@ import { modulesManagementRoutes } from './lib.routes';
 
 @NgModule({
   declarations: [
+    ManagementComponent,
     AddressComponent,
     AddressesComponent,
-    CommandComponent,
-    CommandsComponent,
-    ContactPointComponent,
+    LocationComponent,
+    LocationsComponent,
+    CountriesComponent,
+    CountryComponent,
     ContactPointsComponent,
     ContractComponent,
     ContractsComponent,
-    CountriesComponent,
-    CountryComponent,
-    LocationComponent,
-    LocationsComponent,
-    ManagementComponent,
+    CommandComponent,
+    CommandsComponent,
+    ContactPointComponent,
+    AccessControlComponent,
     PolicesComponent,
     PolicyComponent,
     RoleComponent,

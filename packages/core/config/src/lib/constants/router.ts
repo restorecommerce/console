@@ -172,71 +172,108 @@ export const ROUTER: Readonly<IRouter> = {
                 },
               },
             },
-            teams: {
-              name: 'MAIN_MANAGEMENT_TEAMS_ROUTE',
-              path: 'teams',
-              link: '/management/teams',
-              getLink: () => ['', 'management', 'teams'],
+            accessControl: {
+              name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_ROUTE',
+              path: 'access-control',
+              link: '/management/access-control',
+              getLink: () => ['', 'management', 'access-control'],
               children: {
-                team: {
-                  name: 'MAIN_MANAGEMENT_TEAM_ROUTE',
-                  path: 'teams/:id',
-                  link: '/management/teams/:id',
-                  getLink: (params?: { id?: number | string }) =>
-                    params?.id
-                      ? ['', 'management', 'teams', params.id]
-                      : ['', 'management', 'teams'],
+                teams: {
+                  name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_TEAMS_ROUTE',
+                  path: 'access-control/teams',
+                  link: '/management/access-control/teams',
+                  getLink: () => ['', 'management', 'access-control', 'teams'],
+                  children: {
+                    team: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_TEAM_ROUTE',
+                      path: 'access-control/teams/:id',
+                      link: '/management/access-control/teams/:id',
+                      getLink: (params?: { id?: number | string }) =>
+                        params?.id
+                          ? [
+                              '',
+                              'management',
+                              'access-control',
+                              'teams',
+                              params.id,
+                            ]
+                          : ['', 'management', 'access-control', 'teams'],
+                    },
+                  },
                 },
-              },
-            },
-            roles: {
-              name: 'MAIN_MANAGEMENT_ROLES_ROUTE',
-              path: 'roles',
-              link: '/management/roles',
-              getLink: () => ['', 'management', 'roles'],
-              children: {
-                role: {
-                  name: 'MAIN_MANAGEMENT_ROLE_ROUTE',
-                  path: 'roles/:id',
-                  link: '/management/roles/:id',
-                  getLink: (params?: { id?: number | string }) =>
-                    params?.id
-                      ? ['', 'management', 'roles', params.id]
-                      : ['', 'management', 'roles'],
+                roles: {
+                  name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_ROLES_ROUTE',
+                  path: 'access-control/roles',
+                  link: '/management/access-control/roles',
+                  getLink: () => ['', 'management', 'access-control', 'roles'],
+                  children: {
+                    role: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_ROLE_ROUTE',
+                      path: 'access-control/roles/:id',
+                      link: '/management/access-control/roles/:id',
+                      getLink: (params?: { id?: number | string }) =>
+                        params?.id
+                          ? [
+                              '',
+                              'management',
+                              'access-control',
+                              'roles',
+                              params.id,
+                            ]
+                          : ['', 'management', 'access-control', 'roles'],
+                    },
+                  },
                 },
-              },
-            },
-            rules: {
-              name: 'MAIN_MANAGEMENT_RULES_ROUTE',
-              path: 'rules',
-              link: '/management/rules',
-              getLink: () => ['', 'management', 'rules'],
-              children: {
-                rule: {
-                  name: 'MAIN_MANAGEMENT_RULE_ROUTE',
-                  path: 'rules/:id',
-                  link: '/management/rules/:id',
-                  getLink: (params?: { id?: number | string }) =>
-                    params?.id
-                      ? ['', 'management', 'rules', params.id]
-                      : ['', 'management', 'rules'],
+                rules: {
+                  name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_RULES_ROUTE',
+                  path: 'access-control/rules',
+                  link: '/management/access-control/rules',
+                  getLink: () => ['', 'management', 'access-control', 'rules'],
+                  children: {
+                    rule: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_RULE_ROUTE',
+                      path: 'access-control/rules/:id',
+                      link: '/management/access-control/rules/:id',
+                      getLink: (params?: { id?: number | string }) =>
+                        params?.id
+                          ? [
+                              '',
+                              'management',
+                              'access-control',
+                              'rules',
+                              params.id,
+                            ]
+                          : ['', 'management', 'access-control', 'rules'],
+                    },
+                  },
                 },
-              },
-            },
-            polices: {
-              name: 'MAIN_MANAGEMENT_POLICIES_ROUTE',
-              path: 'policies',
-              link: '/management/policies',
-              getLink: () => ['', 'management', 'policies'],
-              children: {
-                policy: {
-                  name: 'MAIN_MANAGEMENT_POLICY_ROUTE',
-                  path: 'policies/:id',
-                  link: '/management/policies/:id',
-                  getLink: (params?: { id?: number | string }) =>
-                    params?.id
-                      ? ['', 'management', 'policies', params.id]
-                      : ['', 'management', 'policies'],
+                polices: {
+                  name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_POLICES_ROUTE',
+                  path: 'access-control/polices',
+                  link: '/management/access-control/polices',
+                  getLink: () => [
+                    '',
+                    'management',
+                    'access-control',
+                    'polices',
+                  ],
+                  children: {
+                    policy: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_POLICY_ROUTE',
+                      path: 'access-control/polices/:id',
+                      link: '/management/access-control/polices/:id',
+                      getLink: (params?: { id?: number | string }) =>
+                        params?.id
+                          ? [
+                              '',
+                              'management',
+                              'access-control',
+                              'polices',
+                              params.id,
+                            ]
+                          : ['', 'management', 'access-control', 'polices'],
+                    },
+                  },
                 },
               },
             },
