@@ -2,16 +2,7 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { AccessControlComponent } from './components/access-control/access-control.component';
 import { ManagementComponent } from './components/management/management.component';
-import { PolicesComponent } from './components/polices/polices.component';
-import { PolicyComponent } from './components/polices/policy.component';
-import { RoleComponent } from './components/roles/role.component';
-import { RolesComponent } from './components/roles/roles.component';
-import { RuleComponent } from './components/rules/rule.component';
-import { RulesComponent } from './components/rules/rules.component';
-import { TeamComponent } from './components/teams/team.component';
-import { TeamsComponent } from './components/teams/teams.component';
 import { ManagementTemplateComponent } from './components/template/management-template.component';
 
 export const modulesManagementRoutes: Route[] = [
@@ -68,47 +59,36 @@ export const modulesManagementRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl.path,
-        component: AccessControlComponent,
+        loadChildren: () =>
+          import('./components/access-control/access-control.module').then(
+            (m) => m.AccessControlModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.teams.path,
-        component: TeamsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.accessControl
-          .children.teams.children.team.path,
-        component: TeamComponent,
+        loadChildren: () =>
+          import('./components/team/team.module').then((m) => m.TeamModule),
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.roles.path,
-        component: RolesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.accessControl
-          .children.roles.children.role.path,
-        component: RoleComponent,
+        loadChildren: () =>
+          import('./components/role/role.module').then((m) => m.RoleModule),
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.rules.path,
-        component: RulesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.accessControl
-          .children.rules.children.rule.path,
-        component: RuleComponent,
+        loadChildren: () =>
+          import('./components/rule/rule.module').then((m) => m.RuleModule),
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.polices.path,
-        component: PolicesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.accessControl
-          .children.polices.children.policy.path,
-        component: PolicyComponent,
+        loadChildren: () =>
+          import('./components/policy/policy.module').then(
+            (m) => m.PolicyModule
+          ),
       },
     ],
   },

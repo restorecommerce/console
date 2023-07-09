@@ -110,13 +110,15 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
+                index: IRouterItem;
                 teams: {
                   name: string;
                   path: string;
                   link: string;
                   getLink: () => TRouterLink;
                   children: {
-                    team: IRouterItem;
+                    index: IRouterItem;
+                    teams: IRouterItem;
                   };
                 };
                 roles: {
@@ -125,7 +127,8 @@ export interface IRouter {
                   link: string;
                   getLink: () => TRouterLink;
                   children: {
-                    role: IRouterItem;
+                    index: IRouterItem;
+                    roles: IRouterItem;
                   };
                 };
                 rules: {
@@ -134,7 +137,8 @@ export interface IRouter {
                   link: string;
                   getLink: () => TRouterLink;
                   children: {
-                    rule: IRouterItem;
+                    index: IRouterItem;
+                    rules: IRouterItem;
                   };
                 };
                 polices: {
@@ -143,7 +147,8 @@ export interface IRouter {
                   link: string;
                   getLink: () => TRouterLink;
                   children: {
-                    policy: IRouterItem;
+                    index: IRouterItem;
+                    polices: IRouterItem;
                   };
                 };
               };

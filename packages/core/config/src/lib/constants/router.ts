@@ -214,15 +214,32 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/access-control',
               getLink: () => ['', 'management', 'access-control'],
               children: {
+                index: {
+                  name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_CHILDREN_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/access-control',
+                  getLink: () => ['', 'management', 'access-control'],
+                },
                 teams: {
                   name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_TEAMS_ROUTE',
                   path: 'access-control/teams',
                   link: '/management/access-control/teams',
                   getLink: () => ['', 'management', 'access-control', 'teams'],
                   children: {
-                    team: {
-                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_TEAM_ROUTE',
-                      path: 'access-control/teams/:id',
+                    index: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_TEAMS_CHILDREN_INDEX_ROUTE',
+                      path: '',
+                      link: '/management/access-control/teams',
+                      getLink: () => [
+                        '',
+                        'management',
+                        'access-control',
+                        'teams',
+                      ],
+                    },
+                    teams: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_TEAMS_CHILDREN_TEAMS_ROUTE',
+                      path: ':id',
                       link: '/management/access-control/teams/:id',
                       getLink: (params?: { id?: number | string }) =>
                         params?.id
@@ -243,9 +260,20 @@ export const ROUTER: Readonly<IRouter> = {
                   link: '/management/access-control/roles',
                   getLink: () => ['', 'management', 'access-control', 'roles'],
                   children: {
-                    role: {
-                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_ROLE_ROUTE',
-                      path: 'access-control/roles/:id',
+                    index: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_ROLES_CHILDREN_INDEX_ROUTE',
+                      path: '',
+                      link: '/management/access-control/roles',
+                      getLink: () => [
+                        '',
+                        'management',
+                        'access-control',
+                        'roles',
+                      ],
+                    },
+                    roles: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_ROLES_CHILDREN_ROLES_ROUTE',
+                      path: ':id',
                       link: '/management/access-control/roles/:id',
                       getLink: (params?: { id?: number | string }) =>
                         params?.id
@@ -266,9 +294,20 @@ export const ROUTER: Readonly<IRouter> = {
                   link: '/management/access-control/rules',
                   getLink: () => ['', 'management', 'access-control', 'rules'],
                   children: {
-                    rule: {
-                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_RULE_ROUTE',
-                      path: 'access-control/rules/:id',
+                    index: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_RULES_CHILDREN_INDEX_ROUTE',
+                      path: '',
+                      link: '/management/access-control/rules',
+                      getLink: () => [
+                        '',
+                        'management',
+                        'access-control',
+                        'rules',
+                      ],
+                    },
+                    rules: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_RULES_CHILDREN_RULES_ROUTE',
+                      path: ':id',
                       link: '/management/access-control/rules/:id',
                       getLink: (params?: { id?: number | string }) =>
                         params?.id
@@ -294,9 +333,20 @@ export const ROUTER: Readonly<IRouter> = {
                     'polices',
                   ],
                   children: {
-                    policy: {
-                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_POLICY_ROUTE',
-                      path: 'access-control/polices/:id',
+                    index: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_POLICES_CHILDREN_INDEX_ROUTE',
+                      path: '',
+                      link: '/management/access-control/polices',
+                      getLink: () => [
+                        '',
+                        'management',
+                        'access-control',
+                        'polices',
+                      ],
+                    },
+                    polices: {
+                      name: 'MAIN_MANAGEMENT_ACCESS_CONTROL_POLICES_CHILDREN_POLICES_ROUTE',
+                      path: ':id',
                       link: '/management/access-control/polices/:id',
                       getLink: (params?: { id?: number | string }) =>
                         params?.id
