@@ -3,8 +3,6 @@ import { Route } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 
 import { AccessControlComponent } from './components/access-control/access-control.component';
-import { CommandComponent } from './components/commands/command.component';
-import { CommandsComponent } from './components/commands/commands.component';
 import { ContactPointComponent } from './components/contact-points/contact-point.component';
 import { ContactPointsComponent } from './components/contact-points/contact-points.component';
 import { ContractComponent } from './components/contracts/contract.component';
@@ -61,12 +59,10 @@ export const modulesManagementRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.management.children.commands.path,
-        component: CommandsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.commands.children
-          .command.path,
-        component: CommandComponent,
+        loadChildren: () =>
+          import('./components/command/command.module').then(
+            (m) => m.CommandModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.contactPoints.path,

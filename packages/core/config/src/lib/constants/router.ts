@@ -133,9 +133,15 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/commands',
               getLink: () => ['', 'management', 'commands'],
               children: {
-                command: {
-                  name: 'MAIN_MANAGEMENT_COMMAND_ROUTE',
-                  path: 'commands/:id',
+                index: {
+                  name: 'MAIN_MANAGEMENT_COMMANDS_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/commands',
+                  getLink: () => ['', 'management', 'commands'],
+                },
+                commands: {
+                  name: 'MAIN_MANAGEMENT_COMMANDS_COMMANDS__ROUTE',
+                  path: ':id',
                   link: '/management/commands/:id',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id

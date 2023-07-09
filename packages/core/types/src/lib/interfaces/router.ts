@@ -96,7 +96,8 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
-                command: IRouterItem;
+                index: IRouterItem;
+                commands: IRouterItem;
               };
             };
             accessControl: {

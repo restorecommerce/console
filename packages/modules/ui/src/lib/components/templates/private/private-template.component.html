@@ -285,6 +285,46 @@
         [routerLinkActive]="['selected']"
       >
         Commands
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+              { id: 1 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Command 1</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+              { id: 2 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Command 2</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+              { id: 3 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Command 3</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+              { id: 4 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Command 4</rc-drawer-navigation-item
+        >
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item
