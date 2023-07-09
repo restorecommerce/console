@@ -50,7 +50,8 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
-                address: IRouterItem;
+                index: IRouterItem;
+                addresses: IRouterItem;
               };
             };
             locations: {

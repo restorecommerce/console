@@ -3,8 +3,6 @@ import { Route } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 
 import { AccessControlComponent } from './components/access-control/access-control.component';
-import { AddressComponent } from './components/addresses/address.component';
-import { AddressesComponent } from './components/addresses/addresses.component';
 import { CommandComponent } from './components/commands/command.component';
 import { CommandsComponent } from './components/commands/commands.component';
 import { ContactPointComponent } from './components/contact-points/contact-point.component';
@@ -33,17 +31,15 @@ export const modulesManagementRoutes: Route[] = [
     children: [
       {
         path: '',
-        // pathMatch: 'full',
+        pathMatch: 'full',
         component: ManagementComponent,
       },
       {
         path: ROUTER.pages.main.children.management.children.addresses.path,
-        component: AddressesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.addresses.children
-          .address.path,
-        component: AddressComponent,
+        loadChildren: () =>
+          import('./components/address/address.module').then(
+            (m) => m.AddressModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.locations.path,

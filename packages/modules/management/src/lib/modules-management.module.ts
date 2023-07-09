@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { ModulesSharedModule } from '@console-modules/shared';
 
 import { AccessControlComponent } from './components/access-control/access-control.component';
-import { AddressComponent } from './components/addresses/address.component';
-import { AddressesComponent } from './components/addresses/addresses.component';
 import { CommandComponent } from './components/commands/command.component';
 import { CommandsComponent } from './components/commands/commands.component';
 import { ContactPointComponent } from './components/contact-points/contact-point.component';
@@ -31,8 +29,6 @@ import { modulesManagementRoutes } from './lib.routes';
 @NgModule({
   declarations: [
     ManagementComponent,
-    AddressComponent,
-    AddressesComponent,
     LocationComponent,
     LocationsComponent,
     CountriesComponent,

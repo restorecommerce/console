@@ -76,9 +76,15 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/addresses',
               getLink: () => ['', 'management', 'addresses'],
               children: {
-                address: {
-                  name: 'MAIN_MANAGEMENT_ADDRESS_ROUTE',
-                  path: 'addresses/:id',
+                index: {
+                  name: 'MAIN_MANAGEMENT_ADDRESSES_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/addresses',
+                  getLink: () => ['', 'management', 'addresses'],
+                },
+                addresses: {
+                  name: 'MAIN_MANAGEMENT_ADDRESSES_ADDRESSES_ROUTE',
+                  path: ':id',
                   link: '/management/addresses/:id',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id

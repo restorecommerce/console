@@ -6,7 +6,13 @@ import { map } from 'rxjs';
   selector: 'app-module-management-address',
   template: `
     <div>
-      <h2>Address {{ id$ | async }}</h2>
+      <ng-container *ngIf="id$ | async as id; else templateNoId">
+        <h2>Address: {{ id }}</h2>
+      </ng-container>
+
+      <ng-template #templateNoId>
+        <h2>Addresses</h2>
+      </ng-template>
     </div>
   `,
   styles: [],
