@@ -77,13 +77,13 @@ export const ROUTER: Readonly<IRouter> = {
               getLink: () => ['', 'management', 'addresses'],
               children: {
                 index: {
-                  name: 'MAIN_MANAGEMENT_ADDRESSES_INDEX_ROUTE',
+                  name: 'MAIN_MANAGEMENT_ADDRESSES_CHILDREN_INDEX_ROUTE',
                   path: '',
                   link: '/management/addresses',
                   getLink: () => ['', 'management', 'addresses'],
                 },
                 addresses: {
-                  name: 'MAIN_MANAGEMENT_ADDRESSES_ADDRESSES_ROUTE',
+                  name: 'MAIN_MANAGEMENT_ADDRESSES_CHILDREN_ADDRESSES_ROUTE',
                   path: ':id',
                   link: '/management/addresses/:id',
                   getLink: (params?: { id?: number | string }) =>
@@ -99,9 +99,15 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/contact-points',
               getLink: () => ['', 'management', 'contact-points'],
               children: {
-                contactPoint: {
-                  name: 'MAIN_MANAGEMENT_CONTACT_POINT_ROUTE',
-                  path: 'contact-points/:id',
+                index: {
+                  name: 'MAIN_MANAGEMENT_CONTACT_POINTS_CHILDREN_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/contact-points',
+                  getLink: () => ['', 'management', 'contact-points'],
+                },
+                contactPoints: {
+                  name: 'MAIN_MANAGEMENT_CONTACT_POINTS_CHILDREN_CONTACT_POINTS_ROUTE',
+                  path: ':id',
                   link: '/management/contact-points/:id',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id
@@ -116,9 +122,15 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/contracts',
               getLink: () => ['', 'management', 'contracts'],
               children: {
-                contract: {
-                  name: 'MAIN_MANAGEMENT_CONTRACT_ROUTE',
-                  path: 'contracts/:id',
+                index: {
+                  name: 'MAIN_MANAGEMENT_CONTRACTS_CHILDREN_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/contracts',
+                  getLink: () => ['', 'management', 'contracts'],
+                },
+                contracts: {
+                  name: 'MAIN_MANAGEMENT_CONTRACTS_CHILDREN_CONTRACTS_ROUTE',
+                  path: ':id',
                   link: '/management/contracts/:id',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id
@@ -134,13 +146,13 @@ export const ROUTER: Readonly<IRouter> = {
               getLink: () => ['', 'management', 'commands'],
               children: {
                 index: {
-                  name: 'MAIN_MANAGEMENT_COMMANDS_INDEX_ROUTE',
+                  name: 'MAIN_MANAGEMENT_COMMANDS_CHILDREN_INDEX_ROUTE',
                   path: '',
                   link: '/management/commands',
                   getLink: () => ['', 'management', 'commands'],
                 },
                 commands: {
-                  name: 'MAIN_MANAGEMENT_COMMANDS_COMMANDS__ROUTE',
+                  name: 'MAIN_MANAGEMENT_COMMANDS_CHILDREN_COMMANDS_ROUTE',
                   path: ':id',
                   link: '/management/commands/:id',
                   getLink: (params?: { id?: number | string }) =>
@@ -156,9 +168,15 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/locations',
               getLink: () => ['', 'management', 'locations'],
               children: {
-                location: {
-                  name: 'MAIN_MANAGEMENT_LOCATION_ROUTE',
-                  path: 'locations/:id',
+                index: {
+                  name: 'MAIN_MANAGEMENT_LOCATIONS_CHILDREN_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/locations',
+                  getLink: () => ['', 'management', 'locations'],
+                },
+                locations: {
+                  name: 'MAIN_MANAGEMENT_LOCATIONS_CHILDREN_LOCATIONS_ROUTE',
+                  path: ':id',
                   link: '/management/locations/:id',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id
@@ -173,9 +191,15 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/management/countries',
               getLink: () => ['', 'management', 'countries'],
               children: {
-                country: {
-                  name: 'MAIN_MANAGEMENT_COUNTRY_ROUTE',
-                  path: 'countries/:id',
+                index: {
+                  name: 'MAIN_MANAGEMENT_COUNTRIES_CHILDREN_INDEX_ROUTE',
+                  path: '',
+                  link: '/management/countries',
+                  getLink: () => ['', 'management', 'countries'],
+                },
+                countries: {
+                  name: 'MAIN_MANAGEMENT_COUNTRIES_CHILDREN_COUNTRIES_ROUTE',
+                  path: ':id',
                   link: '/management/countries/:id',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id

@@ -3,16 +3,22 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-module-management-location',
+  selector: 'app-module-management-contract',
   template: `
     <div>
-      <h2>Location {{ id$ | async }}</h2>
+      <ng-container *ngIf="id$ | async as id; else templateNoId">
+        <h2>Contract: {{ id }}</h2>
+      </ng-container>
+
+      <ng-template #templateNoId>
+        <h2>Contracts</h2>
+      </ng-template>
     </div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LocationComponent {
+export class ContractComponent {
   id$ = this.route.params.pipe(map((params) => params['id']));
 
   constructor(private route: ActivatedRoute) {}

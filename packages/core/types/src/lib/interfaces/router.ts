@@ -60,7 +60,8 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
-                location: IRouterItem;
+                index: IRouterItem;
+                locations: IRouterItem;
               };
             };
             countries: {
@@ -69,7 +70,8 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
-                country: IRouterItem;
+                index: IRouterItem;
+                countries: IRouterItem;
               };
             };
             contactPoints: {
@@ -78,7 +80,8 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
-                contactPoint: IRouterItem;
+                index: IRouterItem;
+                contactPoints: IRouterItem;
               };
             };
             contracts: {
@@ -87,7 +90,8 @@ export interface IRouter {
               link: string;
               getLink: () => TRouterLink;
               children: {
-                contract: IRouterItem;
+                index: IRouterItem;
+                contracts: IRouterItem;
               };
             };
             commands: {

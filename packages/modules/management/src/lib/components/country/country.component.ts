@@ -6,7 +6,13 @@ import { map } from 'rxjs';
   selector: 'app-module-management-country',
   template: `
     <div>
-      <h2>Country {{ id$ | async }}</h2>
+      <ng-container *ngIf="id$ | async as id; else templateNoId">
+        <h2>Country: {{ id }}</h2>
+      </ng-container>
+
+      <ng-template #templateNoId>
+        <h2>Countries</h2>
+      </ng-template>
     </div>
   `,
   styles: [],

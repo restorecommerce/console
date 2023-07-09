@@ -110,8 +110,7 @@
       <rc-drawer-navigation-item
         icon="mdi:city"
         [routerLink]="
-          ROUTER.pages.main.children.management.children.addresses.children
-            .index.link
+          ROUTER.pages.main.children.management.children.addresses.link
         "
         [routerLinkActive]="['selected']"
         >Addresses
@@ -168,7 +167,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
               { id: 1 }
             )
           "
@@ -178,7 +177,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
               { id: 2 }
             )
           "
@@ -188,7 +187,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
               { id: 3 }
             )
           "
@@ -198,7 +197,7 @@
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.location.getLink(
+            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
               { id: 4 }
             )
           "
@@ -218,7 +217,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
               { id: 1 }
             )
           "
@@ -228,7 +227,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
               { id: 2 }
             )
           "
@@ -238,7 +237,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
               { id: 3 }
             )
           "
@@ -248,7 +247,7 @@
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.country.getLink(
+            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
               { id: 4 }
             )
           "
@@ -265,6 +264,46 @@
         [routerLinkActive]="['selected']"
       >
         Contact Points
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+              { id: 1 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contact Point 1</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+              { id: 2 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contact Point 2</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+              { id: 3 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contact Point 3</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+              { id: 4 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contact Point 4</rc-drawer-navigation-item
+        >
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item
@@ -275,6 +314,46 @@
         [routerLinkActive]="['selected']"
       >
         Contracts
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+              { id: 1 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contract 1</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+              { id: 2 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contract 2</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+              { id: 3 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contract 3</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:map-marker-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+              { id: 4 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >Contract 4</rc-drawer-navigation-item
+        >
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item

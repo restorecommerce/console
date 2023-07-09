@@ -3,14 +3,6 @@ import { Route } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 
 import { AccessControlComponent } from './components/access-control/access-control.component';
-import { ContactPointComponent } from './components/contact-points/contact-point.component';
-import { ContactPointsComponent } from './components/contact-points/contact-points.component';
-import { ContractComponent } from './components/contracts/contract.component';
-import { ContractsComponent } from './components/contracts/contracts.component';
-import { CountriesComponent } from './components/countries/countries.component';
-import { CountryComponent } from './components/countries/country.component';
-import { LocationComponent } from './components/locations/location.component';
-import { LocationsComponent } from './components/locations/locations.component';
 import { ManagementComponent } from './components/management/management.component';
 import { PolicesComponent } from './components/polices/polices.component';
 import { PolicyComponent } from './components/polices/policy.component';
@@ -41,21 +33,17 @@ export const modulesManagementRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.management.children.locations.path,
-        component: LocationsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.locations.children
-          .location.path,
-        component: LocationComponent,
+        loadChildren: () =>
+          import('./components/location/location.module').then(
+            (m) => m.LocationModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.countries.path,
-        component: CountriesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.countries.children
-          .country.path,
-        component: CountryComponent,
+        loadChildren: () =>
+          import('./components/country/country.module').then(
+            (m) => m.CountryModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.commands.path,
@@ -66,21 +54,17 @@ export const modulesManagementRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.management.children.contactPoints.path,
-        component: ContactPointsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.contactPoints
-          .children.contactPoint.path,
-        component: ContactPointComponent,
+        loadChildren: () =>
+          import('./components/contact-point/contact-point.module').then(
+            (m) => m.ContactPointModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.contracts.path,
-        component: ContractsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.contracts.children
-          .contract.path,
-        component: ContractComponent,
+        loadChildren: () =>
+          import('./components/contract/contract.module').then(
+            (m) => m.ContractModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl.path,
