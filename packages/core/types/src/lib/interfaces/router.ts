@@ -40,6 +40,15 @@ export interface IRouter {
           link: string;
           getLink: () => TRouterLink;
           children: {
+            iam: {
+              path: string;
+              link: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                iam: IRouterItem;
+              };
+            };
             addresses: {
               path: string;
               link: string;

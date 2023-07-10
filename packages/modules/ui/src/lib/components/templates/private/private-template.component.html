@@ -108,6 +108,53 @@
       *ngIf="currentRoute === ROUTER.pages.main.children.management.link"
     >
       <rc-drawer-navigation-item
+        icon="mdi:account-multiple"
+        [routerLink]="ROUTER.pages.main.children.management.children.iam.link"
+        [routerLinkActive]="['selected']"
+        >IAM
+        <rc-drawer-navigation-item
+          icon="mdi:account-multiple"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+              { id: 1 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >User 1</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:account-multiple"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+              { id: 2 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >User 2</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:account-multiple"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+              { id: 3 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >User 3</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:account-multiple"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+              { id: 4 }
+            )
+          "
+          [routerLinkActive]="['selected']"
+          >User 4</rc-drawer-navigation-item
+        >
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
         icon="mdi:city"
         [routerLink]="
           ROUTER.pages.main.children.management.children.addresses.link
