@@ -21,5 +21,5 @@ import { map } from 'rxjs';
 export class CountryComponent {
   id$ = this.route.params.pipe(map((params) => params['id']));
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private readonly route: ActivatedRoute) {}
 }
