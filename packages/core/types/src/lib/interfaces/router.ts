@@ -5,7 +5,6 @@ import {
 } from '../types/router';
 
 export interface IRouterItem {
-  name: string;
   path: string;
   link: string;
   getLink: (params?: { id?: number | string; slug?: string }) => TRouterLink;
@@ -17,14 +16,12 @@ export interface IRouterItem {
 export interface IRouter {
   pages: {
     main: {
-      name: string;
       path: string;
       link: string;
       getLink: () => TRouterLink;
       children: {
         home: IRouterItem;
         auth: {
-          name: string;
           path: string;
           link: string;
           getLink: () => TRouterLink;
@@ -39,99 +36,106 @@ export interface IRouter {
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {
-          name: string;
           path: string;
           link: string;
           getLink: () => TRouterLink;
           children: {
             addresses: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                address: IRouterItem;
+                index: IRouterItem;
+                addresses: IRouterItem;
               };
             };
             locations: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                location: IRouterItem;
+                index: IRouterItem;
+                locations: IRouterItem;
               };
             };
             countries: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                country: IRouterItem;
+                index: IRouterItem;
+                countries: IRouterItem;
               };
             };
             contactPoints: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                contactPoint: IRouterItem;
+                index: IRouterItem;
+                contactPoints: IRouterItem;
               };
             };
             contracts: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                contract: IRouterItem;
+                index: IRouterItem;
+                contracts: IRouterItem;
               };
             };
             commands: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                command: IRouterItem;
+                index: IRouterItem;
+                commands: IRouterItem;
               };
             };
-            teams: {
-              name: string;
+            accessControl: {
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
-                team: IRouterItem;
-              };
-            };
-            roles: {
-              name: string;
-              path: string;
-              link: string;
-              getLink: () => TRouterLink;
-              children: {
-                role: IRouterItem;
-              };
-            };
-            rules: {
-              name: string;
-              path: string;
-              link: string;
-              getLink: () => TRouterLink;
-              children: {
-                rule: IRouterItem;
-              };
-            };
-            polices: {
-              name: string;
-              path: string;
-              link: string;
-              getLink: () => TRouterLink;
-              children: {
-                policy: IRouterItem;
+                index: IRouterItem;
+                teams: {
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    index: IRouterItem;
+                    teams: IRouterItem;
+                  };
+                };
+                roles: {
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    index: IRouterItem;
+                    roles: IRouterItem;
+                  };
+                };
+                rules: {
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    index: IRouterItem;
+                    rules: IRouterItem;
+                  };
+                };
+                polices: {
+                  path: string;
+                  link: string;
+                  getLink: () => TRouterLink;
+                  children: {
+                    index: IRouterItem;
+                    polices: IRouterItem;
+                  };
+                };
               };
             };
           };

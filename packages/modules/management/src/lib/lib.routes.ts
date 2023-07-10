@@ -2,27 +2,7 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { AddressComponent } from './components/addresses/address.component';
-import { AddressesComponent } from './components/addresses/addresses.component';
-import { CommandComponent } from './components/commands/command.component';
-import { CommandsComponent } from './components/commands/commands.component';
-import { ContactPointComponent } from './components/contact-points/contact-point.component';
-import { ContactPointsComponent } from './components/contact-points/contact-points.component';
-import { ContractComponent } from './components/contracts/contract.component';
-import { ContractsComponent } from './components/contracts/contracts.component';
-import { CountriesComponent } from './components/countries/countries.component';
-import { CountryComponent } from './components/countries/country.component';
-import { LocationComponent } from './components/locations/location.component';
-import { LocationsComponent } from './components/locations/locations.component';
 import { ManagementComponent } from './components/management/management.component';
-import { PolicesComponent } from './components/polices/polices.component';
-import { PolicyComponent } from './components/polices/policy.component';
-import { RoleComponent } from './components/roles/role.component';
-import { RolesComponent } from './components/roles/roles.component';
-import { RuleComponent } from './components/rules/rule.component';
-import { RulesComponent } from './components/rules/rules.component';
-import { TeamComponent } from './components/teams/team.component';
-import { TeamsComponent } from './components/teams/teams.component';
 import { ManagementTemplateComponent } from './components/template/management-template.component';
 
 export const modulesManagementRoutes: Route[] = [
@@ -37,93 +17,78 @@ export const modulesManagementRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.management.children.addresses.path,
-        component: AddressesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.addresses.children
-          .address.path,
-        component: AddressComponent,
+        loadChildren: () =>
+          import('./components/address/address.module').then(
+            (m) => m.AddressModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.locations.path,
-        component: LocationsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.locations.children
-          .location.path,
-        component: LocationComponent,
+        loadChildren: () =>
+          import('./components/location/location.module').then(
+            (m) => m.LocationModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.countries.path,
-        component: CountriesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.countries.children
-          .country.path,
-        component: CountryComponent,
+        loadChildren: () =>
+          import('./components/country/country.module').then(
+            (m) => m.CountryModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.commands.path,
-        component: CommandsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.commands.children
-          .command.path,
-        component: CommandComponent,
+        loadChildren: () =>
+          import('./components/command/command.module').then(
+            (m) => m.CommandModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.contactPoints.path,
-        component: ContactPointsComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.contactPoints
-          .children.contactPoint.path,
-        component: ContactPointComponent,
+        loadChildren: () =>
+          import('./components/contact-point/contact-point.module').then(
+            (m) => m.ContactPointModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.contracts.path,
-        component: ContractsComponent,
+        loadChildren: () =>
+          import('./components/contract/contract.module').then(
+            (m) => m.ContractModule
+          ),
       },
       {
-        path: ROUTER.pages.main.children.management.children.contracts.children
-          .contract.path,
-        component: ContractComponent,
+        path: ROUTER.pages.main.children.management.children.accessControl.path,
+        loadChildren: () =>
+          import('./components/access-control/access-control.module').then(
+            (m) => m.AccessControlModule
+          ),
       },
       {
-        path: ROUTER.pages.main.children.management.children.teams.path,
-        component: TeamsComponent,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.teams.path,
+        loadChildren: () =>
+          import('./components/team/team.module').then((m) => m.TeamModule),
       },
       {
-        path: ROUTER.pages.main.children.management.children.teams.children.team
-          .path,
-        component: TeamComponent,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.roles.path,
+        loadChildren: () =>
+          import('./components/role/role.module').then((m) => m.RoleModule),
       },
       {
-        path: ROUTER.pages.main.children.management.children.roles.path,
-        component: RolesComponent,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.rules.path,
+        loadChildren: () =>
+          import('./components/rule/rule.module').then((m) => m.RuleModule),
       },
       {
-        path: ROUTER.pages.main.children.management.children.roles.children.role
-          .path,
-        component: RoleComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.rules.path,
-        component: RulesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.rules.children.rule
-          .path,
-        component: RuleComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.polices.path,
-        component: PolicesComponent,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.polices.children
-          .policy.path,
-        component: PolicyComponent,
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.polices.path,
+        loadChildren: () =>
+          import('./components/policy/policy.module').then(
+            (m) => m.PolicyModule
+          ),
       },
     ],
   },
