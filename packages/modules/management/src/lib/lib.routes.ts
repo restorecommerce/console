@@ -16,6 +16,11 @@ export const modulesManagementRoutes: Route[] = [
         component: ManagementComponent,
       },
       {
+        path: ROUTER.pages.main.children.management.children.iam.path,
+        loadChildren: () =>
+          import('./components/iam/iam.module').then((m) => m.IamModule),
+      },
+      {
         path: ROUTER.pages.main.children.management.children.addresses.path,
         loadChildren: () =>
           import('./components/address/address.module').then(
