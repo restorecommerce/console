@@ -5,7 +5,6 @@ import {
 } from '../types/router';
 
 export interface IRouterItem {
-  name: string;
   path: string;
   link: string;
   getLink: (params?: { id?: number | string; slug?: string }) => TRouterLink;
@@ -17,14 +16,12 @@ export interface IRouterItem {
 export interface IRouter {
   pages: {
     main: {
-      name: string;
       path: string;
       link: string;
       getLink: () => TRouterLink;
       children: {
         home: IRouterItem;
         auth: {
-          name: string;
           path: string;
           link: string;
           getLink: () => TRouterLink;
@@ -39,13 +36,11 @@ export interface IRouter {
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {
-          name: string;
           path: string;
           link: string;
           getLink: () => TRouterLink;
           children: {
             addresses: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
@@ -55,7 +50,6 @@ export interface IRouter {
               };
             };
             locations: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
@@ -65,7 +59,6 @@ export interface IRouter {
               };
             };
             countries: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
@@ -75,7 +68,6 @@ export interface IRouter {
               };
             };
             contactPoints: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
@@ -85,7 +77,6 @@ export interface IRouter {
               };
             };
             contracts: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
@@ -95,7 +86,6 @@ export interface IRouter {
               };
             };
             commands: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
@@ -105,14 +95,12 @@ export interface IRouter {
               };
             };
             accessControl: {
-              name: string;
               path: string;
               link: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
                 teams: {
-                  name: string;
                   path: string;
                   link: string;
                   getLink: () => TRouterLink;
@@ -122,7 +110,6 @@ export interface IRouter {
                   };
                 };
                 roles: {
-                  name: string;
                   path: string;
                   link: string;
                   getLink: () => TRouterLink;
@@ -132,7 +119,6 @@ export interface IRouter {
                   };
                 };
                 rules: {
-                  name: string;
                   path: string;
                   link: string;
                   getLink: () => TRouterLink;
@@ -142,7 +128,6 @@ export interface IRouter {
                   };
                 };
                 polices: {
-                  name: string;
                   path: string;
                   link: string;
                   getLink: () => TRouterLink;
