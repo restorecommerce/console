@@ -1,20 +1,25 @@
 {
   "migrations": [
     {
-      "cli": "nx",
-      "version": "16.4.0-beta.10",
-      "description": "Remove tsconfig.e2e.json and add settings to project tsconfig.json. tsConfigs executor option is now deprecated. The project level tsconfig.json file should be used instead.",
-      "implementation": "./src/migrations/update-16-4-0/tsconfig-sourcemaps",
-      "package": "@nx/cypress",
-      "name": "update-16-3-0-remove-old-tsconfigs"
+      "version": "16.0.0",
+      "factory": "./update-16/remove-default-project-option",
+      "description": "Remove 'defaultProject' option from workspace configuration. The project to use will be determined from the current working directory.",
+      "package": "@angular/cli",
+      "name": "remove-default-project-option"
     },
     {
-      "cli": "nx",
-      "version": "16.5.0-beta.2",
-      "description": "Add test-setup.ts to ignored files in production input",
-      "implementation": "./src/migrations/update-16-5-0/add-test-setup-to-inputs-ignore",
-      "package": "@nx/jest",
-      "name": "add-test-setup-to-inputs-ignore"
+      "version": "16.0.0",
+      "factory": "./update-16/replace-default-collection-option",
+      "description": "Replace removed 'defaultCollection' option in workspace configuration with 'schematicCollections'.",
+      "package": "@angular/cli",
+      "name": "replace-default-collection-option"
+    },
+    {
+      "version": "16.0.0",
+      "factory": "./update-16/update-server-builder-config",
+      "description": "Update the '@angular-devkit/build-angular:server' builder configuration to disable 'buildOptimizer' for non optimized builds.",
+      "package": "@angular/cli",
+      "name": "update-server-builder-config"
     }
   ]
 }

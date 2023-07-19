@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
@@ -15,7 +13,7 @@ import { SecurityFacade } from '@console-core/store/security';
 @Injectable({
   providedIn: 'root',
 })
-export class PrivateGuard implements CanActivate, CanActivateChild {
+export class PrivateGuard {
   constructor(
     private readonly router: Router,
     private readonly securityFacade: SecurityFacade
