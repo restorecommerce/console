@@ -120,7 +120,6 @@ const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
     VCLInputModule,
     VCLDrawerModule,
     VCLFormControlGroupModule,
-    VCLBusyIndicatorModule,
   ],
   declarations: [
     ...atoms,
