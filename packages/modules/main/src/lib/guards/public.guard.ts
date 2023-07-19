@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  Router,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -14,7 +9,7 @@ import { SecurityFacade } from '@console-core/store/security';
 @Injectable({
   providedIn: 'root',
 })
-export class PublicGuard implements CanActivate, CanActivateChild {
+export class PublicGuard {
   constructor(
     private readonly router: Router,
     private readonly securityFacade: SecurityFacade
