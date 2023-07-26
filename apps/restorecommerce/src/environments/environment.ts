@@ -4,6 +4,6 @@ export const environment: Readonly<IEnvironment> = {
   production: true,
   storagePrefix: 'console.prod.',
   graphql: {
-    api: 'https://backend.n-fuse.co/graphql',
+    api: 'https://api.restorecommerce.io/graphql',
   },
 };

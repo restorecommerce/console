@@ -4,6 +4,6 @@ export const environment: Readonly<IEnvironment> = {
   production: false,
   storagePrefix: 'console.dev.',
   graphql: {
-    api: 'https://backend.n-fuse.co/graphql',
+    api: 'http://localhost:5000/graphql',
   },
 };
