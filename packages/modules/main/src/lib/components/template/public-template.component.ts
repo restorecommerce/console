@@ -11,7 +11,7 @@ import { Notifier } from '../../utils';
   template: `
     <ng-container *ngIf="notifications$ | async">
       <rc-public-template>
-        <router-outlet></router-outlet>
+        <router-outlet />
       </rc-public-template>
     </ng-container>
   `,

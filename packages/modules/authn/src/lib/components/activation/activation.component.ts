@@ -7,7 +7,7 @@ import { AuthnFacade } from '../../+state/authn';
 
 @Component({
   selector: 'app-authn-activation',
-  template: `<rc-page-activation></rc-page-activation>`,
+  template: `<rc-page-activation />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivationComponent {

@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-profile-template',
   template: `
     <h3>ProfileTemplateComponent</h3>
-    <router-outlet></router-outlet>
+    <router-outlet />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -11,7 +11,7 @@ import { AuthnFacade } from '../../+state/authn';
     <rc-page-sign-in
       [vm]="vm$ | async"
       [login]="login"
-    ></rc-page-sign-in>
+    />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

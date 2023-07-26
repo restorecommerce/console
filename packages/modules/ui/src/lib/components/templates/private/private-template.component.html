@@ -1,6 +1,6 @@
 <rc-app>
   <rc-header>
-    <rc-toggle-drawer></rc-toggle-drawer>
+    <rc-toggle-drawer />
     <rc-banner
       [logoUrl]="logoUrl"
       [logoLink]="ROUTER.pages.main.children.home.link"
@@ -44,9 +44,9 @@
         class="half-transparent user"
       >
         <vcl-icogram>
-          <vcl-icon icon="mdi:account"></vcl-icon>
+          <vcl-icon icon="mdi:account" />
           User
-          <vcl-icon icon="mdi:chevron-down"></vcl-icon>
+          <vcl-icon icon="mdi:chevron-down" />
         </vcl-icogram>
       </button>
       <button
@@ -55,7 +55,7 @@
         class="half-transparent user"
       >
         <vcl-icogram>
-          <vcl-icon icon="mdi:logout"></vcl-icon>
+          <vcl-icon icon="mdi:logout" />
           Sign out
         </vcl-icogram>
       </button>
@@ -501,5 +501,5 @@
     </ng-container>
   </rc-drawer-navigation>
 
-  <ng-content></ng-content>
+  <ng-content />
 </rc-app>

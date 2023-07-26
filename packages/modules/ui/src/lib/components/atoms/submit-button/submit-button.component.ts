@@ -14,14 +14,13 @@ import { Component, Input } from '@angular/core';
           *ngIf="isLoading"
           vclPrepend
           icon="vcl:busy"
-        ></vcl-icon>
-        {{ text }}</span
-      >
+        />
+        <ng-content />
+      </span>
     </button>
   `,
 })
 export class RcSubmitButtonComponent {
   @Input({ required: true }) isInvalid!: boolean;
   @Input({ required: true }) isLoading!: boolean;
-  @Input({ required: true }) text!: string;
 }
