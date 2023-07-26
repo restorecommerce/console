@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
+import { PrivateGuard } from '@console-core/store-app';
 
 import {
   PrivateTemplateComponent,
   PublicTemplateComponent,
 } from './components/template';
-import { PrivateGuard, PublicGuard } from './guards';
 
 export const modulesMainRoutes: Route[] = [
   {
@@ -20,8 +20,6 @@ export const modulesMainRoutes: Route[] = [
   {
     path: ROUTER.pages.main.children.auth.path,
     component: PublicTemplateComponent,
-    canActivate: [PublicGuard],
-    canActivateChild: [PublicGuard],
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
   },
