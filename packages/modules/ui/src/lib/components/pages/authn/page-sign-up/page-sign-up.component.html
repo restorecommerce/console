@@ -1,24 +1,15 @@
-<ng-container *ngIf="!isLoading; else templateLoading">
-  <div class="self-center justify-center">
-    <div class="scale110p">
-      <div class="row">
-        <div class="gutter-margin-t-b">
-          <h2>Sign Up</h2>
-          <p>
-            Please provide the necessary information to complete your
-            registration and create your account.
-          </p>
-          <rc-sign-up></rc-sign-up>
-        </div>
-      </div>
+<div class="self-center justify-center">
+  <div class="row">
+    <div class="gutter-margin-t-b">
+      <h2>Sign Up</h2>
+      <p>
+        Please provide the necessary information to complete your registration
+        and create your account.
+      </p>
+      <rc-sign-up
+        [register]="register"
+        [isLoading]="!!vm?.isLoading"
+      ></rc-sign-up>
     </div>
   </div>
-</ng-container>
-
-<ng-template #templateLoading>
-  <div class="scale110p">
-    <div class="align-centered">
-      <vcl-busy-indicator></vcl-busy-indicator>
-    </div>
-  </div>
-</ng-template>
+</div>

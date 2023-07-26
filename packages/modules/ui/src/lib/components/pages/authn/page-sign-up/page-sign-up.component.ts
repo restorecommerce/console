@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { ROUTER } from '@console-core/config';
+import { IIoRestorecommerceUserRegisterRequest } from '@console-core/graphql';
+import { TInputData } from '@console-core/types';
 
 @Component({
   selector: 'rc-page-sign-up',
@@ -8,6 +9,11 @@ import { ROUTER } from '@console-core/config';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPageSignUpComponent {
-  ROUTER = ROUTER;
-  isLoading = false;
+  @Input({ required: true })
+  vm!: TInputData<{
+    isLoading: boolean;
+  }>;
+
+  @Input({ required: true })
+  register!: (payload: IIoRestorecommerceUserRegisterRequest) => void;
 }

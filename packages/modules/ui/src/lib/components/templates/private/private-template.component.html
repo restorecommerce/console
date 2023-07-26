@@ -51,7 +51,7 @@
       </button>
       <button
         vcl-button
-        (click)="logout()"
+        [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
         class="half-transparent user"
       >
         <vcl-icogram>

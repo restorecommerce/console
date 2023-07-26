@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
+import { PrivateGuard, PublicGuard } from '@console-core/store-app';
 
 import { AuthnTemplateComponent } from './components/template/authn-template.component';
 
@@ -16,6 +17,8 @@ export const modulesAuthnRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.auth.children.signIn.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
         loadChildren: () =>
           import('./components/sign-in/sign-in.module').then(
             (m) => m.SignInModule
@@ -23,13 +26,26 @@ export const modulesAuthnRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.auth.children.signUp.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
         loadChildren: () =>
           import('./components/sign-up/sign-up.module').then(
             (m) => m.SignUpModule
           ),
       },
       {
+        path: ROUTER.pages.main.children.auth.children.signOut.path,
+        canActivate: [PrivateGuard],
+        canActivateChild: [PrivateGuard],
+        loadChildren: () =>
+          import('./components/sign-out/sign-out.module').then(
+            (m) => m.SignOutModule
+          ),
+      },
+      {
         path: ROUTER.pages.main.children.auth.children.passwordRecovery.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
         loadChildren: () =>
           import(
             './components/password-recovery/password-recovery.module'
@@ -37,6 +53,8 @@ export const modulesAuthnRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.auth.children.activation.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
         loadChildren: () =>
           import('./components/activation/activation.module').then(
             (m) => m.ActivationModule
@@ -44,6 +62,8 @@ export const modulesAuthnRoutes: Route[] = [
       },
       {
         path: ROUTER.pages.main.children.auth.children.confirmEmail.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
         loadChildren: () =>
           import('./components/confirm-email/confirm-email.module').then(
             (m) => m.ConfirmEmailModule

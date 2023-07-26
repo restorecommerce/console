@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest } from 'rxjs';
 
-import { SecurityFacade } from '@console-core/store/security';
+import { IIoRestorecommerceUserLoginRequest } from '@console-core/graphql';
+
+import { AuthnFacade } from '../../+state/authn';
 
 @Component({
   selector: 'app-authn-sign-in',
@@ -11,17 +13,15 @@ import { SecurityFacade } from '@console-core/store/security';
       [login]="login"
     ></rc-page-sign-in>
   `,
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent {
   readonly vm$ = combineLatest({
-    isLoading: this.securityFacade.isLoading$,
-    error: this.securityFacade.error$,
+    isLoading: this.authnFacade.isLoading$,
   });
 
-  readonly login = (payload: { email: string; password: string }) =>
-    this.securityFacade.login(payload);
+  readonly login = (payload: IIoRestorecommerceUserLoginRequest) =>
+    this.authnFacade.signIn(payload);
 
-  constructor(private readonly securityFacade: SecurityFacade) {}
+  constructor(private readonly authnFacade: AuthnFacade) {}
 }

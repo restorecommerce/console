@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-authn-confirm-email',
-  template: `<p>confirm email works!</p>`,
+  selector: 'rc-page-sign-out',
+  templateUrl: 'page-sign-out.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmEmailComponent {}
+export class RcPageSignOutComponent {}

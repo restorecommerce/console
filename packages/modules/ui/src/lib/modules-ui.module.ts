@@ -18,10 +18,12 @@ import {
   VCLBusyIndicatorModule,
   VCLPopoverModule,
   VCLInputModule,
+  VCLPasswordInputModule,
   VCLDrawerModule,
   VCLFormControlGroupModule,
 } from '@vcl/ng-vcl';
 
+import { RcSubmitButtonComponent } from './components/atoms';
 import { RcCopyrightComponent } from './components/atoms/copyright/copyright.component';
 import { RcAppComponent } from './components/organisms/app/app.component';
 import { RcPasswordRecoveryComponent } from './components/organisms/authn/password-recovery/password-recovery.component';
@@ -44,8 +46,10 @@ import { RcHeaderComponent } from './components/organisms/header/header.componen
 import { RcToggleDrawerComponent } from './components/organisms/toggle-drawer.component';
 import { RcSearchBarComponent } from './components/organisms/toolbar/searchbar.component';
 import { RcToolbarComponent } from './components/organisms/toolbar/toolbar.component';
+import { RcPageActivationComponent } from './components/pages/authn/page-activation/page-activation.component';
 import { RcPagePasswordRecoveryComponent } from './components/pages/authn/page-password-recovery/page-password-recovery.component';
 import { RcPageSignInComponent } from './components/pages/authn/page-sign-in/page-sign-in.component';
+import { RcPageSignOutComponent } from './components/pages/authn/page-sign-out/page-sign-out.component';
 import { RcPageSignUpComponent } from './components/pages/authn/page-sign-up/page-sign-up.component';
 import { RcPageHomeComponent } from './components/pages/page-home/page-home.component';
 import { RcPageLayoutComponent } from './components/pages/page-layout/page-layout.component';
@@ -59,7 +63,7 @@ export const RC_MODULE_STATE_TOKEN = new InjectionToken('rc.module.state');
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UiComponentsConfig {}
 
-const atoms = [RcCopyrightComponent];
+const atoms = [RcCopyrightComponent, RcSubmitButtonComponent];
 
 // const molecules = [];
 
@@ -89,8 +93,10 @@ const pages = [
   RcPageHomeComponent,
   RcPageLayoutComponent,
   RcPageOverflowComponent,
+  RcPageActivationComponent,
   RcPageSignInComponent,
   RcPageSignUpComponent,
+  RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
 ];
 
@@ -118,6 +124,7 @@ const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
     VCLBusyIndicatorModule,
     VCLPopoverModule,
     VCLInputModule,
+    VCLPasswordInputModule,
     VCLDrawerModule,
     VCLFormControlGroupModule,
   ],

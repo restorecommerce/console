@@ -5,7 +5,6 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Input,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, startWith } from 'rxjs/operators';
@@ -15,7 +14,7 @@ import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import { APP, ROUTER } from '@console-core/config';
 
-import { DrawerService } from '../../../services/drawer.service';
+import { DrawerService } from '../../../services';
 
 @Component({
   selector: 'rc-private-template',
@@ -23,9 +22,6 @@ import { DrawerService } from '../../../services/drawer.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
-  @Input()
-  logout!: () => void;
-
   APP = APP;
   ROUTER = ROUTER;
 

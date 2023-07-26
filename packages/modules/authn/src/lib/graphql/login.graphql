@@ -9,11 +9,30 @@ mutation Login($input: IIoRestorecommerceUserLoginRequest!) {
           }
           payload {
             id
-            name
             email
-            active
+            name
             firstName
             lastName
+            userType
+            defaultScope
+            lastAccess
+            tokens {
+              type
+              token
+              scopes
+              name
+              lastLogin
+              interactive
+              expiresIn
+            }
+            roleAssociations {
+              id
+              role
+              attributes {
+                id
+                value
+              }
+            }
           }
         }
       }
