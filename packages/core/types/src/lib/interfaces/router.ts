@@ -28,6 +28,7 @@ export interface IRouter {
           children: {
             signIn: IRouterItem;
             signUp: IRouterItem;
+            signOut: IRouterItem;
             passwordRecovery: IRouterItem;
             activation: IRouterItem;
             confirmEmail: IRouterItem;

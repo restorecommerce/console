@@ -15,7 +15,6 @@ import { map } from 'rxjs';
       </ng-template>
     </div>
   `,
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommandComponent {

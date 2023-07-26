@@ -1,5 +1,5 @@
 {
-  "name": "@console-core/store/router",
+  "name": "@console-core/store-router",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^15.2.0",

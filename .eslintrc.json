@@ -34,7 +34,7 @@
               },
               {
                 "sourceTag": "type:types",
-                "onlyDependOnLibsWithTags": ["type:types"]
+                "onlyDependOnLibsWithTags": ["type:types", "type:graphql"]
               },
               {
                 "sourceTag": "type:feature",
@@ -53,6 +53,7 @@
                 "onlyDependOnLibsWithTags": [
                   "type:ui",
                   "type:config",
+                  "type:graphql",
                   "type:types"
                 ]
               },

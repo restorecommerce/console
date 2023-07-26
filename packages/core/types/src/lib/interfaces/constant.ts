@@ -1,4 +1,4 @@
-import { ILanguages } from './languages';
+import { ILanguages } from './language';
 
 export interface IConstant {
   readonly name: string;

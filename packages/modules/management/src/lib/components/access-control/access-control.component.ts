@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <h2>Access Control</h2>
     </div>
   `,
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccessControlComponent {}

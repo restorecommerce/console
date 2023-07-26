@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <h3>ProfileTemplateComponent</h3>
     <router-outlet></router-outlet>
   `,
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileTemplateComponent {}

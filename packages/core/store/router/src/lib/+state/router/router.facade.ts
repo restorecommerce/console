@@ -13,7 +13,7 @@ export class RouterFacade {
   url$ = this.store.select(routerSelectors.selectUrl);
 
   // Actions
-  navigate = (url: string[]) => this.router.navigate(url);
+  navigate = (url: (string | number)[]) => this.router.navigate(url);
   navigateByUrl = (url: string) => this.router.navigateByUrl(url);
 
   constructor(private readonly store: Store, private readonly router: Router) {}

@@ -17,10 +17,8 @@
     "paths": {
       "@console-core/config": ["packages/core/config/src/index.ts"],
       "@console-core/graphql": ["packages/core/graphql/src/index.ts"],
-      "@console-core/store/router": ["packages/core/store/router/src/index.ts"],
-      "@console-core/store/security": [
-        "packages/core/store/security/src/index.ts"
-      ],
+      "@console-core/store-app": ["packages/core/store/app/src/index.ts"],
+      "@console-core/store-router": ["packages/core/store/router/src/index.ts"],
       "@console-core/types": ["packages/core/types/src/index.ts"],
       "@console-modules/authn": ["packages/modules/authn/src/index.ts"],
       "@console-modules/home": ["packages/modules/home/src/index.ts"],

@@ -27,6 +27,11 @@ export const ROUTER: Readonly<IRouter> = {
               link: '/auth/sign-up',
               getLink: () => ['', 'auth', 'sign-up'],
             },
+            signOut: {
+              path: 'sign-out',
+              link: '/auth/sign-out',
+              getLink: () => ['', 'auth', 'sign-out'],
+            },
             passwordRecovery: {
               path: 'password-recovery',
               link: '/auth/password-recovery',
