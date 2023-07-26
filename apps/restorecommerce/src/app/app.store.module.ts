@@ -15,13 +15,13 @@ import {
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { STORE } from '@console-core/config';
+import { CoreStoreAppModule } from '@console-core/store-app';
 import {
   CoreStoreRouterModule,
   handleLocalStorageSync,
   handleStoreLogger,
   RouterSerializer,
-} from '@console-core/store/router';
-import { CoreStoreSecurityModule } from '@console-core/store/security';
+} from '@console-core/store-router';
 import { IStore } from '@console-core/types';
 
 import { environment } from '../environments/environment';
@@ -48,7 +48,7 @@ const metaReducers: MetaReducer<IStore>[] = !environment.production
         strictActionImmutability: true,
       },
     }),
-    CoreStoreSecurityModule,
+    CoreStoreAppModule,
     CoreStoreRouterModule,
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({

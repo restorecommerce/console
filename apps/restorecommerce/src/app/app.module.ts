@@ -1,5 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
@@ -17,6 +19,8 @@ import { AppStoreModule } from './app.store.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, {
       initialNavigation: 'enabledBlocking',
     }),
