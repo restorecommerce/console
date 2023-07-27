@@ -1,13 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as dayjs from 'dayjs';
 
-import { STORE } from '@console-core/config';
+import { REGEX, STORE } from '@console-core/config';
 import { EActionStatus, IAppState, INotification } from '@console-core/types';
 
 import * as appActions from './app.actions';
-
-const capitalizeFirstLetter = (str: string): string =>
-  str.charAt(0).toUpperCase() + str.slice(1);
 
 export const initialState: IAppState = {
   notifications: [],
@@ -18,12 +15,27 @@ export const initialState: IAppState = {
 const reducer = createReducer<IAppState>(
   initialState,
   on(appActions.addNotification, (state, { payload }): IAppState => {
+    const capitalizeFirstLetter = (s: string): string =>
+      s.charAt(0).toUpperCase() + s.slice(1);
+
+    // Format the notification payload
     const newNotification: INotification = {
       ...payload,
       title: capitalizeFirstLetter(payload.type),
       content: capitalizeFirstLetter(payload.content),
       date: dayjs().toDate(),
     };
+
+    // Format the GraphQL error unknown message
+    if (REGEX.graphql.errors.unknown.test(newNotification.content)) {
+      const message =
+        "Sorry, we're having some trouble connecting to our servers. Please try again later.";
+      newNotification.content = newNotification.content.replace(
+        REGEX.graphql.errors.unknown,
+        message
+      );
+    }
+
     return {
       ...state,
       notifications: [newNotification, ...state.notifications],
