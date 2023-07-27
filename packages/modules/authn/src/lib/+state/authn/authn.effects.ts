@@ -192,7 +192,6 @@ export class AuthnEffects {
             content: error ?? 'unknown error',
             type: ENotificationTypes.ERROR,
           });
-          console.error(error);
         })
       );
     },
