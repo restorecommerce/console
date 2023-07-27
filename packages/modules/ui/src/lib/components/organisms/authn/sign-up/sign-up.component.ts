@@ -13,7 +13,7 @@ import {
 } from '@console-core/graphql';
 
 @Component({
-  selector: 'rc-sign-up',
+  selector: 'rc-authn-sign-up',
   templateUrl: 'sign-up.component.html',
 })
 export class RcSignUpComponent {

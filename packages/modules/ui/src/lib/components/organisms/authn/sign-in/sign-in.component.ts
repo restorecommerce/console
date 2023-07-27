@@ -5,7 +5,7 @@ import { ROUTER } from '@console-core/config';
 import { IIoRestorecommerceUserLoginRequest } from '@console-core/graphql';
 
 @Component({
-  selector: 'rc-sign-in',
+  selector: 'rc-authn-sign-in',
   templateUrl: 'sign-in.component.html',
 })
 export class RcSignInComponent {
