@@ -159,6 +159,51 @@ export class AuthnEffects {
     );
   });
 
+  passwordRecoveryRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authnActions.passwordRecoveryRequest),
+      switchMap(({ payload }) =>
+        this.authnService.requestPasswordChange(payload).pipe(
+          map(({ data }) => {
+            const { code, message } =
+              data?.identity?.user?.RequestPasswordChange?.details
+                ?.operationStatus || {};
+            if (code !== 200) {
+              return authnActions.passwordRecoveryError({
+                error: message ?? 'password recovery failed',
+              });
+            }
+
+            return authnActions.passwordRecoverySuccess();
+          }),
+          catchError((error: Error) =>
+            of(authnActions.passwordRecoveryError({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  passwordRecoverySuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(authnActions.passwordRecoverySuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'password recovery email sent',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
+        tap(() => {
+          this.router.navigate([
+            ROUTER.pages.main.children.auth.children.signIn.link,
+          ]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   signOut$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -185,7 +230,8 @@ export class AuthnEffects {
         ofType(
           authnActions.signUpError,
           authnActions.activateError,
-          authnActions.signInError
+          authnActions.signInError,
+          authnActions.passwordRecoveryError
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

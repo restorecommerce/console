@@ -31,6 +31,8 @@ export class AuthnFacade {
   readonly signIn = (payload: IIoRestorecommerceUserLoginRequest) =>
     this.store.dispatch(authnActions.signInRequest({ payload }));
   readonly signOut = () => this.store.dispatch(authnActions.signOut());
+  readonly passwordRecovery = (payload: IIoRestorecommerceUserLoginRequest) =>
+    this.store.dispatch(authnActions.passwordRecoveryRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

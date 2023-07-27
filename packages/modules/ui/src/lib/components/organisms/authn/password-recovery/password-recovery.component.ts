@@ -1,28 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ROUTER } from '@console-core/config';
+import { IIoRestorecommerceUserRequestPasswordChangeRequest } from '@console-core/graphql';
 
 @Component({
-  selector: 'rc-password-recovery',
+  selector: 'rc-authn-password-recovery',
   templateUrl: 'password-recovery.component.html',
 })
 export class RcPasswordRecoveryComponent {
+  @Input({ required: true })
+  isLoading!: boolean;
+
+  @Input({ required: true })
+  passwordRecovery!: (
+    payload: IIoRestorecommerceUserRequestPasswordChangeRequest
+  ) => void;
+
+  get identifier(): FormControl {
+    return this.passwordRecoveryForm.get('identifier') as FormControl;
+  }
+
   ROUTER = ROUTER;
 
   passwordRecoveryForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    identifier: new FormControl('', [Validators.required]),
   });
-
-  get email(): FormControl {
-    return this.passwordRecoveryForm.get('email') as FormControl;
-  }
 
   onClickPasswordRecovery(
     value: Partial<{
-      email: string | null;
+      identifier: string | null;
     }>
   ) {
-    console.log('onClickPasswordRecovery', value);
+    if (!this.passwordRecoveryForm.valid) {
+      return;
+    }
+
+    this.passwordRecovery({
+      identifier: value.identifier,
+    });
   }
 }
