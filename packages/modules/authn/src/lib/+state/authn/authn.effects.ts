@@ -30,7 +30,9 @@ export class AuthnEffects {
 
             return authnActions.signUpSuccess();
           }),
-          catchError((error) => of(authnActions.signUpError({ error })))
+          catchError((error: Error) =>
+            of(authnActions.signUpError({ error: error.message }))
+          )
         )
       )
     );
@@ -40,6 +42,12 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(authnActions.signUpSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'account has been created',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
         tap(() => {
           this.router.navigate([
             ROUTER.pages.main.children.auth.children.signIn.link,
@@ -66,7 +74,9 @@ export class AuthnEffects {
 
             return authnActions.activateSuccess();
           }),
-          catchError((error) => of(authnActions.activateError({ error })))
+          catchError((error: Error) =>
+            of(authnActions.activateError({ error: error.message }))
+          )
         )
       )
     );
@@ -76,6 +86,12 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(authnActions.activateSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'account has been activated',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
         tap(() => {
           this.router.navigate([
             ROUTER.pages.main.children.auth.children.signIn.link,
@@ -105,7 +121,9 @@ export class AuthnEffects {
               user: payload as IoRestorecommerceUserUser,
             });
           }),
-          catchError((error) => of(authnActions.signInError({ error })))
+          catchError((error: Error) =>
+            of(authnActions.signInError({ error: error.message }))
+          )
         )
       )
     );
@@ -116,6 +134,12 @@ export class AuthnEffects {
       return this.actions$.pipe(
         ofType(authnActions.signInSuccess),
         switchMap(() => this.activatedRoute.queryParams.pipe(take(1))),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'signed in',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
         map(
           (params: Params) =>
             params['url'] || ROUTER.pages.main.children.home.link
@@ -140,6 +164,12 @@ export class AuthnEffects {
       return this.actions$.pipe(
         ofType(authnActions.signOut),
         tap(() => {
+          this.appFacade.addNotification({
+            content: 'signed out',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
+        tap(() => {
           this.router.navigate([
             ROUTER.pages.main.children.auth.children.signIn.link,
           ]);
@@ -157,14 +187,9 @@ export class AuthnEffects {
           authnActions.activateError,
           authnActions.signInError
         ),
-        map(({ error }) => {
-          return typeof error === 'object'
-            ? { error: error['message'] ?? 'Unknown error' }
-            : { error };
-        }),
         tap(({ error }) => {
           this.appFacade.addNotification({
-            content: error,
+            content: error ?? 'unknown error',
             type: ENotificationTypes.ERROR,
           });
           console.error(error);

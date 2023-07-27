@@ -38,9 +38,21 @@ export const ROUTER: Readonly<IRouter> = {
               getLink: () => ['', 'auth', 'password-recovery'],
             },
             activation: {
-              path: 'activation',
-              link: '/auth/activation',
-              getLink: () => ['', 'auth', 'activation'],
+              path: 'activation/:identifier/:activationCode',
+              link: '/auth/activation/:identifier/:activationCode',
+              getLink: (params?: {
+                identifier?: string;
+                activationCode?: string;
+              }) =>
+                params?.identifier && params?.activationCode
+                  ? [
+                      '',
+                      'auth',
+                      'activation',
+                      params.identifier,
+                      params.activationCode,
+                    ]
+                  : ['', 'auth', 'activation'],
             },
             confirmEmail: {
               path: 'confirm-email',

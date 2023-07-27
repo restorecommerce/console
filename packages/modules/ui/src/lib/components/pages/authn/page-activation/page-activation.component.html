@@ -1,11 +1,31 @@
 <div class="align-centered">
-  <div class="align-left">
-    <vcl-notification [type]="nType.Success">
-      An inline success message
-    </vcl-notification>
+  <p>
+    Thank you for activating your account! We're processing your request now and
+    will have your account ready for use as soon as possible.
+  </p>
 
-    <vcl-notification [type]="nType.Error">
-      An inline error message
-    </vcl-notification>
-  </div>
+  <p>Please be patient while we complete the activation process.</p>
+
+  <ng-container *ngIf="!vm?.isLoading; else templateIsLoading">
+    <div class="align-left">
+      <ng-container *ngIf="!vm?.error; else templateSuccess">
+        <vcl-notification [type]="notificationType.Info">
+          There was an error activating your account. Please try again later.
+        </vcl-notification>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>
+
+<ng-template #templateIsLoading>
+  <vcl-busy-indicator />
+</ng-template>
+
+<ng-template #templateSuccess>
+  <vcl-notification [type]="notificationType.Success">
+    Your account has been activated. You may now
+    <a [routerLink]="ROUTER.pages.main.children.auth.children.signIn.link"
+      >sign in</a
+    >.
+  </vcl-notification>
+</ng-template>

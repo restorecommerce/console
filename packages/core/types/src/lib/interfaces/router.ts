@@ -7,7 +7,12 @@ import {
 export interface IRouterItem {
   path: string;
   link: string;
-  getLink: (params?: { id?: number | string; slug?: string }) => TRouterLink;
+  getLink: (params?: {
+    id?: number | string;
+    identifier?: string;
+    activationCode?: string;
+    slug?: string;
+  }) => TRouterLink;
   params?: TRouterParams;
   queryParams?: TRouterQueryParams;
   children?: Record<string, IRouterItem>;
