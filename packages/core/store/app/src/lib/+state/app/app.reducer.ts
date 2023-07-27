@@ -6,9 +6,8 @@ import { EActionStatus, IAppState, INotification } from '@console-core/types';
 
 import * as appActions from './app.actions';
 
-const capitalizeFirstLetter = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
+const capitalizeFirstLetter = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1);
 
 export const initialState: IAppState = {
   notifications: [],
