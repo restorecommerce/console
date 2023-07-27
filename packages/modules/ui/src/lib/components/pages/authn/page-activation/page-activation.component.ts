@@ -6,7 +6,7 @@ import { ROUTER } from '@console-core/config';
 import { TInputData } from '@console-core/types';
 
 @Component({
-  selector: 'rc-page-activation',
+  selector: 'rc-page-authn-activation',
   templateUrl: 'page-activation.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

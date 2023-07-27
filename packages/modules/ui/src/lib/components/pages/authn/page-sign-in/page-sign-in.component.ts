@@ -5,7 +5,7 @@ import { IIoRestorecommerceUserLoginRequest } from '@console-core/graphql';
 import { TInputData } from '@console-core/types';
 
 @Component({
-  selector: 'rc-page-sign-in',
+  selector: 'rc-page-authn-sign-in',
   templateUrl: 'page-sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

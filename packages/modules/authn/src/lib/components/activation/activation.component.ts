@@ -9,7 +9,7 @@ import { AuthnFacade } from '../../+state/authn';
   selector: 'app-authn-activation',
   template: `
     <ng-container *ngIf="handleActivation$ | async">
-      <rc-page-activation [vm]="vm$ | async" />
+      <rc-page-authn-activation [vm]="vm$ | async" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

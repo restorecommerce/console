@@ -8,7 +8,7 @@ import { AuthnFacade } from '../../+state/authn';
 @Component({
   selector: 'app-authn-sign-up',
   template: `
-    <rc-page-sign-up
+    <rc-page-authn-sign-up
       [vm]="vm$ | async"
       [register]="register"
     />
