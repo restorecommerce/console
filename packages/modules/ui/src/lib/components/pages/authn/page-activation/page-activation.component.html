@@ -8,8 +8,8 @@
 
   <ng-container *ngIf="!vm?.isLoading; else templateIsLoading">
     <div class="align-left">
-      <ng-container *ngIf="!vm?.error; else templateSuccess">
-        <vcl-notification [type]="notificationType.Info">
+      <ng-container *ngIf="vm?.error; else templateSuccess">
+        <vcl-notification>
           There was an error activating your account. Please try again later.
         </vcl-notification>
       </ng-container>
