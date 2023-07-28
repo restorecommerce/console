@@ -26,7 +26,7 @@ const reducer = createReducer<IAppState>(
       date: dayjs().toDate(),
     };
 
-    // Format the GraphQL error unknown message
+    // Check/Format GraphQL error unknown message
     if (REGEX.graphql.errors.unknown.test(newNotification.content)) {
       const message =
         "Sorry, we're having some trouble connecting to our servers. Please try again later.";
