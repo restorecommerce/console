@@ -1,4 +1,5 @@
 export * from './constant';
+export * from './date';
 export * from './environment';
 export * from './language';
 export * from './notification';

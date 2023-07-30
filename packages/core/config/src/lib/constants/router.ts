@@ -61,6 +61,28 @@ export const ROUTER: Readonly<IRouter> = {
             },
           },
         },
+        account: {
+          path: 'account',
+          link: '/account',
+          getLink: () => ['', 'account'],
+          children: {
+            index: {
+              path: '',
+              link: '/account',
+              getLink: () => ['', 'account'],
+            },
+            profile: {
+              path: 'profile',
+              link: '/account/profile',
+              getLink: () => ['', 'account', 'profile'],
+            },
+            preferences: {
+              path: 'preferences',
+              link: '/account/preferences',
+              getLink: () => ['', 'account', 'preferences'],
+            },
+          },
+        },
         layout: {
           path: 'layout',
           link: '/layout',
@@ -76,6 +98,11 @@ export const ROUTER: Readonly<IRouter> = {
           link: '/management',
           getLink: () => ['', 'management'],
           children: {
+            index: {
+              path: '',
+              link: '/management',
+              getLink: () => ['', 'management'],
+            },
             iam: {
               path: 'iam',
               link: '/management/iam',

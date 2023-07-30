@@ -39,6 +39,16 @@ export interface IRouter {
             confirmEmail: IRouterItem;
           };
         };
+        account: {
+          path: string;
+          link: string;
+          getLink: () => TRouterLink;
+          children: {
+            index: IRouterItem;
+            profile: IRouterItem;
+            preferences: IRouterItem;
+          };
+        };
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {
@@ -46,6 +56,7 @@ export interface IRouter {
           link: string;
           getLink: () => TRouterLink;
           children: {
+            index: IRouterItem;
             iam: {
               path: string;
               link: string;
