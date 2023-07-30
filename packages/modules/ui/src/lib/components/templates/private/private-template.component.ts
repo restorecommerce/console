@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Input,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, startWith } from 'rxjs/operators';
@@ -13,15 +14,23 @@ import { SubSink } from 'subsink';
 import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import { APP, ROUTER } from '@console-core/config';
+import { IIoRestorecommerceUserUser } from '@console-core/graphql';
+import { TInputData } from '@console-core/types';
 
 import { DrawerService } from '../../../services';
 
 @Component({
   selector: 'rc-private-template',
   templateUrl: './private-template.component.html',
+  styleUrls: ['./private-template.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
+  @Input({ required: true })
+  vm!: TInputData<{
+    user: IIoRestorecommerceUserUser | null;
+  }>;
+
   APP = APP;
   ROUTER = ROUTER;
 
@@ -61,6 +70,10 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     }
   }
 
+  collapseDrawer() {
+    this.drawerService.toggle();
+  }
+
   private handleBreakpointObserver(): void {
     this.subscriptions.sink = this.breakpointObserver
       .observe([VCLBreakpoints.xs, VCLBreakpoints.sm])
@@ -84,6 +97,9 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
         map((url: string) => {
           if (url.startsWith(ROUTER.pages.main.children.management.link)) {
             return ROUTER.pages.main.children.management.link;
+          }
+          if (url.startsWith(ROUTER.pages.main.children.account.link)) {
+            return ROUTER.pages.main.children.account.link;
           }
 
           return ROUTER.pages.main.children.home.link;

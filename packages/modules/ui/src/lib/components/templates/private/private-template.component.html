@@ -15,7 +15,7 @@
       >
         <div class="icogram">
           <div
-            class="icon mdi mdi-home-outline"
+            class="icon mdi mdi-home"
             aria-hidden="true"
             role="img"
           ></div>
@@ -23,12 +23,15 @@
         </div>
       </rc-header-navigation-item>
       <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.main.children.management.link"
-        [selected]="currentRoute === ROUTER.pages.main.children.management.link"
+        [routerLink]="ROUTER.pages.main.children.management.children.index.link"
+        [selected]="
+          currentRoute ===
+          ROUTER.pages.main.children.management.children.index.link
+        "
       >
         <div class="icogram">
           <div
-            class="icon mdi mdi-hexagon-outline"
+            class="icon mdi mdi-hexagon"
             aria-hidden="true"
             role="img"
           ></div>
@@ -41,25 +44,21 @@
     <rc-header-toolbar>
       <button
         vcl-button
+        [selectable]="true"
+        (click)="templatePopoverUser.toggle()"
         class="half-transparent user"
       >
         <vcl-icogram>
           <vcl-icon icon="mdi:account" />
-          User
+          {{ vm?.user?.name }}
           <vcl-icon icon="mdi:chevron-down" />
         </vcl-icogram>
       </button>
-      <button
-        vcl-button
-        [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
-        class="half-transparent user"
-      >
-        <vcl-icogram>
-          <vcl-icon icon="mdi:logout" />
-          Sign out
-        </vcl-icogram>
-      </button>
     </rc-header-toolbar>
+    <span
+      #popoverUserTarget
+      id="target-popover-user"
+    ></span>
   </rc-header>
 
   <rc-drawer-navigation (selectItem)="onSelectItem()">
@@ -72,14 +71,14 @@
           Home
         </vcl-select-list-item>
         <vcl-select-list-item
-          [value]="ROUTER.pages.main.children.management.link"
+          [value]="ROUTER.pages.main.children.management.children.index.link"
         >
           Management
         </vcl-select-list-item>
       </vcl-select-list>
     </vcl-select>
 
-    <!-- root -->
+    <!-- Home -->
     <ng-container *ngIf="currentRoute === ROUTER.pages.main.children.home.link">
       <rc-drawer-navigation-item
         icon="mdi:home"
@@ -102,10 +101,14 @@
         >Overflow</rc-drawer-navigation-item
       >
     </ng-container>
+    <!-- /Home -->
 
-    <!-- drawer -->
+    <!-- Management -->
     <ng-container
-      *ngIf="currentRoute === ROUTER.pages.main.children.management.link"
+      *ngIf="
+        currentRoute ===
+        ROUTER.pages.main.children.management.children.index.link
+      "
     >
       <rc-drawer-navigation-item
         icon="mdi:account-multiple"
@@ -499,7 +502,83 @@
         >
       </rc-drawer-navigation-item>
     </ng-container>
+    <!-- /Management -->
+
+    <!-- Account -->
+    <ng-container
+      *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
+    >
+      <rc-drawer-navigation-item
+        icon="mdi:account"
+        [routerLink]="ROUTER.pages.main.children.account.children.profile.link"
+        [routerLinkActive]="['selected']"
+        >Profile</rc-drawer-navigation-item
+      >
+      <rc-drawer-navigation-item
+        icon="mdi:cog"
+        [routerLink]="
+          ROUTER.pages.main.children.account.children.preferences.link
+        "
+        [routerLinkActive]="['selected']"
+        >Preferences</rc-drawer-navigation-item
+      >
+    </ng-container>
+    <!-- /Account -->
+
+    <div class="side-menu-bottom-container">
+      <rc-copyright />
+      <a
+        title="Collapse sidebar"
+        class="toggle-sidebar-button"
+        (click)="collapseDrawer()"
+      >
+        <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
+      </a>
+    </div>
   </rc-drawer-navigation>
 
   <ng-content />
 </rc-app>
+
+<ng-template
+  vclPopover
+  #templatePopoverUser="vclPopover"
+  [target]="popoverUserTarget"
+  [closeOnOffClick]="true"
+>
+  <div
+    id="wrapper-popover-user"
+    class="data-list item-selectability item-hover-highlight m-0 p-0 ng-star-inserted"
+  >
+    <ul class="data-list-body no-border">
+      <li
+        class="data-list-item row justify-between center"
+        [routerLinkActive]="['selected']"
+      >
+        <a
+          [routerLink]="ROUTER.pages.main.children.account.children.index.link"
+        >
+          <div
+            class="gutter-margin flex"
+            [routerLinkActive]="['selected']"
+          >
+            <vcl-icogram>
+              <vcl-icon icon="mdi:account" />
+            </vcl-icogram>
+            <span class="text">Account</span>
+          </div>
+        </a>
+      </li>
+      <li class="data-list-item row justify-between center">
+        <a [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link">
+          <div class="gutter-margin flex">
+            <vcl-icogram>
+              <vcl-icon icon="mdi:logout" />
+            </vcl-icogram>
+            <span class="text red">Sign Out</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</ng-template>

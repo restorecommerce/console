@@ -1,21 +1,27 @@
-<ng-container *ngIf="logoLink">
-  <a [routerLink]="logoLink">
+<ng-container *ngIf="logoUrl">
+  <ng-container *ngIf="logoLink">
+    <a [routerLink]="logoLink">
+      <img
+        [ngSrc]="logoUrl"
+        [alt]="APP.name"
+        class="responsive-image logo"
+        role="presentation"
+        width="56"
+        height="19"
+      />
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="!logoLink">
     <img
-      *ngIf="logoUrl"
+      [ngSrc]="logoUrl"
+      [alt]="APP.name"
       class="responsive-image logo"
       role="presentation"
-      [src]="logoUrl"
+      width="56"
+      height="19"
     />
-  </a>
-</ng-container>
-
-<ng-container *ngIf="!logoLink">
-  <img
-    *ngIf="logoUrl"
-    class="responsive-image logo"
-    role="presentation"
-    [src]="logoUrl"
-  />
+  </ng-container>
 </ng-container>
 
 <h1 class="app-name hide-to-sm">

@@ -1,6 +1,6 @@
 @use './_console-variables.scss' as *;
 
-@use '@vcl/vcl/restore-theme' with (
+@use '@vcl/vcl/restore-theme.scss' with (
   // /* Global or important stuff */
   $app-area-max-width: 100%,
 

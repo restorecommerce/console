@@ -1,5 +1,6 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { NgModule, InjectionToken, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -107,6 +108,7 @@ const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
 @NgModule({
   imports: [
     CommonModule,
+    NgOptimizedImage,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
