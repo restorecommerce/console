@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
-import { PrivateGuard } from '@console-core/store-app';
+import { PrivateGuard } from '@console-modules/shared';
 
 import {
   PrivateTemplateComponent,
@@ -22,6 +22,14 @@ export const modulesMainRoutes: Route[] = [
     component: PublicTemplateComponent,
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
+  },
+  {
+    path: ROUTER.pages.main.children.account.path,
+    component: PrivateTemplateComponent,
+    canActivate: [PrivateGuard],
+    canActivateChild: [PrivateGuard],
+    loadChildren: () =>
+      import('@console-modules/account').then((m) => m.ModulesAccountModule),
   },
   {
     path: ROUTER.pages.main.children.management.path,
