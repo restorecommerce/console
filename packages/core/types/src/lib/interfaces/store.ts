@@ -8,7 +8,6 @@ export interface IStoreConstant {
     readonly app: {
       readonly notifications: {
         readonly delay: number;
-        readonly duration: number;
       };
     };
   };

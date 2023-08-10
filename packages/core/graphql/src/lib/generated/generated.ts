@@ -5093,6 +5093,49 @@ export interface SubscriptionOutput {
   id?: Maybe<Scalars['String']>;
 }
 
+export type FindByTokenQueryVariables = Exact<{
+  input: IIoRestorecommerceUserFindByTokenRequest;
+}>;
+
+export type FindByTokenQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    user: {
+      __typename?: 'IdentityUserQuery';
+      FindByToken?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserResponse';
+          status?: {
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          payload?: {
+            __typename?: 'IoRestorecommerceUserUser';
+            id?: string | null;
+            active?: boolean | null;
+            activationCode?: string | null;
+            email?: string | null;
+            name?: string | null;
+            firstName?: string | null;
+            lastName?: string | null;
+            defaultScope?: string | null;
+            localeId?: string | null;
+            timezoneId?: string | null;
+            userType?: IoRestorecommerceUserUserType | null;
+            roleAssociations?: Array<{
+              __typename?: 'IoRestorecommerceAuthRoleAssociation';
+              role?: string | null;
+            }> | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type ActivateMutationVariables = Exact<{
   input: IIoRestorecommerceUserActivateRequest;
 }>;
@@ -5118,55 +5161,24 @@ export type ActivateMutation = {
   };
 };
 
-export type LoginMutationVariables = Exact<{
-  input: IIoRestorecommerceUserLoginRequest;
+export type ConfirmPasswordChangeMutationVariables = Exact<{
+  input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
 }>;
 
-export type LoginMutation = {
+export type ConfirmPasswordChangeMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
     user: {
       __typename?: 'IdentityUserMutation';
-      Login?: {
-        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
+      ConfirmPasswordChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
         details?: {
-          __typename?: 'IoRestorecommerceUserUserResponse';
-          status?: {
-            __typename?: 'IoRestorecommerceStatusStatus';
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
             message?: string | null;
-          } | null;
-          payload?: {
-            __typename?: 'IoRestorecommerceUserUser';
-            id?: string | null;
-            email?: string | null;
-            name?: string | null;
-            firstName?: string | null;
-            lastName?: string | null;
-            userType?: IoRestorecommerceUserUserType | null;
-            defaultScope?: string | null;
-            lastAccess?: number | null;
-            tokens?: Array<{
-              __typename?: 'IoRestorecommerceAuthTokens';
-              type?: string | null;
-              token?: string | null;
-              scopes?: Array<string> | null;
-              name?: string | null;
-              lastLogin?: number | null;
-              interactive?: boolean | null;
-              expiresIn?: number | null;
-            }> | null;
-            roleAssociations?: Array<{
-              __typename?: 'IoRestorecommerceAuthRoleAssociation';
-              id?: string | null;
-              role?: string | null;
-              attributes?: Array<{
-                __typename?: 'IoRestorecommerceAttributeAttribute';
-                id?: string | null;
-                value?: string | null;
-              }> | null;
-            }> | null;
           } | null;
         } | null;
       } | null;
@@ -5240,6 +5252,52 @@ export type RequestPasswordChangeMutation = {
   };
 };
 
+export const FindByTokenDocument = gql`
+  query FindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
+    identity {
+      user {
+        FindByToken(input: $input) {
+          details {
+            status {
+              code
+              message
+            }
+            payload {
+              id
+              active
+              activationCode
+              email
+              name
+              firstName
+              lastName
+              defaultScope
+              localeId
+              timezoneId
+              userType
+              roleAssociations {
+                role
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FindByTokenGQL extends Apollo.Query<
+  FindByTokenQuery,
+  FindByTokenQueryVariables
+> {
+  override document = FindByTokenDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const ActivateDocument = gql`
   mutation Activate($input: IIoRestorecommerceUserActivateRequest!) {
     identity {
@@ -5270,42 +5328,17 @@ export class ActivateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
-export const LoginDocument = gql`
-  mutation Login($input: IIoRestorecommerceUserLoginRequest!) {
+export const ConfirmPasswordChangeDocument = gql`
+  mutation ConfirmPasswordChange(
+    $input: IIoRestorecommerceUserConfirmPasswordChangeRequest!
+  ) {
     identity {
       user {
-        Login(input: $input) {
+        ConfirmPasswordChange(input: $input) {
           details {
-            status {
+            operationStatus {
               code
               message
-            }
-            payload {
-              id
-              email
-              name
-              firstName
-              lastName
-              userType
-              defaultScope
-              lastAccess
-              tokens {
-                type
-                token
-                scopes
-                name
-                lastLogin
-                interactive
-                expiresIn
-              }
-              roleAssociations {
-                id
-                role
-                attributes {
-                  id
-                  value
-                }
-              }
             }
           }
         }
@@ -5317,11 +5350,11 @@ export const LoginDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGQL extends Apollo.Mutation<
-  LoginMutation,
-  LoginMutationVariables
+export class ConfirmPasswordChangeGQL extends Apollo.Mutation<
+  ConfirmPasswordChangeMutation,
+  ConfirmPasswordChangeMutationVariables
 > {
-  override document = LoginDocument;
+  override document = ConfirmPasswordChangeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

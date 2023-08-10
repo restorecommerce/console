@@ -1,10 +1,13 @@
-export interface IRegex {
+export interface IRegexConstant {
   email: RegExp;
   name: RegExp;
   password: RegExp;
-  graphql: {
-    errors: {
-      unknown: RegExp;
+  http: {
+    response: {
+      error: {
+        unknown: RegExp;
+        unauthorized: RegExp;
+      };
     };
   };
 }

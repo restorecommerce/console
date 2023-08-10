@@ -18,7 +18,7 @@ export interface IRouterItem {
   children?: Record<string, IRouterItem>;
 }
 
-export interface IRouter {
+export interface IRouterConstant {
   pages: {
     main: {
       path: string;

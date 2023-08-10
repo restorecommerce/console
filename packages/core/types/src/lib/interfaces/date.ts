@@ -1,4 +1,4 @@
-export interface IDate {
+export interface IDateConstant {
   format: {
     date: string;
     date_time: string;
