@@ -13,7 +13,7 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
-import { AppStoreModule } from './app.store.module';
+import { AppStateModule } from './app.state.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,12 +25,18 @@ import { AppStoreModule } from './app.store.module';
       initialNavigation: 'enabledBlocking',
     }),
     CoreGraphQLModule.forRoot({
-      api: environment.graphql.api,
+      api: environment.urls.graphql,
     }),
-    AppStoreModule,
+    AppStateModule,
     ModulesUiBaseModule,
     ModulesUiModule.forRoot(),
     VCLDateAdapterModule.forRoot(),
+  ],
+  providers: [
+    {
+      provide: 'apiUrl',
+      useValue: environment.urls.api,
+    },
   ],
   bootstrap: [AppComponent],
 })

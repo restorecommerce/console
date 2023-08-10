@@ -17,9 +17,9 @@
     "paths": {
       "@console-core/config": ["packages/core/config/src/index.ts"],
       "@console-core/graphql": ["packages/core/graphql/src/index.ts"],
-      "@console-core/store-app": ["packages/core/store/app/src/index.ts"],
-      "@console-core/store-router": ["packages/core/store/router/src/index.ts"],
+      "@console-core/state": ["packages/core/state/src/index.ts"],
       "@console-core/types": ["packages/core/types/src/index.ts"],
+      "@console-modules/account": ["packages/modules/account/src/index.ts"],
       "@console-modules/authn": ["packages/modules/authn/src/index.ts"],
       "@console-modules/home": ["packages/modules/home/src/index.ts"],
       "@console-modules/layout": ["packages/modules/layout/src/index.ts"],
@@ -28,7 +28,6 @@
         "packages/modules/management/src/index.ts"
       ],
       "@console-modules/overflow": ["packages/modules/overflow/src/index.ts"],
-      "@console-modules/profile": ["packages/modules/profile/src/index.ts"],
       "@console-modules/shared": ["packages/modules/shared/src/index.ts"],
       "@console-modules/ui": ["packages/modules/ui/src/index.ts"]
     }

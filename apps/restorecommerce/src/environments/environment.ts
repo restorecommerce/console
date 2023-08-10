@@ -1,9 +1,12 @@
 import { IEnvironment } from '@console-core/types';
 
+const baseUrl = 'https://api.restorecommerce.io';
+
 export const environment: Readonly<IEnvironment> = {
   production: true,
   storagePrefix: 'console.prod.',
-  graphql: {
-    api: 'https://api.restorecommerce.io/graphql',
+  urls: {
+    api: baseUrl,
+    graphql: `${baseUrl}/graphql`,
   },
 };

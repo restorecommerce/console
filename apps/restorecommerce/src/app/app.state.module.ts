@@ -15,20 +15,15 @@ import {
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { STORE } from '@console-core/config';
-import { CoreStoreAppModule } from '@console-core/store-app';
 import {
-  CoreStoreRouterModule,
+  CoreStateModule,
   handleLocalStorageSync,
   handleStoreLogger,
   RouterSerializer,
-} from '@console-core/store-router';
+} from '@console-core/state';
 import { IStore } from '@console-core/types';
 
 import { environment } from '../environments/environment';
-
-const reducers: ActionReducerMap<IStore, Action> = !environment.production
-  ? { router: routerReducer }
-  : {};
 
 const localStorageReducer = (
   reducer: ActionReducer<IStore>
@@ -39,6 +34,10 @@ const metaReducers: MetaReducer<IStore>[] = !environment.production
   ? [localStorageReducer, handleStoreLogger]
   : [localStorageReducer];
 
+const reducers: ActionReducerMap<IStore, Action> = !environment.production
+  ? { router: routerReducer }
+  : {};
+
 @NgModule({
   imports: [
     StoreModule.forRoot(reducers, {
@@ -48,8 +47,7 @@ const metaReducers: MetaReducer<IStore>[] = !environment.production
         strictActionImmutability: true,
       },
     }),
-    CoreStoreAppModule,
-    CoreStoreRouterModule,
+    CoreStateModule,
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
       serializer: RouterSerializer,
@@ -62,4 +60,4 @@ const metaReducers: MetaReducer<IStore>[] = !environment.production
     }),
   ],
 })
-export class AppStoreModule {}
+export class AppStateModule {}
