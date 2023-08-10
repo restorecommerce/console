@@ -16,21 +16,30 @@ export const modulesAuthnRoutes: Route[] = [
         pathMatch: 'full',
       },
       {
-        path: ROUTER.pages.main.children.auth.children.signIn.path,
-        canActivate: [PublicGuard],
-        canActivateChild: [PublicGuard],
-        loadChildren: () =>
-          import('./components/sign-in/sign-in.module').then(
-            (m) => m.SignInModule
-          ),
-      },
-      {
         path: ROUTER.pages.main.children.auth.children.signUp.path,
         canActivate: [PublicGuard],
         canActivateChild: [PublicGuard],
         loadChildren: () =>
           import('./components/sign-up/sign-up.module').then(
             (m) => m.SignUpModule
+          ),
+      },
+      {
+        path: ROUTER.pages.main.children.auth.children.activation.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
+        loadChildren: () =>
+          import('./components/activation/activation.module').then(
+            (m) => m.ActivationModule
+          ),
+      },
+      {
+        path: ROUTER.pages.main.children.auth.children.signIn.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
+        loadChildren: () =>
+          import('./components/sign-in/sign-in.module').then(
+            (m) => m.SignInModule
           ),
       },
       {
@@ -58,15 +67,6 @@ export const modulesAuthnRoutes: Route[] = [
         loadChildren: () =>
           import('./components/confirm-password/confirm-password.module').then(
             (m) => m.ConfirmPasswordModule
-          ),
-      },
-      {
-        path: ROUTER.pages.main.children.auth.children.activation.path,
-        canActivate: [PublicGuard],
-        canActivateChild: [PublicGuard],
-        loadChildren: () =>
-          import('./components/activation/activation.module').then(
-            (m) => m.ActivationModule
           ),
       },
       {
