@@ -1,5 +1,6 @@
 export interface IStoreConstant {
   readonly states: {
+    readonly accountState: 'accountStateV1';
     readonly appState: 'appStateV1';
     readonly authnState: 'authnStateV1';
     readonly routerState: 'routerStateV1';

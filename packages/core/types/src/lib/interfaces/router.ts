@@ -31,12 +31,14 @@ export interface IRouterConstant {
           link: string;
           getLink: () => TRouterLink;
           children: {
-            signIn: IRouterItem;
             signUp: IRouterItem;
-            signOut: IRouterItem;
-            passwordRecovery: IRouterItem;
             activation: IRouterItem;
+            signIn: IRouterItem;
+            signOut: IRouterItem;
+            emailRecovery: IRouterItem;
             confirmEmail: IRouterItem;
+            passwordRecovery: IRouterItem;
+            confirmPassword: IRouterItem;
           };
         };
         account: {

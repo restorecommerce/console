@@ -1,6 +1,6 @@
-import { IDate } from '@console-core/types';
+import { IDateConstant } from '@console-core/types';
 
-export const DATE: IDate = {
+export const DATE: Readonly<IDateConstant> = {
   format: {
     date: 'dd/MM/yyyy',
     date_time: 'dd/MM/yyyy HH:mm',

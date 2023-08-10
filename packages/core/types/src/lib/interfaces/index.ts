@@ -3,6 +3,7 @@ export * from './app';
 export * from './auth';
 export * from './date';
 export * from './environment';
+export * from './profile';
 export * from './regex';
 export * from './router';
 export * from './state';

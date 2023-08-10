@@ -8,5 +8,4 @@ export interface IAuthnStateData {
 
 export interface IAuthnState extends IBaseStore, IAuthnStateData {
   isAuthenticated: boolean;
-  identifier: string | null;
 }

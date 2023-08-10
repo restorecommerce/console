@@ -4,6 +4,7 @@ import { APP } from './app';
 
 export const STORE: Readonly<IStoreConstant> = {
   states: {
+    accountState: 'accountStateV1',
     appState: 'appStateV1',
     authnState: 'authnStateV1',
     routerState: 'routerStateV1',
@@ -12,7 +13,6 @@ export const STORE: Readonly<IStoreConstant> = {
     app: {
       notifications: {
         delay: 10,
-        duration: 5000,
       },
     },
   },

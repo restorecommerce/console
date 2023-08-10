@@ -1,6 +1,6 @@
-import { IRouter } from '@console-core/types';
+import { IRouterConstant } from '@console-core/types';
 
-export const ROUTER: Readonly<IRouter> = {
+export const ROUTER: Readonly<IRouterConstant> = {
   pages: {
     main: {
       path: '',
@@ -17,47 +17,66 @@ export const ROUTER: Readonly<IRouter> = {
           link: '/auth',
           getLink: () => ['', 'auth'],
           children: {
-            signIn: {
-              path: 'sign-in',
-              link: '/auth/sign-in',
-              getLink: () => ['', 'auth', 'sign-in'],
-            },
             signUp: {
               path: 'sign-up',
               link: '/auth/sign-up',
               getLink: () => ['', 'auth', 'sign-up'],
+            },
+            activation: {
+              path: 'activation/:identifier/:code',
+              link: '/auth/activation/:identifier/:code',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
+                  ? ['', 'auth', 'activation', params.identifier, params.code]
+                  : ['', 'auth', 'activation'],
+            },
+            signIn: {
+              path: 'sign-in',
+              link: '/auth/sign-in',
+              getLink: () => ['', 'auth', 'sign-in'],
             },
             signOut: {
               path: 'sign-out',
               link: '/auth/sign-out',
               getLink: () => ['', 'auth', 'sign-out'],
             },
+            emailRecovery: {
+              path: 'email-recovery',
+              link: '/auth/email-recovery',
+              getLink: () => ['', 'auth', 'email-recovery'],
+            },
+            confirmEmail: {
+              path: 'confirm-email/:identifier/:code',
+              link: '/auth/confirm-email/:identifier/:code',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
+                  ? [
+                      '',
+                      'auth',
+                      'confirm-email',
+                      params.identifier,
+                      params.code,
+                    ]
+                  : ['', 'auth', 'confirm-email'],
+            },
             passwordRecovery: {
               path: 'password-recovery',
               link: '/auth/password-recovery',
               getLink: () => ['', 'auth', 'password-recovery'],
             },
-            activation: {
-              path: 'activation/:identifier/:activationCode',
-              link: '/auth/activation/:identifier/:activationCode',
-              getLink: (params?: {
-                identifier?: string;
-                activationCode?: string;
-              }) =>
-                params?.identifier && params?.activationCode
+            confirmPassword: {
+              path: 'confirm-password/:identifier/:code',
+              link: '/auth/confirm-password/:identifier/:code',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
                   ? [
                       '',
                       'auth',
-                      'activation',
+                      'confirm-password',
                       params.identifier,
-                      params.activationCode,
+                      params.code,
                     ]
-                  : ['', 'auth', 'activation'],
-            },
-            confirmEmail: {
-              path: 'confirm-email',
-              link: '/auth/confirm-email',
-              getLink: () => ['', 'auth', 'confirm-email'],
+                  : ['', 'auth', 'confirm-password'],
             },
           },
         },
