@@ -2,7 +2,6 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { ManagementComponent } from './components/management/management.component';
 import { ManagementTemplateComponent } from './components/template/management-template.component';
 
 export const modulesManagementRoutes: Route[] = [
@@ -11,9 +10,11 @@ export const modulesManagementRoutes: Route[] = [
     component: ManagementTemplateComponent,
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        component: ManagementComponent,
+        path: ROUTER.pages.main.children.management.children.index.path,
+        loadChildren: () =>
+          import('./components/management/management.module').then(
+            (m) => m.ManagementModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.management.children.iam.path,
