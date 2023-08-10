@@ -7,20 +7,18 @@ import { Component, Input } from '@angular/core';
       vcl-button
       type="submit"
       class="button"
-      [disabled]="isInvalid || isLoading"
+      [disabled]="isInvalid || !!isLoading"
     >
-      <span>
-        <vcl-icon
-          *ngIf="isLoading"
-          vclPrepend
-          icon="vcl:busy"
-        />
-        <ng-content />
-      </span>
+      <vcl-icon
+        *ngIf="isLoading"
+        vclPrepend
+        icon="vcl:busy"
+      />
+      <ng-content />
     </button>
   `,
 })
 export class RcSubmitButtonComponent {
   @Input({ required: true }) isInvalid!: boolean;
-  @Input({ required: true }) isLoading!: boolean;
+  @Input({ required: true }) isLoading!: boolean | null;
 }

@@ -1,9 +1,5 @@
 @use '../../../styles/theme/_console-variables.scss' as *;
 
-vcl-icon {
-  font-size: 1.25em;
-}
-
 #target-popover-user {
   position: relative;
   top: 1.25em;
@@ -11,21 +7,22 @@ vcl-icon {
 
 #wrapper-popover-user {
   width: 10.625em;
+  color: $wrapper-popover-user-link-color;
 
-  a {
-    color: $wrapper-popover-user-link-color;
+  vcl-icon {
+    font-size: 1.25em;
+  }
 
-    div {
-      .text {
-        padding-left: 5px;
-      }
+  div {
+    .text {
+      padding-left: 5px;
+    }
 
-      &.selected {
+    &.selected {
+      color: $white;
+
+      vcl-icon {
         color: $white;
-
-        vcl-icon {
-          color: $white;
-        }
       }
     }
   }

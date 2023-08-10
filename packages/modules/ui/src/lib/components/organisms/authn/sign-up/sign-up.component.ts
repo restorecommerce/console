@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -7,21 +7,15 @@ import {
 } from '@angular/forms';
 
 import { REGEX, ROUTER } from '@console-core/config';
-import {
-  IIoRestorecommerceUserRegisterRequest,
-  IoRestorecommerceUserUserType,
-} from '@console-core/graphql';
+import { IoRestorecommerceUserUserType } from '@console-core/graphql';
+import { AuthnFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-authn-sign-up',
   templateUrl: 'sign-up.component.html',
 })
 export class RcSignUpComponent {
-  @Input({ required: true })
-  isLoading!: boolean;
-
-  @Input({ required: true })
-  register!: (payload: IIoRestorecommerceUserRegisterRequest) => void;
+  isLoading = this.authnFacade.isLoading$;
 
   get firstName(): FormControl {
     return this.signUpForm.get('firstName') as FormControl;
@@ -51,8 +45,6 @@ export class RcSignUpComponent {
     return this.signUpForm.get('userType') as FormControl;
   }
 
-  ROUTER = ROUTER;
-
   signUpForm = new FormGroup(
     {
       firstName: new FormControl(null, [Validators.required]),
@@ -71,6 +63,9 @@ export class RcSignUpComponent {
     },
     { validators: this.validatePasswordMatch }
   );
+  ROUTER = ROUTER;
+
+  constructor(private readonly authnFacade: AuthnFacade) {}
 
   onClickSignUp(
     value: Partial<{
@@ -86,7 +81,7 @@ export class RcSignUpComponent {
       return;
     }
 
-    this.register({
+    this.authnFacade.signUp({
       firstName: value.firstName as string,
       lastName: value.lastName as string,
       name: value.name as string,

@@ -1,562 +1,567 @@
-<rc-app>
-  <rc-header>
-    <rc-toggle-drawer />
-    <rc-banner
-      [logoUrl]="logoUrl"
-      [logoLink]="ROUTER.pages.main.children.home.link"
-    >
-      {{ APP.name }}
-    </rc-banner>
-
-    <rc-header-navigation *ngIf="!smallDevice">
-      <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.main.children.home.link"
-        [selected]="currentRoute === ROUTER.pages.main.children.home.link"
+<ng-container *ngIf="vm$ | async as vm">
+  <rc-app>
+    <rc-header>
+      <rc-toggle-drawer />
+      <rc-banner
+        [logoUrl]="APP.logoUrl"
+        [logoLink]="ROUTER.pages.main.children.home.link"
       >
-        <div class="icogram">
-          <div
-            class="icon mdi mdi-home"
-            aria-hidden="true"
-            role="img"
-          ></div>
-          <span class="text">Home</span>
-        </div>
-      </rc-header-navigation-item>
-      <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.main.children.management.children.index.link"
-        [selected]="
+        {{ APP.name }}
+      </rc-banner>
+
+      <rc-header-navigation *ngIf="!smallDevice">
+        <rc-header-navigation-item
+          [routerLink]="ROUTER.pages.main.children.home.link"
+          [selected]="currentRoute === ROUTER.pages.main.children.home.link"
+        >
+          <div class="icogram">
+            <div
+              class="icon mdi mdi-home"
+              aria-hidden="true"
+              role="img"
+            ></div>
+            <span class="text">Home</span>
+          </div>
+        </rc-header-navigation-item>
+        <rc-header-navigation-item
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.index.link
+          "
+          [selected]="
+            currentRoute ===
+            ROUTER.pages.main.children.management.children.index.link
+          "
+        >
+          <div class="icogram">
+            <div
+              class="icon mdi mdi-hexagon"
+              aria-hidden="true"
+              role="img"
+            ></div>
+            <span class="text">Management</span>
+          </div>
+        </rc-header-navigation-item>
+      </rc-header-navigation>
+
+      <div class="flex"></div>
+      <rc-header-toolbar>
+        <button
+          vcl-button
+          [selectable]="true"
+          (click)="templatePopoverUser.toggle()"
+          class="half-transparent user"
+        >
+          <vcl-icogram>
+            <vcl-icon icon="mdi:account" />
+            {{ vm.profile?.name }}
+            <vcl-icon icon="mdi:chevron-down" />
+          </vcl-icogram>
+        </button>
+      </rc-header-toolbar>
+      <span
+        #popoverUserTarget
+        id="target-popover-user"
+      ></span>
+    </rc-header>
+
+    <rc-drawer-navigation (selectItem)="onSelectItem()">
+      <vcl-select *ngIf="smallDevice">
+        <vcl-select-list
+          [value]="currentRoute"
+          (valueChange)="navigateTo($event)"
+        >
+          <vcl-select-list-item [value]="ROUTER.pages.main.children.home.link">
+            Home
+          </vcl-select-list-item>
+          <vcl-select-list-item
+            [value]="ROUTER.pages.main.children.management.children.index.link"
+          >
+            Management
+          </vcl-select-list-item>
+        </vcl-select-list>
+      </vcl-select>
+
+      <!-- Home -->
+      <ng-container
+        *ngIf="currentRoute === ROUTER.pages.main.children.home.link"
+      >
+        <rc-drawer-navigation-item
+          icon="mdi:home"
+          [routerLink]="ROUTER.pages.main.children.home.link"
+          [routerLinkActive]="['selected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:arrow-split-vertical"
+          [routerLink]="ROUTER.pages.main.children.layout.link"
+          [routerLinkActive]="['selected']"
+          >Layout</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:arrow-split-vertical"
+          [routerLink]="'/overflow'"
+          [routerLinkActive]="['selected']"
+          >Overflow</rc-drawer-navigation-item
+        >
+      </ng-container>
+      <!-- /Home -->
+
+      <!-- Management -->
+      <ng-container
+        *ngIf="
           currentRoute ===
           ROUTER.pages.main.children.management.children.index.link
         "
       >
-        <div class="icogram">
-          <div
-            class="icon mdi mdi-hexagon"
-            aria-hidden="true"
-            role="img"
-          ></div>
-          <span class="text">Management</span>
-        </div>
-      </rc-header-navigation-item>
-    </rc-header-navigation>
-
-    <div class="flex"></div>
-    <rc-header-toolbar>
-      <button
-        vcl-button
-        [selectable]="true"
-        (click)="templatePopoverUser.toggle()"
-        class="half-transparent user"
-      >
-        <vcl-icogram>
-          <vcl-icon icon="mdi:account" />
-          {{ vm?.user?.name }}
-          <vcl-icon icon="mdi:chevron-down" />
-        </vcl-icogram>
-      </button>
-    </rc-header-toolbar>
-    <span
-      #popoverUserTarget
-      id="target-popover-user"
-    ></span>
-  </rc-header>
-
-  <rc-drawer-navigation (selectItem)="onSelectItem()">
-    <vcl-select *ngIf="smallDevice">
-      <vcl-select-list
-        [value]="currentRoute"
-        (valueChange)="navigateTo($event)"
-      >
-        <vcl-select-list-item [value]="ROUTER.pages.main.children.home.link">
-          Home
-        </vcl-select-list-item>
-        <vcl-select-list-item
-          [value]="ROUTER.pages.main.children.management.children.index.link"
-        >
-          Management
-        </vcl-select-list-item>
-      </vcl-select-list>
-    </vcl-select>
-
-    <!-- Home -->
-    <ng-container *ngIf="currentRoute === ROUTER.pages.main.children.home.link">
-      <rc-drawer-navigation-item
-        icon="mdi:home"
-        [routerLink]="ROUTER.pages.main.children.home.link"
-        [routerLinkActive]="['selected']"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Home</rc-drawer-navigation-item
-      >
-      <rc-drawer-navigation-item
-        icon="mdi:arrow-split-vertical"
-        [routerLink]="ROUTER.pages.main.children.layout.link"
-        [routerLinkActive]="['selected']"
-        >Layout</rc-drawer-navigation-item
-      >
-      <rc-drawer-navigation-item
-        icon="mdi:arrow-split-vertical"
-        [routerLink]="'/overflow'"
-        [routerLinkActive]="['selected']"
-        >Overflow</rc-drawer-navigation-item
-      >
-    </ng-container>
-    <!-- /Home -->
-
-    <!-- Management -->
-    <ng-container
-      *ngIf="
-        currentRoute ===
-        ROUTER.pages.main.children.management.children.index.link
-      "
-    >
-      <rc-drawer-navigation-item
-        icon="mdi:account-multiple"
-        [routerLink]="ROUTER.pages.main.children.management.children.iam.link"
-        [routerLinkActive]="['selected']"
-        >IAM
         <rc-drawer-navigation-item
           icon="mdi:account-multiple"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
-              { id: 1 }
-            )
-          "
+          [routerLink]="ROUTER.pages.main.children.management.children.iam.link"
           [routerLinkActive]="['selected']"
-          >User 1</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:account-multiple"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >User 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:account-multiple"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >User 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:account-multiple"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >User 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          >IAM
+          <rc-drawer-navigation-item
+            icon="mdi:account-multiple"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >User 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-multiple"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >User 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-multiple"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >User 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-multiple"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.iam.children.iam.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >User 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:city"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.addresses.link
-        "
-        [routerLinkActive]="['selected']"
-        >Addresses
         <rc-drawer-navigation-item
           icon="mdi:city"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
-              { id: 1 }
-            )
+            ROUTER.pages.main.children.management.children.addresses.link
           "
           [routerLinkActive]="['selected']"
-          >Address 1</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:city"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Address 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:city"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Address 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:city"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Address 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          >Addresses
+          <rc-drawer-navigation-item
+            icon="mdi:city"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Address 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:city"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Address 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:city"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Address 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:city"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.addresses.children.addresses.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Address 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:map-marker-outline"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.locations.link
-        "
-        [routerLinkActive]="['selected']"
-      >
-        Locations
         <rc-drawer-navigation-item
           icon="mdi:map-marker-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
-              { id: 1 }
-            )
+            ROUTER.pages.main.children.management.children.locations.link
           "
           [routerLinkActive]="['selected']"
-          >Locations 1</rc-drawer-navigation-item
         >
-        <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Locations 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Locations 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Locations 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          Locations
+          <rc-drawer-navigation-item
+            icon="mdi:map-marker-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Locations 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:map-marker-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Locations 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:map-marker-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Locations 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:map-marker-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.locations.children.locations.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Locations 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:domain"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.countries.link
-        "
-        [routerLinkActive]="['selected']"
-      >
-        Countries
         <rc-drawer-navigation-item
           icon="mdi:domain"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
-              { id: 1 }
-            )
+            ROUTER.pages.main.children.management.children.countries.link
           "
           [routerLinkActive]="['selected']"
-          >Countries 1</rc-drawer-navigation-item
         >
-        <rc-drawer-navigation-item
-          icon="mdi:domain"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Countries 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:domain"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Countries 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:domain"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Countries 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          Countries
+          <rc-drawer-navigation-item
+            icon="mdi:domain"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Countries 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:domain"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Countries 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:domain"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Countries 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:domain"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.countries.children.countries.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Countries 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:card-account-mail"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.contactPoints.link
-        "
-        [routerLinkActive]="['selected']"
-      >
-        Contact Points
         <rc-drawer-navigation-item
           icon="mdi:card-account-mail"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
-              { id: 1 }
-            )
+            ROUTER.pages.main.children.management.children.contactPoints.link
           "
           [routerLinkActive]="['selected']"
-          >Contact Point 1</rc-drawer-navigation-item
         >
-        <rc-drawer-navigation-item
-          icon="mdi:card-account-mail"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Contact Point 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:card-account-mail"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Contact Point 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:card-account-mail"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Contact Point 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          Contact Points
+          <rc-drawer-navigation-item
+            icon="mdi:card-account-mail"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contact Point 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:card-account-mail"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contact Point 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:card-account-mail"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contact Point 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:card-account-mail"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contactPoints.children.contactPoints.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contact Point 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:certificate"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.contracts.link
-        "
-        [routerLinkActive]="['selected']"
-      >
-        Contracts
         <rc-drawer-navigation-item
           icon="mdi:certificate"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
-              { id: 1 }
-            )
+            ROUTER.pages.main.children.management.children.contracts.link
           "
           [routerLinkActive]="['selected']"
-          >Contract 1</rc-drawer-navigation-item
         >
-        <rc-drawer-navigation-item
-          icon="mdi:certificate"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Contract 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:certificate"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Contract 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:certificate"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Contract 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          Contracts
+          <rc-drawer-navigation-item
+            icon="mdi:certificate"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contract 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:certificate"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contract 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:certificate"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contract 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:certificate"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.contracts.children.contracts.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Contract 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:pound"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.commands.link
-        "
-        [routerLinkActive]="['selected']"
-      >
-        Commands
         <rc-drawer-navigation-item
           icon="mdi:pound"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
-              { id: 1 }
-            )
+            ROUTER.pages.main.children.management.children.commands.link
           "
           [routerLinkActive]="['selected']"
-          >Command 1</rc-drawer-navigation-item
         >
-        <rc-drawer-navigation-item
-          icon="mdi:pound"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
-              { id: 2 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Command 2</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:pound"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
-              { id: 3 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Command 3</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:pound"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
-              { id: 4 }
-            )
-          "
-          [routerLinkActive]="['selected']"
-          >Command 4</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
+          Commands
+          <rc-drawer-navigation-item
+            icon="mdi:pound"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+                { id: 1 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Command 1</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:pound"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+                { id: 2 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Command 2</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:pound"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+                { id: 3 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Command 3</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:pound"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.commands.children.commands.getLink(
+                { id: 4 }
+              )
+            "
+            [routerLinkActive]="['selected']"
+            >Command 4</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
 
-      <rc-drawer-navigation-item
-        icon="mdi:account-settings"
-        [routerLink]="
-          ROUTER.pages.main.children.management.children.accessControl.link
-        "
-        [routerLinkActive]="['selected']"
-      >
-        Access Control
         <rc-drawer-navigation-item
-          icon="mdi:account-multiple"
+          icon="mdi:account-settings"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.accessControl
-              .children.teams.link
+            ROUTER.pages.main.children.management.children.accessControl.link
           "
           [routerLinkActive]="['selected']"
-          >Teams</rc-drawer-navigation-item
         >
+          Access Control
+          <rc-drawer-navigation-item
+            icon="mdi:account-multiple"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.teams.link
+            "
+            [routerLinkActive]="['selected']"
+            >Teams</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-key"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.roles.link
+            "
+            [routerLinkActive]="['selected']"
+            >Roles</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-convert"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.rules.link
+            "
+            [routerLinkActive]="['selected']"
+            >Rules</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:folder-account"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.polices.link
+            "
+            [routerLinkActive]="['selected']"
+            >Policies</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
+      </ng-container>
+      <!-- /Management -->
+
+      <!-- Account -->
+      <ng-container
+        *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
+      >
         <rc-drawer-navigation-item
-          icon="mdi:account-key"
+          icon="mdi:account"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.accessControl
-              .children.roles.link
+            ROUTER.pages.main.children.account.children.profile.link
           "
           [routerLinkActive]="['selected']"
-          >Roles</rc-drawer-navigation-item
+          >Profile</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:account-convert"
+          icon="mdi:cog"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.accessControl
-              .children.rules.link
+            ROUTER.pages.main.children.account.children.preferences.link
           "
           [routerLinkActive]="['selected']"
-          >Rules</rc-drawer-navigation-item
+          >Preferences</rc-drawer-navigation-item
         >
-        <rc-drawer-navigation-item
-          icon="mdi:folder-account"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.accessControl
-              .children.polices.link
-          "
-          [routerLinkActive]="['selected']"
-          >Policies</rc-drawer-navigation-item
-        >
-      </rc-drawer-navigation-item>
-    </ng-container>
-    <!-- /Management -->
+      </ng-container>
+      <!-- /Account -->
 
-    <!-- Account -->
-    <ng-container
-      *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
-    >
-      <rc-drawer-navigation-item
-        icon="mdi:account"
-        [routerLink]="ROUTER.pages.main.children.account.children.profile.link"
-        [routerLinkActive]="['selected']"
-        >Profile</rc-drawer-navigation-item
-      >
-      <rc-drawer-navigation-item
-        icon="mdi:cog"
-        [routerLink]="
-          ROUTER.pages.main.children.account.children.preferences.link
-        "
-        [routerLinkActive]="['selected']"
-        >Preferences</rc-drawer-navigation-item
-      >
-    </ng-container>
-    <!-- /Account -->
-
-    <div class="side-menu-bottom-container">
-      <rc-copyright />
-      <a
-        title="Collapse sidebar"
-        class="toggle-sidebar-button"
-        (click)="collapseDrawer()"
-      >
-        <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
-      </a>
-    </div>
-  </rc-drawer-navigation>
-
-  <ng-content />
-</rc-app>
-
-<ng-template
-  vclPopover
-  #templatePopoverUser="vclPopover"
-  [target]="popoverUserTarget"
-  [closeOnOffClick]="true"
->
-  <div
-    id="wrapper-popover-user"
-    class="data-list item-selectability item-hover-highlight m-0 p-0 ng-star-inserted"
-  >
-    <ul class="data-list-body no-border">
-      <li
-        class="data-list-item row justify-between center"
-        [routerLinkActive]="['selected']"
-      >
+      <div class="side-menu-bottom-container">
+        <rc-copyright />
         <a
+          title="Collapse sidebar"
+          class="toggle-sidebar-button"
+          (click)="collapseDrawer()"
+        >
+          <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
+        </a>
+      </div>
+    </rc-drawer-navigation>
+
+    <ng-content />
+  </rc-app>
+
+  <ng-template
+    vclPopover
+    #templatePopoverUser="vclPopover"
+    [target]="popoverUserTarget"
+    [closeOnOffClick]="true"
+  >
+    <div
+      id="wrapper-popover-user"
+      class="data-list item-selectability item-hover-highlight m-0 p-0 ng-star-inserted"
+    >
+      <ul class="data-list-body no-border">
+        <li
           [routerLink]="ROUTER.pages.main.children.account.children.index.link"
+          [routerLinkActive]="['selected']"
+          class="data-list-item row justify-between center"
         >
           <div
             class="gutter-margin flex"
@@ -567,18 +572,19 @@
             </vcl-icogram>
             <span class="text">Account</span>
           </div>
-        </a>
-      </li>
-      <li class="data-list-item row justify-between center">
-        <a [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link">
+        </li>
+        <li
+          [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
+          class="data-list-item row justify-between center"
+        >
           <div class="gutter-margin flex">
             <vcl-icogram>
               <vcl-icon icon="mdi:logout" />
             </vcl-icogram>
             <span class="text red">Sign Out</span>
           </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-</ng-template>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+</ng-container>

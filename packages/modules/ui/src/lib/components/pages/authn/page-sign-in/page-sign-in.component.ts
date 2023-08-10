@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ROUTER } from '@console-core/config';
-import { IIoRestorecommerceUserLoginRequest } from '@console-core/graphql';
-import { TInputData } from '@console-core/types';
 
 @Component({
   selector: 'rc-page-authn-sign-in',
@@ -10,13 +8,5 @@ import { TInputData } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPageSignInComponent {
-  @Input({ required: true })
-  vm!: TInputData<{
-    isLoading: boolean;
-  }>;
-
-  @Input({ required: true })
-  login!: (payload: IIoRestorecommerceUserLoginRequest) => void;
-
   ROUTER = ROUTER;
 }

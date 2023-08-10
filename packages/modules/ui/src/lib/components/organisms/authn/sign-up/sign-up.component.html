@@ -186,7 +186,7 @@
         <div class="col">
           <rc-submit-button
             [isInvalid]="signUpForm.invalid"
-            [isLoading]="isLoading"
+            [isLoading]="isLoading | async"
             >Sign Up</rc-submit-button
           >
         </div>

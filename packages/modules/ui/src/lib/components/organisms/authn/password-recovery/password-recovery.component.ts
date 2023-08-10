@@ -1,31 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ROUTER } from '@console-core/config';
-import { IIoRestorecommerceUserRequestPasswordChangeRequest } from '@console-core/graphql';
+import { AuthnFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-authn-password-recovery',
   templateUrl: 'password-recovery.component.html',
 })
 export class RcPasswordRecoveryComponent {
-  @Input({ required: true })
-  isLoading!: boolean;
-
-  @Input({ required: true })
-  passwordRecovery!: (
-    payload: IIoRestorecommerceUserRequestPasswordChangeRequest
-  ) => void;
+  isLoading = this.authnFacade.isLoading$;
 
   get identifier(): FormControl {
     return this.passwordRecoveryForm.get('identifier') as FormControl;
   }
 
-  ROUTER = ROUTER;
-
   passwordRecoveryForm = new FormGroup({
     identifier: new FormControl('', [Validators.required]),
   });
+
+  ROUTER = ROUTER;
+
+  constructor(private readonly authnFacade: AuthnFacade) {}
 
   onClickPasswordRecovery(
     value: Partial<{
@@ -36,7 +32,7 @@ export class RcPasswordRecoveryComponent {
       return;
     }
 
-    this.passwordRecovery({
+    this.authnFacade.passwordRecovery({
       identifier: value.identifier,
     });
   }

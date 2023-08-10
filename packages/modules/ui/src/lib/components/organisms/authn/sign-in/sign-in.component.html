@@ -53,7 +53,7 @@
 
     <rc-submit-button
       [isInvalid]="signInForm.invalid"
-      [isLoading]="isLoading"
+      [isLoading]="isLoading | async"
     >
       Sign In</rc-submit-button
     >

@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { combineLatest } from 'rxjs';
 
 import { NotificationType } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
-import { TInputData } from '@console-core/types';
+import { AuthnFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-page-authn-activation',
@@ -11,12 +12,13 @@ import { TInputData } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPageActivationComponent {
-  @Input({ required: true })
-  vm!: TInputData<{
-    isLoading: boolean;
-    error: string | null;
-  }>;
+  readonly vm$ = combineLatest({
+    isLoading: this.authnFacade.isLoading$,
+    error: this.authnFacade.error$,
+  });
 
-  ROUTER = ROUTER;
   notificationType = NotificationType;
+  ROUTER = ROUTER;
+
+  constructor(private readonly authnFacade: AuthnFacade) {}
 }
