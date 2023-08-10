@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-authn-sign-up',
-  template: ` <rc-page-authn-sign-up /> `,
+  selector: 'app-authn-confirm-password',
+  template: ` <p>confirm-password works!</p>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent {}
+export class ConfirmPasswordComponent {}

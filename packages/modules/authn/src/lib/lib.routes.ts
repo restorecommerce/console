@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
-import { PrivateGuard, PublicGuard } from '@console-core/store-app';
+import { PrivateGuard, PublicGuard } from '@console-modules/shared';
 
 import { AuthnTemplateComponent } from './components/template/authn-template.component';
 
@@ -50,6 +50,15 @@ export const modulesAuthnRoutes: Route[] = [
           import(
             './components/password-recovery/password-recovery.module'
           ).then((m) => m.PasswordRecoveryModule),
+      },
+      {
+        path: ROUTER.pages.main.children.auth.children.confirmPassword.path,
+        canActivate: [PublicGuard],
+        canActivateChild: [PublicGuard],
+        loadChildren: () =>
+          import('./components/confirm-password/confirm-password.module').then(
+            (m) => m.ConfirmPasswordModule
+          ),
       },
       {
         path: ROUTER.pages.main.children.auth.children.activation.path,

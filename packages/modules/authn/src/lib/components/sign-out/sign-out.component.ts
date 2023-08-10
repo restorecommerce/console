@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { AuthnFacade } from '../../+state/authn';
+import { AuthnFacade } from '@console-core/state';
 
 @Component({
   selector: 'app-authn-sign-out',
