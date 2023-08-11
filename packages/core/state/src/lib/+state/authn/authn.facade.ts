@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 
 import {
   IIoRestorecommerceUserActivateRequest,
+  IIoRestorecommerceUserConfirmPasswordChangeRequest,
   IIoRestorecommerceUserRegisterRequest,
   IIoRestorecommerceUserRequestPasswordChangeRequest,
 } from '@console-core/graphql';
@@ -36,6 +37,9 @@ export class AuthnFacade {
   readonly passwordRecovery = (
     payload: IIoRestorecommerceUserRequestPasswordChangeRequest
   ) => this.store.dispatch(authnActions.passwordRecoveryRequest({ payload }));
+  readonly confirmPassword = (
+    payload: IIoRestorecommerceUserConfirmPasswordChangeRequest
+  ) => this.store.dispatch(authnActions.confirmPasswordRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

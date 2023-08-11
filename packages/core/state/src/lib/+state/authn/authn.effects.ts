@@ -230,22 +230,25 @@ export class AuthnEffects {
     );
   });
 
-  confirmPasswordSuccess$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(authnActions.confirmPasswordSuccess),
-      tap(() => {
-        this.appFacade.addNotification({
-          content: 'password has been changed',
-          type: ENotificationTypes.SUCCESS,
-        });
-      }),
-      tap(() => {
-        this.router.navigate([
-          ROUTER.pages.main.children.auth.children.signIn.link,
-        ]);
-      })
-    );
-  });
+  confirmPasswordSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(authnActions.confirmPasswordSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'password has been changed',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
+        tap(() => {
+          this.router.navigate([
+            ROUTER.pages.main.children.auth.children.signIn.link,
+          ]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   signOut$ = createEffect(
     () => {
@@ -277,7 +280,8 @@ export class AuthnEffects {
           authnActions.signUpError,
           authnActions.activateError,
           authnActions.signInError,
-          authnActions.passwordRecoveryError
+          authnActions.passwordRecoveryError,
+          authnActions.confirmPasswordError
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

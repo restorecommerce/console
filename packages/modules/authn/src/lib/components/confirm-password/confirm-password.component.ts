@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-authn-confirm-password',
-  template: ` <p>confirm-password works!</p>`,
+  template: ` <rc-page-authn-confirm-password />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmPasswordComponent {}

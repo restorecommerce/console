@@ -15,6 +15,7 @@ export * from './header/header.component';
 export * from './toolbar/searchbar.component';
 export * from './toolbar/toolbar.component';
 export * from './toggle-drawer.component';
+export * from './authn/confirm-password/confirm-password.component';
 export * from './authn/password-recovery/password-recovery.component';
 export * from './authn/sign-in/sign-in.component';
 export * from './authn/sign-up/sign-up.component';
