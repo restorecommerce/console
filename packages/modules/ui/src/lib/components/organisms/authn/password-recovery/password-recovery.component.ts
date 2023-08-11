@@ -2,27 +2,38 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ROUTER } from '@console-core/config';
+import { AuthnFacade } from '@console-core/state';
 
 @Component({
-  selector: 'rc-password-recovery',
+  selector: 'rc-authn-password-recovery',
   templateUrl: 'password-recovery.component.html',
 })
 export class RcPasswordRecoveryComponent {
-  ROUTER = ROUTER;
+  isLoading = this.authnFacade.isLoading$;
+
+  get identifier(): FormControl {
+    return this.passwordRecoveryForm.get('identifier') as FormControl;
+  }
 
   passwordRecoveryForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    identifier: new FormControl('', [Validators.required]),
   });
 
-  get email(): FormControl {
-    return this.passwordRecoveryForm.get('email') as FormControl;
-  }
+  ROUTER = ROUTER;
+
+  constructor(private readonly authnFacade: AuthnFacade) {}
 
   onClickPasswordRecovery(
     value: Partial<{
-      email: string | null;
+      identifier: string | null;
     }>
   ) {
-    console.log('onClickPasswordRecovery', value);
+    if (!this.passwordRecoveryForm.valid) {
+      return;
+    }
+
+    this.authnFacade.passwordRecovery({
+      identifier: value.identifier,
+    });
   }
 }

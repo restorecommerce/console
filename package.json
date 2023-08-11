@@ -37,6 +37,7 @@
     "@vcl/ng-vcl": "^2.6.3",
     "@vcl/vcl": "^2.5.0",
     "apollo-angular": "^5.0.0",
+    "dayjs": "^1.11.9",
     "ngrx-store-localstorage": "^16.0.0",
     "ngrx-store-logger": "^0.2.4",
     "rxjs": "~7.8.0",

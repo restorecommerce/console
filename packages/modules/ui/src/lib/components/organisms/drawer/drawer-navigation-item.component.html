@@ -7,13 +7,13 @@
     <vcl-icon
       vclPrepend
       [icon]="icon"
-    ></vcl-icon>
-    <ng-content></ng-content>
+    />
+    <ng-content />
     <vcl-icon
       vclAppend
       class="rc-drawer-navigation-submenu-arrow"
       [icon]="hasNestedNavItems ? 'mdi mdi-menu-right' : undefined"
-    ></vcl-icon>
+    />
   </vcl-icogram>
 </a>
 
@@ -31,7 +31,7 @@
       (mouseenter)="onSidebarMouseEnter()"
       (mouseleave)="onSidebarMouseLeave()"
     >
-      <ng-content select="rc-drawer-navigation-item"></ng-content>
+      <ng-content select="rc-drawer-navigation-item" />
     </div>
   </div>
 </ng-template>

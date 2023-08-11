@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
-import { DrawerService } from '../../services/drawer.service';
+import { DrawerService } from '../../services';
 
 @Component({
   selector: 'rc-toggle-drawer',

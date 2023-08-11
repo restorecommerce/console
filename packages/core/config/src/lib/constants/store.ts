@@ -4,9 +4,17 @@ import { APP } from './app';
 
 export const STORE: Readonly<IStoreConstant> = {
   states: {
+    accountState: 'accountStateV1',
     appState: 'appStateV1',
-    securityState: 'securityStateV1',
+    authnState: 'authnStateV1',
     routerState: 'routerStateV1',
+  },
+  config: {
+    app: {
+      notifications: {
+        delay: 10,
+      },
+    },
   },
   ngrx: {
     storeDevtoolsModule: {

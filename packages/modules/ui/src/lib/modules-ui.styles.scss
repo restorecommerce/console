@@ -1,6 +1,6 @@
 @use '@vcl/vcl/app/normalize' as *;
 
-@use './styles/theme/console-theme.scss';
+@use './styles/theme/console-theme';
 
 /* VCL */
 @use '@vcl/vcl';
@@ -11,7 +11,7 @@
 );
 
 /* App Style */
-@use './styles/index.scss';
+@use './styles/index';
 
 @use '@angular/cdk/overlay-prebuilt';
 @use '@angular/cdk/a11y-prebuilt';

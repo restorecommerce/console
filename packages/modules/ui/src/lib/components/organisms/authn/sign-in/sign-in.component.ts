@@ -1,43 +1,42 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ROUTER } from '@console-core/config';
+import { AuthnFacade } from '@console-core/state';
 
 @Component({
-  selector: 'rc-sign-in',
+  selector: 'rc-authn-sign-in',
   templateUrl: 'sign-in.component.html',
 })
 export class RcSignInComponent {
-  @Input()
-  login!: (payload: { email: string; password: string }) => void;
+  isLoading = this.authnFacade.isLoading$;
 
-  ROUTER = ROUTER;
-
-  signinForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(20),
-    ]),
-  });
-
-  get email(): FormControl {
-    return this.signinForm.get('email') as FormControl;
+  get identifier(): FormControl {
+    return this.signInForm.get('identifier') as FormControl;
   }
 
   get password(): FormControl {
-    return this.signinForm.get('password') as FormControl;
+    return this.signInForm.get('password') as FormControl;
   }
 
+  signInForm = new FormGroup({
+    identifier: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
+
+  ROUTER = ROUTER;
+
+  constructor(private readonly authnFacade: AuthnFacade) {}
+
   onClickSignIn(
-    value: Partial<{ email: string | null; password: string | null }>
-  ) {
-    if (this.signinForm.valid) {
-      this.login({
-        email: value.email as string,
-        password: value.password as string,
-      });
+    value: Partial<{ identifier: string | null; password: string | null }>
+  ): void {
+    if (!this.signInForm.valid) {
+      return;
     }
+    this.authnFacade.signIn({
+      identifier: value.identifier as string,
+      password: value.password as string,
+    });
   }
 }

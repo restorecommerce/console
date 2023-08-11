@@ -11,9 +11,10 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "allowedCommonJsDependencies": [
-          "ngrx-store-logger",
+          "dayjs",
+          "deepmerge",
           "ngrx-store-localstorage",
-          "deepmerge"
+          "ngrx-store-logger"
         ],
         "outputPath": "dist/apps/restorecommerce",
         "index": "apps/restorecommerce/src/index.html",

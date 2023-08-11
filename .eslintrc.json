@@ -25,26 +25,27 @@
                 "onlyDependOnLibsWithTags": ["type:graph", "type:types"]
               },
               {
-                "sourceTag": "type:store",
+                "sourceTag": "type:state",
                 "onlyDependOnLibsWithTags": [
+                  "type:state",
                   "type:config",
-                  "type:graph",
+                  "type:graphql",
                   "type:types"
                 ]
               },
               {
                 "sourceTag": "type:types",
-                "onlyDependOnLibsWithTags": ["type:types"]
+                "onlyDependOnLibsWithTags": ["type:types", "type:graphql"]
               },
               {
                 "sourceTag": "type:feature",
                 "onlyDependOnLibsWithTags": [
                   "type:feature",
-                  "type:ui",
                   "type:config",
                   "type:graphql",
-                  "type:store",
+                  "type:state",
                   "type:types",
+                  "type:ui",
                   "type:shared"
                 ]
               },
@@ -53,6 +54,8 @@
                 "onlyDependOnLibsWithTags": [
                   "type:ui",
                   "type:config",
+                  "type:graphql",
+                  "type:state",
                   "type:types"
                 ]
               },

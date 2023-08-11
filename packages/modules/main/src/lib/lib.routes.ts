@@ -1,12 +1,17 @@
 import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
+import {
+  PublicGuard,
+  PrivateGuard,
+  RedirectActivationGuard,
+  RedirectConfirmPasswordGuard,
+} from '@console-modules/shared';
 
 import {
   PrivateTemplateComponent,
   PublicTemplateComponent,
 } from './components/template';
-import { PrivateGuard, PublicGuard } from './guards';
 
 export const modulesMainRoutes: Route[] = [
   {
@@ -18,12 +23,28 @@ export const modulesMainRoutes: Route[] = [
       import('@console-modules/home').then((m) => m.ModulesHomeModule),
   },
   {
+    path: ROUTER.pages.main.children.activateUser.path,
+    component: PublicTemplateComponent,
+    canActivate: [PublicGuard, RedirectActivationGuard],
+  },
+  {
+    path: ROUTER.pages.main.children.confirmPasswordChange.path,
+    component: PublicTemplateComponent,
+    canActivate: [PublicGuard, RedirectConfirmPasswordGuard],
+  },
+  {
     path: ROUTER.pages.main.children.auth.path,
     component: PublicTemplateComponent,
-    canActivate: [PublicGuard],
-    canActivateChild: [PublicGuard],
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
+  },
+  {
+    path: ROUTER.pages.main.children.account.path,
+    component: PrivateTemplateComponent,
+    canActivate: [PrivateGuard],
+    canActivateChild: [PrivateGuard],
+    loadChildren: () =>
+      import('@console-modules/account').then((m) => m.ModulesAccountModule),
   },
   {
     path: ROUTER.pages.main.children.management.path,

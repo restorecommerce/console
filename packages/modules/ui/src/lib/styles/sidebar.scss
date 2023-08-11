@@ -1,0 +1,85 @@
+@use './theme/_console-variables.scss' as *;
+
+.side-menu-bottom-container {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: $sidebar-bg-color;
+
+  .toggle-sidebar-button {
+    height: 38px;
+    border: 0;
+    border-top: 1px solid $sidebar-border-top-color;
+    color: $sidebar-toggle-sidebar-button-color;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    text-align: center;
+
+    &:hover {
+      color: $black;
+      background-color: $sidebar-button-hover-color;
+    }
+  }
+}
+
+.drawer-container .drawer-content {
+  overflow: visible;
+}
+
+.rc-sidebar-show-button {
+  border-radius: 50%;
+  height: 3em;
+  position: absolute;
+  top: 0;
+  left: -1.2rem;
+  margin: auto;
+  font-size: 1.2em;
+  bottom: 0;
+  z-index: 100;
+
+  &:hover {
+    background-color: $drawer-item-hover-color-rgb;
+    color: inherit;
+  }
+}
+
+rc-header.application-header .logo {
+  margin-left: 0.5em;
+}
+
+.rc-drawer-navigation {
+  background-color: $drawer-bg-color;
+
+  & .navigation {
+    margin-bottom: 7em;
+    background-color: $drawer-bg-color;
+
+    & .navigation-item {
+      display: block;
+      text-align: center;
+
+      & .icogram,
+      & .icon,
+      & vcl-icogram,
+      & vcl-icon {
+        display: block;
+      }
+
+      & .navigation-item-label > .icogram {
+        position: relative;
+      }
+
+      &:hover {
+        background-color: $drawer-item-hover-color-rgb;
+      }
+    }
+  }
+}
+
+.cdk-overlay-pane {
+  & > .rc-drawer-navigation {
+    background-color: transparent;
+  }
+}

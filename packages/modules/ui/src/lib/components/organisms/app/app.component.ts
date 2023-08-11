@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import { DrawerService } from '../../../services/drawer.service';
+import { DrawerService } from '../../../services';
 
 @Component({
   selector: 'rc-app',

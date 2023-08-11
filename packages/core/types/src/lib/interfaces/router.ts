@@ -7,13 +7,18 @@ import {
 export interface IRouterItem {
   path: string;
   link: string;
-  getLink: (params?: { id?: number | string; slug?: string }) => TRouterLink;
+  getLink: (params?: {
+    id?: number | string;
+    identifier?: string;
+    code?: string;
+    slug?: string;
+  }) => TRouterLink;
   params?: TRouterParams;
   queryParams?: TRouterQueryParams;
   children?: Record<string, IRouterItem>;
 }
 
-export interface IRouter {
+export interface IRouterConstant {
   pages: {
     main: {
       path: string;
@@ -21,16 +26,31 @@ export interface IRouter {
       getLink: () => TRouterLink;
       children: {
         home: IRouterItem;
+        activateUser: IRouterItem;
+        confirmPasswordChange: IRouterItem;
         auth: {
           path: string;
           link: string;
           getLink: () => TRouterLink;
           children: {
-            signIn: IRouterItem;
             signUp: IRouterItem;
-            passwordRecovery: IRouterItem;
             activation: IRouterItem;
+            signIn: IRouterItem;
+            signOut: IRouterItem;
+            emailRecovery: IRouterItem;
             confirmEmail: IRouterItem;
+            passwordRecovery: IRouterItem;
+            confirmPassword: IRouterItem;
+          };
+        };
+        account: {
+          path: string;
+          link: string;
+          getLink: () => TRouterLink;
+          children: {
+            index: IRouterItem;
+            profile: IRouterItem;
+            preferences: IRouterItem;
           };
         };
         layout: IRouterItem;
@@ -40,6 +60,7 @@ export interface IRouter {
           link: string;
           getLink: () => TRouterLink;
           children: {
+            index: IRouterItem;
             iam: {
               path: string;
               link: string;

@@ -19,7 +19,22 @@ export interface Scalars {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /**
+   * A date-time string at UTC, such as 2007-12-03T10:15:30Z,
+   *                 compliant with the date-time format outlined in section 5.6 of
+   *                 the RFC 3339 profile of the ISO 8601 standard for representation
+   *                 of dates and times using the Gregorian calendar.
+   */
+  DateTime: unknown;
   GoogleProtobufAnyValue: unknown;
+  /**
+   * A date-time string at UTC, such as 2007-12-03T10:15:30Z,
+   *                 compliant with the date-time format outlined in section 5.6 of
+   *                 the RFC 3339 profile of the ISO 8601 standard for representation
+   *                 of dates and times using the Gregorian calendar.
+   */
+  IDateTime: unknown;
+  MapScalar: unknown;
   TodoScalar: unknown;
   /** The `Upload` scalar type represents a file upload. */
   Upload: unknown;
@@ -265,7 +280,7 @@ export interface FacadeStatusType {
 export interface FulfillmentFulfillmentCourierMutation {
   __typename?: 'FulfillmentFulfillmentCourierMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
-  Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList>;
+  Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
 }
 
 export interface FulfillmentFulfillmentCourierMutationDeleteArgs {
@@ -278,7 +293,7 @@ export interface FulfillmentFulfillmentCourierMutationMutateArgs {
 
 export interface FulfillmentFulfillmentCourierQuery {
   __typename?: 'FulfillmentFulfillmentCourierQuery';
-  Read?: Maybe<ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList>;
+  Read?: Maybe<ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
 }
 
 export interface FulfillmentFulfillmentCourierQueryReadArgs {
@@ -287,18 +302,31 @@ export interface FulfillmentFulfillmentCourierQueryReadArgs {
 
 export interface FulfillmentFulfillmentMutation {
   __typename?: 'FulfillmentFulfillmentMutation';
-  Cancel?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentResponseList>;
+  Cancel?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
+  CreateInvoice?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
-  Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentResponseList>;
-  Submit?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentResponseList>;
+  Evaluate?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
+  Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
+  Submit?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
+  Track?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
+  TriggerInvoice?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
+  Withdraw?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
 }
 
 export interface FulfillmentFulfillmentMutationCancelArgs {
-  input: IIoRestorecommerceFulfillmentCancelRequestList;
+  input: IIoRestorecommerceFulfillmentFulfillmentIdList;
+}
+
+export interface FulfillmentFulfillmentMutationCreateInvoiceArgs {
+  input: IIoRestorecommerceFulfillmentInvoiceRequestList;
 }
 
 export interface FulfillmentFulfillmentMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
+}
+
+export interface FulfillmentFulfillmentMutationEvaluateArgs {
+  input: IIoRestorecommerceFulfillmentFulfillmentList;
 }
 
 export interface FulfillmentFulfillmentMutationMutateArgs {
@@ -309,10 +337,22 @@ export interface FulfillmentFulfillmentMutationSubmitArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentList;
 }
 
+export interface FulfillmentFulfillmentMutationTrackArgs {
+  input: IIoRestorecommerceFulfillmentFulfillmentIdList;
+}
+
+export interface FulfillmentFulfillmentMutationTriggerInvoiceArgs {
+  input: IIoRestorecommerceFulfillmentInvoiceRequestList;
+}
+
+export interface FulfillmentFulfillmentMutationWithdrawArgs {
+  input: IIoRestorecommerceFulfillmentFulfillmentIdList;
+}
+
 export interface FulfillmentFulfillmentProductMutation {
   __typename?: 'FulfillmentFulfillmentProductMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
-  Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentProductResponseList>;
+  Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
 }
 
 export interface FulfillmentFulfillmentProductMutationDeleteArgs {
@@ -325,12 +365,12 @@ export interface FulfillmentFulfillmentProductMutationMutateArgs {
 
 export interface FulfillmentFulfillmentProductQuery {
   __typename?: 'FulfillmentFulfillmentProductQuery';
-  Find?: Maybe<ProtoIoRestorecommerceFulfillmentProductPackingSolutionResponseList>;
-  Read?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentProductResponseList>;
+  Find?: Maybe<ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse>;
+  Read?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
 }
 
 export interface FulfillmentFulfillmentProductQueryFindArgs {
-  input: IIoRestorecommerceFulfillmentProductQueryList;
+  input: IIoRestorecommerceFulfillmentProductProductQueryList;
 }
 
 export interface FulfillmentFulfillmentProductQueryReadArgs {
@@ -339,16 +379,11 @@ export interface FulfillmentFulfillmentProductQueryReadArgs {
 
 export interface FulfillmentFulfillmentQuery {
   __typename?: 'FulfillmentFulfillmentQuery';
-  Read?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentResponseList>;
-  Track?: Maybe<ProtoIoRestorecommerceFulfillmentTrackingResultList>;
+  Read?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
 }
 
 export interface FulfillmentFulfillmentQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-}
-
-export interface FulfillmentFulfillmentQueryTrackArgs {
-  input: IIoRestorecommerceFulfillmentTrackingRequestList;
 }
 
 export interface FulfillmentMutation {
@@ -417,11 +452,17 @@ export interface IIoRestorecommerceAddressAddressList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
+export interface IIoRestorecommerceAddressBillingAddress {
+  address?: InputMaybe<IIoRestorecommerceAddressAddress>;
+  comments?: InputMaybe<Scalars['String']>;
+  contact?: InputMaybe<IIoRestorecommerceAddressContact>;
+}
+
 export interface IIoRestorecommerceAddressBusinessAddress {
   name?: InputMaybe<Scalars['String']>;
 }
 
-export interface IIoRestorecommerceAddressContactPerson {
+export interface IIoRestorecommerceAddressContact {
   email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   phone?: InputMaybe<Scalars['String']>;
@@ -445,19 +486,33 @@ export interface IIoRestorecommerceAddressResidentialAddress {
   title?: InputMaybe<Scalars['String']>;
 }
 
+export interface IIoRestorecommerceAddressShippingAddress {
+  address?: InputMaybe<IIoRestorecommerceAddressAddress>;
+  comments?: InputMaybe<Scalars['String']>;
+  contact?: InputMaybe<IIoRestorecommerceAddressContact>;
+}
+
+export interface IIoRestorecommerceAmountAmount {
+  currencyId?: InputMaybe<Scalars['String']>;
+  gross?: InputMaybe<Scalars['Float']>;
+  net?: InputMaybe<Scalars['Float']>;
+  vats?: InputMaybe<Array<IIoRestorecommerceAmountVat>>;
+}
+
+export interface IIoRestorecommerceAmountVat {
+  taxId?: InputMaybe<Scalars['String']>;
+  vat?: InputMaybe<Scalars['Float']>;
+}
+
 export interface IIoRestorecommerceAttributeAttribute {
-  attribute?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
   id?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
 }
 
-export interface IIoRestorecommerceAttributeAttributeObj {
-  attribute?: InputMaybe<IIoRestorecommerceAttributeAttribute>;
-}
-
 export interface IIoRestorecommerceAuthRoleAssociation {
   attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  created?: InputMaybe<Scalars['Float']>;
+  created?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['String']>;
 }
@@ -474,7 +529,7 @@ export interface IIoRestorecommerceAuthTokens {
 
 export interface IIoRestorecommerceAuthenticationLogAuthenticationLog {
   activity?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['Float']>;
+  date?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   ipv4Address?: InputMaybe<Scalars['String']>;
   ipv6Address?: InputMaybe<Scalars['String']>;
@@ -489,6 +544,30 @@ export interface IIoRestorecommerceAuthenticationLogAuthenticationLogList {
   items?: InputMaybe<
     Array<IIoRestorecommerceAuthenticationLogAuthenticationLog>
   >;
+  mode?: InputMaybe<ModeType>;
+  /** target scope */
+  scope?: InputMaybe<Scalars['String']>;
+  totalCount?: InputMaybe<Scalars['Int']>;
+}
+
+export interface IIoRestorecommerceCodeCode {
+  commonCode?: InputMaybe<Scalars['String']>;
+  conversionFactor?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  groupId?: InputMaybe<Scalars['String']>;
+  groupNumber?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  levelCategory?: InputMaybe<Scalars['String']>;
+  meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
+  name?: InputMaybe<Scalars['String']>;
+  quantity?: InputMaybe<Scalars['String']>;
+  sector?: InputMaybe<IoRestorecommerceCodeSector>;
+  status?: InputMaybe<IoRestorecommerceCodeStatusCode>;
+  symbol?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceCodeCodeList {
+  items?: InputMaybe<Array<IIoRestorecommerceCodeCode>>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
@@ -519,11 +598,13 @@ export interface IIoRestorecommerceCommandCommandParameter {
 }
 
 export interface IIoRestorecommerceContactPointContactPoint {
-  contactPointTypeId?: InputMaybe<Scalars['String']>;
+  contactPointTypeIds?: InputMaybe<Array<Scalars['String']>>;
+  description?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   localeId?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
+  name?: InputMaybe<Scalars['String']>;
   physicalAddressId?: InputMaybe<Scalars['String']>;
   telephone?: InputMaybe<Scalars['String']>;
   timezoneId?: InputMaybe<Scalars['String']>;
@@ -569,12 +650,16 @@ export interface IIoRestorecommerceCountryCountryList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
+export interface IIoRestorecommerceCustomerCommercial {
+  organizationId?: InputMaybe<Scalars['String']>;
+}
+
 export interface IIoRestorecommerceCustomerCustomer {
-  guest?: InputMaybe<IIoRestorecommerceCustomerGuest>;
+  commercial?: InputMaybe<IIoRestorecommerceCustomerCommercial>;
   id?: InputMaybe<Scalars['String']>;
-  individualUser?: InputMaybe<IIoRestorecommerceCustomerIndividualUser>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
-  orgUser?: InputMaybe<IIoRestorecommerceCustomerOrgUser>;
+  private?: InputMaybe<IIoRestorecommerceCustomerPrivate>;
+  publicSector?: InputMaybe<IIoRestorecommerceCustomerPublicSector>;
 }
 
 export interface IIoRestorecommerceCustomerCustomerList {
@@ -585,21 +670,25 @@ export interface IIoRestorecommerceCustomerCustomerList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
-export interface IIoRestorecommerceCustomerGuest {
-  addressId?: InputMaybe<Scalars['String']>;
-  contactPointIds?: InputMaybe<Array<Scalars['String']>>;
-  guest?: InputMaybe<Scalars['Boolean']>;
-}
-
-export interface IIoRestorecommerceCustomerIndividualUser {
-  addressId?: InputMaybe<Scalars['String']>;
+export interface IIoRestorecommerceCustomerPrivate {
   contactPointIds?: InputMaybe<Array<Scalars['String']>>;
   userId?: InputMaybe<Scalars['String']>;
 }
 
-export interface IIoRestorecommerceCustomerOrgUser {
+export interface IIoRestorecommerceCustomerPublicSector {
   organizationId?: InputMaybe<Scalars['String']>;
-  userId?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceFileFile {
+  bytes?: InputMaybe<Scalars['Int']>;
+  caption?: InputMaybe<Scalars['String']>;
+  contentType?: InputMaybe<Scalars['String']>;
+  filename?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  index?: InputMaybe<Scalars['Int']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
+  thumbnail?: InputMaybe<IIoRestorecommerceImageImage>;
+  url?: InputMaybe<Scalars['String']>;
 }
 
 export interface IIoRestorecommerceFilterFilter {
@@ -611,12 +700,8 @@ export interface IIoRestorecommerceFilterFilter {
 }
 
 export interface IIoRestorecommerceFilterFilterOp {
-  filter?: InputMaybe<Array<IIoRestorecommerceFilterFilter>>;
+  filters?: InputMaybe<Array<IIoRestorecommerceFilterFilter>>;
   operator?: InputMaybe<IoRestorecommerceFilterFilterOpOperator>;
-}
-
-export interface IIoRestorecommerceFulfillmentCancelRequestList {
-  ids?: InputMaybe<Array<Scalars['String']>>;
 }
 
 export interface IIoRestorecommerceFulfillmentCourierFulfillmentCourier {
@@ -640,12 +725,32 @@ export interface IIoRestorecommerceFulfillmentCourierFulfillmentCourierList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
+export interface IIoRestorecommerceFulfillmentEvent {
+  details?: InputMaybe<IGoogleProtobufAny>;
+  location?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<IIoRestorecommerceStatusStatus>;
+  timestamp?: InputMaybe<Scalars['IDateTime']>;
+}
+
 export interface IIoRestorecommerceFulfillmentFulfillment {
   id?: InputMaybe<Scalars['String']>;
   labels?: InputMaybe<Array<IIoRestorecommerceFulfillmentLabel>>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
-  order?: InputMaybe<IIoRestorecommerceFulfillmentOrder>;
+  packaging?: InputMaybe<IIoRestorecommerceFulfillmentPackaging>;
   state?: InputMaybe<IoRestorecommerceFulfillmentState>;
+  totalAmounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+  trackings?: InputMaybe<Array<IIoRestorecommerceFulfillmentTracking>>;
+}
+
+export interface IIoRestorecommerceFulfillmentFulfillmentId {
+  id?: InputMaybe<Scalars['String']>;
+  options?: InputMaybe<IGoogleProtobufAny>;
+  shipmentNumbers?: InputMaybe<Array<Scalars['String']>>;
+}
+
+export interface IIoRestorecommerceFulfillmentFulfillmentIdList {
+  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentFulfillmentId>>;
+  totalCount?: InputMaybe<Scalars['Int']>;
 }
 
 export interface IIoRestorecommerceFulfillmentFulfillmentList {
@@ -656,15 +761,31 @@ export interface IIoRestorecommerceFulfillmentFulfillmentList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
+export interface IIoRestorecommerceFulfillmentInvoiceRequest {
+  invoiceNumber?: InputMaybe<Scalars['String']>;
+  paymentHints?: InputMaybe<Array<Scalars['String']>>;
+  sections?: InputMaybe<Array<IIoRestorecommerceFulfillmentInvoiceSection>>;
+}
+
+export interface IIoRestorecommerceFulfillmentInvoiceRequestList {
+  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentInvoiceRequest>>;
+  totalCount?: InputMaybe<Scalars['Int']>;
+}
+
+export interface IIoRestorecommerceFulfillmentInvoiceSection {
+  fulfillmentId?: InputMaybe<Scalars['String']>;
+  selectedParcels?: InputMaybe<Array<Scalars['String']>>;
+}
+
 export interface IIoRestorecommerceFulfillmentItem {
-  description?: InputMaybe<Scalars['String']>;
-  itemId?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  package?: InputMaybe<IIoRestorecommerceProductPackage>;
+  productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Int']>;
-  taricCode?: InputMaybe<Scalars['String']>;
+  variantId?: InputMaybe<Scalars['String']>;
 }
 
 export interface IIoRestorecommerceFulfillmentLabel {
+  parcelId?: InputMaybe<Scalars['String']>;
   pdf?: InputMaybe<Scalars['String']>;
   png?: InputMaybe<Scalars['String']>;
   shipmentNumber?: InputMaybe<Scalars['String']>;
@@ -673,22 +794,25 @@ export interface IIoRestorecommerceFulfillmentLabel {
   url?: InputMaybe<Scalars['String']>;
 }
 
-export interface IIoRestorecommerceFulfillmentOrder {
+export interface IIoRestorecommerceFulfillmentPackaging {
+  exportDescription?: InputMaybe<Scalars['String']>;
+  exportType?: InputMaybe<Scalars['String']>;
+  invoiceNumber?: InputMaybe<Scalars['String']>;
   notify?: InputMaybe<Scalars['String']>;
   parcels?: InputMaybe<Array<IIoRestorecommerceFulfillmentParcel>>;
-  receiver?: InputMaybe<IIoRestorecommerceFulfillmentShippingAddress>;
-  referenceId?: InputMaybe<Scalars['String']>;
-  sender?: InputMaybe<IIoRestorecommerceFulfillmentShippingAddress>;
+  recipient?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
+  reference?: InputMaybe<IIoRestorecommerceReferenceReference>;
+  sender?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
 }
 
 export interface IIoRestorecommerceFulfillmentParcel {
-  heightInCm?: InputMaybe<Scalars['Float']>;
+  amount?: InputMaybe<IIoRestorecommerceAmountAmount>;
+  id?: InputMaybe<Scalars['String']>;
   items?: InputMaybe<Array<IIoRestorecommerceFulfillmentItem>>;
-  lengthInCm?: InputMaybe<Scalars['Float']>;
+  package?: InputMaybe<IIoRestorecommerceProductPackage>;
+  price?: InputMaybe<IIoRestorecommercePricePrice>;
   productId?: InputMaybe<Scalars['String']>;
-  productVariantId?: InputMaybe<Scalars['String']>;
-  weightInKg?: InputMaybe<Scalars['Float']>;
-  widthInCm?: InputMaybe<Scalars['Float']>;
+  variantId?: InputMaybe<Scalars['String']>;
 }
 
 export interface IIoRestorecommerceFulfillmentProductFulfillmentProduct {
@@ -715,48 +839,43 @@ export interface IIoRestorecommerceFulfillmentProductFulfillmentProductList {
 }
 
 export interface IIoRestorecommerceFulfillmentProductPreferences {
-  compactness?: InputMaybe<Scalars['Float']>;
   couriers?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  homogeneity?: InputMaybe<Scalars['Float']>;
-  pricing?: InputMaybe<Scalars['Float']>;
+  options?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
 }
 
-export interface IIoRestorecommerceFulfillmentProductQuery {
-  goods?: InputMaybe<Array<IIoRestorecommerceFulfillmentItem>>;
+export interface IIoRestorecommerceFulfillmentProductProductQuery {
+  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentItem>>;
   preferences?: InputMaybe<IIoRestorecommerceFulfillmentProductPreferences>;
+  receiver?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
   referenceId?: InputMaybe<Scalars['String']>;
+  sender?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
 }
 
-export interface IIoRestorecommerceFulfillmentProductQueryList {
-  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentProductQuery>>;
+export interface IIoRestorecommerceFulfillmentProductProductQueryList {
+  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentProductProductQuery>>;
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
 export interface IIoRestorecommerceFulfillmentProductVariant {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  maxHeight?: InputMaybe<Scalars['Float']>;
-  maxLength?: InputMaybe<Scalars['Float']>;
-  maxVolume?: InputMaybe<Scalars['Float']>;
+  maxSize?: InputMaybe<IIoRestorecommerceGeometryBoundingBox3D>;
   maxWeight?: InputMaybe<Scalars['Float']>;
-  maxWidth?: InputMaybe<Scalars['Float']>;
   name?: InputMaybe<Scalars['String']>;
-  price?: InputMaybe<Scalars['Float']>;
+  price?: InputMaybe<IIoRestorecommercePricePrice>;
 }
 
-export interface IIoRestorecommerceFulfillmentShippingAddress {
-  address?: InputMaybe<IIoRestorecommerceAddressAddress>;
-  contactPerson?: InputMaybe<IIoRestorecommerceAddressContactPerson>;
+export interface IIoRestorecommerceFulfillmentTracking {
+  details?: InputMaybe<IGoogleProtobufAny>;
+  events?: InputMaybe<Array<IIoRestorecommerceFulfillmentEvent>>;
+  shipmentNumber?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<IIoRestorecommerceStatusStatus>;
 }
 
-export interface IIoRestorecommerceFulfillmentTrackingRequest {
-  fulfillmentId?: InputMaybe<Scalars['String']>;
-  options?: InputMaybe<IGoogleProtobufAny>;
-  shipmentNumbers?: InputMaybe<Array<Scalars['String']>>;
-}
-
-export interface IIoRestorecommerceFulfillmentTrackingRequestList {
-  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentTrackingRequest>>;
+export interface IIoRestorecommerceGeometryBoundingBox3D {
+  height?: InputMaybe<Scalars['Float']>;
+  length?: InputMaybe<Scalars['Float']>;
+  width?: InputMaybe<Scalars['Float']>;
 }
 
 export interface IIoRestorecommerceImageImage {
@@ -765,23 +884,49 @@ export interface IIoRestorecommerceImageImage {
   filename?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Float']>;
   id?: InputMaybe<Scalars['String']>;
+  index?: InputMaybe<Scalars['Int']>;
   length?: InputMaybe<Scalars['Float']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
   url?: InputMaybe<Scalars['String']>;
   width?: InputMaybe<Scalars['Float']>;
 }
 
+export interface IIoRestorecommerceInvoiceFulfillmentItem {
+  productId?: InputMaybe<Scalars['String']>;
+  variantId?: InputMaybe<Scalars['String']>;
+}
+
 export interface IIoRestorecommerceInvoiceInvoice {
   customerId?: InputMaybe<Scalars['String']>;
-  customerRemark?: InputMaybe<Scalars['String']>;
-  document?: InputMaybe<Scalars['String']>;
+  documents?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  fromDate?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   invoiceNumber?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
-  netAmount?: InputMaybe<Scalars['Float']>;
-  paymentStatus?: InputMaybe<Scalars['String']>;
-  timestamp?: InputMaybe<Scalars['String']>;
-  totalAmount?: InputMaybe<Scalars['Float']>;
-  vatAmount?: InputMaybe<Scalars['Float']>;
+  paymentHints?: InputMaybe<Array<Scalars['String']>>;
+  paymentState?: InputMaybe<IoRestorecommerceInvoicePaymentState>;
+  recipient?: InputMaybe<IIoRestorecommerceAddressBillingAddress>;
+  references?: InputMaybe<Array<IIoRestorecommerceReferenceReference>>;
+  sections?: InputMaybe<Array<IIoRestorecommerceInvoiceSection>>;
+  sender?: InputMaybe<IIoRestorecommerceAddressBillingAddress>;
+  sent?: InputMaybe<Scalars['Boolean']>;
+  shopId?: InputMaybe<Scalars['String']>;
+  timestamp?: InputMaybe<Scalars['IDateTime']>;
+  toDate?: InputMaybe<Scalars['IDateTime']>;
+  totalAmounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+  userId?: InputMaybe<Scalars['String']>;
+  withdrawn?: InputMaybe<Scalars['Boolean']>;
+}
+
+export interface IIoRestorecommerceInvoiceInvoiceId {
+  channelIds?: InputMaybe<Array<Scalars['String']>>;
+  id?: InputMaybe<Scalars['String']>;
+  options?: InputMaybe<IGoogleProtobufAny>;
+}
+
+export interface IIoRestorecommerceInvoiceInvoiceIdList {
+  items?: InputMaybe<Array<IIoRestorecommerceInvoiceInvoiceId>>;
+  totalCount?: InputMaybe<Scalars['Int']>;
 }
 
 export interface IIoRestorecommerceInvoiceInvoiceList {
@@ -792,8 +937,40 @@ export interface IIoRestorecommerceInvoiceInvoiceList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
+export interface IIoRestorecommerceInvoiceManualItem {
+  descritpion?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  stockKeepingUnit?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceInvoicePosition {
+  amount?: InputMaybe<IIoRestorecommerceAmountAmount>;
+  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  contractStartDate?: InputMaybe<Scalars['Float']>;
+  fulfillmentItem?: InputMaybe<IIoRestorecommerceInvoiceFulfillmentItem>;
+  id?: InputMaybe<Scalars['String']>;
+  manualItem?: InputMaybe<IIoRestorecommerceInvoiceManualItem>;
+  productItem?: InputMaybe<IIoRestorecommerceInvoiceProductItem>;
+  quantity?: InputMaybe<Scalars['Int']>;
+  unitPrice?: InputMaybe<IIoRestorecommercePricePrice>;
+}
+
+export interface IIoRestorecommerceInvoiceProductItem {
+  productId?: InputMaybe<Scalars['String']>;
+  variantId?: InputMaybe<Scalars['String']>;
+}
+
 export interface IIoRestorecommerceInvoiceRequestInvoiceNumber {
   context?: InputMaybe<IGoogleProtobufAny>;
+  shopId?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceInvoiceSection {
+  amounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+  customerRemark?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  positions?: InputMaybe<Array<IIoRestorecommerceInvoicePosition>>;
 }
 
 export interface IIoRestorecommerceJobBackoff {
@@ -839,7 +1016,7 @@ export interface IIoRestorecommerceJobJobOptions {
 }
 
 export interface IIoRestorecommerceJobJobReadRequest {
-  field?: InputMaybe<Array<IIoRestorecommerceResourcebaseFieldFilter>>;
+  fields?: InputMaybe<Array<IIoRestorecommerceResourcebaseFieldFilter>>;
   filter?: InputMaybe<IIoRestorecommerceJobJobFilter>;
   limit?: InputMaybe<Scalars['Int']>;
   /** target scope */
@@ -908,11 +1085,11 @@ export interface IIoRestorecommerceManufacturerManufacturerList {
 }
 
 export interface IIoRestorecommerceMetaMeta {
-  acl?: InputMaybe<Array<IIoRestorecommerceAttributeAttributeObj>>;
-  created?: InputMaybe<Scalars['Float']>;
-  modified?: InputMaybe<Scalars['Float']>;
+  acls?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  created?: InputMaybe<Scalars['IDateTime']>;
+  modified?: InputMaybe<Scalars['IDateTime']>;
   modifiedBy?: InputMaybe<Scalars['String']>;
-  owner?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  owners?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
 }
 
 export interface IIoRestorecommerceNotificationNotification {
@@ -935,46 +1112,81 @@ export interface IIoRestorecommerceNotificationNotificationList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
-export interface IIoRestorecommerceOrderCancelRequestList {
-  ids?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceOauthExchangeCodeRequest {
+  code?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<Scalars['String']>;
+  state?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceOauthGetTokenRequest {
+  service?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceOrderFulfillmentRequest {
+  data?: InputMaybe<IGoogleProtobufAny>;
+  exportDescription?: InputMaybe<Scalars['String']>;
+  exportType?: InputMaybe<Scalars['String']>;
+  invoiceNumber?: InputMaybe<Scalars['String']>;
+  orderId?: InputMaybe<Scalars['String']>;
+  selectedItems?: InputMaybe<Array<Scalars['String']>>;
+  senderAddress?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
+}
+
+export interface IIoRestorecommerceOrderFulfillmentRequestList {
+  items?: InputMaybe<Array<IIoRestorecommerceOrderFulfillmentRequest>>;
+  totalCount?: InputMaybe<Scalars['Int']>;
+}
+
+export interface IIoRestorecommerceOrderInvoiceRequest {
+  invoiceNumber?: InputMaybe<Scalars['String']>;
+  paymentHints?: InputMaybe<Array<Scalars['String']>>;
+  sections?: InputMaybe<Array<IIoRestorecommerceOrderInvoiceSection>>;
+}
+
+export interface IIoRestorecommerceOrderInvoiceRequestList {
+  items?: InputMaybe<Array<IIoRestorecommerceOrderInvoiceRequest>>;
+  totalCount?: InputMaybe<Scalars['Int']>;
+}
+
+export interface IIoRestorecommerceOrderInvoiceSection {
+  fulfillmentMode?: InputMaybe<IoRestorecommerceOrderFulfillmentInvoiceMode>;
+  orderId?: InputMaybe<Scalars['String']>;
+  selectedFulfillments?: InputMaybe<
+    Array<IIoRestorecommerceFulfillmentInvoiceSection>
+  >;
+  selectedItems?: InputMaybe<Array<Scalars['String']>>;
 }
 
 export interface IIoRestorecommerceOrderItem {
-  heightInCm?: InputMaybe<Scalars['Int']>;
-  itemType?: InputMaybe<Scalars['String']>;
-  lengthInCm?: InputMaybe<Scalars['Int']>;
-  manufacturerDescription?: InputMaybe<Scalars['String']>;
-  manufacturerName?: InputMaybe<Scalars['String']>;
-  price?: InputMaybe<Scalars['Float']>;
-  productDescription?: InputMaybe<Scalars['String']>;
-  productName?: InputMaybe<Scalars['String']>;
-  productVariantBundleId?: InputMaybe<Scalars['String']>;
-  prototypeDescription?: InputMaybe<Scalars['String']>;
-  prototypeName?: InputMaybe<Scalars['String']>;
+  amount?: InputMaybe<IIoRestorecommerceAmountAmount>;
+  id?: InputMaybe<Scalars['String']>;
+  productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Int']>;
-  quantityPrice?: InputMaybe<Scalars['Float']>;
-  stockKeepingUnit?: InputMaybe<Scalars['String']>;
-  taricCode?: InputMaybe<Scalars['Float']>;
-  vat?: InputMaybe<Scalars['Int']>;
-  weightInKg?: InputMaybe<Scalars['Float']>;
-  widthInCm?: InputMaybe<Scalars['Int']>;
+  unitPrice?: InputMaybe<IIoRestorecommercePricePrice>;
+  variantId?: InputMaybe<Scalars['String']>;
 }
 
 export interface IIoRestorecommerceOrderOrder {
-  billingAddress?: InputMaybe<IIoRestorecommerceAddressAddress>;
-  billingEmail?: InputMaybe<Scalars['String']>;
-  contactPerson?: InputMaybe<IIoRestorecommerceAddressContactPerson>;
-  customerReference?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
-  fulfillmentIds?: InputMaybe<Array<Scalars['String']>>;
+  billingAddress?: InputMaybe<IIoRestorecommerceAddressBillingAddress>;
+  customerId?: InputMaybe<Scalars['String']>;
+  customerOrderNr?: InputMaybe<Scalars['String']>;
+  customerRemark?: InputMaybe<Scalars['String']>;
+  fulfillmentState?: InputMaybe<IoRestorecommerceFulfillmentState>;
   id?: InputMaybe<Scalars['String']>;
   items?: InputMaybe<Array<IIoRestorecommerceOrderItem>>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
-  name?: InputMaybe<Scalars['String']>;
   notificationEmail?: InputMaybe<Scalars['String']>;
-  shippingAddress?: InputMaybe<IIoRestorecommerceAddressAddress>;
-  state?: InputMaybe<IoRestorecommerceOrderState>;
-  totalPrice?: InputMaybe<Scalars['Float']>;
+  orderState?: InputMaybe<IoRestorecommerceOrderOrderState>;
+  packagingPreferences?: InputMaybe<IIoRestorecommerceFulfillmentProductPreferences>;
+  paymentState?: InputMaybe<IoRestorecommerceInvoicePaymentState>;
+  shippingAddress?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
+  shopId?: InputMaybe<Scalars['String']>;
+  totalAmounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+  userId?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceOrderOrderIdList {
+  ids?: InputMaybe<Array<Scalars['String']>>;
 }
 
 export interface IIoRestorecommerceOrderOrderList {
@@ -985,33 +1197,13 @@ export interface IIoRestorecommerceOrderOrderList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
-export interface IIoRestorecommerceOrderShippingDetails {
-  contactPerson?: InputMaybe<IIoRestorecommerceAddressContactPerson>;
-  exportDescription?: InputMaybe<Scalars['String']>;
-  exportType?: InputMaybe<Scalars['String']>;
-  invoiceNumber?: InputMaybe<Scalars['String']>;
-  senderAddress?: InputMaybe<IIoRestorecommerceAddressAddress>;
-}
-
-export interface IIoRestorecommerceOrderTriggerFulfillmentRequest {
-  order?: InputMaybe<IIoRestorecommerceOrderOrder>;
-  parcels?: InputMaybe<Array<IIoRestorecommerceFulfillmentParcel>>;
-  shippingDetails?: InputMaybe<IIoRestorecommerceOrderShippingDetails>;
-}
-
-export interface IIoRestorecommerceOrderTriggerFulfillmentRequestList {
-  items?: InputMaybe<Array<IIoRestorecommerceOrderTriggerFulfillmentRequest>>;
-  totalCount?: InputMaybe<Scalars['Int']>;
-}
-
 export interface IIoRestorecommerceOrganizationOrganization {
-  addressId?: InputMaybe<Scalars['String']>;
   contactPointIds?: InputMaybe<Array<Scalars['String']>>;
   data?: InputMaybe<IGoogleProtobufAny>;
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   isicV4?: InputMaybe<Scalars['String']>;
-  logo?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<IIoRestorecommerceImageImage>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   parentId?: InputMaybe<Scalars['String']>;
@@ -1185,18 +1377,35 @@ export interface IIoRestorecommercePriceGroupPriceGroupList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
+export interface IIoRestorecommercePricePrice {
+  currencyId?: InputMaybe<Scalars['String']>;
+  regularPrice?: InputMaybe<Scalars['Float']>;
+  sale?: InputMaybe<Scalars['Boolean']>;
+  salePrice?: InputMaybe<Scalars['Float']>;
+  taxIds?: InputMaybe<Array<Scalars['String']>>;
+}
+
+export interface IIoRestorecommerceProductAssociation {
+  data?: InputMaybe<IGoogleProtobufAny>;
+  productId?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
+  type?: InputMaybe<IoRestorecommerceProductAssociationType>;
+}
+
 export interface IIoRestorecommerceProductBundle {
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
   name?: InputMaybe<Scalars['String']>;
-  price?: InputMaybe<Scalars['Float']>;
-  product?: InputMaybe<Array<IIoRestorecommerceProductBundleProduct>>;
+  prePackaged?: InputMaybe<IIoRestorecommerceProductPackage>;
+  price?: InputMaybe<IIoRestorecommercePricePrice>;
+  products?: InputMaybe<Array<IIoRestorecommerceProductBundleProduct>>;
 }
 
 export interface IIoRestorecommerceProductBundleProduct {
+  priceRatio?: InputMaybe<Scalars['Float']>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Int']>;
+  variantId?: InputMaybe<Scalars['String']>;
 }
 
 export interface IIoRestorecommerceProductCategoryParent {
@@ -1221,33 +1430,59 @@ export interface IIoRestorecommerceProductCategoryProductCategoryList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
-export interface IIoRestorecommerceProductIdentifier {
-  id?: InputMaybe<Scalars['String']>;
+export interface IIoRestorecommerceProductIndividualProduct {
+  categoryId?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  gtin?: InputMaybe<Scalars['String']>;
+  manufacturerId?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  originCountryId?: InputMaybe<Scalars['String']>;
+  physical?: InputMaybe<IIoRestorecommerceProductPhysicalProduct>;
+  prototypeId?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<IIoRestorecommerceProductServiceProduct>;
+  taricCode?: InputMaybe<Scalars['String']>;
+  taxIds?: InputMaybe<Array<Scalars['String']>>;
+  virtual?: InputMaybe<IIoRestorecommerceProductVirtualProduct>;
 }
 
-export interface IIoRestorecommerceProductMainProduct {
-  active?: InputMaybe<Scalars['Boolean']>;
-  bundle?: InputMaybe<IIoRestorecommerceProductBundle>;
+export interface IIoRestorecommerceProductPackage {
+  rotatable?: InputMaybe<Scalars['Boolean']>;
+  sizeInCm?: InputMaybe<IIoRestorecommerceGeometryBoundingBox3D>;
+  weightInKg?: InputMaybe<Scalars['Float']>;
+}
+
+export interface IIoRestorecommerceProductPhysicalProduct {
+  variants?: InputMaybe<Array<IIoRestorecommerceProductPhysicalVariant>>;
+}
+
+export interface IIoRestorecommerceProductPhysicalVariant {
+  description?: InputMaybe<Scalars['String']>;
+  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
   id?: InputMaybe<Scalars['String']>;
-  meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
-  product?: InputMaybe<IIoRestorecommerceProductProduct>;
+  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  name?: InputMaybe<Scalars['String']>;
+  package?: InputMaybe<IIoRestorecommerceProductPackage>;
+  price?: InputMaybe<IIoRestorecommercePricePrice>;
+  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  stockKeepingUnit?: InputMaybe<Scalars['String']>;
+  stockLevel?: InputMaybe<Scalars['Int']>;
+  templateVariant?: InputMaybe<Scalars['String']>;
 }
 
 export interface IIoRestorecommerceProductProduct {
-  category?: InputMaybe<IIoRestorecommerceProductIdentifier>;
-  description?: InputMaybe<Scalars['String']>;
-  gtin?: InputMaybe<Scalars['String']>;
+  active?: InputMaybe<Scalars['Boolean']>;
+  associations?: InputMaybe<Array<IIoRestorecommerceProductAssociation>>;
+  bundle?: InputMaybe<IIoRestorecommerceProductBundle>;
+  data?: InputMaybe<IGoogleProtobufAny>;
   id?: InputMaybe<Scalars['String']>;
-  manufacturerId?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  prototype?: InputMaybe<IIoRestorecommerceProductIdentifier>;
-  taricCode?: InputMaybe<Scalars['String']>;
-  taxId?: InputMaybe<Array<Scalars['String']>>;
-  variants?: InputMaybe<Array<IIoRestorecommerceProductVariant>>;
+  meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
+  product?: InputMaybe<IIoRestorecommerceProductIndividualProduct>;
+  shopId?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
 }
 
 export interface IIoRestorecommerceProductProductList {
-  items?: InputMaybe<Array<IIoRestorecommerceProductMainProduct>>;
+  items?: InputMaybe<Array<IIoRestorecommerceProductProduct>>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
@@ -1271,27 +1506,58 @@ export interface IIoRestorecommerceProductPrototypeProductPrototypeList {
   totalCount?: InputMaybe<Scalars['Int']>;
 }
 
-export interface IIoRestorecommerceProductVariant {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceProductServiceProduct {
+  variants?: InputMaybe<Array<IIoRestorecommerceProductServiceVariant>>;
+}
+
+export interface IIoRestorecommerceProductServiceVariant {
   description?: InputMaybe<Scalars['String']>;
+  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
   id?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
   name?: InputMaybe<Scalars['String']>;
-  price?: InputMaybe<Scalars['Float']>;
-  sale?: InputMaybe<Scalars['Boolean']>;
-  salePrice?: InputMaybe<Scalars['Float']>;
+  price?: InputMaybe<IIoRestorecommercePricePrice>;
+  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
   stockKeepingUnit?: InputMaybe<Scalars['String']>;
   stockLevel?: InputMaybe<Scalars['Int']>;
   templateVariant?: InputMaybe<Scalars['String']>;
 }
 
+export interface IIoRestorecommerceProductVirtualProduct {
+  variants?: InputMaybe<Array<IIoRestorecommerceProductVirtualVariant>>;
+}
+
+export interface IIoRestorecommerceProductVirtualVariant {
+  description?: InputMaybe<Scalars['String']>;
+  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  id?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  name?: InputMaybe<Scalars['String']>;
+  price?: InputMaybe<IIoRestorecommercePricePrice>;
+  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  stockKeepingUnit?: InputMaybe<Scalars['String']>;
+  stockLevel?: InputMaybe<Scalars['Int']>;
+  templateVariant?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommercePropertyProperty {
+  id?: InputMaybe<Scalars['String']>;
+  unitCode?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceReferenceReference {
+  instanceId?: InputMaybe<Scalars['String']>;
+  instanceType?: InputMaybe<Scalars['String']>;
+}
+
 export interface IIoRestorecommerceResourcebaseDeleteRequest {
-  analyzer?: InputMaybe<Array<Scalars['String']>>;
+  analyzers?: InputMaybe<Array<Scalars['String']>>;
   collection?: InputMaybe<Scalars['Boolean']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
-  view?: InputMaybe<Array<Scalars['String']>>;
+  views?: InputMaybe<Array<Scalars['String']>>;
 }
 
 export interface IIoRestorecommerceResourcebaseFieldFilter {
@@ -1308,14 +1574,14 @@ export interface IIoRestorecommerceResourcebaseFilter {
 }
 
 export interface IIoRestorecommerceResourcebaseFilterOp {
-  filter?: InputMaybe<Array<IIoRestorecommerceResourcebaseFilter>>;
+  filters?: InputMaybe<Array<IIoRestorecommerceResourcebaseFilter>>;
   operator?: InputMaybe<IoRestorecommerceResourcebaseFilterOpOperator>;
 }
 
 export interface IIoRestorecommerceResourcebaseReadRequest {
   customArguments?: InputMaybe<IGoogleProtobufAny>;
   customQueries?: InputMaybe<Array<Scalars['String']>>;
-  field?: InputMaybe<Array<IIoRestorecommerceResourcebaseFieldFilter>>;
+  fields?: InputMaybe<Array<IIoRestorecommerceResourcebaseFieldFilter>>;
   filters?: InputMaybe<Array<IIoRestorecommerceResourcebaseFilterOp>>;
   limit?: InputMaybe<Scalars['Int']>;
   localesLimiter?: InputMaybe<Array<Scalars['String']>>;
@@ -1323,7 +1589,7 @@ export interface IIoRestorecommerceResourcebaseReadRequest {
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   search?: InputMaybe<IIoRestorecommerceResourcebaseSearch>;
-  sort?: InputMaybe<Array<IIoRestorecommerceResourcebaseSort>>;
+  sorts?: InputMaybe<Array<IIoRestorecommerceResourcebaseSort>>;
 }
 
 export interface IIoRestorecommerceResourcebaseSearch {
@@ -1379,13 +1645,13 @@ export interface IIoRestorecommerceRuleRuleList {
 }
 
 export interface IIoRestorecommerceRuleTarget {
-  action?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  actions?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
   resources?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  subject?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  subjects?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
 }
 
 export interface IIoRestorecommerceSearchSearchRequest {
-  acl?: InputMaybe<Array<Scalars['String']>>;
+  acls?: InputMaybe<Array<Scalars['String']>>;
   collection?: InputMaybe<Scalars['String']>;
   text?: InputMaybe<Scalars['String']>;
 }
@@ -1469,7 +1735,6 @@ export interface IIoRestorecommerceUserChangeEmailRequest {
 }
 
 export interface IIoRestorecommerceUserChangePasswordRequest {
-  identifier?: InputMaybe<Scalars['String']>;
   newPassword?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
 }
@@ -1612,9 +1877,26 @@ export interface IdentityAuthenticationLogQueryReadArgs {
 export interface IdentityMutation {
   __typename?: 'IdentityMutation';
   authentication_log: IdentityAuthenticationLogMutation;
+  o_auth: IdentityOAuthMutation;
   role: IdentityRoleMutation;
   token: IdentityTokenMutation;
   user: IdentityUserMutation;
+}
+
+export interface IdentityOAuthMutation {
+  __typename?: 'IdentityOAuthMutation';
+  AvailableServices?: Maybe<ProtoIoRestorecommerceOauthServicesResponse>;
+  ExchangeCode?: Maybe<ProtoIoRestorecommerceOauthExchangeCodeResponse>;
+  GenerateLinks?: Maybe<ProtoIoRestorecommerceOauthGenerateLinksResponse>;
+  GetToken?: Maybe<ProtoIoRestorecommerceOauthGetTokenResponse>;
+}
+
+export interface IdentityOAuthMutationExchangeCodeArgs {
+  input: IIoRestorecommerceOauthExchangeCodeRequest;
+}
+
+export interface IdentityOAuthMutationGetTokenArgs {
+  input: IIoRestorecommerceOauthGetTokenRequest;
 }
 
 export interface IdentityQuery {
@@ -1803,6 +2085,9 @@ export interface InvoicingInvoiceMutation {
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   GenerateInvoiceNumber?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceNumberResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
+  Render?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
+  Send?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
+  Withdraw?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
 }
 
 export interface InvoicingInvoiceMutationDeleteArgs {
@@ -1815,6 +2100,18 @@ export interface InvoicingInvoiceMutationGenerateInvoiceNumberArgs {
 
 export interface InvoicingInvoiceMutationMutateArgs {
   input: IIoRestorecommerceInvoiceInvoiceList;
+}
+
+export interface InvoicingInvoiceMutationRenderArgs {
+  input: IIoRestorecommerceInvoiceInvoiceList;
+}
+
+export interface InvoicingInvoiceMutationSendArgs {
+  input: IIoRestorecommerceInvoiceInvoiceIdList;
+}
+
+export interface InvoicingInvoiceMutationWithdrawArgs {
+  input: IIoRestorecommerceInvoiceInvoiceIdList;
 }
 
 export interface InvoicingInvoiceQuery {
@@ -1840,7 +2137,7 @@ export interface IoRestorecommerceAccessControlResponse {
   __typename?: 'IoRestorecommerceAccessControlResponse';
   decision?: Maybe<IoRestorecommerceAccessControlResponseDecision>;
   evaluationCacheable?: Maybe<Scalars['Boolean']>;
-  obligation?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  obligations?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
 }
 
@@ -1853,7 +2150,7 @@ export enum IoRestorecommerceAccessControlResponseDecision {
 
 export interface IoRestorecommerceAccessControlReverseQuery {
   __typename?: 'IoRestorecommerceAccessControlReverseQuery';
-  obligation?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  obligations?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   policySets?: Maybe<Array<IoRestorecommercePolicySetPolicySetRq>>;
 }
@@ -1896,13 +2193,20 @@ export interface IoRestorecommerceAddressAddressResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
+export interface IoRestorecommerceAddressBillingAddress {
+  __typename?: 'IoRestorecommerceAddressBillingAddress';
+  address?: Maybe<IoRestorecommerceAddressAddress>;
+  comments?: Maybe<Scalars['String']>;
+  contact?: Maybe<IoRestorecommerceAddressContact>;
+}
+
 export interface IoRestorecommerceAddressBusinessAddress {
   __typename?: 'IoRestorecommerceAddressBusinessAddress';
   name?: Maybe<Scalars['String']>;
 }
 
-export interface IoRestorecommerceAddressContactPerson {
-  __typename?: 'IoRestorecommerceAddressContactPerson';
+export interface IoRestorecommerceAddressContact {
+  __typename?: 'IoRestorecommerceAddressContact';
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
@@ -1929,22 +2233,40 @@ export interface IoRestorecommerceAddressResidentialAddress {
   title?: Maybe<Scalars['String']>;
 }
 
-export interface IoRestorecommerceAttributeAttribute {
-  __typename?: 'IoRestorecommerceAttributeAttribute';
-  attribute?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  id?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+export interface IoRestorecommerceAddressShippingAddress {
+  __typename?: 'IoRestorecommerceAddressShippingAddress';
+  address?: Maybe<IoRestorecommerceAddressAddress>;
+  comments?: Maybe<Scalars['String']>;
+  contact?: Maybe<IoRestorecommerceAddressContact>;
 }
 
-export interface IoRestorecommerceAttributeAttributeObj {
-  __typename?: 'IoRestorecommerceAttributeAttributeObj';
-  attribute?: Maybe<IoRestorecommerceAttributeAttribute>;
+export interface IoRestorecommerceAmountAmount {
+  __typename?: 'IoRestorecommerceAmountAmount';
+  currency?: Maybe<IoRestorecommerceCurrencyCurrency>;
+  currencyId?: Maybe<Scalars['String']>;
+  gross?: Maybe<Scalars['Float']>;
+  net?: Maybe<Scalars['Float']>;
+  vats?: Maybe<Array<IoRestorecommerceAmountVat>>;
+}
+
+export interface IoRestorecommerceAmountVat {
+  __typename?: 'IoRestorecommerceAmountVAT';
+  tax?: Maybe<IoRestorecommerceTaxTax>;
+  taxId?: Maybe<Scalars['String']>;
+  vat?: Maybe<Scalars['Float']>;
+}
+
+export interface IoRestorecommerceAttributeAttribute {
+  __typename?: 'IoRestorecommerceAttributeAttribute';
+  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  id?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceAuthRoleAssociation {
   __typename?: 'IoRestorecommerceAuthRoleAssociation';
   attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  created?: Maybe<Scalars['Float']>;
+  created?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   role?: Maybe<Scalars['String']>;
 }
@@ -1963,7 +2285,7 @@ export interface IoRestorecommerceAuthTokens {
 export interface IoRestorecommerceAuthenticationLogAuthenticationLog {
   __typename?: 'IoRestorecommerceAuthenticationLogAuthenticationLog';
   activity?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Float']>;
+  date?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   ipv4Address?: Maybe<Scalars['String']>;
   ipv6Address?: Maybe<Scalars['String']>;
@@ -1987,6 +2309,62 @@ export interface IoRestorecommerceAuthenticationLogAuthenticationLogResponse {
   __typename?: 'IoRestorecommerceAuthenticationLogAuthenticationLogResponse';
   payload?: Maybe<IoRestorecommerceAuthenticationLogAuthenticationLog>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
+}
+
+export interface IoRestorecommerceCodeCode {
+  __typename?: 'IoRestorecommerceCodeCode';
+  commonCode?: Maybe<Scalars['String']>;
+  conversionFactor?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  groupId?: Maybe<Scalars['String']>;
+  groupNumber?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  levelCategory?: Maybe<Scalars['String']>;
+  meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['String']>;
+  sector?: Maybe<IoRestorecommerceCodeSector>;
+  status?: Maybe<IoRestorecommerceCodeStatusCode>;
+  symbol?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceCodeCodeListResponse {
+  __typename?: 'IoRestorecommerceCodeCodeListResponse';
+  items?: Maybe<Array<IoRestorecommerceCodeCodeResponse>>;
+  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
+  totalCount?: Maybe<Scalars['Int']>;
+}
+
+export interface IoRestorecommerceCodeCodeResponse {
+  __typename?: 'IoRestorecommerceCodeCodeResponse';
+  payload?: Maybe<IoRestorecommerceCodeCode>;
+  status?: Maybe<IoRestorecommerceStatusStatus>;
+}
+
+export enum IoRestorecommerceCodeSector {
+  Acoustics = 'ACOUSTICS',
+  AtomicAndNuclearPhysics = 'ATOMIC_AND_NUCLEAR_PHYSICS',
+  CharacteristicNumbers = 'CHARACTERISTIC_NUMBERS',
+  ElectricityAndMagnetism = 'ELECTRICITY_AND_MAGNETISM',
+  Heat = 'HEAT',
+  LightAndRelatedElectromagneticRadiations = 'LIGHT_AND_RELATED_ELECTROMAGNETIC_RADIATIONS',
+  Mechanics = 'MECHANICS',
+  Miscellaneous = 'MISCELLANEOUS',
+  NuclearReactionsAndIonizingRadiations = 'NUCLEAR_REACTIONS_AND_IONIZING_RADIATIONS',
+  PeriodicAndRelatedPhases = 'PERIODIC_AND_RELATED_PHASES',
+  PhysicalChemistryAndMolecularPhysics = 'PHYSICAL_CHEMISTRY_AND_MOLECULAR_PHYSICS',
+  SolidStatePhysics = 'SOLID_STATE_PHYSICS',
+  SpaceAndTime = 'SPACE_AND_TIME',
+  Unknown = 'UNKNOWN',
+}
+
+export enum IoRestorecommerceCodeStatusCode {
+  Added = 'ADDED',
+  ChangedCharacteristic = 'CHANGED_CHARACTERISTIC',
+  ChangedName = 'CHANGED_NAME',
+  Deprecated = 'DEPRECATED',
+  MarkedAsDeleted = 'MARKED_AS_DELETED',
+  Reinstated = 'REINSTATED',
 }
 
 export interface IoRestorecommerceCommandCommand {
@@ -2029,13 +2407,17 @@ export interface IoRestorecommerceCommandCommandResponse {
 
 export interface IoRestorecommerceContactPointContactPoint {
   __typename?: 'IoRestorecommerceContactPointContactPoint';
-  contactPointType?: Maybe<IoRestorecommerceContactPointTypeContactPointType>;
-  contactPointTypeId?: Maybe<Scalars['String']>;
+  contactPointType?: Maybe<
+    Array<IoRestorecommerceContactPointTypeContactPointType>
+  >;
+  contactPointTypeIds?: Maybe<Array<Scalars['String']>>;
+  description?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   locale?: Maybe<IoRestorecommerceLocaleLocale>;
   localeId?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
   physicalAddress?: Maybe<IoRestorecommerceAddressAddress>;
   physicalAddressId?: Maybe<Scalars['String']>;
   telephone?: Maybe<Scalars['String']>;
@@ -2102,13 +2484,37 @@ export interface IoRestorecommerceCountryCountryResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
+export interface IoRestorecommerceCurrencyCurrency {
+  __typename?: 'IoRestorecommerceCurrencyCurrency';
+  countryId?: Maybe<Scalars['String']>;
+  customExchangeRates?: Maybe<Array<IoRestorecommerceCurrencyExchangeRate>>;
+  id?: Maybe<Scalars['String']>;
+  meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
+  symbol?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceCurrencyExchangeRate {
+  __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+  amount?: Maybe<Scalars['Float']>;
+  expenses?: Maybe<Scalars['Float']>;
+  rate?: Maybe<Scalars['Float']>;
+  toCurrencyId?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceCustomerCommercial {
+  __typename?: 'IoRestorecommerceCustomerCommercial';
+  organization?: Maybe<IoRestorecommerceOrganizationOrganization>;
+  organizationId?: Maybe<Scalars['String']>;
+}
+
 export interface IoRestorecommerceCustomerCustomer {
   __typename?: 'IoRestorecommerceCustomerCustomer';
-  guest?: Maybe<IoRestorecommerceCustomerGuest>;
+  commercial?: Maybe<IoRestorecommerceCustomerCommercial>;
   id?: Maybe<Scalars['String']>;
-  individualUser?: Maybe<IoRestorecommerceCustomerIndividualUser>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
-  orgUser?: Maybe<IoRestorecommerceCustomerOrgUser>;
+  private?: Maybe<IoRestorecommerceCustomerPrivate>;
+  publicSector?: Maybe<IoRestorecommerceCustomerPublicSector>;
 }
 
 export interface IoRestorecommerceCustomerCustomerListResponse {
@@ -2124,31 +2530,31 @@ export interface IoRestorecommerceCustomerCustomerResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export interface IoRestorecommerceCustomerGuest {
-  __typename?: 'IoRestorecommerceCustomerGuest';
-  address?: Maybe<IoRestorecommerceAddressAddress>;
-  addressId?: Maybe<Scalars['String']>;
-  contactPointIds?: Maybe<Array<Scalars['String']>>;
-  contactPoints?: Maybe<Array<IoRestorecommerceContactPointContactPoint>>;
-  guest?: Maybe<Scalars['Boolean']>;
-}
-
-export interface IoRestorecommerceCustomerIndividualUser {
-  __typename?: 'IoRestorecommerceCustomerIndividualUser';
-  address?: Maybe<IoRestorecommerceAddressAddress>;
-  addressId?: Maybe<Scalars['String']>;
+export interface IoRestorecommerceCustomerPrivate {
+  __typename?: 'IoRestorecommerceCustomerPrivate';
   contactPointIds?: Maybe<Array<Scalars['String']>>;
   contactPoints?: Maybe<Array<IoRestorecommerceContactPointContactPoint>>;
   user?: Maybe<IoRestorecommerceUserUser>;
   userId?: Maybe<Scalars['String']>;
 }
 
-export interface IoRestorecommerceCustomerOrgUser {
-  __typename?: 'IoRestorecommerceCustomerOrgUser';
+export interface IoRestorecommerceCustomerPublicSector {
+  __typename?: 'IoRestorecommerceCustomerPublicSector';
   organization?: Maybe<IoRestorecommerceOrganizationOrganization>;
   organizationId?: Maybe<Scalars['String']>;
-  user?: Maybe<IoRestorecommerceUserUser>;
-  userId?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceFileFile {
+  __typename?: 'IoRestorecommerceFileFile';
+  bytes?: Maybe<Scalars['Int']>;
+  caption?: Maybe<Scalars['String']>;
+  contentType?: Maybe<Scalars['String']>;
+  filename?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
+  tags?: Maybe<Array<Scalars['String']>>;
+  thumbnail?: Maybe<IoRestorecommerceImageImage>;
+  url?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceFilterFilter {
@@ -2162,7 +2568,7 @@ export interface IoRestorecommerceFilterFilter {
 
 export interface IoRestorecommerceFilterFilterOp {
   __typename?: 'IoRestorecommerceFilterFilterOp';
-  filter?: Maybe<Array<IoRestorecommerceFilterFilter>>;
+  filters?: Maybe<Array<IoRestorecommerceFilterFilter>>;
   operator?: Maybe<IoRestorecommerceFilterFilterOpOperator>;
 }
 
@@ -2203,14 +2609,8 @@ export interface IoRestorecommerceFulfillmentCourierFulfillmentCourier {
   website?: Maybe<Scalars['String']>;
 }
 
-export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse {
-  __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse';
-  payload?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourier>;
-  status?: Maybe<IoRestorecommerceStatusStatus>;
-}
-
-export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList {
-  __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList';
+export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse';
   items?: Maybe<
     Array<IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse>
   >;
@@ -2218,12 +2618,18 @@ export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierResponseLi
   totalCount?: Maybe<Scalars['Int']>;
 }
 
+export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse {
+  __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse';
+  payload?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourier>;
+  status?: Maybe<IoRestorecommerceStatusStatus>;
+}
+
 export interface IoRestorecommerceFulfillmentEvent {
   __typename?: 'IoRestorecommerceFulfillmentEvent';
   details?: Maybe<GoogleProtobufAny>;
   location?: Maybe<Scalars['String']>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-  timestamp?: Maybe<Scalars['Int']>;
+  timestamp?: Maybe<Scalars['DateTime']>;
 }
 
 export interface IoRestorecommerceFulfillmentFulfillment {
@@ -2231,8 +2637,17 @@ export interface IoRestorecommerceFulfillmentFulfillment {
   id?: Maybe<Scalars['String']>;
   labels?: Maybe<Array<IoRestorecommerceFulfillmentLabel>>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
-  order?: Maybe<IoRestorecommerceFulfillmentOrder>;
+  packaging?: Maybe<IoRestorecommerceFulfillmentPackaging>;
   state?: Maybe<IoRestorecommerceFulfillmentState>;
+  totalAmounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  trackings?: Maybe<Array<IoRestorecommerceFulfillmentTracking>>;
+}
+
+export interface IoRestorecommerceFulfillmentFulfillmentListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+  items?: Maybe<Array<IoRestorecommerceFulfillmentFulfillmentResponse>>;
+  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
+  totalCount?: Maybe<Scalars['Int']>;
 }
 
 export interface IoRestorecommerceFulfillmentFulfillmentResponse {
@@ -2241,24 +2656,17 @@ export interface IoRestorecommerceFulfillmentFulfillmentResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export interface IoRestorecommerceFulfillmentFulfillmentResponseList {
-  __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponseList';
-  items?: Maybe<Array<IoRestorecommerceFulfillmentFulfillmentResponse>>;
-  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  totalCount?: Maybe<Scalars['Int']>;
-}
-
 export interface IoRestorecommerceFulfillmentItem {
   __typename?: 'IoRestorecommerceFulfillmentItem';
-  description?: Maybe<Scalars['String']>;
-  itemId?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  package?: Maybe<IoRestorecommerceProductPackage>;
+  productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
-  taricCode?: Maybe<Scalars['String']>;
+  variantId?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceFulfillmentLabel {
   __typename?: 'IoRestorecommerceFulfillmentLabel';
+  parcelId?: Maybe<Scalars['String']>;
   pdf?: Maybe<Scalars['String']>;
   png?: Maybe<Scalars['String']>;
   shipmentNumber?: Maybe<Scalars['String']>;
@@ -2267,25 +2675,28 @@ export interface IoRestorecommerceFulfillmentLabel {
   url?: Maybe<Scalars['String']>;
 }
 
-export interface IoRestorecommerceFulfillmentOrder {
-  __typename?: 'IoRestorecommerceFulfillmentOrder';
+export interface IoRestorecommerceFulfillmentPackaging {
+  __typename?: 'IoRestorecommerceFulfillmentPackaging';
+  exportDescription?: Maybe<Scalars['String']>;
+  exportType?: Maybe<Scalars['String']>;
+  invoiceNumber?: Maybe<Scalars['String']>;
   notify?: Maybe<Scalars['String']>;
   parcels?: Maybe<Array<IoRestorecommerceFulfillmentParcel>>;
-  receiver?: Maybe<IoRestorecommerceFulfillmentShippingAddress>;
-  referenceId?: Maybe<Scalars['String']>;
-  sender?: Maybe<IoRestorecommerceFulfillmentShippingAddress>;
+  recipient?: Maybe<IoRestorecommerceAddressShippingAddress>;
+  reference?: Maybe<IoRestorecommerceReferenceReference>;
+  sender?: Maybe<IoRestorecommerceAddressShippingAddress>;
 }
 
 export interface IoRestorecommerceFulfillmentParcel {
   __typename?: 'IoRestorecommerceFulfillmentParcel';
-  heightInCm?: Maybe<Scalars['Float']>;
+  amount?: Maybe<IoRestorecommerceAmountAmount>;
+  id?: Maybe<Scalars['String']>;
   items?: Maybe<Array<IoRestorecommerceFulfillmentItem>>;
-  lengthInCm?: Maybe<Scalars['Float']>;
+  package?: Maybe<IoRestorecommerceProductPackage>;
+  price?: Maybe<IoRestorecommercePricePrice>;
   product?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
   productId?: Maybe<Scalars['String']>;
-  productVariantId?: Maybe<Scalars['String']>;
-  weightInKg?: Maybe<Scalars['Float']>;
-  widthInCm?: Maybe<Scalars['Float']>;
+  variantId?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceFulfillmentProductFulfillmentProduct {
@@ -2303,14 +2714,8 @@ export interface IoRestorecommerceFulfillmentProductFulfillmentProduct {
   variants?: Maybe<Array<IoRestorecommerceFulfillmentProductVariant>>;
 }
 
-export interface IoRestorecommerceFulfillmentProductFulfillmentProductResponse {
-  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductResponse';
-  payload?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
-  status?: Maybe<IoRestorecommerceStatusStatus>;
-}
-
-export interface IoRestorecommerceFulfillmentProductFulfillmentProductResponseList {
-  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductResponseList';
+export interface IoRestorecommerceFulfillmentProductFulfillmentProductListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductListResponse';
   items?: Maybe<
     Array<IoRestorecommerceFulfillmentProductFulfillmentProductResponse>
   >;
@@ -2318,24 +2723,23 @@ export interface IoRestorecommerceFulfillmentProductFulfillmentProductResponseLi
   totalCount?: Maybe<Scalars['Int']>;
 }
 
-export interface IoRestorecommerceFulfillmentProductPackingSolution {
-  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolution';
-  compactness?: Maybe<Scalars['Float']>;
-  homogeneity?: Maybe<Scalars['Float']>;
-  parcels?: Maybe<Array<IoRestorecommerceFulfillmentParcel>>;
-  price?: Maybe<Scalars['Float']>;
-  referenceId?: Maybe<Scalars['String']>;
-  score?: Maybe<Scalars['Float']>;
-}
-
-export interface IoRestorecommerceFulfillmentProductPackingSolutionResponse {
-  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionResponse';
-  solutions?: Maybe<Array<IoRestorecommerceFulfillmentProductPackingSolution>>;
+export interface IoRestorecommerceFulfillmentProductFulfillmentProductResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductResponse';
+  payload?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export interface IoRestorecommerceFulfillmentProductPackingSolutionResponseList {
-  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionResponseList';
+export interface IoRestorecommerceFulfillmentProductPackingSolution {
+  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolution';
+  amounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  compactness?: Maybe<Scalars['Float']>;
+  homogeneity?: Maybe<Scalars['Float']>;
+  parcels?: Maybe<Array<IoRestorecommerceFulfillmentParcel>>;
+  score?: Maybe<Scalars['Float']>;
+}
+
+export interface IoRestorecommerceFulfillmentProductPackingSolutionListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionListResponse';
   items?: Maybe<
     Array<IoRestorecommerceFulfillmentProductPackingSolutionResponse>
   >;
@@ -2343,34 +2747,38 @@ export interface IoRestorecommerceFulfillmentProductPackingSolutionResponseList 
   totalCount?: Maybe<Scalars['Int']>;
 }
 
+export interface IoRestorecommerceFulfillmentProductPackingSolutionResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionResponse';
+  reference?: Maybe<IoRestorecommerceReferenceReference>;
+  solutions?: Maybe<Array<IoRestorecommerceFulfillmentProductPackingSolution>>;
+  status?: Maybe<IoRestorecommerceStatusStatus>;
+}
+
+export interface IoRestorecommerceFulfillmentProductPreferences {
+  __typename?: 'IoRestorecommerceFulfillmentProductPreferences';
+  couriers?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  options?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+}
+
 export interface IoRestorecommerceFulfillmentProductVariant {
   __typename?: 'IoRestorecommerceFulfillmentProductVariant';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  maxHeight?: Maybe<Scalars['Float']>;
-  maxLength?: Maybe<Scalars['Float']>;
-  maxVolume?: Maybe<Scalars['Float']>;
+  maxSize?: Maybe<IoRestorecommerceGeometryBoundingBox3D>;
   maxWeight?: Maybe<Scalars['Float']>;
-  maxWidth?: Maybe<Scalars['Float']>;
   name?: Maybe<Scalars['String']>;
-  price?: Maybe<Scalars['Float']>;
-}
-
-export interface IoRestorecommerceFulfillmentShippingAddress {
-  __typename?: 'IoRestorecommerceFulfillmentShippingAddress';
-  address?: Maybe<IoRestorecommerceAddressAddress>;
-  contactPerson?: Maybe<IoRestorecommerceAddressContactPerson>;
+  price?: Maybe<IoRestorecommercePricePrice>;
 }
 
 export enum IoRestorecommerceFulfillmentState {
-  Cancelled = 'Cancelled',
-  Created = 'Created',
-  Done = 'Done',
-  Failed = 'Failed',
-  Invalid = 'Invalid',
-  Shipping = 'Shipping',
-  Submitted = 'Submitted',
-  Undefined = 'Undefined',
+  Cancelled = 'CANCELLED',
+  Created = 'CREATED',
+  Failed = 'FAILED',
+  Fulfilled = 'FULFILLED',
+  Invalid = 'INVALID',
+  InTransit = 'IN_TRANSIT',
+  Submitted = 'SUBMITTED',
+  Withdrawn = 'WITHDRAWN',
 }
 
 export interface IoRestorecommerceFulfillmentTracking {
@@ -2381,17 +2789,11 @@ export interface IoRestorecommerceFulfillmentTracking {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export interface IoRestorecommerceFulfillmentTrackingResult {
-  __typename?: 'IoRestorecommerceFulfillmentTrackingResult';
-  fulfillment?: Maybe<IoRestorecommerceFulfillmentFulfillment>;
-  status?: Maybe<IoRestorecommerceStatusStatus>;
-  tracks?: Maybe<Array<IoRestorecommerceFulfillmentTracking>>;
-}
-
-export interface IoRestorecommerceFulfillmentTrackingResultList {
-  __typename?: 'IoRestorecommerceFulfillmentTrackingResultList';
-  items?: Maybe<Array<IoRestorecommerceFulfillmentTrackingResult>>;
-  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
+export interface IoRestorecommerceGeometryBoundingBox3D {
+  __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+  height?: Maybe<Scalars['Float']>;
+  length?: Maybe<Scalars['Float']>;
+  width?: Maybe<Scalars['Float']>;
 }
 
 export interface IoRestorecommerceImageImage {
@@ -2401,25 +2803,44 @@ export interface IoRestorecommerceImageImage {
   filename?: Maybe<Scalars['String']>;
   height?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['String']>;
+  index?: Maybe<Scalars['Int']>;
   length?: Maybe<Scalars['Float']>;
+  tags?: Maybe<Array<Scalars['String']>>;
   url?: Maybe<Scalars['String']>;
   width?: Maybe<Scalars['Float']>;
+}
+
+export interface IoRestorecommerceInvoiceFulfillmentItem {
+  __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+  product?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
+  productId?: Maybe<Scalars['String']>;
+  variantId?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceInvoiceInvoice {
   __typename?: 'IoRestorecommerceInvoiceInvoice';
   customer?: Maybe<IoRestorecommerceCustomerCustomer>;
   customerId?: Maybe<Scalars['String']>;
-  customerRemark?: Maybe<Scalars['String']>;
-  document?: Maybe<Scalars['String']>;
+  documents?: Maybe<Array<IoRestorecommerceFileFile>>;
+  fromDate?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   invoiceNumber?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
-  netAmount?: Maybe<Scalars['Float']>;
-  paymentStatus?: Maybe<Scalars['String']>;
-  timestamp?: Maybe<Scalars['String']>;
-  totalAmount?: Maybe<Scalars['Float']>;
-  vatAmount?: Maybe<Scalars['Float']>;
+  paymentHints?: Maybe<Array<Scalars['String']>>;
+  paymentState?: Maybe<IoRestorecommerceInvoicePaymentState>;
+  recipient?: Maybe<IoRestorecommerceAddressBillingAddress>;
+  references?: Maybe<Array<IoRestorecommerceReferenceReference>>;
+  sections?: Maybe<Array<IoRestorecommerceInvoiceSection>>;
+  sender?: Maybe<IoRestorecommerceAddressBillingAddress>;
+  sent?: Maybe<Scalars['Boolean']>;
+  shop?: Maybe<IoRestorecommerceShopShop>;
+  shopId?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['DateTime']>;
+  toDate?: Maybe<Scalars['DateTime']>;
+  totalAmounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  user?: Maybe<IoRestorecommerceUserUser>;
+  userId?: Maybe<Scalars['String']>;
+  withdrawn?: Maybe<Scalars['Boolean']>;
 }
 
 export interface IoRestorecommerceInvoiceInvoiceListResponse {
@@ -2431,13 +2852,54 @@ export interface IoRestorecommerceInvoiceInvoiceListResponse {
 
 export interface IoRestorecommerceInvoiceInvoiceNumberResponse {
   __typename?: 'IoRestorecommerceInvoiceInvoiceNumberResponse';
-  invoiceNo?: Maybe<Scalars['String']>;
+  invoiceNumber?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceInvoiceInvoiceResponse {
   __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
   payload?: Maybe<IoRestorecommerceInvoiceInvoice>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
+}
+
+export interface IoRestorecommerceInvoiceManualItem {
+  __typename?: 'IoRestorecommerceInvoiceManualItem';
+  descritpion?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  stockKeepingUnit?: Maybe<Scalars['String']>;
+}
+
+export enum IoRestorecommerceInvoicePaymentState {
+  Payed = 'PAYED',
+  Unpayed = 'UNPAYED',
+}
+
+export interface IoRestorecommerceInvoicePosition {
+  __typename?: 'IoRestorecommerceInvoicePosition';
+  amount?: Maybe<IoRestorecommerceAmountAmount>;
+  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  contractStartDate?: Maybe<Scalars['Float']>;
+  fulfillmentItem?: Maybe<IoRestorecommerceInvoiceFulfillmentItem>;
+  id?: Maybe<Scalars['String']>;
+  manualItem?: Maybe<IoRestorecommerceInvoiceManualItem>;
+  productItem?: Maybe<IoRestorecommerceInvoiceProductItem>;
+  quantity?: Maybe<Scalars['Int']>;
+  unitPrice?: Maybe<IoRestorecommercePricePrice>;
+}
+
+export interface IoRestorecommerceInvoiceProductItem {
+  __typename?: 'IoRestorecommerceInvoiceProductItem';
+  product?: Maybe<IoRestorecommerceProductProduct>;
+  productId?: Maybe<Scalars['String']>;
+  variantId?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceInvoiceSection {
+  __typename?: 'IoRestorecommerceInvoiceSection';
+  amounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  customerRemark?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  positions?: Maybe<Array<IoRestorecommerceInvoicePosition>>;
 }
 
 export interface IoRestorecommerceJobBackoff {
@@ -2589,11 +3051,11 @@ export interface IoRestorecommerceManufacturerManufacturerResponse {
 
 export interface IoRestorecommerceMetaMeta {
   __typename?: 'IoRestorecommerceMetaMeta';
-  acl?: Maybe<Array<IoRestorecommerceAttributeAttributeObj>>;
-  created?: Maybe<Scalars['Float']>;
-  modified?: Maybe<Scalars['Float']>;
+  acls?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  created?: Maybe<Scalars['DateTime']>;
+  modified?: Maybe<Scalars['DateTime']>;
   modifiedBy?: Maybe<Scalars['String']>;
-  owner?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  owners?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
 }
 
 export interface IoRestorecommerceNotificationNotification {
@@ -2622,44 +3084,65 @@ export interface IoRestorecommerceNotificationNotificationResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
+export interface IoRestorecommerceOauthExchangeCodeResponse {
+  __typename?: 'IoRestorecommerceOauthExchangeCodeResponse';
+  email?: Maybe<Scalars['String']>;
+  token?: Maybe<IoRestorecommerceAuthTokens>;
+  user?: Maybe<IoRestorecommerceUserUserResponse>;
+}
+
+export interface IoRestorecommerceOauthGenerateLinksResponse {
+  __typename?: 'IoRestorecommerceOauthGenerateLinksResponse';
+  links?: Maybe<Scalars['MapScalar']>;
+}
+
+export interface IoRestorecommerceOauthGetTokenResponse {
+  __typename?: 'IoRestorecommerceOauthGetTokenResponse';
+  status?: Maybe<IoRestorecommerceStatusStatus>;
+  token?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceOauthServicesResponse {
+  __typename?: 'IoRestorecommerceOauthServicesResponse';
+  services?: Maybe<Array<Scalars['String']>>;
+}
+
+export enum IoRestorecommerceOrderFulfillmentInvoiceMode {
+  Exclude = 'EXCLUDE',
+  Include = 'INCLUDE',
+}
+
 export interface IoRestorecommerceOrderItem {
   __typename?: 'IoRestorecommerceOrderItem';
-  heightInCm?: Maybe<Scalars['Int']>;
-  itemType?: Maybe<Scalars['String']>;
-  lengthInCm?: Maybe<Scalars['Int']>;
-  manufacturerDescription?: Maybe<Scalars['String']>;
-  manufacturerName?: Maybe<Scalars['String']>;
-  price?: Maybe<Scalars['Float']>;
-  productDescription?: Maybe<Scalars['String']>;
-  productName?: Maybe<Scalars['String']>;
-  productVariantBundleId?: Maybe<Scalars['String']>;
-  prototypeDescription?: Maybe<Scalars['String']>;
-  prototypeName?: Maybe<Scalars['String']>;
+  amount?: Maybe<IoRestorecommerceAmountAmount>;
+  id?: Maybe<Scalars['String']>;
+  product?: Maybe<IoRestorecommerceProductProduct>;
+  productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
-  quantityPrice?: Maybe<Scalars['Float']>;
-  stockKeepingUnit?: Maybe<Scalars['String']>;
-  taricCode?: Maybe<Scalars['Float']>;
-  vat?: Maybe<Scalars['Int']>;
-  weightInKg?: Maybe<Scalars['Float']>;
-  widthInCm?: Maybe<Scalars['Int']>;
+  unitPrice?: Maybe<IoRestorecommercePricePrice>;
+  variantId?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceOrderOrder {
   __typename?: 'IoRestorecommerceOrderOrder';
-  billingAddress?: Maybe<IoRestorecommerceAddressAddress>;
-  billingEmail?: Maybe<Scalars['String']>;
-  contactPerson?: Maybe<IoRestorecommerceAddressContactPerson>;
-  customerReference?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  fulfillmentIds?: Maybe<Array<Scalars['String']>>;
+  billingAddress?: Maybe<IoRestorecommerceAddressBillingAddress>;
+  customer?: Maybe<IoRestorecommerceCustomerCustomer>;
+  customerId?: Maybe<Scalars['String']>;
+  customerOrderNr?: Maybe<Scalars['String']>;
+  customerRemark?: Maybe<Scalars['String']>;
+  fulfillmentState?: Maybe<IoRestorecommerceFulfillmentState>;
   id?: Maybe<Scalars['String']>;
   items?: Maybe<Array<IoRestorecommerceOrderItem>>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
-  name?: Maybe<Scalars['String']>;
   notificationEmail?: Maybe<Scalars['String']>;
-  shippingAddress?: Maybe<IoRestorecommerceAddressAddress>;
-  state?: Maybe<IoRestorecommerceOrderState>;
-  totalPrice?: Maybe<Scalars['Float']>;
+  orderState?: Maybe<IoRestorecommerceOrderOrderState>;
+  packagingPreferences?: Maybe<IoRestorecommerceFulfillmentProductPreferences>;
+  paymentState?: Maybe<IoRestorecommerceInvoicePaymentState>;
+  shippingAddress?: Maybe<IoRestorecommerceAddressShippingAddress>;
+  shop?: Maybe<IoRestorecommerceShopShop>;
+  shopId?: Maybe<Scalars['String']>;
+  totalAmounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  userId?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceOrderOrderListResponse {
@@ -2675,33 +3158,32 @@ export interface IoRestorecommerceOrderOrderResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export enum IoRestorecommerceOrderState {
-  Cancelled = 'Cancelled',
-  Created = 'Created',
-  Done = 'Done',
-  Failed = 'Failed',
-  Invalid = 'Invalid',
-  Shipping = 'Shipping',
-  Submitted = 'Submitted',
-  Undefined = 'Undefined',
+export enum IoRestorecommerceOrderOrderState {
+  Cancelled = 'CANCELLED',
+  Created = 'CREATED',
+  Done = 'DONE',
+  Failed = 'FAILED',
+  Invalid = 'INVALID',
+  InProcess = 'IN_PROCESS',
+  Submitted = 'SUBMITTED',
+  Withdrawn = 'WITHDRAWN',
 }
 
 export interface IoRestorecommerceOrganizationOrganization {
   __typename?: 'IoRestorecommerceOrganizationOrganization';
-  address?: Maybe<IoRestorecommerceAddressAddress>;
-  addressId?: Maybe<Scalars['String']>;
   contactPointIds?: Maybe<Array<Scalars['String']>>;
   contactPoints?: Maybe<Array<IoRestorecommerceContactPointContactPoint>>;
   data?: Maybe<GoogleProtobufAny>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   isicV4?: Maybe<Scalars['String']>;
-  logo?: Maybe<Scalars['String']>;
+  logo?: Maybe<IoRestorecommerceImageImage>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
   parent?: Maybe<IoRestorecommerceOrganizationOrganization>;
   parentId?: Maybe<Scalars['String']>;
   paymentMethodIds?: Maybe<Array<Scalars['String']>>;
+  paymentMethods?: Maybe<Array<IoRestorecommercePaymentMethodPaymentMethod>>;
   registration?: Maybe<Scalars['String']>;
   registrationCourt?: Maybe<Scalars['String']>;
   vatId?: Maybe<Scalars['String']>;
@@ -2733,7 +3215,7 @@ export interface IoRestorecommerceOstorageCopyResponseItem {
 export interface IoRestorecommerceOstorageCopyResponseList {
   __typename?: 'IoRestorecommerceOstorageCopyResponseList';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  response?: Maybe<
+  responses?: Maybe<
     Array<IoRestorecommerceOstorageCopyResponsePayloadWithStatus>
   >;
 }
@@ -2747,7 +3229,7 @@ export interface IoRestorecommerceOstorageCopyResponsePayloadWithStatus {
 export interface IoRestorecommerceOstorageListResponse {
   __typename?: 'IoRestorecommerceOstorageListResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  response?: Maybe<
+  responses?: Maybe<
     Array<IoRestorecommerceOstorageObjectsDataWithPayloadStatus>
   >;
 }
@@ -2764,7 +3246,7 @@ export interface IoRestorecommerceOstorageMoveResponseItem {
 export interface IoRestorecommerceOstorageMoveResponseList {
   __typename?: 'IoRestorecommerceOstorageMoveResponseList';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  response?: Maybe<
+  responses?: Maybe<
     Array<IoRestorecommerceOstorageMoveResponsePayloadWithStatus>
   >;
 }
@@ -2843,6 +3325,27 @@ export interface IoRestorecommerceOstorageResponse {
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   tags?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
   url?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommercePaymentMethodPaymentMethod {
+  __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+  data?: Maybe<GoogleProtobufAny>;
+  id?: Maybe<Scalars['String']>;
+  meta?: Maybe<IoRestorecommerceMetaMeta>;
+  paymentMethod?: Maybe<IoRestorecommercePaymentMethodPaymentMethodEnum>;
+  transferType?: Maybe<IoRestorecommercePaymentMethodTransferTypeEnum>;
+}
+
+export enum IoRestorecommercePaymentMethodPaymentMethodEnum {
+  DirectDebit = 'DIRECT_DEBIT',
+  Paypal = 'PAYPAL',
+  WireTransfer = 'WIRE_TRANSFER',
+}
+
+export enum IoRestorecommercePaymentMethodTransferTypeEnum {
+  Both = 'BOTH',
+  Receive = 'RECEIVE',
+  Send = 'SEND',
 }
 
 export interface IoRestorecommercePaymentPaymentPayload {
@@ -3123,20 +3626,49 @@ export interface IoRestorecommercePriceGroupPriceGroupResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
+export interface IoRestorecommercePricePrice {
+  __typename?: 'IoRestorecommercePricePrice';
+  currency?: Maybe<IoRestorecommerceCurrencyCurrency>;
+  currencyId?: Maybe<Scalars['String']>;
+  regularPrice?: Maybe<Scalars['Float']>;
+  sale?: Maybe<Scalars['Boolean']>;
+  salePrice?: Maybe<Scalars['Float']>;
+  taxIds?: Maybe<Array<Scalars['String']>>;
+  taxes?: Maybe<Array<IoRestorecommerceTaxTax>>;
+}
+
+export interface IoRestorecommerceProductAssociation {
+  __typename?: 'IoRestorecommerceProductAssociation';
+  data?: Maybe<GoogleProtobufAny>;
+  product?: Maybe<IoRestorecommerceProductProduct>;
+  productId?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Scalars['String']>>;
+  type?: Maybe<IoRestorecommerceProductAssociationType>;
+}
+
+export enum IoRestorecommerceProductAssociationType {
+  Accessory = 'Accessory',
+  Miscellaneous = 'Miscellaneous',
+  Recommendation = 'Recommendation',
+}
+
 export interface IoRestorecommerceProductBundle {
   __typename?: 'IoRestorecommerceProductBundle';
   description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  image?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<Array<IoRestorecommerceImageImage>>;
   name?: Maybe<Scalars['String']>;
-  price?: Maybe<Scalars['Float']>;
-  product?: Maybe<Array<IoRestorecommerceProductBundleProduct>>;
+  prePackaged?: Maybe<IoRestorecommerceProductPackage>;
+  price?: Maybe<IoRestorecommercePricePrice>;
+  products?: Maybe<Array<IoRestorecommerceProductBundleProduct>>;
 }
 
 export interface IoRestorecommerceProductBundleProduct {
   __typename?: 'IoRestorecommerceProductBundleProduct';
+  priceRatio?: Maybe<Scalars['Float']>;
+  product?: Maybe<IoRestorecommerceProductProduct>;
   productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
+  variantId?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceProductCategoryParent {
@@ -3169,33 +3701,65 @@ export interface IoRestorecommerceProductCategoryProductCategoryResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export interface IoRestorecommerceProductIdentifier {
-  __typename?: 'IoRestorecommerceProductIdentifier';
-  id?: Maybe<Scalars['String']>;
+export interface IoRestorecommerceProductIndividualProduct {
+  __typename?: 'IoRestorecommerceProductIndividualProduct';
+  category?: Maybe<IoRestorecommerceProductCategoryProductCategory>;
+  categoryId?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  gtin?: Maybe<Scalars['String']>;
+  manufacturer?: Maybe<IoRestorecommerceManufacturerManufacturer>;
+  manufacturerId?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  originCountryId?: Maybe<Scalars['String']>;
+  origin_country?: Maybe<IoRestorecommerceCountryCountry>;
+  physical?: Maybe<IoRestorecommerceProductPhysicalProduct>;
+  prototype?: Maybe<IoRestorecommerceProductPrototypeProductPrototype>;
+  prototypeId?: Maybe<Scalars['String']>;
+  service?: Maybe<IoRestorecommerceProductServiceProduct>;
+  taricCode?: Maybe<Scalars['String']>;
+  taxIds?: Maybe<Array<Scalars['String']>>;
+  virtual?: Maybe<IoRestorecommerceProductVirtualProduct>;
 }
 
-export interface IoRestorecommerceProductMainProduct {
-  __typename?: 'IoRestorecommerceProductMainProduct';
-  active?: Maybe<Scalars['Boolean']>;
-  bundle?: Maybe<IoRestorecommerceProductBundle>;
+export interface IoRestorecommerceProductPackage {
+  __typename?: 'IoRestorecommerceProductPackage';
+  rotatable?: Maybe<Scalars['Boolean']>;
+  sizeInCm?: Maybe<IoRestorecommerceGeometryBoundingBox3D>;
+  weightInKg?: Maybe<Scalars['Float']>;
+}
+
+export interface IoRestorecommerceProductPhysicalProduct {
+  __typename?: 'IoRestorecommerceProductPhysicalProduct';
+  variants?: Maybe<Array<IoRestorecommerceProductPhysicalVariant>>;
+}
+
+export interface IoRestorecommerceProductPhysicalVariant {
+  __typename?: 'IoRestorecommerceProductPhysicalVariant';
+  description?: Maybe<Scalars['String']>;
+  files?: Maybe<Array<IoRestorecommerceFileFile>>;
   id?: Maybe<Scalars['String']>;
-  meta?: Maybe<IoRestorecommerceMetaMeta>;
-  product?: Maybe<IoRestorecommerceProductProduct>;
+  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  name?: Maybe<Scalars['String']>;
+  package?: Maybe<IoRestorecommerceProductPackage>;
+  price?: Maybe<IoRestorecommercePricePrice>;
+  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  stockKeepingUnit?: Maybe<Scalars['String']>;
+  stockLevel?: Maybe<Scalars['Int']>;
+  templateVariant?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceProductProduct {
   __typename?: 'IoRestorecommerceProductProduct';
-  category?: Maybe<IoRestorecommerceProductIdentifier>;
-  description?: Maybe<Scalars['String']>;
-  gtin?: Maybe<Scalars['String']>;
+  active?: Maybe<Scalars['Boolean']>;
+  associations?: Maybe<Array<IoRestorecommerceProductAssociation>>;
+  bundle?: Maybe<IoRestorecommerceProductBundle>;
+  data?: Maybe<GoogleProtobufAny>;
   id?: Maybe<Scalars['String']>;
-  manufacturer?: Maybe<IoRestorecommerceManufacturerManufacturer>;
-  manufacturerId?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  prototype?: Maybe<IoRestorecommerceProductIdentifier>;
-  taricCode?: Maybe<Scalars['String']>;
-  taxId?: Maybe<Array<Scalars['String']>>;
-  variants?: Maybe<Array<IoRestorecommerceProductVariant>>;
+  meta?: Maybe<IoRestorecommerceMetaMeta>;
+  product?: Maybe<IoRestorecommerceProductIndividualProduct>;
+  shop?: Maybe<IoRestorecommerceShopShop>;
+  shopId?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Scalars['String']>>;
 }
 
 export interface IoRestorecommerceProductProductListResponse {
@@ -3207,12 +3771,13 @@ export interface IoRestorecommerceProductProductListResponse {
 
 export interface IoRestorecommerceProductProductResponse {
   __typename?: 'IoRestorecommerceProductProductResponse';
-  payload?: Maybe<IoRestorecommerceProductMainProduct>;
+  payload?: Maybe<IoRestorecommerceProductProduct>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
 export interface IoRestorecommerceProductPrototypeProductPrototype {
   __typename?: 'IoRestorecommerceProductPrototypeProductPrototype';
+  category?: Maybe<IoRestorecommerceProductCategoryProductCategory>;
   categoryId?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -3236,19 +3801,55 @@ export interface IoRestorecommerceProductPrototypeProductPrototypeResponse {
   status?: Maybe<IoRestorecommerceStatusStatus>;
 }
 
-export interface IoRestorecommerceProductVariant {
-  __typename?: 'IoRestorecommerceProductVariant';
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+export interface IoRestorecommerceProductServiceProduct {
+  __typename?: 'IoRestorecommerceProductServiceProduct';
+  variants?: Maybe<Array<IoRestorecommerceProductServiceVariant>>;
+}
+
+export interface IoRestorecommerceProductServiceVariant {
+  __typename?: 'IoRestorecommerceProductServiceVariant';
   description?: Maybe<Scalars['String']>;
+  files?: Maybe<Array<IoRestorecommerceFileFile>>;
   id?: Maybe<Scalars['String']>;
-  image?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<Array<IoRestorecommerceImageImage>>;
   name?: Maybe<Scalars['String']>;
-  price?: Maybe<Scalars['Float']>;
-  sale?: Maybe<Scalars['Boolean']>;
-  salePrice?: Maybe<Scalars['Float']>;
+  price?: Maybe<IoRestorecommercePricePrice>;
+  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
   templateVariant?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceProductVirtualProduct {
+  __typename?: 'IoRestorecommerceProductVirtualProduct';
+  variants?: Maybe<Array<IoRestorecommerceProductVirtualVariant>>;
+}
+
+export interface IoRestorecommerceProductVirtualVariant {
+  __typename?: 'IoRestorecommerceProductVirtualVariant';
+  description?: Maybe<Scalars['String']>;
+  files?: Maybe<Array<IoRestorecommerceFileFile>>;
+  id?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<IoRestorecommercePricePrice>;
+  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  stockKeepingUnit?: Maybe<Scalars['String']>;
+  stockLevel?: Maybe<Scalars['Int']>;
+  templateVariant?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommercePropertyProperty {
+  __typename?: 'IoRestorecommercePropertyProperty';
+  id?: Maybe<Scalars['String']>;
+  unitCode?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceReferenceReference {
+  __typename?: 'IoRestorecommerceReferenceReference';
+  instanceId?: Maybe<Scalars['String']>;
+  instanceType?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceResourcebaseDeleteResponse {
@@ -3359,14 +3960,26 @@ export interface IoRestorecommerceRuleRuleResponse {
 
 export interface IoRestorecommerceRuleTarget {
   __typename?: 'IoRestorecommerceRuleTarget';
-  action?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  actions?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
   resources?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  subject?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  subjects?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
 }
 
 export interface IoRestorecommerceSearchSearchResponse {
   __typename?: 'IoRestorecommerceSearchSearchResponse';
   data?: Maybe<Array<GoogleProtobufAny>>;
+}
+
+export interface IoRestorecommerceShopShop {
+  __typename?: 'IoRestorecommerceShopShop';
+  description?: Maybe<Scalars['String']>;
+  domain?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
+  organization?: Maybe<IoRestorecommerceOrganizationOrganization>;
+  organizationId?: Maybe<Scalars['String']>;
+  shopNumber?: Maybe<Scalars['String']>;
 }
 
 export interface IoRestorecommerceStatusOperationStatus {
@@ -3385,6 +3998,12 @@ export interface IoRestorecommerceStatusStatus {
   code?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   message?: Maybe<Scalars['String']>;
+}
+
+export interface IoRestorecommerceStatusStatusListResponse {
+  __typename?: 'IoRestorecommerceStatusStatusListResponse';
+  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
+  status?: Maybe<Array<IoRestorecommerceStatusStatus>>;
 }
 
 export interface IoRestorecommerceTaxTax {
@@ -3535,8 +4154,8 @@ export interface IoRestorecommerceUserUserRole {
   newEmail?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   passwordHash?: Maybe<Scalars['String']>;
-  role?: Maybe<Array<IoRestorecommerceRoleRole>>;
   roleAssociations?: Maybe<Array<IoRestorecommerceAuthRoleAssociation>>;
+  roles?: Maybe<Array<IoRestorecommerceRoleRole>>;
   timezone?: Maybe<IoRestorecommerceTimezoneTimezone>;
   timezoneId?: Maybe<Scalars['String']>;
   tokens?: Maybe<Array<IoRestorecommerceAuthTokens>>;
@@ -3571,11 +4190,11 @@ export interface Mutation {
   identity: IdentityMutation;
   indexing: IndexingMutation;
   invoicing: InvoicingMutation;
+  master_data: ResourceMutation;
   notification: NotificationMutation;
   ordering: OrderingMutation;
   ostorage: OstorageMutation;
   payment: PaymentMutation;
-  resource: ResourceMutation;
   scheduling: SchedulingMutation;
 }
 
@@ -3620,22 +4239,44 @@ export interface OrderingMutation {
 export interface OrderingOrderMutation {
   __typename?: 'OrderingOrderMutation';
   Cancel?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
+  CreateFulfillment?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
+  CreateInvoice?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
+  Evaluate?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
+  QueryPackingSolution?: Maybe<ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse>;
   Submit?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
-  TriggerFulfillment?: Maybe<ProtoIoRestorecommerceStatusStatus>;
+  TriggerFulfillment?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
+  TriggerInvoice?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
+  Withdraw?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
 }
 
 export interface OrderingOrderMutationCancelArgs {
-  input: IIoRestorecommerceOrderCancelRequestList;
+  input: IIoRestorecommerceOrderOrderIdList;
+}
+
+export interface OrderingOrderMutationCreateFulfillmentArgs {
+  input: IIoRestorecommerceOrderFulfillmentRequestList;
+}
+
+export interface OrderingOrderMutationCreateInvoiceArgs {
+  input: IIoRestorecommerceOrderInvoiceRequestList;
 }
 
 export interface OrderingOrderMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }
 
+export interface OrderingOrderMutationEvaluateArgs {
+  input: IIoRestorecommerceOrderOrderList;
+}
+
 export interface OrderingOrderMutationMutateArgs {
   input: IIoRestorecommerceOrderOrderList;
+}
+
+export interface OrderingOrderMutationQueryPackingSolutionArgs {
+  input: IIoRestorecommerceOrderFulfillmentRequestList;
 }
 
 export interface OrderingOrderMutationSubmitArgs {
@@ -3643,7 +4284,15 @@ export interface OrderingOrderMutationSubmitArgs {
 }
 
 export interface OrderingOrderMutationTriggerFulfillmentArgs {
-  input: IIoRestorecommerceOrderTriggerFulfillmentRequestList;
+  input: IIoRestorecommerceOrderFulfillmentRequestList;
+}
+
+export interface OrderingOrderMutationTriggerInvoiceArgs {
+  input: IIoRestorecommerceOrderInvoiceRequestList;
+}
+
+export interface OrderingOrderMutationWithdrawArgs {
+  input: IIoRestorecommerceOrderOrderIdList;
 }
 
 export interface OrderingOrderQuery {
@@ -3767,6 +4416,11 @@ export interface ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListRes
   details?: Maybe<IoRestorecommerceAuthenticationLogAuthenticationLogListResponse>;
 }
 
+export interface ProtoIoRestorecommerceCodeCodeListResponse {
+  __typename?: 'ProtoIoRestorecommerceCodeCodeListResponse';
+  details?: Maybe<IoRestorecommerceCodeCodeListResponse>;
+}
+
 export interface ProtoIoRestorecommerceCommandCommandListResponse {
   __typename?: 'ProtoIoRestorecommerceCommandCommandListResponse';
   details?: Maybe<IoRestorecommerceCommandCommandListResponse>;
@@ -3792,29 +4446,24 @@ export interface ProtoIoRestorecommerceCustomerCustomerListResponse {
   details?: Maybe<IoRestorecommerceCustomerCustomerListResponse>;
 }
 
-export interface ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList {
-  __typename?: 'ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList';
-  details?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourierResponseList>;
+export interface ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
 }
 
-export interface ProtoIoRestorecommerceFulfillmentFulfillmentResponseList {
-  __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentResponseList';
-  details?: Maybe<IoRestorecommerceFulfillmentFulfillmentResponseList>;
+export interface ProtoIoRestorecommerceFulfillmentFulfillmentListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentFulfillmentListResponse>;
 }
 
-export interface ProtoIoRestorecommerceFulfillmentProductFulfillmentProductResponseList {
-  __typename?: 'ProtoIoRestorecommerceFulfillmentProductFulfillmentProductResponseList';
-  details?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProductResponseList>;
+export interface ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
 }
 
-export interface ProtoIoRestorecommerceFulfillmentProductPackingSolutionResponseList {
-  __typename?: 'ProtoIoRestorecommerceFulfillmentProductPackingSolutionResponseList';
-  details?: Maybe<IoRestorecommerceFulfillmentProductPackingSolutionResponseList>;
-}
-
-export interface ProtoIoRestorecommerceFulfillmentTrackingResultList {
-  __typename?: 'ProtoIoRestorecommerceFulfillmentTrackingResultList';
-  details?: Maybe<IoRestorecommerceFulfillmentTrackingResultList>;
+export interface ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentProductPackingSolutionListResponse>;
 }
 
 export interface ProtoIoRestorecommerceInvoiceInvoiceListResponse {
@@ -3850,6 +4499,26 @@ export interface ProtoIoRestorecommerceManufacturerManufacturerListResponse {
 export interface ProtoIoRestorecommerceNotificationNotificationListResponse {
   __typename?: 'ProtoIoRestorecommerceNotificationNotificationListResponse';
   details?: Maybe<IoRestorecommerceNotificationNotificationListResponse>;
+}
+
+export interface ProtoIoRestorecommerceOauthExchangeCodeResponse {
+  __typename?: 'ProtoIoRestorecommerceOauthExchangeCodeResponse';
+  details?: Maybe<IoRestorecommerceOauthExchangeCodeResponse>;
+}
+
+export interface ProtoIoRestorecommerceOauthGenerateLinksResponse {
+  __typename?: 'ProtoIoRestorecommerceOauthGenerateLinksResponse';
+  details?: Maybe<IoRestorecommerceOauthGenerateLinksResponse>;
+}
+
+export interface ProtoIoRestorecommerceOauthGetTokenResponse {
+  __typename?: 'ProtoIoRestorecommerceOauthGetTokenResponse';
+  details?: Maybe<IoRestorecommerceOauthGetTokenResponse>;
+}
+
+export interface ProtoIoRestorecommerceOauthServicesResponse {
+  __typename?: 'ProtoIoRestorecommerceOauthServicesResponse';
+  details?: Maybe<IoRestorecommerceOauthServicesResponse>;
 }
 
 export interface ProtoIoRestorecommerceOrderOrderListResponse {
@@ -3952,9 +4621,9 @@ export interface ProtoIoRestorecommerceStatusOperationStatusObj {
   details?: Maybe<IoRestorecommerceStatusOperationStatusObj>;
 }
 
-export interface ProtoIoRestorecommerceStatusStatus {
-  __typename?: 'ProtoIoRestorecommerceStatusStatus';
-  details?: Maybe<IoRestorecommerceStatusStatus>;
+export interface ProtoIoRestorecommerceStatusStatusListResponse {
+  __typename?: 'ProtoIoRestorecommerceStatusStatusListResponse';
+  details?: Maybe<IoRestorecommerceStatusStatusListResponse>;
 }
 
 export interface ProtoIoRestorecommerceTaxTaxListResponse {
@@ -4000,10 +4669,10 @@ export interface Query {
   fulfillment: FulfillmentQuery;
   identity: IdentityQuery;
   invoicing: InvoicingQuery;
+  master_data: ResourceQuery;
   notification: NotificationQuery;
   ordering: OrderingQuery;
   ostorage: OstorageQuery;
-  resource: ResourceQuery;
   scheduling: SchedulingQuery;
   status?: Maybe<FacadeStatusType>;
 }
@@ -4028,6 +4697,29 @@ export interface ResourceAddressQuery {
 }
 
 export interface ResourceAddressQueryReadArgs {
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}
+
+export interface ResourceCodeMutation {
+  __typename?: 'ResourceCodeMutation';
+  Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
+  Mutate?: Maybe<ProtoIoRestorecommerceCodeCodeListResponse>;
+}
+
+export interface ResourceCodeMutationDeleteArgs {
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}
+
+export interface ResourceCodeMutationMutateArgs {
+  input: IIoRestorecommerceCodeCodeList;
+}
+
+export interface ResourceCodeQuery {
+  __typename?: 'ResourceCodeQuery';
+  Read?: Maybe<ProtoIoRestorecommerceCodeCodeListResponse>;
+}
+
+export interface ResourceCodeQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
 }
 
@@ -4195,6 +4887,7 @@ export interface ResourceLocationQueryReadArgs {
 export interface ResourceMutation {
   __typename?: 'ResourceMutation';
   address: ResourceAddressMutation;
+  code: ResourceCodeMutation;
   command: ResourceCommandMutation;
   contact_point: ResourceContactPointMutation;
   contact_point_type: ResourceContactPointTypeMutation;
@@ -4234,6 +4927,7 @@ export interface ResourceOrganizationQueryReadArgs {
 export interface ResourceQuery {
   __typename?: 'ResourceQuery';
   address: ResourceAddressQuery;
+  code: ResourceCodeQuery;
   command: ResourceCommandQuery;
   contact_point: ResourceContactPointQuery;
   contact_point_type: ResourceContactPointTypeQuery;
@@ -4349,6 +5043,99 @@ export interface SchedulingQuery {
   job: SchedulingJobQuery;
 }
 
+export interface Subscription {
+  __typename?: 'Subscription';
+  catalogProducts?: Maybe<SubscriptionOutput>;
+  fulfillmentFulfillmentCouriers?: Maybe<SubscriptionOutput>;
+  fulfillmentFulfillment_products?: Maybe<SubscriptionOutput>;
+  fulfillmentFulfillments?: Maybe<SubscriptionOutput>;
+  identityUsers?: Maybe<SubscriptionOutput>;
+  invoicingInvoices?: Maybe<SubscriptionOutput>;
+  orderingOrders?: Maybe<SubscriptionOutput>;
+}
+
+export interface SubscriptionCatalogProductsArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export interface SubscriptionFulfillmentFulfillmentCouriersArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export interface SubscriptionFulfillmentFulfillment_ProductsArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export interface SubscriptionFulfillmentFulfillmentsArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export interface SubscriptionIdentityUsersArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export interface SubscriptionInvoicingInvoicesArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export interface SubscriptionOrderingOrdersArgs {
+  action?: InputMaybe<SubscriptionAction>;
+}
+
+export enum SubscriptionAction {
+  Created = 'CREATED',
+  Deleted = 'DELETED',
+  Updated = 'UPDATED',
+}
+
+export interface SubscriptionOutput {
+  __typename?: 'SubscriptionOutput';
+  id?: Maybe<Scalars['String']>;
+}
+
+export type FindByTokenQueryVariables = Exact<{
+  input: IIoRestorecommerceUserFindByTokenRequest;
+}>;
+
+export type FindByTokenQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    user: {
+      __typename?: 'IdentityUserQuery';
+      FindByToken?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserResponse';
+          status?: {
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          payload?: {
+            __typename?: 'IoRestorecommerceUserUser';
+            id?: string | null;
+            active?: boolean | null;
+            activationCode?: string | null;
+            email?: string | null;
+            name?: string | null;
+            firstName?: string | null;
+            lastName?: string | null;
+            defaultScope?: string | null;
+            localeId?: string | null;
+            timezoneId?: string | null;
+            userType?: IoRestorecommerceUserUserType | null;
+            roleAssociations?: Array<{
+              __typename?: 'IoRestorecommerceAuthRoleAssociation';
+              role?: string | null;
+            }> | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type ActivateMutationVariables = Exact<{
   input: IIoRestorecommerceUserActivateRequest;
 }>;
@@ -4374,33 +5161,24 @@ export type ActivateMutation = {
   };
 };
 
-export type LoginMutationVariables = Exact<{
-  input: IIoRestorecommerceUserLoginRequest;
+export type ConfirmPasswordChangeMutationVariables = Exact<{
+  input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
 }>;
 
-export type LoginMutation = {
+export type ConfirmPasswordChangeMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
     user: {
       __typename?: 'IdentityUserMutation';
-      Login?: {
-        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
+      ConfirmPasswordChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
         details?: {
-          __typename?: 'IoRestorecommerceUserUserResponse';
-          status?: {
-            __typename?: 'IoRestorecommerceStatusStatus';
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
             message?: string | null;
-          } | null;
-          payload?: {
-            __typename?: 'IoRestorecommerceUserUser';
-            id?: string | null;
-            name?: string | null;
-            email?: string | null;
-            active?: boolean | null;
-            firstName?: string | null;
-            lastName?: string | null;
           } | null;
         } | null;
       } | null;
@@ -4430,19 +5208,17 @@ export type RegisterMutation = {
           payload?: {
             __typename?: 'IoRestorecommerceUserUser';
             id?: string | null;
+            name?: string | null;
             email?: string | null;
             firstName?: string | null;
             lastName?: string | null;
+            userType?: IoRestorecommerceUserUserType | null;
             activationCode?: string | null;
-            tokens?: Array<{
-              __typename?: 'IoRestorecommerceAuthTokens';
-              name?: string | null;
-              type?: string | null;
-              token?: string | null;
-              scopes?: Array<string> | null;
-              lastLogin?: number | null;
-              expiresIn?: number | null;
-              interactive?: boolean | null;
+            active?: boolean | null;
+            roleAssociations?: Array<{
+              __typename?: 'IoRestorecommerceAuthRoleAssociation';
+              id?: string | null;
+              role?: string | null;
             }> | null;
           } | null;
         } | null;
@@ -4451,6 +5227,77 @@ export type RegisterMutation = {
   };
 };
 
+export type RequestPasswordChangeMutationVariables = Exact<{
+  input: IIoRestorecommerceUserRequestPasswordChangeRequest;
+}>;
+
+export type RequestPasswordChangeMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      RequestPasswordChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export const FindByTokenDocument = gql`
+  query FindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
+    identity {
+      user {
+        FindByToken(input: $input) {
+          details {
+            status {
+              code
+              message
+            }
+            payload {
+              id
+              active
+              activationCode
+              email
+              name
+              firstName
+              lastName
+              defaultScope
+              localeId
+              timezoneId
+              userType
+              roleAssociations {
+                role
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FindByTokenGQL extends Apollo.Query<
+  FindByTokenQuery,
+  FindByTokenQueryVariables
+> {
+  override document = FindByTokenDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const ActivateDocument = gql`
   mutation Activate($input: IIoRestorecommerceUserActivateRequest!) {
     identity {
@@ -4481,23 +5328,17 @@ export class ActivateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
-export const LoginDocument = gql`
-  mutation Login($input: IIoRestorecommerceUserLoginRequest!) {
+export const ConfirmPasswordChangeDocument = gql`
+  mutation ConfirmPasswordChange(
+    $input: IIoRestorecommerceUserConfirmPasswordChangeRequest!
+  ) {
     identity {
       user {
-        Login(input: $input) {
+        ConfirmPasswordChange(input: $input) {
           details {
-            status {
+            operationStatus {
               code
               message
-            }
-            payload {
-              id
-              name
-              email
-              active
-              firstName
-              lastName
             }
           }
         }
@@ -4509,11 +5350,11 @@ export const LoginDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGQL extends Apollo.Mutation<
-  LoginMutation,
-  LoginMutationVariables
+export class ConfirmPasswordChangeGQL extends Apollo.Mutation<
+  ConfirmPasswordChangeMutation,
+  ConfirmPasswordChangeMutationVariables
 > {
-  override document = LoginDocument;
+  override document = ConfirmPasswordChangeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -4531,18 +5372,16 @@ export const RegisterDocument = gql`
             }
             payload {
               id
+              name
               email
               firstName
               lastName
+              userType
               activationCode
-              tokens {
-                name
-                type
-                token
-                scopes
-                lastLogin
-                expiresIn
-                interactive
+              active
+              roleAssociations {
+                id
+                role
               }
             }
           }
@@ -4560,6 +5399,38 @@ export class RegisterGQL extends Apollo.Mutation<
   RegisterMutationVariables
 > {
   override document = RegisterDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const RequestPasswordChangeDocument = gql`
+  mutation RequestPasswordChange(
+    $input: IIoRestorecommerceUserRequestPasswordChangeRequest!
+  ) {
+    identity {
+      user {
+        RequestPasswordChange(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RequestPasswordChangeGQL extends Apollo.Mutation<
+  RequestPasswordChangeMutation,
+  RequestPasswordChangeMutationVariables
+> {
+  override document = RequestPasswordChangeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

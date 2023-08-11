@@ -1,0 +1,33 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="align-centered">
+    <p>
+      Thank you for activating your account! We're processing your request now
+      and will have your account ready for use as soon as possible.
+    </p>
+
+    <p>Please be patient while we complete the activation process.</p>
+
+    <ng-container *ngIf="!vm?.isLoading; else templateIsLoading">
+      <div class="align-left">
+        <ng-container *ngIf="vm?.error; else templateSuccess">
+          <vcl-notification>
+            There was an error activating your account. Please try again later.
+          </vcl-notification>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #templateIsLoading>
+  <vcl-busy-indicator />
+</ng-template>
+
+<ng-template #templateSuccess>
+  <vcl-notification [type]="notificationType.Success">
+    Your account has been activated. You may now
+    <a [routerLink]="ROUTER.pages.main.children.auth.children.signIn.link"
+      >sign in</a
+    >.
+  </vcl-notification>
+</ng-template>

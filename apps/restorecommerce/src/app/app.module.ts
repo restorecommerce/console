@@ -1,5 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
@@ -11,22 +13,30 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
-import { AppStoreModule } from './app.store.module';
+import { AppStateModule } from './app.state.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, {
       initialNavigation: 'enabledBlocking',
     }),
     CoreGraphQLModule.forRoot({
-      api: environment.graphql.api,
+      api: environment.urls.graphql,
     }),
-    AppStoreModule,
+    AppStateModule,
     ModulesUiBaseModule,
     ModulesUiModule.forRoot(),
     VCLDateAdapterModule.forRoot(),
+  ],
+  providers: [
+    {
+      provide: 'apiUrl',
+      useValue: environment.urls.api,
+    },
   ],
   bootstrap: [AppComponent],
 })

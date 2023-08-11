@@ -1,4 +1,4 @@
-import { IConstant, ILanguage } from '@console-core/types';
+import { IAppConstant, ILanguage } from '@console-core/types';
 
 const name = 'Restorecommerce';
 
@@ -13,8 +13,10 @@ const supported: ILanguage[] = [
   },
 ];
 
-export const APP: Readonly<IConstant> = {
+export const APP: Readonly<IAppConstant> = {
   name,
+  logoUrl:
+    'https://raw.githubusercontent.com/restorecommerce/branding/master/Logo/restore_commerce_logo.png',
   languages: {
     default: {
       ...supported[0],

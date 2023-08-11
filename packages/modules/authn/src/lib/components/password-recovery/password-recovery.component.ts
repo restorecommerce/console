@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-password-recovery',
-  template: `<rc-page-password-recovery></rc-page-password-recovery> `,
-  styles: [],
+  selector: 'app-authn-password-recovery',
+  template: `<rc-page-authn-password-recovery />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordRecoveryComponent {}

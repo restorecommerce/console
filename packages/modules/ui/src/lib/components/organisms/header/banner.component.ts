@@ -5,6 +5,8 @@ import {
   Input,
 } from '@angular/core';
 
+import { APP } from '@console-core/config';
+
 @Component({
   selector: 'rc-banner',
   templateUrl: 'banner.component.html',
@@ -20,4 +22,6 @@ export class RcBannerComponent {
 
   @Input()
   logoLink?: string;
+
+  APP = APP;
 }

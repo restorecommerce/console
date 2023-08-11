@@ -1,5 +1,5 @@
-@use '@vcl/vcl/theme' as *;
 @use './theme/_console-variables.scss' as *;
+@use '@vcl/vcl/theme.scss' as *;
 
 /* Application specific styles */
 .rc-layout-grid {

@@ -1,41 +1,29 @@
-<ng-container *ngIf="!vm?.isLoading; else templateLoading">
-  <div class="self-center justify-center">
-    <div class="scale110p">
-      <div class="row">
-        <div class="w-45p gutter-margin-t-b">
-          <h2>Sign In</h2>
-          <rc-sign-in [login]="login"></rc-sign-in>
-        </div>
+<div class="self-center justify-center">
+  <div class="row">
+    <div class="w-45p gutter-margin-t-b">
+      <h2>Sign In</h2>
+      <rc-authn-sign-in />
+    </div>
 
-        <div class="w-10p divider divider-vertical row center justify-center">
-          <div class="divider-rule"></div>
-          <div class="icogram divider-element">
-            <div class="text">or</div>
-          </div>
-        </div>
-
-        <div class="w-45p col justify-center gutter-margin-t-b">
-          <a
-            [routerLink]="ROUTER.pages.main.children.auth.children.signUp.link"
-            class="col justify-center"
-          >
-            <button
-              type="button"
-              class="button emphasized"
-            >
-              Create an Account
-            </button>
-          </a>
-        </div>
+    <div class="w-10p divider divider-vertical row center justify-center">
+      <div class="divider-rule"></div>
+      <div class="icogram divider-element">
+        <div class="text">or</div>
       </div>
     </div>
-  </div>
-</ng-container>
 
-<ng-template #templateLoading>
-  <div class="scale110p">
-    <div class="align-centered">
-      <vcl-busy-indicator></vcl-busy-indicator>
+    <div class="w-45p col justify-center gutter-margin-t-b">
+      <a
+        [routerLink]="ROUTER.pages.main.children.auth.children.signUp.link"
+        class="col justify-center"
+      >
+        <button
+          type="button"
+          class="button emphasized"
+        >
+          Create an Account
+        </button>
+      </a>
     </div>
   </div>
-</ng-template>
+</div>

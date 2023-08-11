@@ -1,6 +1,6 @@
-import { IRouter } from '@console-core/types';
+import { IRouterConstant } from '@console-core/types';
 
-export const ROUTER: Readonly<IRouter> = {
+export const ROUTER: Readonly<IRouterConstant> = {
   pages: {
     main: {
       path: '',
@@ -12,35 +12,103 @@ export const ROUTER: Readonly<IRouter> = {
           link: '/',
           getLink: () => ['', '/'],
         },
+        activateUser: {
+          path: 'activate_user',
+          link: '/activate_user',
+          getLink: () => ['', 'activate_user'],
+        },
+        confirmPasswordChange: {
+          path: 'confirm_password_change',
+          link: '/confirm_password_change',
+          getLink: () => ['', 'confirm_password_change'],
+        },
         auth: {
           path: 'auth',
           link: '/auth',
           getLink: () => ['', 'auth'],
           children: {
+            signUp: {
+              path: 'sign-up',
+              link: '/auth/sign-up',
+              getLink: () => ['', 'auth', 'sign-up'],
+            },
+            activation: {
+              path: 'activation/:identifier/:code',
+              link: '/auth/activation/:identifier/:code',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
+                  ? ['', 'auth', 'activation', params.identifier, params.code]
+                  : ['', 'auth', 'activation'],
+            },
             signIn: {
               path: 'sign-in',
               link: '/auth/sign-in',
               getLink: () => ['', 'auth', 'sign-in'],
             },
-            signUp: {
-              path: 'sign-up',
-              link: '/auth/sign-up',
-              getLink: () => ['', 'auth', 'sign-up'],
+            signOut: {
+              path: 'sign-out',
+              link: '/auth/sign-out',
+              getLink: () => ['', 'auth', 'sign-out'],
+            },
+            emailRecovery: {
+              path: 'email-recovery',
+              link: '/auth/email-recovery',
+              getLink: () => ['', 'auth', 'email-recovery'],
+            },
+            confirmEmail: {
+              path: 'confirm-email/:identifier/:code',
+              link: '/auth/confirm-email/:identifier/:code',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
+                  ? [
+                      '',
+                      'auth',
+                      'confirm-email',
+                      params.identifier,
+                      params.code,
+                    ]
+                  : ['', 'auth', 'confirm-email'],
             },
             passwordRecovery: {
               path: 'password-recovery',
               link: '/auth/password-recovery',
               getLink: () => ['', 'auth', 'password-recovery'],
             },
-            activation: {
-              path: 'activation',
-              link: '/auth/activation',
-              getLink: () => ['', 'auth', 'activation'],
+            confirmPassword: {
+              path: 'confirm-password/:identifier/:code',
+              link: '/auth/confirm-password/:identifier/:code',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
+                  ? [
+                      '',
+                      'auth',
+                      'confirm-password',
+                      params.identifier,
+                      params.code,
+                    ]
+                  : ['', 'auth', 'confirm-password'],
             },
-            confirmEmail: {
-              path: 'confirm-email',
-              link: '/auth/confirm-email',
-              getLink: () => ['', 'auth', 'confirm-email'],
+          },
+        },
+        account: {
+          path: 'account',
+          link: '/account',
+          getLink: () => ['', 'account'],
+          children: {
+            index: {
+              path: '',
+              link: '/account',
+              getLink: () => ['', 'account'],
+            },
+            profile: {
+              path: 'profile',
+              link: '/account/profile',
+              getLink: () => ['', 'account', 'profile'],
+            },
+            preferences: {
+              path: 'preferences',
+              link: '/account/preferences',
+              getLink: () => ['', 'account', 'preferences'],
             },
           },
         },
@@ -59,6 +127,11 @@ export const ROUTER: Readonly<IRouter> = {
           link: '/management',
           getLink: () => ['', 'management'],
           children: {
+            index: {
+              path: '',
+              link: '/management',
+              getLink: () => ['', 'management'],
+            },
             iam: {
               path: 'iam',
               link: '/management/iam',

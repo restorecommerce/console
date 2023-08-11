@@ -5,44 +5,43 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Input,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
 import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import { APP, ROUTER } from '@console-core/config';
+import { AccountFacade } from '@console-core/state';
 
-import { DrawerService } from '../../../services/drawer.service';
+import { DrawerService } from '../../../services';
 
 @Component({
   selector: 'rc-private-template',
   templateUrl: './private-template.component.html',
+  styleUrls: ['./private-template.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
-  @Input()
-  logout!: () => void;
-
+  readonly vm$ = combineLatest({
+    profile: this.accountFacade.profile$,
+  });
+  currentRoute!: string;
+  smallDevice!: boolean;
   APP = APP;
   ROUTER = ROUTER;
 
-  logoUrl =
-    'https://raw.githubusercontent.com/restorecommerce/branding/master/Logo/restore_commerce_logo.png';
+  private readonly subscriptions = new SubSink();
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly router: Router,
     private readonly drawerService: DrawerService,
-    private readonly changeDetectorRef: ChangeDetectorRef
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly accountFacade: AccountFacade
   ) {}
-
-  private readonly subscriptions = new SubSink();
-
-  currentRoute!: string;
-  smallDevice!: boolean;
 
   ngOnInit(): void {
     this.handleBreakpointObserver();
@@ -63,6 +62,10 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     if (route) {
       this.router.navigate([route]);
     }
+  }
+
+  collapseDrawer() {
+    this.drawerService.toggle();
   }
 
   private handleBreakpointObserver(): void {
@@ -88,6 +91,9 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
         map((url: string) => {
           if (url.startsWith(ROUTER.pages.main.children.management.link)) {
             return ROUTER.pages.main.children.management.link;
+          }
+          if (url.startsWith(ROUTER.pages.main.children.account.link)) {
+            return ROUTER.pages.main.children.account.link;
           }
 
           return ROUTER.pages.main.children.home.link;
