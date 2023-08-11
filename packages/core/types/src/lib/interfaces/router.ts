@@ -10,7 +10,7 @@ export interface IRouterItem {
   getLink: (params?: {
     id?: number | string;
     identifier?: string;
-    activationCode?: string;
+    code?: string;
     slug?: string;
   }) => TRouterLink;
   params?: TRouterParams;
@@ -26,6 +26,8 @@ export interface IRouterConstant {
       getLink: () => TRouterLink;
       children: {
         home: IRouterItem;
+        activateUser: IRouterItem;
+        confirmPasswordChange: IRouterItem;
         auth: {
           path: string;
           link: string;

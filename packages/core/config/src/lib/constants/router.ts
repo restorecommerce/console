@@ -12,6 +12,16 @@ export const ROUTER: Readonly<IRouterConstant> = {
           link: '/',
           getLink: () => ['', '/'],
         },
+        activateUser: {
+          path: 'activate_user',
+          link: '/activate_user',
+          getLink: () => ['', 'activate_user'],
+        },
+        confirmPasswordChange: {
+          path: 'confirm_password_change',
+          link: '/confirm_password_change',
+          getLink: () => ['', 'confirm_password_change'],
+        },
         auth: {
           path: 'auth',
           link: '/auth',

@@ -1,7 +1,12 @@
 import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
-import { PrivateGuard } from '@console-modules/shared';
+import {
+  PublicGuard,
+  PrivateGuard,
+  RedirectActivationGuard,
+  RedirectConfirmPasswordGuard,
+} from '@console-modules/shared';
 
 import {
   PrivateTemplateComponent,
@@ -16,6 +21,16 @@ export const modulesMainRoutes: Route[] = [
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
       import('@console-modules/home').then((m) => m.ModulesHomeModule),
+  },
+  {
+    path: ROUTER.pages.main.children.activateUser.path,
+    component: PublicTemplateComponent,
+    canActivate: [PublicGuard, RedirectActivationGuard],
+  },
+  {
+    path: ROUTER.pages.main.children.confirmPasswordChange.path,
+    component: PublicTemplateComponent,
+    canActivate: [PublicGuard, RedirectConfirmPasswordGuard],
   },
   {
     path: ROUTER.pages.main.children.auth.path,
