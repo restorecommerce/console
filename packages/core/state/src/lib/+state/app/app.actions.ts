@@ -7,4 +7,4 @@ export const addNotification = createAction(
   props<{ payload: TNewNotification }>()
 );
 
-export const clearNotification = createAction('[APP] Clear notification');
+export const clearNotifications = createAction('[APP] Clear notifications');

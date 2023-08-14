@@ -76,3 +76,5 @@ export const confirmPasswordError = createAction(
 );
 
 export const signOut = createAction('[AUTHN] Sign out');
+
+export const resetAuthnState = createAction('[AUTHN] Reset authn state');

@@ -36,6 +36,12 @@ const reducer = createReducer<IAccountState>(
       actionStatus: EActionStatus.FAILED,
       error,
     })
+  ),
+  on(
+    accountActions.resetAccountState,
+    (): IAccountState => ({
+      ...initialState,
+    })
   )
 );
 

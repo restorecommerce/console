@@ -294,6 +294,13 @@ export class AuthnEffects {
     { dispatch: false }
   );
 
+  resetAuthnState$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authnActions.signOut),
+      map(() => authnActions.resetAuthnState())
+    );
+  });
+
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,

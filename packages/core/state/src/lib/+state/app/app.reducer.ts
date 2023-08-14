@@ -37,7 +37,7 @@ const reducer = createReducer<IAppState>(
     };
   }),
   on(
-    appActions.clearNotification,
+    appActions.clearNotifications,
     (state): IAppState => ({
       ...state,
       notifications: state.notifications.filter(

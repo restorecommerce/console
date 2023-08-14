@@ -17,3 +17,5 @@ export const findUserByTokenError = createAction(
   '[ACCOUNT] Find user by token request error',
   props<{ error: string }>()
 );
+
+export const resetAccountState = createAction('[ACCOUNT] Reset account state');

@@ -140,9 +140,16 @@ const reducer = createReducer<IAuthnState>(
   ),
   on(
     authnActions.signOut,
+    (state): IAuthnState => ({
+      ...state,
+      isAuthenticated: false,
+      actionStatus: EActionStatus.SUCCEEDED,
+    })
+  ),
+  on(
+    authnActions.resetAuthnState,
     (_): IAuthnState => ({
       ...initialState,
-      actionStatus: EActionStatus.SUCCEEDED,
     })
   )
 );
