@@ -6,6 +6,7 @@ import { ENotificationTypes } from '@console-core/types';
 
 import { AccountService } from '../../services';
 import { AppFacade } from '../app';
+import * as authnActions from '../authn/authn.actions';
 
 import * as accountActions from './account.actions';
 
@@ -46,6 +47,13 @@ export class AccountEffects {
     },
     { dispatch: false }
   );
+
+  resetAccountState$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authnActions.signOut),
+      map(() => accountActions.resetAccountState())
+    );
+  });
 
   constructor(
     private readonly actions$: Actions,
