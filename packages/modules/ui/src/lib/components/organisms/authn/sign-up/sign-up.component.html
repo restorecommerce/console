@@ -1,8 +1,8 @@
 <form
   vclForm
   class="form m-0"
-  [formGroup]="signUpForm"
-  (ngSubmit)="onClickSignUp(signUpForm.value)"
+  [formGroup]="form"
+  (ngSubmit)="onClickSignUp()"
 >
   <vcl-form-control-group>
     <vcl-label>First name</vcl-label>
@@ -10,7 +10,10 @@
       <input
         vclInput
         class="input"
-        [class.error]="firstName.hasError('required') && firstName.touched"
+        [class.error]="
+          formFields.firstName.hasError('required') &&
+          formFields.firstName.touched
+        "
         formControlName="firstName"
         type="text"
         name="firstName"
@@ -25,7 +28,10 @@
       <input
         vclInput
         class="input"
-        [class.error]="lastName.hasError('required') && lastName.touched"
+        [class.error]="
+          formFields.lastName.hasError('required') &&
+          formFields.lastName.touched
+        "
         formControlName="lastName"
         type="text"
         name="lastName"
@@ -40,7 +46,9 @@
       <input
         vclInput
         class="input"
-        [class.error]="name.hasError('required') && name.touched"
+        [class.error]="
+          formFields.name.hasError('required') && formFields.name.touched
+        "
         formControlName="name"
         type="text"
         name="name"
@@ -71,7 +79,9 @@
       <input
         vclInput
         class="input"
-        [class.error]="email.hasError('required') && email.touched"
+        [class.error]="
+          formFields.email.hasError('required') && formFields.email.touched
+        "
         formControlName="email"
         type="email"
         name="email"
@@ -89,7 +99,10 @@
       <input
         vclInput
         class="input"
-        [class.error]="password.hasError('required') && password.touched"
+        [class.error]="
+          formFields.password.hasError('required') &&
+          formFields.password.touched
+        "
         type="password"
         formControlName="password"
         name="password"
@@ -122,8 +135,8 @@
         vclInput
         class="input"
         [class.error]="
-          passwordConfirmation.hasError('required') &&
-          passwordConfirmation.touched
+          formFields.passwordConfirmation.hasError('required') &&
+          formFields.passwordConfirmation.touched
         "
         type="password"
         formControlName="passwordConfirmation"
@@ -133,8 +146,8 @@
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
     <vcl-hint-error
       *ngIf="
-        !password?.hasError('required') &&
-        signUpForm?.hasError('passwordConfirmationMismatch')
+        !formFields.password?.hasError('required') &&
+        form?.hasError('passwordConfirmationMismatch')
       "
       >Fields Password and Confirm password must match.</vcl-hint-error
     >
@@ -147,7 +160,10 @@
         vclSelectList
         formControlName="userType"
         name="userType"
-        [class.error]="userType.hasError('required') && userType.touched"
+        [class.error]="
+          formFields.userType.hasError('required') &&
+          formFields.userType.touched
+        "
         selectionMode="single"
       >
         <vcl-select-list-item [value]="'GUEST'"> Guest </vcl-select-list-item>
@@ -185,8 +201,8 @@
       <div class="row">
         <div class="col">
           <rc-submit-button
-            [isInvalid]="signUpForm.invalid"
-            [isLoading]="isLoading | async"
+            [isInvalid]="form.invalid"
+            [isLoading]="isLoading$ | async"
             >Sign Up</rc-submit-button
           >
         </div>

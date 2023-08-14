@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { ROUTER } from '@console-core/config';
 import { AuthnFacade } from '@console-core/state';
@@ -9,34 +9,29 @@ import { AuthnFacade } from '@console-core/state';
   templateUrl: 'sign-in.component.html',
 })
 export class RcSignInComponent {
-  isLoading = this.authnFacade.isLoading$;
-
-  get identifier(): FormControl {
-    return this.signInForm.get('identifier') as FormControl;
-  }
-
-  get password(): FormControl {
-    return this.signInForm.get('password') as FormControl;
-  }
-
-  signInForm = new FormGroup({
-    identifier: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
   ROUTER = ROUTER;
+  form = this.fb.group({
+    identifier: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  });
+  isLoading$ = this.authnFacade.isLoading$;
 
-  constructor(private readonly authnFacade: AuthnFacade) {}
+  get formFields() {
+    return {
+      identifier: this.form.get('identifier') as FormControl,
+      password: this.form.get('password') as FormControl,
+    };
+  }
 
-  onClickSignIn(
-    value: Partial<{ identifier: string | null; password: string | null }>
-  ): void {
-    if (!this.signInForm.valid) {
-      return;
-    }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authnFacade: AuthnFacade
+  ) {}
+
+  onClickSignIn(): void {
     this.authnFacade.signIn({
-      identifier: value.identifier as string,
-      password: value.password as string,
+      identifier: this.formFields.identifier.value,
+      password: this.formFields.password.value,
     });
   }
 }
