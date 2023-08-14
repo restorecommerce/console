@@ -6,7 +6,7 @@ export type TDrawerMode = 'side' | 'over';
 @Injectable({
   providedIn: 'root',
 })
-export class DrawerService implements OnDestroy {
+export class RcDrawerService implements OnDestroy {
   private openedEmitter = new BehaviorSubject<boolean | undefined>(undefined);
   private modeEmitter = new BehaviorSubject<string>('side');
 

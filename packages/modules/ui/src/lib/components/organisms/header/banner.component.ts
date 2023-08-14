@@ -13,6 +13,8 @@ import { APP } from '@console-core/config';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcBannerComponent {
+  APP = APP;
+
   @HostBinding('class.row')
   @HostBinding('class.center')
   _hostClasses = true;
@@ -22,6 +24,4 @@ export class RcBannerComponent {
 
   @Input()
   logoLink?: string;
-
-  APP = APP;
 }

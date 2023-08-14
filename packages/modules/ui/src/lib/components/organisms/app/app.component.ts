@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import { DrawerService } from '../../../services';
+import { RcDrawerService } from '../../../services';
 
 @Component({
   selector: 'rc-app',
@@ -15,7 +15,7 @@ export class RcAppComponent {
     map((opened) => Boolean(opened))
   );
 
-  constructor(public readonly drawerService: DrawerService) {}
+  constructor(public readonly drawerService: RcDrawerService) {}
 
   @HostBinding('class.app')
   @HostBinding('class.col')

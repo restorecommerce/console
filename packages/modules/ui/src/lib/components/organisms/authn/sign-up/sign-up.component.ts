@@ -1,106 +1,60 @@
 import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { REGEX, ROUTER } from '@console-core/config';
 import { IoRestorecommerceUserUserType } from '@console-core/graphql';
 import { AuthnFacade } from '@console-core/state';
+
+import { RcValidationService } from '../../../../services';
 
 @Component({
   selector: 'rc-authn-sign-up',
   templateUrl: 'sign-up.component.html',
 })
 export class RcSignUpComponent {
-  isLoading = this.authnFacade.isLoading$;
-
-  get firstName(): FormControl {
-    return this.signUpForm.get('firstName') as FormControl;
-  }
-
-  get lastName(): FormControl {
-    return this.signUpForm.get('lastName') as FormControl;
-  }
-
-  get name(): FormControl {
-    return this.signUpForm.get('name') as FormControl;
-  }
-
-  get email(): FormControl {
-    return this.signUpForm.get('email') as FormControl;
-  }
-
-  get password(): FormControl {
-    return this.signUpForm.get('password') as FormControl;
-  }
-
-  get passwordConfirmation(): FormControl {
-    return this.signUpForm.get('passwordConfirmation') as FormControl;
-  }
-
-  get userType(): FormControl {
-    return this.signUpForm.get('userType') as FormControl;
-  }
-
-  signUpForm = new FormGroup(
-    {
-      firstName: new FormControl(null, [Validators.required]),
-      lastName: new FormControl(null, [Validators.required]),
-      name: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(REGEX.name),
-      ]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.pattern(REGEX.password),
-      ]),
-      passwordConfirmation: new FormControl('', [Validators.required]),
-      userType: new FormControl(null, [Validators.required]),
-    },
-    { validators: this.validatePasswordMatch }
-  );
   ROUTER = ROUTER;
+  form = this.fb.group(
+    {
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern(REGEX.name)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(REGEX.password)]],
+      passwordConfirmation: ['', [Validators.required]],
+      userType: ['', [Validators.required]],
+    },
+    { validators: this.validationService.validatePasswordMatch }
+  );
+  isLoading$ = this.authnFacade.isLoading$;
 
-  constructor(private readonly authnFacade: AuthnFacade) {}
-
-  onClickSignUp(
-    value: Partial<{
-      firstName: string | null;
-      lastName: string | null;
-      name: string | null;
-      email: string | null;
-      password: string | null;
-      userType: IoRestorecommerceUserUserType | null;
-    }>
-  ): void {
-    if (!this.signUpForm.valid) {
-      return;
-    }
-
-    this.authnFacade.signUp({
-      firstName: value.firstName as string,
-      lastName: value.lastName as string,
-      name: value.name as string,
-      email: value.email as string,
-      password: value.password as string,
-      userType: value.userType,
-    });
+  get formFields() {
+    return {
+      firstName: this.form.get('firstName') as FormControl,
+      lastName: this.form.get('lastName') as FormControl,
+      name: this.form.get('name') as FormControl,
+      email: this.form.get('email') as FormControl,
+      password: this.form.get('password') as FormControl,
+      passwordConfirmation: this.form.get(
+        'passwordConfirmation'
+      ) as FormControl,
+      userType: this.form.get('userType') as FormControl,
+    };
   }
 
-  private validatePasswordMatch(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    const password = control.get('password');
-    const passwordConfirmation = control.get('passwordConfirmation');
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authnFacade: AuthnFacade,
+    private readonly validationService: RcValidationService
+  ) {}
 
-    if (password?.value !== passwordConfirmation?.value) {
-      return { passwordConfirmationMismatch: true };
-    }
-
-    return null;
+  onClickSignUp(): void {
+    this.authnFacade.signUp({
+      firstName: this.formFields.firstName.value,
+      lastName: this.formFields.lastName.value,
+      name: this.formFields.name.value,
+      email: this.formFields.email.value,
+      password: this.formFields.password.value,
+      userType: this.formFields.userType.value as IoRestorecommerceUserUserType,
+    });
   }
 }

@@ -16,7 +16,7 @@ import { VCLBreakpoints } from '@vcl/ng-vcl';
 import { APP, ROUTER } from '@console-core/config';
 import { AccountFacade } from '@console-core/state';
 
-import { DrawerService } from '../../../services';
+import { RcDrawerService } from '../../../services';
 
 @Component({
   selector: 'rc-private-template',
@@ -25,20 +25,20 @@ import { DrawerService } from '../../../services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
+  APP = APP;
+  ROUTER = ROUTER;
   readonly vm$ = combineLatest({
     profile: this.accountFacade.profile$,
   });
   currentRoute!: string;
   smallDevice!: boolean;
-  APP = APP;
-  ROUTER = ROUTER;
 
   private readonly subscriptions = new SubSink();
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly router: Router,
-    private readonly drawerService: DrawerService,
+    private readonly drawerService: RcDrawerService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly accountFacade: AccountFacade
   ) {}

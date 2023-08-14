@@ -9,7 +9,7 @@ import { APP, ROUTER } from '@console-core/config';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcCopyrightComponent {
-  year = dayjs().year();
   APP = APP;
   ROUTER = ROUTER;
+  year = dayjs().year();
 }
