@@ -4,7 +4,7 @@ import { AbstractControl } from '@angular/forms';
 @Injectable({
   providedIn: 'root',
 })
-export class RCValidationService {
+export class RcValidationService {
   validatePasswordMatch(
     control: AbstractControl
   ): { [key: string]: boolean } | null {

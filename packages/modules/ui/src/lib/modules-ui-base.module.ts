@@ -6,15 +6,17 @@ import {
   MaterialDesignVCLIconAliasResolverService,
 } from '@vcl/ng-vcl';
 
-import { DrawerService } from './services/drawer.service';
-import { RCMdiIconResolverService } from './services/icon-resolve.service';
+import {
+  RcDrawerService,
+  RcMdiIconResolverService,
+  RcValidationService,
+} from './services';
 
 @NgModule({
   providers: [
-    DrawerService,
     {
       provide: IconResolverService,
-      useClass: RCMdiIconResolverService,
+      useClass: RcMdiIconResolverService,
       multi: true,
     },
     {
@@ -27,6 +29,8 @@ import { RCMdiIconResolverService } from './services/icon-resolve.service';
       useClass: MaterialDesignVCLIconAliasResolverService,
       multi: true,
     },
+    RcDrawerService,
+    RcValidationService,
   ],
 })
 export class ModulesUiBaseModule {

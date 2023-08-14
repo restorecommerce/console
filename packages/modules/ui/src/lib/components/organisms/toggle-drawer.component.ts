@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
-import { DrawerService } from '../../services';
+import { RcDrawerService } from '../../services';
 
 @Component({
   selector: 'rc-toggle-drawer',
@@ -18,5 +18,5 @@ export class RcToggleDrawerComponent {
   @HostBinding('class.px-2')
   _hostClasses = true;
 
-  constructor(public readonly drawerService: DrawerService) {}
+  constructor(public readonly drawerService: RcDrawerService) {}
 }

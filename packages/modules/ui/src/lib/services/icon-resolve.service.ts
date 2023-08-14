@@ -13,14 +13,14 @@ export const FA_ALIAS_MAP = {
 };
 
 @Injectable()
-export class RCMdiIconResolverService extends IconAliasResolverServiceBase {
+export class RcMdiIconResolverService extends IconAliasResolverServiceBase {
   constructor() {
     super('rc', MDI_ALIAS_MAP);
   }
 }
 
 @Injectable()
-export class RCFaIconResolverService extends IconAliasResolverServiceBase {
+export class RcFaIconResolverService extends IconAliasResolverServiceBase {
   constructor() {
     super('rc', FA_ALIAS_MAP);
   }
