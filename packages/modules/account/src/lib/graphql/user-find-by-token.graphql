@@ -1,4 +1,4 @@
-query FindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
+query UserFindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
   identity {
     user {
       FindByToken(input: $input) {

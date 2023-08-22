@@ -9,10 +9,10 @@ export const modulesOverflowRoutes: Route[] = [
   {
     path: '',
     component: OverflowTemplateComponent,
+    title: ROUTER.pages.main.children.overflow.title,
     children: [
       {
         path: ROUTER.pages.main.children.overflow.path,
-        pathMatch: 'full',
         component: OverflowComponent,
       },
     ],

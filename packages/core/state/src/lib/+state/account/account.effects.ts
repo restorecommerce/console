@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
-import { ENotificationTypes } from '@console-core/types';
+import { ENotificationTypes, IUser } from '@console-core/types';
 
 import { AccountService } from '../../services';
 import { AppFacade } from '../app';
@@ -12,21 +12,46 @@ import * as accountActions from './account.actions';
 
 @Injectable()
 export class AccountEffects {
-  findUserByTokenRequest$ = createEffect(() => {
+  userFindByTokenRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(accountActions.findUserByTokenRequest),
+      ofType(accountActions.userFindByTokenRequest),
       switchMap(({ payload }) =>
-        this.accountService.findUserByToken(payload).pipe(
+        this.accountService.userFindByToken(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
-            return accountActions.findUserByTokenSuccess({
+            return accountActions.userFindByTokenSuccess({
               payload: {
                 ...(identity?.user?.FindByToken?.details?.payload || null),
               },
             });
           }),
           catchError((error: Error) =>
-            of(accountActions.findUserByTokenError({ error: error.message }))
+            of(accountActions.userFindByTokenError({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  userMutateRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(accountActions.userMutateRequest),
+      switchMap(({ payload }) =>
+        this.accountService.userMutate(payload).pipe(
+          map((result) => {
+            const identity = result?.data?.identity;
+            const users = identity?.user?.Mutate?.details?.items;
+
+            if (!users?.length) {
+              throw new Error('user not found');
+            }
+
+            return accountActions.userMutateSuccess({
+              payload: users[0] as IUser,
+            });
+          }),
+          catchError((error: Error) =>
+            of(accountActions.userMutateError({ error: error.message }))
           )
         )
       )
@@ -36,7 +61,7 @@ export class AccountEffects {
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(accountActions.findUserByTokenError),
+        ofType(accountActions.userFindByTokenError),
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',

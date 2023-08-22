@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-account-template',
   template: `
-    <rc-page-home>
+    <rc-page-account>
       <router-outlet />
-    </rc-page-home>
+    </rc-page-account>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

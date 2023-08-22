@@ -141,7 +141,7 @@ export class AuthnEffects {
       return this.actions$.pipe(
         ofType(authnActions.signInSuccess),
         tap(({ payload }) => {
-          this.accountFacade.findUserByTokenRequest({ token: payload.token });
+          this.accountFacade.userFindByTokenRequest({ token: payload.token });
         }),
         switchMap(() => this.activatedRoute.queryParams.pipe(take(1))),
         map(

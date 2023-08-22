@@ -1,0 +1,42 @@
+<div class="row small-snap-vertical">
+  <div class="flex-4">
+    <h3>Account Data</h3>
+    <p>Change your email and password</p>
+  </div>
+  <div class="flex-8">
+    <div class="account-right-side">
+      <vcl-jss-form
+        ngDefaultControl
+        #emailForm="vclJssForm"
+        [schema]="emailFormSchema"
+      ></vcl-jss-form>
+      <div class="row justify-end loose-button-group">
+        <button
+          vcl-button
+          [disabled]="!emailForm.form.valid || emailForm.form.pristine"
+          (click)="onChangeEmailForm()"
+        >
+          Change Email
+        </button>
+      </div>
+    </div>
+
+    <div class="account-right-side">
+      <vcl-jss-form
+        ngDefaultControl
+        #passwordForm="vclJssForm"
+        [schema]="passwordFormSchema"
+      >
+      </vcl-jss-form>
+      <div class="row justify-end loose-button-group">
+        <button
+          vcl-button
+          [disabled]="!passwordForm.form.valid || passwordForm.form.pristine"
+          (click)="onChangePasswordForm()"
+        >
+          Change Password
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

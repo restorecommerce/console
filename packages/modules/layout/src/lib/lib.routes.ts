@@ -9,10 +9,10 @@ export const modulesLayoutRoutes: Route[] = [
   {
     path: '',
     component: LayoutTemplateComponent,
+    title: ROUTER.pages.main.children.layout.title,
     children: [
       {
         path: ROUTER.pages.main.children.layout.path,
-        pathMatch: 'full',
         component: LayoutComponent,
       },
     ],

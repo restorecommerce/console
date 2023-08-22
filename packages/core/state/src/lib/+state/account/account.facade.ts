@@ -15,9 +15,9 @@ export class AccountFacade {
   error$ = this.store.select(accountSelectors.selectError);
 
   // Actions
-  findUserByTokenRequest = (
+  userFindByTokenRequest = (
     payload: IIoRestorecommerceUserFindByTokenRequest
-  ) => this.store.dispatch(accountActions.findUserByTokenRequest({ payload }));
+  ) => this.store.dispatch(accountActions.userFindByTokenRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

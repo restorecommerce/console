@@ -14,6 +14,7 @@ export const modulesHomeRoutes: Route[] = [
         path: ROUTER.pages.main.children.home.path,
         pathMatch: 'full',
         component: HomeComponent,
+        title: ROUTER.pages.main.children.home.title,
       },
     ],
   },

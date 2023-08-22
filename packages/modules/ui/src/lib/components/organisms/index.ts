@@ -1,3 +1,7 @@
+export * from './account/personal-data/personal-data.component';
+export * from './account/account-data/account-data.component';
+export * from './account/account-information/account-information.component';
+export * from './account/account-deletion/account-deletion.component';
 export * from './app/app.component';
 export * from './datalist/datalist-item.component';
 export * from './datalist/datalist.component';

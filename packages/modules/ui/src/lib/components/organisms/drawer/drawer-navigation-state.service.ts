@@ -67,7 +67,6 @@ export class NavigationStateService {
       return of(0);
     }),
     map((action) => {
-      // TODO: Support more than one level
       let hoveredItems: NavigationItem[] = [];
       if (action.type === 'select_item' && action.item.hasNestedNavItems) {
         hoveredItems = action.item.parent

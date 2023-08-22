@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-account-preferences',
-  template: ` <rc-page-preferences /> `,
+  selector: 'rc-page-account',
+  templateUrl: './page-account.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PreferencesComponent {}
+export class RcPageAccountComponent {}

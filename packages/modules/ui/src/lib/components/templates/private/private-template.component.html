@@ -53,7 +53,7 @@
         >
           <vcl-icogram>
             <vcl-icon icon="mdi:account" />
-            {{ vm.profile?.name }}
+            {{ vm.profile?.fullName }}
             <vcl-icon icon="mdi:chevron-down" />
           </vcl-icogram>
         </button>
@@ -559,7 +559,9 @@
     >
       <ul class="data-list-body no-border">
         <li
-          [routerLink]="ROUTER.pages.main.children.account.children.index.link"
+          [routerLink]="
+            ROUTER.pages.main.children.account.children.profile.link
+          "
           [routerLinkActive]="['selected']"
           class="data-list-item row justify-between center"
         >

@@ -1,0 +1,15 @@
+.rc-page-container {
+  margin: 50px auto 25px;
+
+  .account-right-side {
+    margin: 1.1em 0;
+  }
+
+  @media screen and (min-width: 1201px) {
+    width: 980px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 98%;
+  }
+}
