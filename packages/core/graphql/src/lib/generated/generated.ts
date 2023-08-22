@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { gql } from 'apollo-angular';
+import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -5093,11 +5093,36 @@ export interface SubscriptionOutput {
   id?: Maybe<Scalars['String']>;
 }
 
-export type FindByTokenQueryVariables = Exact<{
+export type UserDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type UserDeleteMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type UserFindByTokenQueryVariables = Exact<{
   input: IIoRestorecommerceUserFindByTokenRequest;
 }>;
 
-export type FindByTokenQuery = {
+export type UserFindByTokenQuery = {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -5130,6 +5155,98 @@ export type FindByTokenQuery = {
               role?: string | null;
             }> | null;
           } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type UserFindQueryVariables = Exact<{
+  input: IIoRestorecommerceUserFindRequest;
+}>;
+
+export type UserFindQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    user: {
+      __typename?: 'IdentityUserQuery';
+      Find?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceUserUserResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceUserUser';
+              id?: string | null;
+              active?: boolean | null;
+              activationCode?: string | null;
+              email?: string | null;
+              name?: string | null;
+              firstName?: string | null;
+              lastName?: string | null;
+              defaultScope?: string | null;
+              localeId?: string | null;
+              timezoneId?: string | null;
+              userType?: IoRestorecommerceUserUserType | null;
+              roleAssociations?: Array<{
+                __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                role?: string | null;
+              }> | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type UserMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserUserList;
+}>;
+
+export type UserMutateMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceUserUserResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceUserUser';
+              id?: string | null;
+              active?: boolean | null;
+              activationCode?: string | null;
+              email?: string | null;
+              name?: string | null;
+              firstName?: string | null;
+              lastName?: string | null;
+              defaultScope?: string | null;
+              localeId?: string | null;
+              timezoneId?: string | null;
+              userType?: IoRestorecommerceUserUserType | null;
+              roleAssociations?: Array<{
+                __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                role?: string | null;
+              }> | null;
+            } | null;
+          }> | null;
         } | null;
       } | null;
     };
@@ -5252,8 +5369,38 @@ export type RequestPasswordChangeMutation = {
   };
 };
 
-export const FindByTokenDocument = gql`
-  query FindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
+export const UserDeleteDocument = gql`
+  mutation UserDelete($input: IIoRestorecommerceResourcebaseDeleteRequest!) {
+    identity {
+      user {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserDeleteGQL extends Apollo.Mutation<
+  UserDeleteMutation,
+  UserDeleteMutationVariables
+> {
+  override document = UserDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const UserFindByTokenDocument = gql`
+  query UserFindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
     identity {
       user {
         FindByToken(input: $input) {
@@ -5288,11 +5435,107 @@ export const FindByTokenDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class FindByTokenGQL extends Apollo.Query<
-  FindByTokenQuery,
-  FindByTokenQueryVariables
+export class UserFindByTokenGQL extends Apollo.Query<
+  UserFindByTokenQuery,
+  UserFindByTokenQueryVariables
 > {
-  override document = FindByTokenDocument;
+  override document = UserFindByTokenDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const UserFindDocument = gql`
+  query UserFind($input: IIoRestorecommerceUserFindRequest!) {
+    identity {
+      user {
+        Find(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                id
+                active
+                activationCode
+                email
+                name
+                firstName
+                lastName
+                defaultScope
+                localeId
+                timezoneId
+                userType
+                roleAssociations {
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserFindGQL extends Apollo.Query<
+  UserFindQuery,
+  UserFindQueryVariables
+> {
+  override document = UserFindDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const UserMutateDocument = gql`
+  mutation UserMutate($input: IIoRestorecommerceUserUserList!) {
+    identity {
+      user {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                id
+                active
+                activationCode
+                email
+                name
+                firstName
+                lastName
+                defaultScope
+                localeId
+                timezoneId
+                userType
+                roleAssociations {
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserMutateGQL extends Apollo.Mutation<
+  UserMutateMutation,
+  UserMutateMutationVariables
+> {
+  override document = UserMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

@@ -1,6 +1,6 @@
 import { IoRestorecommerceUserUserType } from '@console-core/graphql';
 
-export interface IProfile {
+export interface IUser {
   id?: string | null;
   active?: boolean | null;
   activationCode?: string | null;
@@ -8,6 +8,7 @@ export interface IProfile {
   name?: string | null;
   firstName?: string | null;
   lastName?: string | null;
+  fullName?: string;
   defaultScope?: string | null;
   localeId?: string | null;
   timezoneId?: string | null;

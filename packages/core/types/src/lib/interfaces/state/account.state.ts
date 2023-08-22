@@ -1,7 +1,7 @@
-import { IProfile } from '../profile';
+import { IUser } from '../user';
 
 import { IBaseStore } from './store.state';
 
 export interface IAccountState extends IBaseStore {
-  profile: IProfile | null;
+  profile: IUser | null;
 }
