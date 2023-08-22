@@ -11,6 +11,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
           path: '',
           link: '/',
           getLink: () => ['', '/'],
+          title: 'Home',
         },
         activateUser: {
           path: 'activate_user',
@@ -31,6 +32,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
               path: 'sign-up',
               link: '/auth/sign-up',
               getLink: () => ['', 'auth', 'sign-up'],
+              title: 'Sign Up',
             },
             activation: {
               path: 'activation/:identifier/:code',
@@ -39,21 +41,25 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 params?.identifier && params?.code
                   ? ['', 'auth', 'activation', params.identifier, params.code]
                   : ['', 'auth', 'activation'],
+              title: 'Activation',
             },
             signIn: {
               path: 'sign-in',
               link: '/auth/sign-in',
               getLink: () => ['', 'auth', 'sign-in'],
+              title: 'Sign In',
             },
             signOut: {
               path: 'sign-out',
               link: '/auth/sign-out',
               getLink: () => ['', 'auth', 'sign-out'],
+              title: 'Sign Out',
             },
             emailRecovery: {
               path: 'email-recovery',
               link: '/auth/email-recovery',
               getLink: () => ['', 'auth', 'email-recovery'],
+              title: 'Email Recovery',
             },
             confirmEmail: {
               path: 'confirm-email/:identifier/:code',
@@ -68,11 +74,13 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       params.code,
                     ]
                   : ['', 'auth', 'confirm-email'],
+              title: 'Confirm Email',
             },
             passwordRecovery: {
               path: 'password-recovery',
               link: '/auth/password-recovery',
               getLink: () => ['', 'auth', 'password-recovery'],
+              title: 'Password Recovery',
             },
             confirmPassword: {
               path: 'confirm-password/:identifier/:code',
@@ -87,6 +95,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       params.code,
                     ]
                   : ['', 'auth', 'confirm-password'],
+              title: 'Confirm Password',
             },
           },
         },
@@ -99,16 +108,19 @@ export const ROUTER: Readonly<IRouterConstant> = {
               path: '',
               link: '/account',
               getLink: () => ['', 'account'],
+              title: 'Account',
             },
             profile: {
               path: 'profile',
               link: '/account/profile',
               getLink: () => ['', 'account', 'profile'],
+              title: 'Profile',
             },
             preferences: {
               path: 'preferences',
               link: '/account/preferences',
               getLink: () => ['', 'account', 'preferences'],
+              title: 'Preferences',
             },
           },
         },
@@ -116,11 +128,13 @@ export const ROUTER: Readonly<IRouterConstant> = {
           path: 'layout',
           link: '/layout',
           getLink: () => ['', 'layout'],
+          title: 'Layout',
         },
         overflow: {
           path: 'overflow',
           link: '/overflow',
           getLink: () => ['', 'overflow'],
+          title: 'Overflow',
         },
         management: {
           path: 'management',
@@ -131,6 +145,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
               path: '',
               link: '/management',
               getLink: () => ['', 'management'],
+              title: 'Management',
             },
             iam: {
               path: 'iam',
@@ -141,6 +156,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/iam',
                   getLink: () => ['', 'management', 'iam'],
+                  title: 'IAM',
                 },
                 iam: {
                   path: ':id',
@@ -161,6 +177,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/addresses',
                   getLink: () => ['', 'management', 'addresses'],
+                  title: 'Addresses',
                 },
                 addresses: {
                   path: ':id',
@@ -181,6 +198,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/contact-points',
                   getLink: () => ['', 'management', 'contact-points'],
+                  title: 'Contact Points',
                 },
                 contactPoints: {
                   path: ':id',
@@ -201,6 +219,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/contracts',
                   getLink: () => ['', 'management', 'contracts'],
+                  title: 'Contracts',
                 },
                 contracts: {
                   path: ':id',
@@ -221,6 +240,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/commands',
                   getLink: () => ['', 'management', 'commands'],
+                  title: 'Commands',
                 },
                 commands: {
                   path: ':id',
@@ -241,6 +261,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/locations',
                   getLink: () => ['', 'management', 'locations'],
+                  title: 'Locations',
                 },
                 locations: {
                   path: ':id',
@@ -261,6 +282,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/countries',
                   getLink: () => ['', 'management', 'countries'],
+                  title: 'Countries',
                 },
                 countries: {
                   path: ':id',
@@ -281,6 +303,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: '',
                   link: '/management/access-control',
                   getLink: () => ['', 'management', 'access-control'],
+                  title: 'Access Control',
                 },
                 teams: {
                   path: 'access-control/teams',
@@ -296,6 +319,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                         'access-control',
                         'teams',
                       ],
+                      title: 'Teams',
                     },
                     teams: {
                       path: ':id',
@@ -327,6 +351,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                         'access-control',
                         'roles',
                       ],
+                      title: 'Roles',
                     },
                     roles: {
                       path: ':id',
@@ -358,6 +383,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                         'access-control',
                         'rules',
                       ],
+                      title: 'Rules',
                     },
                     rules: {
                       path: ':id',
@@ -394,6 +420,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                         'access-control',
                         'polices',
                       ],
+                      title: 'Polices',
                     },
                     polices: {
                       path: ':id',

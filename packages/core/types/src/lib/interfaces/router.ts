@@ -13,6 +13,7 @@ export interface IRouterItem {
     code?: string;
     slug?: string;
   }) => TRouterLink;
+  title?: string;
   params?: TRouterParams;
   queryParams?: TRouterQueryParams;
   children?: Record<string, IRouterItem>;
