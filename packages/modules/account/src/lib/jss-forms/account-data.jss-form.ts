@@ -4,7 +4,13 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { IUser } from '@console-core/types';
 
-export const buildEmailSchema = (user: IUser): VCLFormFieldSchemaRoot => {
+interface ISchemaOptions {
+  user: IUser;
+}
+
+export const buildEmailSchema = (
+  options: ISchemaOptions
+): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
     fields: [
@@ -12,7 +18,7 @@ export const buildEmailSchema = (user: IUser): VCLFormFieldSchemaRoot => {
         name: 'email',
         label: 'Email',
         type: 'input',
-        defaultValue: user.email,
+        defaultValue: options.user.email,
         validators: [Validators.required, Validators.email],
         params: {},
         hints: [

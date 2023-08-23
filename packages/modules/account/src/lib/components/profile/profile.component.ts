@@ -43,11 +43,12 @@ export class ProfileComponent {
   readonly vm$ = combineLatest({
     profile: this.accountFacade.profile$.pipe(
       filterNullish(),
-      tap((profile) => {
-        this.personalFormSchema = buildPersonalDataSchema(profile);
-        this.emailFormSchema = buildEmailSchema(profile);
-        this.accountInformationFormSchema =
-          buildAccountInformationSchema(profile);
+      tap((user) => {
+        this.personalFormSchema = buildPersonalDataSchema({ user });
+        this.emailFormSchema = buildEmailSchema({ user });
+        this.accountInformationFormSchema = buildAccountInformationSchema({
+          user,
+        });
       })
     ),
   });

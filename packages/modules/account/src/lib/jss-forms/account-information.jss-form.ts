@@ -4,8 +4,12 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { IUser } from '@console-core/types';
 
+interface ISchemaOptions {
+  user: IUser;
+}
+
 export const buildAccountInformationSchema = (
-  user: IUser
+  options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
@@ -15,7 +19,7 @@ export const buildAccountInformationSchema = (
         label: 'User ID',
         type: 'input',
         disabled: true,
-        defaultValue: user.id,
+        defaultValue: options.user.id,
         validators: [Validators.required],
         params: {},
         hints: [],

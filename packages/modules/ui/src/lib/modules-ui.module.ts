@@ -53,6 +53,7 @@ import {
   RcAccountDataComponent,
   RcAccountInformationComponent,
   RcAccountDeletionComponent,
+  RcLocalizationDataComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -108,6 +109,7 @@ const organisms = [
   RcAccountDataComponent,
   RcAccountInformationComponent,
   RcAccountDeletionComponent,
+  RcLocalizationDataComponent,
 ];
 
 const pages = [
