@@ -25,11 +25,13 @@ export class RcAccountDataComponent {
   @ViewChild('passwordForm')
   passwordForm!: JssFormComponent;
 
-  onChangeEmailForm() {
+  onSaveEmailForm() {
+    // TODO: implement
     console.log(this.emailForm.form.value);
   }
 
-  onChangePasswordForm() {
+  onSavePasswordForm() {
+    // TODO: implement
     console.log(this.passwordForm.form.value);
   }
 }

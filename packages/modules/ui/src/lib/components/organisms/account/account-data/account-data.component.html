@@ -14,7 +14,7 @@
         <button
           vcl-button
           [disabled]="!emailForm.form.valid || emailForm.form.pristine"
-          (click)="onChangeEmailForm()"
+          (click)="onSaveEmailForm()"
         >
           Change Email
         </button>
@@ -32,7 +32,7 @@
         <button
           vcl-button
           [disabled]="!passwordForm.form.valid || passwordForm.form.pristine"
-          (click)="onChangePasswordForm()"
+          (click)="onSavePasswordForm()"
         >
           Change Password
         </button>

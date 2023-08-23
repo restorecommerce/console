@@ -7,8 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class RcAccountDeletionComponent {
   onDeleteAccount() {
-    console.log(
-      '[Log] ~ file: account-deletion.component.ts:11 ~ RcAccountDeletionComponent ~ onDeleteAccount ~ onDeleteAccount'
-    );
+    // TODO: implement
+    console.log('Account deletion');
   }
 }
