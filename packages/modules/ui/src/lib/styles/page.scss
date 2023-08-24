@@ -1,7 +1,22 @@
-.rc-page-container {
-  margin: 50px auto 25px;
+h2.title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0;
+}
 
-  .account-right-side {
+.breadcrumb-nav {
+  ol {
+    li {
+      font-weight: normal;
+    }
+  }
+}
+
+.rc-page-container {
+  margin: 10px auto 25px;
+
+  .page-right-side {
     margin: 1.1em 0;
   }
 

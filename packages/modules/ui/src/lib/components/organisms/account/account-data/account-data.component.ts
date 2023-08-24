@@ -26,12 +26,12 @@ export class RcAccountDataComponent {
   passwordForm!: JssFormComponent;
 
   onSaveEmailForm() {
-    // TODO: implement
+    // TODO: Implement save logic
     console.log(this.emailForm.form.value);
   }
 
   onSavePasswordForm() {
-    // TODO: implement
+    // TODO: Implement save logic
     console.log(this.passwordForm.form.value);
   }
 }

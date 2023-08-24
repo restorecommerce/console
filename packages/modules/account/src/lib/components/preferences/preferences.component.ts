@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+
 import { buildLocalizationDataSchema } from '../../jss-forms';
 
 @Component({

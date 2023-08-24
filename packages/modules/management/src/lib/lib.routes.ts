@@ -8,6 +8,7 @@ export const modulesManagementRoutes: Route[] = [
   {
     path: '',
     component: ManagementTemplateComponent,
+    title: ROUTER.pages.main.children.management.title,
     children: [
       {
         path: ROUTER.pages.main.children.management.children.index.path,

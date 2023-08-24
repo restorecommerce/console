@@ -138,13 +138,6 @@
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "excludedFiles": ["packages/core/graphql/src/lib/generated/generated.ts"],
-      "rules": {
-        "import/order": "off"
-      }
-    },
-    {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {}

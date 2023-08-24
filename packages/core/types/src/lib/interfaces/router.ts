@@ -7,13 +7,13 @@ import {
 export interface IRouterItem {
   path: string;
   link: string;
+  title: string;
   getLink: (params?: {
     id?: number | string;
     identifier?: string;
     code?: string;
     slug?: string;
   }) => TRouterLink;
-  title?: string;
   params?: TRouterParams;
   queryParams?: TRouterQueryParams;
   children?: Record<string, IRouterItem>;
@@ -32,6 +32,7 @@ export interface IRouterConstant {
         auth: {
           path: string;
           link: string;
+          title: string;
           getLink: () => TRouterLink;
           children: {
             signUp: IRouterItem;
@@ -47,6 +48,7 @@ export interface IRouterConstant {
         account: {
           path: string;
           link: string;
+          title: string;
           getLink: () => TRouterLink;
           children: {
             index: IRouterItem;
@@ -59,12 +61,14 @@ export interface IRouterConstant {
         management: {
           path: string;
           link: string;
+          title: string;
           getLink: () => TRouterLink;
           children: {
             index: IRouterItem;
             iam: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -74,6 +78,7 @@ export interface IRouterConstant {
             addresses: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -83,6 +88,7 @@ export interface IRouterConstant {
             locations: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -92,6 +98,7 @@ export interface IRouterConstant {
             countries: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -101,6 +108,7 @@ export interface IRouterConstant {
             contactPoints: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -110,6 +118,7 @@ export interface IRouterConstant {
             contracts: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -119,6 +128,7 @@ export interface IRouterConstant {
             commands: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
@@ -128,12 +138,14 @@ export interface IRouterConstant {
             accessControl: {
               path: string;
               link: string;
+              title: string;
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
                 teams: {
                   path: string;
                   link: string;
+                  title: string;
                   getLink: () => TRouterLink;
                   children: {
                     index: IRouterItem;
@@ -143,6 +155,7 @@ export interface IRouterConstant {
                 roles: {
                   path: string;
                   link: string;
+                  title: string;
                   getLink: () => TRouterLink;
                   children: {
                     index: IRouterItem;
@@ -152,6 +165,7 @@ export interface IRouterConstant {
                 rules: {
                   path: string;
                   link: string;
+                  title: string;
                   getLink: () => TRouterLink;
                   children: {
                     index: IRouterItem;
@@ -161,6 +175,7 @@ export interface IRouterConstant {
                 polices: {
                   path: string;
                   link: string;
+                  title: string;
                   getLink: () => TRouterLink;
                   children: {
                     index: IRouterItem;

@@ -1,8 +1,9 @@
+import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+
 import {
   IIoRestorecommerceTimezoneTimezone,
   IoRestorecommerceLocaleLocale,
 } from '@console-core/graphql';
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 interface ISchemaOptions {
   timezones: IIoRestorecommerceTimezoneTimezone[];

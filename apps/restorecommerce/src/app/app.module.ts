@@ -13,8 +13,8 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
-import { RoutesTitleStrategyService } from './routes-title-strategy.service';
 import { AppStateModule } from './app.state.module';
+import { RoutesTitleStrategyService } from './routes-title-strategy.service';
 
 @NgModule({
   declarations: [AppComponent],

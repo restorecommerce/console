@@ -20,7 +20,7 @@ export class RcLocalizationDataComponent {
   localizationForm!: JssFormComponent;
 
   onSaveLocalizationForm() {
-    // TODO: implement
+    // TODO: implement save logic
     console.log(this.localizationForm.form.value);
   }
 }

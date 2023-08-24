@@ -16,21 +16,22 @@ import {
 @Component({
   selector: 'app-account-profile',
   template: `
-    <ng-container *ngIf="vm$ | async"></ng-container>
-    <rc-page-profile>
-      <rc-account-personal-data [personalFormSchema]="personalFormSchema" />
+    <ng-container *ngIf="vm$ | async">
+      <rc-page-profile>
+        <rc-account-personal-data [personalFormSchema]="personalFormSchema" />
 
-      <rc-account-account-data
-        [emailFormSchema]="emailFormSchema"
-        [passwordFormSchema]="passwordFormSchema"
-      />
+        <rc-account-account-data
+          [emailFormSchema]="emailFormSchema"
+          [passwordFormSchema]="passwordFormSchema"
+        />
 
-      <rc-account-account-information
-        [accountInformationFormSchema]="accountInformationFormSchema"
-      />
+        <rc-account-account-information
+          [accountInformationFormSchema]="accountInformationFormSchema"
+        />
 
-      <rc-account-account-deletion />
-    </rc-page-profile>
+        <rc-account-account-deletion />
+      </rc-page-profile>
+    </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

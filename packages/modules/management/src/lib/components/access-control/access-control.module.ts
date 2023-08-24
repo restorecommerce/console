@@ -11,6 +11,7 @@ const routes: Routes = [
     path: ROUTER.pages.main.children.management.children.accessControl.children
       .index.path,
     component: AccessControlComponent,
+    title: ROUTER.pages.main.children.management.children.accessControl.title,
   },
 ];
 

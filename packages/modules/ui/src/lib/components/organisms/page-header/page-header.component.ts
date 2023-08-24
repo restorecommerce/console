@@ -1,0 +1,117 @@
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SubSink } from 'subsink';
+
+import { ROUTER } from '@console-core/config';
+import { RouterFacade } from '@console-core/state';
+
+interface Breadcrumb {
+  label: string;
+  url: string;
+}
+
+@Component({
+  selector: 'rc-page-header',
+  template: `
+    <ng-container
+      *ngIf="
+        breadcrumbs.length &&
+        !breadcrumbsToExclude.includes(
+          breadcrumbs[breadcrumbs.length - 1].label
+        )
+      "
+    >
+      <div class="row">
+        <div class="col">
+          <h2 class="title">{{ title }}</h2>
+        </div>
+      </div>
+
+      <nav class="breadcrumb-nav">
+        <ol>
+          <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+            <li [ngClass]="{ selected: last }">
+              <ng-container *ngIf="!last">
+                <a
+                  [routerLink]="breadcrumb.url"
+                  class="breadcrumb-nav-item-label"
+                  >{{ breadcrumb.label }}</a
+                >
+                <vcl-icon icon="vcl:arrow-right" />
+              </ng-container>
+              <ng-container *ngIf="last">
+                <div class="breadcrumb-nav-item-label">
+                  {{ breadcrumb.label }}
+                </div>
+              </ng-container>
+            </li>
+          </ng-container>
+        </ol>
+      </nav>
+    </ng-container>
+  `,
+})
+export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
+  title = '';
+  breadcrumbs: Breadcrumb[] = [];
+  breadcrumbsToExclude = [ROUTER.pages.main.children.home.title];
+
+  private readonly subscriptions = new SubSink();
+
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly routerFacade: RouterFacade
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.subscriptions.sink = this.routerFacade.eventsNavigationEnd$.subscribe(
+      () => {
+        this.breadcrumbs = this.createBreadcrumbs(
+          this.activatedRoute.root
+        ).reduce((acc, { label, url }) => {
+          if (
+            label !== '' &&
+            !acc.some((breadcrumb) => breadcrumb.url === url)
+          ) {
+            acc.push({ label, url });
+          }
+          return acc;
+        }, [] as Breadcrumb[]);
+
+        this.title = this.breadcrumbs[this.breadcrumbs.length - 1]?.label ?? '';
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  private createBreadcrumbs(
+    route: ActivatedRoute,
+    url = '',
+    breadcrumbs: Breadcrumb[] = []
+  ): Breadcrumb[] {
+    const children: ActivatedRoute[] = route.children;
+
+    if (children.length === 0) {
+      return breadcrumbs;
+    }
+
+    for (const child of children) {
+      const routeURL: string = child.snapshot.url
+        .map((segment) => segment.path)
+        .join('/');
+
+      if (routeURL !== '') {
+        url += `/${routeURL}`;
+      }
+
+      // breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], url: url });
+      breadcrumbs.push({ label: child.snapshot.title ?? '', url: url });
+      return this.createBreadcrumbs(child, url, breadcrumbs);
+    }
+
+    return breadcrumbs;
+  }
+}

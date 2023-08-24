@@ -8,6 +8,7 @@ export const modulesProfileRoutes: Route[] = [
   {
     path: '',
     component: AccountTemplateComponent,
+    title: ROUTER.pages.main.children.account.title,
     children: [
       {
         path: ROUTER.pages.main.children.account.children.index.path,

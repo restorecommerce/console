@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class RcAccountDeletionComponent {
   onDeleteAccount() {
-    // TODO: implement
+    // TODO: Implement delete logic
     console.log('Account deletion');
   }
 }

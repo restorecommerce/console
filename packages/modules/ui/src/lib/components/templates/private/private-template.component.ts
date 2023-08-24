@@ -31,6 +31,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     profile: this.accountFacade.profile$,
   });
   currentRoute!: string;
+  currentRouteTitle!: string;
   smallDevice!: boolean;
 
   private readonly subscriptions = new SubSink();
