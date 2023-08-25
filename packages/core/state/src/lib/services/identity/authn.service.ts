@@ -40,7 +40,7 @@ export class AuthnService {
     private readonly identityUserConfirmPasswordChangeGQL: IdentityUserConfirmPasswordChangeGQL
   ) {}
 
-  register(
+  signUp(
     payload: IIoRestorecommerceUserRegisterRequest
   ): Observable<MutationResult<IdentityUserRegisterMutation>> {
     return this.identityUserRegisterGQL.mutate({
@@ -56,7 +56,7 @@ export class AuthnService {
     });
   }
 
-  login(
+  signIn(
     payload: IAuthnTokenSignInPayload
   ): Observable<IAuthnTokenSignInResponse> {
     const body = new URLSearchParams();

@@ -18,7 +18,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.signUpRequest),
       switchMap(({ payload }) =>
-        this.authnService.register(payload).pipe(
+        this.authnService.signUp(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user.Register?.details?.status || {};
@@ -106,7 +106,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.signInRequest),
       switchMap(({ payload }) =>
-        this.authnService.login(payload).pipe(
+        this.authnService.signIn(payload).pipe(
           map(
             ({
               access_token: token = null,
