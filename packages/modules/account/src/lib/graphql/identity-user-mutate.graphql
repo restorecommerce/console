@@ -1,4 +1,4 @@
-mutation UserMutate($input: IIoRestorecommerceUserUserList!) {
+mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
   identity {
     user {
       Mutate(input: $input) {

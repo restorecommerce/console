@@ -1,4 +1,4 @@
-query UserFind($input: IIoRestorecommerceUserFindRequest!) {
+query IdentityUserFind($input: IIoRestorecommerceUserFindRequest!) {
   identity {
     user {
       Find(input: $input) {

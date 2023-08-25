@@ -1,4 +1,6 @@
-mutation UserDelete($input: IIoRestorecommerceResourcebaseDeleteRequest!) {
+mutation IdentityUserDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
   identity {
     user {
       Delete(input: $input) {

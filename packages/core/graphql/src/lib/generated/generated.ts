@@ -5093,11 +5093,11 @@ export interface SubscriptionOutput {
   id?: Maybe<Scalars['String']>;
 }
 
-export type UserDeleteMutationVariables = Exact<{
+export type IdentityUserDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type UserDeleteMutation = {
+export type IdentityUserDeleteMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -5118,11 +5118,11 @@ export type UserDeleteMutation = {
   };
 };
 
-export type UserFindByTokenQueryVariables = Exact<{
+export type IdentityUserFindByTokenQueryVariables = Exact<{
   input: IIoRestorecommerceUserFindByTokenRequest;
 }>;
 
-export type UserFindByTokenQuery = {
+export type IdentityUserFindByTokenQuery = {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -5161,11 +5161,11 @@ export type UserFindByTokenQuery = {
   };
 };
 
-export type UserFindQueryVariables = Exact<{
+export type IdentityUserFindQueryVariables = Exact<{
   input: IIoRestorecommerceUserFindRequest;
 }>;
 
-export type UserFindQuery = {
+export type IdentityUserFindQuery = {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -5207,11 +5207,11 @@ export type UserFindQuery = {
   };
 };
 
-export type UserMutateMutationVariables = Exact<{
+export type IdentityUserMutateMutationVariables = Exact<{
   input: IIoRestorecommerceUserUserList;
 }>;
 
-export type UserMutateMutation = {
+export type IdentityUserMutateMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -5441,8 +5441,10 @@ export type MasterDataTimezoneReadQuery = {
   };
 };
 
-export const UserDeleteDocument = gql`
-  mutation UserDelete($input: IIoRestorecommerceResourcebaseDeleteRequest!) {
+export const IdentityUserDeleteDocument = gql`
+  mutation IdentityUserDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
     identity {
       user {
         Delete(input: $input) {
@@ -5461,18 +5463,20 @@ export const UserDeleteDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class UserDeleteGQL extends Apollo.Mutation<
-  UserDeleteMutation,
-  UserDeleteMutationVariables
+export class IdentityUserDeleteGQL extends Apollo.Mutation<
+  IdentityUserDeleteMutation,
+  IdentityUserDeleteMutationVariables
 > {
-  override document = UserDeleteDocument;
+  override document = IdentityUserDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
   }
 }
-export const UserFindByTokenDocument = gql`
-  query UserFindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
+export const IdentityUserFindByTokenDocument = gql`
+  query IdentityUserFindByToken(
+    $input: IIoRestorecommerceUserFindByTokenRequest!
+  ) {
     identity {
       user {
         FindByToken(input: $input) {
@@ -5507,18 +5511,18 @@ export const UserFindByTokenDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class UserFindByTokenGQL extends Apollo.Query<
-  UserFindByTokenQuery,
-  UserFindByTokenQueryVariables
+export class IdentityUserFindByTokenGQL extends Apollo.Query<
+  IdentityUserFindByTokenQuery,
+  IdentityUserFindByTokenQueryVariables
 > {
-  override document = UserFindByTokenDocument;
+  override document = IdentityUserFindByTokenDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
   }
 }
-export const UserFindDocument = gql`
-  query UserFind($input: IIoRestorecommerceUserFindRequest!) {
+export const IdentityUserFindDocument = gql`
+  query IdentityUserFind($input: IIoRestorecommerceUserFindRequest!) {
     identity {
       user {
         Find(input: $input) {
@@ -5555,18 +5559,18 @@ export const UserFindDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class UserFindGQL extends Apollo.Query<
-  UserFindQuery,
-  UserFindQueryVariables
+export class IdentityUserFindGQL extends Apollo.Query<
+  IdentityUserFindQuery,
+  IdentityUserFindQueryVariables
 > {
-  override document = UserFindDocument;
+  override document = IdentityUserFindDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
   }
 }
-export const UserMutateDocument = gql`
-  mutation UserMutate($input: IIoRestorecommerceUserUserList!) {
+export const IdentityUserMutateDocument = gql`
+  mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
     identity {
       user {
         Mutate(input: $input) {
@@ -5603,11 +5607,11 @@ export const UserMutateDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class UserMutateGQL extends Apollo.Mutation<
-  UserMutateMutation,
-  UserMutateMutationVariables
+export class IdentityUserMutateGQL extends Apollo.Mutation<
+  IdentityUserMutateMutation,
+  IdentityUserMutateMutationVariables
 > {
-  override document = UserMutateDocument;
+  override document = IdentityUserMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

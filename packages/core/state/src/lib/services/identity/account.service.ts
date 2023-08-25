@@ -4,17 +4,17 @@ import { MutationResult } from 'apollo-angular';
 import { Observable } from 'rxjs';
 
 import {
-  UserFindByTokenGQL,
-  UserFindByTokenQuery,
+  IdentityUserFindByTokenGQL,
+  IdentityUserFindByTokenQuery,
   IIoRestorecommerceUserFindByTokenRequest,
-  UserMutateGQL,
-  UserMutateMutation,
+  IdentityUserMutateGQL,
+  IdentityUserMutateMutation,
   IIoRestorecommerceUserUserList,
-  UserDeleteGQL,
-  UserDeleteMutation,
+  IdentityUserDeleteGQL,
+  IdentityUserDeleteMutation,
   IIoRestorecommerceResourcebaseDeleteRequest,
-  UserFindGQL,
-  UserFindQuery,
+  IdentityUserFindGQL,
+  IdentityUserFindQuery,
   IIoRestorecommerceUserFindRequest,
 } from '@console-core/graphql';
 
@@ -23,37 +23,37 @@ import {
 })
 export class AccountService {
   constructor(
-    private readonly userFindGQL: UserFindGQL,
-    private readonly userFindByTokenGQL: UserFindByTokenGQL,
-    private readonly userMutateGQL: UserMutateGQL,
-    private readonly userDeleteGQL: UserDeleteGQL
+    private readonly identityUserFindGQL: IdentityUserFindGQL,
+    private readonly identityUserFindByTokenGQL: IdentityUserFindByTokenGQL,
+    private readonly identityUserMutateGQL: IdentityUserMutateGQL,
+    private readonly identityUserDeleteGQL: IdentityUserDeleteGQL
   ) {}
 
   userFind(
     payload: IIoRestorecommerceUserFindRequest
-  ): Observable<ApolloQueryResult<UserFindQuery>> {
-    return this.userFindGQL.fetch({
+  ): Observable<ApolloQueryResult<IdentityUserFindQuery>> {
+    return this.identityUserFindGQL.fetch({
       input: payload,
     });
   }
 
   userFindByToken(
     payload: IIoRestorecommerceUserFindByTokenRequest
-  ): Observable<ApolloQueryResult<UserFindByTokenQuery>> {
-    return this.userFindByTokenGQL.fetch({
+  ): Observable<ApolloQueryResult<IdentityUserFindByTokenQuery>> {
+    return this.identityUserFindByTokenGQL.fetch({
       input: payload,
     });
   }
 
   userMutate(
     payload: IIoRestorecommerceUserUserList
-  ): Observable<MutationResult<UserMutateMutation>> {
-    return this.userMutateGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityUserMutateMutation>> {
+    return this.identityUserMutateGQL.mutate({ input: payload });
   }
 
   userDelete(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<UserDeleteMutation>> {
-    return this.userDeleteGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityUserDeleteMutation>> {
+    return this.identityUserDeleteGQL.mutate({ input: payload });
   }
 }
