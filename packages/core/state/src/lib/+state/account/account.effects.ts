@@ -6,6 +6,7 @@ import { ENotificationTypes, IUser } from '@console-core/types';
 
 import { AccountService } from '../../services';
 import { AppFacade } from '../app';
+import { AuthnFacade } from '../authn';
 import * as authnActions from '../authn/authn.actions';
 
 import * as accountActions from './account.actions';
@@ -19,6 +20,11 @@ export class AccountEffects {
         this.accountService.userFindByToken(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
+
+            if (!identity?.user?.FindByToken?.details?.payload) {
+              this.authnFacade.signOut();
+            }
+
             return accountActions.userFindByTokenSuccess({
               payload: {
                 ...(identity?.user?.FindByToken?.details?.payload || null),
@@ -83,6 +89,7 @@ export class AccountEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly accountService: AccountService,
-    private readonly appFacade: AppFacade
+    private readonly appFacade: AppFacade,
+    private readonly authnFacade: AuthnFacade
   ) {}
 }
