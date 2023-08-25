@@ -14,7 +14,7 @@ export const userFindByTokenRequest = createAction(
 
 export const userFindByTokenSuccess = createAction(
   '[ACCOUNT] Find user by token request success',
-  props<{ payload: IIoRestorecommerceUserUser | null }>()
+  props<{ payload: IIoRestorecommerceUserUser }>()
 );
 
 export const userFindByTokenFail = createAction(
@@ -29,7 +29,7 @@ export const userMutateRequest = createAction(
 
 export const userMutateSuccess = createAction(
   '[ACCOUNT] User mutate request success',
-  props<{ payload: IIoRestorecommerceUserUser | null }>()
+  props<{ payload: IIoRestorecommerceUserUser }>()
 );
 
 export const userMutateFail = createAction(

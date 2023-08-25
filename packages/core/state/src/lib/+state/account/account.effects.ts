@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
-import { ENotificationTypes, IUser } from '@console-core/types';
+import { IIoRestorecommerceUserUser } from '@console-core/graphql';
+import { ENotificationTypes } from '@console-core/types';
 
 import { AccountService } from '../../services';
 import { AppFacade } from '../app';
@@ -26,9 +27,8 @@ export class AccountEffects {
             }
 
             return accountActions.userFindByTokenSuccess({
-              payload: {
-                ...(identity?.user?.FindByToken?.details?.payload || null),
-              },
+              payload: identity?.user?.FindByToken?.details
+                ?.payload as IIoRestorecommerceUserUser,
             });
           }),
           catchError((error: Error) =>
@@ -53,7 +53,7 @@ export class AccountEffects {
             }
 
             return accountActions.userMutateSuccess({
-              payload: users[0] as IUser,
+              payload: users[0] as IIoRestorecommerceUserUser,
             });
           }),
           catchError((error: Error) =>
