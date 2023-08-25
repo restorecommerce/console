@@ -1,0 +1,22 @@
+query MasterDataTimezoneRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    timezone {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              id
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}

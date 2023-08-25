@@ -5369,6 +5369,45 @@ export type RequestPasswordChangeMutation = {
   };
 };
 
+export type MasterDataLocaleReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataLocaleReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    locale: {
+      __typename?: 'ResourceLocaleQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceLocaleLocaleListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceLocaleLocaleListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceLocaleLocaleResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceLocaleLocale';
+              id?: string | null;
+              description?: string | null;
+              value?: string | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export const UserDeleteDocument = gql`
   mutation UserDelete($input: IIoRestorecommerceResourcebaseDeleteRequest!) {
     identity {
@@ -5674,6 +5713,49 @@ export class RequestPasswordChangeGQL extends Apollo.Mutation<
   RequestPasswordChangeMutationVariables
 > {
   override document = RequestPasswordChangeDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataLocaleReadDocument = gql`
+  query MasterDataLocaleRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      locale {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                id
+                description
+                value
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataLocaleReadGQL extends Apollo.Query<
+  MasterDataLocaleReadQuery,
+  MasterDataLocaleReadQueryVariables
+> {
+  override document = MasterDataLocaleReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
