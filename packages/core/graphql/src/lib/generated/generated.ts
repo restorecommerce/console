@@ -5408,6 +5408,39 @@ export type MasterDataLocaleReadQuery = {
   };
 };
 
+export type MasterDataTimezoneReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataTimezoneReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    timezone: {
+      __typename?: 'ResourceTimezoneQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceTimezoneTimezoneListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceTimezoneTimezoneListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceTimezoneTimezoneResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceTimezoneTimezone';
+              id?: string | null;
+              description?: string | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export const UserDeleteDocument = gql`
   mutation UserDelete($input: IIoRestorecommerceResourcebaseDeleteRequest!) {
     identity {
@@ -5756,6 +5789,44 @@ export class MasterDataLocaleReadGQL extends Apollo.Query<
   MasterDataLocaleReadQueryVariables
 > {
   override document = MasterDataLocaleReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataTimezoneReadDocument = gql`
+  query MasterDataTimezoneRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      timezone {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                id
+                description
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataTimezoneReadGQL extends Apollo.Query<
+  MasterDataTimezoneReadQuery,
+  MasterDataTimezoneReadQueryVariables
+> {
+  override document = MasterDataTimezoneReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
