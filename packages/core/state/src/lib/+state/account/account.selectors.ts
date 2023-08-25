@@ -9,7 +9,7 @@ export const selectAccount = createFeatureSelector<IAccountState>(
 
 export const selectProfile = createSelector(
   selectAccount,
-  (state: IAccountState) => state.profile
+  (state: IAccountState) => state.user
 );
 
 export const selectIsLoading = createSelector(

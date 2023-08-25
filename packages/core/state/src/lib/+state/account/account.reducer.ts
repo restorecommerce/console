@@ -1,17 +1,16 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { EActionStatus, IAccountState, IUser } from '@console-core/types';
+import { EActionStatus, IAccountState } from '@console-core/types';
+
+import { getUser } from '../../utils';
 
 import * as accountActions from './account.actions';
 
 export const initialState: IAccountState = {
-  profile: null,
+  user: null,
   actionStatus: EActionStatus.INIT,
   error: null,
 };
-
-const userFullName = ({ firstName, lastName }: IUser) =>
-  `${firstName} ${lastName}`;
 
 const reducer = createReducer<IAccountState>(
   initialState,
@@ -25,12 +24,9 @@ const reducer = createReducer<IAccountState>(
   ),
   on(
     accountActions.userFindByTokenSuccess,
-    (state, { payload: profile }): IAccountState => ({
+    (state, { payload }): IAccountState => ({
       ...state,
-      profile: {
-        ...profile,
-        fullName: profile ? userFullName(profile) : '',
-      },
+      user: getUser(payload),
       actionStatus: EActionStatus.SUCCEEDED,
       error: null,
     })
@@ -53,12 +49,9 @@ const reducer = createReducer<IAccountState>(
   ),
   on(
     accountActions.userMutateSuccess,
-    (state, { payload: profile }): IAccountState => ({
+    (state, { payload }): IAccountState => ({
       ...state,
-      profile: {
-        ...profile,
-        fullName: profile ? userFullName(profile) : '',
-      },
+      user: getUser(payload),
       actionStatus: EActionStatus.SUCCEEDED,
       error: null,
     })

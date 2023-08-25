@@ -3,8 +3,7 @@ import { combineLatest, tap } from 'rxjs';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { AccountFacade } from '@console-core/state';
-import { filterNullish } from '@console-modules/shared';
+import { AccountFacade, filterNullish } from '@console-core/state';
 
 import {
   buildAccountInformationSchema,

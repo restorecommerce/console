@@ -3,9 +3,9 @@ import { createAction, props } from '@ngrx/store';
 import {
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceUserFindByTokenRequest,
+  IIoRestorecommerceUserUser,
   IIoRestorecommerceUserUserList,
 } from '@console-core/graphql';
-import { IUser } from '@console-core/types';
 
 export const userFindByTokenRequest = createAction(
   '[ACCOUNT] Find user by token request',
@@ -14,7 +14,7 @@ export const userFindByTokenRequest = createAction(
 
 export const userFindByTokenSuccess = createAction(
   '[ACCOUNT] Find user by token request success',
-  props<{ payload: IUser | null }>()
+  props<{ payload: IIoRestorecommerceUserUser | null }>()
 );
 
 export const userFindByTokenFail = createAction(
@@ -29,7 +29,7 @@ export const userMutateRequest = createAction(
 
 export const userMutateSuccess = createAction(
   '[ACCOUNT] User mutate request success',
-  props<{ payload: IUser | null }>()
+  props<{ payload: IIoRestorecommerceUserUser | null }>()
 );
 
 export const userMutateFail = createAction(
