@@ -23,7 +23,7 @@ export class AuthnEffects {
             const { code, message } =
               data?.identity?.user.Register?.details?.status || {};
             if (code !== 200) {
-              return authnActions.signUpError({
+              return authnActions.signUpFail({
                 error: message ?? 'sign up failed',
               });
             }
@@ -31,7 +31,7 @@ export class AuthnEffects {
             return authnActions.signUpSuccess();
           }),
           catchError((error: Error) =>
-            of(authnActions.signUpError({ error: error.message }))
+            of(authnActions.signUpFail({ error: error.message }))
           )
         )
       )
@@ -67,7 +67,7 @@ export class AuthnEffects {
             const { code, message } =
               data?.identity?.user?.Activate?.details?.operationStatus || {};
             if (code !== 200) {
-              return authnActions.activateError({
+              return authnActions.activateFail({
                 error: message ?? 'activation failed',
               });
             }
@@ -75,7 +75,7 @@ export class AuthnEffects {
             return authnActions.activateSuccess();
           }),
           catchError((error: Error) =>
-            of(authnActions.activateError({ error: error.message }))
+            of(authnActions.activateFail({ error: error.message }))
           )
         )
       )
@@ -124,7 +124,7 @@ export class AuthnEffects {
           ),
           catchError((error: Error) => {
             return of(
-              authnActions.signInError({
+              authnActions.signInFail({
                 error: error.message.includes('401')
                   ? 'sign in failed'
                   : error.message,
@@ -166,7 +166,7 @@ export class AuthnEffects {
               data?.identity?.user?.RequestPasswordChange?.details
                 ?.operationStatus || {};
             if (code !== 200) {
-              return authnActions.passwordRecoveryError({
+              return authnActions.passwordRecoveryFail({
                 error: message ?? 'password recovery failed',
               });
             }
@@ -174,7 +174,7 @@ export class AuthnEffects {
             return authnActions.passwordRecoverySuccess();
           }),
           catchError((error: Error) =>
-            of(authnActions.passwordRecoveryError({ error: error.message }))
+            of(authnActions.passwordRecoveryFail({ error: error.message }))
           )
         )
       )
@@ -211,7 +211,7 @@ export class AuthnEffects {
               data?.identity?.user?.ConfirmPasswordChange?.details
                 ?.operationStatus || {};
             if (code !== 200) {
-              return authnActions.confirmPasswordError({
+              return authnActions.confirmPasswordFail({
                 error: message ?? 'password recovery failed',
               });
             }
@@ -220,7 +220,7 @@ export class AuthnEffects {
           }),
           catchError((error: Error) =>
             of(
-              authnActions.confirmPasswordError({
+              authnActions.confirmPasswordFail({
                 error: error.message,
               })
             )
@@ -277,11 +277,11 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(
-          authnActions.signUpError,
-          authnActions.activateError,
-          authnActions.signInError,
-          authnActions.passwordRecoveryError,
-          authnActions.confirmPasswordError
+          authnActions.signUpFail,
+          authnActions.activateFail,
+          authnActions.signInFail,
+          authnActions.passwordRecoveryFail,
+          authnActions.confirmPasswordFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

@@ -32,7 +32,7 @@ export class AccountEffects {
             });
           }),
           catchError((error: Error) =>
-            of(accountActions.userFindByTokenError({ error: error.message }))
+            of(accountActions.userFindByTokenFail({ error: error.message }))
           )
         )
       )
@@ -57,7 +57,7 @@ export class AccountEffects {
             });
           }),
           catchError((error: Error) =>
-            of(accountActions.userMutateError({ error: error.message }))
+            of(accountActions.userMutateFail({ error: error.message }))
           )
         )
       )
@@ -67,7 +67,10 @@ export class AccountEffects {
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(accountActions.userFindByTokenError),
+        ofType(
+          accountActions.userFindByTokenFail,
+          accountActions.userMutateFail
+        ),
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',

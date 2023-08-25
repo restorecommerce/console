@@ -32,7 +32,7 @@ const reducer = createReducer<IAuthnState>(
     })
   ),
   on(
-    authnActions.signUpError,
+    authnActions.signUpFail,
     (state, { error }): IAuthnState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
@@ -56,7 +56,7 @@ const reducer = createReducer<IAuthnState>(
     })
   ),
   on(
-    authnActions.activateError,
+    authnActions.activateFail,
     (state, { error }): IAuthnState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
@@ -82,7 +82,7 @@ const reducer = createReducer<IAuthnState>(
     })
   ),
   on(
-    authnActions.signInError,
+    authnActions.signInFail,
     (state, { error }): IAuthnState => ({
       ...state,
       isAuthenticated: false,
@@ -107,7 +107,7 @@ const reducer = createReducer<IAuthnState>(
     })
   ),
   on(
-    authnActions.passwordRecoveryError,
+    authnActions.passwordRecoveryFail,
     (state, { error }): IAuthnState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
@@ -131,7 +131,7 @@ const reducer = createReducer<IAuthnState>(
     })
   ),
   on(
-    authnActions.confirmPasswordError,
+    authnActions.confirmPasswordFail,
     (state, { error }): IAuthnState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,

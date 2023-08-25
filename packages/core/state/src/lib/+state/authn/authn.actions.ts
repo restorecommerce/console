@@ -15,8 +15,8 @@ export const signUpRequest = createAction(
 
 export const signUpSuccess = createAction('[AUTHN] Sign up request success');
 
-export const signUpError = createAction(
-  '[AUTHN] Sign up request error',
+export const signUpFail = createAction(
+  '[AUTHN] Sign up request fail',
   props<{ error: string }>()
 );
 
@@ -27,8 +27,8 @@ export const activateRequest = createAction(
 
 export const activateSuccess = createAction('[AUTHN] Activate request success');
 
-export const activateError = createAction(
-  '[AUTHN] Activate request error',
+export const activateFail = createAction(
+  '[AUTHN] Activate request fail',
   props<{ error: string }>()
 );
 
@@ -42,8 +42,8 @@ export const signInSuccess = createAction(
   props<{ payload: IAuthnStateData }>()
 );
 
-export const signInError = createAction(
-  '[AUTHN] Sign in request error',
+export const signInFail = createAction(
+  '[AUTHN] Sign in request fail',
   props<{ error: string }>()
 );
 
@@ -56,8 +56,8 @@ export const passwordRecoverySuccess = createAction(
   '[AUTHN] Password recovery request success'
 );
 
-export const passwordRecoveryError = createAction(
-  '[AUTHN] Password recovery request error',
+export const passwordRecoveryFail = createAction(
+  '[AUTHN] Password recovery request fail',
   props<{ error: string }>()
 );
 
@@ -70,8 +70,8 @@ export const confirmPasswordSuccess = createAction(
   '[AUTHN] Confirm password change request success'
 );
 
-export const confirmPasswordError = createAction(
-  '[AUTHN] Confirm password change request error',
+export const confirmPasswordFail = createAction(
+  '[AUTHN] Confirm password change request fail',
   props<{ error: string }>()
 );
 

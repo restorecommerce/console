@@ -17,8 +17,8 @@ export const userFindByTokenSuccess = createAction(
   props<{ payload: IUser | null }>()
 );
 
-export const userFindByTokenError = createAction(
-  '[ACCOUNT] Find user by token request error',
+export const userFindByTokenFail = createAction(
+  '[ACCOUNT] Find user by token request fail',
   props<{ error: string }>()
 );
 
@@ -32,8 +32,8 @@ export const userMutateSuccess = createAction(
   props<{ payload: IUser | null }>()
 );
 
-export const userMutateError = createAction(
-  '[ACCOUNT] User mutate request error',
+export const userMutateFail = createAction(
+  '[ACCOUNT] User mutate request fail',
   props<{ error: string }>()
 );
 
@@ -46,8 +46,8 @@ export const userDeleteSuccess = createAction(
   '[ACCOUNT] User delete request success'
 );
 
-export const userDeleteError = createAction(
-  '[ACCOUNT] User delete request error',
+export const userDeleteFail = createAction(
+  '[ACCOUNT] User delete request fail',
   props<{ error: string }>()
 );
 

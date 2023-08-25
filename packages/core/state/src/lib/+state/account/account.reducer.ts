@@ -36,7 +36,7 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.userFindByTokenError,
+    accountActions.userFindByTokenFail,
     (state, { error }): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
@@ -64,7 +64,7 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.userMutateError,
+    accountActions.userMutateFail,
     (state, { error }): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
@@ -88,7 +88,7 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.userDeleteError,
+    accountActions.userDeleteFail,
     (state, { error }): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
