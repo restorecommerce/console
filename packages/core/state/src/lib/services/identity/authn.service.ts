@@ -5,18 +5,18 @@ import { Observable } from 'rxjs';
 
 import { AUTH } from '@console-core/config';
 import {
-  ActivateGQL,
-  ActivateMutation,
-  ConfirmPasswordChangeGQL,
-  ConfirmPasswordChangeMutation,
+  IdentityUserActivateGQL,
+  IdentityUserActivateMutation,
+  IdentityUserConfirmPasswordChangeGQL,
+  IdentityUserConfirmPasswordChangeMutation,
   IIoRestorecommerceUserActivateRequest,
   IIoRestorecommerceUserConfirmPasswordChangeRequest,
   IIoRestorecommerceUserRegisterRequest,
   IIoRestorecommerceUserRequestPasswordChangeRequest,
-  RegisterGQL,
-  RegisterMutation,
-  RequestPasswordChangeGQL,
-  RequestPasswordChangeMutation,
+  IdentityUserRegisterGQL,
+  IdentityUserRegisterMutation,
+  IdentityUserRequestPasswordChangeGQL,
+  IdentityUserRequestPasswordChangeMutation,
 } from '@console-core/graphql';
 import {
   IAuthnTokenSignInPayload,
@@ -34,24 +34,24 @@ export class AuthnService {
   constructor(
     private readonly httpClient: HttpClient,
     private readonly apiService: ApiService,
-    private readonly registerGQL: RegisterGQL,
-    private readonly activateGQL: ActivateGQL,
-    private readonly requestPasswordChangeGQL: RequestPasswordChangeGQL,
-    private readonly confirmPasswordChangeGQL: ConfirmPasswordChangeGQL
+    private readonly identityUserRegisterGQL: IdentityUserRegisterGQL,
+    private readonly identityUserActivateGQL: IdentityUserActivateGQL,
+    private readonly identityUserRequestPasswordChangeGQL: IdentityUserRequestPasswordChangeGQL,
+    private readonly identityUserConfirmPasswordChangeGQL: IdentityUserConfirmPasswordChangeGQL
   ) {}
 
   register(
     payload: IIoRestorecommerceUserRegisterRequest
-  ): Observable<MutationResult<RegisterMutation>> {
-    return this.registerGQL.mutate({
+  ): Observable<MutationResult<IdentityUserRegisterMutation>> {
+    return this.identityUserRegisterGQL.mutate({
       input: payload,
     });
   }
 
   activate(
     payload: IIoRestorecommerceUserActivateRequest
-  ): Observable<MutationResult<ActivateMutation>> {
-    return this.activateGQL.mutate({
+  ): Observable<MutationResult<IdentityUserActivateMutation>> {
+    return this.identityUserActivateGQL.mutate({
       input: payload,
     });
   }
@@ -76,16 +76,16 @@ export class AuthnService {
 
   requestPasswordChange(
     payload: IIoRestorecommerceUserRequestPasswordChangeRequest
-  ): Observable<MutationResult<RequestPasswordChangeMutation>> {
-    return this.requestPasswordChangeGQL.mutate({
+  ): Observable<MutationResult<IdentityUserRequestPasswordChangeMutation>> {
+    return this.identityUserRequestPasswordChangeGQL.mutate({
       input: payload,
     });
   }
 
   confirmPasswordChange(
     payload: IIoRestorecommerceUserConfirmPasswordChangeRequest
-  ): Observable<MutationResult<ConfirmPasswordChangeMutation>> {
-    return this.confirmPasswordChangeGQL.mutate({
+  ): Observable<MutationResult<IdentityUserConfirmPasswordChangeMutation>> {
+    return this.identityUserConfirmPasswordChangeGQL.mutate({
       input: payload,
     });
   }

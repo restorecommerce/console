@@ -5253,11 +5253,11 @@ export type IdentityUserMutateMutation = {
   };
 };
 
-export type ActivateMutationVariables = Exact<{
+export type IdentityUserActivateMutationVariables = Exact<{
   input: IIoRestorecommerceUserActivateRequest;
 }>;
 
-export type ActivateMutation = {
+export type IdentityUserActivateMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -5278,11 +5278,11 @@ export type ActivateMutation = {
   };
 };
 
-export type ConfirmPasswordChangeMutationVariables = Exact<{
+export type IdentityUserConfirmPasswordChangeMutationVariables = Exact<{
   input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
 }>;
 
-export type ConfirmPasswordChangeMutation = {
+export type IdentityUserConfirmPasswordChangeMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -5303,11 +5303,11 @@ export type ConfirmPasswordChangeMutation = {
   };
 };
 
-export type RegisterMutationVariables = Exact<{
+export type IdentityUserRegisterMutationVariables = Exact<{
   input: IIoRestorecommerceUserRegisterRequest;
 }>;
 
-export type RegisterMutation = {
+export type IdentityUserRegisterMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -5344,11 +5344,11 @@ export type RegisterMutation = {
   };
 };
 
-export type RequestPasswordChangeMutationVariables = Exact<{
+export type IdentityUserRequestPasswordChangeMutationVariables = Exact<{
   input: IIoRestorecommerceUserRequestPasswordChangeRequest;
 }>;
 
-export type RequestPasswordChangeMutation = {
+export type IdentityUserRequestPasswordChangeMutation = {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -5617,8 +5617,10 @@ export class IdentityUserMutateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
-export const ActivateDocument = gql`
-  mutation Activate($input: IIoRestorecommerceUserActivateRequest!) {
+export const IdentityUserActivateDocument = gql`
+  mutation IdentityUserActivate(
+    $input: IIoRestorecommerceUserActivateRequest!
+  ) {
     identity {
       user {
         Activate(input: $input) {
@@ -5637,18 +5639,18 @@ export const ActivateDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class ActivateGQL extends Apollo.Mutation<
-  ActivateMutation,
-  ActivateMutationVariables
+export class IdentityUserActivateGQL extends Apollo.Mutation<
+  IdentityUserActivateMutation,
+  IdentityUserActivateMutationVariables
 > {
-  override document = ActivateDocument;
+  override document = IdentityUserActivateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
   }
 }
-export const ConfirmPasswordChangeDocument = gql`
-  mutation ConfirmPasswordChange(
+export const IdentityUserConfirmPasswordChangeDocument = gql`
+  mutation IdentityUserConfirmPasswordChange(
     $input: IIoRestorecommerceUserConfirmPasswordChangeRequest!
   ) {
     identity {
@@ -5669,18 +5671,20 @@ export const ConfirmPasswordChangeDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class ConfirmPasswordChangeGQL extends Apollo.Mutation<
-  ConfirmPasswordChangeMutation,
-  ConfirmPasswordChangeMutationVariables
+export class IdentityUserConfirmPasswordChangeGQL extends Apollo.Mutation<
+  IdentityUserConfirmPasswordChangeMutation,
+  IdentityUserConfirmPasswordChangeMutationVariables
 > {
-  override document = ConfirmPasswordChangeDocument;
+  override document = IdentityUserConfirmPasswordChangeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
   }
 }
-export const RegisterDocument = gql`
-  mutation Register($input: IIoRestorecommerceUserRegisterRequest!) {
+export const IdentityUserRegisterDocument = gql`
+  mutation IdentityUserRegister(
+    $input: IIoRestorecommerceUserRegisterRequest!
+  ) {
     identity {
       user {
         Register(input: $input) {
@@ -5713,18 +5717,18 @@ export const RegisterDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class RegisterGQL extends Apollo.Mutation<
-  RegisterMutation,
-  RegisterMutationVariables
+export class IdentityUserRegisterGQL extends Apollo.Mutation<
+  IdentityUserRegisterMutation,
+  IdentityUserRegisterMutationVariables
 > {
-  override document = RegisterDocument;
+  override document = IdentityUserRegisterDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
   }
 }
-export const RequestPasswordChangeDocument = gql`
-  mutation RequestPasswordChange(
+export const IdentityUserRequestPasswordChangeDocument = gql`
+  mutation IdentityUserRequestPasswordChange(
     $input: IIoRestorecommerceUserRequestPasswordChangeRequest!
   ) {
     identity {
@@ -5745,11 +5749,11 @@ export const RequestPasswordChangeDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
-export class RequestPasswordChangeGQL extends Apollo.Mutation<
-  RequestPasswordChangeMutation,
-  RequestPasswordChangeMutationVariables
+export class IdentityUserRequestPasswordChangeGQL extends Apollo.Mutation<
+  IdentityUserRequestPasswordChangeMutation,
+  IdentityUserRequestPasswordChangeMutationVariables
 > {
-  override document = RequestPasswordChangeDocument;
+  override document = IdentityUserRequestPasswordChangeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

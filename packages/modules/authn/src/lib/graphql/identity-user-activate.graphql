@@ -1,4 +1,4 @@
-mutation Activate($input: IIoRestorecommerceUserActivateRequest!) {
+mutation IdentityUserActivate($input: IIoRestorecommerceUserActivateRequest!) {
   identity {
     user {
       Activate(input: $input) {
