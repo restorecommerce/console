@@ -3,6 +3,7 @@ export interface IStoreConstant {
     readonly accountState: 'accountStateV1';
     readonly appState: 'appStateV1';
     readonly authnState: 'authnStateV1';
+    readonly localeState: 'localeStateV1';
     readonly routerState: 'routerStateV1';
   };
   readonly config: {

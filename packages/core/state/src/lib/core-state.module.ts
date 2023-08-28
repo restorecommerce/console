@@ -15,11 +15,20 @@ import {
   AuthnEffects,
   AuthnFacade,
   authnReducer,
+  LocaleEffects,
+  LocaleFacade,
+  localeReducer,
   RouterFacade,
 } from './+state';
 import { AccountService, ApiService } from './services';
 
-const facades = [AccountFacade, AppFacade, AuthnFacade, RouterFacade];
+const facades = [
+  AccountFacade,
+  AppFacade,
+  AuthnFacade,
+  LocaleFacade,
+  RouterFacade,
+];
 const services = [ApiService, AccountService];
 
 @NgModule({
@@ -30,6 +39,8 @@ const services = [ApiService, AccountService];
     EffectsModule.forFeature([AccountEffects]),
     StoreModule.forFeature(STORE.states.authnState, authnReducer),
     EffectsModule.forFeature([AuthnEffects]),
+    StoreModule.forFeature(STORE.states.localeState, localeReducer),
+    EffectsModule.forFeature([LocaleEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
   ],
   providers: [...facades, ...services],

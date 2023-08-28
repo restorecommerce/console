@@ -16,7 +16,7 @@ export class LocaleService {
     private readonly masterDataLocaleReadGQL: MasterDataLocaleReadGQL
   ) {}
 
-  localeRead(
+  read(
     payload: IIoRestorecommerceResourcebaseReadRequest
   ): Observable<ApolloQueryResult<MasterDataLocaleReadQuery>> {
     return this.masterDataLocaleReadGQL.fetch({

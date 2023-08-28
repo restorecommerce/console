@@ -7,6 +7,7 @@ export const STORE: Readonly<IStoreConstant> = {
     accountState: 'accountStateV1',
     appState: 'appStateV1',
     authnState: 'authnStateV1',
+    localeState: 'localeStateV1',
     routerState: 'routerStateV1',
   },
   config: {
