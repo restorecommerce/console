@@ -20,15 +20,14 @@ export class AccountEffects {
       switchMap(({ payload }) =>
         this.accountService.userFindByToken(payload).pipe(
           map((result) => {
-            const identity = result?.data?.identity;
+            const data = result?.data?.identity?.user?.FindByToken?.details;
 
-            if (!identity?.user?.FindByToken?.details?.payload) {
+            if (data?.status?.code !== 200 || !data?.payload) {
               this.authnFacade.signOut();
             }
 
             return accountActions.userFindByTokenSuccess({
-              payload: identity?.user?.FindByToken?.details
-                ?.payload as IIoRestorecommerceUserUser,
+              payload: data?.payload as IIoRestorecommerceUserUser,
             });
           }),
           catchError((error: Error) =>
