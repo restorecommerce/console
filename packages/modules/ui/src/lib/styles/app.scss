@@ -46,8 +46,8 @@ rc-header.application-header {
   flex: 0 0 20em;
 }
 
-.form-control-group .form-control-hint {
-  display: block;
+vcl-hint-error {
+  display: flex;
   margin-top: 0;
-  padding: 0.4em 0;
+  padding: 0.2em 0;
 }
