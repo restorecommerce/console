@@ -20,14 +20,16 @@ export class AccountEffects {
       switchMap(({ payload }) =>
         this.accountService.userFindByToken(payload).pipe(
           map((result) => {
-            const data = result?.data?.identity?.user?.FindByToken?.details;
+            const identity = result?.data?.identity;
+            const status = identity?.user?.FindByToken?.details?.status;
+            const data = identity?.user?.FindByToken?.details?.payload;
 
-            if (data?.status?.code !== 200 || !data?.payload) {
+            if (status?.code !== 200 || !data) {
               this.authnFacade.signOut();
             }
 
             return accountActions.userFindByTokenSuccess({
-              payload: data?.payload as IIoRestorecommerceUserUser,
+              payload: data as IIoRestorecommerceUserUser,
             });
           }),
           catchError((error: Error) =>
@@ -45,7 +47,13 @@ export class AccountEffects {
         this.accountService.userMutate(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
+            const operationStatus =
+              identity?.user?.Mutate?.details?.operationStatus;
             const users = identity?.user?.Mutate?.details?.items;
+
+            if (operationStatus?.code !== 200) {
+              throw new Error(operationStatus?.message || 'unknown error');
+            }
 
             if (!users?.length) {
               throw new Error('user not found');
@@ -63,12 +71,53 @@ export class AccountEffects {
     );
   });
 
+  userDeleteRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(accountActions.userDeleteRequest),
+      switchMap(({ payload }) =>
+        this.accountService.userDelete(payload).pipe(
+          map((result) => {
+            const identity = result?.data?.identity;
+            const operationStatus =
+              identity?.user?.Delete?.details?.operationStatus;
+
+            if (operationStatus?.code !== 200) {
+              throw new Error(operationStatus?.message || 'unknown error');
+            }
+
+            return accountActions.userDeleteSuccess();
+          }),
+          catchError((error: Error) =>
+            of(accountActions.userDeleteFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  userDeleteSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(accountActions.userDeleteSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'account deleted',
+            type: ENotificationTypes.SUCCESS,
+          });
+          this.authnFacade.signOut();
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(
           accountActions.userFindByTokenFail,
-          accountActions.userMutateFail
+          accountActions.userMutateFail,
+          accountActions.userDeleteFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

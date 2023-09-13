@@ -17,6 +17,16 @@ export const selectIsLoading = createSelector(
   (state: IAccountState) => state.actionStatus === EActionStatus.REQUESTING
 );
 
+export const selectIsUpdating = createSelector(
+  selectAccount,
+  (state: IAccountState) => state.actionStatus === EActionStatus.UPDATING
+);
+
+export const selectIsDeleting = createSelector(
+  selectAccount,
+  (state: IAccountState) => state.actionStatus === EActionStatus.DELETING
+);
+
 export const selectActionStatus = createSelector(
   selectAccount,
   (state: IAccountState) => state.actionStatus

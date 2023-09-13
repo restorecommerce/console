@@ -43,7 +43,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userMutateRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.UPDATING,
       error: null,
     })
   ),
@@ -52,7 +52,7 @@ const reducer = createReducer<IAccountState>(
     (state, { payload }): IAccountState => ({
       ...state,
       user: getUser(payload),
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.UPDATED,
       error: null,
     })
   ),
@@ -68,7 +68,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userDeleteRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.DELETING,
       error: null,
     })
   ),
@@ -76,7 +76,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userDeleteSuccess,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.DELETED,
       error: null,
     })
   ),
