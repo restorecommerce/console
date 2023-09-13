@@ -1,3 +1,3 @@
 import { INotification } from '../interfaces';
 
-export type TNewNotification = Omit<INotification, 'title' | 'date'>;
+export type TNewNotification = Pick<INotification, 'type' | 'content'>;

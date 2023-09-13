@@ -16,7 +16,7 @@ export class TimezoneService {
     private readonly masterDataTimezoneReadGQL: MasterDataTimezoneReadGQL
   ) {}
 
-  timezoneRead(
+  read(
     payload: IIoRestorecommerceResourcebaseReadRequest
   ): Observable<ApolloQueryResult<MasterDataTimezoneReadQuery>> {
     return this.masterDataTimezoneReadGQL.fetch({

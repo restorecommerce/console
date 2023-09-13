@@ -19,8 +19,10 @@ import {
   LocaleFacade,
   localeReducer,
   RouterFacade,
+  TimezoneEffects,
+  TimezoneFacade,
+  timezoneReducer,
 } from './+state';
-import { AccountService, ApiService } from './services';
 
 const facades = [
   AccountFacade,
@@ -28,8 +30,8 @@ const facades = [
   AuthnFacade,
   LocaleFacade,
   RouterFacade,
+  TimezoneFacade,
 ];
-const services = [ApiService, AccountService];
 
 @NgModule({
   imports: [
@@ -41,8 +43,10 @@ const services = [ApiService, AccountService];
     EffectsModule.forFeature([AuthnEffects]),
     StoreModule.forFeature(STORE.states.localeState, localeReducer),
     EffectsModule.forFeature([LocaleEffects]),
+    StoreModule.forFeature(STORE.states.timezoneState, timezoneReducer),
+    EffectsModule.forFeature([TimezoneEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
   ],
-  providers: [...facades, ...services],
+  providers: [...facades],
 })
 export class CoreStateModule {}
