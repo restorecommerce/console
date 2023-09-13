@@ -1,13 +1,8 @@
 @use './theme/_console-variables.scss' as *;
-// @use '@vcl/vcl/theme.scss' as *;
 
 .app {
   position: relative;
   height: 100vh;
-}
-
-.viewport {
-  display: block;
 }
 
 .content-area {
@@ -19,8 +14,8 @@
 }
 
 .rc-main {
-  & > * > .row {
-    height: 100%;
+  .full-height-scroll {
+    height: 100vh;
   }
 }
 
@@ -49,4 +44,10 @@ rc-header.application-header {
 
 .rc-flex-sidebar {
   flex: 0 0 20em;
+}
+
+.form-control-group .form-control-hint {
+  display: block;
+  margin-top: 0;
+  padding: 0.4em 0;
 }
