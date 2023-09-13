@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import { ROUTER } from '@console-core/config';
+import { REGEX, ROUTER } from '@console-core/config';
 import { AuthnFacade } from '@console-core/state';
 
 @Component({
@@ -12,7 +12,7 @@ export class RcSignInComponent {
   ROUTER = ROUTER;
   form = this.fb.group({
     identifier: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.pattern(REGEX.password)]],
   });
   isLoading$ = this.authnFacade.isLoading$;
 
