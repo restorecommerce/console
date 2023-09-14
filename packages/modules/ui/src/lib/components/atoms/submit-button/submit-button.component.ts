@@ -5,12 +5,12 @@ import { Component, Input } from '@angular/core';
   template: `
     <button
       vcl-button
+      [class]="buttonClass + ' button'"
+      [disabled]="isDisabled || !!isBusy"
       type="submit"
-      class="button"
-      [disabled]="isInvalid || !!isLoading"
     >
       <vcl-icon
-        *ngIf="isLoading"
+        *ngIf="isBusy"
         vclPrepend
         icon="vcl:busy"
       />
@@ -19,6 +19,7 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class RcSubmitButtonComponent {
-  @Input({ required: true }) isInvalid!: boolean;
-  @Input({ required: true }) isLoading!: boolean | null;
+  @Input({ required: true }) isDisabled!: boolean;
+  @Input({ required: true }) isBusy!: boolean | null;
+  @Input() buttonClass = '';
 }

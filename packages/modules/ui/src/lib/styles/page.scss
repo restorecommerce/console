@@ -14,10 +14,15 @@ h2.title {
 }
 
 .rc-page-container {
-  margin: 10px auto 25px;
+  margin: 1rem auto 2.5rem;
+  padding-bottom: 4rem;
 
   .page-right-side {
     margin: 1.1em 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 2rem;
   }
 
   @media screen and (min-width: 1201px) {

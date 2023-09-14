@@ -107,7 +107,6 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
         url += `/${routeURL}`;
       }
 
-      // breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], url: url });
       breadcrumbs.push({ label: child.snapshot.title ?? '', url: url });
       return this.createBreadcrumbs(child, url, breadcrumbs);
     }
