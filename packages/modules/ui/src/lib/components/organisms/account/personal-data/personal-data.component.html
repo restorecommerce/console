@@ -12,13 +12,17 @@
       ></vcl-jss-form>
 
       <div class="row justify-end loose-button-group">
-        <button
-          vcl-button
-          [disabled]="!personalForm.form.valid || personalForm.form.pristine"
-          (click)="onSavePersonalForm()"
+        <rc-submit-button
+          [isDisabled]="personalForm.form.invalid || personalForm.form.pristine"
+          [isBusy]="isUpdating"
+          (click)="
+            personalForm.form.valid && !personalForm.form.pristine
+              ? onSavePersonalForm()
+              : $event.preventDefault()
+          "
         >
-          Save
-        </button>
+          Save</rc-submit-button
+        >
       </div>
     </div>
   </div>

@@ -18,9 +18,4 @@ export class RcAccountInformationComponent {
 
   @ViewChild('personalForm')
   accountInformationForm!: JssFormComponent;
-
-  onSaveAccountInformationForm() {
-    // TODO: Implement save logic
-    console.log(this.accountInformationForm.form.value);
-  }
 }

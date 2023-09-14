@@ -2,6 +2,7 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
+import { REGEX } from '@console-core/config';
 import { IUser } from '@console-core/types';
 
 interface ISchemaOptions {
@@ -46,7 +47,7 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
         name: 'currentPassword',
         label: 'Current Password',
         type: 'password-input',
-        validators: [Validators.required, Validators.minLength(3)],
+        validators: [Validators.required, Validators.pattern(REGEX.password)],
         params: {},
         required: true,
         hints: [
@@ -57,8 +58,33 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
           },
           {
             type: 'error',
-            error: 'minlength',
-            message: 'This field must have a length of at least 3 characters.',
+            error: 'pattern',
+            message: 'This field must:',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- have at least 6 characters length',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a lowercase letter',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a uppercase letter',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a number',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a special character',
           },
         ],
       },
@@ -66,8 +92,7 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
         name: 'password',
         label: 'New Password',
         type: 'password-input',
-        // TODO: Add password strength validation
-        validators: [Validators.required, Validators.minLength(8)],
+        validators: [Validators.required, Validators.pattern(REGEX.password)],
         params: {},
         required: true,
         hints: [
@@ -78,8 +103,33 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
           },
           {
             type: 'error',
-            error: 'minlength',
-            message: 'This field must have a length of at least 8 characters',
+            error: 'pattern',
+            message: 'This field must:',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- have at least 6 characters length',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a lowercase letter',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a uppercase letter',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a number',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a special character',
           },
         ],
       },
@@ -87,8 +137,7 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
         name: 'passwordConfirmation',
         label: 'New Password Confirmation',
         type: 'password-input',
-        // TODO: Add password confirmation validator
-        validators: [Validators.required, Validators.minLength(8)],
+        validators: [Validators.required, Validators.pattern(REGEX.password)],
         params: {},
         required: true,
         hints: [
@@ -99,8 +148,33 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
           },
           {
             type: 'error',
-            error: 'minlength',
-            message: 'This field must have a length of at least 8 characters',
+            error: 'pattern',
+            message: 'This field must:',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- have at least 6 characters length',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a lowercase letter',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a uppercase letter',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a number',
+          },
+          {
+            type: 'error',
+            error: 'pattern',
+            message: '- contain a special character',
           },
         ],
       },

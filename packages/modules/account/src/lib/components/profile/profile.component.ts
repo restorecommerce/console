@@ -15,11 +15,17 @@ import {
 @Component({
   selector: 'app-account-profile',
   template: `
-    <ng-container *ngIf="vm$ | async">
+    <ng-container *ngIf="vm$ | async as vm">
       <rc-page-profile>
-        <rc-account-personal-data [personalFormSchema]="personalFormSchema" />
+        <rc-account-personal-data
+          [user]="vm.profile"
+          [isUpdating]="vm.isUpdating"
+          [personalFormSchema]="personalFormSchema"
+        />
 
         <rc-account-account-data
+          [user]="vm.profile"
+          [isUpdating]="vm.isUpdating"
           [emailFormSchema]="emailFormSchema"
           [passwordFormSchema]="passwordFormSchema"
         />
@@ -28,7 +34,10 @@ import {
           [accountInformationFormSchema]="accountInformationFormSchema"
         />
 
-        <rc-account-account-deletion />
+        <rc-account-account-deletion
+          [user]="vm.profile"
+          [isDeleting]="vm.isDeleting"
+        />
       </rc-page-profile>
     </ng-container>
   `,
@@ -51,6 +60,9 @@ export class ProfileComponent {
         });
       })
     ),
+    isLoading: this.accountFacade.isLoading$,
+    isUpdating: this.accountFacade.isUpdating$,
+    isDeleting: this.accountFacade.isDeleting$,
   });
 
   constructor(private readonly accountFacade: AccountFacade) {}

@@ -1,50 +1,63 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { combineLatest, tap } from 'rxjs';
+import { combineLatest, startWith, tap } from 'rxjs';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { LocaleFacade } from '@console-core/state';
+import {
+  AccountFacade,
+  LocaleFacade,
+  TimezoneFacade,
+} from '@console-core/state';
 
 import { buildLocalizationDataSchema } from '../../jss-forms';
 
 @Component({
   selector: 'app-account-preferences',
   template: `
-    <ng-container *ngIf="vm$ | async">
-      <rc-page-preferences>
+    <rc-page-preferences>
+      <ng-container *ngIf="vm$ | async as vm">
         <rc-account-localization-data
+          [user]="vm.user"
+          [isLoading]="vm.isLoading"
           [localizationFormSchema]="localizationFormSchema"
         />
-      </rc-page-preferences>
-    </ng-container>
+      </ng-container>
+    </rc-page-preferences>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PreferencesComponent implements OnInit {
-  localizationFormSchema: VCLFormFieldSchemaRoot = buildLocalizationDataSchema({
-    locales: [],
-    timezones: [],
-  });
+  localizationFormSchema!: VCLFormFieldSchemaRoot;
 
   readonly vm$ = combineLatest({
-    // TODO: add timezones and locales
-    locales: this.localeFacade.allLocales$.pipe(
-      tap((locales) => {
-        this.localizationFormSchema = buildLocalizationDataSchema({
-          locales,
-          timezones: [],
-        });
-      })
-    ),
-  });
+    user: this.accountFacade.profile$,
+    isLoading: this.accountFacade.isLoading$,
+    locales: this.localeFacade.allLocales$,
+    timezones: this.timezoneFacade.allTimezones$,
+  }).pipe(
+    startWith({
+      user: null,
+      isLoading: false,
+      locales: [],
+      timezones: [],
+    }),
+    tap(({ user, locales, timezones }) => {
+      this.localizationFormSchema = buildLocalizationDataSchema({
+        user,
+        locales,
+        timezones,
+      });
+    })
+  );
 
-  constructor(private readonly localeFacade: LocaleFacade) {}
+  constructor(
+    private readonly accountFacade: AccountFacade,
+    private readonly localeFacade: LocaleFacade,
+    private readonly timezoneFacade: TimezoneFacade
+  ) {}
 
   ngOnInit(): void {
-    // TODO: Check if query params are needed
-    this.localeFacade.localeReadRequest({
-      // limit: 100,
-      // offset: 0,
-    });
+    this.localeFacade.localeReadRequest({});
+    this.timezoneFacade.timezoneReadRequest({});
   }
 }

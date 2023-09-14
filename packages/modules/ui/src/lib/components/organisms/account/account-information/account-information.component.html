@@ -9,18 +9,6 @@
         #accountInformationForm="vclJssForm"
         [schema]="accountInformationFormSchema"
       ></vcl-jss-form>
-      <div class="row justify-end loose-button-group">
-        <button
-          vcl-button
-          [disabled]="
-            !accountInformationForm.form.valid ||
-            accountInformationForm.form.pristine
-          "
-          (click)="onSaveAccountInformationForm()"
-        >
-          Change Email
-        </button>
-      </div>
     </div>
   </div>
 </div>

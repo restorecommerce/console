@@ -11,13 +11,17 @@
         [schema]="emailFormSchema"
       ></vcl-jss-form>
       <div class="row justify-end loose-button-group">
-        <button
-          vcl-button
-          [disabled]="!emailForm.form.valid || emailForm.form.pristine"
-          (click)="onSaveEmailForm()"
+        <rc-submit-button
+          [isDisabled]="emailForm.form.invalid || emailForm.form.pristine"
+          [isBusy]="isActiveFormChangeEmail && isUpdating"
+          (click)="
+            emailForm.form.valid && !emailForm.form.pristine
+              ? onSaveEmailForm()
+              : $event.preventDefault()
+          "
         >
-          Change Email
-        </button>
+          Change Email</rc-submit-button
+        >
       </div>
     </div>
 
@@ -29,13 +33,17 @@
       >
       </vcl-jss-form>
       <div class="row justify-end loose-button-group">
-        <button
-          vcl-button
-          [disabled]="!passwordForm.form.valid || passwordForm.form.pristine"
-          (click)="onSavePasswordForm()"
+        <rc-submit-button
+          [isDisabled]="passwordForm.form.invalid || passwordForm.form.pristine"
+          [isBusy]="isActiveFormChangePassword && isUpdating"
+          (click)="
+            passwordForm.form.valid && !passwordForm.form.pristine
+              ? onSavePasswordForm()
+              : $event.preventDefault()
+          "
         >
-          Change Password
-        </button>
+          Change Password</rc-submit-button
+        >
       </div>
     </div>
   </div>
