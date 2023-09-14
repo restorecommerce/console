@@ -1,0 +1,31 @@
+<div class="row small-snap-vertical">
+  <div class="flex-4">
+    <h3>Localization Data</h3>
+    <p>Customize language and region related preferences</p>
+  </div>
+  <div class="flex-8">
+    <div class="page-right-side">
+      <vcl-jss-form
+        ngDefaultControl
+        #localizationForm="vclJssForm"
+        [schema]="localizationFormSchema"
+      ></vcl-jss-form>
+
+      <div class="row justify-end loose-button-group">
+        <rc-submit-button
+          [isDisabled]="
+            localizationForm.form.invalid || localizationForm.form.pristine
+          "
+          [isBusy]="isLoading"
+          (click)="
+            localizationForm.form.valid && !localizationForm.form.pristine
+              ? onSaveLocalizationForm()
+              : $event.preventDefault()
+          "
+        >
+          Save
+        </rc-submit-button>
+      </div>
+    </div>
+  </div>
+</div>

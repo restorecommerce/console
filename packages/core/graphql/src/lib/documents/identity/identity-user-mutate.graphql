@@ -1,0 +1,32 @@
+mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
+  identity {
+    user {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              id
+              active
+              activationCode
+              email
+              name
+              firstName
+              lastName
+              defaultScope
+              localeId
+              timezoneId
+              userType
+              roleAssociations {
+                role
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

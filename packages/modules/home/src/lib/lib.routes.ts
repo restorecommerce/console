@@ -9,6 +9,7 @@ export const modulesHomeRoutes: Route[] = [
   {
     path: ROUTER.pages.main.children.home.path,
     component: HomeTemplateComponent,
+    title: ROUTER.pages.main.children.home.title,
     children: [
       {
         path: ROUTER.pages.main.children.home.path,

@@ -1,0 +1,14 @@
+mutation IdentityUserActivate($input: IIoRestorecommerceUserActivateRequest!) {
+  identity {
+    user {
+      Activate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

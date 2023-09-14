@@ -1,10 +1,10 @@
 <vcl-form-control-group>
   <div class="help-wrapper">
-    <vcl-icon
-      vclPrepend
-      icon="mdi:magnify"
-    />
     <vcl-input-field>
+      <vcl-icon
+        vclPrepend
+        icon="mdi:magnify"
+      />
       <input
         vclInput
         autocomplete="off"
@@ -12,19 +12,21 @@
         [value]="value"
         (input)="updateValue($event)"
       />
+      <button
+        vcl-button
+        vclAppend
+        *ngIf="value"
+        square
+        class="transparent"
+        type="button"
+        (click)="clearValue($event)"
+      >
+        <vcl-icon
+          vclPrepend
+          icon="vcl:close"
+        />
+      </button>
     </vcl-input-field>
-    <button
-      vcl-button
-      square
-      class="transparent"
-      type="button"
-      (input)="clearValue($event)"
-    >
-      <vcl-icon
-        vclPrepend
-        icon="vcl:close"
-      />
-    </button>
   </div>
   <vcl-hint-error error="required">Name is required</vcl-hint-error>
   <vcl-hint-error error="minlength"

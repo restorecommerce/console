@@ -8,6 +8,7 @@ export const modulesManagementRoutes: Route[] = [
   {
     path: '',
     component: ManagementTemplateComponent,
+    title: ROUTER.pages.main.children.management.title,
     children: [
       {
         path: ROUTER.pages.main.children.management.children.index.path,
@@ -15,11 +16,15 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/management/management.module').then(
             (m) => m.ManagementModule
           ),
+        title: ROUTER.pages.main.children.management.children.index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.iam.path,
         loadChildren: () =>
           import('./components/iam/iam.module').then((m) => m.IamModule),
+        title:
+          ROUTER.pages.main.children.management.children.iam.children.index
+            .title,
       },
       {
         path: ROUTER.pages.main.children.management.children.addresses.path,
@@ -27,6 +32,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/address/address.module').then(
             (m) => m.AddressModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.addresses.children
+            .index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.locations.path,
@@ -34,6 +42,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/location/location.module').then(
             (m) => m.LocationModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.locations.children
+            .index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.countries.path,
@@ -41,6 +52,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/country/country.module').then(
             (m) => m.CountryModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.countries.children
+            .index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.commands.path,
@@ -48,6 +62,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/command/command.module').then(
             (m) => m.CommandModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.commands.children.index
+            .title,
       },
       {
         path: ROUTER.pages.main.children.management.children.contactPoints.path,
@@ -55,6 +72,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/contact-point/contact-point.module').then(
             (m) => m.ContactPointModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.contactPoints.children
+            .index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.contracts.path,
@@ -62,6 +82,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/contract/contract.module').then(
             (m) => m.ContractModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.contracts.children
+            .index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl.path,
@@ -69,24 +92,36 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/access-control/access-control.module').then(
             (m) => m.AccessControlModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.teams.path,
         loadChildren: () =>
           import('./components/team/team.module').then((m) => m.TeamModule),
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .teams.children.index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.roles.path,
         loadChildren: () =>
           import('./components/role/role.module').then((m) => m.RoleModule),
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .roles.children.index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
           .children.rules.path,
         loadChildren: () =>
           import('./components/rule/rule.module').then((m) => m.RuleModule),
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .rules.children.index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.accessControl
@@ -95,6 +130,9 @@ export const modulesManagementRoutes: Route[] = [
           import('./components/policy/policy.module').then(
             (m) => m.PolicyModule
           ),
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .polices.children.index.title,
       },
     ],
   },

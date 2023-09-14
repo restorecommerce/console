@@ -9,12 +9,22 @@ export const selectAccount = createFeatureSelector<IAccountState>(
 
 export const selectProfile = createSelector(
   selectAccount,
-  (state: IAccountState) => state.profile
+  (state: IAccountState) => state.user
 );
 
 export const selectIsLoading = createSelector(
   selectAccount,
   (state: IAccountState) => state.actionStatus === EActionStatus.REQUESTING
+);
+
+export const selectIsUpdating = createSelector(
+  selectAccount,
+  (state: IAccountState) => state.actionStatus === EActionStatus.UPDATING
+);
+
+export const selectIsDeleting = createSelector(
+  selectAccount,
+  (state: IAccountState) => state.actionStatus === EActionStatus.DELETING
 );
 
 export const selectActionStatus = createSelector(

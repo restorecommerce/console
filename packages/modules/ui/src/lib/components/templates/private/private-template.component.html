@@ -53,7 +53,7 @@
         >
           <vcl-icogram>
             <vcl-icon icon="mdi:account" />
-            {{ vm.profile?.name }}
+            {{ vm.user?.fullName }}
             <vcl-icon icon="mdi:chevron-down" />
           </vcl-icogram>
         </button>
@@ -462,7 +462,7 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
-          icon="mdi:account-settings"
+          icon="mdi:lock"
           [routerLink]="
             ROUTER.pages.main.children.management.children.accessControl.link
           "
@@ -544,6 +544,10 @@
       </div>
     </rc-drawer-navigation>
 
+    <div class="row grid-gutterx-3 px-2">
+      <rc-page-header />
+    </div>
+
     <ng-content />
   </rc-app>
 
@@ -559,14 +563,12 @@
     >
       <ul class="data-list-body no-border">
         <li
-          [routerLink]="ROUTER.pages.main.children.account.children.index.link"
-          [routerLinkActive]="['selected']"
+          [routerLink]="
+            ROUTER.pages.main.children.account.children.profile.link
+          "
           class="data-list-item row justify-between center"
         >
-          <div
-            class="gutter-margin flex"
-            [routerLinkActive]="['selected']"
-          >
+          <div class="gutter-margin flex">
             <vcl-icogram>
               <vcl-icon icon="mdi:account" />
             </vcl-icogram>

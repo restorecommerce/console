@@ -44,7 +44,7 @@ export class PrivateTemplateComponent
     this.subscriptions.sink = this.AuthnFacade.token$
       .pipe(
         tap((token) =>
-          this.accountFacade.findUserByTokenRequest({
+          this.accountFacade.userFindByTokenRequest({
             token: token as string,
           })
         )

@@ -2,10 +2,12 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import { EActionStatus, IAccountState } from '@console-core/types';
 
+import { getUser } from '../../utils';
+
 import * as accountActions from './account.actions';
 
 export const initialState: IAccountState = {
-  profile: null,
+  user: null,
   actionStatus: EActionStatus.INIT,
   error: null,
 };
@@ -13,7 +15,7 @@ export const initialState: IAccountState = {
 const reducer = createReducer<IAccountState>(
   initialState,
   on(
-    accountActions.findUserByTokenRequest,
+    accountActions.userFindByTokenRequest,
     (state): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.REQUESTING,
@@ -21,16 +23,65 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.findUserByTokenSuccess,
-    (state, { payload: profile }): IAccountState => ({
+    accountActions.userFindByTokenSuccess,
+    (state, { payload }): IAccountState => ({
       ...state,
-      profile,
+      user: getUser(payload),
       actionStatus: EActionStatus.SUCCEEDED,
       error: null,
     })
   ),
   on(
-    accountActions.findUserByTokenError,
+    accountActions.userFindByTokenFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
+    accountActions.userMutateRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.UPDATING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userMutateSuccess,
+    (state, { payload }): IAccountState => ({
+      ...state,
+      user: getUser(payload),
+      actionStatus: EActionStatus.UPDATED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userMutateFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
+    accountActions.userDeleteRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.DELETING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userDeleteSuccess,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.DELETED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userDeleteFail,
     (state, { error }): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,

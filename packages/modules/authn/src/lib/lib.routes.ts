@@ -23,6 +23,7 @@ export const modulesAuthnRoutes: Route[] = [
           import('./components/sign-up/sign-up.module').then(
             (m) => m.SignUpModule
           ),
+        title: ROUTER.pages.main.children.auth.children.signUp.title,
       },
       {
         path: ROUTER.pages.main.children.auth.children.activation.path,
@@ -32,6 +33,7 @@ export const modulesAuthnRoutes: Route[] = [
           import('./components/activation/activation.module').then(
             (m) => m.ActivationModule
           ),
+        title: ROUTER.pages.main.children.auth.children.activation.title,
       },
       {
         path: ROUTER.pages.main.children.auth.children.signIn.path,
@@ -41,6 +43,7 @@ export const modulesAuthnRoutes: Route[] = [
           import('./components/sign-in/sign-in.module').then(
             (m) => m.SignInModule
           ),
+        title: ROUTER.pages.main.children.auth.children.signIn.title,
       },
       {
         path: ROUTER.pages.main.children.auth.children.signOut.path,
@@ -50,6 +53,7 @@ export const modulesAuthnRoutes: Route[] = [
           import('./components/sign-out/sign-out.module').then(
             (m) => m.SignOutModule
           ),
+        title: ROUTER.pages.main.children.auth.children.signOut.title,
       },
       {
         path: ROUTER.pages.main.children.auth.children.passwordRecovery.path,
@@ -59,6 +63,7 @@ export const modulesAuthnRoutes: Route[] = [
           import(
             './components/password-recovery/password-recovery.module'
           ).then((m) => m.PasswordRecoveryModule),
+        title: ROUTER.pages.main.children.auth.children.passwordRecovery.title,
       },
       {
         path: ROUTER.pages.main.children.auth.children.confirmPassword.path,
@@ -68,6 +73,7 @@ export const modulesAuthnRoutes: Route[] = [
           import('./components/confirm-password/confirm-password.module').then(
             (m) => m.ConfirmPasswordModule
           ),
+        title: ROUTER.pages.main.children.auth.children.confirmPassword.title,
       },
       {
         path: ROUTER.pages.main.children.auth.children.confirmEmail.path,
@@ -77,6 +83,7 @@ export const modulesAuthnRoutes: Route[] = [
           import('./components/confirm-email/confirm-email.module').then(
             (m) => m.ConfirmEmailModule
           ),
+        title: ROUTER.pages.main.children.auth.children.confirmEmail.title,
       },
     ],
   },

@@ -1,10 +1,8 @@
+@use './theme/_console-variables.scss' as *;
+
 .app {
   position: relative;
   height: 100vh;
-}
-
-.viewport {
-  display: block;
 }
 
 .content-area {
@@ -16,34 +14,40 @@
 }
 
 .rc-main {
-  & > * > .row {
-    height: 100%;
+  .full-height-scroll {
+    height: 100vh;
   }
-}
-
-rc-header-toolbar > * {
-  height: 100%;
 }
 
 rc-header.application-header {
   margin: 0;
 
-  & .logo {
+  .logo {
     margin-left: 0;
   }
 
-  & .rc-banner {
-    & .logo {
-      width: 9.5em;
-    }
-  }
-
-  & .navigation {
+  .navigation {
+    background-color: $navigation-bg-color;
     margin-left: 1em;
     margin-bottom: 0;
+  }
+
+  header-toolbar {
+    background-color: $navigation-bg-color;
+    height: 100%;
+
+    button.user {
+      height: 43px;
+    }
   }
 }
 
 .rc-flex-sidebar {
   flex: 0 0 20em;
+}
+
+vcl-hint-error {
+  display: flex;
+  margin-top: 0;
+  padding: 0.2em 0;
 }

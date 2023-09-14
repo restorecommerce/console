@@ -8,7 +8,7 @@
         "declarationKind": "interface",
         "defaultScalarType": "unknown"
       },
-      "documents": "packages/modules/**/*.graphql",
+      "documents": "packages/core/graphql/**/*.graphql",
       "hooks": {
         "afterOneFileWrite": ["pretty-quick"]
       },

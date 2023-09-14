@@ -19,7 +19,11 @@
     rcGridCell
     class="flex rc-main"
   >
-    <ng-content />
+    <div class="flex layout-grid-cell">
+      <div class="full-height-scroll scrollable">
+        <ng-content />
+      </div>
+    </div>
   </main>
 </vcl-drawer-container>
 <ng-content select="rc-footer" />

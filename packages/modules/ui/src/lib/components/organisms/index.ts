@@ -1,3 +1,8 @@
+export * from './account/account-data/account-data.component';
+export * from './account/account-information/account-information.component';
+export * from './account/account-deletion/account-deletion.component';
+export * from './account/localization-data/localization-data.component';
+export * from './account/personal-data/personal-data.component';
 export * from './app/app.component';
 export * from './datalist/datalist-item.component';
 export * from './datalist/datalist.component';
@@ -19,3 +24,4 @@ export * from './authn/confirm-password/confirm-password.component';
 export * from './authn/password-recovery/password-recovery.component';
 export * from './authn/sign-in/sign-in.component';
 export * from './authn/sign-up/sign-up.component';
+export * from './page-header/page-header.component';

@@ -1,0 +1,35 @@
+h2.title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+
+.breadcrumb-nav {
+  ol {
+    li {
+      font-weight: normal;
+    }
+  }
+}
+
+.rc-page-container {
+  margin: 1rem auto 2.5rem;
+  padding-bottom: 4rem;
+
+  .page-right-side {
+    margin: 1.1em 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 2rem;
+  }
+
+  @media screen and (min-width: 1201px) {
+    width: 980px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 98%;
+  }
+}

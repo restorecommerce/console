@@ -49,6 +49,12 @@ import {
   RcSearchBarComponent,
   RcToolbarComponent,
   RcConfirmPasswordComponent,
+  RcPersonalDataComponent,
+  RcAccountDataComponent,
+  RcAccountInformationComponent,
+  RcAccountDeletionComponent,
+  RcLocalizationDataComponent,
+  RcPageHeaderComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -60,6 +66,9 @@ import {
   RcPageHomeComponent,
   RcPageLayoutComponent,
   RcPageOverflowComponent,
+  RcPageAccountComponent,
+  RcPageProfileComponent,
+  RcPagePreferencesComponent,
 } from './components/pages';
 import {
   RcPrivateTemplateComponent,
@@ -97,6 +106,12 @@ const organisms = [
   RcSignUpComponent,
   RcPasswordRecoveryComponent,
   RcConfirmPasswordComponent,
+  RcPersonalDataComponent,
+  RcAccountDataComponent,
+  RcAccountInformationComponent,
+  RcAccountDeletionComponent,
+  RcLocalizationDataComponent,
+  RcPageHeaderComponent,
 ];
 
 const pages = [
@@ -109,6 +124,9 @@ const pages = [
   RcPageSignUpComponent,
   RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
+  RcPageAccountComponent,
+  RcPageProfileComponent,
+  RcPagePreferencesComponent,
 ];
 
 const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];

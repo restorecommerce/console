@@ -5,7 +5,7 @@
   (ngSubmit)="onClickSignIn()"
 >
   <vcl-form-control-group>
-    <vcl-label>E-Mail or Username</vcl-label>
+    <vcl-label>Email or Username</vcl-label>
     <vcl-input-field>
       <input
         vclInput
@@ -40,6 +40,20 @@
       />
     </vcl-password-input>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+    <vcl-hint-error error="pattern">This field must: </vcl-hint-error>
+    <vcl-hint-error error="pattern"
+      >- have at least 6 characters length</vcl-hint-error
+    >
+    <vcl-hint-error error="pattern"
+      >- contain a lowercase letter</vcl-hint-error
+    >
+    <vcl-hint-error error="pattern"
+      >- contain a uppercase letter</vcl-hint-error
+    >
+    <vcl-hint-error error="pattern">- contain a number</vcl-hint-error>
+    <vcl-hint-error error="pattern"
+      >- contain a special character</vcl-hint-error
+    >
   </vcl-form-control-group>
   <div class="row justify-between">
     <p>
@@ -58,8 +72,8 @@
     </p>
 
     <rc-submit-button
-      [isInvalid]="form.invalid"
-      [isLoading]="isLoading$ | async"
+      [isDisabled]="form.invalid"
+      [isBusy]="isLoading$ | async"
     >
       Sign In</rc-submit-button
     >

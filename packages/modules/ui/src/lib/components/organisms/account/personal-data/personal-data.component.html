@@ -1,0 +1,29 @@
+<div class="row small-snap-vertical">
+  <div class="flex-4">
+    <h3>Personal Data</h3>
+    <p>Change your name and other details</p>
+  </div>
+  <div class="flex-8">
+    <div class="page-right-side">
+      <vcl-jss-form
+        ngDefaultControl
+        #personalForm="vclJssForm"
+        [schema]="personalFormSchema"
+      ></vcl-jss-form>
+
+      <div class="row justify-end loose-button-group">
+        <rc-submit-button
+          [isDisabled]="personalForm.form.invalid || personalForm.form.pristine"
+          [isBusy]="isUpdating"
+          (click)="
+            personalForm.form.valid && !personalForm.form.pristine
+              ? onSavePersonalForm()
+              : $event.preventDefault()
+          "
+        >
+          Save</rc-submit-button
+        >
+      </div>
+    </div>
+  </div>
+</div>
