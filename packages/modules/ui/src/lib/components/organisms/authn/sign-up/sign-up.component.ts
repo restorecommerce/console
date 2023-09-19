@@ -13,6 +13,7 @@ import { RcValidationService } from '../../../../services';
 })
 export class RcSignUpComponent {
   ROUTER = ROUTER;
+  userType = IoRestorecommerceUserUserType;
   form = this.fb.group(
     {
       firstName: ['', [Validators.required]],

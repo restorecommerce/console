@@ -43,7 +43,7 @@ export class RcAccountDeletionComponent implements OnDestroy {
         showCloseButton: true,
         showCancelButton: true,
         cancelButtonLabel: 'Cancel',
-        confirmButtonLabel: 'Delete',
+        confirmButtonLabel: 'Delete Account',
       })
       .subscribe((result) => {
         if (result.action !== 'confirm') {

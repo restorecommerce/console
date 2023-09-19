@@ -166,11 +166,13 @@
         "
         selectionMode="single"
       >
-        <vcl-select-list-item [value]="'GUEST'"> Guest </vcl-select-list-item>
-        <vcl-select-list-item [value]="'INDIVIDUAL_USER'">
+        <vcl-select-list-item [value]="userType.Guest">
+          Guest
+        </vcl-select-list-item>
+        <vcl-select-list-item [value]="userType.IndividualUser">
           Individual user
         </vcl-select-list-item>
-        <vcl-select-list-item [value]="'ORG_USER'">
+        <vcl-select-list-item [value]="userType.OrgUser">
           Organization user
         </vcl-select-list-item>
       </vcl-select-list>
