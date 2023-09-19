@@ -1,0 +1,26 @@
+# ----------------------------------------------------------------------
+# Fragments
+# ----------------------------------------------------------------------
+
+# UserFields
+fragment UserFields on IoRestorecommerceUserUser {
+  id
+  active
+  activationCode
+  email
+  name
+  firstName
+  lastName
+  defaultScope
+  localeId
+  timezoneId
+  userType
+  roleAssociations {
+    id
+    role
+  }
+  meta {
+    created
+    modified
+  }
+}

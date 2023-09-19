@@ -9,20 +9,7 @@ mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
           }
           items {
             payload {
-              id
-              active
-              activationCode
-              email
-              name
-              firstName
-              lastName
-              defaultScope
-              localeId
-              timezoneId
-              userType
-              roleAssociations {
-                role
-              }
+              ...UserFields
             }
           }
         }

@@ -10,20 +10,7 @@ query IdentityUserFindByToken(
             message
           }
           payload {
-            id
-            active
-            activationCode
-            email
-            name
-            firstName
-            lastName
-            defaultScope
-            localeId
-            timezoneId
-            userType
-            roleAssociations {
-              role
-            }
+            ...UserFields
           }
         }
       }
