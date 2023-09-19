@@ -67,6 +67,7 @@ import {
   RcPageLayoutComponent,
   RcPageOverflowComponent,
   RcPageAccountComponent,
+  RcPageAccountIndexComponent,
   RcPageProfileComponent,
   RcPagePreferencesComponent,
 } from './components/pages';
@@ -125,6 +126,7 @@ const pages = [
   RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
   RcPageAccountComponent,
+  RcPageAccountIndexComponent,
   RcPageProfileComponent,
   RcPagePreferencesComponent,
 ];

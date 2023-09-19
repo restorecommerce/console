@@ -28,7 +28,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   APP = APP;
   ROUTER = ROUTER;
   readonly vm$ = combineLatest({
-    user: this.accountFacade.profile$,
+    user: this.accountFacade.user$,
   });
   currentRoute!: string;
   currentRouteTitle!: string;

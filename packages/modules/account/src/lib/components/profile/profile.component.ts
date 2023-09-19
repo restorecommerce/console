@@ -50,7 +50,7 @@ export class ProfileComponent {
   personalFormSchema!: VCLFormFieldSchemaRoot;
 
   readonly vm$ = combineLatest({
-    profile: this.accountFacade.profile$.pipe(
+    profile: this.accountFacade.user$.pipe(
       filterNullish(),
       tap((user) => {
         this.personalFormSchema = buildPersonalDataSchema({ user });

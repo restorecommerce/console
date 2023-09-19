@@ -515,6 +515,13 @@
       >
         <rc-drawer-navigation-item
           icon="mdi:account"
+          [routerLink]="ROUTER.pages.main.children.account.link"
+          [routerLinkActive]="['selected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Account</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:account-cog"
           [routerLink]="
             ROUTER.pages.main.children.account.children.profile.link
           "
@@ -545,7 +552,9 @@
     </rc-drawer-navigation>
 
     <div class="row grid-gutterx-3 px-2">
-      <rc-page-header />
+      <div class="col">
+        <rc-page-header />
+      </div>
     </div>
 
     <ng-content />
@@ -563,9 +572,7 @@
     >
       <ul class="data-list-body no-border">
         <li
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.profile.link
-          "
+          [routerLink]="ROUTER.pages.main.children.account.link"
           class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">

@@ -7,6 +7,7 @@ export * from './authn/page-sign-up/page-sign-up.component';
 export * from './account/page-profile/page-profile.component';
 export * from './account/page-preferences/page-preferences.component';
 export * from './account/page-account.component';
+export * from './account/page-account-index/page-account-index.component';
 export * from './page-home/page-home.component';
 export * from './page-layout/page-layout.component';
 export * from './page-overflow/page-overflow.component';
