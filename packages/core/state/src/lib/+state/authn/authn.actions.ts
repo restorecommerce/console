@@ -13,10 +13,10 @@ export const signUpRequest = createAction(
   props<{ payload: IIoRestorecommerceUserRegisterRequest }>()
 );
 
-export const signUpSuccess = createAction('[AUTHN] Sign up request success');
+export const signUpSuccess = createAction('[AUTHN] Sign up success');
 
 export const signUpFail = createAction(
-  '[AUTHN] Sign up request fail',
+  '[AUTHN] Sign up fail',
   props<{ error: string }>()
 );
 
@@ -25,10 +25,10 @@ export const activateRequest = createAction(
   props<{ payload: IIoRestorecommerceUserActivateRequest }>()
 );
 
-export const activateSuccess = createAction('[AUTHN] Activate request success');
+export const activateSuccess = createAction('[AUTHN] Activate success');
 
 export const activateFail = createAction(
-  '[AUTHN] Activate request fail',
+  '[AUTHN] Activate fail',
   props<{ error: string }>()
 );
 
@@ -38,12 +38,12 @@ export const signInRequest = createAction(
 );
 
 export const signInSuccess = createAction(
-  '[AUTHN] Sign in request success',
+  '[AUTHN] Sign in success',
   props<{ payload: IAuthnStateData }>()
 );
 
 export const signInFail = createAction(
-  '[AUTHN] Sign in request fail',
+  '[AUTHN] Sign in fail',
   props<{ error: string }>()
 );
 
@@ -53,11 +53,11 @@ export const passwordRecoveryRequest = createAction(
 );
 
 export const passwordRecoverySuccess = createAction(
-  '[AUTHN] Password recovery request success'
+  '[AUTHN] Password recovery success'
 );
 
 export const passwordRecoveryFail = createAction(
-  '[AUTHN] Password recovery request fail',
+  '[AUTHN] Password recovery fail',
   props<{ error: string }>()
 );
 
@@ -67,11 +67,11 @@ export const confirmPasswordRequest = createAction(
 );
 
 export const confirmPasswordSuccess = createAction(
-  '[AUTHN] Confirm password change request success'
+  '[AUTHN] Confirm password change success'
 );
 
 export const confirmPasswordFail = createAction(
-  '[AUTHN] Confirm password change request fail',
+  '[AUTHN] Confirm password change fail',
   props<{ error: string }>()
 );
 

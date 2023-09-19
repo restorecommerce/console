@@ -11,11 +11,11 @@ export const timezoneReadRequest = createAction(
 );
 
 export const timezoneReadRequestSuccess = createAction(
-  '[TIMEZONE] Read request success',
+  '[TIMEZONE] Read success',
   props<{ payload: IoRestorecommerceTimezoneTimezone[] }>()
 );
 
 export const timezoneReadRequestFail = createAction(
-  '[TIMEZONE] Read request fail',
+  '[TIMEZONE] Read fail',
   props<{ error: string }>()
 );

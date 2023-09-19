@@ -11,11 +11,11 @@ export const localeReadRequest = createAction(
 );
 
 export const localeReadRequestSuccess = createAction(
-  '[LOCALE] Read request success',
+  '[LOCALE] Read success',
   props<{ payload: IoRestorecommerceLocaleLocale[] }>()
 );
 
 export const localeReadRequestFail = createAction(
-  '[LOCALE] Read request fail',
+  '[LOCALE] Read fail',
   props<{ error: string }>()
 );
