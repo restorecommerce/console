@@ -71,6 +71,30 @@ export class AccountEffects {
     );
   });
 
+  userChangePasswordRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(accountActions.userChangePasswordRequest),
+      switchMap(({ payload }) =>
+        this.accountService.userChangePassword(payload).pipe(
+          map((result) => {
+            const identity = result?.data?.identity;
+            const operationStatus =
+              identity?.user?.ChangePassword?.details?.operationStatus;
+
+            if (operationStatus?.code !== 200) {
+              throw new Error(operationStatus?.message || 'unknown error');
+            }
+
+            return accountActions.userChangePasswordSuccess();
+          }),
+          catchError((error: Error) =>
+            of(accountActions.userChangePasswordFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
   userDeleteRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(accountActions.userDeleteRequest),
@@ -117,6 +141,7 @@ export class AccountEffects {
         ofType(
           accountActions.userFindByTokenFail,
           accountActions.userMutateFail,
+          accountActions.userChangePasswordFail,
           accountActions.userDeleteFail
         ),
         tap(({ error }) => {

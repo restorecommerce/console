@@ -65,6 +65,30 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
+    accountActions.userChangePasswordRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.UPDATING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userChangePasswordSuccess,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.UPDATED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userChangePasswordFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
     accountActions.userDeleteRequest,
     (state): IAccountState => ({
       ...state,

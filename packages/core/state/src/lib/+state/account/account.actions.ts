@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import {
   IIoRestorecommerceResourcebaseDeleteRequest,
+  IIoRestorecommerceUserChangePasswordRequest,
   IIoRestorecommerceUserFindByTokenRequest,
   IIoRestorecommerceUserUser,
   IIoRestorecommerceUserUserList,
@@ -13,12 +14,12 @@ export const userFindByTokenRequest = createAction(
 );
 
 export const userFindByTokenSuccess = createAction(
-  '[ACCOUNT] Find user by token request success',
+  '[ACCOUNT] Find user by token success',
   props<{ payload: IIoRestorecommerceUserUser }>()
 );
 
 export const userFindByTokenFail = createAction(
-  '[ACCOUNT] Find user by token request fail',
+  '[ACCOUNT] Find user by token fail',
   props<{ error: string }>()
 );
 
@@ -28,12 +29,26 @@ export const userMutateRequest = createAction(
 );
 
 export const userMutateSuccess = createAction(
-  '[ACCOUNT] User mutate request success',
+  '[ACCOUNT] User mutate success',
   props<{ payload: IIoRestorecommerceUserUser }>()
 );
 
 export const userMutateFail = createAction(
-  '[ACCOUNT] User mutate request fail',
+  '[ACCOUNT] User mutate fail',
+  props<{ error: string }>()
+);
+
+export const userChangePasswordRequest = createAction(
+  '[ACCOUNT] User change password request',
+  props<{ payload: IIoRestorecommerceUserChangePasswordRequest }>()
+);
+
+export const userChangePasswordSuccess = createAction(
+  '[ACCOUNT] User change password success'
+);
+
+export const userChangePasswordFail = createAction(
+  '[ACCOUNT] User change password fail',
   props<{ error: string }>()
 );
 
@@ -42,12 +57,10 @@ export const userDeleteRequest = createAction(
   props<{ payload: IIoRestorecommerceResourcebaseDeleteRequest }>()
 );
 
-export const userDeleteSuccess = createAction(
-  '[ACCOUNT] User delete request success'
-);
+export const userDeleteSuccess = createAction('[ACCOUNT] User delete success');
 
 export const userDeleteFail = createAction(
-  '[ACCOUNT] User delete request fail',
+  '[ACCOUNT] User delete fail',
   props<{ error: string }>()
 );
 

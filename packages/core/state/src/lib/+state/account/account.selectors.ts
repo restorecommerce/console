@@ -7,7 +7,7 @@ export const selectAccount = createFeatureSelector<IAccountState>(
   STORE.states.accountState
 );
 
-export const selectProfile = createSelector(
+export const selectUser = createSelector(
   selectAccount,
   (state: IAccountState) => state.user
 );
