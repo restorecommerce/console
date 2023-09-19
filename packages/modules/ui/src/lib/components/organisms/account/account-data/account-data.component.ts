@@ -34,9 +34,6 @@ export class RcAccountDataComponent {
   @ViewChild('passwordForm')
   passwordForm!: JssFormComponent;
 
-  isActiveFormChangeEmail = false;
-  isActiveFormChangePassword = false;
-
   constructor(
     private readonly appFacade: AppFacade,
     private readonly accountFacade: AccountFacade
@@ -45,16 +42,9 @@ export class RcAccountDataComponent {
   onSaveEmailForm(): void {
     // TODO: Implement save logic
     console.log(this.emailForm.form.value);
-    this.isActiveFormChangeEmail = true;
-    setTimeout(() => {
-      this.isActiveFormChangeEmail = false;
-    }, 1000);
   }
 
   onSavePasswordForm(): void {
-    // TODO: Implement save logic
-    console.log(this.passwordForm.form.value);
-
     if (
       this.passwordForm.form.value.password !==
       this.passwordForm.form.value.passwordConfirmation
@@ -66,9 +56,9 @@ export class RcAccountDataComponent {
       return;
     }
 
-    this.isActiveFormChangePassword = true;
-    setTimeout(() => {
-      this.isActiveFormChangePassword = false;
-    }, 1000);
+    this.accountFacade.userChangePasswordRequest({
+      password: this.passwordForm.form.value.currentPassword,
+      newPassword: this.passwordForm.form.value.password,
+    });
   }
 }

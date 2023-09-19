@@ -13,7 +13,7 @@
       <div class="row justify-end loose-button-group">
         <rc-submit-button
           [isDisabled]="emailForm.form.invalid || emailForm.form.pristine"
-          [isBusy]="isActiveFormChangeEmail && isUpdating"
+          [isBusy]="isUpdating"
           (click)="
             emailForm.form.valid && !emailForm.form.pristine
               ? onSaveEmailForm()
@@ -35,7 +35,7 @@
       <div class="row justify-end loose-button-group">
         <rc-submit-button
           [isDisabled]="passwordForm.form.invalid || passwordForm.form.pristine"
-          [isBusy]="isActiveFormChangePassword && isUpdating"
+          [isBusy]="isUpdating"
           (click)="
             passwordForm.form.valid && !passwordForm.form.pristine
               ? onSavePasswordForm()
