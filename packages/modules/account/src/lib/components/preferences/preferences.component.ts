@@ -18,7 +18,7 @@ import { buildLocalizationDataSchema } from '../../jss-forms';
       <rc-page-preferences>
         <rc-account-localization-data
           [user]="vm.user"
-          [isLoading]="vm.isLoading"
+          [isUpdating]="vm.isUpdating"
           [localizationFormSchema]="localizationFormSchema"
         />
       </rc-page-preferences>
@@ -31,13 +31,13 @@ export class PreferencesComponent implements OnInit {
 
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
-    isLoading: this.accountFacade.isLoading$,
+    isUpdating: this.accountFacade.isUpdating$,
     locales: this.localeFacade.allLocales$,
     timezones: this.timezoneFacade.allTimezones$,
   }).pipe(
     startWith({
       user: null,
-      isLoading: false,
+      isUpdating: false,
       locales: [],
       timezones: [],
     }),

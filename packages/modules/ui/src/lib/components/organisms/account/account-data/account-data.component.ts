@@ -45,20 +45,22 @@ export class RcAccountDataComponent {
   }
 
   onSavePasswordForm(): void {
-    if (
-      this.passwordForm.form.value.password !==
-      this.passwordForm.form.value.passwordConfirmation
-    ) {
+    const { currentPassword, password, passwordConfirmation } =
+      this.passwordForm.form.value;
+
+    if (password !== passwordConfirmation) {
       this.appFacade.addNotification({
         type: ENotificationTypes.ERROR,
-        content: 'New password and new password confirmation must be the same.',
+        content: 'New password and new password confirmation must match',
       });
       return;
     }
 
     this.accountFacade.userChangePasswordRequest({
-      password: this.passwordForm.form.value.currentPassword,
-      newPassword: this.passwordForm.form.value.password,
+      password: currentPassword,
+      newPassword: password,
     });
+
+    this.passwordForm.form.reset();
   }
 }

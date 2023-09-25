@@ -16,7 +16,7 @@
           [isDisabled]="
             localizationForm.form.invalid || localizationForm.form.pristine
           "
-          [isBusy]="isLoading"
+          [isBusy]="isUpdating"
           (click)="
             localizationForm.form.valid && !localizationForm.form.pristine
               ? onSaveLocalizationForm()

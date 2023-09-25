@@ -4,12 +4,11 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { tap } from 'rxjs';
 import { SubSink } from 'subsink';
 
 import { NotifierService } from '@vcl/ng-vcl';
 
-import { AccountFacade, AppFacade, AuthnFacade } from '@console-core/state';
+import { AppFacade } from '@console-core/state';
 
 import { Notifier } from '../../utils';
 
@@ -32,24 +31,13 @@ export class PrivateTemplateComponent
 
   constructor(
     private readonly notifier: NotifierService,
-    private readonly appFacade: AppFacade,
-    private readonly accountFacade: AccountFacade,
-    private readonly AuthnFacade: AuthnFacade
+    private readonly appFacade: AppFacade
   ) {
     super(notifier);
     this.handleNotifications(this.notifications$);
   }
 
   ngOnInit(): void {
-    this.subscriptions.sink = this.AuthnFacade.token$
-      .pipe(
-        tap((token) =>
-          this.accountFacade.userFindByTokenRequest({
-            token: token as string,
-          })
-        )
-      )
-      .subscribe();
     this.subscriptions.sink = this.notifications$.subscribe();
   }
 
