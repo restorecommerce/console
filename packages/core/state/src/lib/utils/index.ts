@@ -1,5 +1,5 @@
 export * from './capitalize-first-letter';
 export * from './rxjs-filters';
-export * from './http-response';
+export * from './operation-status';
 export * from './state';
 export * from './user';

@@ -4,10 +4,7 @@ import * as dayjs from 'dayjs';
 import { STORE } from '@console-core/config';
 import { EActionStatus, IAppState, INotification } from '@console-core/types';
 
-import {
-  capitalizeFirstLetter,
-  handleHttpResponseErrorContent,
-} from '../../utils';
+import { capitalizeFirstLetter } from '../../utils';
 
 import * as appActions from './app.actions';
 
@@ -24,9 +21,7 @@ const reducer = createReducer<IAppState>(
     const notification: INotification = {
       ...payload,
       title: capitalizeFirstLetter(payload.type),
-      content: capitalizeFirstLetter(
-        handleHttpResponseErrorContent(payload.content)
-      ),
+      content: capitalizeFirstLetter(payload.content),
       date: dayjs().toDate(),
     };
 
