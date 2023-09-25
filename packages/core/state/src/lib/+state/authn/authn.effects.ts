@@ -91,11 +91,6 @@ export class AuthnEffects {
             content: 'account has been activated',
             type: ENotificationTypes.SUCCESS,
           });
-        }),
-        tap(() => {
-          this.router.navigate([
-            ROUTER.pages.main.children.auth.children.signIn.link,
-          ]);
         })
       );
     },
@@ -105,8 +100,8 @@ export class AuthnEffects {
   signInRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authnActions.signInRequest),
-      switchMap(({ payload }) =>
-        this.authnService.signIn(payload).pipe(
+      switchMap(({ payload }) => {
+        return this.authnService.signIn(payload).pipe(
           map(
             ({
               access_token: token = null,
@@ -114,7 +109,7 @@ export class AuthnEffects {
               last_login: lastLogin = null,
             }) => {
               if (!token) {
-                throw new Error('sign in failed');
+                throw new Error('401');
               }
 
               return authnActions.signInSuccess({
@@ -127,12 +122,12 @@ export class AuthnEffects {
               authnActions.signInFail({
                 error: error.message.includes('401')
                   ? 'sign in failed'
-                  : error.message,
+                  : 'unknown error',
               })
             );
           })
-        )
-      )
+        );
+      })
     );
   });
 
@@ -140,8 +135,8 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(authnActions.signInSuccess),
-        tap(({ payload }) => {
-          this.accountFacade.userFindByTokenRequest({ token: payload.token });
+        tap(({ payload: { token } }) => {
+          this.accountFacade.userFindByTokenRequest({ token });
         }),
         switchMap(() => this.activatedRoute.queryParams.pipe(take(1))),
         map(

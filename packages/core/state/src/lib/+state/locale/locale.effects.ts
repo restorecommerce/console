@@ -20,14 +20,8 @@ export class LocaleEffects {
           map((result) => {
             const data = result?.data?.master_data?.locale?.Read?.details;
 
-            if (data?.operationStatus?.code !== 200 || !data?.items?.length) {
-              return localeActions.localeReadRequestFail({
-                error: 'unknown error',
-              });
-            }
-
             return localeActions.localeReadRequestSuccess({
-              payload: data?.items.map(
+              payload: (data?.items || []).map(
                 (item) => item.payload as IoRestorecommerceLocaleLocale
               ),
             });

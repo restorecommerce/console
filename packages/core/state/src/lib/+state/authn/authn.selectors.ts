@@ -17,6 +17,11 @@ export const selectIsNotAuthenticated = createSelector(
   (isAuthenticated: boolean) => !isAuthenticated
 );
 
+export const selectExpiresIn = createSelector(
+  selectAuthn,
+  (state: IAuthnState) => state.expiresIn
+);
+
 export const selectToken = createSelector(
   selectAuthn,
   (state: IAuthnState) => state.token

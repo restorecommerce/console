@@ -20,14 +20,8 @@ export class TimezoneEffects {
           map((result) => {
             const data = result?.data?.master_data?.timezone?.Read?.details;
 
-            if (data?.operationStatus?.code !== 200 || !data?.items?.length) {
-              return timezoneActions.timezoneReadRequestFail({
-                error: 'unknown error',
-              });
-            }
-
             return timezoneActions.timezoneReadRequestSuccess({
-              payload: data?.items.map(
+              payload: (data?.items || []).map(
                 (item) => item.payload as IoRestorecommerceTimezoneTimezone
               ),
             });

@@ -21,6 +21,7 @@ export class AuthnFacade {
   readonly isNotAuthenticated$ = this.store.select(
     authnSelectors.selectIsNotAuthenticated
   );
+  readonly expiresIn$ = this.store.select(authnSelectors.selectExpiresIn);
   readonly token$ = this.store.select(authnSelectors.selectToken);
   readonly isLoading$ = this.store.select(authnSelectors.selectIsLoading);
   readonly actionStatus$ = this.store.select(authnSelectors.selectActionStatus);
