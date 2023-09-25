@@ -5366,58 +5366,6 @@ export type IdentityUserMutateMutation = {
   };
 };
 
-export type IdentityUserReadQueryVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseReadRequest;
-}>;
-
-export type IdentityUserReadQuery = {
-  __typename?: 'Query';
-  identity: {
-    __typename?: 'IdentityQuery';
-    user: {
-      __typename?: 'IdentityUserQuery';
-      Read?: {
-        __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceUserUserListWithRoleResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceUserUserRoleResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceUserUserRole';
-              id?: string | null;
-              active?: boolean | null;
-              activationCode?: string | null;
-              email?: string | null;
-              name?: string | null;
-              firstName?: string | null;
-              lastName?: string | null;
-              defaultScope?: string | null;
-              localeId?: string | null;
-              timezoneId?: string | null;
-              userType?: IoRestorecommerceUserUserType | null;
-              roleAssociations?: Array<{
-                __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                id?: string | null;
-                role?: string | null;
-              }> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-              } | null;
-            } | null;
-          }> | null;
-        } | null;
-      } | null;
-    };
-  };
-};
-
 export type IdentityUserRegisterMutationVariables = Exact<{
   input: IIoRestorecommerceUserRegisterRequest;
 }>;
@@ -5842,59 +5790,6 @@ export class IdentityUserMutateGQL extends Apollo.Mutation<
   IdentityUserMutateMutationVariables
 > {
   override document = IdentityUserMutateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserReadDocument = gql`
-  query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
-    identity {
-      user {
-        Read(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-            items {
-              payload {
-                id
-                active
-                activationCode
-                email
-                name
-                firstName
-                lastName
-                defaultScope
-                localeId
-                timezoneId
-                userType
-                roleAssociations {
-                  id
-                  role
-                }
-                meta {
-                  created
-                  modified
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserReadGQL extends Apollo.Query<
-  IdentityUserReadQuery,
-  IdentityUserReadQueryVariables
-> {
-  override document = IdentityUserReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
