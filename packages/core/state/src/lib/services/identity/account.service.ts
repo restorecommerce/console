@@ -19,6 +19,9 @@ import {
   IdentityUserChangePasswordGQL,
   IIoRestorecommerceUserConfirmPasswordChangeRequest,
   IdentityUserChangePasswordMutation,
+  IdentityUserRequestEmailChangeGQL,
+  IdentityUserRequestEmailChangeMutation,
+  IIoRestorecommerceUserChangeEmailRequest,
 } from '@console-core/graphql';
 
 @Injectable({
@@ -29,6 +32,7 @@ export class AccountService {
     private readonly identityUserFindGQL: IdentityUserFindGQL,
     private readonly identityUserFindByTokenGQL: IdentityUserFindByTokenGQL,
     private readonly identityUserMutateGQL: IdentityUserMutateGQL,
+    private readonly identityUserRequestEmailChangeGQL: IdentityUserRequestEmailChangeGQL,
     private readonly identityUserChangePasswordGQL: IdentityUserChangePasswordGQL,
     private readonly identityUserDeleteGQL: IdentityUserDeleteGQL
   ) {}
@@ -53,6 +57,12 @@ export class AccountService {
     payload: IIoRestorecommerceUserUserList
   ): Observable<MutationResult<IdentityUserMutateMutation>> {
     return this.identityUserMutateGQL.mutate({ input: payload });
+  }
+
+  userRequestEmailChange(
+    payload: IIoRestorecommerceUserChangeEmailRequest
+  ): Observable<MutationResult<IdentityUserRequestEmailChangeMutation>> {
+    return this.identityUserRequestEmailChangeGQL.mutate({ input: payload });
   }
 
   userChangePassword(

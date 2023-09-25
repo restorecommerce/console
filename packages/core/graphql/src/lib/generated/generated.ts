@@ -5278,6 +5278,11 @@ export type IdentityUserFindQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceUserUserResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceUserUser';
               id?: string | null;
@@ -5361,6 +5366,58 @@ export type IdentityUserMutateMutation = {
   };
 };
 
+export type IdentityUserReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type IdentityUserReadQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    user: {
+      __typename?: 'IdentityUserQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserListWithRoleResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceUserUserRoleResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceUserUserRole';
+              id?: string | null;
+              active?: boolean | null;
+              activationCode?: string | null;
+              email?: string | null;
+              name?: string | null;
+              firstName?: string | null;
+              lastName?: string | null;
+              defaultScope?: string | null;
+              localeId?: string | null;
+              timezoneId?: string | null;
+              userType?: IoRestorecommerceUserUserType | null;
+              roleAssociations?: Array<{
+                __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                id?: string | null;
+                role?: string | null;
+              }> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type IdentityUserRegisterMutationVariables = Exact<{
   input: IIoRestorecommerceUserRegisterRequest;
 }>;
@@ -5403,6 +5460,31 @@ export type IdentityUserRegisterMutation = {
               created?: unknown | null;
               modified?: unknown | null;
             } | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type IdentityUserRequestEmailChangeMutationVariables = Exact<{
+  input: IIoRestorecommerceUserChangeEmailRequest;
+}>;
+
+export type IdentityUserRequestEmailChangeMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      RequestEmailChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
           } | null;
         } | null;
       } | null;
@@ -5700,6 +5782,10 @@ export const IdentityUserFindDocument = gql`
               message
             }
             items {
+              status {
+                code
+                message
+              }
               payload {
                 ...UserFields
               }
@@ -5761,6 +5847,59 @@ export class IdentityUserMutateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const IdentityUserReadDocument = gql`
+  query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    identity {
+      user {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                id
+                active
+                activationCode
+                email
+                name
+                firstName
+                lastName
+                defaultScope
+                localeId
+                timezoneId
+                userType
+                roleAssociations {
+                  id
+                  role
+                }
+                meta {
+                  created
+                  modified
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserReadGQL extends Apollo.Query<
+  IdentityUserReadQuery,
+  IdentityUserReadQueryVariables
+> {
+  override document = IdentityUserReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const IdentityUserRegisterDocument = gql`
   mutation IdentityUserRegister(
     $input: IIoRestorecommerceUserRegisterRequest!
@@ -5792,6 +5931,38 @@ export class IdentityUserRegisterGQL extends Apollo.Mutation<
   IdentityUserRegisterMutationVariables
 > {
   override document = IdentityUserRegisterDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserRequestEmailChangeDocument = gql`
+  mutation IdentityUserRequestEmailChange(
+    $input: IIoRestorecommerceUserChangeEmailRequest!
+  ) {
+    identity {
+      user {
+        RequestEmailChange(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserRequestEmailChangeGQL extends Apollo.Mutation<
+  IdentityUserRequestEmailChangeMutation,
+  IdentityUserRequestEmailChangeMutationVariables
+> {
+  override document = IdentityUserRequestEmailChangeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

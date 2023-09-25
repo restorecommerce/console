@@ -14,6 +14,34 @@ import * as accountActions from './account.actions';
 
 @Injectable()
 export class AccountEffects {
+  userFindRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(accountActions.userFindRequest),
+      switchMap(({ payload }) =>
+        this.accountService.userFind(payload).pipe(
+          map((result) => {
+            const identity = result?.data?.identity;
+            const operationStatus =
+              identity?.user?.Find?.details?.operationStatus;
+            const payload = identity?.user?.Find?.details?.items?.[0]
+              .payload as IIoRestorecommerceUserUser;
+
+            if (operationStatus?.code !== 200 || !payload) {
+              throw new Error(operationStatus?.message || 'unknown error');
+            }
+
+            return accountActions.userFindSuccess({
+              payload,
+            });
+          }),
+          catchError((error: Error) =>
+            of(accountActions.userFindFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
   userFindByTokenRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(accountActions.userFindByTokenRequest),
@@ -49,22 +77,61 @@ export class AccountEffects {
             const identity = result?.data?.identity;
             const operationStatus =
               identity?.user?.Mutate?.details?.operationStatus;
-            const users = identity?.user?.Mutate?.details?.items;
 
             if (operationStatus?.code !== 200) {
               throw new Error(operationStatus?.message || 'unknown error');
             }
 
-            if (!users?.length) {
+            const payload = identity?.user?.Mutate?.details?.items?.[0]
+              ?.payload as IIoRestorecommerceUserUser;
+
+            if (!payload) {
               throw new Error('user not found');
             }
 
-            return accountActions.userMutateSuccess({
-              payload: users[0] as IIoRestorecommerceUserUser,
-            });
+            return accountActions.userMutateSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(accountActions.userMutateFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  userMutateRequestSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(accountActions.userMutateSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'account updated',
+            type: ENotificationTypes.SUCCESS,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  userChangeEmailRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(accountActions.userChangeEmailRequest),
+      switchMap(({ payload }) =>
+        this.accountService.userRequestEmailChange(payload).pipe(
+          map((result) => {
+            const identity = result?.data?.identity;
+            const operationStatus =
+              identity?.user?.RequestEmailChange?.details?.operationStatus;
+
+            if (operationStatus?.code !== 200) {
+              throw new Error(operationStatus?.message || 'unknown error');
+            }
+
+            return accountActions.userChangeEmailSuccess();
+          }),
+          catchError((error: Error) =>
+            of(accountActions.userChangeEmailFail({ error: error.message }))
           )
         )
       )
@@ -94,6 +161,21 @@ export class AccountEffects {
       )
     );
   });
+
+  userChangePasswordSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(accountActions.userChangePasswordSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'password has been changed',
+            type: ENotificationTypes.SUCCESS,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   userDeleteRequest$ = createEffect(() => {
     return this.actions$.pipe(
@@ -128,6 +210,8 @@ export class AccountEffects {
             content: 'account deleted',
             type: ENotificationTypes.SUCCESS,
           });
+        }),
+        tap(() => {
           this.authnFacade.signOut();
         })
       );
@@ -139,8 +223,10 @@ export class AccountEffects {
     () => {
       return this.actions$.pipe(
         ofType(
+          accountActions.userFindFail,
           accountActions.userFindByTokenFail,
           accountActions.userMutateFail,
+          accountActions.userChangeEmailFail,
           accountActions.userChangePasswordFail,
           accountActions.userDeleteFail
         ),

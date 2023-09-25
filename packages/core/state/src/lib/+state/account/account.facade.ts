@@ -5,6 +5,7 @@ import {
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceUserChangePasswordRequest,
   IIoRestorecommerceUserFindByTokenRequest,
+  IIoRestorecommerceUserFindRequest,
   IIoRestorecommerceUserUserList,
 } from '@console-core/graphql';
 
@@ -22,6 +23,8 @@ export class AccountFacade {
   error$ = this.store.select(accountSelectors.selectError);
 
   // Actions
+  userFindRequest = (payload: IIoRestorecommerceUserFindRequest) =>
+    this.store.dispatch(accountActions.userFindRequest({ payload }));
   userFindByTokenRequest = (
     payload: IIoRestorecommerceUserFindByTokenRequest
   ) => this.store.dispatch(accountActions.userFindByTokenRequest({ payload }));

@@ -2,11 +2,28 @@ import { createAction, props } from '@ngrx/store';
 
 import {
   IIoRestorecommerceResourcebaseDeleteRequest,
+  IIoRestorecommerceUserChangeEmailRequest,
   IIoRestorecommerceUserChangePasswordRequest,
   IIoRestorecommerceUserFindByTokenRequest,
+  IIoRestorecommerceUserFindRequest,
   IIoRestorecommerceUserUser,
   IIoRestorecommerceUserUserList,
 } from '@console-core/graphql';
+
+export const userFindRequest = createAction(
+  '[ACCOUNT] User find request',
+  props<{ payload: IIoRestorecommerceUserFindRequest }>()
+);
+
+export const userFindSuccess = createAction(
+  '[ACCOUNT] User find success',
+  props<{ payload: IIoRestorecommerceUserUser }>()
+);
+
+export const userFindFail = createAction(
+  '[ACCOUNT] User find fail',
+  props<{ error: string }>()
+);
 
 export const userFindByTokenRequest = createAction(
   '[ACCOUNT] Find user by token request',
@@ -35,6 +52,20 @@ export const userMutateSuccess = createAction(
 
 export const userMutateFail = createAction(
   '[ACCOUNT] User mutate fail',
+  props<{ error: string }>()
+);
+
+export const userChangeEmailRequest = createAction(
+  '[ACCOUNT] User change email request',
+  props<{ payload: IIoRestorecommerceUserChangeEmailRequest }>()
+);
+
+export const userChangeEmailSuccess = createAction(
+  '[ACCOUNT] User change email success'
+);
+
+export const userChangeEmailFail = createAction(
+  '[ACCOUNT] User change email fail',
   props<{ error: string }>()
 );
 
