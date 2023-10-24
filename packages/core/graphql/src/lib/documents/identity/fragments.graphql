@@ -8,6 +8,7 @@ fragment UserFields on IoRestorecommerceUserUser {
   active
   activationCode
   email
+  newEmail
   name
   firstName
   lastName

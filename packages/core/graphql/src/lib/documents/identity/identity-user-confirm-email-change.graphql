@@ -1,0 +1,16 @@
+mutation IdentityUserConfirmEmailChange(
+  $input: IIoRestorecommerceUserConfirmEmailChangeRequest!
+) {
+  identity {
+    user {
+      ConfirmEmailChange(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
