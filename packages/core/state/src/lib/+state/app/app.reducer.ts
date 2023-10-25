@@ -33,7 +33,6 @@ const reducer = createReducer<IAppState>(
 
     return {
       ...state,
-      // notifications: [notification, ...state.notifications],
       notifications: [notification],
       actionStatus: EActionStatus.SUCCEEDED,
     };
