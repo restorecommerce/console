@@ -4,6 +4,7 @@ import {
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceUserChangeEmailRequest,
   IIoRestorecommerceUserChangePasswordRequest,
+  IIoRestorecommerceUserConfirmEmailChangeRequest,
   IIoRestorecommerceUserFindByTokenRequest,
   IIoRestorecommerceUserFindRequest,
   IIoRestorecommerceUserUser,
@@ -66,6 +67,20 @@ export const userChangeEmailSuccess = createAction(
 
 export const userChangeEmailFail = createAction(
   '[ACCOUNT] User change email fail',
+  props<{ error: string }>()
+);
+
+export const userConfirmEmailChangeRequest = createAction(
+  '[ACCOUNT] User confirm email change request',
+  props<{ payload: IIoRestorecommerceUserConfirmEmailChangeRequest }>()
+);
+
+export const userConfirmEmailChangeSuccess = createAction(
+  '[ACCOUNT] User confirm email change success'
+);
+
+export const userConfirmEmailChangeFail = createAction(
+  '[ACCOUNT] User confirm email change fail',
   props<{ error: string }>()
 );
 

@@ -12,7 +12,7 @@ export const selectUser = createSelector(
   (state: IAccountState) => state.user
 );
 
-export const selectIsLoading = createSelector(
+export const selectIsRequesting = createSelector(
   selectAccount,
   (state: IAccountState) => state.actionStatus === EActionStatus.REQUESTING
 );

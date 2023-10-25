@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 
 import {
   IIoRestorecommerceResourcebaseDeleteRequest,
+  IIoRestorecommerceUserChangeEmailRequest,
   IIoRestorecommerceUserChangePasswordRequest,
+  IIoRestorecommerceUserConfirmEmailChangeRequest,
   IIoRestorecommerceUserFindByTokenRequest,
   IIoRestorecommerceUserFindRequest,
   IIoRestorecommerceUserUserList,
@@ -16,7 +18,7 @@ import * as accountSelectors from './account.selectors';
 export class AccountFacade {
   // Selectors
   user$ = this.store.select(accountSelectors.selectUser);
-  isLoading$ = this.store.select(accountSelectors.selectIsLoading);
+  isRequesting$ = this.store.select(accountSelectors.selectIsRequesting);
   isUpdating$ = this.store.select(accountSelectors.selectIsUpdating);
   isDeleting$ = this.store.select(accountSelectors.selectIsDeleting);
   actionStatus$ = this.store.select(accountSelectors.selectActionStatus);
@@ -30,6 +32,15 @@ export class AccountFacade {
   ) => this.store.dispatch(accountActions.userFindByTokenRequest({ payload }));
   userMutateRequest = (payload: IIoRestorecommerceUserUserList) =>
     this.store.dispatch(accountActions.userMutateRequest({ payload }));
+  userChangeEmailRequest = (
+    payload: IIoRestorecommerceUserChangeEmailRequest
+  ) => this.store.dispatch(accountActions.userChangeEmailRequest({ payload }));
+  userConfirmEmailChangeRequest = (
+    payload: IIoRestorecommerceUserConfirmEmailChangeRequest
+  ) =>
+    this.store.dispatch(
+      accountActions.userConfirmEmailChangeRequest({ payload })
+    );
   userChangePasswordRequest = (
     payload: IIoRestorecommerceUserChangePasswordRequest
   ) =>

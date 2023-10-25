@@ -5,7 +5,7 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { IIoRestorecommerceUserUser } from '@console-core/graphql';
 import { ENotificationTypes } from '@console-core/types';
 
-import { AccountService } from '../../services';
+import { UserService } from '../../services';
 import { AppFacade } from '../app';
 import { AuthnFacade } from '../authn';
 import * as authnActions from '../authn/authn.actions';
@@ -18,7 +18,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userFindRequest),
       switchMap(({ payload }) =>
-        this.accountService.userFind(payload).pipe(
+        this.accountService.find(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -46,7 +46,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userFindByTokenRequest),
       switchMap(({ payload }) =>
-        this.accountService.userFindByToken(payload).pipe(
+        this.accountService.findByToken(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const status = identity?.user?.FindByToken?.details?.status;
@@ -72,7 +72,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userMutateRequest),
       switchMap(({ payload }) =>
-        this.accountService.userMutate(payload).pipe(
+        this.accountService.mutate(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -118,7 +118,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userChangeEmailRequest),
       switchMap(({ payload }) =>
-        this.accountService.userRequestEmailChange(payload).pipe(
+        this.accountService.requestEmailChange(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -138,11 +138,72 @@ export class AccountEffects {
     );
   });
 
+  userChangeEmailSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(accountActions.userChangeEmailSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'email change has been requested',
+            type: ENotificationTypes.SUCCESS,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  userConfirmEmailChangeRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(accountActions.userConfirmEmailChangeRequest),
+      switchMap(({ payload }) =>
+        this.accountService.confirmEmailChange(payload).pipe(
+          map((result) => {
+            const identity = result?.data?.identity;
+            const operationStatus =
+              identity?.user?.ConfirmEmailChange?.details?.operationStatus;
+
+            if (operationStatus?.code !== 200) {
+              throw new Error(operationStatus?.message || 'unknown error');
+            }
+
+            return accountActions.userConfirmEmailChangeSuccess();
+          }),
+          catchError((error: Error) =>
+            of(
+              accountActions.userConfirmEmailChangeFail({
+                error: error.message,
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
+  userConfirmEmailChangeSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(accountActions.userConfirmEmailChangeSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'email has been changed',
+            type: ENotificationTypes.SUCCESS,
+          });
+        }),
+        tap(() => {
+          this.authnFacade.signOut();
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   userChangePasswordRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(accountActions.userChangePasswordRequest),
       switchMap(({ payload }) =>
-        this.accountService.userChangePassword(payload).pipe(
+        this.accountService.passwordChange(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -181,7 +242,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userDeleteRequest),
       switchMap(({ payload }) =>
-        this.accountService.userDelete(payload).pipe(
+        this.accountService.remove(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -227,6 +288,7 @@ export class AccountEffects {
           accountActions.userFindByTokenFail,
           accountActions.userMutateFail,
           accountActions.userChangeEmailFail,
+          accountActions.userConfirmEmailChangeFail,
           accountActions.userChangePasswordFail,
           accountActions.userDeleteFail
         ),
@@ -250,7 +312,7 @@ export class AccountEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly accountService: AccountService,
+    private readonly accountService: UserService,
     private readonly appFacade: AppFacade,
     private readonly authnFacade: AuthnFacade
   ) {}
