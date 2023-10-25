@@ -255,11 +255,13 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(authnActions.signOut),
-        tap(() => {
-          this.appFacade.addNotification({
-            content: 'signed out',
-            type: ENotificationTypes.SUCCESS,
-          });
+        tap(({ payload }) => {
+          if (payload.showNotification) {
+            this.appFacade.addNotification({
+              content: 'signed out',
+              type: ENotificationTypes.SUCCESS,
+            });
+          }
         }),
         tap(() => {
           this.router.navigate(

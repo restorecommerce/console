@@ -273,7 +273,7 @@ export class AccountEffects {
           });
         }),
         tap(() => {
-          this.authnFacade.signOut();
+          this.authnFacade.signOut(false);
         })
       );
     },
