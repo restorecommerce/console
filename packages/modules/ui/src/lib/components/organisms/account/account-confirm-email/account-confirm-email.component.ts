@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Params } from '@angular/router';
-// import { tap } from 'rxjs';
 
 import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -25,15 +24,6 @@ export class RcAccountConfirmEmailComponent {
   confirmEmailForm!: JssFormComponent;
 
   readonly routerParams$ = this.routerFacade.params$;
-  // .pipe (
-  //   tap((params) => {
-  //     const { code: activationCode, identifier } = params;
-  //     this.accountFacade.userConfirmEmailChangeRequest({
-  //       activationCode,
-  //       identifier,
-  //     });
-  //   })
-  // );
 
   constructor(
     private readonly accountFacade: AccountFacade,
@@ -41,7 +31,6 @@ export class RcAccountConfirmEmailComponent {
   ) {}
 
   onConfirmEmailForm(params: Params) {
-    // this.handleActivation$.subscribe();
     const { code: activationCode, identifier } = params;
     this.accountFacade.userConfirmEmailChangeRequest({
       activationCode,
