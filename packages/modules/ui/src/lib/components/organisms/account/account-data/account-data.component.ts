@@ -10,6 +10,8 @@ import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { AccountFacade, AppFacade } from '@console-core/state';
 import { ENotificationTypes, IUser } from '@console-core/types';
 
+import { RcActiveFormService } from '../../../../services';
+
 @Component({
   selector: 'rc-account-account-data',
   templateUrl: './account-data.component.html',
@@ -20,7 +22,7 @@ export class RcAccountDataComponent {
   user!: IUser | null;
 
   @Input({ required: true })
-  isUpdating!: boolean;
+  isRequesting!: boolean;
 
   @Input({ required: true })
   emailFormSchema!: VCLFormFieldSchemaRoot;
@@ -34,14 +36,20 @@ export class RcAccountDataComponent {
   @ViewChild('passwordForm')
   passwordForm!: JssFormComponent;
 
+  activeFrom$ = this.activeFormService.active$;
+
   constructor(
+    private readonly activeFormService: RcActiveFormService,
     private readonly appFacade: AppFacade,
     private readonly accountFacade: AccountFacade
   ) {}
 
   onSaveEmailForm(): void {
-    // TODO: Implement save logic
-    console.log(this.emailForm.form.value);
+    this.activeFormService.setActive('profileAccountDataEmail');
+    this.accountFacade.userChangeEmailRequest({
+      identifier: this.user?.name || '',
+      newEmail: this.emailForm.form.value.email,
+    });
   }
 
   onSavePasswordForm(): void {
@@ -56,6 +64,7 @@ export class RcAccountDataComponent {
       return;
     }
 
+    this.activeFormService.setActive('profileAccountDataPassword');
     this.accountFacade.userChangePasswordRequest({
       password: currentPassword,
       newPassword: password,

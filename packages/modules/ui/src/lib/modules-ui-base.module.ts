@@ -8,6 +8,7 @@ import {
 
 import {
   RcDrawerService,
+  RcActiveFormService,
   RcMdiIconResolverService,
   RcValidationService,
 } from './services';
@@ -30,6 +31,7 @@ import {
       multi: true,
     },
     RcDrawerService,
+    RcActiveFormService,
     RcValidationService,
   ],
 })

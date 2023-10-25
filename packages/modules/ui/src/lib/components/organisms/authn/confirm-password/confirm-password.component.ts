@@ -48,7 +48,7 @@ export class RcConfirmPasswordComponent {
     private readonly validationService: RcValidationService
   ) {}
 
-  onClickSignUp(): void {
+  onClickConfirm(): void {
     this.authnFacade.confirmPassword({
       activationCode: this.activationCode,
       identifier: this.formFields.identifier.value,

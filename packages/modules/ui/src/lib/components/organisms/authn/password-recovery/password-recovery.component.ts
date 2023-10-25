@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import { REGEX, ROUTER } from '@console-core/config';
+import { ROUTER } from '@console-core/config';
 import { AuthnFacade } from '@console-core/state';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthnFacade } from '@console-core/state';
 export class RcPasswordRecoveryComponent {
   ROUTER = ROUTER;
   form = this.fb.group({
-    identifier: ['', [Validators.required, Validators.pattern(REGEX.name)]],
+    identifier: ['', [Validators.required]],
   });
   isLoading$ = this.authnFacade.isLoading$;
 

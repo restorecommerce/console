@@ -1,4 +1,9 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink';
 
@@ -21,14 +26,16 @@ interface Breadcrumb {
         )
       "
     >
-      <div class="row">
-        <div class="col">
-          <h2 class="title">{{ title }}</h2>
-        </div>
-      </div>
-
       <nav class="breadcrumb-nav">
         <ol>
+          <li>
+            <a
+              [routerLink]="['/']"
+              class="breadcrumb-nav-item-label"
+              >Home</a
+            >
+            <vcl-icon icon="vcl:arrow-right" />
+          </li>
           <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
             <li [ngClass]="{ selected: last }">
               <ng-container *ngIf="!last">
@@ -48,6 +55,12 @@ interface Breadcrumb {
           </ng-container>
         </ol>
       </nav>
+
+      <div class="row">
+        <div class="col">
+          <h2 class="title">{{ title }}</h2>
+        </div>
+      </div>
     </ng-container>
   `,
 })
@@ -59,6 +72,7 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly activatedRoute: ActivatedRoute,
     private readonly routerFacade: RouterFacade
   ) {}
@@ -79,6 +93,7 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
         }, [] as Breadcrumb[]);
 
         this.title = this.breadcrumbs[this.breadcrumbs.length - 1]?.label ?? '';
+        this.changeDetectorRef.detectChanges();
       }
     );
   }

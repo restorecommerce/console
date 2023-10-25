@@ -1,50 +1,58 @@
-<div class="row small-snap-vertical">
-  <div class="flex-4">
-    <h3>Account Data</h3>
-    <p>Change your email and password</p>
-  </div>
-  <div class="flex-8">
-    <div class="page-right-side">
-      <vcl-jss-form
-        ngDefaultControl
-        #emailForm="vclJssForm"
-        [schema]="emailFormSchema"
-      ></vcl-jss-form>
-      <div class="row justify-end loose-button-group">
-        <rc-submit-button
-          [isDisabled]="emailForm.form.invalid || emailForm.form.pristine"
-          [isBusy]="isUpdating"
-          (click)="
-            emailForm.form.valid && !emailForm.form.pristine
-              ? onSaveEmailForm()
-              : $event.preventDefault()
-          "
-        >
-          Change Email</rc-submit-button
-        >
-      </div>
+<ng-container *ngIf="activeFrom$ | async as activeForm">
+  <div class="row">
+    <div class="flex-4">
+      <h3>Account Data</h3>
+      <p>Change your email and password</p>
     </div>
+    <div class="flex-8">
+      <div class="page-right-side">
+        <vcl-jss-form
+          ngDefaultControl
+          #emailForm="vclJssForm"
+          [schema]="emailFormSchema"
+        ></vcl-jss-form>
+        <div class="row justify-end loose-button-group">
+          <rc-submit-button
+            [isDisabled]="emailForm.form.invalid || emailForm.form.pristine"
+            [isBusy]="
+              isRequesting && activeForm.form === 'profileAccountDataEmail'
+            "
+            (click)="
+              emailForm.form.valid && !emailForm.form.pristine
+                ? onSaveEmailForm()
+                : $event.preventDefault()
+            "
+          >
+            Change Email</rc-submit-button
+          >
+        </div>
+      </div>
 
-    <div class="page-right-side">
-      <vcl-jss-form
-        ngDefaultControl
-        #passwordForm="vclJssForm"
-        [schema]="passwordFormSchema"
-      >
-      </vcl-jss-form>
-      <div class="row justify-end loose-button-group">
-        <rc-submit-button
-          [isDisabled]="passwordForm.form.invalid || passwordForm.form.pristine"
-          [isBusy]="isUpdating"
-          (click)="
-            passwordForm.form.valid && !passwordForm.form.pristine
-              ? onSavePasswordForm()
-              : $event.preventDefault()
-          "
+      <div class="page-right-side">
+        <vcl-jss-form
+          ngDefaultControl
+          #passwordForm="vclJssForm"
+          [schema]="passwordFormSchema"
         >
-          Change Password</rc-submit-button
-        >
+        </vcl-jss-form>
+        <div class="row justify-end loose-button-group">
+          <rc-submit-button
+            [isDisabled]="
+              passwordForm.form.invalid || passwordForm.form.pristine
+            "
+            [isBusy]="
+              isRequesting && activeForm.form === 'profileAccountDataPassword'
+            "
+            (click)="
+              passwordForm.form.valid && !passwordForm.form.pristine
+                ? onSavePasswordForm()
+                : $event.preventDefault()
+            "
+          >
+            Change Password</rc-submit-button
+          >
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>

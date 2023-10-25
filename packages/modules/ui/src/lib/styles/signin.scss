@@ -1,0 +1,92 @@
+@use '@vcl/vcl/theme' as *;
+
+.rc-sign-in {
+  margin-left: -0.4rem;
+  height: 100%;
+}
+
+.rc-sign-in-form {
+  margin-left: 0;
+  margin-right: 0;
+
+  & .rc-sign-in-form-divider-v {
+    display: flex;
+  }
+
+  & .rc-sign-in-form-divider-h {
+    display: none;
+  }
+
+  & .button.half-transparent {
+    font-weight: normal;
+  }
+
+  & > div {
+    width: 815px;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    background: $white;
+    padding: 1rem;
+  }
+
+  & h2 {
+    font-size: 1.45em;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0.8em;
+  }
+
+  &.rc-sign-in-form-s {
+    & > div {
+      width: 500px;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .rc-sign-in-form {
+    width: 100%;
+
+    & .rc-sign-in-form-divider-v {
+      display: none;
+    }
+
+    & .rc-sign-in-form-divider-h {
+      display: flex;
+    }
+
+    & > div {
+      border-radius: 0;
+      width: 100%;
+      min-width: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    & h2 {
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    & .rc-sign-in-form-inner {
+      flex-direction: column;
+    }
+
+    & [class^='span-'],
+    & [class*=' span-'] {
+      width: 100%;
+    }
+
+    & .w-45p {
+      width: 100%;
+    }
+  }
+}
+
+.rc-sign-in-screen-legal {
+  margin-top: 1.2rem;
+  margin-bottom: 0;
+  font-size: 0.9em;
+  text-align: center;
+  color: $white;
+}

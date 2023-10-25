@@ -1,6 +1,6 @@
-<div class="row small-snap-vertical">
+<div class="row">
   <div class="flex-4">
-    <h3>Localization Data</h3>
+    <h3>Localization</h3>
     <p>Customize language and region related preferences</p>
   </div>
   <div class="flex-8">
@@ -16,7 +16,7 @@
           [isDisabled]="
             localizationForm.form.invalid || localizationForm.form.pristine
           "
-          [isBusy]="isUpdating"
+          [isBusy]="isRequesting"
           (click)="
             localizationForm.form.valid && !localizationForm.form.pristine
               ? onSaveLocalizationForm()

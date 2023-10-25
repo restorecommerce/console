@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { REGEX, ROUTER } from '@console-core/config';
-import { IoRestorecommerceUserUserType } from '@console-core/graphql';
 import { AuthnFacade } from '@console-core/state';
 
 import { RcValidationService } from '../../../../services';
@@ -13,7 +12,6 @@ import { RcValidationService } from '../../../../services';
 })
 export class RcSignUpComponent {
   ROUTER = ROUTER;
-  userType = IoRestorecommerceUserUserType;
   form = this.fb.group(
     {
       firstName: ['', [Validators.required]],
@@ -22,7 +20,6 @@ export class RcSignUpComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(REGEX.password)]],
       passwordConfirmation: ['', [Validators.required]],
-      userType: ['', [Validators.required]],
     },
     { validators: this.validationService.validatePasswordMatch }
   );
@@ -38,7 +35,6 @@ export class RcSignUpComponent {
       passwordConfirmation: this.form.get(
         'passwordConfirmation'
       ) as FormControl,
-      userType: this.form.get('userType') as FormControl,
     };
   }
 
@@ -55,7 +51,6 @@ export class RcSignUpComponent {
       name: this.formFields.name.value,
       email: this.formFields.email.value,
       password: this.formFields.password.value,
-      userType: this.formFields.userType.value as IoRestorecommerceUserUserType,
     });
   }
 }

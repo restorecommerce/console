@@ -514,25 +514,14 @@
         *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
       >
         <rc-drawer-navigation-item
-          icon="mdi:account"
-          [routerLink]="ROUTER.pages.main.children.account.link"
-          [routerLinkActive]="['selected']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Account</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
           icon="mdi:account-cog"
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.profile.link
-          "
+          [routerLink]="ROUTER.pages.main.children.profile.link"
           [routerLinkActive]="['selected']"
           >Profile</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:cog"
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.preferences.link
-          "
+          [routerLink]="ROUTER.pages.main.children.preferences.link"
           [routerLinkActive]="['selected']"
           >Preferences</rc-drawer-navigation-item
         >
@@ -572,14 +561,25 @@
     >
       <ul class="data-list-body no-border">
         <li
-          [routerLink]="ROUTER.pages.main.children.account.link"
+          [routerLink]="ROUTER.pages.main.children.profile.link"
           class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>
-              <vcl-icon icon="mdi:account" />
+              <vcl-icon icon="mdi:account-cog" />
             </vcl-icogram>
-            <span class="text">Account</span>
+            <span class="text">Profile</span>
+          </div>
+        </li>
+        <li
+          [routerLink]="ROUTER.pages.main.children.preferences.link"
+          class="data-list-item row justify-between center"
+        >
+          <div class="gutter-margin flex">
+            <vcl-icogram>
+              <vcl-icon icon="mdi:cog" />
+            </vcl-icogram>
+            <span class="text">Preferences</span>
           </div>
         </li>
         <li

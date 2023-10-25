@@ -153,33 +153,6 @@
     >
   </vcl-form-control-group>
 
-  <vcl-form-control-group>
-    <vcl-label>User type</vcl-label>
-    <vcl-select>
-      <vcl-select-list
-        vclSelectList
-        formControlName="userType"
-        name="userType"
-        [class.error]="
-          formFields.userType.hasError('required') &&
-          formFields.userType.touched
-        "
-        selectionMode="single"
-      >
-        <vcl-select-list-item [value]="userType.Guest">
-          Guest
-        </vcl-select-list-item>
-        <vcl-select-list-item [value]="userType.IndividualUser">
-          Individual user
-        </vcl-select-list-item>
-        <vcl-select-list-item [value]="userType.OrgUser">
-          Organization user
-        </vcl-select-list-item>
-      </vcl-select-list>
-    </vcl-select>
-    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group>
-
   <div class="row justify-between">
     <div class="col">
       <div class="row">

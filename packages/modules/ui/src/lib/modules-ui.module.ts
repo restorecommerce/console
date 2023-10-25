@@ -48,6 +48,7 @@ import {
   RcToggleDrawerComponent,
   RcSearchBarComponent,
   RcToolbarComponent,
+  RcAccountConfirmEmailComponent,
   RcConfirmPasswordComponent,
   RcPersonalDataComponent,
   RcAccountDataComponent,
@@ -57,6 +58,7 @@ import {
   RcPageHeaderComponent,
 } from './components/organisms';
 import {
+  RcPageAccountConfirmEmailComponent,
   RcPageConfirmPasswordComponent,
   RcPageActivationComponent,
   RcPagePasswordRecoveryComponent,
@@ -106,6 +108,7 @@ const organisms = [
   RcSignInComponent,
   RcSignUpComponent,
   RcPasswordRecoveryComponent,
+  RcAccountConfirmEmailComponent,
   RcConfirmPasswordComponent,
   RcPersonalDataComponent,
   RcAccountDataComponent,
@@ -120,6 +123,7 @@ const pages = [
   RcPageLayoutComponent,
   RcPageOverflowComponent,
   RcPageActivationComponent,
+  RcPageAccountConfirmEmailComponent,
   RcPageConfirmPasswordComponent,
   RcPageSignInComponent,
   RcPageSignUpComponent,
