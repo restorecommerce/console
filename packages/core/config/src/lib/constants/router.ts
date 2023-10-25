@@ -13,17 +13,23 @@ export const ROUTER: Readonly<IRouterConstant> = {
           title: 'Home',
           getLink: () => ['', '/'],
         },
-        activateUser: {
-          path: 'activate_user',
-          link: '/activate_user',
-          title: 'Activate User',
-          getLink: () => ['', 'activate_user'],
+        activateAccount: {
+          path: 'activate-account',
+          link: '/activate-account',
+          title: 'Activate Account',
+          getLink: () => ['', 'activate-account'],
+        },
+        confirmEmailChange: {
+          path: 'confirm-email-change',
+          link: '/confirm-email-change',
+          title: 'Confirm Email Change',
+          getLink: () => ['', 'confirm-email-change'],
         },
         confirmPasswordChange: {
-          path: 'confirm_password_change',
-          link: '/confirm_password_change',
+          path: 'confirm-password-change',
+          link: '/confirm-password-change',
           title: 'Confirm Password Change',
-          getLink: () => ['', 'confirm_password_change'],
+          getLink: () => ['', 'confirm-password-change'],
         },
         auth: {
           path: 'auth',
@@ -57,27 +63,6 @@ export const ROUTER: Readonly<IRouterConstant> = {
               link: '/auth/sign-out',
               title: 'Sign Out',
               getLink: () => ['', 'auth', 'sign-out'],
-            },
-            emailRecovery: {
-              path: 'email-recovery',
-              link: '/auth/email-recovery',
-              title: 'Email Recovery',
-              getLink: () => ['', 'auth', 'email-recovery'],
-            },
-            confirmEmail: {
-              path: 'confirm-email/:identifier/:code',
-              link: '/auth/confirm-email/:identifier/:code',
-              title: 'Confirm Email',
-              getLink: (params?: { identifier?: string; code?: string }) =>
-                params?.identifier && params?.code
-                  ? [
-                      '',
-                      'auth',
-                      'confirm-email',
-                      params.identifier,
-                      params.code,
-                    ]
-                  : ['', 'auth', 'confirm-email'],
             },
             passwordRecovery: {
               path: 'password-recovery',
@@ -114,19 +99,34 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'account'],
               title: 'Account',
             },
-            profile: {
-              path: 'profile',
-              link: '/account/profile',
-              title: 'Profile',
-              getLink: () => ['', 'account', 'profile'],
-            },
-            preferences: {
-              path: 'preferences',
-              link: '/account/preferences',
-              title: 'Preferences',
-              getLink: () => ['', 'account', 'preferences'],
+            confirmEmail: {
+              path: 'confirm-email/:identifier/:code',
+              link: '/account/confirm-email/:identifier/:code',
+              title: 'Confirm Email',
+              getLink: (params?: { identifier?: string; code?: string }) =>
+                params?.identifier && params?.code
+                  ? [
+                      '',
+                      'account',
+                      'confirm-email',
+                      params.identifier,
+                      params.code,
+                    ]
+                  : ['', 'account', 'confirm-email'],
             },
           },
+        },
+        profile: {
+          path: 'profile',
+          link: '/account/profile',
+          title: 'Profile',
+          getLink: () => ['', 'account', 'profile'],
+        },
+        preferences: {
+          path: 'preferences',
+          link: '/account/preferences',
+          title: 'Preferences',
+          getLink: () => ['', 'account', 'preferences'],
         },
         layout: {
           path: 'layout',

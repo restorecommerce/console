@@ -27,7 +27,8 @@ export interface IRouterConstant {
       getLink: () => TRouterLink;
       children: {
         home: IRouterItem;
-        activateUser: IRouterItem;
+        activateAccount: IRouterItem;
+        confirmEmailChange: IRouterItem;
         confirmPasswordChange: IRouterItem;
         auth: {
           path: string;
@@ -39,8 +40,6 @@ export interface IRouterConstant {
             activation: IRouterItem;
             signIn: IRouterItem;
             signOut: IRouterItem;
-            emailRecovery: IRouterItem;
-            confirmEmail: IRouterItem;
             passwordRecovery: IRouterItem;
             confirmPassword: IRouterItem;
           };
@@ -52,10 +51,11 @@ export interface IRouterConstant {
           getLink: () => TRouterLink;
           children: {
             index: IRouterItem;
-            profile: IRouterItem;
-            preferences: IRouterItem;
+            confirmEmail: IRouterItem;
           };
         };
+        profile: IRouterItem;
+        preferences: IRouterItem;
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {
