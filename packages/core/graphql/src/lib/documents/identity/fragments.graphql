@@ -15,7 +15,6 @@ fragment UserFields on IoRestorecommerceUserUser {
   defaultScope
   localeId
   timezoneId
-  userType
   roleAssociations {
     id
     role

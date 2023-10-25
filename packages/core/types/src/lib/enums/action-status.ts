@@ -5,16 +5,20 @@ export enum EActionStatus {
   // Actions (asynchronous or not):
   LOADING = 'LOADING',
   REQUESTING = 'REQUESTING',
+  SHOWING = 'SHOWING',
   CREATING = 'CREATING',
   UPDATING = 'UPDATING',
   DELETING = 'DELETING',
+  CLEARING = 'CLEARING',
 
   // Actions results
   LOADED = 'LOADED',
   REQUESTED = 'REQUESTED',
+  SHOWED = 'SHOWED',
   CREATED = 'CREATED',
   UPDATED = 'UPDATED',
   DELETED = 'DELETED',
+  CLEARED = 'CLEARED',
 
   // Action generic results
   SUCCEEDED = 'SUCCEEDED',

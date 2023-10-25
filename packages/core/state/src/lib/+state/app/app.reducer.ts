@@ -16,8 +16,14 @@ export const initialState: IAppState = {
 
 const reducer = createReducer<IAppState>(
   initialState,
-  on(appActions.addNotification, (state, { payload }): IAppState => {
-    // Format the notification payload
+  on(appActions.addNotification, (state): IAppState => {
+    return {
+      ...state,
+      notifications: [],
+      actionStatus: EActionStatus.SHOWING,
+    };
+  }),
+  on(appActions.showNotification, (state, { payload }): IAppState => {
     const notification: INotification = {
       ...payload,
       title: capitalizeFirstLetter(payload.type),
@@ -27,7 +33,8 @@ const reducer = createReducer<IAppState>(
 
     return {
       ...state,
-      notifications: [notification, ...state.notifications],
+      // notifications: [notification, ...state.notifications],
+      notifications: [notification],
       actionStatus: EActionStatus.SUCCEEDED,
     };
   }),
@@ -39,7 +46,7 @@ const reducer = createReducer<IAppState>(
         ({ date }) =>
           STORE.config.app.notifications.delay >= dayjs().diff(dayjs(date))
       ),
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.CLEARED,
     })
   )
 );

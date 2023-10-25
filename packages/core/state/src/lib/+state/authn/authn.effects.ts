@@ -6,7 +6,7 @@ import { catchError, map, of, switchMap, take, tap } from 'rxjs';
 import { ROUTER } from '@console-core/config';
 import { ENotificationTypes } from '@console-core/types';
 
-import { AuthnService } from '../../services';
+import { AuthnService, UserService } from '../../services';
 import { AccountFacade } from '../account';
 import { AppFacade } from '../app';
 
@@ -49,6 +49,12 @@ export class AuthnEffects {
           });
         }),
         tap(() => {
+          this.appFacade.addNotification({
+            content: 'an account activation email has been sent',
+            type: ENotificationTypes.INFO,
+          });
+        }),
+        tap(() => {
           this.router.navigate([
             ROUTER.pages.main.children.auth.children.signIn.link,
           ]);
@@ -62,7 +68,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.activateRequest),
       switchMap(({ payload }) =>
-        this.authnService.activate(payload).pipe(
+        this.userService.activate(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user?.Activate?.details?.operationStatus || {};
@@ -155,7 +161,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.passwordRecoveryRequest),
       switchMap(({ payload }) =>
-        this.authnService.requestPasswordChange(payload).pipe(
+        this.userService.requestPasswordChange(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user?.RequestPasswordChange?.details
@@ -182,7 +188,7 @@ export class AuthnEffects {
         ofType(authnActions.passwordRecoverySuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'password recovery email sent',
+            content: 'a password recovery email has been sent',
             type: ENotificationTypes.SUCCESS,
           });
         }),
@@ -200,7 +206,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.confirmPasswordRequest),
       switchMap(({ payload }) =>
-        this.authnService.confirmPasswordChange(payload).pipe(
+        this.userService.confirmPasswordChange(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user?.ConfirmPasswordChange?.details
@@ -301,6 +307,7 @@ export class AuthnEffects {
     private readonly activatedRoute: ActivatedRoute,
     private readonly actions$: Actions,
     private readonly authnService: AuthnService,
+    private readonly userService: UserService,
     private readonly appFacade: AppFacade,
     private readonly accountFacade: AccountFacade
   ) {}

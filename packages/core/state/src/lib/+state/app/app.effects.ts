@@ -9,9 +9,17 @@ import * as appActions from './app.actions';
 
 @Injectable()
 export class AppEffects {
-  clearNotifications$ = createEffect(() => {
+  addNotification$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(appActions.addNotification),
+      delay(200),
+      switchMap(({ payload }) => of(appActions.showNotification({ payload })))
+    );
+  });
+
+  clearNotifications$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(appActions.showNotification),
       delay(STORE.config.app.notifications.delay),
       switchMap(() => of(appActions.clearNotifications()))
     );
