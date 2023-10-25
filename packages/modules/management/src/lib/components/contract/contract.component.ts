@@ -7,11 +7,11 @@ import { map } from 'rxjs';
   template: `
     <div>
       <ng-container *ngIf="id$ | async as id; else templateNoId">
-        <h2>Contract: {{ id }}</h2>
+        <p>Contract: {{ id }}</p>
       </ng-container>
 
       <ng-template #templateNoId>
-        <h2>Contracts</h2>
+        <p>Contracts</p>
       </ng-template>
     </div>
   `,
