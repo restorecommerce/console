@@ -7,13 +7,11 @@ import { AccountFacade } from '@console-core/state';
   selector: 'app-account',
   template: `
     <ng-container *ngIf="user$ | async as user">
-      <div class="row small-snap-vertical">
+      <div class="row">
         <rc-page-account-index>
           <h3>
             Personal Data [<a
-              [routerLink]="
-                ROUTER.pages.main.children.account.children.profile.path
-              "
+              [routerLink]="ROUTER.pages.main.children.profile.path"
               >Edit</a
             >]
           </h3>
@@ -24,9 +22,7 @@ import { AccountFacade } from '@console-core/state';
 
           <h3>
             Account Data [<a
-              [routerLink]="
-                ROUTER.pages.main.children.account.children.profile.path
-              "
+              [routerLink]="ROUTER.pages.main.children.profile.path"
               >Edit</a
             >]
           </h3>
@@ -37,9 +33,7 @@ import { AccountFacade } from '@console-core/state';
 
           <h3>
             Account Information [<a
-              [routerLink]="
-                ROUTER.pages.main.children.account.children.preferences.path
-              "
+              [routerLink]="ROUTER.pages.main.children.preferences.path"
               >Edit</a
             >]
           </h3>
@@ -48,7 +42,6 @@ import { AccountFacade } from '@console-core/state';
             <li><b>Status</b>: {{ user.active ? 'Active' : 'Not active' }}</li>
             <li><b>Timezone ID:</b> {{ user.timezoneId || '-' }}</li>
             <li><b>Locale ID</b>: {{ user.localeId || '-' }}</li>
-            <li><b>User Type</b>: {{ user.userType }}</li>
             <li>
               <b>Role Associations</b>:
               <ul>

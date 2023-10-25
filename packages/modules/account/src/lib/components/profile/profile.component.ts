@@ -18,14 +18,14 @@ import {
     <ng-container *ngIf="vm$ | async as vm">
       <rc-page-profile>
         <rc-account-personal-data
-          [user]="vm.profile"
-          [isUpdating]="vm.isUpdating"
+          [user]="vm.user"
+          [isRequesting]="vm.isRequesting"
           [personalFormSchema]="personalFormSchema"
         />
 
         <rc-account-account-data
-          [user]="vm.profile"
-          [isUpdating]="vm.isUpdating"
+          [user]="vm.user"
+          [isRequesting]="vm.isRequesting"
           [emailFormSchema]="emailFormSchema"
           [passwordFormSchema]="passwordFormSchema"
         />
@@ -35,8 +35,8 @@ import {
         />
 
         <rc-account-account-deletion
-          [user]="vm.profile"
-          [isDeleting]="vm.isDeleting"
+          [user]="vm.user"
+          [isRequesting]="vm.isRequesting"
         />
       </rc-page-profile>
     </ng-container>
@@ -46,23 +46,22 @@ import {
 export class ProfileComponent {
   accountInformationFormSchema!: VCLFormFieldSchemaRoot;
   emailFormSchema!: VCLFormFieldSchemaRoot;
-  passwordFormSchema = buildPasswordSchema();
+  passwordFormSchema!: VCLFormFieldSchemaRoot;
   personalFormSchema!: VCLFormFieldSchemaRoot;
 
   readonly vm$ = combineLatest({
-    profile: this.accountFacade.user$.pipe(
+    user: this.accountFacade.user$.pipe(
       filterNullish(),
       tap((user) => {
         this.personalFormSchema = buildPersonalDataSchema({ user });
         this.emailFormSchema = buildEmailSchema({ user });
+        this.passwordFormSchema = buildPasswordSchema();
         this.accountInformationFormSchema = buildAccountInformationSchema({
           user,
         });
       })
     ),
-    isLoading: this.accountFacade.isLoading$,
-    isUpdating: this.accountFacade.isUpdating$,
-    isDeleting: this.accountFacade.isDeleting$,
+    isRequesting: this.accountFacade.isRequesting$,
   });
 
   constructor(private readonly accountFacade: AccountFacade) {}
