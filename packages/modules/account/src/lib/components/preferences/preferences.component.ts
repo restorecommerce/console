@@ -14,15 +14,15 @@ import { buildLocalizationDataSchema } from '../../jss-forms';
 @Component({
   selector: 'app-account-preferences',
   template: `
-    <rc-page-preferences>
-      <ng-container *ngIf="vm$ | async as vm">
+    <ng-container *ngIf="vm$ | async as vm">
+      <rc-page-preferences>
         <rc-account-localization-data
           [user]="vm.user"
-          [isLoading]="vm.isLoading"
+          [isRequesting]="vm.isRequesting"
           [localizationFormSchema]="localizationFormSchema"
         />
-      </ng-container>
-    </rc-page-preferences>
+      </rc-page-preferences>
+    </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -30,14 +30,14 @@ export class PreferencesComponent implements OnInit {
   localizationFormSchema!: VCLFormFieldSchemaRoot;
 
   readonly vm$ = combineLatest({
-    user: this.accountFacade.profile$,
-    isLoading: this.accountFacade.isLoading$,
+    user: this.accountFacade.user$,
+    isRequesting: this.accountFacade.isRequesting$,
     locales: this.localeFacade.allLocales$,
     timezones: this.timezoneFacade.allTimezones$,
   }).pipe(
     startWith({
       user: null,
-      isLoading: false,
+      isRequesting: false,
       locales: [],
       timezones: [],
     }),

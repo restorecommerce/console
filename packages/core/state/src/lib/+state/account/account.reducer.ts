@@ -15,6 +15,31 @@ export const initialState: IAccountState = {
 const reducer = createReducer<IAccountState>(
   initialState,
   on(
+    accountActions.userFindRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.REQUESTING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userFindSuccess,
+    (state, { payload }): IAccountState => ({
+      ...state,
+      user: getUser(payload),
+      actionStatus: EActionStatus.SUCCEEDED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userFindFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
     accountActions.userFindByTokenRequest,
     (state): IAccountState => ({
       ...state,
@@ -43,7 +68,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userMutateRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.UPDATING,
+      actionStatus: EActionStatus.REQUESTING,
       error: null,
     })
   ),
@@ -52,7 +77,7 @@ const reducer = createReducer<IAccountState>(
     (state, { payload }): IAccountState => ({
       ...state,
       user: getUser(payload),
-      actionStatus: EActionStatus.UPDATED,
+      actionStatus: EActionStatus.SUCCEEDED,
       error: null,
     })
   ),
@@ -65,10 +90,82 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
+    accountActions.userChangeEmailRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.REQUESTING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userChangeEmailSuccess,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.SUCCEEDED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userChangeEmailFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
+    accountActions.userConfirmEmailChangeRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.REQUESTING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userConfirmEmailChangeSuccess,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.SUCCEEDED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userConfirmEmailChangeFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
+    accountActions.userChangePasswordRequest,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.REQUESTING,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userChangePasswordSuccess,
+    (state): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.UPDATED,
+      error: null,
+    })
+  ),
+  on(
+    accountActions.userChangePasswordFail,
+    (state, { error }): IAccountState => ({
+      ...state,
+      actionStatus: EActionStatus.FAILED,
+      error,
+    })
+  ),
+  on(
     accountActions.userDeleteRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.DELETING,
+      actionStatus: EActionStatus.REQUESTING,
       error: null,
     })
   ),
@@ -76,7 +173,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userDeleteSuccess,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.DELETED,
+      actionStatus: EActionStatus.SUCCEEDED,
       error: null,
     })
   ),

@@ -5,7 +5,6 @@
     "packages/core/graphql/src/lib/generated/generated.ts": {
       "config": {
         "addExplicitOverride": true,
-        "declarationKind": "interface",
         "defaultScalarType": "unknown"
       },
       "documents": "packages/core/graphql/**/*.graphql",

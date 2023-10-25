@@ -11,6 +11,8 @@ import { ModeType } from '@console-core/graphql';
 import { AccountFacade } from '@console-core/state';
 import { IUser } from '@console-core/types';
 
+import { RcActiveFormService } from '../../../../services';
+
 @Component({
   selector: 'rc-account-personal-data',
   templateUrl: './personal-data.component.html',
@@ -21,7 +23,7 @@ export class RcPersonalDataComponent {
   user!: IUser | null;
 
   @Input({ required: true })
-  isUpdating!: boolean;
+  isRequesting!: boolean;
 
   @Input({ required: true })
   personalFormSchema!: VCLFormFieldSchemaRoot;
@@ -29,9 +31,15 @@ export class RcPersonalDataComponent {
   @ViewChild('personalForm')
   personalForm!: JssFormComponent;
 
-  constructor(private readonly accountFacade: AccountFacade) {}
+  activeFrom$ = this.activeFormService.active$;
+
+  constructor(
+    private readonly activeFormService: RcActiveFormService,
+    private readonly accountFacade: AccountFacade
+  ) {}
 
   onSavePersonalForm() {
+    this.activeFormService.setActive('profilePersonalData');
     this.accountFacade.userMutateRequest({
       items: [
         {

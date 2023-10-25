@@ -2,9 +2,9 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 import {
-  PublicGuard,
   PrivateGuard,
   RedirectActivationGuard,
+  RedirectConfirmEmailGuard,
   RedirectConfirmPasswordGuard,
 } from '@console-modules/shared';
 
@@ -23,14 +23,19 @@ export const modulesMainRoutes: Route[] = [
       import('@console-modules/home').then((m) => m.ModulesHomeModule),
   },
   {
-    path: ROUTER.pages.main.children.activateUser.path,
+    path: ROUTER.pages.main.children.activateAccount.path,
     component: PublicTemplateComponent,
-    canActivate: [PublicGuard, RedirectActivationGuard],
+    canActivate: [RedirectActivationGuard],
+  },
+  {
+    path: ROUTER.pages.main.children.confirmEmailChange.path,
+    component: PublicTemplateComponent,
+    canActivate: [RedirectConfirmEmailGuard],
   },
   {
     path: ROUTER.pages.main.children.confirmPasswordChange.path,
     component: PublicTemplateComponent,
-    canActivate: [PublicGuard, RedirectConfirmPasswordGuard],
+    canActivate: [RedirectConfirmPasswordGuard],
   },
   {
     path: ROUTER.pages.main.children.auth.path,

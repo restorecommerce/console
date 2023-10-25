@@ -48,6 +48,7 @@ import {
   RcToggleDrawerComponent,
   RcSearchBarComponent,
   RcToolbarComponent,
+  RcAccountConfirmEmailComponent,
   RcConfirmPasswordComponent,
   RcPersonalDataComponent,
   RcAccountDataComponent,
@@ -57,6 +58,7 @@ import {
   RcPageHeaderComponent,
 } from './components/organisms';
 import {
+  RcPageAccountConfirmEmailComponent,
   RcPageConfirmPasswordComponent,
   RcPageActivationComponent,
   RcPagePasswordRecoveryComponent,
@@ -67,6 +69,7 @@ import {
   RcPageLayoutComponent,
   RcPageOverflowComponent,
   RcPageAccountComponent,
+  RcPageAccountIndexComponent,
   RcPageProfileComponent,
   RcPagePreferencesComponent,
 } from './components/pages';
@@ -105,6 +108,7 @@ const organisms = [
   RcSignInComponent,
   RcSignUpComponent,
   RcPasswordRecoveryComponent,
+  RcAccountConfirmEmailComponent,
   RcConfirmPasswordComponent,
   RcPersonalDataComponent,
   RcAccountDataComponent,
@@ -119,12 +123,14 @@ const pages = [
   RcPageLayoutComponent,
   RcPageOverflowComponent,
   RcPageActivationComponent,
+  RcPageAccountConfirmEmailComponent,
   RcPageConfirmPasswordComponent,
   RcPageSignInComponent,
   RcPageSignUpComponent,
   RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
   RcPageAccountComponent,
+  RcPageAccountIndexComponent,
   RcPageProfileComponent,
   RcPagePreferencesComponent,
 ];

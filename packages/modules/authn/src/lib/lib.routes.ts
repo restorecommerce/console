@@ -75,16 +75,6 @@ export const modulesAuthnRoutes: Route[] = [
           ),
         title: ROUTER.pages.main.children.auth.children.confirmPassword.title,
       },
-      {
-        path: ROUTER.pages.main.children.auth.children.confirmEmail.path,
-        canActivate: [PublicGuard],
-        canActivateChild: [PublicGuard],
-        loadChildren: () =>
-          import('./components/confirm-email/confirm-email.module').then(
-            (m) => m.ConfirmEmailModule
-          ),
-        title: ROUTER.pages.main.children.auth.children.confirmEmail.title,
-      },
     ],
   },
 ];

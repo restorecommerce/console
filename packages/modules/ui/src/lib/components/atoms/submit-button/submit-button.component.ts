@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class RcSubmitButtonComponent {
-  @Input({ required: true }) isDisabled!: boolean;
   @Input({ required: true }) isBusy!: boolean | null;
+  @Input() isDisabled = false;
   @Input() buttonClass = '';
 }

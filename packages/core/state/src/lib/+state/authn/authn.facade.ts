@@ -21,6 +21,7 @@ export class AuthnFacade {
   readonly isNotAuthenticated$ = this.store.select(
     authnSelectors.selectIsNotAuthenticated
   );
+  readonly expiresIn$ = this.store.select(authnSelectors.selectExpiresIn);
   readonly token$ = this.store.select(authnSelectors.selectToken);
   readonly isLoading$ = this.store.select(authnSelectors.selectIsLoading);
   readonly actionStatus$ = this.store.select(authnSelectors.selectActionStatus);
@@ -33,7 +34,12 @@ export class AuthnFacade {
     this.store.dispatch(authnActions.activateRequest({ payload }));
   readonly signIn = (payload: IAuthnTokenSignInPayload) =>
     this.store.dispatch(authnActions.signInRequest({ payload }));
-  readonly signOut = () => this.store.dispatch(authnActions.signOut());
+  readonly signOut = (showNotification = true) =>
+    this.store.dispatch(
+      authnActions.signOut({
+        payload: { showNotification },
+      })
+    );
   readonly passwordRecovery = (
     payload: IIoRestorecommerceUserRequestPasswordChangeRequest
   ) => this.store.dispatch(authnActions.passwordRecoveryRequest({ payload }));

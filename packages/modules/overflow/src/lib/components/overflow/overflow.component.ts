@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-module-overflow-index',
   template: `
     <div>
-      <h2>Overflow</h2>
+      <p>Overflow</p>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

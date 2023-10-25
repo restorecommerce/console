@@ -6,7 +6,7 @@ import { catchError, map, of, switchMap, take, tap } from 'rxjs';
 import { ROUTER } from '@console-core/config';
 import { ENotificationTypes } from '@console-core/types';
 
-import { AuthnService } from '../../services';
+import { AuthnService, UserService } from '../../services';
 import { AccountFacade } from '../account';
 import { AppFacade } from '../app';
 
@@ -49,6 +49,12 @@ export class AuthnEffects {
           });
         }),
         tap(() => {
+          this.appFacade.addNotification({
+            content: 'an account activation email has been sent',
+            type: ENotificationTypes.INFO,
+          });
+        }),
+        tap(() => {
           this.router.navigate([
             ROUTER.pages.main.children.auth.children.signIn.link,
           ]);
@@ -62,7 +68,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.activateRequest),
       switchMap(({ payload }) =>
-        this.authnService.activate(payload).pipe(
+        this.userService.activate(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user?.Activate?.details?.operationStatus || {};
@@ -91,11 +97,6 @@ export class AuthnEffects {
             content: 'account has been activated',
             type: ENotificationTypes.SUCCESS,
           });
-        }),
-        tap(() => {
-          this.router.navigate([
-            ROUTER.pages.main.children.auth.children.signIn.link,
-          ]);
         })
       );
     },
@@ -105,8 +106,8 @@ export class AuthnEffects {
   signInRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authnActions.signInRequest),
-      switchMap(({ payload }) =>
-        this.authnService.signIn(payload).pipe(
+      switchMap(({ payload }) => {
+        return this.authnService.signIn(payload).pipe(
           map(
             ({
               access_token: token = null,
@@ -114,7 +115,7 @@ export class AuthnEffects {
               last_login: lastLogin = null,
             }) => {
               if (!token) {
-                throw new Error('sign in failed');
+                throw new Error('401');
               }
 
               return authnActions.signInSuccess({
@@ -127,12 +128,12 @@ export class AuthnEffects {
               authnActions.signInFail({
                 error: error.message.includes('401')
                   ? 'sign in failed'
-                  : error.message,
+                  : 'unknown error',
               })
             );
           })
-        )
-      )
+        );
+      })
     );
   });
 
@@ -140,8 +141,8 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(authnActions.signInSuccess),
-        tap(({ payload }) => {
-          this.accountFacade.userFindByTokenRequest({ token: payload.token });
+        tap(({ payload: { token } }) => {
+          this.accountFacade.userFindByTokenRequest({ token });
         }),
         switchMap(() => this.activatedRoute.queryParams.pipe(take(1))),
         map(
@@ -160,7 +161,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.passwordRecoveryRequest),
       switchMap(({ payload }) =>
-        this.authnService.requestPasswordChange(payload).pipe(
+        this.userService.requestPasswordChange(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user?.RequestPasswordChange?.details
@@ -187,7 +188,7 @@ export class AuthnEffects {
         ofType(authnActions.passwordRecoverySuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'password recovery email sent',
+            content: 'a password recovery email has been sent',
             type: ENotificationTypes.SUCCESS,
           });
         }),
@@ -205,7 +206,7 @@ export class AuthnEffects {
     return this.actions$.pipe(
       ofType(authnActions.confirmPasswordRequest),
       switchMap(({ payload }) =>
-        this.authnService.confirmPasswordChange(payload).pipe(
+        this.userService.confirmPasswordChange(payload).pipe(
           map(({ data }) => {
             const { code, message } =
               data?.identity?.user?.ConfirmPasswordChange?.details
@@ -254,11 +255,13 @@ export class AuthnEffects {
     () => {
       return this.actions$.pipe(
         ofType(authnActions.signOut),
-        tap(() => {
-          this.appFacade.addNotification({
-            content: 'signed out',
-            type: ENotificationTypes.SUCCESS,
-          });
+        tap(({ payload }) => {
+          if (payload.showNotification) {
+            this.appFacade.addNotification({
+              content: 'signed out',
+              type: ENotificationTypes.SUCCESS,
+            });
+          }
         }),
         tap(() => {
           this.router.navigate(
@@ -306,6 +309,7 @@ export class AuthnEffects {
     private readonly activatedRoute: ActivatedRoute,
     private readonly actions$: Actions,
     private readonly authnService: AuthnService,
+    private readonly userService: UserService,
     private readonly appFacade: AppFacade,
     private readonly accountFacade: AccountFacade
   ) {}

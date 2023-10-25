@@ -10,6 +10,8 @@ import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { AccountFacade, AppFacade } from '@console-core/state';
 import { ENotificationTypes, IUser } from '@console-core/types';
 
+import { RcActiveFormService } from '../../../../services';
+
 @Component({
   selector: 'rc-account-account-data',
   templateUrl: './account-data.component.html',
@@ -20,7 +22,7 @@ export class RcAccountDataComponent {
   user!: IUser | null;
 
   @Input({ required: true })
-  isUpdating!: boolean;
+  isRequesting!: boolean;
 
   @Input({ required: true })
   emailFormSchema!: VCLFormFieldSchemaRoot;
@@ -34,41 +36,40 @@ export class RcAccountDataComponent {
   @ViewChild('passwordForm')
   passwordForm!: JssFormComponent;
 
-  isActiveFormChangeEmail = false;
-  isActiveFormChangePassword = false;
+  activeFrom$ = this.activeFormService.active$;
 
   constructor(
+    private readonly activeFormService: RcActiveFormService,
     private readonly appFacade: AppFacade,
     private readonly accountFacade: AccountFacade
   ) {}
 
   onSaveEmailForm(): void {
-    // TODO: Implement save logic
-    console.log(this.emailForm.form.value);
-    this.isActiveFormChangeEmail = true;
-    setTimeout(() => {
-      this.isActiveFormChangeEmail = false;
-    }, 1000);
+    this.activeFormService.setActive('profileAccountDataEmail');
+    this.accountFacade.userChangeEmailRequest({
+      identifier: this.user?.name || '',
+      newEmail: this.emailForm.form.value.email,
+    });
   }
 
   onSavePasswordForm(): void {
-    // TODO: Implement save logic
-    console.log(this.passwordForm.form.value);
+    const { currentPassword, password, passwordConfirmation } =
+      this.passwordForm.form.value;
 
-    if (
-      this.passwordForm.form.value.password !==
-      this.passwordForm.form.value.passwordConfirmation
-    ) {
+    if (password !== passwordConfirmation) {
       this.appFacade.addNotification({
         type: ENotificationTypes.ERROR,
-        content: 'New password and new password confirmation must be the same.',
+        content: 'New password and new password confirmation must match',
       });
       return;
     }
 
-    this.isActiveFormChangePassword = true;
-    setTimeout(() => {
-      this.isActiveFormChangePassword = false;
-    }, 1000);
+    this.activeFormService.setActive('profileAccountDataPassword');
+    this.accountFacade.userChangePasswordRequest({
+      password: currentPassword,
+      newPassword: password,
+    });
+
+    this.passwordForm.form.reset();
   }
 }

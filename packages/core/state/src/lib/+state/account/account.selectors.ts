@@ -7,12 +7,12 @@ export const selectAccount = createFeatureSelector<IAccountState>(
   STORE.states.accountState
 );
 
-export const selectProfile = createSelector(
+export const selectUser = createSelector(
   selectAccount,
   (state: IAccountState) => state.user
 );
 
-export const selectIsLoading = createSelector(
+export const selectIsRequesting = createSelector(
   selectAccount,
   (state: IAccountState) => state.actionStatus === EActionStatus.REQUESTING
 );
