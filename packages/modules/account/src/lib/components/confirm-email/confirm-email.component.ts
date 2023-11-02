@@ -11,13 +11,11 @@ import { buildConfirmEmailSchema } from '../../jss-forms';
   selector: 'app-account-confirm-email',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-page-account-confirm-email>
-        <rc-account-confirm-email
-          [user]="vm.user"
-          [isRequesting]="vm.isRequesting"
-          [confirmEmailFormSchema]="confirmEmailFormSchema"
-        />
-      </rc-page-account-confirm-email>
+      <rc-account-confirm-email
+        [user]="vm.user"
+        [isRequesting]="vm.isRequesting"
+        [confirmEmailFormSchema]="confirmEmailFormSchema"
+      />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

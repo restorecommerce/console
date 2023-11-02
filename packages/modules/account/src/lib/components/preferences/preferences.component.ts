@@ -15,13 +15,15 @@ import { buildLocalizationDataSchema } from '../../jss-forms';
   selector: 'app-account-preferences',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-page-preferences>
-        <rc-account-localization-data
-          [user]="vm.user"
-          [isRequesting]="vm.isRequesting"
-          [localizationFormSchema]="localizationFormSchema"
-        />
-      </rc-page-preferences>
+      <div class="row">
+        <div class="col rc-page-container">
+          <rc-account-localization-data
+            [user]="vm.user"
+            [isRequesting]="vm.isRequesting"
+            [localizationFormSchema]="localizationFormSchema"
+          />
+        </div>
+      </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
