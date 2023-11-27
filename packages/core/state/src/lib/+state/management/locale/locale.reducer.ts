@@ -1,13 +1,11 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { IIoRestorecommerceLocaleLocale } from '@console-core/graphql';
-import { EActionStatus, ILocaleState } from '@console-core/types';
+import { EActionStatus, ILocale, ILocaleState } from '@console-core/types';
 
 import * as localeActions from './locale.actions';
 
-export const adapter: EntityAdapter<IIoRestorecommerceLocaleLocale> =
-  createEntityAdapter<IIoRestorecommerceLocaleLocale>();
+export const adapter: EntityAdapter<ILocale> = createEntityAdapter<ILocale>();
 
 export const initialState: ILocaleState = adapter.getInitialState({
   selectedId: null,

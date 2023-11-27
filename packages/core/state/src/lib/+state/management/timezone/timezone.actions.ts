@@ -1,9 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import {
-  IIoRestorecommerceResourcebaseReadRequest,
-  IoRestorecommerceTimezoneTimezone,
-} from '@console-core/graphql';
+import { IIoRestorecommerceResourcebaseReadRequest } from '@console-core/graphql';
+import { ITimezone } from '@console-core/types';
 
 export const timezoneReadRequest = createAction(
   '[TIMEZONE] Read request',
@@ -12,7 +10,7 @@ export const timezoneReadRequest = createAction(
 
 export const timezoneReadRequestSuccess = createAction(
   '[TIMEZONE] Read success',
-  props<{ payload: IoRestorecommerceTimezoneTimezone[] }>()
+  props<{ payload: ITimezone[] }>()
 );
 
 export const timezoneReadRequestFail = createAction(

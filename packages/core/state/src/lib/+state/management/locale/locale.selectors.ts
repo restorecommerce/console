@@ -19,7 +19,7 @@ export const selectLocaleEntities = createSelector(
   selectEntities
 );
 
-export const selectAllLocales = createSelector(selectLocale, selectAll);
+export const selectLocalesAll = createSelector(selectLocale, selectAll);
 
 export const selectLocaleTotal = createSelector(selectLocale, selectTotal);
 

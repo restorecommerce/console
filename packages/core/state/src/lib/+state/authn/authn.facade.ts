@@ -28,22 +28,22 @@ export class AuthnFacade {
   readonly error$ = this.store.select(authnSelectors.selectError);
 
   // Actions
-  readonly signUp = (payload: IIoRestorecommerceUserRegisterRequest) =>
+  signUp = (payload: IIoRestorecommerceUserRegisterRequest) =>
     this.store.dispatch(authnActions.signUpRequest({ payload }));
-  readonly activate = (payload: IIoRestorecommerceUserActivateRequest) =>
+  activate = (payload: IIoRestorecommerceUserActivateRequest) =>
     this.store.dispatch(authnActions.activateRequest({ payload }));
-  readonly signIn = (payload: IAuthnTokenSignInPayload) =>
+  signIn = (payload: IAuthnTokenSignInPayload) =>
     this.store.dispatch(authnActions.signInRequest({ payload }));
-  readonly signOut = (showNotification = true) =>
+  signOut = (showNotification = true) =>
     this.store.dispatch(
       authnActions.signOut({
         payload: { showNotification },
       })
     );
-  readonly passwordRecovery = (
+  passwordRecovery = (
     payload: IIoRestorecommerceUserRequestPasswordChangeRequest
   ) => this.store.dispatch(authnActions.passwordRecoveryRequest({ payload }));
-  readonly confirmPassword = (
+  confirmPassword = (
     payload: IIoRestorecommerceUserConfirmPasswordChangeRequest
   ) => this.store.dispatch(authnActions.confirmPasswordRequest({ payload }));
 

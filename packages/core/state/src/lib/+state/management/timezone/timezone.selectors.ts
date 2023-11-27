@@ -19,7 +19,7 @@ export const selectTimezoneEntities = createSelector(
   selectEntities
 );
 
-export const selectAllTimezones = createSelector(selectTimezone, selectAll);
+export const selectTimezoneAll = createSelector(selectTimezone, selectAll);
 
 export const selectTimezoneTotal = createSelector(selectTimezone, selectTotal);
 

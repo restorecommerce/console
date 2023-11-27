@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
-import { IoRestorecommerceTimezoneTimezone } from '@console-core/graphql';
-import { ENotificationTypes } from '@console-core/types';
+import { ENotificationTypes, ITimezone } from '@console-core/types';
 
-import { TimezoneService } from '../../services';
-import { AppFacade } from '../app';
+import { TimezoneService } from '../../../services';
+import { AppFacade } from '../../app';
 
 import * as timezoneActions from './timezone.actions';
 
@@ -22,7 +21,7 @@ export class TimezoneEffects {
 
             return timezoneActions.timezoneReadRequestSuccess({
               payload: (data?.items || []).map(
-                (item) => item.payload as IoRestorecommerceTimezoneTimezone
+                (item) => item.payload as ITimezone
               ),
             });
           }),

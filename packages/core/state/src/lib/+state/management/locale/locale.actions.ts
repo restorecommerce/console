@@ -1,9 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import {
-  IIoRestorecommerceResourcebaseReadRequest,
-  IoRestorecommerceLocaleLocale,
-} from '@console-core/graphql';
+import { IIoRestorecommerceResourcebaseReadRequest } from '@console-core/graphql';
+import { ILocale } from '@console-core/types';
 
 export const localeReadRequest = createAction(
   '[LOCALE] Read request',
@@ -12,7 +10,7 @@ export const localeReadRequest = createAction(
 
 export const localeReadRequestSuccess = createAction(
   '[LOCALE] Read success',
-  props<{ payload: IoRestorecommerceLocaleLocale[] }>()
+  props<{ payload: ILocale[] }>()
 );
 
 export const localeReadRequestFail = createAction(

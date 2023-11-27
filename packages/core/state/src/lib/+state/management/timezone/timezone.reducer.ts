@@ -1,13 +1,12 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { IIoRestorecommerceTimezoneTimezone } from '@console-core/graphql';
-import { EActionStatus, ITimezoneState } from '@console-core/types';
+import { EActionStatus, ITimezone, ITimezoneState } from '@console-core/types';
 
 import * as timezoneActions from './timezone.actions';
 
-export const adapter: EntityAdapter<IIoRestorecommerceTimezoneTimezone> =
-  createEntityAdapter<IIoRestorecommerceTimezoneTimezone>();
+export const adapter: EntityAdapter<ITimezone> =
+  createEntityAdapter<ITimezone>();
 
 export const initialState: ITimezoneState = adapter.getInitialState({
   selectedId: null,

@@ -9,21 +9,18 @@ import * as localeSelectors from './locale.selectors';
 @Injectable()
 export class LocaleFacade {
   // Selectors
-  readonly localeIds$ = this.store.select(localeSelectors.selectLocaleIds);
-  readonly localeEntities$ = this.store.select(
-    localeSelectors.selectLocaleEntities
-  );
-  readonly allLocales$ = this.store.select(localeSelectors.selectAllLocales);
-  readonly localeTotal$ = this.store.select(localeSelectors.selectLocaleTotal);
+  readonly ids$ = this.store.select(localeSelectors.selectLocaleIds);
+  readonly entities$ = this.store.select(localeSelectors.selectLocaleEntities);
+  readonly all$ = this.store.select(localeSelectors.selectLocalesAll);
+  readonly total$ = this.store.select(localeSelectors.selectLocaleTotal);
   readonly actionStatus$ = this.store.select(
     localeSelectors.selectActionStatus
   );
   readonly error$ = this.store.select(localeSelectors.selectError);
 
   // Actions
-  readonly localeReadRequest = (
-    payload: IIoRestorecommerceResourcebaseReadRequest
-  ) => this.store.dispatch(localeActions.localeReadRequest({ payload }));
+  read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
+    this.store.dispatch(localeActions.localeReadRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
-import { IoRestorecommerceLocaleLocale } from '@console-core/graphql';
-import { ENotificationTypes } from '@console-core/types';
+import { ENotificationTypes, ILocale } from '@console-core/types';
 
-import { LocaleService } from '../../services';
-import { AppFacade } from '../app';
+import { LocaleService } from '../../../services';
+import { AppFacade } from '../../app';
 
 import * as localeActions from './locale.actions';
 
@@ -22,7 +21,7 @@ export class LocaleEffects {
 
             return localeActions.localeReadRequestSuccess({
               payload: (data?.items || []).map(
-                (item) => item.payload as IoRestorecommerceLocaleLocale
+                (item) => item.payload as ILocale
               ),
             });
           }),

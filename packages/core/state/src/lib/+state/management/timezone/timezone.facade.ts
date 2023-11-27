@@ -9,27 +9,20 @@ import * as timezoneSelectors from './timezone.selectors';
 @Injectable()
 export class TimezoneFacade {
   // Selectors
-  readonly timezoneIds$ = this.store.select(
-    timezoneSelectors.selectTimezoneIds
-  );
-  readonly timezoneEntities$ = this.store.select(
+  readonly ids$ = this.store.select(timezoneSelectors.selectTimezoneIds);
+  readonly entities$ = this.store.select(
     timezoneSelectors.selectTimezoneEntities
   );
-  readonly allTimezones$ = this.store.select(
-    timezoneSelectors.selectAllTimezones
-  );
-  readonly timezoneTotal$ = this.store.select(
-    timezoneSelectors.selectTimezoneTotal
-  );
+  readonly all$ = this.store.select(timezoneSelectors.selectTimezoneAll);
+  readonly total$ = this.store.select(timezoneSelectors.selectTimezoneTotal);
   readonly actionStatus$ = this.store.select(
     timezoneSelectors.selectActionStatus
   );
   readonly error$ = this.store.select(timezoneSelectors.selectError);
 
   // Actions
-  readonly timezoneReadRequest = (
-    payload: IIoRestorecommerceResourcebaseReadRequest
-  ) => this.store.dispatch(timezoneActions.timezoneReadRequest({ payload }));
+  read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
+    this.store.dispatch(timezoneActions.timezoneReadRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

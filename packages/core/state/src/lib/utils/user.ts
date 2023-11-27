@@ -1,9 +1,15 @@
-import { IIoRestorecommerceUserUser } from '@console-core/graphql';
 import { IUser } from '@console-core/types';
 
-export const getFullName = (user: IIoRestorecommerceUserUser): string =>
-  `${user?.firstName || ''} ${user?.lastName || ''}`.trim();
-export const getUser = (profile: IIoRestorecommerceUserUser): IUser => ({
-  ...profile,
-  fullName: getFullName(profile),
+const getUserFullName = (user: IUser): string =>
+  `${user?.firstName} ${user?.lastName}`.trim();
+
+const hasUserRole = (user: IUser, role: string): boolean =>
+  !!user.roleAssociations?.some((r) => r.role === role);
+
+export const getUser = (user: IUser): IUser => ({
+  ...user,
+  fullName: getUserFullName(user),
+  isSuperAdministrator: hasUserRole(user, 'superadministrator-r-id'),
+  isAdministrator: hasUserRole(user, 'administrator-r-id'),
+  isUser: hasUserRole(user, 'user-r-id'),
 });
