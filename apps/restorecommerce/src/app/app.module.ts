@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, TitleStrategy } from '@angular/router';
 
-import { VCLDateAdapterModule } from '@vcl/ng-vcl';
+// import { VCLDateAdapterModule } from '@vcl/ng-vcl';
 
 import { CoreGraphQLModule } from '@console-core/graphql';
-import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
+// import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
 import { environment } from '../environments/environment';
 
@@ -29,9 +29,9 @@ import { RoutesTitleStrategyService } from './routes-title-strategy.service';
       api: environment.urls.graphql,
     }),
     AppStateModule,
-    ModulesUiBaseModule,
-    ModulesUiModule.forRoot(),
-    VCLDateAdapterModule.forRoot(),
+    // ModulesUiBaseModule,
+    // ModulesUiModule.forRoot(),
+    // VCLDateAdapterModule.forRoot(),
   ],
   providers: [
     {
