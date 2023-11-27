@@ -29,13 +29,6 @@
     padding: 1rem;
   }
 
-  & h2 {
-    font-size: 1.45em;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0.8em;
-  }
-
   &.rc-sign-in-form-s {
     & > div {
       width: 500px;
@@ -63,11 +56,6 @@
       margin-bottom: auto;
     }
 
-    & h2 {
-      margin-bottom: 1em;
-      text-align: center;
-    }
-
     & .rc-sign-in-form-inner {
       flex-direction: column;
     }
@@ -81,12 +69,4 @@
       width: 100%;
     }
   }
-}
-
-.rc-sign-in-screen-legal {
-  margin-top: 1.2rem;
-  margin-bottom: 0;
-  font-size: 0.9em;
-  text-align: center;
-  color: $white;
 }

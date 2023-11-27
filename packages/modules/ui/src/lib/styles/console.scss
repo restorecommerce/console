@@ -1,3 +1,5 @@
+@use './theme/_console-variables.scss' as *;
+
 /* Specific styles */
 .rc-layout-grid {
   & > .layout-grid-cell {
@@ -7,4 +9,19 @@
   & > .layout-grid-cell:last-child {
     margin-right: 0;
   }
+}
+
+/* Data list with label / value data */
+
+.rc-lv-l-heading {
+  font-weight: 700;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $gray-stone-light;
+}
+
+.rc-lv-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

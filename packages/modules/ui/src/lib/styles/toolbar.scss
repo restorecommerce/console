@@ -1,12 +1,21 @@
 @use '@vcl/vcl/theme.scss' as *;
+@use './theme/_console-variables.scss' as *;
 
 /* Toolbar */
-.toolbar.rc-toolbar {
+rc-toolbar {
   background-color: $gray-light-6;
   min-height: 2.65em;
+
+  .icon {
+    font-size: 1.3em;
+
+    &.mdi-delete {
+      color: $red;
+    }
+  }
 }
 
-.rc-searchbar {
+rc-searchbar {
   display: block;
   border-bottom: 1px solid $gray-light-3;
 

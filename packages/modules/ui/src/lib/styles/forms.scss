@@ -1,0 +1,16 @@
+vcl-jss-form {
+  .loose-button-group {
+    @media (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+
+      .button {
+        margin: 0;
+      }
+
+      .button + .button {
+        margin-top: 0.8rem;
+      }
+    }
+  }
+}
