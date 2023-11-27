@@ -1,5 +1,7 @@
 import { IoRestorecommerceUserUser } from '@console-core/graphql';
 
+import { IMeta } from './meta';
+
 export interface IUser
   extends Omit<
     IoRestorecommerceUserUser,
@@ -14,10 +16,5 @@ export interface IUser
   isSuperAdministrator: boolean;
   isAdministrator: boolean;
   isUser: boolean;
-  meta: {
-    created: string;
-    // createdBy: string;
-    modified: string;
-    modifiedBy: string;
-  };
+  meta: IMeta;
 }

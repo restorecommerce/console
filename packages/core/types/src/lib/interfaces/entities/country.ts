@@ -1,5 +1,7 @@
 import { IIoRestorecommerceCountryCountry } from '@console-core/graphql';
 
+import { IMeta } from './meta';
+
 export interface ICountry
   extends Omit<
     IIoRestorecommerceCountryCountry,
@@ -15,10 +17,5 @@ export interface ICountry
   countryCode: string;
   geographicalName: string;
   economicAreas: string[];
-  meta: {
-    created: string;
-    // createdBy: string;
-    modified: string;
-    modifiedBy: string;
-  };
+  meta: IMeta;
 }

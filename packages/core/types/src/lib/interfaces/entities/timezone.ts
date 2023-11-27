@@ -1,5 +1,7 @@
 import { IIoRestorecommerceTimezoneTimezone } from '@console-core/graphql';
 
+import { IMeta } from './meta';
+
 export interface ITimezone
   extends Omit<
     IIoRestorecommerceTimezoneTimezone,
@@ -7,10 +9,5 @@ export interface ITimezone
   > {
   id: string;
   description: string;
-  meta: {
-    created: string;
-    // createdBy: string;
-    modified: string;
-    modifiedBy: string;
-  };
+  meta: IMeta;
 }
