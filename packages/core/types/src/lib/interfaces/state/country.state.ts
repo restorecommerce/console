@@ -1,9 +1,9 @@
 import { EntityState } from '@ngrx/entity';
 
-import { ILocale } from '../entities';
+import { ICountry } from '../entities';
 
 import { IBaseStore } from './store.state';
 
-export interface ILocaleState extends EntityState<ILocale>, IBaseStore {
+export interface ICountryState extends EntityState<ICountry>, IBaseStore {
   selectedId: string | null;
 }
