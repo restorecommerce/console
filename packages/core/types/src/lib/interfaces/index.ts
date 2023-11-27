@@ -9,4 +9,3 @@ export * from './regex';
 export * from './router';
 export * from './state';
 export * from './store';
-export * from './ui';
