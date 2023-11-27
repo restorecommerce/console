@@ -1,6 +1,6 @@
 {
   "overwrite": true,
-  "schema": "https://api.restorecommerce.io/graphql",
+  "schema": "http://localhost:5000/graphql",
   "generates": {
     "packages/core/graphql/src/lib/generated/generated.ts": {
       "config": {
