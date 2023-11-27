@@ -1,7 +1,9 @@
-query IdentityUserFind($input: IIoRestorecommerceUserFindRequest!) {
-  identity {
-    user {
-      Find(input: $input) {
+query MasterDataCountryRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    country {
+      Read(input: $input) {
         details {
           operationStatus {
             code
@@ -13,7 +15,7 @@ query IdentityUserFind($input: IIoRestorecommerceUserFindRequest!) {
               message
             }
             payload {
-              ...UserFields
+              ...CountryFragment
             }
           }
         }

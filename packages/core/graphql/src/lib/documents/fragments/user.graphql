@@ -1,0 +1,23 @@
+fragment UserFragment on IoRestorecommerceUserUser {
+  id
+  active
+  activationCode
+  email
+  newEmail
+  name
+  firstName
+  lastName
+  defaultScope
+  localeId
+  timezoneId
+  roleAssociations {
+    id
+    role
+  }
+  meta {
+    created
+    # createdBy
+    modified
+    modifiedBy
+  }
+}

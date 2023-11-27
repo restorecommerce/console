@@ -1,0 +1,13 @@
+fragment CountryFragment on IoRestorecommerceCountryCountry {
+  id
+  name
+  countryCode
+  geographicalName
+  economicAreas
+  meta {
+    created
+    # createdBy
+    modified
+    modifiedBy
+  }
+}

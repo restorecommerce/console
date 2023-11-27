@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import {
   ApolloClientOptions,
+  DefaultOptions,
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client/core';
@@ -28,6 +29,17 @@ export class CoreGraphQLModule {
             httpLink: HttpLink,
             store: Store
           ): ApolloClientOptions<NormalizedCacheObject> => {
+            // Default options
+            const defaultOptions: DefaultOptions = {
+              watchQuery: {
+                fetchPolicy: 'no-cache',
+                errorPolicy: 'ignore',
+              },
+              query: {
+                fetchPolicy: 'no-cache',
+                errorPolicy: 'all',
+              },
+            };
             // Auth middleware
             const auth = setContext((_, { headers }) => {
               let token: string | null = null;
@@ -49,6 +61,7 @@ export class CoreGraphQLModule {
             return {
               link: auth.concat(httpLink.create({ uri: config.api })),
               cache: new InMemoryCache(),
+              defaultOptions,
             };
           },
           deps: [HttpLink, Store],

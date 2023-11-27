@@ -1,0 +1,37 @@
+fragment LocationFragment on IoRestorecommerceLocationLocation {
+  id
+  name
+  description
+  parent {
+    id
+    name
+  }
+  organization {
+    id
+    name
+  }
+  address {
+    id
+    buildingNumber
+    businessAddress {
+      name
+    }
+    postcode
+    residentialAddress {
+      familyName
+      midName
+      title
+    }
+    street
+    locality
+    country {
+      name
+    }
+  }
+  meta {
+    created
+    # createdBy
+    modified
+    modifiedBy
+  }
+}

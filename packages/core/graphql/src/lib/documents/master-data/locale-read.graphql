@@ -1,8 +1,6 @@
-query MasterDataTimezoneRead(
-  $input: IIoRestorecommerceResourcebaseReadRequest!
-) {
+query MasterDataLocaleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
   master_data {
-    timezone {
+    locale {
       Read(input: $input) {
         details {
           operationStatus {
@@ -10,9 +8,12 @@ query MasterDataTimezoneRead(
             message
           }
           items {
+            status {
+              code
+              message
+            }
             payload {
-              id
-              description
+              ...LocaleFragment
             }
           }
         }

@@ -8,8 +8,12 @@ mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
             message
           }
           items {
+            status {
+              code
+              message
+            }
             payload {
-              ...UserFields
+              ...UserFragment
             }
           }
         }

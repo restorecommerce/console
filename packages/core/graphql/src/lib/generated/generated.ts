@@ -5091,7 +5091,142 @@ export type SubscriptionOutput = {
   id?: Maybe<Scalars['String']>;
 };
 
-export type UserFieldsFragment = {
+export type AddressFragmentFragment = {
+  __typename?: 'IoRestorecommerceAddressAddress';
+  id?: string | null;
+  buildingNumber?: string | null;
+  street?: string | null;
+  postcode?: string | null;
+  locality?: string | null;
+  region?: string | null;
+  addressAddition?: {
+    __typename?: 'IoRestorecommerceAddressAddressAddition';
+    field1?: string | null;
+    field2?: string | null;
+  } | null;
+  businessAddress?: {
+    __typename?: 'IoRestorecommerceAddressBusinessAddress';
+    name?: string | null;
+  } | null;
+  packStation?: {
+    __typename?: 'IoRestorecommerceAddressPackStation';
+    postNumber?: string | null;
+    provider?: string | null;
+    stationNumber?: string | null;
+  } | null;
+  residentialAddress?: {
+    __typename?: 'IoRestorecommerceAddressResidentialAddress';
+    title?: string | null;
+    givenName?: string | null;
+    familyName?: string | null;
+    midName?: string | null;
+  } | null;
+  country?: {
+    __typename?: 'IoRestorecommerceCountryCountry';
+    id?: string | null;
+    name?: string | null;
+    countryCode?: string | null;
+    geographicalName?: string | null;
+  } | null;
+  geoCoordinates?: {
+    __typename?: 'IoRestorecommerceAddressGeoPoint';
+    latitude?: number | null;
+    longitude?: number | null;
+  } | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type CountryFragmentFragment = {
+  __typename?: 'IoRestorecommerceCountryCountry';
+  id?: string | null;
+  name?: string | null;
+  countryCode?: string | null;
+  geographicalName?: string | null;
+  economicAreas?: Array<string> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type LocaleFragmentFragment = {
+  __typename?: 'IoRestorecommerceLocaleLocale';
+  id?: string | null;
+  description?: string | null;
+  value?: string | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type LocationFragmentFragment = {
+  __typename?: 'IoRestorecommerceLocationLocation';
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
+  parent?: {
+    __typename?: 'IoRestorecommerceLocationLocation';
+    id?: string | null;
+    name?: string | null;
+  } | null;
+  organization?: {
+    __typename?: 'IoRestorecommerceOrganizationOrganization';
+    id?: string | null;
+    name?: string | null;
+  } | null;
+  address?: {
+    __typename?: 'IoRestorecommerceAddressAddress';
+    id?: string | null;
+    buildingNumber?: string | null;
+    postcode?: string | null;
+    street?: string | null;
+    locality?: string | null;
+    businessAddress?: {
+      __typename?: 'IoRestorecommerceAddressBusinessAddress';
+      name?: string | null;
+    } | null;
+    residentialAddress?: {
+      __typename?: 'IoRestorecommerceAddressResidentialAddress';
+      familyName?: string | null;
+      midName?: string | null;
+      title?: string | null;
+    } | null;
+    country?: {
+      __typename?: 'IoRestorecommerceCountryCountry';
+      name?: string | null;
+    } | null;
+  } | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type TimezoneFragmentFragment = {
+  __typename?: 'IoRestorecommerceTimezoneTimezone';
+  id?: string | null;
+  description?: string | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type UserFragmentFragment = {
   __typename?: 'IoRestorecommerceUserUser';
   id?: string | null;
   active?: boolean | null;
@@ -5113,6 +5248,7 @@ export type UserFieldsFragment = {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
     modified?: unknown | null;
+    modifiedBy?: string | null;
   } | null;
 };
 
@@ -5282,6 +5418,7 @@ export type IdentityUserFindByTokenQuery = {
               __typename?: 'IoRestorecommerceMetaMeta';
               created?: unknown | null;
               modified?: unknown | null;
+              modifiedBy?: string | null;
             } | null;
           } | null;
         } | null;
@@ -5338,6 +5475,7 @@ export type IdentityUserFindQuery = {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
                 modified?: unknown | null;
+                modifiedBy?: string | null;
               } | null;
             } | null;
           }> | null;
@@ -5368,6 +5506,11 @@ export type IdentityUserMutateMutation = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceUserUserResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceUserUser';
               id?: string | null;
@@ -5390,6 +5533,7 @@ export type IdentityUserMutateMutation = {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
                 modified?: unknown | null;
+                modifiedBy?: string | null;
               } | null;
             } | null;
           }> | null;
@@ -5440,6 +5584,7 @@ export type IdentityUserRegisterMutation = {
               __typename?: 'IoRestorecommerceMetaMeta';
               created?: unknown | null;
               modified?: unknown | null;
+              modifiedBy?: string | null;
             } | null;
           } | null;
         } | null;
@@ -5498,6 +5643,213 @@ export type IdentityUserRequestPasswordChangeMutation = {
   };
 };
 
+export type MasterDataAddressReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataAddressReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    address: {
+      __typename?: 'ResourceAddressQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceAddressAddressListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceAddressAddressListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceAddressAddressResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+            payload?: {
+              __typename?: 'IoRestorecommerceAddressAddress';
+              id?: string | null;
+              buildingNumber?: string | null;
+              street?: string | null;
+              postcode?: string | null;
+              locality?: string | null;
+              region?: string | null;
+              addressAddition?: {
+                __typename?: 'IoRestorecommerceAddressAddressAddition';
+                field1?: string | null;
+                field2?: string | null;
+              } | null;
+              businessAddress?: {
+                __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                name?: string | null;
+              } | null;
+              packStation?: {
+                __typename?: 'IoRestorecommerceAddressPackStation';
+                postNumber?: string | null;
+                provider?: string | null;
+                stationNumber?: string | null;
+              } | null;
+              residentialAddress?: {
+                __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                title?: string | null;
+                givenName?: string | null;
+                familyName?: string | null;
+                midName?: string | null;
+              } | null;
+              country?: {
+                __typename?: 'IoRestorecommerceCountryCountry';
+                id?: string | null;
+                name?: string | null;
+                countryCode?: string | null;
+                geographicalName?: string | null;
+              } | null;
+              geoCoordinates?: {
+                __typename?: 'IoRestorecommerceAddressGeoPoint';
+                latitude?: number | null;
+                longitude?: number | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataCountryDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type MasterDataCountryDeleteMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    country: {
+      __typename?: 'ResourceCountryMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            id?: string | null;
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataCountryMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceCountryCountryList;
+}>;
+
+export type MasterDataCountryMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    country: {
+      __typename?: 'ResourceCountryMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceCountryCountryListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceCountryCountryListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceCountryCountryResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+            payload?: {
+              __typename?: 'IoRestorecommerceCountryCountry';
+              id?: string | null;
+              name?: string | null;
+              countryCode?: string | null;
+              geographicalName?: string | null;
+              economicAreas?: Array<string> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataCountryReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataCountryReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    country: {
+      __typename?: 'ResourceCountryQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceCountryCountryListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceCountryCountryListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceCountryCountryResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+            payload?: {
+              __typename?: 'IoRestorecommerceCountryCountry';
+              id?: string | null;
+              name?: string | null;
+              countryCode?: string | null;
+              geographicalName?: string | null;
+              economicAreas?: Array<string> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type MasterDataLocaleReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -5519,11 +5871,99 @@ export type MasterDataLocaleReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceLocaleLocaleResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
               description?: string | null;
               value?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataLocationReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataLocationReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    location: {
+      __typename?: 'ResourceLocationQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceLocationLocationListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceLocationLocationListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceLocationLocationResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+            payload?: {
+              __typename?: 'IoRestorecommerceLocationLocation';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              parent?: {
+                __typename?: 'IoRestorecommerceLocationLocation';
+                id?: string | null;
+                name?: string | null;
+              } | null;
+              organization?: {
+                __typename?: 'IoRestorecommerceOrganizationOrganization';
+                id?: string | null;
+                name?: string | null;
+              } | null;
+              address?: {
+                __typename?: 'IoRestorecommerceAddressAddress';
+                id?: string | null;
+                buildingNumber?: string | null;
+                postcode?: string | null;
+                street?: string | null;
+                locality?: string | null;
+                businessAddress?: {
+                  __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                  name?: string | null;
+                } | null;
+                residentialAddress?: {
+                  __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                  familyName?: string | null;
+                  midName?: string | null;
+                  title?: string | null;
+                } | null;
+                country?: {
+                  __typename?: 'IoRestorecommerceCountryCountry';
+                  name?: string | null;
+                } | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                modifiedBy?: string | null;
+              } | null;
             } | null;
           }> | null;
         } | null;
@@ -5553,10 +5993,21 @@ export type MasterDataTimezoneReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceTimezoneTimezoneResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
               description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                modifiedBy?: string | null;
+              } | null;
             } | null;
           }> | null;
         } | null;
@@ -5565,8 +6016,126 @@ export type MasterDataTimezoneReadQuery = {
   };
 };
 
-export const UserFieldsFragmentDoc = gql`
-  fragment UserFields on IoRestorecommerceUserUser {
+export const AddressFragmentFragmentDoc = gql`
+  fragment AddressFragment on IoRestorecommerceAddressAddress {
+    id
+    buildingNumber
+    street
+    postcode
+    locality
+    region
+    addressAddition {
+      field1
+      field2
+    }
+    businessAddress {
+      name
+    }
+    packStation {
+      postNumber
+      provider
+      stationNumber
+    }
+    residentialAddress {
+      title
+      givenName
+      familyName
+      midName
+    }
+    country {
+      id
+      name
+      countryCode
+      geographicalName
+    }
+    geoCoordinates {
+      latitude
+      longitude
+    }
+    meta {
+      created
+      modified
+      modifiedBy
+    }
+  }
+`;
+export const CountryFragmentFragmentDoc = gql`
+  fragment CountryFragment on IoRestorecommerceCountryCountry {
+    id
+    name
+    countryCode
+    geographicalName
+    economicAreas
+    meta {
+      created
+      modified
+      modifiedBy
+    }
+  }
+`;
+export const LocaleFragmentFragmentDoc = gql`
+  fragment LocaleFragment on IoRestorecommerceLocaleLocale {
+    id
+    description
+    value
+    meta {
+      created
+      modified
+      modifiedBy
+    }
+  }
+`;
+export const LocationFragmentFragmentDoc = gql`
+  fragment LocationFragment on IoRestorecommerceLocationLocation {
+    id
+    name
+    description
+    parent {
+      id
+      name
+    }
+    organization {
+      id
+      name
+    }
+    address {
+      id
+      buildingNumber
+      businessAddress {
+        name
+      }
+      postcode
+      residentialAddress {
+        familyName
+        midName
+        title
+      }
+      street
+      locality
+      country {
+        name
+      }
+    }
+    meta {
+      created
+      modified
+      modifiedBy
+    }
+  }
+`;
+export const TimezoneFragmentFragmentDoc = gql`
+  fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
+    id
+    description
+    meta {
+      created
+      modified
+      modifiedBy
+    }
+  }
+`;
+export const UserFragmentFragmentDoc = gql`
+  fragment UserFragment on IoRestorecommerceUserUser {
     id
     active
     activationCode
@@ -5585,6 +6154,7 @@ export const UserFieldsFragmentDoc = gql`
     meta {
       created
       modified
+      modifiedBy
     }
   }
 `;
@@ -5761,14 +6331,14 @@ export const IdentityUserFindByTokenDocument = gql`
               message
             }
             payload {
-              ...UserFields
+              ...UserFragment
             }
           }
         }
       }
     }
   }
-  ${UserFieldsFragmentDoc}
+  ${UserFragmentFragmentDoc}
 `;
 
 @Injectable({
@@ -5800,7 +6370,7 @@ export const IdentityUserFindDocument = gql`
                 message
               }
               payload {
-                ...UserFields
+                ...UserFragment
               }
             }
           }
@@ -5808,7 +6378,7 @@ export const IdentityUserFindDocument = gql`
       }
     }
   }
-  ${UserFieldsFragmentDoc}
+  ${UserFragmentFragmentDoc}
 `;
 
 @Injectable({
@@ -5835,8 +6405,12 @@ export const IdentityUserMutateDocument = gql`
               message
             }
             items {
+              status {
+                code
+                message
+              }
               payload {
-                ...UserFields
+                ...UserFragment
               }
             }
           }
@@ -5844,7 +6418,7 @@ export const IdentityUserMutateDocument = gql`
       }
     }
   }
-  ${UserFieldsFragmentDoc}
+  ${UserFragmentFragmentDoc}
 `;
 
 @Injectable({
@@ -5873,14 +6447,14 @@ export const IdentityUserRegisterDocument = gql`
               message
             }
             payload {
-              ...UserFields
+              ...UserFragment
             }
           }
         }
       }
     }
   }
-  ${UserFieldsFragmentDoc}
+  ${UserFragmentFragmentDoc}
 `;
 
 @Injectable({
@@ -5960,6 +6534,169 @@ export class IdentityUserRequestPasswordChangeGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const MasterDataAddressReadDocument = gql`
+  query MasterDataAddressRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      address {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              status {
+                code
+                message
+              }
+              payload {
+                ...AddressFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${AddressFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataAddressReadGQL extends Apollo.Query<
+  MasterDataAddressReadQuery,
+  MasterDataAddressReadQueryVariables
+> {
+  override document = MasterDataAddressReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCountryDeleteDocument = gql`
+  mutation MasterDataCountryDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      country {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCountryDeleteGQL extends Apollo.Mutation<
+  MasterDataCountryDeleteMutation,
+  MasterDataCountryDeleteMutationVariables
+> {
+  override document = MasterDataCountryDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCountryMutateDocument = gql`
+  mutation MasterDataCountryMutate(
+    $input: IIoRestorecommerceCountryCountryList!
+  ) {
+    master_data {
+      country {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              status {
+                code
+                message
+              }
+              payload {
+                ...CountryFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${CountryFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCountryMutateGQL extends Apollo.Mutation<
+  MasterDataCountryMutateMutation,
+  MasterDataCountryMutateMutationVariables
+> {
+  override document = MasterDataCountryMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCountryReadDocument = gql`
+  query MasterDataCountryRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      country {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              status {
+                code
+                message
+              }
+              payload {
+                ...CountryFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${CountryFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCountryReadGQL extends Apollo.Query<
+  MasterDataCountryReadQuery,
+  MasterDataCountryReadQueryVariables
+> {
+  override document = MasterDataCountryReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const MasterDataLocaleReadDocument = gql`
   query MasterDataLocaleRead(
     $input: IIoRestorecommerceResourcebaseReadRequest!
@@ -5973,10 +6710,12 @@ export const MasterDataLocaleReadDocument = gql`
               message
             }
             items {
+              status {
+                code
+                message
+              }
               payload {
-                id
-                description
-                value
+                ...LocaleFragment
               }
             }
           }
@@ -5984,6 +6723,7 @@ export const MasterDataLocaleReadDocument = gql`
       }
     }
   }
+  ${LocaleFragmentFragmentDoc}
 `;
 
 @Injectable({
@@ -5994,6 +6734,48 @@ export class MasterDataLocaleReadGQL extends Apollo.Query<
   MasterDataLocaleReadQueryVariables
 > {
   override document = MasterDataLocaleReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataLocationReadDocument = gql`
+  query MasterDataLocationRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      location {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              status {
+                code
+                message
+              }
+              payload {
+                ...LocationFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${LocationFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataLocationReadGQL extends Apollo.Query<
+  MasterDataLocationReadQuery,
+  MasterDataLocationReadQueryVariables
+> {
+  override document = MasterDataLocationReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -6012,9 +6794,12 @@ export const MasterDataTimezoneReadDocument = gql`
               message
             }
             items {
+              status {
+                code
+                message
+              }
               payload {
-                id
-                description
+                ...TimezoneFragment
               }
             }
           }
@@ -6022,6 +6807,7 @@ export const MasterDataTimezoneReadDocument = gql`
       }
     }
   }
+  ${TimezoneFragmentFragmentDoc}
 `;
 
 @Injectable({

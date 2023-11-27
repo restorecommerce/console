@@ -1,16 +1,14 @@
-query IdentityUserFindByToken(
-  $input: IIoRestorecommerceUserFindByTokenRequest!
-) {
+mutation IdentityUserRegister($input: IIoRestorecommerceUserRegisterRequest!) {
   identity {
     user {
-      FindByToken(input: $input) {
+      Register(input: $input) {
         details {
           status {
             code
             message
           }
           payload {
-            ...UserFields
+            ...UserFragment
           }
         }
       }

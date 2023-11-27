@@ -1,0 +1,25 @@
+query MasterDataLocationRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    location {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            status {
+              code
+              message
+            }
+            payload {
+              ...LocationFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
