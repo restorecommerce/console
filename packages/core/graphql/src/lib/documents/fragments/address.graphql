@@ -35,8 +35,8 @@ fragment AddressFragment on IoRestorecommerceAddressAddress {
   }
   meta {
     created
-    # createdBy
     modified
+    createdBy
     modifiedBy
   }
 }

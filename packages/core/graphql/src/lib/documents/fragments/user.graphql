@@ -16,8 +16,8 @@ fragment UserFragment on IoRestorecommerceUserUser {
   }
   meta {
     created
-    # createdBy
     modified
+    createdBy
     modifiedBy
   }
 }

@@ -6,8 +6,8 @@ fragment CountryFragment on IoRestorecommerceCountryCountry {
   economicAreas
   meta {
     created
-    # createdBy
     modified
+    createdBy
     modifiedBy
   }
 }

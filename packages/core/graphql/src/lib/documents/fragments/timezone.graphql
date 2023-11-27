@@ -3,8 +3,8 @@ fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
   description
   meta {
     created
-    # createdBy
     modified
+    createdBy
     modifiedBy
   }
 }

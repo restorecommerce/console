@@ -30,8 +30,8 @@ fragment LocationFragment on IoRestorecommerceLocationLocation {
   }
   meta {
     created
-    # createdBy
     modified
+    createdBy
     modifiedBy
   }
 }

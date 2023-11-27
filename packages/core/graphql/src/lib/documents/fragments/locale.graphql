@@ -4,8 +4,8 @@ fragment LocaleFragment on IoRestorecommerceLocaleLocale {
   value
   meta {
     created
-    # createdBy
     modified
+    createdBy
     modifiedBy
   }
 }
