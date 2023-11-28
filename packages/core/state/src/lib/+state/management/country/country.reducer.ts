@@ -19,7 +19,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryReadRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.CREATED,
+      actionStatus: EActionStatus.REQUESTING,
     })
   ),
   on(

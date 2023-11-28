@@ -12,6 +12,7 @@ import {
 import {
   IAuthnTokenSignInPayload,
   IAuthnTokenSignInResponse,
+  IAuthnTokenSignOutPayload,
 } from '@console-core/types';
 
 import { ApiService } from '../api.service';
@@ -47,6 +48,18 @@ export class AuthnService {
 
     return this.httpClient.post<IAuthnTokenSignInResponse>(
       this.apiService.getEndpoint('token'),
+      body.toString(),
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  signOut(payload: IAuthnTokenSignOutPayload): Observable<unknown> {
+    const body = new URLSearchParams();
+    body.set('token', payload.token);
+    return this.httpClient.post(
+      this.apiService.getEndpoint('tokenRevocation'),
       body.toString(),
       {
         headers: this.headers,

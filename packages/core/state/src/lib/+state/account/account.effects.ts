@@ -304,7 +304,7 @@ export class AccountEffects {
 
   resetAccountState$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(authnActions.signOut),
+      ofType(authnActions.signOutSuccess, authnActions.signOutFail),
       map(() => accountActions.resetAccountState())
     );
   });

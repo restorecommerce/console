@@ -11,6 +11,10 @@ export interface IAuthnTokenSignInPayload {
   password?: string;
 }
 
+export interface IAuthnTokenSignOutPayload {
+  token: string;
+}
+
 export interface IAuthnTokenSignInResponse {
   access_token?: string;
   id_token?: string;

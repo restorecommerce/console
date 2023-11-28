@@ -36,7 +36,7 @@ export class AuthnFacade {
     this.store.dispatch(authnActions.signInRequest({ payload }));
   signOut = (showNotification = true) =>
     this.store.dispatch(
-      authnActions.signOut({
+      authnActions.signOutRequest({
         payload: { showNotification },
       })
     );

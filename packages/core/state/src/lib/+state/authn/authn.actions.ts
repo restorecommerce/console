@@ -75,9 +75,19 @@ export const confirmPasswordFail = createAction(
   props<{ error: string }>()
 );
 
-export const signOut = createAction(
-  '[AUTHN] Sign out',
+export const signOutRequest = createAction(
+  '[AUTHN] Sign out request',
   props<{ payload: { showNotification: boolean } }>()
+);
+
+export const signOutSuccess = createAction(
+  '[AUTHN] Sign out success',
+  props<{ payload: { showNotification: boolean } }>()
+);
+
+export const signOutFail = createAction(
+  '[AUTHN] Sign out fail',
+  props<{ error: string; showNotification: boolean }>()
 );
 
 export const resetAuthnState = createAction('[AUTHN] Reset authn state');
