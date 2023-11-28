@@ -34,8 +34,8 @@ export class PreferencesComponent implements OnInit {
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
     isRequesting: this.accountFacade.isRequesting$,
-    locales: this.localeFacade.allLocales$,
-    timezones: this.timezoneFacade.allTimezones$,
+    locales: this.localeFacade.all$,
+    timezones: this.timezoneFacade.all$,
   }).pipe(
     startWith({
       user: null,
@@ -59,7 +59,7 @@ export class PreferencesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.localeFacade.localeReadRequest({});
-    this.timezoneFacade.timezoneReadRequest({});
+    this.localeFacade.read({});
+    this.timezoneFacade.read({});
   }
 }

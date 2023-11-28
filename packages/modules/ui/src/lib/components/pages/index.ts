@@ -7,4 +7,5 @@ export * from './authn/page-sign-up/page-sign-up.component';
 export * from './account/page-account.component';
 export * from './page-home/page-home.component';
 export * from './page-layout/page-layout.component';
+export * from './page-management/page-management.component';
 export * from './page-overflow/page-overflow.component';

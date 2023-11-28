@@ -66,7 +66,7 @@
     >
     <vcl-hint-error error="pattern"
       >- it can contain only letters (lowercase or uppercase), numbers, and the
-      characters @_.-</vcl-hint-error
+      characters .-_@</vcl-hint-error
     >
     <vcl-hint-error error="pattern"
       >- does not have any consecutive characters repeated</vcl-hint-error
@@ -153,35 +153,28 @@
     >
   </vcl-form-control-group>
 
-  <div class="row justify-between">
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          <p>
-            <a
-              [routerLink]="
-                ROUTER.pages.main.children.auth.children.signIn.link
-              "
-            >
-              <button
-                type="button"
-                class="button half-transparent"
-              >
-                Already have an account? Sign In!
-              </button>
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <rc-submit-button
-            [isDisabled]="form.invalid"
-            [isBusy]="isLoading$ | async"
-            >Sign Up</rc-submit-button
+  <div class="row">
+    <div class="flex">
+      <p>
+        <a [routerLink]="ROUTER.pages.main.children.auth.children.signIn.link">
+          <button
+            type="button"
+            class="button half-transparent"
           >
-        </div>
-      </div>
+            Already have an account? Sign In!
+          </button>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="flex align-right">
+      <rc-submit-button
+        [resetForm]="form"
+        [resetText]="'Cancel'"
+        >Sign Up</rc-submit-button
+      >
     </div>
   </div>
 </form>

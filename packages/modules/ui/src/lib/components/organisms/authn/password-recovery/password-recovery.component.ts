@@ -27,6 +27,10 @@ export class RcPasswordRecoveryComponent {
   ) {}
 
   onClickPasswordRecovery() {
+    if (this.form.invalid || this.form.pristine) {
+      return;
+    }
+
     this.authnFacade.passwordRecovery({
       identifier: this.formFields.identifier.value,
     });

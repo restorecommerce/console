@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  HostListener,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -33,8 +34,19 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   currentRoute!: string;
   currentRouteTitle!: string;
   smallDevice!: boolean;
+  isResizing = false;
 
+  private resizeTimeout!: number;
   private readonly subscriptions = new SubSink();
+
+  @HostListener('window:resize', ['$event'])
+  onResize(_: Event) {
+    this.isResizing = true;
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      this.isResizing = false;
+    }, 500); // Wait for 500ms after the resize event stops firing
+  }
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
@@ -60,7 +72,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   }
 
   navigateTo(route: string): void {
-    if (route) {
+    if (route && !this.isResizing) {
       this.router.navigate([route]);
     }
   }
@@ -90,14 +102,12 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
         startWith(this.router.url), // Emit the current route immediately
 
         map((url: string) => {
-          if (url.startsWith(ROUTER.pages.main.children.management.link)) {
-            return ROUTER.pages.main.children.management.link;
-          }
-          if (url.startsWith(ROUTER.pages.main.children.account.link)) {
-            return ROUTER.pages.main.children.account.link;
-          }
-
-          return ROUTER.pages.main.children.home.link;
+          const routes = [
+            ROUTER.pages.main.children.management.link,
+            ROUTER.pages.main.children.account.link,
+          ];
+          const foundRoute = routes.find((route) => url.startsWith(route));
+          return foundRoute || ROUTER.pages.main.children.home.link;
         })
       )
       .subscribe((currentRoute: string) => {

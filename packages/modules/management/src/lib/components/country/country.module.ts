@@ -4,23 +4,67 @@ import { RouterModule, Routes } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 import { ModulesSharedModule } from '@console-modules/shared';
 
-import { CountryComponent } from './country.component';
+import { CountryCreateComponent } from './country-create.component';
+import { CountryEditComponent } from './country-edit.component';
+import { CountryIndexComponent } from './country-index.component';
+import { CountryViewComponent } from './country-view.component';
+import { CountryTemplateComponent } from './template/country-template.component';
 
 const routes: Routes = [
   {
-    path: ROUTER.pages.main.children.management.children.countries.children
-      .index.path,
-    component: CountryComponent,
-  },
-  {
-    path: ROUTER.pages.main.children.management.children.countries.children
-      .countries.path,
-    component: CountryComponent,
+    path: '',
+    component: CountryTemplateComponent,
+    children: [
+      {
+        path: ROUTER.pages.main.children.management.children.countries.children
+          .index.path,
+        component: CountryIndexComponent,
+        title:
+          ROUTER.pages.main.children.management.children.countries.children
+            .index.title,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.countries.children
+          .view.path,
+        component: CountryViewComponent,
+        title:
+          ROUTER.pages.main.children.management.children.countries.children.view
+            .title,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.countries.children
+          .create.path,
+        component: CountryCreateComponent,
+        title:
+          ROUTER.pages.main.children.management.children.countries.children
+            .create.title,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.countries.children
+          .edit.path,
+        component: CountryEditComponent,
+        title:
+          ROUTER.pages.main.children.management.children.countries.children.edit
+            .title,
+      },
+      {
+        path: '**',
+        redirectTo:
+          ROUTER.pages.main.children.management.children.countries.children
+            .index.path,
+      },
+    ],
   },
 ];
 
 @NgModule({
-  declarations: [CountryComponent],
+  declarations: [
+    CountryTemplateComponent,
+    CountryIndexComponent,
+    CountryCreateComponent,
+    CountryEditComponent,
+    CountryViewComponent,
+  ],
   imports: [ModulesSharedModule, RouterModule.forChild(routes)],
 })
 export class CountryModule {}

@@ -1,6 +1,6 @@
-<vcl-form-control-group>
-  <div class="help-wrapper">
-    <vcl-input-field>
+<div class="help-wrapper">
+  <vcl-form-control-group>
+    <vcl-input-field class="no-border">
       <vcl-icon
         vclPrepend
         icon="mdi:magnify"
@@ -8,18 +8,19 @@
       <input
         vclInput
         autocomplete="off"
-        class="no-border"
+        [placeholder]="placeholder"
         [value]="value"
         (input)="updateValue($event)"
+        class="transparent"
       />
       <button
         vcl-button
         vclAppend
-        *ngIf="value"
         square
+        *ngIf="value !== ''"
+        (click)="clearValue()"
         class="transparent"
         type="button"
-        (click)="clearValue($event)"
       >
         <vcl-icon
           vclPrepend
@@ -27,9 +28,5 @@
         />
       </button>
     </vcl-input-field>
-  </div>
-  <vcl-hint-error error="required">Name is required</vcl-hint-error>
-  <vcl-hint-error error="minlength"
-    >Name must have a length of at least 2 characters</vcl-hint-error
-  >
-</vcl-form-control-group>
+  </vcl-form-control-group>
+</div>

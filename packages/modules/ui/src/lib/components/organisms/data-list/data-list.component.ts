@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
-  selector: 'rc-datalist',
-  templateUrl: 'datalist.component.html',
+  selector: 'rc-data-list',
+  templateUrl: 'data-list.component.html',
   styles: [
     `
       .vclDataListHeader:empty {

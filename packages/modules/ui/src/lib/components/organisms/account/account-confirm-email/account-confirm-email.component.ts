@@ -30,7 +30,18 @@ export class RcAccountConfirmEmailComponent {
     private readonly routerFacade: RouterFacade
   ) {}
 
-  onConfirmEmailForm(params: Params) {
+  onAction(_: string): void {
+    this.confirmEmailForm.form.resetForm(this.confirmEmailForm.defaultValue);
+  }
+
+  onSubmit(params: Params) {
+    if (
+      this.confirmEmailForm.form.invalid ||
+      this.confirmEmailForm.form.pristine
+    ) {
+      return;
+    }
+
     const { code: activationCode, identifier } = params;
     this.accountFacade.userConfirmEmailChangeRequest({
       activationCode,

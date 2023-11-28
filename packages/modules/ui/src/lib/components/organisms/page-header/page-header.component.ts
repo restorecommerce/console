@@ -27,37 +27,43 @@ interface Breadcrumb {
       "
     >
       <nav class="breadcrumb-nav">
-        <ol>
-          <li>
-            <a
-              [routerLink]="['/']"
-              class="breadcrumb-nav-item-label"
-              >Home</a
-            >
-            <vcl-icon icon="vcl:arrow-right" />
-          </li>
-          <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
-            <li [ngClass]="{ selected: last }">
-              <ng-container *ngIf="!last">
+        <div class="row">
+          <div class="flex">
+            <ol>
+              <li>
                 <a
-                  [routerLink]="breadcrumb.url"
+                  [routerLink]="['/']"
                   class="breadcrumb-nav-item-label"
-                  >{{ breadcrumb.label }}</a
+                  >Home</a
                 >
                 <vcl-icon icon="vcl:arrow-right" />
+              </li>
+              <ng-container
+                *ngFor="let breadcrumb of breadcrumbs; let last = last"
+              >
+                <li [ngClass]="{ selected: last }">
+                  <ng-container *ngIf="!last">
+                    <a
+                      [routerLink]="breadcrumb.url"
+                      class="breadcrumb-nav-item-label"
+                      >{{ breadcrumb.label }}</a
+                    >
+                    <vcl-icon icon="vcl:arrow-right" />
+                  </ng-container>
+                  <ng-container *ngIf="last">
+                    <div class="breadcrumb-nav-item-label">
+                      {{ breadcrumb.label }}
+                    </div>
+                  </ng-container>
+                </li>
               </ng-container>
-              <ng-container *ngIf="last">
-                <div class="breadcrumb-nav-item-label">
-                  {{ breadcrumb.label }}
-                </div>
-              </ng-container>
-            </li>
-          </ng-container>
-        </ol>
+            </ol>
+          </div>
+        </div>
       </nav>
 
       <div class="row">
-        <div class="col">
+        <div class="flex">
           <h2 class="title">{{ title }}</h2>
         </div>
       </div>

@@ -9,9 +9,9 @@ interface ISchemaOptions {
   user: IUser;
 }
 
-export const buildEmailSchema = (
-  options: ISchemaOptions
-): VCLFormFieldSchemaRoot => {
+export const buildEmailSchema = ({
+  user,
+}: ISchemaOptions): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
     fields: [
@@ -19,7 +19,7 @@ export const buildEmailSchema = (
         name: 'email',
         label: 'Email',
         type: 'input',
-        defaultValue: options.user.email,
+        defaultValue: user.email,
         validators: [Validators.required, Validators.email],
         params: {},
         hints: [
@@ -32,6 +32,21 @@ export const buildEmailSchema = (
             type: 'error',
             error: 'email',
             message: 'This field should be a valid email address.',
+          },
+        ],
+      },
+      {
+        type: 'buttons',
+        buttons: [
+          {
+            type: 'submit',
+            label: 'Change Email',
+          },
+          {
+            type: 'button',
+            label: 'Cancel',
+            action: 'resetEmailForm',
+            class: 'transparent',
           },
         ],
       },
@@ -175,6 +190,21 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
             type: 'error',
             error: 'pattern',
             message: '- contain a special character',
+          },
+        ],
+      },
+      {
+        type: 'buttons',
+        buttons: [
+          {
+            type: 'submit',
+            label: 'Change Password',
+          },
+          {
+            type: 'button',
+            label: 'Cancel',
+            action: 'resetPasswordForm',
+            class: 'transparent',
           },
         ],
       },

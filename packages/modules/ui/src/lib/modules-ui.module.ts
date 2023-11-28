@@ -46,7 +46,8 @@ import {
   RcHeaderToolbarComponent,
   RcHeaderComponent,
   RcToggleDrawerComponent,
-  RcSearchBarComponent,
+  RcMetaComponent,
+  RcSearchbarComponent,
   RcToolbarComponent,
   RcAccountConfirmEmailComponent,
   RcConfirmPasswordComponent,
@@ -56,9 +57,15 @@ import {
   RcAccountDeletionComponent,
   RcLocalizationDataComponent,
   RcPageHeaderComponent,
+  RcCrudMainComponent,
+  RcCrudViewComponent,
+  RcCrudCreateComponent,
+  RcCrudEditComponent,
+  RcCountryViewComponent,
+  RcCountryCreateComponent,
+  RcCountryEditComponent,
 } from './components/organisms';
 import {
-  RcPageAccountConfirmEmailComponent,
   RcPageConfirmPasswordComponent,
   RcPageActivationComponent,
   RcPagePasswordRecoveryComponent,
@@ -68,15 +75,14 @@ import {
   RcPageHomeComponent,
   RcPageLayoutComponent,
   RcPageOverflowComponent,
+  RcPageManagementComponent,
   RcPageAccountComponent,
-  RcPageAccountIndexComponent,
-  RcPageProfileComponent,
-  RcPagePreferencesComponent,
 } from './components/pages';
 import {
   RcPrivateTemplateComponent,
   RcPublicTemplateComponent,
 } from './components/templates';
+import { HighlightPipe } from './pipes';
 
 export const RC_MODULE_CONFIG_TOKEN = new InjectionToken('rc.module.config');
 export const RC_MODULE_STATE_TOKEN = new InjectionToken('rc.module.state');
@@ -102,8 +108,9 @@ const organisms = [
   RcDataListItemComponent,
   RcDataListLabelComponent,
   RcDataListSublabelComponent,
+  RcMetaComponent,
+  RcSearchbarComponent,
   RcToolbarComponent,
-  RcSearchBarComponent,
   RcToggleDrawerComponent,
   RcSignInComponent,
   RcSignUpComponent,
@@ -116,28 +123,32 @@ const organisms = [
   RcAccountDeletionComponent,
   RcLocalizationDataComponent,
   RcPageHeaderComponent,
+  RcCrudMainComponent,
+  RcCrudViewComponent,
+  RcCrudCreateComponent,
+  RcCrudEditComponent,
+  RcCountryViewComponent,
+  RcCountryCreateComponent,
+  RcCountryEditComponent,
 ];
 
 const pages = [
   RcPageHomeComponent,
   RcPageLayoutComponent,
   RcPageOverflowComponent,
+  RcPageManagementComponent,
   RcPageActivationComponent,
-  RcPageAccountConfirmEmailComponent,
   RcPageConfirmPasswordComponent,
   RcPageSignInComponent,
   RcPageSignUpComponent,
   RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
   RcPageAccountComponent,
-  RcPageAccountIndexComponent,
-  RcPageProfileComponent,
-  RcPagePreferencesComponent,
 ];
 
 const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
 
-// const pipes = [];
+const pipes = [HighlightPipe];
 
 @NgModule({
   imports: [
@@ -170,7 +181,7 @@ const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
     ...organisms,
     ...pages,
     ...templates,
-    // ...pipes,
+    ...pipes,
   ],
   exports: [
     ...atoms,
@@ -178,7 +189,7 @@ const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
     ...organisms,
     ...pages,
     ...templates,
-    // ...pipes,
+    ...pipes,
   ],
 })
 export class ModulesUiModule {

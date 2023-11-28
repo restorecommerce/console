@@ -1,7 +1,10 @@
 vcl-jss-form {
   .loose-button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+
     @media (max-width: 600px) {
-      display: flex;
       flex-direction: column;
 
       .button {

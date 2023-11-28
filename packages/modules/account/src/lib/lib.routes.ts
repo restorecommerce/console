@@ -4,7 +4,7 @@ import { ROUTER } from '@console-core/config';
 
 import { AccountTemplateComponent } from './components/template/account-template.component';
 
-export const modulesProfileRoutes: Route[] = [
+export const modulesAccountRoutes: Route[] = [
   {
     path: '',
     component: AccountTemplateComponent,
@@ -26,22 +26,26 @@ export const modulesProfileRoutes: Route[] = [
           ),
         title: ROUTER.pages.main.children.account.children.confirmEmail.title,
       },
+      {
+        path: ROUTER.pages.main.children.account.children.profile.path,
+        loadChildren: () =>
+          import('./components/profile/profile.module').then(
+            (m) => m.ProfileModule
+          ),
+        title: ROUTER.pages.main.children.account.children.profile.title,
+      },
+      {
+        path: ROUTER.pages.main.children.account.children.preferences.path,
+        loadChildren: () =>
+          import('./components/preferences/preferences.module').then(
+            (m) => m.PreferencesModule
+          ),
+        title: ROUTER.pages.main.children.account.children.preferences.title,
+      },
+      {
+        path: '**',
+        redirectTo: ROUTER.pages.main.children.account.children.index.path,
+      },
     ],
-  },
-  {
-    path: ROUTER.pages.main.children.profile.path,
-    loadChildren: () =>
-      import('./components/profile/profile.module').then(
-        (m) => m.ProfileModule
-      ),
-    title: ROUTER.pages.main.children.profile.title,
-  },
-  {
-    path: ROUTER.pages.main.children.preferences.path,
-    loadChildren: () =>
-      import('./components/preferences/preferences.module').then(
-        (m) => m.PreferencesModule
-      ),
-    title: ROUTER.pages.main.children.preferences.title,
   },
 ];

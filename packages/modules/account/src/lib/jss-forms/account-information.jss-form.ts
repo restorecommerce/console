@@ -1,5 +1,3 @@
-import { Validators } from '@angular/forms';
-
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { IUser } from '@console-core/types';
@@ -8,9 +6,9 @@ interface ISchemaOptions {
   user: IUser;
 }
 
-export const buildAccountInformationSchema = (
-  options: ISchemaOptions
-): VCLFormFieldSchemaRoot => {
+export const buildAccountInformationSchema = ({
+  user,
+}: ISchemaOptions): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
     fields: [
@@ -19,9 +17,36 @@ export const buildAccountInformationSchema = (
         label: 'User ID',
         type: 'input',
         disabled: true,
-        defaultValue: options.user.id,
-        validators: [Validators.required],
+        defaultValue: user.id,
         params: {},
+        hints: [],
+      },
+      {
+        name: 'attributes',
+        label: 'Roles',
+        type: 'select',
+        disabled: true,
+        defaultValue: [true],
+        params: {
+          placeholder: 'Select role',
+          selectionMode: 'multiple',
+          clearable: false,
+          search: false,
+          options: [
+            {
+              label: 'Super Administrator',
+              value: user.isSuperAdministrator,
+            },
+            {
+              label: 'Administrator',
+              value: user.isAdministrator,
+            },
+            {
+              label: 'User',
+              value: user.isUser,
+            },
+          ],
+        },
         hints: [],
       },
     ],

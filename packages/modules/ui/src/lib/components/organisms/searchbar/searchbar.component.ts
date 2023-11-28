@@ -2,37 +2,28 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   Output,
-  HostBinding,
 } from '@angular/core';
 
 @Component({
-  selector: 'rc-search-bar',
+  selector: 'rc-searchbar',
   templateUrl: 'searchbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcSearchBarComponent {
+export class RcSearchbarComponent {
   @HostBinding('class.rc-searchbar')
   _hostClasses = true;
-
-  @Output()
-  search = new EventEmitter<string>();
 
   @Input()
   value = '';
 
   @Input()
-  placeholder?: string;
+  placeholder = 'Search';
 
-  reset() {
-    this.value = '';
-  }
-
-  clearValue(_: Event) {
-    this.value = '';
-    this.search.emit(this.value);
-  }
+  @Output()
+  search = new EventEmitter<string>();
 
   updateValue(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -40,5 +31,10 @@ export class RcSearchBarComponent {
       this.value = target.value;
       this.search.emit(this.value);
     }
+  }
+
+  clearValue() {
+    this.value = '';
+    this.search.emit(this.value);
   }
 }

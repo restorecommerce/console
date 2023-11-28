@@ -19,7 +19,7 @@ export class PublicGuard {
     return this.authnFacade.isNotAuthenticated$.pipe(
       tap((isNotAuthenticated) => {
         if (!isNotAuthenticated) {
-          this.router.navigate([ROUTER.pages.main.children.home.link], {
+          this.router.navigate(ROUTER.pages.main.children.home.getLink(), {
             replaceUrl: true,
           });
         }

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
-  selector: 'rc-datalist-item',
-  templateUrl: 'datalist-item.component.html',
+  selector: 'rc-data-list-item',
+  templateUrl: 'data-list-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListItemComponent {
@@ -12,8 +12,9 @@ export class RcDataListItemComponent {
 }
 
 @Component({
-  selector: 'rc-datalist-label',
-  templateUrl: 'datalist-item.component.html',
+  selector: 'rc-data-list-label',
+  templateUrl: 'data-list-item.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListLabelComponent {
   @HostBinding('class.rc-data-list-label')
@@ -21,8 +22,9 @@ export class RcDataListLabelComponent {
 }
 
 @Component({
-  selector: 'rc-datalist-sublabel',
-  templateUrl: 'datalist-item.component.html',
+  selector: 'rc-data-list-sublabel',
+  templateUrl: 'data-list-item.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListSublabelComponent {
   @HostBinding('class.rc-data-list-sublabel')

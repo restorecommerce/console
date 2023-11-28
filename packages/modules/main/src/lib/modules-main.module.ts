@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { VCLDateAdapterModule } from '@vcl/ng-vcl';
+
 import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
 import {
   PrivateTemplateComponent,
@@ -11,6 +14,12 @@ import { modulesMainRoutes } from './lib.routes';
 
 @NgModule({
   declarations: [PrivateTemplateComponent, PublicTemplateComponent],
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesMainRoutes)],
+  imports: [
+    ModulesSharedModule,
+    ModulesUiBaseModule,
+    ModulesUiModule.forRoot(),
+    VCLDateAdapterModule.forRoot(),
+    RouterModule.forChild(modulesMainRoutes),
+  ],
 })
 export class ModulesMainModule {}

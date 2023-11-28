@@ -29,6 +29,10 @@ export class RcSignInComponent {
   ) {}
 
   onClickSignIn(): void {
+    if (this.form.invalid || this.form.pristine) {
+      return;
+    }
+
     this.authnFacade.signIn({
       identifier: this.formFields.identifier.value,
       password: this.formFields.password.value,

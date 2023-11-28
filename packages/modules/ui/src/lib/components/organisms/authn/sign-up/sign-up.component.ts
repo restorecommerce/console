@@ -45,6 +45,10 @@ export class RcSignUpComponent {
   ) {}
 
   onClickSignUp(): void {
+    if (this.form.invalid || this.form.pristine) {
+      return;
+    }
+
     this.authnFacade.signUp({
       firstName: this.formFields.firstName.value,
       lastName: this.formFields.lastName.value,
