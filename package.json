@@ -27,7 +27,7 @@
     "@angular/platform-browser-dynamic": "16.1.5",
     "@angular/router": "16.1.5",
     "@apollo/client": "^3.7.15",
-    "@mdi/font": "^7.2.96",
+    "@mdi/font": "^7.4.47",
     "@ngrx/component-store": "16.1.0",
     "@ngrx/effects": "16.1.0",
     "@ngrx/entity": "16.1.0",
