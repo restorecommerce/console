@@ -39,14 +39,14 @@ export const buildConfirmEmailSchema = ({
         type: 'buttons',
         buttons: [
           {
-            type: 'submit',
-            label: 'Submit',
-          },
-          {
             type: 'button',
             label: 'Cancel',
             action: 'reset',
             class: 'transparent',
+          },
+          {
+            type: 'submit',
+            label: 'Save',
           },
         ],
       },

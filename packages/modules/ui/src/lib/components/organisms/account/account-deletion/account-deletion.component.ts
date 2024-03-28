@@ -42,15 +42,15 @@ export class RcAccountDeletionComponent implements OnDestroy {
         showCloseButton: true,
         showCancelButton: true,
         cancelButtonLabel: 'Cancel',
+        cancelButtonClass: 'transparent',
         confirmButtonLabel: 'Delete Account',
+        confirmButtonClass: 'button',
       })
       .subscribe((result) => {
-        if (result.action !== 'confirm') {
+        if (!this.user?.id || result.action !== 'confirm') {
           return;
         }
-        if (!this.user?.id) {
-          return;
-        }
+
         this.accountFacade.userDeleteRequest({
           ids: [this.user.id],
         });

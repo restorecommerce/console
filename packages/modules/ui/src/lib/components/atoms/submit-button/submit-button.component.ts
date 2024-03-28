@@ -9,15 +9,6 @@ import { FormGroup } from '@angular/forms';
         <div class="btn-container align-right">
           <button
             vcl-button
-            [ngClass]="{ button: true, btn: isMobile }"
-            [class]="buttonClass"
-            type="submit"
-          >
-            <ng-content />
-          </button>
-
-          <button
-            vcl-button
             *ngIf="resetForm"
             (click)="onResetForm()"
             [ngClass]="{
@@ -25,13 +16,22 @@ import { FormGroup } from '@angular/forms';
               transparent: true,
               btn: isMobile
             }"
-            [ngStyle]="{
-              'margin-left': isMobile ? '0' : '10px',
-              'margin-top': isMobile ? '10px' : '0',
-            }"
             type="button"
           >
             {{ resetText }}
+          </button>
+
+          <button
+            vcl-button
+            [ngClass]="{ button: true, btn: isMobile }"
+            [class]="buttonClass"
+            [ngStyle]="{
+              'margin-left': isMobile ? '0' : '14px',
+              'margin-top': isMobile ? '10px' : '0',
+            }"
+            type="submit"
+          >
+            <ng-content />
           </button>
         </div>
       </div>

@@ -6,15 +6,14 @@
   <div class="flex-8-lg flex-8-md flex-12">
     <div class="page-right-side">
       <div class="row mt-2">
-        <div class="flex">
-          <rc-submit-button
-            (click)="onDeleteAccount()"
-            [buttonClass]="'danger width-100'"
-            class="width-100"
-          >
-            Delete Account</rc-submit-button
-          >
-        </div>
+        <button
+          vcl-button
+          (click)="onDeleteAccount()"
+          class="danger width-100"
+          type="submit"
+        >
+          Delete Account
+        </button>
       </div>
       <div class="mt-2">
         <p>This is an irreversible process!</p>
