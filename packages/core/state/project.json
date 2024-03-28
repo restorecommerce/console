@@ -2,7 +2,7 @@
   "name": "core-state",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/core/state/src",
-  "prefix": "lib",
+  "prefix": "app",
   "tags": ["type:state", "scope:shared"],
   "projectType": "library",
   "targets": {

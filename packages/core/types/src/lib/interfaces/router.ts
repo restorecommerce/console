@@ -56,6 +56,10 @@ export interface IRouterConstant {
             preferences: IRouterItem;
           };
         };
+        order: IRouterItem;
+        product: IRouterItem;
+        invoice: IRouterItem;
+        fulfillment: IRouterItem;
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {

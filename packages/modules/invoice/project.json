@@ -1,0 +1,50 @@
+{
+  "name": "modules-invoice",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/modules/invoice/src",
+  "prefix": "app",
+  "tags": ["type:feature", "scope:invoice"],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/modules/invoice/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/modules/invoice/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/modules/invoice/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/modules/invoice/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/modules/invoice/**/*.ts",
+          "packages/modules/invoice/**/*.html"
+        ]
+      }
+    }
+  }
+}

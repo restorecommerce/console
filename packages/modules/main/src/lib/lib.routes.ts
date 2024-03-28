@@ -62,20 +62,38 @@ export const modulesMainRoutes: Route[] = [
       ),
   },
   {
-    path: ROUTER.pages.main.children.layout.path,
+    path: ROUTER.pages.main.children.order.path,
     component: PrivateTemplateComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
-      import('@console-modules/layout').then((m) => m.ModulesLayoutModule),
+      import('@console-modules/order').then((m) => m.ModulesOrderModule),
   },
   {
-    path: ROUTER.pages.main.children.overflow.path,
+    path: ROUTER.pages.main.children.product.path,
     component: PrivateTemplateComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
-      import('@console-modules/overflow').then((m) => m.ModulesOverflowModule),
+      import('@console-modules/product').then((m) => m.ModulesProductModule),
+  },
+  {
+    path: ROUTER.pages.main.children.invoice.path,
+    component: PrivateTemplateComponent,
+    canActivate: [PrivateGuard],
+    canActivateChild: [PrivateGuard],
+    loadChildren: () =>
+      import('@console-modules/invoice').then((m) => m.ModulesInvoiceModule),
+  },
+  {
+    path: ROUTER.pages.main.children.fulfillment.path,
+    component: PrivateTemplateComponent,
+    canActivate: [PrivateGuard],
+    canActivateChild: [PrivateGuard],
+    loadChildren: () =>
+      import('@console-modules/fulfillment').then(
+        (m) => m.ModulesFulfillmentModule
+      ),
   },
   {
     path: '',
