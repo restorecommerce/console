@@ -1,29 +1,14 @@
-<ng-container *ngIf="vmDev$ | async as vmDev">
-  <pre>
-    {{ vmDev | json }}
-  </pre>
-</ng-container>
-
 <rc-crud-main
   *ngIf="vm$ | async as vm"
-  [feature]="'Countries [' + vm.total + ']'"
-  [segment]="vm.segment"
-  [id]="vm.selectedCountryId"
-  [title]="
-    ['create'].includes(vm.segment) ? 'Create' : vm.selectedCountry?.name + ''
-  "
-  [isBack]="false"
-  [isRead]="true"
-  [isIndex]="true"
-  [isCreate]="true"
-  [isEdit]="true"
-  [isDelete]="true"
-  [isMeta]="!!vm.selectedCountryId"
-  [actions]="actions"
-  [dataList]="data.list"
-  [meta]="data.meta"
-  [links]="links"
+  [feature]="feature"
   [actionStreams]="actionStreams"
+  [segment]="vm.segment"
+  [title]="vm.selectedCountry?.name || ''"
+  [data]="vm.data"
+  [id]="vm.selectedCountryId"
+  [meta]="vm.meta"
+  [isMeta]="!!vm.meta"
+  [isRequesting]="vm.isRequesting"
 >
   <router-outlet />
 </rc-crud-main>

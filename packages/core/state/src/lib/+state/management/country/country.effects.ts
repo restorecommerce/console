@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
+import { ROUTER } from '@console-core/config';
 import { ENotificationTypes, ICountry } from '@console-core/types';
 
 import { CountryService } from '../../../services';
@@ -64,6 +66,13 @@ export class CountryEffects {
             content: 'country created',
             type: ENotificationTypes.SUCCESS,
           });
+        }),
+        tap(({ payload }) => {
+          this.router.navigate(
+            ROUTER.pages.main.children.management.children.countries.children.edit.getLink(
+              { id: payload.id }
+            )
+          );
         })
       );
     },
@@ -147,7 +156,8 @@ export class CountryEffects {
         ofType(
           countryActions.countryReadRequestFail,
           countryActions.countryCreateFail,
-          countryActions.countryUpdateFail
+          countryActions.countryUpdateFail,
+          countryActions.countryDeleteFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({
@@ -161,6 +171,7 @@ export class CountryEffects {
   );
 
   constructor(
+    private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly countryService: CountryService

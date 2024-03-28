@@ -18,10 +18,11 @@ import { buildCountrySchema } from './jss-forms';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <div class="my-2 rc-lv-l-heading">Form</div>
-      <rc-management-country-edit
+      <rc-crud-edit
         [id]="vm.id"
-        [countryFormSchema]="countryFormSchema"
+        [editFormSchema]="countryFormSchema"
         [isRequesting]="vm.isRequesting"
+        [update]="countryFacade.update"
       />
     </ng-container>
   `,
@@ -56,7 +57,7 @@ export class CountryEditComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly countryFacade: CountryFacade,
-    private readonly routerFacade: RouterFacade
+    private readonly routerFacade: RouterFacade,
+    public readonly countryFacade: CountryFacade
   ) {}
 }

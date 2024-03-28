@@ -25,8 +25,10 @@ import {
 } from '@vcl/ng-vcl';
 
 import {
-  RcSubmitButtonComponent,
+  RcBusyIndicatorComponent,
   RcCopyrightComponent,
+  RcNoRecordsComponent,
+  RcSubmitButtonComponent,
 } from './components/atoms';
 import {
   RcAppComponent,
@@ -58,12 +60,8 @@ import {
   RcLocalizationDataComponent,
   RcPageHeaderComponent,
   RcCrudMainComponent,
-  RcCrudViewComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
-  RcCountryViewComponent,
-  RcCountryCreateComponent,
-  RcCountryEditComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -90,7 +88,12 @@ export const RC_MODULE_STATE_TOKEN = new InjectionToken('rc.module.state');
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UiComponentsConfig {}
 
-const atoms = [RcCopyrightComponent, RcSubmitButtonComponent];
+const atoms = [
+  RcBusyIndicatorComponent,
+  RcCopyrightComponent,
+  RcNoRecordsComponent,
+  RcSubmitButtonComponent,
+];
 
 // const molecules = [];
 
@@ -124,12 +127,8 @@ const organisms = [
   RcLocalizationDataComponent,
   RcPageHeaderComponent,
   RcCrudMainComponent,
-  RcCrudViewComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
-  RcCountryViewComponent,
-  RcCountryCreateComponent,
-  RcCountryEditComponent,
 ];
 
 const pages = [

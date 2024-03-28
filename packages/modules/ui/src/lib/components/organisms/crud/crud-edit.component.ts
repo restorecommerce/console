@@ -7,12 +7,15 @@ import {
 
 import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
+import { ModeType } from '@console-core/graphql';
+
 @Component({
   selector: 'rc-crud-edit',
   template: `
     <div class="row">
       <div class="flex-12 mb-4">
         <vcl-jss-form
+          autocomplete="off"
           ngDefaultControl
           #editForm="vclJssForm"
           [schema]="editFormSchema"
@@ -28,6 +31,13 @@ export class RcCrudEditComponent {
   @Input({ required: true })
   editFormSchema!: VCLFormFieldSchemaRoot;
 
+  @Input({ required: true })
+  id!: string;
+
+  @Input({ required: true })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  update!: (data: any) => void;
+
   @Input()
   isRequesting = false;
 
@@ -39,6 +49,18 @@ export class RcCrudEditComponent {
   }
 
   onSubmit(): void {
-    console.log('onEditForm', this.editForm.form.value);
+    if (this.editForm.form.invalid || this.editForm.form.pristine) {
+      return;
+    }
+
+    this.update({
+      items: [
+        {
+          id: this.id,
+          ...this.editForm.form.value,
+        },
+      ],
+      mode: ModeType.Update,
+    });
   }
 }

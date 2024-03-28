@@ -13,7 +13,35 @@ import {
   selector: 'app-module-management-country-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-management-country-view [country]="vm.country" />
+      <div class="data-list mb-0 p-0 ng-star-inserted">
+        <div class="my-2 rc-lv-l-heading">Data</div>
+        <ul class="data-list-body no-border">
+          <li class="row data-list-item justify-between">
+            <div class="flex text">Name:</div>
+            <div class="flex text align-right rc-lv-label">
+              {{ vm.country.name }}
+            </div>
+          </li>
+          <li class="row data-list-item justify-between">
+            <div class="flex text">Country Code:</div>
+            <div class="flex text align-right rc-lv-label">
+              {{ vm.country.countryCode }}
+            </div>
+          </li>
+          <li class="row data-list-item justify-between">
+            <div class="flex text">Geographical Name:</div>
+            <div class="flex text align-right rc-lv-label">
+              {{ vm.country.geographicalName }}
+            </div>
+          </li>
+          <li class="row data-list-item justify-between">
+            <div class="flex text">Economic Areas:</div>
+            <div class="flex text align-right rc-lv-label">
+              {{ (vm.country.economicAreas || []).join(', ') }}
+            </div>
+          </li>
+        </ul>
+      </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

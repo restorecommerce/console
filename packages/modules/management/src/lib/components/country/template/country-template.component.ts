@@ -4,12 +4,19 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, delay, map, tap } from 'rxjs';
 
 import { ROUTER } from '@console-core/config';
 import { IoRestorecommerceResourcebaseSortSortOrder } from '@console-core/graphql';
 import { CountryFacade, RouterFacade } from '@console-core/state';
-import { IDataListItem, IMeta, TRouterCrudSegment } from '@console-core/types';
+import {
+  ICrudActionStreams,
+  ICrudFeature,
+  ICrudSort,
+  IDataListItem,
+  IMeta,
+  TRouterCrudSegment,
+} from '@console-core/types';
 
 @Component({
   selector: 'app-module-management-country-template',
@@ -21,7 +28,19 @@ export class CountryTemplateComponent implements OnInit {
   featureRouter =
     ROUTER.pages.main.children.management.children.countries.children;
 
-  public actionStreams = {
+  public feature: ICrudFeature = {
+    name: 'Management Countries',
+    plural: 'Countries',
+    singular: 'Country',
+    links: {
+      index: () => this.featureRouter.index.getLink(),
+      create: () => this.featureRouter.create.getLink(),
+      edit: (id: string) => this.featureRouter.edit.getLink({ id }),
+      view: (id: string) => this.featureRouter.view.getLink({ id }),
+    },
+  };
+
+  public actionStreams: ICrudActionStreams = {
     read: new BehaviorSubject<void | null>(null),
     setSelectedId: new BehaviorSubject<string | null>(null),
     delete: new BehaviorSubject<string | null>(null),
@@ -29,76 +48,50 @@ export class CountryTemplateComponent implements OnInit {
 
   readonly vm$ = combineLatest({
     segment: this.routerFacade.url$.pipe(
-      map((url) => url.split('/').pop() as TRouterCrudSegment)
+      map((url) => url.split('/').pop() as TRouterCrudSegment),
+      tap((segment) => {
+        if (['index', 'create'].includes(segment)) {
+          this.actionStreams.setSelectedId.next(null);
+        }
+      })
     ),
-    allCountries: this.countryFacade.all$.pipe(
-      tap((countries) => {
-        this.data.list = countries.map((country) => ({
+    data: this.countryFacade.all$.pipe(
+      map((countries) => {
+        return countries.map((country) => ({
           id: country.id || 'N/A',
           label: country.name || 'N/A',
-        }));
+        })) as IDataListItem[];
       })
     ),
     total: this.countryFacade.total$,
+    isRequesting: this.countryFacade.isRequesting$,
     selectedCountryId: this.countryFacade.selectedId$,
     selectedCountry: this.countryFacade.selected$.pipe(
+      map((country) => country || null)
+    ),
+    meta: this.countryFacade.selected$.pipe(
       map((country) => country || null),
-      tap((country) => {
-        this.data.meta = country?.meta || null;
+      map((country) => country?.meta || (null as IMeta | null))
+    ),
+    readAction: this.actionStreams.read
+      .asObservable()
+      .pipe(tap(() => this.countryFacade.read(this.sort))),
+    setSelectedIdAction: this.actionStreams.setSelectedId.asObservable().pipe(
+      tap((id) => this.countryFacade.setSelectedId(id)),
+      delay(10),
+      tap(() => this.changeDetectorRef.detectChanges())
+    ),
+    deleteAction: this.actionStreams.delete.asObservable().pipe(
+      tap((id) => {
+        if (id === null) {
+          return;
+        }
+        this.countryFacade.delete({ ids: [id] });
       })
     ),
-    readAction: this.actionStreams.read.asObservable().pipe(
-      tap(() => this.countryFacade.read(this.sort)),
-      tap(() => console.log('Stream: read'))
-    ),
-    setSelectedIdAction: this.actionStreams.setSelectedId.asObservable().pipe(
-      tap((id) => {
-        setTimeout(() => {
-          this.countryFacade.setSelectedId(id);
-          this.changeDetectorRef.detectChanges();
-        });
-      }),
-      tap((id) => console.log('Stream: setSelectedId', id))
-    ),
-    deleteAction: this.actionStreams.delete
-      .asObservable()
-      .pipe(tap((id) => console.log('Stream: delete', id))),
   });
 
-  readonly vmDev$ = combineLatest({
-    url: this.routerFacade.url$, // url
-    id: this.routerFacade.params$, // url id
-    country: this.countryFacade.selected$, // selected country
-    isRequesting: this.countryFacade.isRequesting$,
-  });
-
-  public data: {
-    meta: IMeta | null;
-    list: IDataListItem[];
-  } = {
-    meta: null,
-    list: [],
-  };
-
-  public actions = {
-    read: () => this.countryFacade.read(this.sort),
-    setSelectedId: (id: string | null) => {
-      setTimeout(() => {
-        this.countryFacade.setSelectedId(id);
-        this.changeDetectorRef.detectChanges();
-      });
-    },
-    delete: (id: string) => console.log('delete', id),
-  };
-
-  public links = {
-    index: () => this.featureRouter.index.getLink(),
-    create: () => this.featureRouter.create.getLink(),
-    view: (id: string) => this.featureRouter.view.getLink({ id }),
-    edit: (id: string) => this.featureRouter.edit.getLink({ id }),
-  };
-
-  private sort = {
+  private sort: ICrudSort = {
     sorts: [
       {
         field: 'name',

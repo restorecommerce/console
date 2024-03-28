@@ -3,7 +3,7 @@ import { IIoRestorecommerceMetaMeta } from '@console-core/graphql';
 export interface IMeta
   extends Omit<
     IIoRestorecommerceMetaMeta,
-    'created' | 'modified' | 'createdBy' | 'modifiedBy'
+    'created' | 'createdBy' | 'modified' | 'modifiedBy'
   > {
   id: string;
   created: string;

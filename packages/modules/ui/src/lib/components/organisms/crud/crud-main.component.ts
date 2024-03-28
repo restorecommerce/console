@@ -3,15 +3,20 @@ import {
   Component,
   Input,
   OnChanges,
+  OnDestroy,
   SimpleChanges,
 } from '@angular/core';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { SubSink } from 'subsink';
+
+import { AlertService, AlertType } from '@vcl/ng-vcl';
 
 import {
+  ICrudActionStreams,
   IDataListItem,
   IMeta,
   TRouterCrudSegment,
-  TRouterLink,
+  ICrudFeature,
 } from '@console-core/types';
 
 @Component({
@@ -19,48 +24,26 @@ import {
   templateUrl: './crud-main.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcCrudMainComponent implements OnChanges {
-  @Input({ required: true }) feature!: string;
+export class RcCrudMainComponent implements OnChanges, OnDestroy {
+  @Input({ required: true }) feature!: ICrudFeature;
+  @Input({ required: true }) actionStreams!: ICrudActionStreams;
   @Input({ required: true }) segment!: TRouterCrudSegment;
-  @Input({ required: true }) actions!: {
-    read: () => void;
-    setSelectedId: (id: string | null) => void;
-    delete: (id: string) => void;
-  };
-  // @Input({ required: true }) data!: {
-  //   meta: IMeta | null;
-  //   list: IDataListItem[];
-  // };
-  @Input({ required: true }) dataList: IDataListItem[] = [];
+  @Input({ required: true }) data: IDataListItem[] = [];
+  @Input({ required: true }) id: string | null = null;
   @Input({ required: true }) meta: IMeta | null = null;
-  @Input({ required: true }) links!: {
-    index: () => TRouterLink;
-    create: () => TRouterLink;
-    view: (id: string) => TRouterLink;
-    edit: (id: string) => TRouterLink;
-  };
-  @Input() id: string | null = null;
+  @Input() title = '';
   @Input() isBack = false;
-  @Input() title = 'Content';
-  @Input() isRequesting = true;
-  @Input() isIndex = false;
-  @Input() isCreate = false;
-  @Input() isEdit = false;
-  @Input() isDelete = false;
-  @Input() isRead = false;
-  @Input() isFilter = false;
   @Input() isSort = false;
   @Input() isMeta = false;
-
-  // Streams
-  @Input({ required: true }) actionStreams!: {
-    read: BehaviorSubject<void | null>;
-    setSelectedId: BehaviorSubject<string | null>;
-    delete: BehaviorSubject<string | null>;
-  };
+  @Input() isRefetch = true;
+  @Input() isCreate = true;
+  @Input() isEdit = true;
+  @Input() isDelete = true;
+  @Input() isRequesting = false;
 
   private searchValueBehaviorSubject = new BehaviorSubject<string>('');
   private dataListBehaviorSubject = new BehaviorSubject<IDataListItem[]>([]);
+  private readonly subscriptions = new SubSink();
 
   readonly vm$ = combineLatest({
     searchValue: this.searchValueBehaviorSubject.asObservable(),
@@ -78,18 +61,52 @@ export class RcCrudMainComponent implements OnChanges {
     }))
   );
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['dataList']?.currentValue) {
+  constructor(private readonly alertService: AlertService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data']?.currentValue) {
       this.dataListBehaviorSubject.next(
-        changes['dataList'].currentValue.sort(
+        changes['data'].currentValue.sort(
           (a: IDataListItem, b: IDataListItem) => a.label.localeCompare(b.label)
         )
       );
     }
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
   onSearch(value: string): void {
     this.searchValueBehaviorSubject.next(value);
+  }
+
+  onSetSelectedId(id: string | null): void {
+    this.actionStreams.setSelectedId.next(id);
+  }
+
+  onRead(): void {
+    this.actionStreams.read.next(null);
+  }
+
+  onDelete(id: string): void {
+    this.subscriptions.sink = this.alertService
+      .open({
+        text: `Do you really want to delete ${this.title}?`,
+        type: AlertType.Question,
+        showCloseButton: true,
+        showCancelButton: true,
+        cancelButtonLabel: 'Cancel',
+        cancelButtonClass: 'transparent',
+        confirmButtonLabel: `Delete ${this.feature.singular}`,
+        confirmButtonClass: 'button',
+      })
+      .subscribe((result) => {
+        if (!id || result.action !== 'confirm') {
+          return;
+        }
+        this.actionStreams.delete.next(id);
+      });
   }
 
   trackByFn(_: number, item: IDataListItem) {

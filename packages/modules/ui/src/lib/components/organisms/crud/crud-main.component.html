@@ -13,9 +13,8 @@
         <button
           vcl-button
           rcPrepend
-          *ngIf="isIndex"
-          (click)="actionStreams.setSelectedId.next(null)"
-          [routerLink]="links.index()"
+          (click)="onSetSelectedId(null)"
+          [routerLink]="feature.links.index()"
           class="square half-transparent button"
           title="Index"
         >
@@ -25,18 +24,18 @@
           vcl-button
           rcPrepend
           *ngIf="isCreate"
-          [routerLink]="links.create()"
+          [routerLink]="feature.links.create()"
           class="square half-transparent button"
           title="Create"
         >
           <vcl-icon icon="mdi:plus" />
         </button>
-        {{ feature }}
+        {{ feature.plural }} [{{ data.length }}]
         <button
           vcl-button
           rcAppend
-          *ngIf="isRead"
-          (click)="actionStreams.read.next()"
+          *ngIf="isRefetch"
+          (click)="onRead()"
           class="square half-transparent button"
           title="Refresh"
         >
@@ -44,50 +43,49 @@
         </button>
       </rc-toolbar>
 
-      <div *ngIf="dataList.length > 0">
-        <div class="flex">
-          <rc-searchbar
-            [value]="vm.searchValue"
-            (search)="onSearch($event)"
-          >
-          </rc-searchbar>
-        </div>
-      </div>
-      <!-- <ng-content select="[search]"></ng-content> -->
-
-      <rc-data-list
-        *ngIf="vm.filteredDataList.length > 0; else templateNoRecords"
-        class="mb-4 pb-2"
+      <div
+        *ngIf="data.length > 0"
+        class="flex"
       >
-        <rc-data-list-item
-          *ngFor="let item of vm.filteredDataList; trackBy: trackByFn"
-          (click)="actionStreams.setSelectedId.next(item.id)"
-          [ngClass]="{ selected: item.id === id }"
-          [routerLink]="links.view(item.id)"
-        >
-          <rc-data-list-label
-            [innerHTML]="item.label | highlight : vm.searchValue"
-          />
-          <ng-container *ngIf="item.subLabel">
-            <rc-data-list-sublabel
-              [innerHTML]="item.subLabel | highlight : vm.searchValue"
+        <rc-searchbar
+          [value]="vm.searchValue"
+          (search)="onSearch($event)"
+        />
+      </div>
+
+      <ng-container
+        *ngIf="vm.filteredDataList.length > 0; else templateNoRecords"
+      >
+        <rc-data-list class="mb-4 pb-2">
+          <rc-data-list-item
+            *ngFor="let item of vm.filteredDataList; trackBy: trackByFn"
+            (click)="onSetSelectedId(item.id)"
+            [ngClass]="{ selected: item.id === id }"
+            [routerLink]="feature.links.view(item.id)"
+          >
+            <rc-data-list-label
+              [innerHTML]="item.label | highlight : vm.searchValue"
             />
-          </ng-container>
-        </rc-data-list-item>
-      </rc-data-list>
-      <!-- <ng-content select="[data-list]"></ng-content> -->
+            <ng-container *ngIf="item.subLabel">
+              <rc-data-list-sublabel
+                [innerHTML]="item.subLabel | highlight : vm.searchValue"
+              />
+            </ng-container>
+          </rc-data-list-item>
+        </rc-data-list>
+      </ng-container>
     </div>
 
     <ng-container *ngIf="['view', 'create', 'edit'].includes(segment)">
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
           <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
-            <rc-toolbar *ngIf="title">
+            <rc-toolbar *ngIf="title !== 'null'">
               <button
                 *ngIf="id && ['edit'].includes(segment)"
                 vcl-button
                 rcPrepend
-                [routerLink]="links.view(id)"
+                [routerLink]="feature.links.view(id)"
                 class="square half-transparent button"
                 title="View &quot;{{ title }}&quot;"
               >
@@ -97,7 +95,7 @@
                 vcl-button
                 rcPrepend
                 *ngIf="isEdit && id"
-                [routerLink]="links.edit(id)"
+                [routerLink]="feature.links.edit(id)"
                 class="square half-transparent button"
                 title="Edit"
               >
@@ -109,8 +107,8 @@
               <button
                 vcl-button
                 rcAppend
-                *ngIf="id && isDelete"
-                (click)="actions.delete(id)"
+                *ngIf="isDelete && id"
+                (click)="onDelete(id)"
                 class="square half-transparent button"
                 title="Delete"
               >
@@ -119,18 +117,20 @@
             </rc-toolbar>
             <div class="row">
               <div class="flex py-2">
-                <ng-content />
+                <ng-container *ngIf="!isRequesting; else templateIsRequesting">
+                  <ng-content />
+                </ng-container>
               </div>
             </div>
           </div>
 
           <div
-            *ngIf="id"
+            *ngIf="id && isMeta && !isRequesting"
             class="flex-4-lg flex-12-md flex-12-sm flex-12"
           >
             <rc-toolbar> Meta </rc-toolbar>
             <div
-              *ngIf="isMeta"
+              *ngIf="isMeta && !isRequesting"
               class="row"
             >
               <div class="flex py-2">
@@ -149,12 +149,12 @@
 
 <ng-template #templateIsRequesting>
   <div class="pt-2 pl-2 loading-list">
-    <p>Loading...</p>
+    <rc-busy-indicator />
   </div>
 </ng-template>
 
 <ng-template #templateNoRecords>
   <div class="pt-2 pl-2 empty-list">
-    <p>No records found!</p>
+    <rc-no-records />
   </div>
 </ng-template>

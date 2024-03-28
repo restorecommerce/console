@@ -1,6 +1,7 @@
 export * from './api';
 export * from './app';
 export * from './auth';
+export * from './crud';
 export * from './entities';
 export * from './data-list';
 export * from './date';

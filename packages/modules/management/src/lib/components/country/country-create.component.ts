@@ -12,9 +12,10 @@ import { buildCountrySchema } from './jss-forms';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <div class="my-2 rc-lv-l-heading">Form</div>
-      <rc-management-country-create
-        [countryFormSchema]="countryFormSchema"
+      <rc-crud-create
+        [createFormSchema]="countryFormSchema"
         [isRequesting]="vm.isRequesting"
+        [create]="countryFacade.create"
       />
     </ng-container>
   `,
@@ -34,5 +35,5 @@ export class CountryCreateComponent {
     isRequesting: this.countryFacade.isRequesting$,
   });
 
-  constructor(private readonly countryFacade: CountryFacade) {}
+  constructor(public readonly countryFacade: CountryFacade) {}
 }

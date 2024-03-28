@@ -7,12 +7,15 @@ import {
 
 import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
+import { ModeType } from '@console-core/graphql';
+
 @Component({
   selector: 'rc-crud-create',
   template: `
     <div class="row">
       <div class="flex-12 mb-4">
         <vcl-jss-form
+          autocomplete="off"
           ngDefaultControl
           #createForm="vclJssForm"
           [schema]="createFormSchema"
@@ -28,6 +31,10 @@ export class RcCrudCreateComponent {
   @Input({ required: true })
   createFormSchema!: VCLFormFieldSchemaRoot;
 
+  @Input({ required: true })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  create!: (data: any) => void;
+
   @Input()
   isRequesting = false;
 
@@ -39,6 +46,13 @@ export class RcCrudCreateComponent {
   }
 
   onSubmit(): void {
-    console.log('onCreateForm', this.createForm.form.value);
+    if (this.createForm.form.invalid || this.createForm.form.pristine) {
+      return;
+    }
+
+    this.create({
+      items: [this.createForm.form.value],
+      mode: ModeType.Create,
+    });
   }
 }
