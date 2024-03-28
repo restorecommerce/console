@@ -128,6 +128,30 @@ export const ROUTER: Readonly<IRouterConstant> = {
             },
           },
         },
+        order: {
+          path: 'orders',
+          link: '/orders',
+          title: 'Orders',
+          getLink: () => ['', 'orders'],
+        },
+        product: {
+          path: 'products',
+          link: '/products',
+          title: 'Products',
+          getLink: () => ['', 'products'],
+        },
+        invoice: {
+          path: 'invoices',
+          link: '/invoices',
+          title: 'Invoices',
+          getLink: () => ['', 'invoices'],
+        },
+        fulfillment: {
+          path: 'fulfillments',
+          link: '/fulfillments',
+          title: 'Fulfillments',
+          getLink: () => ['', 'fulfillments'],
+        },
         layout: {
           path: 'layout',
           link: '/layout',

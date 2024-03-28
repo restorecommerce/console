@@ -89,7 +89,7 @@
         *ngIf="currentRoute === ROUTER.pages.main.children.home.link"
       >
         <rc-drawer-navigation-item
-          icon="mdi:home"
+          icon="mdi:home-outline"
           [routerLink]="ROUTER.pages.main.children.home.link"
           [routerLinkActive]="['selected']"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -97,16 +97,28 @@
           Home</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:arrow-split-vertical"
-          [routerLink]="ROUTER.pages.main.children.layout.link"
+          icon="mdi:receipt-outline"
+          [routerLink]="ROUTER.pages.main.children.order.link"
           [routerLinkActive]="['selected']"
-          >Layout</rc-drawer-navigation-item
+          >Orders</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:arrow-split-vertical"
-          [routerLink]="'/overflow'"
+          icon="mdi:tag-outline"
+          [routerLink]="ROUTER.pages.main.children.product.link"
           [routerLinkActive]="['selected']"
-          >Overflow</rc-drawer-navigation-item
+          >Products</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:invoice-outline"
+          [routerLink]="ROUTER.pages.main.children.invoice.link"
+          [routerLinkActive]="['selected']"
+          >Invoices</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:truck-outline"
+          [routerLink]="ROUTER.pages.main.children.fulfillment.link"
+          [routerLinkActive]="['selected']"
+          >Fulfillment</rc-drawer-navigation-item
         >
       </ng-container>
       <!-- /Home -->
@@ -119,7 +131,7 @@
         "
       >
         <rc-drawer-navigation-item
-          icon="mdi:account-multiple"
+          icon="mdi:account-multiple-outline"
           [routerLink]="ROUTER.pages.main.children.management.children.iam.link"
           [routerLinkActive]="['selected']"
           >IAM
@@ -135,7 +147,7 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
-          icon="mdi:city"
+          icon="mdi:city-variant-outline"
           [routerLink]="
             ROUTER.pages.main.children.management.children.locations.link
           "
@@ -145,7 +157,7 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
-          icon="mdi:map-marker"
+          icon="mdi:map-marker-outline"
           [routerLink]="
             ROUTER.pages.main.children.management.children.countries.link
           "
@@ -155,7 +167,7 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
-          icon="mdi:card-account-mail"
+          icon="mdi:card-account-mail-outline"
           [routerLink]="
             ROUTER.pages.main.children.management.children.contactPoints.link
           "
@@ -165,7 +177,7 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
-          icon="mdi:certificate"
+          icon="mdi:certificate-outline"
           [routerLink]="
             ROUTER.pages.main.children.management.children.contracts.link
           "
@@ -185,7 +197,7 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
-          icon="mdi:lock"
+          icon="mdi:lock-outline"
           [routerLink]="
             ROUTER.pages.main.children.management.children.accessControl.link
           "
@@ -193,7 +205,7 @@
         >
           Access Control
           <rc-drawer-navigation-item
-            icon="mdi:account-multiple"
+            icon="mdi:account-multiple-outline"
             [routerLink]="
               ROUTER.pages.main.children.management.children.accessControl
                 .children.teams.link
@@ -202,7 +214,7 @@
             >Teams</rc-drawer-navigation-item
           >
           <rc-drawer-navigation-item
-            icon="mdi:account-key"
+            icon="mdi:account-key-outline"
             [routerLink]="
               ROUTER.pages.main.children.management.children.accessControl
                 .children.roles.link
@@ -211,7 +223,7 @@
             >Roles</rc-drawer-navigation-item
           >
           <rc-drawer-navigation-item
-            icon="mdi:account-convert"
+            icon="mdi:account-convert-outline"
             [routerLink]="
               ROUTER.pages.main.children.management.children.accessControl
                 .children.rules.link
@@ -220,7 +232,7 @@
             >Rules</rc-drawer-navigation-item
           >
           <rc-drawer-navigation-item
-            icon="mdi:folder-account"
+            icon="mdi:folder-account-outline"
             [routerLink]="
               ROUTER.pages.main.children.management.children.accessControl
                 .children.polices.link
