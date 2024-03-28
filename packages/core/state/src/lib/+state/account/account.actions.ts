@@ -7,9 +7,9 @@ import {
   IIoRestorecommerceUserConfirmEmailChangeRequest,
   IIoRestorecommerceUserFindByTokenRequest,
   IIoRestorecommerceUserFindRequest,
-  IIoRestorecommerceUserUser,
   IIoRestorecommerceUserUserList,
 } from '@console-core/graphql';
+import { IUser } from '@console-core/types';
 
 export const userFindRequest = createAction(
   '[ACCOUNT] User find request',
@@ -18,7 +18,7 @@ export const userFindRequest = createAction(
 
 export const userFindSuccess = createAction(
   '[ACCOUNT] User find success',
-  props<{ payload: IIoRestorecommerceUserUser }>()
+  props<{ payload: IUser }>()
 );
 
 export const userFindFail = createAction(
@@ -33,7 +33,7 @@ export const userFindByTokenRequest = createAction(
 
 export const userFindByTokenSuccess = createAction(
   '[ACCOUNT] Find user by token success',
-  props<{ payload: IIoRestorecommerceUserUser }>()
+  props<{ payload: IUser }>()
 );
 
 export const userFindByTokenFail = createAction(
@@ -48,7 +48,7 @@ export const userMutateRequest = createAction(
 
 export const userMutateSuccess = createAction(
   '[ACCOUNT] User mutate success',
-  props<{ payload: IIoRestorecommerceUserUser }>()
+  props<{ payload: IUser }>()
 );
 
 export const userMutateFail = createAction(

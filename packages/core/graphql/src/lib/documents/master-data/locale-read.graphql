@@ -1,0 +1,23 @@
+query MasterDataLocaleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  master_data {
+    locale {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            status {
+              code
+              message
+            }
+            payload {
+              ...LocaleFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

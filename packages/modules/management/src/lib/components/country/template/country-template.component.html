@@ -1,0 +1,14 @@
+<rc-crud-main
+  *ngIf="vm$ | async as vm"
+  [feature]="feature"
+  [actionStreams]="actionStreams"
+  [segment]="vm.segment"
+  [title]="vm.selectedCountry?.name || ''"
+  [data]="vm.data"
+  [id]="vm.selectedCountryId"
+  [meta]="vm.meta"
+  [isMeta]="!!vm.meta"
+  [isRequesting]="vm.isRequesting"
+>
+  <router-outlet />
+</rc-crud-main>

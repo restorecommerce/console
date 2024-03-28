@@ -1,0 +1,19 @@
+query IdentityUserFindByToken(
+  $input: IIoRestorecommerceUserFindByTokenRequest!
+) {
+  identity {
+    user {
+      FindByToken(input: $input) {
+        details {
+          status {
+            code
+            message
+          }
+          payload {
+            ...UserFragment
+          }
+        }
+      }
+    }
+  }
+}

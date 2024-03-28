@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 import { ModulesSharedModule } from '@console-modules/shared';
 
 import { AccountTemplateComponent } from './components/template/account-template.component';
-import { modulesProfileRoutes } from './lib.routes';
+import { modulesAccountRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesProfileRoutes)],
+  imports: [ModulesSharedModule, RouterModule.forChild(modulesAccountRoutes)],
   declarations: [AccountTemplateComponent],
 })
 export class ModulesAccountModule {}

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 import { AccountFacade } from '@console-core/state';
@@ -8,10 +9,12 @@ import { AccountFacade } from '@console-core/state';
   template: `
     <ng-container *ngIf="user$ | async as user">
       <div class="row">
-        <rc-page-account-index>
+        <div class="col rc-page-container">
           <h3>
             Personal Data [<a
-              [routerLink]="ROUTER.pages.main.children.profile.path"
+              [routerLink]="
+                ROUTER.pages.main.children.account.children.profile.path
+              "
               >Edit</a
             >]
           </h3>
@@ -22,7 +25,9 @@ import { AccountFacade } from '@console-core/state';
 
           <h3>
             Account Data [<a
-              [routerLink]="ROUTER.pages.main.children.profile.path"
+              [routerLink]="
+                ROUTER.pages.main.children.account.children.profile.path
+              "
               >Edit</a
             >]
           </h3>
@@ -33,7 +38,9 @@ import { AccountFacade } from '@console-core/state';
 
           <h3>
             Account Information [<a
-              [routerLink]="ROUTER.pages.main.children.preferences.path"
+              [routerLink]="
+                ROUTER.pages.main.children.account.children.preferences.path
+              "
               >Edit</a
             >]
           </h3>
@@ -50,20 +57,30 @@ import { AccountFacade } from '@console-core/state';
                 </li>
               </ul>
             </li>
-            <li><b>Created</b>: {{ user.meta?.created }}</li>
-            <li><b>Updated</b>: {{ user.meta?.modified }}</li>
+            <li><b>Created</b>: {{ user.meta.created }}</li>
+            <li><b>Updated</b>: {{ user.meta.modified }}</li>
           </ul>
 
           <h3>Support</h3>
           <p>Contact us at support@restorecommerce.io</p>
-        </rc-page-account-index>
+        </div>
       </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
   ROUTER = ROUTER;
   user$ = this.accountFacade.user$;
-  constructor(private readonly accountFacade: AccountFacade) {}
+
+  constructor(
+    private readonly router: Router,
+    private readonly accountFacade: AccountFacade
+  ) {}
+
+  ngOnInit(): void {
+    this.router.navigate(
+      ROUTER.pages.main.children.account.children.profile.getLink()
+    );
+  }
 }

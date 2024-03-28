@@ -31,7 +31,17 @@ export class RcLocalizationDataComponent {
 
   constructor(private readonly accountFacade: AccountFacade) {}
 
-  onSaveLocalizationForm() {
+  onAction(_: string): void {
+    this.localizationForm.form.resetForm(this.localizationForm.defaultValue);
+  }
+
+  onSubmit(): void {
+    if (
+      this.localizationForm.form.invalid ||
+      this.localizationForm.form.pristine
+    ) {
+      return;
+    }
     this.accountFacade.userMutateRequest({
       items: [
         {

@@ -134,6 +134,10 @@ export const modulesManagementRoutes: Route[] = [
           ROUTER.pages.main.children.management.children.accessControl.children
             .polices.children.index.title,
       },
+      {
+        path: '**',
+        redirectTo: ROUTER.pages.main.children.management.children.iam.path,
+      },
     ],
   },
 ];

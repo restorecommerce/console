@@ -1,11 +1,9 @@
 import { EntityState } from '@ngrx/entity';
 
-import { IIoRestorecommerceTimezoneTimezone } from '@console-core/graphql';
+import { ITimezone } from '../entities';
 
 import { IBaseStore } from './store.state';
 
-export interface ITimezoneState
-  extends EntityState<IIoRestorecommerceTimezoneTimezone>,
-    IBaseStore {
+export interface ITimezoneState extends EntityState<ITimezone>, IBaseStore {
   selectedId: string | null;
 }

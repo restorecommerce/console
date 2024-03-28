@@ -1,0 +1,42 @@
+fragment AddressFragment on IoRestorecommerceAddressAddress {
+  id
+  buildingNumber
+  street
+  postcode
+  locality
+  region
+  addressAddition {
+    field1
+    field2
+  }
+  businessAddress {
+    name
+  }
+  packStation {
+    postNumber
+    provider
+    stationNumber
+  }
+  residentialAddress {
+    title
+    givenName
+    familyName
+    midName
+  }
+  country {
+    id
+    name
+    countryCode
+    geographicalName
+  }
+  geoCoordinates {
+    latitude
+    longitude
+  }
+  meta {
+    created
+    modified
+    createdBy
+    modifiedBy
+  }
+}

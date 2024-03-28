@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 
 export const modulesHomeRoutes: Route[] = [
   {
-    path: ROUTER.pages.main.children.home.path,
+    path: '',
     component: HomeTemplateComponent,
     title: ROUTER.pages.main.children.home.title,
     children: [

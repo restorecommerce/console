@@ -1,0 +1,51 @@
+@use '@vcl/vcl/theme' as *;
+
+.data-list {
+  display: block;
+  margin-bottom: 0;
+
+  & .data-list-header {
+    padding: 0;
+  }
+
+  & .data-list-user-menu-body {
+    .data-list-item {
+      padding: 0.1rem !important;
+    }
+  }
+
+  & .data-list-body {
+    height: 100%;
+    overflow: hidden;
+
+    &:hover {
+      overflow-y: auto;
+      overflow-y: overlay;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+
+    .data-list-item {
+      width: 100%;
+      padding: 0.7rem 0.5rem;
+      box-sizing: border-box;
+
+      & > * {
+        width: 100%;
+
+        & > .data-list-item {
+          & > .data-list-label {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          & > .data-list-sublabel {
+            margin-top: 0.1rem;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}

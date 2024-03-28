@@ -26,7 +26,7 @@ export class PrivateGuard {
     return this.authnFacade.isAuthenticated$.pipe(
       tap((isAuthenticated) => {
         if (!isAuthenticated) {
-          this.router.navigate([ROUTER.pages.main.children.auth.link], {
+          this.router.navigate(ROUTER.pages.main.children.auth.getLink(), {
             replaceUrl: true,
             queryParams: {
               url:

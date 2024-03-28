@@ -14,7 +14,7 @@ export class AppFacade {
   readonly error$ = this.store.select(appSelectors.selectError);
 
   // Actions
-  readonly addNotification = (payload: TNewNotification) => {
+  addNotification = (payload: TNewNotification) => {
     this.store.dispatch(appActions.addNotification({ payload }));
   };
 

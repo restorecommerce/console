@@ -139,11 +139,27 @@ const reducer = createReducer<IAuthnState>(
     })
   ),
   on(
-    authnActions.signOut,
+    authnActions.signOutRequest,
+    (state): IAuthnState => ({
+      ...state,
+      actionStatus: EActionStatus.REQUESTING,
+    })
+  ),
+  on(
+    authnActions.signOutSuccess,
     (state): IAuthnState => ({
       ...state,
       isAuthenticated: false,
       actionStatus: EActionStatus.SUCCEEDED,
+    })
+  ),
+  on(
+    authnActions.signOutFail,
+    (state, { error }): IAuthnState => ({
+      ...state,
+      isAuthenticated: false,
+      actionStatus: EActionStatus.FAILED,
+      error,
     })
   ),
   on(

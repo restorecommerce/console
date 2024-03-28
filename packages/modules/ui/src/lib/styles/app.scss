@@ -1,22 +1,14 @@
 @use './theme/_console-variables.scss' as *;
 
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 2px; /* For horizontal scrollbar */
+  height: 0; /* For vertical scrollbar */
+}
+
 .app {
   position: relative;
   height: 100vh;
-}
-
-.content-area {
-  overflow: hidden;
-
-  & > div {
-    height: 100%;
-  }
-}
-
-.rc-main {
-  .full-height-scroll {
-    height: 100vh;
-  }
 }
 
 rc-header.application-header {
@@ -28,7 +20,7 @@ rc-header.application-header {
 
   .navigation {
     background-color: $navigation-bg-color;
-    margin-left: 1em;
+    margin-left: 1rem;
     margin-bottom: 0;
   }
 
@@ -42,8 +34,23 @@ rc-header.application-header {
   }
 }
 
-.rc-flex-sidebar {
-  flex: 0 0 20em;
+.rc-main {
+  .full-height-scroll {
+    height: 100vh;
+  }
+
+  .container {
+    background-color: $white;
+    border-color: $white;
+  }
+}
+
+.content-area {
+  overflow: hidden;
+
+  & > div {
+    height: 100%;
+  }
 }
 
 vcl-hint-error {

@@ -1,0 +1,11 @@
+fragment LocaleFragment on IoRestorecommerceLocaleLocale {
+  id
+  description
+  value
+  meta {
+    created
+    modified
+    createdBy
+    modifiedBy
+  }
+}

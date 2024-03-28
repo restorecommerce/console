@@ -1,0 +1,32 @@
+<div class="help-wrapper">
+  <vcl-form-control-group>
+    <vcl-input-field class="no-border">
+      <vcl-icon
+        vclPrepend
+        icon="mdi:magnify"
+      />
+      <input
+        vclInput
+        autocomplete="off"
+        [placeholder]="placeholder"
+        [value]="value"
+        (input)="updateValue($event)"
+        class="transparent"
+      />
+      <button
+        vcl-button
+        vclAppend
+        square
+        *ngIf="value !== ''"
+        (click)="clearValue()"
+        class="transparent"
+        type="button"
+      >
+        <vcl-icon
+          vclPrepend
+          icon="vcl:close"
+        />
+      </button>
+    </vcl-input-field>
+  </vcl-form-control-group>
+</div>

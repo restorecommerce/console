@@ -16,29 +16,31 @@ import {
   selector: 'app-account-profile',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-page-profile>
-        <rc-account-personal-data
-          [user]="vm.user"
-          [isRequesting]="vm.isRequesting"
-          [personalFormSchema]="personalFormSchema"
-        />
+      <div class="row">
+        <div class="col rc-page-container">
+          <rc-account-personal-data
+            [user]="vm.user"
+            [isRequesting]="vm.isRequesting"
+            [personalFormSchema]="personalFormSchema"
+          />
 
-        <rc-account-account-data
-          [user]="vm.user"
-          [isRequesting]="vm.isRequesting"
-          [emailFormSchema]="emailFormSchema"
-          [passwordFormSchema]="passwordFormSchema"
-        />
+          <rc-account-account-data
+            [user]="vm.user"
+            [isRequesting]="vm.isRequesting"
+            [emailFormSchema]="emailFormSchema"
+            [passwordFormSchema]="passwordFormSchema"
+          />
 
-        <rc-account-account-information
-          [accountInformationFormSchema]="accountInformationFormSchema"
-        />
+          <rc-account-account-information
+            [accountInformationFormSchema]="accountInformationFormSchema"
+          />
 
-        <rc-account-account-deletion
-          [user]="vm.user"
-          [isRequesting]="vm.isRequesting"
-        />
-      </rc-page-profile>
+          <rc-account-account-deletion
+            [user]="vm.user"
+            [isRequesting]="vm.isRequesting"
+          />
+        </div>
+      </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

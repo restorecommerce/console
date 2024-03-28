@@ -1,3 +1,5 @@
+@use './theme/_console-variables.scss' as *;
+
 // Flex utility classes
 .flex-basis-10 {
   flex-basis: 10%;
@@ -78,4 +80,18 @@
 
 .width-100 {
   width: 100%;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.break-word {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.highlight {
+  background-color: $yellow;
+  color: $black;
 }

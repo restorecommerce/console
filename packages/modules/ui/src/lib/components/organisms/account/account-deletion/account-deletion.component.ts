@@ -11,8 +11,6 @@ import { AlertService, AlertType } from '@vcl/ng-vcl';
 import { AccountFacade } from '@console-core/state';
 import { IUser } from '@console-core/types';
 
-import { RcActiveFormService } from '../../../../services';
-
 @Component({
   selector: 'rc-account-account-deletion',
   templateUrl: './account-deletion.component.html',
@@ -25,12 +23,9 @@ export class RcAccountDeletionComponent implements OnDestroy {
   @Input({ required: true })
   isRequesting!: boolean;
 
-  activeFrom$ = this.activeFormService.active$;
-
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly activeFormService: RcActiveFormService,
     private readonly alertService: AlertService,
     private readonly accountFacade: AccountFacade
   ) {}
@@ -40,7 +35,6 @@ export class RcAccountDeletionComponent implements OnDestroy {
   }
 
   onDeleteAccount() {
-    this.activeFormService.setActive('profileAccountDataDelete');
     this.subscriptions.sink = this.alertService
       .open({
         text: 'Do you really want to delete your account?',
@@ -48,15 +42,15 @@ export class RcAccountDeletionComponent implements OnDestroy {
         showCloseButton: true,
         showCancelButton: true,
         cancelButtonLabel: 'Cancel',
+        cancelButtonClass: 'transparent',
         confirmButtonLabel: 'Delete Account',
+        confirmButtonClass: 'button',
       })
       .subscribe((result) => {
-        if (result.action !== 'confirm') {
+        if (!this.user?.id || result.action !== 'confirm') {
           return;
         }
-        if (!this.user?.id) {
-          return;
-        }
+
         this.accountFacade.userDeleteRequest({
           ids: [this.user.id],
         });

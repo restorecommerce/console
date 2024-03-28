@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
 import { catchError, map, of, switchMap, take, tap } from 'rxjs';
 
 import { ROUTER } from '@console-core/config';
@@ -11,6 +11,7 @@ import { AccountFacade } from '../account';
 import { AppFacade } from '../app';
 
 import * as authnActions from './authn.actions';
+import { AuthnFacade } from './authn.facade';
 
 @Injectable()
 export class AuthnEffects {
@@ -251,12 +252,41 @@ export class AuthnEffects {
     { dispatch: false }
   );
 
-  signOut$ = createEffect(
+  signOutRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authnActions.signOutRequest),
+      concatLatestFrom(() => this.authnFacade.token$),
+      switchMap(([{ payload }, token]) => {
+        if (!token) {
+          return of(
+            authnActions.signOutFail({
+              error: 'your token is invalid',
+              showNotification: payload.showNotification,
+            })
+          );
+        }
+
+        return this.authnService.signOut({ token }).pipe(
+          map(() => authnActions.signOutSuccess({ payload })),
+          catchError((error: Error) =>
+            of(
+              authnActions.signOutFail({
+                error: error.message,
+                showNotification: payload.showNotification,
+              })
+            )
+          )
+        );
+      })
+    );
+  });
+
+  signOut = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(authnActions.signOut),
-        tap(({ payload }) => {
-          if (payload.showNotification) {
+        ofType(authnActions.signOutSuccess, authnActions.signOutFail),
+        tap((action) => {
+          if ('payload' in action && action.payload.showNotification) {
             this.appFacade.addNotification({
               content: 'signed out',
               type: ENotificationTypes.SUCCESS,
@@ -299,7 +329,7 @@ export class AuthnEffects {
 
   resetAuthnState$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(authnActions.signOut),
+      ofType(authnActions.signOutSuccess, authnActions.signOutFail),
       map(() => authnActions.resetAuthnState())
     );
   });
@@ -311,6 +341,7 @@ export class AuthnEffects {
     private readonly authnService: AuthnService,
     private readonly userService: UserService,
     private readonly appFacade: AppFacade,
+    private readonly authnFacade: AuthnFacade,
     private readonly accountFacade: AccountFacade
   ) {}
 }

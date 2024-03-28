@@ -11,7 +11,7 @@ export const modulesAuthnRoutes: Route[] = [
     component: AuthnTemplateComponent,
     children: [
       {
-        path: ROUTER.pages.main.path,
+        path: '',
         redirectTo: ROUTER.pages.main.children.auth.children.signIn.path,
         pathMatch: 'full',
       },

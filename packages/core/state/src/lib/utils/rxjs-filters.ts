@@ -6,6 +6,11 @@ import {
   UnaryFunction,
 } from 'rxjs';
 
+export const filterEmpty = <T>(): UnaryFunction<
+  Observable<T | ''>,
+  Observable<T>
+> => pipe(filter((value) => value !== '') as OperatorFunction<T | '', T>);
+
 export const filterNullish = <T>(): UnaryFunction<
   Observable<T | null>,
   Observable<T>
@@ -27,4 +32,14 @@ export const filterNullishAndUndefined = <T>(): UnaryFunction<
     filter(
       (value) => value !== null && value !== undefined
     ) as OperatorFunction<T | null | undefined, T>
+  );
+
+export const filterEmptyAndNullishAndUndefined = <T>(): UnaryFunction<
+  Observable<T | null | undefined | ''>,
+  Observable<T>
+> =>
+  pipe(
+    filter(
+      (value) => value !== null && value !== undefined && value !== ''
+    ) as OperatorFunction<T | null | undefined | '', T>
   );

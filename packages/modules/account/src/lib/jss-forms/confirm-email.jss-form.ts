@@ -8,9 +8,9 @@ interface ISchemaOptions {
   user: IUser;
 }
 
-export const buildConfirmEmailSchema = (
-  options: ISchemaOptions
-): VCLFormFieldSchemaRoot => {
+export const buildConfirmEmailSchema = ({
+  user,
+}: ISchemaOptions): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
     fields: [
@@ -19,7 +19,7 @@ export const buildConfirmEmailSchema = (
         label: 'New Email',
         type: 'input',
         disabled: true,
-        defaultValue: options.user.newEmail,
+        defaultValue: user.newEmail,
         validators: [Validators.required, Validators.email],
         params: {},
         hints: [
@@ -32,6 +32,21 @@ export const buildConfirmEmailSchema = (
             type: 'error',
             error: 'email',
             message: 'This field should be a valid email address.',
+          },
+        ],
+      },
+      {
+        type: 'buttons',
+        buttons: [
+          {
+            type: 'button',
+            label: 'Cancel',
+            action: 'reset',
+            class: 'transparent',
+          },
+          {
+            type: 'submit',
+            label: 'Save',
           },
         ],
       },

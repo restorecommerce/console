@@ -1,12 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ROUTER } from '@console-core/config';
 
 @Component({
   selector: 'app-module-management-index',
   template: `
     <div>
-      <p>Management</p>
+      <p>Management content</p>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ManagementComponent {}
+export class ManagementComponent implements OnInit {
+  constructor(private readonly router: Router) {}
+
+  ngOnInit(): void {
+    this.router.navigate(
+      ROUTER.pages.main.children.management.children.iam.getLink()
+    );
+  }
+}

@@ -52,10 +52,10 @@ export interface IRouterConstant {
           children: {
             index: IRouterItem;
             confirmEmail: IRouterItem;
+            profile: IRouterItem;
+            preferences: IRouterItem;
           };
         };
-        profile: IRouterItem;
-        preferences: IRouterItem;
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {
@@ -102,7 +102,9 @@ export interface IRouterConstant {
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
-                countries: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
               };
             };
             contactPoints: {

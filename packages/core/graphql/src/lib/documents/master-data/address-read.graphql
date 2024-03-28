@@ -1,0 +1,25 @@
+query MasterDataAddressRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    address {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            status {
+              code
+              message
+            }
+            payload {
+              ...AddressFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

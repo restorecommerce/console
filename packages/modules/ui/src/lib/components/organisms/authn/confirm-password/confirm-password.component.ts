@@ -49,6 +49,10 @@ export class RcConfirmPasswordComponent {
   ) {}
 
   onClickConfirm(): void {
+    if (this.form.invalid || this.form.pristine) {
+      return;
+    }
+
     this.authnFacade.confirmPassword({
       activationCode: this.activationCode,
       identifier: this.formFields.identifier.value,

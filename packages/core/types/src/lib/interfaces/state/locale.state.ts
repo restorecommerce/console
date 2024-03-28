@@ -1,11 +1,9 @@
 import { EntityState } from '@ngrx/entity';
 
-import { IIoRestorecommerceLocaleLocale } from '@console-core/graphql';
+import { ILocale } from '../entities';
 
 import { IBaseStore } from './store.state';
 
-export interface ILocaleState
-  extends EntityState<IIoRestorecommerceLocaleLocale>,
-    IBaseStore {
+export interface ILocaleState extends EntityState<ILocale>, IBaseStore {
   selectedId: string | null;
 }

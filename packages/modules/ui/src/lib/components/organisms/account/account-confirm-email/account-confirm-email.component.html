@@ -1,24 +1,18 @@
 <ng-container *ngIf="routerParams$ | async as params">
   <div class="row">
-    <div class="flex-4">
+    <div class="flex-4-lg flex-4-md flex-12">
       <h3>Confirm Email</h3>
     </div>
-    <div class="flex-8">
+    <div class="flex-8-lg flex-8-md flex-12">
       <div class="page-right-side">
         <vcl-jss-form
+          autocomplete="off"
           ngDefaultControl
           #confirmEmailForm="vclJssForm"
           [schema]="confirmEmailFormSchema"
-        ></vcl-jss-form>
-
-        <div class="row justify-end loose-button-group">
-          <rc-submit-button
-            [isBusy]="isRequesting"
-            (click)="onConfirmEmailForm(params)"
-          >
-            Confirm email</rc-submit-button
-          >
-        </div>
+          (formAction)="onAction($event)"
+          (formSubmit)="onSubmit(params)"
+        />
       </div>
     </div>
   </div>

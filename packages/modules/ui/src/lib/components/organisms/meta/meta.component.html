@@ -1,0 +1,36 @@
+<div class="data-list m-0 p-0 ng-star-inserted">
+  <div class="my-2 rc-lv-l-heading">Information</div>
+  <ul class="data-list-body no-border">
+    <li class="row data-list-item justify-between">
+      <div class="flex text">ID:</div>
+      <div class="flex text align-right rc-lv-label">
+        {{ formattedMeta.id }}
+      </div>
+    </li>
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Created:</div>
+      <div class="flex text align-right rc-lv-label">
+        {{ formattedMeta.created | date : 'MMM d, y, hh:mm:ss a' }}
+      </div>
+    </li>
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Modified:</div>
+      <div class="flex text align-right rc-lv-label">
+        {{ formattedMeta.modified | date : 'MMM d, y, hh:mm:ss a' }}
+      </div>
+    </li>
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Created by:</div>
+      <div class="flex text align-right rc-lv-label">
+        {{ formattedMeta.createdBy }}
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Modified by:</div>
+      <div class="flex text align-right rc-lv-label">
+        {{ formattedMeta.modifiedBy }}
+      </div>
+    </li>
+  </ul>
+</div>

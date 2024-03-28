@@ -1,4 +1,4 @@
-import { IUser } from '../user';
+import { IUser } from '../entities';
 
 import { IBaseStore } from './store.state';
 

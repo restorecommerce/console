@@ -1,33 +1,18 @@
-<ng-container *ngIf="activeFrom$ | async as activeForm">
-  <div class="row">
-    <div class="flex-4">
-      <h3>Personal Data</h3>
-      <p>Change your name and other details</p>
-    </div>
-    <div class="flex-8">
-      <div class="page-right-side">
-        <vcl-jss-form
-          ngDefaultControl
-          #personalForm="vclJssForm"
-          [schema]="personalFormSchema"
-        ></vcl-jss-form>
-
-        <div class="row justify-end loose-button-group">
-          <rc-submit-button
-            [isDisabled]="
-              personalForm.form.invalid || personalForm.form.pristine
-            "
-            [isBusy]="isRequesting && activeForm.form === 'profilePersonalData'"
-            (click)="
-              personalForm.form.valid && !personalForm.form.pristine
-                ? onSavePersonalForm()
-                : $event.preventDefault()
-            "
-          >
-            Save</rc-submit-button
-          >
-        </div>
-      </div>
+<div class="row">
+  <div class="flex-4-lg flex-4-md flex-12">
+    <h3>Personal Data</h3>
+    <p>Change your name and other details</p>
+  </div>
+  <div class="flex-8-lg flex-8-md flex-12">
+    <div class="page-right-side">
+      <vcl-jss-form
+        autocomplete="off"
+        ngDefaultControl
+        #personalForm="vclJssForm"
+        [schema]="personalFormSchema"
+        (formAction)="onAction($event)"
+        (formSubmit)="onSubmit()"
+      />
     </div>
   </div>
-</ng-container>
+</div>

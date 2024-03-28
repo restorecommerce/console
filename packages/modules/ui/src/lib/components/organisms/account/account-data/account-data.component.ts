@@ -10,8 +10,6 @@ import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { AccountFacade, AppFacade } from '@console-core/state';
 import { ENotificationTypes, IUser } from '@console-core/types';
 
-import { RcActiveFormService } from '../../../../services';
-
 @Component({
   selector: 'rc-account-account-data',
   templateUrl: './account-data.component.html',
@@ -19,7 +17,7 @@ import { RcActiveFormService } from '../../../../services';
 })
 export class RcAccountDataComponent {
   @Input({ required: true })
-  user!: IUser | null;
+  user!: IUser;
 
   @Input({ required: true })
   isRequesting!: boolean;
@@ -36,23 +34,35 @@ export class RcAccountDataComponent {
   @ViewChild('passwordForm')
   passwordForm!: JssFormComponent;
 
-  activeFrom$ = this.activeFormService.active$;
-
   constructor(
-    private readonly activeFormService: RcActiveFormService,
     private readonly appFacade: AppFacade,
     private readonly accountFacade: AccountFacade
   ) {}
 
+  onAction(action: string): void {
+    if (action === 'resetEmailForm') {
+      this.emailForm.form.resetForm(this.emailForm.defaultValue);
+    } else if (action === 'resetPasswordForm') {
+      this.passwordForm.form.resetForm(this.passwordForm.defaultValue);
+    }
+  }
+
   onSaveEmailForm(): void {
-    this.activeFormService.setActive('profileAccountDataEmail');
+    if (this.emailForm.form.invalid || this.emailForm.form.pristine) {
+      return;
+    }
+
     this.accountFacade.userChangeEmailRequest({
-      identifier: this.user?.name || '',
+      identifier: this.user.name,
       newEmail: this.emailForm.form.value.email,
     });
   }
 
   onSavePasswordForm(): void {
+    if (this.passwordForm.form.invalid || this.passwordForm.form.pristine) {
+      return;
+    }
+
     const { currentPassword, password, passwordConfirmation } =
       this.passwordForm.form.value;
 
@@ -64,7 +74,6 @@ export class RcAccountDataComponent {
       return;
     }
 
-    this.activeFormService.setActive('profileAccountDataPassword');
     this.accountFacade.userChangePasswordRequest({
       password: currentPassword,
       newPassword: password,

@@ -20,6 +20,10 @@ The goal is to make it as convenient and efficient as possible for these tasks.
 
 ## Development
 
+### Install
+
+Run `npm i --legacy-peer-deps`
+
 ### Code Scaffolding
 
 To generate code using Nx Angular, you can utilize the following commands:

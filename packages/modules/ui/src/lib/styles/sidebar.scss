@@ -30,12 +30,12 @@
 
 .rc-sidebar-show-button {
   border-radius: 50%;
-  height: 3em;
+  height: 3rem;
   position: absolute;
   top: 0;
   left: -1.2rem;
   margin: auto;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   bottom: 0;
   z-index: 100;
 
@@ -46,14 +46,14 @@
 }
 
 rc-header.application-header .logo {
-  margin-left: 0.5em;
+  margin-left: 0.5rem;
 }
 
 .rc-drawer-navigation {
   background-color: $drawer-bg-color;
 
   & .navigation {
-    margin-bottom: 7em;
+    margin-bottom: 7rem;
     background-color: $drawer-bg-color;
 
     & .navigation-item {

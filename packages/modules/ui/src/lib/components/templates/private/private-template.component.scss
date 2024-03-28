@@ -2,28 +2,22 @@
 
 #target-popover-user {
   position: relative;
-  top: 1.25em;
+  top: 1.25rem;
 }
 
 #wrapper-popover-user {
-  width: 10.625em;
+  width: 11rem;
   color: $wrapper-popover-user-link-color;
 
   vcl-icon {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
 
   div {
+    padding: 0 0.75rem;
+
     .text {
-      padding-left: 5px;
-    }
-
-    &.selected {
-      color: $white;
-
-      vcl-icon {
-        color: $white;
-      }
+      padding-left: 0.3rem;
     }
   }
 }

@@ -114,19 +114,19 @@ export const ROUTER: Readonly<IRouterConstant> = {
                     ]
                   : ['', 'account', 'confirm-email'],
             },
+            profile: {
+              path: 'profile',
+              link: '/account/profile',
+              title: 'Profile',
+              getLink: () => ['', 'account', 'profile'],
+            },
+            preferences: {
+              path: 'preferences',
+              link: '/account/preferences',
+              title: 'Preferences',
+              getLink: () => ['', 'account', 'preferences'],
+            },
           },
-        },
-        profile: {
-          path: 'profile',
-          link: '/account/profile',
-          title: 'Profile',
-          getLink: () => ['', 'account', 'profile'],
-        },
-        preferences: {
-          path: 'preferences',
-          link: '/account/preferences',
-          title: 'Preferences',
-          getLink: () => ['', 'account', 'preferences'],
         },
         layout: {
           path: 'layout',
@@ -297,18 +297,33 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'countries'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/countries',
-                  getLink: () => ['', 'management', 'countries'],
+                  path: 'index',
+                  link: '/management/countries/index',
+                  getLink: () => ['', 'management', 'countries', 'index'],
                   title: 'Countries',
                 },
-                countries: {
-                  path: ':id',
-                  link: '/management/countries/:id',
+                create: {
+                  path: 'create',
+                  link: '/management/countries/create',
+                  title: 'Create Country',
+                  getLink: () => ['', 'management', 'countries', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/countries/:id/view',
                   title: 'Country',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id
-                      ? ['', 'management', 'countries', params.id]
+                      ? ['', 'management', 'countries', params.id, 'view']
+                      : ['', 'management', 'countries'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/countries/:id/edit',
+                  title: 'Edit Country',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'countries', params.id, 'edit']
                       : ['', 'management', 'countries'],
                 },
               },

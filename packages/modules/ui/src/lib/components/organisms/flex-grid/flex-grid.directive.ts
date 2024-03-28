@@ -5,7 +5,7 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class RcRowDirective {
   @HostBinding('class.row')
-  @HostBinding('class.grid-gutterx-3')
-  @HostBinding('class.px-3')
+  @HostBinding('class.grid-gutterx-2')
+  @HostBinding('class.px-2')
   _hostClasses = true;
 }

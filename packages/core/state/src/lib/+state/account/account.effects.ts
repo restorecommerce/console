@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
-import { IIoRestorecommerceUserUser } from '@console-core/graphql';
-import { ENotificationTypes } from '@console-core/types';
+import { ENotificationTypes, IUser } from '@console-core/types';
 
 import { UserService } from '../../services';
 import { AppFacade } from '../app';
@@ -24,7 +23,7 @@ export class AccountEffects {
             const operationStatus =
               identity?.user?.Find?.details?.operationStatus;
             const payload = identity?.user?.Find?.details?.items?.[0]
-              .payload as IIoRestorecommerceUserUser;
+              .payload as IUser;
 
             if (operationStatus?.code !== 200 || !payload) {
               throw new Error(operationStatus?.message || 'unknown error');
@@ -57,7 +56,7 @@ export class AccountEffects {
             }
 
             return accountActions.userFindByTokenSuccess({
-              payload: data as IIoRestorecommerceUserUser,
+              payload: data as IUser,
             });
           }),
           catchError((error: Error) =>
@@ -83,7 +82,7 @@ export class AccountEffects {
             }
 
             const payload = identity?.user?.Mutate?.details?.items?.[0]
-              ?.payload as IIoRestorecommerceUserUser;
+              ?.payload as IUser;
 
             if (!payload) {
               throw new Error('user not found');
@@ -305,7 +304,7 @@ export class AccountEffects {
 
   resetAccountState$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(authnActions.signOut),
+      ofType(authnActions.signOutSuccess, authnActions.signOutFail),
       map(() => accountActions.resetAccountState())
     );
   });

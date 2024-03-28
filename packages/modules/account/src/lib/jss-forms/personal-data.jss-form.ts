@@ -8,9 +8,9 @@ interface ISchemaOptions {
   user: IUser;
 }
 
-export const buildPersonalDataSchema = (
-  options: ISchemaOptions
-): VCLFormFieldSchemaRoot => {
+export const buildPersonalDataSchema = ({
+  user,
+}: ISchemaOptions): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
     fields: [
@@ -18,7 +18,7 @@ export const buildPersonalDataSchema = (
         name: 'firstName',
         label: 'First Name',
         type: 'input',
-        defaultValue: options.user.firstName,
+        defaultValue: user.firstName,
         validators: [Validators.required],
         params: {},
         hints: [
@@ -33,7 +33,7 @@ export const buildPersonalDataSchema = (
         name: 'lastName',
         label: 'Last Name',
         type: 'input',
-        defaultValue: options.user.lastName,
+        defaultValue: user.lastName,
         validators: [Validators.required],
         params: {},
         hints: [
@@ -41,6 +41,21 @@ export const buildPersonalDataSchema = (
             type: 'error',
             error: 'required',
             message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        type: 'buttons',
+        buttons: [
+          {
+            type: 'button',
+            label: 'Cancel',
+            action: 'reset',
+            class: 'transparent',
+          },
+          {
+            type: 'submit',
+            label: 'Save',
           },
         ],
       },
