@@ -1,9 +1,6 @@
 @use '@vcl/vcl/theme' as *;
 
 .data-list {
-  display: block;
-  margin-bottom: 0;
-
   & .data-list-header {
     padding: 0;
   }

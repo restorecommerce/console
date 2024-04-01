@@ -62,6 +62,7 @@ import {
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
+  RcCountryViewComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -129,6 +130,7 @@ const organisms = [
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
+  RcCountryViewComponent,
 ];
 
 const pages = [

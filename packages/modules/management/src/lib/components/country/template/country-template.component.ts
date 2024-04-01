@@ -65,6 +65,7 @@ export class CountryTemplateComponent implements OnInit {
     ),
     total: this.countryFacade.total$,
     isRequesting: this.countryFacade.isRequesting$,
+    isMutating: this.countryFacade.isMutating$,
     selectedCountryId: this.countryFacade.selectedId$,
     selectedCountry: this.countryFacade.selected$.pipe(
       map((country) => country || null)

@@ -40,6 +40,7 @@ export class RcCrudMainComponent implements OnChanges, OnDestroy {
   @Input() isEdit = true;
   @Input() isDelete = true;
   @Input() isRequesting = false;
+  @Input() isMutating = false;
 
   private searchValueBehaviorSubject = new BehaviorSubject<string>('');
   private dataListBehaviorSubject = new BehaviorSubject<IDataListItem[]>([]);
