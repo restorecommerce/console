@@ -19,7 +19,7 @@ const reducer = createReducer<ILocaleState>(
     localeActions.localeReadRequest,
     (state): ILocaleState => ({
       ...state,
-      actionStatus: EActionStatus.CREATED,
+      actionStatus: EActionStatus.REQUESTING,
     })
   ),
   on(

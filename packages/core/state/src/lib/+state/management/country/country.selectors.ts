@@ -39,6 +39,11 @@ export const selectIsRequesting = createSelector(
   (state: ICountryState) => state.actionStatus === EActionStatus.REQUESTING
 );
 
+export const selectIsMutating = createSelector(
+  selectCountry,
+  (state: ICountryState) => state.actionStatus === EActionStatus.MUTATING
+);
+
 export const selectActionStatus = createSelector(
   selectCountry,
   (state: ICountryState) => state.actionStatus

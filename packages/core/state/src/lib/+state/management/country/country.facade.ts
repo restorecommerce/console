@@ -27,6 +27,7 @@ export class CountryFacade {
   readonly isRequesting$ = this.store.select(
     countrySelectors.selectIsRequesting
   );
+  readonly isMutating$ = this.store.select(countrySelectors.selectIsMutating);
   readonly actionStatus$ = this.store.select(
     countrySelectors.selectActionStatus
   );

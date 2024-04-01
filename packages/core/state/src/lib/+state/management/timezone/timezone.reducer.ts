@@ -20,7 +20,7 @@ const reducer = createReducer<ITimezoneState>(
     timezoneActions.timezoneReadRequest,
     (state): ITimezoneState => ({
       ...state,
-      actionStatus: EActionStatus.CREATED,
+      actionStatus: EActionStatus.REQUESTING,
     })
   ),
   on(

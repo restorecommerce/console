@@ -49,7 +49,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryCreateRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.MUTATING,
     })
   ),
   on(
@@ -72,7 +72,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryUpdateRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.MUTATING,
     })
   ),
   on(
@@ -98,7 +98,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryDeleteRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.MUTATING,
     })
   ),
   on(
