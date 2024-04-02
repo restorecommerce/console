@@ -6,7 +6,8 @@ import {
   OnDestroy,
   SimpleChanges,
 } from '@angular/core';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
 import { AlertService, AlertType } from '@vcl/ng-vcl';
@@ -34,13 +35,10 @@ export class RcCrudMainComponent implements OnChanges, OnDestroy {
   @Input() title = '';
   @Input() isBack = false;
   @Input() isSort = false;
-  @Input() isMeta = false;
   @Input() isRefetch = true;
   @Input() isCreate = true;
   @Input() isEdit = true;
   @Input() isDelete = true;
-  @Input() isRequesting = false;
-  @Input() isMutating = false;
 
   private searchValueBehaviorSubject = new BehaviorSubject<string>('');
   private dataListBehaviorSubject = new BehaviorSubject<IDataListItem[]>([]);
@@ -48,17 +46,17 @@ export class RcCrudMainComponent implements OnChanges, OnDestroy {
 
   readonly vm$ = combineLatest({
     searchValue: this.searchValueBehaviorSubject.asObservable(),
-    filteredDataList: this.dataListBehaviorSubject.asObservable(),
+    filteredData: this.dataListBehaviorSubject.asObservable(),
   }).pipe(
-    map(({ searchValue, filteredDataList }) => ({
+    map(({ searchValue, filteredData }) => ({
       searchValue,
-      filteredDataList: searchValue
-        ? filteredDataList.filter(
+      filteredData: searchValue
+        ? filteredData.filter(
             ({ label, subLabel = '' }) =>
               label.toLowerCase().includes(searchValue.toLowerCase()) ||
               subLabel?.toLowerCase().includes(searchValue.toLowerCase())
           )
-        : filteredDataList,
+        : filteredData,
     }))
   );
 
@@ -90,7 +88,7 @@ export class RcCrudMainComponent implements OnChanges, OnDestroy {
     this.actionStreams.read.next(null);
   }
 
-  onDelete(id: string): void {
+  onDelete(id: string | null): void {
     this.subscriptions.sink = this.alertService
       .open({
         text: `Do you really want to delete ${this.title}?`,
@@ -99,7 +97,7 @@ export class RcCrudMainComponent implements OnChanges, OnDestroy {
         showCancelButton: true,
         cancelButtonLabel: 'Cancel',
         cancelButtonClass: 'transparent',
-        confirmButtonLabel: `Delete ${this.feature.singular}`,
+        confirmButtonLabel: `Delete ${this.feature.name.singular}`,
         confirmButtonClass: 'button',
       })
       .subscribe((result) => {

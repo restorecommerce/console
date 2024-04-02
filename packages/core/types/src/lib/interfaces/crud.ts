@@ -14,14 +14,15 @@ export interface ICrudSort {
 export interface ICrudLinks {
   index: () => TRouterLink;
   create: () => TRouterLink;
-  edit: (id: string) => TRouterLink;
-  view: (id: string) => TRouterLink;
+  edit: (id: string | null) => TRouterLink;
+  view: (id: string | null) => TRouterLink;
 }
 
 export interface ICrudFeature {
-  name: string;
-  plural: string;
-  singular: string;
+  name: {
+    plural: string;
+    singular: string;
+  };
   links: ICrudLinks;
   icon?: string;
   iconClass?: string;

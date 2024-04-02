@@ -35,9 +35,6 @@ export class RcCrudCreateComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   create!: (data: any) => void;
 
-  @Input()
-  isRequesting = false;
-
   @ViewChild('createForm')
   createForm!: JssFormComponent;
 

@@ -20,9 +20,10 @@
         >
           <vcl-icon icon="mdi:home" />
         </button>
+        {{ feature.name.plural }} [{{ data.length }}]
         <button
           vcl-button
-          rcPrepend
+          rcAppend
           *ngIf="isCreate"
           [routerLink]="feature.links.create()"
           class="square half-transparent button"
@@ -30,7 +31,6 @@
         >
           <vcl-icon icon="mdi:plus" />
         </button>
-        {{ feature.plural }} [{{ data.length }}]
         <button
           vcl-button
           rcAppend
@@ -53,55 +53,47 @@
         />
       </div>
 
-      <ng-container *ngIf="!isRequesting; else templateIsBusy">
-        <ng-container
-          *ngIf="vm.filteredDataList.length > 0; else templateNoRecords"
-        >
-          <rc-data-list class="mb-4 pb-2">
-            <rc-data-list-item
-              *ngFor="let item of vm.filteredDataList; trackBy: trackByFn"
-              (click)="onSetSelectedId(item.id)"
-              [ngClass]="{ selected: item.id === id }"
-              [routerLink]="feature.links.view(item.id)"
-              role="option"
-            >
-              <rc-data-list-label
-                [innerHTML]="item.label | highlight : vm.searchValue"
+      <ng-container *ngIf="vm.filteredData.length > 0; else templateNoRecords">
+        <rc-data-list class="mb-4 pb-2">
+          <rc-data-list-item
+            *ngFor="let item of vm.filteredData; trackBy: trackByFn"
+            (click)="onSetSelectedId(item.id)"
+            [ngClass]="{ selected: item.id === id }"
+            [routerLink]="feature.links.view(item.id)"
+            role="option"
+          >
+            <rc-data-list-label
+              [innerHTML]="item.label | highlight : vm.searchValue"
+            />
+            <ng-container *ngIf="item.subLabel">
+              <rc-data-list-sublabel
+                [innerHTML]="item.subLabel | highlight : vm.searchValue"
               />
-              <ng-container *ngIf="item.subLabel">
-                <rc-data-list-sublabel
-                  [innerHTML]="item.subLabel | highlight : vm.searchValue"
-                />
-              </ng-container>
-            </rc-data-list-item>
-          </rc-data-list>
-        </ng-container>
+            </ng-container>
+          </rc-data-list-item>
+        </rc-data-list>
       </ng-container>
-
-      <!-- TODO: Add pagination here -->
     </div>
 
-    <ng-container
-      *ngIf="!isRequesting && ['view', 'create', 'edit'].includes(segment)"
-    >
+    <ng-container *ngIf="['view', 'create', 'edit'].includes(segment)">
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
           <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
             <rc-toolbar *ngIf="title !== 'null'">
               <button
-                *ngIf="id && ['edit'].includes(segment)"
+                *ngIf="isEdit && segment === 'edit'"
                 vcl-button
                 rcPrepend
                 [routerLink]="feature.links.view(id)"
                 class="square half-transparent button"
-                title="View &quot;{{ title }}&quot;"
+                title="Go back"
               >
                 <vcl-icon icon="mdi:arrow-left" />
               </button>
               <button
                 vcl-button
                 rcPrepend
-                *ngIf="isEdit && id"
+                *ngIf="isEdit && segment === 'view'"
                 [routerLink]="feature.links.edit(id)"
                 class="square half-transparent button"
                 title="Edit"
@@ -114,25 +106,23 @@
               <button
                 vcl-button
                 rcAppend
-                *ngIf="isDelete && id"
+                *ngIf="isDelete && ['view', 'edit'].includes(segment)"
                 (click)="onDelete(id)"
                 class="square half-transparent button"
-                title="Delete"
+                title="Delete &quot;{{ title }}&quot;"
               >
                 <vcl-icon icon="mdi:delete" />
               </button>
             </rc-toolbar>
             <div class="row">
               <div class="flex py-2">
-                <ng-container *ngIf="!isMutating; else templateIsBusy">
-                  <ng-content />
-                </ng-container>
+                <ng-content />
               </div>
             </div>
           </div>
 
           <div
-            *ngIf="id && isMeta && !isRequesting && !isMutating"
+            *ngIf="id"
             class="flex-4-lg flex-12-md flex-12-sm flex-12"
           >
             <rc-toolbar> Meta </rc-toolbar>
@@ -149,12 +139,6 @@
       </div>
     </ng-container>
   </div>
-
-  <ng-template #templateIsBusy>
-    <div class="pt-4">
-      <rc-busy-indicator />
-    </div>
-  </ng-template>
 
   <ng-template #templateNoRecords>
     <div class="pt-4">

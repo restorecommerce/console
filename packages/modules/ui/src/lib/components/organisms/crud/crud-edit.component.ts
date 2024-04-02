@@ -38,9 +38,6 @@ export class RcCrudEditComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   update!: (data: any) => void;
 
-  @Input()
-  isRequesting = false;
-
   @ViewChild('editForm')
   editForm!: JssFormComponent;
 
