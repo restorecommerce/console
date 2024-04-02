@@ -76,6 +76,7 @@ import {
   RcPageOverflowComponent,
   RcPageManagementComponent,
   RcPageAccountComponent,
+  RcPageOrderComponent,
 } from './components/pages';
 import {
   RcPrivateTemplateComponent,
@@ -145,6 +146,7 @@ const pages = [
   RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
   RcPageAccountComponent,
+  RcPageOrderComponent,
 ];
 
 const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
