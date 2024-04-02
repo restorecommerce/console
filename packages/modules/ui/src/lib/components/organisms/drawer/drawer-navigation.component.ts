@@ -18,7 +18,7 @@ import { NavigationStateService } from './drawer-navigation-state.service';
 })
 export class RcDrawerNavigationComponent {
   constructor(
-    public readonly elementRef: ElementRef<HTMLElement>,
+    readonly elementRef: ElementRef<HTMLElement>,
     private readonly navigationStateService: NavigationStateService
   ) {}
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { tap } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { AuthnFacade, RouterFacade } from '@console-core/state';
 

@@ -66,16 +66,16 @@ export class RcDrawerNavigationItemComponent
   private readonly subscriptions = new SubSink();
 
   constructor(
-    public readonly elementRef: ElementRef,
+    readonly elementRef: ElementRef,
     private readonly overlay: Overlay,
     private readonly viewContainerRef: ViewContainerRef,
     @Inject(RcDrawerNavigationItemComponent)
     @Optional()
     @SkipSelf()
-    public readonly parent: RcDrawerNavigationItemComponent,
+    readonly parent: RcDrawerNavigationItemComponent,
     @Inject(RcDrawerNavigationComponent)
     @SkipSelf()
-    public readonly nc: RcDrawerNavigationComponent,
+    readonly nc: RcDrawerNavigationComponent,
     private readonly navigationStateService: NavigationStateService
   ) {}
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { tap } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { REGEX, ROUTER } from '@console-core/config';
 import { AuthnFacade, RouterFacade } from '@console-core/state';

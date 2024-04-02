@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest, map, tap } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
