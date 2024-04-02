@@ -22,7 +22,6 @@ import { RcDrawerService } from '../../../services';
 @Component({
   selector: 'rc-private-template',
   templateUrl: './private-template.component.html',
-  styleUrls: ['./private-template.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {

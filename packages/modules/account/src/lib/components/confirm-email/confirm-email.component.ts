@@ -14,7 +14,6 @@ import { buildConfirmEmailSchema } from '../../jss-forms';
     <ng-container *ngIf="vm$ | async as vm">
       <rc-account-confirm-email
         [user]="vm.user"
-        [isRequesting]="vm.isRequesting"
         [confirmEmailFormSchema]="confirmEmailFormSchema"
       />
     </ng-container>
@@ -38,7 +37,6 @@ export class ConfirmEmailComponent {
         this.confirmEmailFormSchema = buildConfirmEmailSchema({ user });
       })
     ),
-    isRequesting: this.accountFacade.isRequesting$,
   });
 
   constructor(private readonly accountFacade: AccountFacade) {}

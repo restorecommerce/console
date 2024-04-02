@@ -13,7 +13,7 @@ import { AuthnFacade } from '@console-core/state';
 })
 export class RcPageActivationComponent {
   readonly vm$ = combineLatest({
-    isLoading: this.authnFacade.isLoading$,
+    isRequesting: this.authnFacade.isRequesting$,
     error: this.authnFacade.error$,
   });
 

@@ -20,9 +20,6 @@ export class RcAccountDeletionComponent implements OnDestroy {
   @Input({ required: true })
   user!: IUser | null;
 
-  @Input({ required: true })
-  isRequesting!: boolean;
-
   private readonly subscriptions = new SubSink();
 
   constructor(

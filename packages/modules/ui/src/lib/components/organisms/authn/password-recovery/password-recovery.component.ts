@@ -13,7 +13,6 @@ export class RcPasswordRecoveryComponent {
   form = this.fb.group({
     identifier: ['', [Validators.required]],
   });
-  isLoading$ = this.authnFacade.isLoading$;
 
   get formFields() {
     return {

@@ -23,7 +23,6 @@ export class RcSignUpComponent {
     },
     { validators: this.validationService.validatePasswordMatch }
   );
-  isLoading$ = this.authnFacade.isLoading$;
 
   get formFields() {
     return {

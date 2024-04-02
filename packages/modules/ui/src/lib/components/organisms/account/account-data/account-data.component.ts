@@ -20,9 +20,6 @@ export class RcAccountDataComponent {
   user!: IUser;
 
   @Input({ required: true })
-  isRequesting!: boolean;
-
-  @Input({ required: true })
   emailFormSchema!: VCLFormFieldSchemaRoot;
 
   @ViewChild('emailForm')

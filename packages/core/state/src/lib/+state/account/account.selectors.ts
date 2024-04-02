@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { STORE } from '@console-core/config';
-import { EActionStatus, IAccountState } from '@console-core/types';
+import { IAccountState } from '@console-core/types';
 
 export const selectAccount = createFeatureSelector<IAccountState>(
   STORE.states.accountState
@@ -10,21 +10,6 @@ export const selectAccount = createFeatureSelector<IAccountState>(
 export const selectUser = createSelector(
   selectAccount,
   (state: IAccountState) => state.user
-);
-
-export const selectIsRequesting = createSelector(
-  selectAccount,
-  (state: IAccountState) => state.actionStatus === EActionStatus.REQUESTING
-);
-
-export const selectIsUpdating = createSelector(
-  selectAccount,
-  (state: IAccountState) => state.actionStatus === EActionStatus.UPDATING
-);
-
-export const selectIsDeleting = createSelector(
-  selectAccount,
-  (state: IAccountState) => state.actionStatus === EActionStatus.DELETING
 );
 
 export const selectActionStatus = createSelector(

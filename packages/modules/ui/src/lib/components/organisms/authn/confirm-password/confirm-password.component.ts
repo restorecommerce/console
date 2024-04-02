@@ -22,7 +22,6 @@ export class RcConfirmPasswordComponent {
     { validators: this.validationService.validatePasswordMatch }
   );
   activationCode = '';
-  isLoading$ = this.authnFacade.isLoading$;
   routerParams$ = this.routerFacade.params$.pipe(
     tap((params) => {
       const { code: activationCode, identifier } = params;

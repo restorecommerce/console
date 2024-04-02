@@ -14,7 +14,6 @@ export class RcSignInComponent {
     identifier: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.pattern(REGEX.password)]],
   });
-  isLoading$ = this.authnFacade.isLoading$;
 
   get formFields() {
     return {

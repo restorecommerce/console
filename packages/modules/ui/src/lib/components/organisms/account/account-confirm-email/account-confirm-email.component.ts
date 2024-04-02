@@ -15,9 +15,6 @@ export class RcAccountConfirmEmailComponent {
   user!: IUser | null;
 
   @Input({ required: true })
-  isRequesting!: boolean;
-
-  @Input({ required: true })
   confirmEmailFormSchema!: VCLFormFieldSchemaRoot;
 
   @ViewChild('confirmEmailForm')
