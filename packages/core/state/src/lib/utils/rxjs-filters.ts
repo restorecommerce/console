@@ -1,10 +1,5 @@
-import {
-  filter,
-  Observable,
-  OperatorFunction,
-  pipe,
-  UnaryFunction,
-} from 'rxjs';
+import { Observable, OperatorFunction, pipe, UnaryFunction } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 export const filterEmpty = <T>(): UnaryFunction<
   Observable<T | ''>,

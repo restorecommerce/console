@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
-import { catchError, map, of, switchMap, take, tap } from 'rxjs';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import { ENotificationTypes } from '@console-core/types';

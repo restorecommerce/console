@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { Store } from '@ngrx/store';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { take } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { IGraphqlConfig } from './types/interfaces';
 
