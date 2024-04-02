@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest, map, tap } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -17,13 +18,13 @@ import { buildCountrySchema } from './jss-forms';
   selector: 'app-module-management-country-edit',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <div class="my-2 rc-lv-l-heading">Form</div>
-      <rc-crud-edit
-        [id]="vm.id"
-        [editFormSchema]="countryFormSchema"
-        [isRequesting]="vm.isRequesting"
-        [update]="countryFacade.update"
-      />
+      <div class="mt-2">
+        <rc-crud-edit
+          [id]="vm.id"
+          [editFormSchema]="countryFormSchema"
+          [update]="countryFacade.update"
+        />
+      </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,7 +53,6 @@ export class CountryEditComponent {
         this.countryFormSchema = buildCountrySchema({ country });
       })
     ),
-    isRequesting: this.countryFacade.isRequesting$,
   });
 
   constructor(

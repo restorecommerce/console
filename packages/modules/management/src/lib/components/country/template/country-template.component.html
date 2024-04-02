@@ -3,13 +3,10 @@
   [feature]="feature"
   [actionStreams]="actionStreams"
   [segment]="vm.segment"
-  [title]="vm.selectedCountry?.name || feature.singular"
+  [title]="vm.selectedCountry?.name || feature.name.singular"
   [data]="vm.data"
   [id]="vm.selectedCountryId"
   [meta]="vm.meta"
-  [isMeta]="!!vm.meta"
-  [isRequesting]="vm.isRequesting"
-  [isMutating]="vm.isMutating"
 >
   <router-outlet />
 </rc-crud-main>

@@ -4,7 +4,8 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { BehaviorSubject, combineLatest, delay, map, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map, tap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import { IoRestorecommerceResourcebaseSortSortOrder } from '@console-core/graphql';
@@ -14,7 +15,6 @@ import {
   ICrudFeature,
   ICrudSort,
   IDataListItem,
-  IMeta,
   TRouterCrudSegment,
 } from '@console-core/types';
 
@@ -28,19 +28,22 @@ export class CountryTemplateComponent implements OnInit {
   featureRouter =
     ROUTER.pages.main.children.management.children.countries.children;
 
-  public feature: ICrudFeature = {
-    name: 'Management Countries',
-    plural: 'Countries',
-    singular: 'Country',
+  feature: ICrudFeature = {
+    name: {
+      plural: 'Countries',
+      singular: 'Country',
+    },
     links: {
       index: () => this.featureRouter.index.getLink(),
       create: () => this.featureRouter.create.getLink(),
-      edit: (id: string) => this.featureRouter.edit.getLink({ id }),
-      view: (id: string) => this.featureRouter.view.getLink({ id }),
+      edit: (id: string | null) =>
+        this.featureRouter.edit.getLink({ id: id ?? undefined }),
+      view: (id: string | null) =>
+        this.featureRouter.view.getLink({ id: id ?? undefined }),
     },
   };
 
-  public actionStreams: ICrudActionStreams = {
+  actionStreams: ICrudActionStreams = {
     read: new BehaviorSubject<void | null>(null),
     setSelectedId: new BehaviorSubject<string | null>(null),
     delete: new BehaviorSubject<string | null>(null),
@@ -49,11 +52,13 @@ export class CountryTemplateComponent implements OnInit {
   readonly vm$ = combineLatest({
     segment: this.routerFacade.url$.pipe(
       map((url) => url.split('/').pop() as TRouterCrudSegment),
+      distinctUntilChanged(),
       tap((segment) => {
         if (['index', 'create'].includes(segment)) {
           this.actionStreams.setSelectedId.next(null);
         }
-      })
+      }),
+      debounceTime(10)
     ),
     data: this.countryFacade.all$.pipe(
       map((countries) => {
@@ -64,22 +69,18 @@ export class CountryTemplateComponent implements OnInit {
       })
     ),
     total: this.countryFacade.total$,
-    isRequesting: this.countryFacade.isRequesting$,
-    isMutating: this.countryFacade.isMutating$,
     selectedCountryId: this.countryFacade.selectedId$,
     selectedCountry: this.countryFacade.selected$.pipe(
       map((country) => country || null)
     ),
     meta: this.countryFacade.selected$.pipe(
-      map((country) => country || null),
-      map((country) => country?.meta || (null as IMeta | null))
+      map((country) => (country && country?.meta) || null)
     ),
     readAction: this.actionStreams.read
       .asObservable()
       .pipe(tap(() => this.countryFacade.read(this.sort))),
     setSelectedIdAction: this.actionStreams.setSelectedId.asObservable().pipe(
       tap((id) => this.countryFacade.setSelectedId(id)),
-      delay(10),
       tap(() => this.changeDetectorRef.detectChanges())
     ),
     deleteAction: this.actionStreams.delete.asObservable().pipe(
