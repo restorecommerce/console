@@ -33,6 +33,7 @@
     "@ngrx/entity": "16.1.0",
     "@ngrx/router-store": "16.1.0",
     "@ngrx/store": "16.1.0",
+    "@ngx-loading-bar/core": "^6.0.2",
     "@nx/angular": "16.5.3",
     "@vcl/ng-vcl": "^3.0.5",
     "@vcl/vcl": "^2.5.0",
