@@ -75,13 +75,17 @@
       </ng-container>
     </div>
 
-    <ng-container *ngIf="['view', 'create', 'edit'].includes(segment)">
+    <ng-container
+      *ngIf="
+        [urlSegment.VIEW, urlSegment.CREATE, urlSegment.EDIT].includes(segment)
+      "
+    >
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
           <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
             <rc-toolbar *ngIf="title !== 'null'">
               <button
-                *ngIf="isEdit && segment === 'edit'"
+                *ngIf="isEdit && segment === urlSegment.EDIT"
                 vcl-button
                 rcPrepend
                 [routerLink]="feature.links.view(id)"
@@ -93,7 +97,7 @@
               <button
                 vcl-button
                 rcPrepend
-                *ngIf="isEdit && segment === 'view'"
+                *ngIf="isEdit && segment === urlSegment.VIEW"
                 [routerLink]="feature.links.edit(id)"
                 class="square half-transparent button"
                 title="Edit"
@@ -106,7 +110,10 @@
               <button
                 vcl-button
                 rcAppend
-                *ngIf="isDelete && ['view', 'edit'].includes(segment)"
+                *ngIf="
+                  isDelete &&
+                  [urlSegment.VIEW, urlSegment.EDIT].includes(segment)
+                "
                 (click)="onDelete(id)"
                 class="square half-transparent button"
                 title="Delete &quot;{{ title }}&quot;"

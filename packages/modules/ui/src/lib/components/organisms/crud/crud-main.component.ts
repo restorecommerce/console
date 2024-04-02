@@ -16,7 +16,7 @@ import {
   ICrudActionStreams,
   IDataListItem,
   IMeta,
-  TRouterCrudSegment,
+  EUrlSegment,
   ICrudFeature,
 } from '@console-core/types';
 
@@ -28,7 +28,7 @@ import {
 export class RcCrudMainComponent implements OnChanges, OnDestroy {
   @Input({ required: true }) feature!: ICrudFeature;
   @Input({ required: true }) actionStreams!: ICrudActionStreams;
-  @Input({ required: true }) segment!: TRouterCrudSegment;
+  @Input({ required: true }) segment!: EUrlSegment;
   @Input({ required: true }) data: IDataListItem[] = [];
   @Input({ required: true }) id: string | null = null;
   @Input({ required: true }) meta: IMeta | null = null;
@@ -39,6 +39,8 @@ export class RcCrudMainComponent implements OnChanges, OnDestroy {
   @Input() isCreate = true;
   @Input() isEdit = true;
   @Input() isDelete = true;
+
+  readonly urlSegment = EUrlSegment;
 
   private searchValueBehaviorSubject = new BehaviorSubject<string>('');
   private dataListBehaviorSubject = new BehaviorSubject<IDataListItem[]>([]);

@@ -15,7 +15,7 @@ import {
   ICrudFeature,
   ICrudSort,
   IDataListItem,
-  TRouterCrudSegment,
+  EUrlSegment,
 } from '@console-core/types';
 
 @Component({
@@ -28,7 +28,7 @@ export class CountryTemplateComponent implements OnInit {
   featureRouter =
     ROUTER.pages.main.children.management.children.countries.children;
 
-  feature: ICrudFeature = {
+  readonly feature: ICrudFeature = {
     name: {
       plural: 'Countries',
       singular: 'Country',
@@ -43,18 +43,20 @@ export class CountryTemplateComponent implements OnInit {
     },
   };
 
-  actionStreams: ICrudActionStreams = {
+  readonly actionStreams: ICrudActionStreams = {
     read: new BehaviorSubject<void | null>(null),
     setSelectedId: new BehaviorSubject<string | null>(null),
     delete: new BehaviorSubject<string | null>(null),
   };
 
+  readonly urlSegment = EUrlSegment;
+
   readonly vm$ = combineLatest({
     segment: this.routerFacade.url$.pipe(
-      map((url) => url.split('/').pop() as TRouterCrudSegment),
+      map((url) => url.split('/').pop() as EUrlSegment),
       distinctUntilChanged(),
       tap((segment) => {
-        if (['index', 'create'].includes(segment)) {
+        if ([this.urlSegment.INDEX, this.urlSegment.CREATE].includes(segment)) {
           this.actionStreams.setSelectedId.next(null);
         }
       }),
