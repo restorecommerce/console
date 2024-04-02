@@ -1,10 +1,15 @@
 // Primary colors
-$white: white;
-$black: black;
-$gray: gray;
-$yellow: yellow;
+$white: #fff;
+$black: #000;
+$gray: #6a6a6a;
+$yellow: #ffca6b;
 
-// Accent colors
+// Brand colors
+$console-brand-accent-darker: #ffae44; // #d4882a; // Darker shade
+$console-brand-accent-dark: #ffae44; // #e5942d; // Dark shade
+$console-brand-accent: #ffae44;
+$console-brand-accent-light: #ffbb5a;
+$console-brand-accent-lighter: #ffc76f;
 
 // Other colors
 $gray-light: #f9f9f9;
