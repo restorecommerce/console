@@ -9,16 +9,16 @@ import { IMeta } from '@console-core/types';
 })
 export class RcMetaComponent {
   @Input()
-  id!: string;
+  id: string | null = null;
 
   @Input()
-  meta!: IMeta | null;
+  meta: IMeta | null = null;
 
   get formattedMeta(): IMeta {
     return {
-      id: this.id,
-      created: this.meta?.created || '',
-      modified: this.meta?.modified || '',
+      id: this.id || 'N/A',
+      created: this.meta?.created || 'N/A',
+      modified: this.meta?.modified || 'N/A',
       createdBy: this.meta?.createdBy || 'N/A',
       modifiedBy: this.meta?.modifiedBy || 'N/A',
     };
