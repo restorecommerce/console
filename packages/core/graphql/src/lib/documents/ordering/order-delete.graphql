@@ -1,0 +1,21 @@
+mutation OrderingOrderDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  ordering {
+    order {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

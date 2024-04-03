@@ -1,0 +1,23 @@
+mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
+  ordering {
+    order {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            status {
+              code
+              message
+            }
+            payload {
+              ...OrderFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

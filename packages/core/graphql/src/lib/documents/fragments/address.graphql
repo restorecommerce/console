@@ -34,9 +34,6 @@ fragment AddressFragment on IoRestorecommerceAddressAddress {
     longitude
   }
   meta {
-    created
-    modified
-    createdBy
-    modifiedBy
+    ...MetaFragment
   }
 }

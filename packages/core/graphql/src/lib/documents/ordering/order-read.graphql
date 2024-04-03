@@ -1,0 +1,23 @@
+query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  ordering {
+    order {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            status {
+              code
+              message
+            }
+            payload {
+              ...OrderFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
