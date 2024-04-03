@@ -128,25 +128,53 @@ export const ROUTER: Readonly<IRouterConstant> = {
             },
           },
         },
-        order: {
+        orders: {
           path: 'orders',
           link: '/orders',
           title: 'Orders',
           getLink: () => ['', 'orders'],
+          children: {
+            index: {
+              path: 'index',
+              link: '/orders/index',
+              getLink: () => ['', 'orders', 'index'],
+              title: 'Orders',
+            },
+            create: {
+              path: 'create',
+              link: '/orders/create',
+              title: 'Create Order',
+              getLink: () => ['', 'orders', 'create'],
+            },
+            view: {
+              path: ':id/view',
+              link: '/orders/:id/view',
+              title: 'Order',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id ? ['', 'orders', params.id, 'view'] : ['', 'orders'],
+            },
+            edit: {
+              path: ':id/edit',
+              link: '/orders/:id/edit',
+              title: 'Edit Order',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id ? ['', 'orders', params.id, 'edit'] : ['', 'orders'],
+            },
+          },
         },
-        product: {
+        products: {
           path: 'products',
           link: '/products',
           title: 'Products',
           getLink: () => ['', 'products'],
         },
-        invoice: {
+        invoices: {
           path: 'invoices',
           link: '/invoices',
           title: 'Invoices',
           getLink: () => ['', 'invoices'],
         },
-        fulfillment: {
+        fulfillments: {
           path: 'fulfillments',
           link: '/fulfillments',
           title: 'Fulfillments',
