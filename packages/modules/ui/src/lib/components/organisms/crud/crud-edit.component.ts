@@ -18,7 +18,7 @@ import { ModeType } from '@console-core/graphql';
           autocomplete="off"
           ngDefaultControl
           #editForm="vclJssForm"
-          [schema]="editFormSchema"
+          [schema]="schema"
           (formAction)="onAction($event)"
           (formSubmit)="onSubmit()"
         />
@@ -29,7 +29,7 @@ import { ModeType } from '@console-core/graphql';
 })
 export class RcCrudEditComponent {
   @Input({ required: true })
-  editFormSchema!: VCLFormFieldSchemaRoot;
+  schema!: VCLFormFieldSchemaRoot;
 
   @Input({ required: true })
   id!: string;

@@ -2,11 +2,59 @@
   *ngIf="vm$ | async as vm"
   [feature]="feature"
   [actionStreams]="actionStreams"
-  [segment]="vm.segment"
+  [urlSegment]="vm.urlSegment"
   [title]="vm.selectedCountry?.name || feature.name.singular"
-  [data]="vm.data"
   [id]="vm.selectedCountryId"
-  [meta]="vm.meta"
+  [total]="vm.dataList.length"
 >
-  <router-outlet />
+  <ng-container rc-crud-search>
+    <div
+      *ngIf="vm.dataList.length > 0"
+      class="flex"
+    >
+      <rc-searchbar
+        [value]="vm.searchValue"
+        (search)="onSearch($event)"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container rc-crud-data-list>
+    <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
+      <rc-data-list class="mb-4 pb-2">
+        <rc-data-list-item
+          *ngFor="let item of vm.dataList; trackBy: trackByFn"
+          (click)="actionStreams.setSelectedId.next(vm.selectedCountryId)"
+          [ngClass]="{ selected: item.id === vm.selectedCountryId }"
+          [routerLink]="feature.links.view(item.id)"
+          role="option"
+        >
+          <rc-data-list-label
+            [innerHTML]="item.name | highlight : vm.searchValue"
+          />
+          <rc-data-list-sublabel
+            [innerHTML]="item.geographicalName | highlight : vm.searchValue"
+          />
+        </rc-data-list-item>
+      </rc-data-list>
+    </ng-container>
+  </ng-container>
+
+  <ng-container rc-crud-router-outlet>
+    <router-outlet />
+  </ng-container>
+
+  <ng-container rc-crud-meta>
+    <rc-meta
+      *ngIf="vm.selectedCountryId"
+      [id]="vm.selectedCountryId"
+      [meta]="vm.selectedCountry?.meta || null"
+    />
+  </ng-container>
 </rc-crud-main>
+
+<ng-template #templateNoRecords>
+  <div class="pt-4">
+    <rc-no-records />
+  </div>
+</ng-template>

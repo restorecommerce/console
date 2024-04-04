@@ -1,21 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, tap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
-import { IoRestorecommerceResourcebaseSortSortOrder } from '@console-core/graphql';
+import {
+  IIoRestorecommerceResourcebaseReadRequest,
+  IoRestorecommerceResourcebaseSortSortOrder,
+} from '@console-core/graphql';
 import { CountryFacade, RouterFacade } from '@console-core/state';
 import {
   ICrudActionStreams,
   ICrudFeature,
-  ICrudSort,
-  IDataListItem,
   EUrlSegment,
+  ICountry,
 } from '@console-core/types';
 
 @Component({
@@ -49,42 +46,44 @@ export class CountryTemplateComponent implements OnInit {
     delete: new BehaviorSubject<string | null>(null),
   };
 
-  readonly urlSegment = EUrlSegment;
+  private queryVariable: IIoRestorecommerceResourcebaseReadRequest = {
+    sorts: [
+      {
+        field: 'name',
+        order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
+      },
+    ],
+    search: {
+      caseSensitive: false,
+      search: '',
+      fields: ['name', 'geographical_name', 'country_code'],
+    },
+  };
+
+  private searchValue = new BehaviorSubject<string>('');
 
   readonly vm$ = combineLatest({
-    segment: this.routerFacade.url$.pipe(
+    urlSegment: this.routerFacade.url$.pipe(
       map((url) => url.split('/').pop() as EUrlSegment),
       distinctUntilChanged(),
-      tap((segment) => {
-        if ([this.urlSegment.INDEX, this.urlSegment.CREATE].includes(segment)) {
-          this.actionStreams.setSelectedId.next(null);
+      tap((urlSegment) => {
+        if ([EUrlSegment.INDEX, EUrlSegment.CREATE].includes(urlSegment)) {
+          this.countryFacade.setSelectedId(null);
         }
       }),
       debounceTime(10)
     ),
-    data: this.countryFacade.all$.pipe(
-      map((countries) => {
-        return countries.map((country) => ({
-          id: country.id || 'N/A',
-          label: country.name || 'N/A',
-        })) as IDataListItem[];
-      })
-    ),
-    total: this.countryFacade.total$,
+    dataList: this.countryFacade.all$,
     selectedCountryId: this.countryFacade.selectedId$,
     selectedCountry: this.countryFacade.selected$.pipe(
       map((country) => country || null)
     ),
-    meta: this.countryFacade.selected$.pipe(
-      map((country) => (country && country?.meta) || null)
-    ),
     readAction: this.actionStreams.read
       .asObservable()
-      .pipe(tap(() => this.countryFacade.read(this.sort))),
-    setSelectedIdAction: this.actionStreams.setSelectedId.asObservable().pipe(
-      tap((id) => this.countryFacade.setSelectedId(id)),
-      tap(() => this.changeDetectorRef.detectChanges())
-    ),
+      .pipe(tap(() => this.countryFacade.read(this.queryVariable))),
+    setSelectedIdAction: this.actionStreams.setSelectedId
+      .asObservable()
+      .pipe(tap((id) => this.countryFacade.setSelectedId(id))),
     deleteAction: this.actionStreams.delete.asObservable().pipe(
       tap((id) => {
         if (id === null) {
@@ -93,24 +92,35 @@ export class CountryTemplateComponent implements OnInit {
         this.countryFacade.delete({ ids: [id] });
       })
     ),
+    searchValue: this.searchValue.asObservable().pipe(
+      debounceTime(300),
+      tap((value) => {
+        this.queryVariable = {
+          ...this.queryVariable,
+          search: {
+            ...this.queryVariable.search,
+            search: value,
+          },
+        };
+        this.countryFacade.read(this.queryVariable);
+      })
+    ),
   });
 
-  private sort: ICrudSort = {
-    sorts: [
-      {
-        field: 'name',
-        order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
-      },
-    ],
-  };
-
   constructor(
-    private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly countryFacade: CountryFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 
   ngOnInit(): void {
-    this.countryFacade.read(this.sort);
+    this.countryFacade.read(this.queryVariable);
+  }
+
+  onSearch(value: string): void {
+    this.searchValue.next(value);
+  }
+
+  trackByFn(_: number, item: ICountry) {
+    return item.id;
   }
 }

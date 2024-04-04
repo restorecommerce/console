@@ -21,8 +21,8 @@ import { buildCountrySchema } from './jss-forms';
       <div class="mt-2">
         <rc-crud-edit
           [id]="vm.id"
-          [editFormSchema]="countryFormSchema"
-          [update]="countryFacade.update"
+          [schema]="schema"
+          [update]="update"
         />
       </div>
     </ng-container>
@@ -30,7 +30,8 @@ import { buildCountrySchema } from './jss-forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryEditComponent {
-  countryFormSchema!: VCLFormFieldSchemaRoot;
+  schema!: VCLFormFieldSchemaRoot;
+  update = this.countryFacade.update;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
@@ -50,7 +51,7 @@ export class CountryEditComponent {
       }),
       filterEmptyAndNullishAndUndefined(),
       tap((country) => {
-        this.countryFormSchema = buildCountrySchema({ country });
+        this.schema = buildCountrySchema({ country });
       })
     ),
   });
@@ -58,6 +59,6 @@ export class CountryEditComponent {
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    public readonly countryFacade: CountryFacade
+    private readonly countryFacade: CountryFacade
   ) {}
 }

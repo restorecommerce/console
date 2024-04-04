@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -14,8 +13,8 @@ import { buildCountrySchema } from './jss-forms';
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
         <rc-crud-create
-          [createFormSchema]="countryFormSchema"
-          [create]="countryFacade.create"
+          [schema]="schema"
+          [create]="create"
         />
       </div>
     </ng-container>
@@ -23,17 +22,12 @@ import { buildCountrySchema } from './jss-forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryCreateComponent {
-  countryFormSchema: VCLFormFieldSchemaRoot = buildCountrySchema({});
+  schema: VCLFormFieldSchemaRoot = buildCountrySchema({});
+  create = this.countryFacade.create;
 
   readonly vm$ = combineLatest({
-    country: this.countryFacade.selected$.pipe(
-      tap((country) => {
-        if (country && country.id) {
-          this.countryFacade.setSelectedId(null);
-        }
-      })
-    ),
+    country: this.countryFacade.selected$,
   });
 
-  constructor(public readonly countryFacade: CountryFacade) {}
+  constructor(private readonly countryFacade: CountryFacade) {}
 }

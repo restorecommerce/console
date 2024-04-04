@@ -1,15 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 
-import { IoRestorecommerceResourcebaseSortSortOrder } from '@console-core/graphql';
-
 import { TRouterLink } from '../types';
-
-export interface ICrudSort {
-  sorts: {
-    field: string;
-    order: IoRestorecommerceResourcebaseSortSortOrder;
-  }[];
-}
 
 export interface ICrudLinks {
   index: () => TRouterLink;

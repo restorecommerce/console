@@ -18,7 +18,7 @@ import { ModeType } from '@console-core/graphql';
           autocomplete="off"
           ngDefaultControl
           #createForm="vclJssForm"
-          [schema]="createFormSchema"
+          [schema]="schema"
           (formAction)="onAction($event)"
           (formSubmit)="onSubmit()"
         />
@@ -29,7 +29,7 @@ import { ModeType } from '@console-core/graphql';
 })
 export class RcCrudCreateComponent {
   @Input({ required: true })
-  createFormSchema!: VCLFormFieldSchemaRoot;
+  schema!: VCLFormFieldSchemaRoot;
 
   @Input({ required: true })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
