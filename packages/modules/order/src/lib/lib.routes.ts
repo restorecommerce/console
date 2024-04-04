@@ -9,7 +9,7 @@ export const modulesOrderRoutes: Route[] = [
   {
     path: '',
     component: OrderTemplateComponent,
-    title: ROUTER.pages.main.children.order.title,
+    title: ROUTER.pages.main.children.orders.title,
     children: [
       {
         path: '',

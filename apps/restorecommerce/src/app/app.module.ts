@@ -19,16 +19,16 @@ import { RoutesTitleStrategyService } from './routes-title-strategy.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppStateModule,
     BrowserModule,
     BrowserAnimationsModule,
+    CoreGraphQLModule.forRoot({
+      api: environment.urls.graphql,
+    }),
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {
       initialNavigation: 'enabledBlocking',
     }),
-    CoreGraphQLModule.forRoot({
-      api: environment.urls.graphql,
-    }),
-    AppStateModule,
     VCLProgressBarModule,
   ],
   providers: [

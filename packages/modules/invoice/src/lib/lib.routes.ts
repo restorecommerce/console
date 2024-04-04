@@ -9,7 +9,7 @@ export const modulesInvoiceRoutes: Route[] = [
   {
     path: '',
     component: InvoiceTemplateComponent,
-    title: ROUTER.pages.main.children.invoice.title,
+    title: ROUTER.pages.main.children.invoices.title,
     children: [
       {
         path: '',

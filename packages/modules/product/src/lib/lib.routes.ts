@@ -9,7 +9,7 @@ export const modulesProductRoutes: Route[] = [
   {
     path: '',
     component: ProductTemplateComponent,
-    title: ROUTER.pages.main.children.product.title,
+    title: ROUTER.pages.main.children.products.title,
     children: [
       {
         path: '',
