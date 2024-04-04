@@ -12,15 +12,5 @@ export class RcMetaComponent {
   id: string | null = null;
 
   @Input()
-  meta: IMeta | null = null;
-
-  get formattedMeta(): IMeta {
-    return {
-      id: this.id || 'N/A',
-      created: this.meta?.created || 'N/A',
-      modified: this.meta?.modified || 'N/A',
-      createdBy: this.meta?.createdBy || 'N/A',
-      modifiedBy: this.meta?.modifiedBy || 'N/A',
-    };
-  }
+  meta?: IMeta | null = null;
 }

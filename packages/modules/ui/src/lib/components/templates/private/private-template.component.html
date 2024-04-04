@@ -280,7 +280,7 @@
     </rc-drawer-navigation>
 
     <div class="container">
-      <div class="row grid-gutterx-2 px-2">
+      <div class="row grid-gutterx-2">
         <div class="flex">
           <rc-page-header />
         </div>
@@ -298,14 +298,18 @@
   >
     <div
       id="wrapper-popover-user"
-      class="data-list item-selectability item-hover-highlight m-0 p-0 ng-star-inserted"
+      class="data-list item-selectability item-hover-highlight m-0 p-0"
     >
-      <ul class="data-list-body data-list-user-menu-body no-border">
+      <ul
+        class="data-list-body no-border"
+        role="listbox"
+        aria-multiselectable="false"
+      >
         <li
           [routerLink]="
             ROUTER.pages.main.children.account.children.profile.link
           "
-          class="data-list-item justify-between center"
+          class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>
@@ -318,7 +322,7 @@
           [routerLink]="
             ROUTER.pages.main.children.account.children.preferences.link
           "
-          class="data-list-item justify-between center"
+          class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>
@@ -329,7 +333,7 @@
         </li>
         <li
           [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
-          class="data-list-item justify-between center"
+          class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>
