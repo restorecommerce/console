@@ -15,10 +15,10 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 export class RcDataListComponent {
   @HostBinding('class.data-list')
   @HostBinding('class.rc-data-list')
-  @HostBinding('class.scrollable')
   @HostBinding('class.item-selectability')
   @HostBinding('class.item-hover-highlight')
   @HostBinding('class.no-border')
+  @HostBinding('class.scrollable')
   @HostBinding('class.y')
   _hostClasses = true;
 }
