@@ -85,7 +85,7 @@ export class OrderEffects {
       ofType(orderActions.orderRemoveRequest),
       switchMap(({ payload }) => {
         const id = payload.id;
-        return this.orderService.delete({ ids: [id] }).pipe(
+        return this.orderService.remove({ ids: [id] }).pipe(
           map(() => {
             return orderActions.orderRemoveSuccess({
               payload: { id },

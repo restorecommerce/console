@@ -238,9 +238,9 @@ export class AccountEffects {
     { dispatch: false }
   );
 
-  userDeleteRequest$ = createEffect(() => {
+  userRemoveRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(accountActions.userDeleteRequest),
+      ofType(accountActions.userRemoveRequest),
       switchMap(({ payload }) =>
         this.accountService.remove(payload).pipe(
           map((result) => {
@@ -252,20 +252,20 @@ export class AccountEffects {
               throw new Error(operationStatus?.message || 'unknown error');
             }
 
-            return accountActions.userDeleteSuccess();
+            return accountActions.userRemoveSuccess();
           }),
           catchError((error: Error) =>
-            of(accountActions.userDeleteFail({ error: error.message }))
+            of(accountActions.userRemoveFail({ error: error.message }))
           )
         )
       )
     );
   });
 
-  userDeleteSuccess$ = createEffect(
+  userRemoveSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(accountActions.userDeleteSuccess),
+        ofType(accountActions.userRemoveSuccess),
         tap(() => {
           this.appFacade.addNotification({
             content: 'account deleted',
@@ -290,7 +290,7 @@ export class AccountEffects {
           accountActions.userChangeEmailFail,
           accountActions.userConfirmEmailChangeFail,
           accountActions.userChangePasswordFail,
-          accountActions.userDeleteFail
+          accountActions.userRemoveFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

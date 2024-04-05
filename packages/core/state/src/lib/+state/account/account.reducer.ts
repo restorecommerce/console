@@ -162,7 +162,7 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.userDeleteRequest,
+    accountActions.userRemoveRequest,
     (state): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.REQUESTING,
@@ -170,7 +170,7 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.userDeleteSuccess,
+    accountActions.userRemoveSuccess,
     (state): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.SUCCEEDED,
@@ -178,7 +178,7 @@ const reducer = createReducer<IAccountState>(
     })
   ),
   on(
-    accountActions.userDeleteFail,
+    accountActions.userRemoveFail,
     (state, { error }): IAccountState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,

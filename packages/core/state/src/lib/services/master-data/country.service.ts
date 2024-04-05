@@ -41,7 +41,7 @@ export class CountryService {
     });
   }
 
-  delete(
+  remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
   ): Observable<MutationResult<MasterDataCountryDeleteMutation>> {
     return this.masterDataCountryDeleteGQL.mutate({

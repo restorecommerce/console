@@ -122,7 +122,7 @@ export class CountryEffects {
       ofType(countryActions.countryRemoveRequest),
       switchMap(({ payload }) => {
         const id = payload.id;
-        return this.countryService.delete({ ids: [id] }).pipe(
+        return this.countryService.remove({ ids: [id] }).pipe(
           map(() => {
             return countryActions.countryRemoveSuccess({
               payload: { id },

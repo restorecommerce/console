@@ -41,7 +41,7 @@ export class OrderService {
     });
   }
 
-  delete(
+  remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
   ): Observable<MutationResult<OrderingOrderDeleteMutation>> {
     return this.orderingOrderDeleteGQL.mutate({

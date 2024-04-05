@@ -42,8 +42,8 @@ export class AccountFacade {
     payload: IIoRestorecommerceUserChangePasswordRequest
   ) =>
     this.store.dispatch(accountActions.userChangePasswordRequest({ payload }));
-  userDeleteRequest = (payload: IIoRestorecommerceResourcebaseDeleteRequest) =>
-    this.store.dispatch(accountActions.userDeleteRequest({ payload }));
+  userRemoveRequest = (payload: IIoRestorecommerceResourcebaseDeleteRequest) =>
+    this.store.dispatch(accountActions.userRemoveRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }
