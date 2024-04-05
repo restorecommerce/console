@@ -8,10 +8,6 @@ query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...OrderFragment
             }

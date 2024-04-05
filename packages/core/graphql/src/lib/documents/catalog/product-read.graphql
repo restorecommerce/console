@@ -1,8 +1,6 @@
-query MasterDataCountryRead(
-  $input: IIoRestorecommerceResourcebaseReadRequest!
-) {
-  master_data {
-    country {
+query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  catalog {
+    product {
       Read(input: $input) {
         details {
           operationStatus {
@@ -11,7 +9,7 @@ query MasterDataCountryRead(
           }
           items {
             payload {
-              ...CountryFragment
+              ...ProductFragment
             }
           }
         }

@@ -1,0 +1,11 @@
+fragment ProductFragment on IoRestorecommerceProductProduct {
+  id
+  active
+  product {
+    name
+    description
+  }
+  meta {
+    ...MetaFragment
+  }
+}
