@@ -65,7 +65,7 @@ export class CountryEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'country created',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(({ payload }) => {
@@ -109,7 +109,7 @@ export class CountryEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'country updated',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -143,7 +143,7 @@ export class CountryEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'country deleted',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -163,7 +163,7 @@ export class CountryEffects {
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

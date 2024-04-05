@@ -19,7 +19,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryReadRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
     })
   ),
   on(
@@ -27,14 +27,14 @@ const reducer = createReducer<ICountryState>(
     (state, { payload }): ICountryState =>
       adapter.setAll(payload, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     countryActions.countryReadRequestFail,
     (state, { error }): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -49,7 +49,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryCreateRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.MUTATING,
+      actionStatus: EActionStatus.Mutating,
     })
   ),
   on(
@@ -57,14 +57,14 @@ const reducer = createReducer<ICountryState>(
     (state, { payload }): ICountryState =>
       adapter.addOne(payload, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     countryActions.countryCreateFail,
     (state, { error }): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -72,7 +72,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryUpdateRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.MUTATING,
+      actionStatus: EActionStatus.Mutating,
     })
   ),
   on(
@@ -82,7 +82,7 @@ const reducer = createReducer<ICountryState>(
         { id: payload.id, changes: payload },
         {
           ...state,
-          actionStatus: EActionStatus.SUCCEEDED,
+          actionStatus: EActionStatus.Succeeded,
         }
       )
   ),
@@ -90,7 +90,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryUpdateFail,
     (state, { error }): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -98,7 +98,7 @@ const reducer = createReducer<ICountryState>(
     countryActions.countryRemoveRequest,
     (state): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.MUTATING,
+      actionStatus: EActionStatus.Mutating,
     })
   ),
   on(
@@ -106,14 +106,14 @@ const reducer = createReducer<ICountryState>(
     (state, { payload }): ICountryState =>
       adapter.removeOne(payload.id, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     countryActions.countryRemoveFail,
     (state, { error }): ICountryState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   )

@@ -20,7 +20,7 @@ const reducer = createReducer<IAppState>(
     return {
       ...state,
       notifications: [],
-      actionStatus: EActionStatus.SHOWING,
+      actionStatus: EActionStatus.Showing,
     };
   }),
   on(appActions.showNotification, (state, { payload }): IAppState => {
@@ -34,7 +34,7 @@ const reducer = createReducer<IAppState>(
     return {
       ...state,
       notifications: [notification],
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
     };
   }),
   on(
@@ -45,7 +45,7 @@ const reducer = createReducer<IAppState>(
         ({ date }) =>
           STORE.config.app.notifications.delay >= dayjs().diff(dayjs(date))
       ),
-      actionStatus: EActionStatus.CLEARED,
+      actionStatus: EActionStatus.Cleared,
     })
   )
 );

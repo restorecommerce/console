@@ -98,7 +98,7 @@ export class CountryTemplateComponent implements OnInit, OnDestroy {
     map((url) => url.split('/').pop() as EUrlSegment),
     distinctUntilChanged(),
     tap((segment) => {
-      if ([EUrlSegment.INDEX, EUrlSegment.CREATE].includes(segment)) {
+      if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
         this.countryFacade.setSelectedId(null);
       }
     }),

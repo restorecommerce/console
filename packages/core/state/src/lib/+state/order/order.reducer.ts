@@ -19,7 +19,7 @@ const reducer = createReducer<IOrderState>(
     orderActions.orderReadRequest,
     (state): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
     })
   ),
   on(
@@ -27,14 +27,14 @@ const reducer = createReducer<IOrderState>(
     (state, { payload }): IOrderState =>
       adapter.setAll(payload, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     orderActions.orderReadRequestFail,
     (state, { error }): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -49,7 +49,7 @@ const reducer = createReducer<IOrderState>(
     orderActions.orderCreateRequest,
     (state): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.MUTATING,
+      actionStatus: EActionStatus.Mutating,
     })
   ),
   on(
@@ -57,14 +57,14 @@ const reducer = createReducer<IOrderState>(
     (state, { payload }): IOrderState =>
       adapter.addOne(payload, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     orderActions.orderCreateFail,
     (state, { error }): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -72,7 +72,7 @@ const reducer = createReducer<IOrderState>(
     orderActions.orderUpdateRequest,
     (state): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.MUTATING,
+      actionStatus: EActionStatus.Mutating,
     })
   ),
   on(
@@ -82,7 +82,7 @@ const reducer = createReducer<IOrderState>(
         { id: payload.id, changes: payload },
         {
           ...state,
-          actionStatus: EActionStatus.SUCCEEDED,
+          actionStatus: EActionStatus.Succeeded,
         }
       )
   ),
@@ -90,7 +90,7 @@ const reducer = createReducer<IOrderState>(
     orderActions.orderUpdateFail,
     (state, { error }): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -98,7 +98,7 @@ const reducer = createReducer<IOrderState>(
     orderActions.orderRemoveRequest,
     (state): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.MUTATING,
+      actionStatus: EActionStatus.Mutating,
     })
   ),
   on(
@@ -106,14 +106,14 @@ const reducer = createReducer<IOrderState>(
     (state, { payload }): IOrderState =>
       adapter.removeOne(payload.id, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     orderActions.orderRemoveFail,
     (state, { error }): IOrderState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   )

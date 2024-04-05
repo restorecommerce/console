@@ -65,7 +65,7 @@ export class OrderEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'order created',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(({ payload }) => {
@@ -106,7 +106,7 @@ export class OrderEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'order deleted',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -126,7 +126,7 @@ export class OrderEffects {
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

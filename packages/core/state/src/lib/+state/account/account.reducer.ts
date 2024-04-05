@@ -18,7 +18,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userFindRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -27,7 +27,7 @@ const reducer = createReducer<IAccountState>(
     (state, { payload }): IAccountState => ({
       ...state,
       user: getUser(payload),
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -35,7 +35,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userFindFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -43,7 +43,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userFindByTokenRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -52,7 +52,7 @@ const reducer = createReducer<IAccountState>(
     (state, { payload }): IAccountState => ({
       ...state,
       user: getUser(payload),
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -60,7 +60,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userFindByTokenFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -68,7 +68,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userMutateRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -77,7 +77,7 @@ const reducer = createReducer<IAccountState>(
     (state, { payload }): IAccountState => ({
       ...state,
       user: getUser(payload),
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -85,7 +85,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userMutateFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -93,7 +93,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangeEmailRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -101,7 +101,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangeEmailSuccess,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -109,7 +109,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangeEmailFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -117,7 +117,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userConfirmEmailChangeRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -125,7 +125,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userConfirmEmailChangeSuccess,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -133,7 +133,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userConfirmEmailChangeFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -141,7 +141,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangePasswordRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -149,7 +149,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangePasswordSuccess,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.UPDATED,
+      actionStatus: EActionStatus.Updated,
       error: null,
     })
   ),
@@ -157,7 +157,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangePasswordFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -165,7 +165,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userRemoveRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -173,7 +173,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userRemoveSuccess,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -181,7 +181,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userRemoveFail,
     (state, { error }): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),

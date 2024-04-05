@@ -47,13 +47,13 @@ export class AuthnEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'account has been created',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
           this.appFacade.addNotification({
             content: 'an account activation email has been sent',
-            type: ENotificationTypes.INFO,
+            type: ENotificationTypes.Info,
           });
         }),
         tap(() => {
@@ -97,7 +97,7 @@ export class AuthnEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'account has been activated',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -191,7 +191,7 @@ export class AuthnEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'a password recovery email has been sent',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
@@ -240,7 +240,7 @@ export class AuthnEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'password has been changed',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
@@ -290,7 +290,7 @@ export class AuthnEffects {
           if ('payload' in action && action.payload.showNotification) {
             this.appFacade.addNotification({
               content: 'signed out',
-              type: ENotificationTypes.SUCCESS,
+              type: ENotificationTypes.Success,
             });
           }
         }),
@@ -320,7 +320,7 @@ export class AuthnEffects {
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

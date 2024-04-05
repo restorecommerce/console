@@ -7,10 +7,10 @@ import { ManagementTemplateComponent } from './components/template/management-te
 import { modulesManagementRoutes } from './lib.routes';
 
 @NgModule({
+  declarations: [ManagementTemplateComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild(modulesManagementRoutes),
   ],
-  declarations: [ManagementTemplateComponent],
 })
 export class ModulesManagementModule {}

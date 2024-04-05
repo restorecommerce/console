@@ -38,13 +38,13 @@
     <ng-content select="[rc-crud-data-list]" />
   </div>
 
-  <ng-container *ngIf="EUrlSegment.INDEX !== urlSegment">
+  <ng-container *ngIf="EUrlSegment.Index !== urlSegment">
     <div class="lex-8-lg flex-8-md flex-12">
       <div class="row grid-gutterx-2">
         <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
           <rc-toolbar *ngIf="title !== 'null'">
             <button
-              *ngIf="isEdit && urlSegment === EUrlSegment.EDIT"
+              *ngIf="isEdit && urlSegment === EUrlSegment.Edit"
               vcl-button
               rcPrepend
               [routerLink]="feature.links.view(id)"
@@ -56,7 +56,7 @@
             <button
               vcl-button
               rcPrepend
-              *ngIf="isEdit && urlSegment === EUrlSegment.VIEW"
+              *ngIf="isEdit && urlSegment === EUrlSegment.View"
               [routerLink]="feature.links.edit(id)"
               class="square half-transparent button"
               title="Edit"
@@ -71,7 +71,7 @@
               rcAppend
               *ngIf="
                 isDelete &&
-                [EUrlSegment.VIEW, EUrlSegment.EDIT].includes(urlSegment)
+                [EUrlSegment.View, EUrlSegment.Edit].includes(urlSegment)
               "
               (click)="onRemove(id)"
               class="square half-transparent button"

@@ -1,6 +1,6 @@
 export enum ENotificationTypes {
-  ERROR = 'error',
-  INFO = 'info',
-  SUCCESS = 'success',
-  WARNING = 'warning',
+  Error = 'error',
+  Info = 'info',
+  Success = 'success',
+  Warning = 'warning',
 }

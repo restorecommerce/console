@@ -19,7 +19,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.signUpRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -27,7 +27,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.signUpSuccess,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -35,7 +35,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.signUpFail,
     (state, { error }): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -43,7 +43,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.activateRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -51,7 +51,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.activateSuccess,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -59,7 +59,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.activateFail,
     (state, { error }): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -67,7 +67,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.signInRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -77,7 +77,7 @@ const reducer = createReducer<IAuthnState>(
       ...state,
       ...payload,
       isAuthenticated: true,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -86,7 +86,7 @@ const reducer = createReducer<IAuthnState>(
     (state, { error }): IAuthnState => ({
       ...state,
       isAuthenticated: false,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -94,7 +94,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.passwordRecoveryRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -102,7 +102,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.passwordRecoverySuccess,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -110,7 +110,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.passwordRecoveryFail,
     (state, { error }): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -118,7 +118,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.confirmPasswordRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
       error: null,
     })
   ),
@@ -126,7 +126,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.confirmPasswordSuccess,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
       error: null,
     })
   ),
@@ -134,7 +134,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.confirmPasswordFail,
     (state, { error }): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),
@@ -142,7 +142,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.signOutRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.REQUESTING,
+      actionStatus: EActionStatus.Requesting,
     })
   ),
   on(
@@ -150,7 +150,7 @@ const reducer = createReducer<IAuthnState>(
     (state): IAuthnState => ({
       ...state,
       isAuthenticated: false,
-      actionStatus: EActionStatus.SUCCEEDED,
+      actionStatus: EActionStatus.Succeeded,
     })
   ),
   on(
@@ -158,7 +158,7 @@ const reducer = createReducer<IAuthnState>(
     (state, { error }): IAuthnState => ({
       ...state,
       isAuthenticated: false,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   ),

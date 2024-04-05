@@ -3,29 +3,29 @@ export enum EActionStatus {
   INIT = 'INIT',
 
   // Actions (asynchronous or not):
-  LOADING = 'LOADING',
-  REQUESTING = 'REQUESTING',
-  SHOWING = 'SHOWING',
-  MUTATING = 'MUTATING',
-  CREATING = 'CREATING',
-  UPDATING = 'UPDATING',
-  DELETING = 'DELETING',
-  CLEARING = 'CLEARING',
+  Loading = 'LOADING',
+  Requesting = 'REQUESTING',
+  Showing = 'SHOWING',
+  Mutating = 'MUTATING',
+  Creating = 'CREATING',
+  Updating = 'UPDATING',
+  Deleting = 'DELETING',
+  Clearing = 'CLEARING',
 
   // Actions results
-  LOADED = 'LOADED',
-  REQUESTED = 'REQUESTED',
-  SHOWED = 'SHOWED',
-  MUTATED = 'MUTATED',
-  CREATED = 'CREATED',
-  UPDATED = 'UPDATED',
-  DELETED = 'DELETED',
-  CLEARED = 'CLEARED',
+  Loaded = 'LOADED',
+  Requested = 'REQUESTED',
+  Showed = 'SHOWED',
+  Mutated = 'MUTATED',
+  Created = 'CREATED',
+  Updated = 'UPDATED',
+  Deleted = 'DELETED',
+  Cleared = 'CLEARED',
 
   // Action generic results
-  SUCCEEDED = 'SUCCEEDED',
-  FAILED = 'FAILED',
+  Succeeded = 'SUCCEEDED',
+  Failed = 'FAILED',
 
   // And finally done
-  DONE = 'DONE',
+  Done = 'DONE',
 }

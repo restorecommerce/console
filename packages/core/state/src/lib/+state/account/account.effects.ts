@@ -106,7 +106,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'account updated',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -145,7 +145,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'email change has been requested',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -188,7 +188,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'email has been changed',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
@@ -230,7 +230,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'password has been changed',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -269,7 +269,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'account deleted',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
@@ -295,7 +295,7 @@ export class AccountEffects {
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

@@ -29,7 +29,7 @@ export const selectToken = createSelector(
 
 export const selectIsRequesting = createSelector(
   selectAuthn,
-  (state: IAuthnState) => state.actionStatus === EActionStatus.REQUESTING
+  (state: IAuthnState) => state.actionStatus === EActionStatus.Requesting
 );
 
 export const selectActionStatus = createSelector(
