@@ -48,7 +48,7 @@ export class RcAccountDeletionComponent implements OnDestroy {
           return;
         }
 
-        this.accountFacade.userDeleteRequest({
+        this.accountFacade.userRemoveRequest({
           ids: [this.user.id],
         });
       });
