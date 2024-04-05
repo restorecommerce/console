@@ -117,29 +117,29 @@ export class CountryEffects {
     { dispatch: false }
   );
 
-  countryDeleteRequest$ = createEffect(() => {
+  countryRemoveRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(countryActions.countryDeleteRequest),
+      ofType(countryActions.countryRemoveRequest),
       switchMap(({ payload }) => {
-        const ids = payload.ids;
-        return this.countryService.delete(payload).pipe(
+        const id = payload.id;
+        return this.countryService.delete({ ids: [id] }).pipe(
           map(() => {
-            return countryActions.countryDeleteSuccess({
-              payload: { ids },
+            return countryActions.countryRemoveSuccess({
+              payload: { id },
             });
           }),
           catchError((error: Error) =>
-            of(countryActions.countryDeleteFail({ error: error.message }))
+            of(countryActions.countryRemoveFail({ error: error.message }))
           )
         );
       })
     );
   });
 
-  countryDeleteSuccess$ = createEffect(
+  countryRemoveSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(countryActions.countryDeleteSuccess),
+        ofType(countryActions.countryRemoveSuccess),
         tap(() => {
           this.appFacade.addNotification({
             content: 'country deleted',
@@ -158,7 +158,7 @@ export class CountryEffects {
           countryActions.countryReadRequestFail,
           countryActions.countryCreateFail,
           countryActions.countryUpdateFail,
-          countryActions.countryDeleteFail
+          countryActions.countryRemoveFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

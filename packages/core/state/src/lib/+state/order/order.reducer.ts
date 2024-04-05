@@ -95,22 +95,22 @@ const reducer = createReducer<IOrderState>(
     })
   ),
   on(
-    orderActions.orderDeleteRequest,
+    orderActions.orderRemoveRequest,
     (state): IOrderState => ({
       ...state,
       actionStatus: EActionStatus.MUTATING,
     })
   ),
   on(
-    orderActions.orderDeleteSuccess,
+    orderActions.orderRemoveSuccess,
     (state, { payload }): IOrderState =>
-      adapter.removeMany(payload.ids, {
+      adapter.removeOne(payload.id, {
         ...state,
         actionStatus: EActionStatus.SUCCEEDED,
       })
   ),
   on(
-    orderActions.orderDeleteFail,
+    orderActions.orderRemoveFail,
     (state, { error }): IOrderState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,

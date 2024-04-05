@@ -56,17 +56,17 @@ export const orderUpdateFail = createAction(
   props<{ error: string }>()
 );
 
-export const orderDeleteRequest = createAction(
-  '[ORDER] Order delete request',
-  props<{ payload: { ids: string[] } }>()
+export const orderRemoveRequest = createAction(
+  '[ORDER] Order remove request',
+  props<{ payload: { id: string } }>()
 );
 
-export const orderDeleteSuccess = createAction(
-  '[ORDER] Order delete success',
-  props<{ payload: { ids: string[] } }>()
+export const orderRemoveSuccess = createAction(
+  '[ORDER] Order remove success',
+  props<{ payload: { id: string } }>()
 );
 
-export const orderDeleteFail = createAction(
-  '[ORDER] Order delete fail',
+export const orderRemoveFail = createAction(
+  '[ORDER] Order remove fail',
   props<{ error: string }>()
 );

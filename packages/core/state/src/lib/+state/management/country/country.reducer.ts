@@ -95,22 +95,22 @@ const reducer = createReducer<ICountryState>(
     })
   ),
   on(
-    countryActions.countryDeleteRequest,
+    countryActions.countryRemoveRequest,
     (state): ICountryState => ({
       ...state,
       actionStatus: EActionStatus.MUTATING,
     })
   ),
   on(
-    countryActions.countryDeleteSuccess,
+    countryActions.countryRemoveSuccess,
     (state, { payload }): ICountryState =>
-      adapter.removeMany(payload.ids, {
+      adapter.removeOne(payload.id, {
         ...state,
         actionStatus: EActionStatus.SUCCEEDED,
       })
   ),
   on(
-    countryActions.countryDeleteFail,
+    countryActions.countryRemoveFail,
     (state, { error }): ICountryState => ({
       ...state,
       actionStatus: EActionStatus.FAILED,
