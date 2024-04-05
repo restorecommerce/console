@@ -5,9 +5,13 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
-import { ENotificationTypes, IOrder } from '@console-core/types';
+import {
+  ENotificationTypes,
+  IOrder,
+  TOperationStatus,
+} from '@console-core/types';
 
-import { OrderService } from '../../services';
+import { ErrorHandlingService, OrderService } from '../../services';
 import { AppFacade } from '../app';
 
 import * as orderActions from './order.actions';
@@ -42,6 +46,13 @@ export class OrderEffects {
       switchMap(({ payload }) =>
         this.orderService.mutate(payload).pipe(
           map((result) => {
+            const status =
+              result?.data?.ordering?.order?.Mutate?.details?.operationStatus;
+
+            this.errorHandlingService.checkStatusAndThrow(
+              status as TOperationStatus
+            );
+
             const data =
               result?.data?.ordering?.order?.Mutate?.details?.items?.[0]
                 ?.payload;
@@ -80,13 +91,64 @@ export class OrderEffects {
     { dispatch: false }
   );
 
+  orderUpdateRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(orderActions.orderUpdateRequest),
+      switchMap(({ payload }) =>
+        this.orderService.mutate(payload).pipe(
+          map((result) => {
+            const status =
+              result?.data?.ordering?.order?.Mutate?.details?.operationStatus;
+
+            this.errorHandlingService.checkStatusAndThrow(
+              status as TOperationStatus
+            );
+
+            const data =
+              result?.data?.ordering?.order?.Mutate?.details?.items?.[0]
+                ?.payload;
+
+            return orderActions.orderUpdateSuccess({
+              payload: data as IOrder,
+            });
+          }),
+          catchError((error: Error) =>
+            of(orderActions.orderUpdateFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  orderUpdateSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(orderActions.orderUpdateSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'order updated',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   orderRemoveRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(orderActions.orderRemoveRequest),
       switchMap(({ payload }) => {
         const id = payload.id;
         return this.orderService.remove({ ids: [id] }).pipe(
-          map(() => {
+          map((result) => {
+            const status =
+              result?.data?.ordering?.order?.Delete?.details?.operationStatus;
+
+            this.errorHandlingService.checkStatusAndThrow(
+              status as TOperationStatus
+            );
+
             return orderActions.orderRemoveSuccess({
               payload: { id },
             });
@@ -138,6 +200,7 @@ export class OrderEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly orderService: OrderService
+    private readonly orderService: OrderService,
+    private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

@@ -5,9 +5,13 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
-import { ENotificationTypes, ICountry } from '@console-core/types';
+import {
+  ENotificationTypes,
+  ICountry,
+  TOperationStatus,
+} from '@console-core/types';
 
-import { CountryService } from '../../../services';
+import { CountryService, ErrorHandlingService } from '../../../services';
 import { AppFacade } from '../../app';
 
 import * as countryActions from './country.actions';
@@ -42,6 +46,14 @@ export class CountryEffects {
       switchMap(({ payload }) =>
         this.countryService.mutate(payload).pipe(
           map((result) => {
+            const status =
+              result?.data?.master_data?.country?.Mutate?.details
+                ?.operationStatus;
+
+            this.errorHandlingService.checkStatusAndThrow(
+              status as TOperationStatus
+            );
+
             const data =
               result?.data?.master_data?.country?.Mutate?.details?.items?.[0]
                 ?.payload;
@@ -86,6 +98,14 @@ export class CountryEffects {
       switchMap(({ payload }) =>
         this.countryService.mutate(payload).pipe(
           map((result) => {
+            const status =
+              result?.data?.master_data?.country?.Mutate?.details
+                ?.operationStatus;
+
+            this.errorHandlingService.checkStatusAndThrow(
+              status as TOperationStatus
+            );
+
             const data =
               result?.data?.master_data?.country?.Mutate?.details?.items?.[0]
                 ?.payload;
@@ -123,7 +143,15 @@ export class CountryEffects {
       switchMap(({ payload }) => {
         const id = payload.id;
         return this.countryService.remove({ ids: [id] }).pipe(
-          map(() => {
+          map((result) => {
+            const status =
+              result?.data?.master_data?.country?.Delete?.details
+                ?.operationStatus;
+
+            this.errorHandlingService.checkStatusAndThrow(
+              status as TOperationStatus
+            );
+
             return countryActions.countryRemoveSuccess({
               payload: { id },
             });
@@ -175,6 +203,7 @@ export class CountryEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly countryService: CountryService
+    private readonly countryService: CountryService,
+    private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }
