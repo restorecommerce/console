@@ -1,10 +1,10 @@
-import { IIoRestorecommerceLocaleLocale } from '@console-core/graphql';
+import { IoRestorecommerceLocaleLocale } from '@console-core/graphql';
 
 import { IMeta } from './meta';
 
 export interface ILocale
   extends Omit<
-    IIoRestorecommerceLocaleLocale,
+    IoRestorecommerceLocaleLocale,
     'id' | 'description' | 'value' | 'meta'
   > {
   id: string;

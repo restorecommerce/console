@@ -5205,6 +5205,51 @@ export type SubscriptionOutput = {
   id?: Maybe<Scalars['String']>;
 };
 
+export type CatalogProductReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type CatalogProductReadQuery = {
+  __typename?: 'Query';
+  catalog: {
+    __typename?: 'CatalogQuery';
+    product: {
+      __typename?: 'CatalogProductQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceProductProductListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceProductProductListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceProductProductResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceProductProduct';
+              id?: string | null;
+              active?: boolean | null;
+              product?: {
+                __typename?: 'IoRestorecommerceProductIndividualProduct';
+                name?: string | null;
+                description?: string | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type AddressFragmentFragment = {
   __typename?: 'IoRestorecommerceAddressAddress';
   id?: string | null;
@@ -5350,6 +5395,24 @@ export type OrderFragmentFragment = {
   paymentState?: IoRestorecommerceInvoicePaymentState | null;
   fulfillmentState?: IoRestorecommerceFulfillmentState | null;
   orderState?: IoRestorecommerceOrderOrderState | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type ProductFragmentFragment = {
+  __typename?: 'IoRestorecommerceProductProduct';
+  id?: string | null;
+  active?: boolean | null;
+  product?: {
+    __typename?: 'IoRestorecommerceProductIndividualProduct';
+    name?: string | null;
+    description?: string | null;
+  } | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -5596,11 +5659,6 @@ export type IdentityUserFindQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceUserUserResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceUserUser';
               id?: string | null;
@@ -5815,11 +5873,6 @@ export type MasterDataAddressReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceAddressAddressResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceAddressAddress';
               id?: string | null;
@@ -5977,11 +6030,6 @@ export type MasterDataCountryReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceCountryCountryResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceCountryCountry';
               id?: string | null;
@@ -6025,11 +6073,6 @@ export type MasterDataLocaleReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceLocaleLocaleResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
@@ -6071,11 +6114,6 @@ export type MasterDataLocationReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceLocationLocationResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceLocationLocation';
               id?: string | null;
@@ -6149,11 +6187,6 @@ export type MasterDataTimezoneReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceTimezoneTimezoneResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
@@ -6276,11 +6309,6 @@ export type OrderingOrderReadQuery = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceOrderOrderResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceOrderOrder';
               id?: string | null;
@@ -6433,6 +6461,20 @@ export const OrderFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const ProductFragmentFragmentDoc = gql`
+  fragment ProductFragment on IoRestorecommerceProductProduct {
+    id
+    active
+    product {
+      name
+      description
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const TimezoneFragmentFragmentDoc = gql`
   fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
@@ -6466,6 +6508,42 @@ export const UserFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const CatalogProductReadDocument = gql`
+  query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    catalog {
+      product {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...ProductFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ProductFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CatalogProductReadGQL extends Apollo.Query<
+  CatalogProductReadQuery,
+  CatalogProductReadQueryVariables
+> {
+  override document = CatalogProductReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const IdentityUserActivateDocument = gql`
   mutation IdentityUserActivate(
     $input: IIoRestorecommerceUserActivateRequest!
@@ -6673,10 +6751,6 @@ export const IdentityUserFindDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...UserFragment
               }
@@ -6855,10 +6929,6 @@ export const MasterDataAddressReadDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...AddressFragment
               }
@@ -6976,10 +7046,6 @@ export const MasterDataCountryReadDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...CountryFragment
               }
@@ -7018,10 +7084,6 @@ export const MasterDataLocaleReadDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...LocaleFragment
               }
@@ -7060,10 +7122,6 @@ export const MasterDataLocationReadDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...LocationFragment
               }
@@ -7102,10 +7160,6 @@ export const MasterDataTimezoneReadDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...TimezoneFragment
               }
@@ -7219,10 +7273,6 @@ export const OrderingOrderReadDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...OrderFragment
               }

@@ -1,10 +1,10 @@
-import { IIoRestorecommerceCountryCountry } from '@console-core/graphql';
+import { IoRestorecommerceCountryCountry } from '@console-core/graphql';
 
 import { IMeta } from './meta';
 
 export interface ICountry
   extends Omit<
-    IIoRestorecommerceCountryCountry,
+    IoRestorecommerceCountryCountry,
     | 'id'
     | 'name'
     | 'countryCode'
