@@ -23,14 +23,17 @@ export class OrderEffects {
       ofType(orderActions.orderReadRequest),
       switchMap(({ payload }) =>
         this.orderService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.ordering?.order?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
           map((result) => {
-            const data = result?.data?.ordering?.order?.Read?.details;
-
-            return orderActions.orderReadRequestSuccess({
-              payload: (data?.items || []).map(
-                (item) => item?.payload
-              ) as IOrder[],
-            });
+            const payload = (
+              result?.data?.ordering?.order?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as IOrder[];
+            return orderActions.orderReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(orderActions.orderReadRequestFail({ error: error.message }))
@@ -45,21 +48,17 @@ export class OrderEffects {
       ofType(orderActions.orderCreateRequest),
       switchMap(({ payload }) =>
         this.orderService.mutate(payload).pipe(
-          map((result) => {
-            const status =
-              result?.data?.ordering?.order?.Mutate?.details?.operationStatus;
-
+          tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              status as TOperationStatus
+              result?.data?.ordering?.order?.Mutate?.details
+                ?.operationStatus as TOperationStatus
             );
-
-            const data =
-              result?.data?.ordering?.order?.Mutate?.details?.items?.[0]
-                ?.payload;
-
-            return orderActions.orderCreateSuccess({
-              payload: data as IOrder,
-            });
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.ordering?.order?.Mutate?.details?.items?.pop()
+                ?.payload as IOrder;
+            return orderActions.orderCreateSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(orderActions.orderCreateFail({ error: error.message }))
@@ -96,21 +95,17 @@ export class OrderEffects {
       ofType(orderActions.orderUpdateRequest),
       switchMap(({ payload }) =>
         this.orderService.mutate(payload).pipe(
-          map((result) => {
-            const status =
-              result?.data?.ordering?.order?.Mutate?.details?.operationStatus;
-
+          tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              status as TOperationStatus
+              result?.data?.ordering?.order?.Mutate?.details
+                ?.operationStatus as TOperationStatus
             );
-
-            const data =
-              result?.data?.ordering?.order?.Mutate?.details?.items?.[0]
-                ?.payload;
-
-            return orderActions.orderUpdateSuccess({
-              payload: data as IOrder,
-            });
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.ordering?.order?.Mutate?.details?.items?.pop()
+                ?.payload as IOrder;
+            return orderActions.orderUpdateSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(orderActions.orderUpdateFail({ error: error.message }))
@@ -141,14 +136,13 @@ export class OrderEffects {
       switchMap(({ payload }) => {
         const id = payload.id;
         return this.orderService.remove({ ids: [id] }).pipe(
-          map((result) => {
-            const status =
-              result?.data?.ordering?.order?.Delete?.details?.operationStatus;
-
+          tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              status as TOperationStatus
+              result?.data?.ordering?.order?.Delete?.details
+                ?.operationStatus as TOperationStatus
             );
-
+          }),
+          map(() => {
             return orderActions.orderRemoveSuccess({
               payload: { id },
             });

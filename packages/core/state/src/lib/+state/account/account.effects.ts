@@ -3,9 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-import { ENotificationTypes, IUser } from '@console-core/types';
+import {
+  ENotificationTypes,
+  IUser,
+  TOperationStatus,
+} from '@console-core/types';
 
-import { UserService } from '../../services';
+import { ErrorHandlingService, UserService } from '../../services';
 import { AppFacade } from '../app';
 import { AuthnFacade } from '../authn';
 import * as authnActions from '../authn/authn.actions';
@@ -23,13 +27,14 @@ export class AccountEffects {
             const identity = result?.data?.identity;
             const operationStatus =
               identity?.user?.Find?.details?.operationStatus;
-            const payload = identity?.user?.Find?.details?.items?.[0]
-              .payload as IUser;
-
-            if (operationStatus?.code !== 200 || !payload) {
-              throw new Error(operationStatus?.message || 'unknown error');
-            }
-
+            const payload = identity?.user?.Find?.details?.items?.pop()
+              ?.payload as IUser;
+            this.errorHandlingService.checkStatusAndThrow(
+              operationStatus as TOperationStatus
+            );
+            return payload;
+          }),
+          map((payload) => {
             return accountActions.userFindSuccess({
               payload,
             });
@@ -47,18 +52,27 @@ export class AccountEffects {
       ofType(accountActions.userFindByTokenRequest),
       switchMap(({ payload }) =>
         this.accountService.findByToken(payload).pipe(
-          map((result) => {
+          tap((result) => {
             const identity = result?.data?.identity;
             const status = identity?.user?.FindByToken?.details?.status;
             const data = identity?.user?.FindByToken?.details?.payload;
 
-            if (status?.code !== 200 || !data) {
-              this.authnFacade.signOut();
+            if (status?.code !== 200 || !data?.id) {
+              return [
+                this.authnFacade.signOut(false),
+                this.appFacade.addNotification({
+                  content: 'token expired',
+                  type: ENotificationTypes.Error,
+                }),
+              ];
             }
 
-            return accountActions.userFindByTokenSuccess({
-              payload: data as IUser,
-            });
+            return result;
+          }),
+          map((result) => {
+            const payload = result?.data?.identity?.user?.FindByToken?.details
+              ?.payload as IUser;
+            return accountActions.userFindByTokenSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(accountActions.userFindByTokenFail({ error: error.message }))
@@ -77,18 +91,14 @@ export class AccountEffects {
             const identity = result?.data?.identity;
             const operationStatus =
               identity?.user?.Mutate?.details?.operationStatus;
-
-            if (operationStatus?.code !== 200) {
-              throw new Error(operationStatus?.message || 'unknown error');
-            }
-
-            const payload = identity?.user?.Mutate?.details?.items?.[0]
+            const payload = identity?.user?.Mutate?.details?.items?.pop()
               ?.payload as IUser;
-
-            if (!payload) {
-              throw new Error('user not found');
-            }
-
+            this.errorHandlingService.checkStatusAndThrow(
+              operationStatus as TOperationStatus
+            );
+            return payload;
+          }),
+          map((payload) => {
             return accountActions.userMutateSuccess({ payload });
           }),
           catchError((error: Error) =>
@@ -119,15 +129,13 @@ export class AccountEffects {
       ofType(accountActions.userChangeEmailRequest),
       switchMap(({ payload }) =>
         this.accountService.requestEmailChange(payload).pipe(
-          map((result) => {
-            const identity = result?.data?.identity;
-            const operationStatus =
-              identity?.user?.RequestEmailChange?.details?.operationStatus;
-
-            if (operationStatus?.code !== 200) {
-              throw new Error(operationStatus?.message || 'unknown error');
-            }
-
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.identity?.user?.RequestEmailChange?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map(() => {
             return accountActions.userChangeEmailSuccess();
           }),
           catchError((error: Error) =>
@@ -158,15 +166,13 @@ export class AccountEffects {
       ofType(accountActions.userConfirmEmailChangeRequest),
       switchMap(({ payload }) =>
         this.accountService.confirmEmailChange(payload).pipe(
-          map((result) => {
-            const identity = result?.data?.identity;
-            const operationStatus =
-              identity?.user?.ConfirmEmailChange?.details?.operationStatus;
-
-            if (operationStatus?.code !== 200) {
-              throw new Error(operationStatus?.message || 'unknown error');
-            }
-
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.identity?.user?.ConfirmEmailChange?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map(() => {
             return accountActions.userConfirmEmailChangeSuccess();
           }),
           catchError((error: Error) =>
@@ -204,15 +210,13 @@ export class AccountEffects {
       ofType(accountActions.userChangePasswordRequest),
       switchMap(({ payload }) =>
         this.accountService.passwordChange(payload).pipe(
-          map((result) => {
-            const identity = result?.data?.identity;
-            const operationStatus =
-              identity?.user?.ChangePassword?.details?.operationStatus;
-
-            if (operationStatus?.code !== 200) {
-              throw new Error(operationStatus?.message || 'unknown error');
-            }
-
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.identity?.user?.ChangePassword?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map(() => {
             return accountActions.userChangePasswordSuccess();
           }),
           catchError((error: Error) =>
@@ -243,15 +247,13 @@ export class AccountEffects {
       ofType(accountActions.userRemoveRequest),
       switchMap(({ payload }) =>
         this.accountService.remove(payload).pipe(
-          map((result) => {
-            const identity = result?.data?.identity;
-            const operationStatus =
-              identity?.user?.Delete?.details?.operationStatus;
-
-            if (operationStatus?.code !== 200) {
-              throw new Error(operationStatus?.message || 'unknown error');
-            }
-
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.identity?.user?.Delete?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map(() => {
             return accountActions.userRemoveSuccess();
           }),
           catchError((error: Error) =>
@@ -312,8 +314,9 @@ export class AccountEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly accountService: UserService,
     private readonly appFacade: AppFacade,
-    private readonly authnFacade: AuthnFacade
+    private readonly authnFacade: AuthnFacade,
+    private readonly accountService: UserService,
+    private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

@@ -23,14 +23,17 @@ export class CountryEffects {
       ofType(countryActions.countryReadRequest),
       switchMap(({ payload }) =>
         this.countryService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.master_data?.country?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
           map((result) => {
-            const data = result?.data?.master_data?.country?.Read?.details;
-
-            return countryActions.countryReadRequestSuccess({
-              payload: (data?.items || []).map(
-                (item) => item.payload
-              ) as ICountry[],
-            });
+            const payload = (
+              result?.data?.master_data?.country?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as ICountry[];
+            return countryActions.countryReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(countryActions.countryReadRequestFail({ error: error.message }))
@@ -45,22 +48,17 @@ export class CountryEffects {
       ofType(countryActions.countryCreateRequest),
       switchMap(({ payload }) =>
         this.countryService.mutate(payload).pipe(
-          map((result) => {
-            const status =
-              result?.data?.master_data?.country?.Mutate?.details
-                ?.operationStatus;
-
+          tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              status as TOperationStatus
+              result?.data?.master_data?.country?.Mutate?.details
+                ?.operationStatus as TOperationStatus
             );
-
-            const data =
-              result?.data?.master_data?.country?.Mutate?.details?.items?.[0]
-                ?.payload;
-
-            return countryActions.countryCreateSuccess({
-              payload: data as ICountry,
-            });
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.master_data?.country?.Mutate?.details?.items?.pop()
+                ?.payload as ICountry;
+            return countryActions.countryCreateSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(countryActions.countryCreateFail({ error: error.message }))
@@ -97,22 +95,17 @@ export class CountryEffects {
       ofType(countryActions.countryUpdateRequest),
       switchMap(({ payload }) =>
         this.countryService.mutate(payload).pipe(
-          map((result) => {
-            const status =
-              result?.data?.master_data?.country?.Mutate?.details
-                ?.operationStatus;
-
+          tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              status as TOperationStatus
+              result?.data?.master_data?.country?.Mutate?.details
+                ?.operationStatus as TOperationStatus
             );
-
-            const data =
-              result?.data?.master_data?.country?.Mutate?.details?.items?.[0]
-                ?.payload;
-
-            return countryActions.countryUpdateSuccess({
-              payload: data as ICountry,
-            });
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.master_data?.country?.Mutate?.details?.items?.pop()
+                ?.payload as ICountry;
+            return countryActions.countryUpdateSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(countryActions.countryUpdateFail({ error: error.message }))
@@ -143,15 +136,13 @@ export class CountryEffects {
       switchMap(({ payload }) => {
         const id = payload.id;
         return this.countryService.remove({ ids: [id] }).pipe(
-          map((result) => {
-            const status =
-              result?.data?.master_data?.country?.Delete?.details
-                ?.operationStatus;
-
+          tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              status as TOperationStatus
+              result?.data?.master_data?.country?.Delete?.details
+                ?.operationStatus as TOperationStatus
             );
-
+          }),
+          map(() => {
             return countryActions.countryRemoveSuccess({
               payload: { id },
             });
