@@ -1,5 +1,3 @@
-import { BehaviorSubject } from 'rxjs';
-
 import { TRouterLink } from '../types';
 
 export interface ICrudLinks {
@@ -17,10 +15,4 @@ export interface ICrudFeature {
   links: ICrudLinks;
   icon?: string;
   iconClass?: string;
-}
-
-export interface ICrudActionStreams {
-  read: BehaviorSubject<void | null>;
-  setSelectedId: BehaviorSubject<string | null>;
-  delete: BehaviorSubject<string | null>;
 }
