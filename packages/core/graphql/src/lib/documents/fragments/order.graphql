@@ -33,6 +33,19 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
   #       }
   #     }
   #   }
+  #   unitPrice {
+  #     currency {
+  #       name
+  #       symbol
+  #     }
+  #     regularPrice
+  #     sale
+  #     salePrice
+  #   }
+  # }
+  # shop {
+  #   id
+  #   name
   # }
   # shippingAddress {
   #   comments
@@ -89,10 +102,6 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
   #     }
   #     vat
   #   }
-  # }
-  # shop {
-  #   id
-  #   name
   # }
   meta {
     ...MetaFragment
