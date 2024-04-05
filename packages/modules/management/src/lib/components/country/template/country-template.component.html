@@ -1,19 +1,22 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [actionStreams]="actionStreams"
-  [urlSegment]="vm.urlSegment"
   [title]="vm.selectedCountry?.name || feature.name.singular"
   [id]="vm.selectedCountryId"
   [total]="vm.dataList.length"
+  [urlSegment]="vm.urlSegment"
+  [triggerRead]="triggerRead"
+  [triggerSelectId]="triggerSelectId"
+  [triggerRemove]="triggerRemove"
 >
+  {{ vm | json }}
   <ng-container rc-crud-search>
     <div
       *ngIf="vm.dataList.length > 0"
       class="flex"
     >
       <rc-searchbar
-        [value]="vm.searchValue"
+        [value]="triggerSearch.value"
         (search)="onSearch($event)"
       />
     </div>
@@ -24,16 +27,18 @@
       <rc-data-list class="mb-4 pb-2">
         <rc-data-list-item
           *ngFor="let item of vm.dataList; trackBy: trackByFn"
-          (click)="actionStreams.setSelectedId.next(vm.selectedCountryId)"
+          (click)="triggerSelectId.next(vm.selectedCountryId)"
           [ngClass]="{ selected: item.id === vm.selectedCountryId }"
           [routerLink]="feature.links.view(item.id)"
           role="option"
         >
           <rc-data-list-label
-            [innerHTML]="item.name | highlight : vm.searchValue"
+            [innerHTML]="item.name | highlight : triggerSearch.value"
           />
           <rc-data-list-sublabel
-            [innerHTML]="item.geographicalName | highlight : vm.searchValue"
+            [innerHTML]="
+              item.geographicalName | highlight : triggerSearch.value
+            "
           />
         </rc-data-list-item>
       </rc-data-list>

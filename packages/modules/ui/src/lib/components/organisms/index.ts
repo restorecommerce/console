@@ -27,6 +27,7 @@ export * from './header/header.component';
 export * from './flex-grid/flex-grid.directive';
 export * from './management/country/country-view.component';
 export * from './meta/meta.component';
+export * from './order/order-view.component';
 export * from './page-header/page-header.component';
 export * from './searchbar/searchbar.component';
 export * from './toolbar/toolbar.component';

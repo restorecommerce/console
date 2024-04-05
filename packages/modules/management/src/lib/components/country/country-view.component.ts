@@ -14,7 +14,7 @@ import {
   selector: 'app-module-management-country-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-country-view [country]="vm.country" />
+      <rc-management-country-view [country]="vm.country" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

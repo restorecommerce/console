@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ICountry } from '@console-core/types';
 
 @Component({
-  selector: 'rc-country-view',
+  selector: 'rc-management-country-view',
   template: `
     <div class="data-list mb-0 p-0 ng-star-inserted">
       <div class="my-2 rc-lv-l-heading">Data</div>

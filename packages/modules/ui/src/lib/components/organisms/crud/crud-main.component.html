@@ -4,7 +4,7 @@
       <button
         vcl-button
         rcPrepend
-        (click)="onSetSelectedId(null)"
+        (click)="onSelectId(null)"
         [routerLink]="feature.links.index()"
         class="square half-transparent button"
         title="Index"
@@ -25,7 +25,7 @@
       <button
         vcl-button
         rcAppend
-        *ngIf="isRefetch"
+        *ngIf="isRead"
         (click)="onRead()"
         class="square half-transparent button"
         title="Refresh"
@@ -73,7 +73,7 @@
                 isDelete &&
                 [EUrlSegment.VIEW, EUrlSegment.EDIT].includes(urlSegment)
               "
-              (click)="onDelete(id)"
+              (click)="onRemove(id)"
               class="square half-transparent button"
               title="Delete &quot;{{ title }}&quot;"
             >

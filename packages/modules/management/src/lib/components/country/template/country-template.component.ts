@@ -1,6 +1,18 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { map, tap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import {
+  map,
+  tap,
+  distinctUntilChanged,
+  debounceTime,
+  skip,
+} from 'rxjs/operators';
+import { SubSink } from 'subsink';
 
 import { ROUTER } from '@console-core/config';
 import {
@@ -8,24 +20,19 @@ import {
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import { CountryFacade, RouterFacade } from '@console-core/state';
-import {
-  ICrudActionStreams,
-  ICrudFeature,
-  EUrlSegment,
-  ICountry,
-} from '@console-core/types';
+import { ICrudFeature, EUrlSegment, ICountry } from '@console-core/types';
 
 @Component({
   selector: 'app-module-management-country-template',
   templateUrl: './country-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountryTemplateComponent implements OnInit {
+export class CountryTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter =
     ROUTER.pages.main.children.management.children.countries.children;
 
-  readonly feature: ICrudFeature = {
+  feature: Readonly<ICrudFeature> = {
     name: {
       plural: 'Countries',
       singular: 'Country',
@@ -40,72 +47,75 @@ export class CountryTemplateComponent implements OnInit {
     },
   };
 
-  readonly actionStreams: ICrudActionStreams = {
-    read: new BehaviorSubject<void | null>(null),
-    setSelectedId: new BehaviorSubject<string | null>(null),
-    delete: new BehaviorSubject<string | null>(null),
-  };
-
-  private queryVariable: IIoRestorecommerceResourcebaseReadRequest = {
+  queryVariables: IIoRestorecommerceResourcebaseReadRequest = {
     sorts: [
       {
         field: 'name',
         order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
       },
     ],
-    search: {
-      caseSensitive: false,
-      search: '',
-      fields: ['name', 'geographical_name', 'country_code'],
-    },
   };
 
-  private searchValue = new BehaviorSubject<string>('');
+  readonly triggerRead = new BehaviorSubject<null>(null);
+  readonly triggerRead$ = this.triggerRead
+    .asObservable()
+    .pipe(tap(() => this.countryFacade.read(this.queryVariables)));
+
+  readonly triggerSearch = new BehaviorSubject<string>('');
+  readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
+    skip(1),
+    debounceTime(300),
+    distinctUntilChanged(),
+    tap((value) => {
+      this.queryVariables = {
+        ...this.queryVariables,
+        search: {
+          caseSensitive: false,
+          search: value,
+          fields: ['name', 'geographical_name', 'country_code'],
+        },
+      };
+      this.countryFacade.read(this.queryVariables);
+    })
+  );
+
+  readonly triggerSelectId = new BehaviorSubject<string | null>(null);
+  readonly triggerSelectId$ = this.triggerSelectId
+    .asObservable()
+    .pipe(tap((id) => this.countryFacade.setSelectedId(id)));
+
+  readonly triggerRemove = new BehaviorSubject<string | null>(null);
+  readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
+    tap((id) => {
+      if (id === null) {
+        return;
+      }
+      this.countryFacade.remove({ id });
+    })
+  );
+
+  readonly urlSegment$ = this.routerFacade.url$.pipe(
+    map((url) => url.split('/').pop() as EUrlSegment),
+    distinctUntilChanged(),
+    tap((segment) => {
+      if ([EUrlSegment.INDEX, EUrlSegment.CREATE].includes(segment)) {
+        this.countryFacade.setSelectedId(null);
+      }
+    }),
+    debounceTime(10)
+  );
 
   readonly vm$ = combineLatest({
-    urlSegment: this.routerFacade.url$.pipe(
-      map((url) => url.split('/').pop() as EUrlSegment),
-      distinctUntilChanged(),
-      tap((urlSegment) => {
-        if ([EUrlSegment.INDEX, EUrlSegment.CREATE].includes(urlSegment)) {
-          this.countryFacade.setSelectedId(null);
-        }
-      }),
-      debounceTime(10)
-    ),
     dataList: this.countryFacade.all$,
     selectedCountryId: this.countryFacade.selectedId$,
-    selectedCountry: this.countryFacade.selected$.pipe(
-      map((country) => country || null)
-    ),
-    readAction: this.actionStreams.read
-      .asObservable()
-      .pipe(tap(() => this.countryFacade.read(this.queryVariable))),
-    setSelectedIdAction: this.actionStreams.setSelectedId
-      .asObservable()
-      .pipe(tap((id) => this.countryFacade.setSelectedId(id))),
-    deleteAction: this.actionStreams.delete.asObservable().pipe(
-      tap((id) => {
-        if (id === null) {
-          return;
-        }
-        this.countryFacade.delete({ ids: [id] });
-      })
-    ),
-    searchValue: this.searchValue.asObservable().pipe(
-      debounceTime(300),
-      tap((value) => {
-        this.queryVariable = {
-          ...this.queryVariable,
-          search: {
-            ...this.queryVariable.search,
-            search: value,
-          },
-        };
-        this.countryFacade.read(this.queryVariable);
-      })
-    ),
+    selectedCountry: this.countryFacade.selected$,
+    urlSegment: this.urlSegment$,
+    triggerRead: this.triggerRead$,
+    triggerSelectId: this.triggerSelectId$,
+    triggerRemove: this.triggerRemove$,
   });
+
+  private readonly subscriptions = new SubSink();
 
   constructor(
     private readonly countryFacade: CountryFacade,
@@ -113,11 +123,15 @@ export class CountryTemplateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.countryFacade.read(this.queryVariable);
+    this.subscriptions.sink = this.triggerSearch$.subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   onSearch(value: string): void {
-    this.searchValue.next(value);
+    this.triggerSearch.next(value);
   }
 
   trackByFn(_: number, item: ICountry) {
