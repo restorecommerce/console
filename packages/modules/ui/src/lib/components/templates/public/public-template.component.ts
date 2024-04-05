@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { APP, ROUTER } from '@console-core/config';
+
 @Component({
   selector: 'rc-public-template',
   templateUrl: './public-template.component.html',

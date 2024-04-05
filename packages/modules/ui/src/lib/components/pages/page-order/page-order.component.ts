@@ -1,12 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-order-index',
-  template: `
-    <div>
-      <p>Order content</p>
-    </div>
-  `,
+  selector: 'rc-page-order',
+  templateUrl: './page-order.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderComponent {}
+export class RcPageOrderComponent {}

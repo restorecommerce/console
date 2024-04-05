@@ -98,15 +98,15 @@ export const userChangePasswordFail = createAction(
   props<{ error: string }>()
 );
 
-export const userDeleteRequest = createAction(
-  '[ACCOUNT] User delete request',
+export const userRemoveRequest = createAction(
+  '[ACCOUNT] User remove request',
   props<{ payload: IIoRestorecommerceResourcebaseDeleteRequest }>()
 );
 
-export const userDeleteSuccess = createAction('[ACCOUNT] User delete success');
+export const userRemoveSuccess = createAction('[ACCOUNT] User remove success');
 
-export const userDeleteFail = createAction(
-  '[ACCOUNT] User delete fail',
+export const userRemoveFail = createAction(
+  '[ACCOUNT] User remove fail',
   props<{ error: string }>()
 );
 

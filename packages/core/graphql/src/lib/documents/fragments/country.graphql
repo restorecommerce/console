@@ -5,9 +5,6 @@ fragment CountryFragment on IoRestorecommerceCountryCountry {
   geographicalName
   economicAreas
   meta {
-    created
-    modified
-    createdBy
-    modifiedBy
+    ...MetaFragment
   }
 }

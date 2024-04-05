@@ -24,9 +24,6 @@ export class CountryFacade {
   readonly selected$ = this.store.select(
     countrySelectors.selectCountrySelected
   );
-  readonly isRequesting$ = this.store.select(
-    countrySelectors.selectIsRequesting
-  );
   readonly actionStatus$ = this.store.select(
     countrySelectors.selectActionStatus
   );
@@ -41,8 +38,8 @@ export class CountryFacade {
     this.store.dispatch(countryActions.countryCreateRequest({ payload }));
   update = (payload: IIoRestorecommerceCountryCountryList) =>
     this.store.dispatch(countryActions.countryUpdateRequest({ payload }));
-  delete = (payload: { ids: string[] }) =>
-    this.store.dispatch(countryActions.countryDeleteRequest({ payload }));
+  remove = (payload: { id: string }) =>
+    this.store.dispatch(countryActions.countryRemoveRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

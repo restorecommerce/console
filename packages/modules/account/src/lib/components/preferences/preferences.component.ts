@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { combineLatest, startWith, tap } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { startWith, tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -19,7 +20,6 @@ import { buildLocalizationDataSchema } from '../../jss-forms';
         <div class="col rc-page-container">
           <rc-account-localization-data
             [user]="vm.user"
-            [isRequesting]="vm.isRequesting"
             [localizationFormSchema]="localizationFormSchema"
           />
         </div>
@@ -33,13 +33,11 @@ export class PreferencesComponent implements OnInit {
 
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
-    isRequesting: this.accountFacade.isRequesting$,
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
   }).pipe(
     startWith({
       user: null,
-      isRequesting: false,
       locales: [],
       timezones: [],
     }),

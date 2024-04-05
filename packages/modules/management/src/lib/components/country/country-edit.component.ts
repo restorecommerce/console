@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest, map, tap } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -17,19 +18,20 @@ import { buildCountrySchema } from './jss-forms';
   selector: 'app-module-management-country-edit',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <div class="my-2 rc-lv-l-heading">Form</div>
-      <rc-crud-edit
-        [id]="vm.id"
-        [editFormSchema]="countryFormSchema"
-        [isRequesting]="vm.isRequesting"
-        [update]="countryFacade.update"
-      />
+      <div class="mt-2">
+        <rc-crud-edit
+          [id]="vm.id"
+          [schema]="schema"
+          [update]="update"
+        />
+      </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryEditComponent {
-  countryFormSchema!: VCLFormFieldSchemaRoot;
+  schema!: VCLFormFieldSchemaRoot;
+  update = this.countryFacade.update;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
@@ -49,15 +51,14 @@ export class CountryEditComponent {
       }),
       filterEmptyAndNullishAndUndefined(),
       tap((country) => {
-        this.countryFormSchema = buildCountrySchema({ country });
+        this.schema = buildCountrySchema({ country });
       })
     ),
-    isRequesting: this.countryFacade.isRequesting$,
   });
 
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    public readonly countryFacade: CountryFacade
+    private readonly countryFacade: CountryFacade
   ) {}
 }

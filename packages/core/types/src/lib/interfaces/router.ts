@@ -56,10 +56,21 @@ export interface IRouterConstant {
             preferences: IRouterItem;
           };
         };
-        order: IRouterItem;
-        product: IRouterItem;
-        invoice: IRouterItem;
-        fulfillment: IRouterItem;
+        orders: {
+          path: string;
+          link: string;
+          title: string;
+          getLink: () => TRouterLink;
+          children: {
+            index: IRouterItem;
+            create: IRouterItem;
+            view: IRouterItem;
+            edit: IRouterItem;
+          };
+        };
+        products: IRouterItem;
+        invoices: IRouterItem;
+        fulfillments: IRouterItem;
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {

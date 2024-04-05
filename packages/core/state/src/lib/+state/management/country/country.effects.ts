@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import { ENotificationTypes, ICountry } from '@console-core/types';
@@ -64,7 +65,7 @@ export class CountryEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'country created',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(({ payload }) => {
@@ -108,7 +109,7 @@ export class CountryEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'country updated',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -116,33 +117,33 @@ export class CountryEffects {
     { dispatch: false }
   );
 
-  countryDeleteRequest$ = createEffect(() => {
+  countryRemoveRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(countryActions.countryDeleteRequest),
+      ofType(countryActions.countryRemoveRequest),
       switchMap(({ payload }) => {
-        const ids = payload.ids;
-        return this.countryService.delete(payload).pipe(
+        const id = payload.id;
+        return this.countryService.remove({ ids: [id] }).pipe(
           map(() => {
-            return countryActions.countryDeleteSuccess({
-              payload: { ids },
+            return countryActions.countryRemoveSuccess({
+              payload: { id },
             });
           }),
           catchError((error: Error) =>
-            of(countryActions.countryDeleteFail({ error: error.message }))
+            of(countryActions.countryRemoveFail({ error: error.message }))
           )
         );
       })
     );
   });
 
-  countryDeleteSuccess$ = createEffect(
+  countryRemoveSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(countryActions.countryDeleteSuccess),
+        ofType(countryActions.countryRemoveSuccess),
         tap(() => {
           this.appFacade.addNotification({
             content: 'country deleted',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -157,12 +158,12 @@ export class CountryEffects {
           countryActions.countryReadRequestFail,
           countryActions.countryCreateFail,
           countryActions.countryUpdateFail,
-          countryActions.countryDeleteFail
+          countryActions.countryRemoveFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

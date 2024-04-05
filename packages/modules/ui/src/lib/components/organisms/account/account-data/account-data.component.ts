@@ -20,9 +20,6 @@ export class RcAccountDataComponent {
   user!: IUser;
 
   @Input({ required: true })
-  isRequesting!: boolean;
-
-  @Input({ required: true })
   emailFormSchema!: VCLFormFieldSchemaRoot;
 
   @ViewChild('emailForm')
@@ -68,7 +65,7 @@ export class RcAccountDataComponent {
 
     if (password !== passwordConfirmation) {
       this.appFacade.addNotification({
-        type: ENotificationTypes.ERROR,
+        type: ENotificationTypes.Error,
         content: 'New password and new password confirmation must match',
       });
       return;

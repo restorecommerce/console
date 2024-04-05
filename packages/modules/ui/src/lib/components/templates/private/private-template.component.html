@@ -98,25 +98,25 @@
         >
         <rc-drawer-navigation-item
           icon="mdi:receipt-outline"
-          [routerLink]="ROUTER.pages.main.children.order.link"
+          [routerLink]="ROUTER.pages.main.children.orders.link"
           [routerLinkActive]="['selected']"
           >Orders</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:tag-outline"
-          [routerLink]="ROUTER.pages.main.children.product.link"
+          [routerLink]="ROUTER.pages.main.children.products.link"
           [routerLinkActive]="['selected']"
           >Products</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:invoice-outline"
-          [routerLink]="ROUTER.pages.main.children.invoice.link"
+          [routerLink]="ROUTER.pages.main.children.invoices.link"
           [routerLinkActive]="['selected']"
           >Invoices</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:truck-outline"
-          [routerLink]="ROUTER.pages.main.children.fulfillment.link"
+          [routerLink]="ROUTER.pages.main.children.fulfillments.link"
           [routerLinkActive]="['selected']"
           >Fulfillment</rc-drawer-navigation-item
         >
@@ -249,7 +249,7 @@
         *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
       >
         <rc-drawer-navigation-item
-          icon="mdi:account-cog"
+          icon="mdi:account-cog-outline"
           [routerLink]="
             ROUTER.pages.main.children.account.children.profile.link
           "
@@ -257,7 +257,7 @@
           >Profile</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:cog"
+          icon="mdi:cog-outline"
           [routerLink]="
             ROUTER.pages.main.children.account.children.preferences.link
           "
@@ -280,7 +280,7 @@
     </rc-drawer-navigation>
 
     <div class="container">
-      <div class="row grid-gutterx-2 px-2">
+      <div class="row grid-gutterx-2">
         <div class="flex">
           <rc-page-header />
         </div>
@@ -298,18 +298,22 @@
   >
     <div
       id="wrapper-popover-user"
-      class="data-list item-selectability item-hover-highlight m-0 p-0 ng-star-inserted"
+      class="data-list item-selectability item-hover-highlight m-0 p-0"
     >
-      <ul class="data-list-body data-list-user-menu-body no-border">
+      <ul
+        class="data-list-body no-border"
+        role="listbox"
+        aria-multiselectable="false"
+      >
         <li
           [routerLink]="
             ROUTER.pages.main.children.account.children.profile.link
           "
-          class="data-list-item justify-between center"
+          class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>
-              <vcl-icon icon="mdi:account-cog" />
+              <vcl-icon icon="mdi:account-cog-outline" />
             </vcl-icogram>
             <span class="text">Profile</span>
           </div>
@@ -318,18 +322,18 @@
           [routerLink]="
             ROUTER.pages.main.children.account.children.preferences.link
           "
-          class="data-list-item justify-between center"
+          class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>
-              <vcl-icon icon="mdi:cog" />
+              <vcl-icon icon="mdi:cog-outline" />
             </vcl-icogram>
             <span class="text">Preferences</span>
           </div>
         </li>
         <li
           [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
-          class="data-list-item justify-between center"
+          class="data-list-item row justify-between center"
         >
           <div class="gutter-margin flex">
             <vcl-icogram>

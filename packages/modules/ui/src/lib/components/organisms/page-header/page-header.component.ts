@@ -9,11 +9,7 @@ import { SubSink } from 'subsink';
 
 import { ROUTER } from '@console-core/config';
 import { RouterFacade } from '@console-core/state';
-
-interface Breadcrumb {
-  label: string;
-  url: string;
-}
+import { IBreadcrumb } from '@console-core/types';
 
 @Component({
   selector: 'rc-page-header',
@@ -72,7 +68,7 @@ interface Breadcrumb {
 })
 export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   title = '';
-  breadcrumbs: Breadcrumb[] = [];
+  breadcrumbs: IBreadcrumb[] = [];
   breadcrumbsToExclude = [ROUTER.pages.main.children.home.title];
 
   private readonly subscriptions = new SubSink();
@@ -96,7 +92,7 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
             acc.push({ label, url });
           }
           return acc;
-        }, [] as Breadcrumb[]);
+        }, [] as IBreadcrumb[]);
 
         this.title = this.breadcrumbs[this.breadcrumbs.length - 1]?.label ?? '';
         this.changeDetectorRef.detectChanges();
@@ -111,8 +107,8 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   private createBreadcrumbs(
     route: ActivatedRoute,
     url = '',
-    breadcrumbs: Breadcrumb[] = []
-  ): Breadcrumb[] {
+    breadcrumbs: IBreadcrumb[] = []
+  ): IBreadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {

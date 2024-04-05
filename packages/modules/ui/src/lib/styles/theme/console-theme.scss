@@ -20,5 +20,20 @@
       'Segoe UI Emoji',
       'Segoe UI Symbol',
       'Noto Color Emoji'
-    )
+    ),
+
+  // /* Primary colors */
+  $black: $black,
+  $white: $white,
+
+  // /* Brand colors */
+  $brand-accent-darker: $console-brand-accent-darker,
+  $brand-accent-dark: $console-brand-accent-dark,
+  $brand-accent: $console-brand-accent,
+  $brand-accent-light: $console-brand-accent-light,
+  $brand-accent-lighter: $console-brand-accent-lighter,
+
+  // /* Progress bar */
+  $progress-bar-container-bg-color: $white,
+  $progress-bar-primary-progress-bg-color: $console-brand-accent
 );

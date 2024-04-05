@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { combineLatest, tap } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -20,13 +21,11 @@ import {
         <div class="col rc-page-container">
           <rc-account-personal-data
             [user]="vm.user"
-            [isRequesting]="vm.isRequesting"
             [personalFormSchema]="personalFormSchema"
           />
 
           <rc-account-account-data
             [user]="vm.user"
-            [isRequesting]="vm.isRequesting"
             [emailFormSchema]="emailFormSchema"
             [passwordFormSchema]="passwordFormSchema"
           />
@@ -35,10 +34,7 @@ import {
             [accountInformationFormSchema]="accountInformationFormSchema"
           />
 
-          <rc-account-account-deletion
-            [user]="vm.user"
-            [isRequesting]="vm.isRequesting"
-          />
+          <rc-account-account-deletion [user]="vm.user" />
         </div>
       </div>
     </ng-container>
@@ -63,7 +59,6 @@ export class ProfileComponent {
         });
       })
     ),
-    isRequesting: this.accountFacade.isRequesting$,
   });
 
   constructor(private readonly accountFacade: AccountFacade) {}

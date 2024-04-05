@@ -5332,6 +5332,33 @@ export type LocationFragmentFragment = {
   } | null;
 };
 
+export type MetaFragmentFragment = {
+  __typename?: 'IoRestorecommerceMetaMeta';
+  created?: unknown | null;
+  modified?: unknown | null;
+  createdBy?: string | null;
+  modifiedBy?: string | null;
+};
+
+export type OrderFragmentFragment = {
+  __typename?: 'IoRestorecommerceOrderOrder';
+  id?: string | null;
+  customerId?: string | null;
+  shopId?: string | null;
+  userId?: string | null;
+  customerOrderNr?: string | null;
+  paymentState?: IoRestorecommerceInvoicePaymentState | null;
+  fulfillmentState?: IoRestorecommerceFulfillmentState | null;
+  orderState?: IoRestorecommerceOrderOrderState | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
 export type TimezoneFragmentFragment = {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   id?: string | null;
@@ -6146,6 +6173,147 @@ export type MasterDataTimezoneReadQuery = {
   };
 };
 
+export type OrderingOrderDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type OrderingOrderDeleteMutation = {
+  __typename?: 'Mutation';
+  ordering: {
+    __typename?: 'OrderingMutation';
+    order: {
+      __typename?: 'OrderingOrderMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            id?: string | null;
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type OrderingOrderMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceOrderOrderList;
+}>;
+
+export type OrderingOrderMutateMutation = {
+  __typename?: 'Mutation';
+  ordering: {
+    __typename?: 'OrderingMutation';
+    order: {
+      __typename?: 'OrderingOrderMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceOrderOrderListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceOrderOrderListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceOrderOrderResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+            payload?: {
+              __typename?: 'IoRestorecommerceOrderOrder';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              customerOrderNr?: string | null;
+              paymentState?: IoRestorecommerceInvoicePaymentState | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentState | null;
+              orderState?: IoRestorecommerceOrderOrderState | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type OrderingOrderReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type OrderingOrderReadQuery = {
+  __typename?: 'Query';
+  ordering: {
+    __typename?: 'OrderingQuery';
+    order: {
+      __typename?: 'OrderingOrderQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceOrderOrderListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceOrderOrderListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceOrderOrderResponse';
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+            payload?: {
+              __typename?: 'IoRestorecommerceOrderOrder';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              customerOrderNr?: string | null;
+              paymentState?: IoRestorecommerceInvoicePaymentState | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentState | null;
+              orderState?: IoRestorecommerceOrderOrderState | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export const MetaFragmentFragmentDoc = gql`
+  fragment MetaFragment on IoRestorecommerceMetaMeta {
+    created
+    modified
+    createdBy
+    modifiedBy
+  }
+`;
 export const AddressFragmentFragmentDoc = gql`
   fragment AddressFragment on IoRestorecommerceAddressAddress {
     id
@@ -6183,12 +6351,10 @@ export const AddressFragmentFragmentDoc = gql`
       longitude
     }
     meta {
-      created
-      modified
-      createdBy
-      modifiedBy
+      ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
 `;
 export const CountryFragmentFragmentDoc = gql`
   fragment CountryFragment on IoRestorecommerceCountryCountry {
@@ -6198,12 +6364,10 @@ export const CountryFragmentFragmentDoc = gql`
     geographicalName
     economicAreas
     meta {
-      created
-      modified
-      createdBy
-      modifiedBy
+      ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
 `;
 export const LocaleFragmentFragmentDoc = gql`
   fragment LocaleFragment on IoRestorecommerceLocaleLocale {
@@ -6211,12 +6375,10 @@ export const LocaleFragmentFragmentDoc = gql`
     description
     value
     meta {
-      created
-      modified
-      createdBy
-      modifiedBy
+      ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
 `;
 export const LocationFragmentFragmentDoc = gql`
   fragment LocationFragment on IoRestorecommerceLocationLocation {
@@ -6250,24 +6412,36 @@ export const LocationFragmentFragmentDoc = gql`
       }
     }
     meta {
-      created
-      modified
-      createdBy
-      modifiedBy
+      ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
+`;
+export const OrderFragmentFragmentDoc = gql`
+  fragment OrderFragment on IoRestorecommerceOrderOrder {
+    id
+    customerId
+    shopId
+    userId
+    customerOrderNr
+    paymentState
+    fulfillmentState
+    orderState
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
 `;
 export const TimezoneFragmentFragmentDoc = gql`
   fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
     description
     meta {
-      created
-      modified
-      createdBy
-      modifiedBy
+      ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
 `;
 export const UserFragmentFragmentDoc = gql`
   fragment UserFragment on IoRestorecommerceUserUser {
@@ -6287,12 +6461,10 @@ export const UserFragmentFragmentDoc = gql`
       role
     }
     meta {
-      created
-      modified
-      createdBy
-      modifiedBy
+      ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
 `;
 export const IdentityUserActivateDocument = gql`
   mutation IdentityUserActivate(
@@ -6954,6 +7126,123 @@ export class MasterDataTimezoneReadGQL extends Apollo.Query<
   MasterDataTimezoneReadQueryVariables
 > {
   override document = MasterDataTimezoneReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const OrderingOrderDeleteDocument = gql`
+  mutation OrderingOrderDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    ordering {
+      order {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderingOrderDeleteGQL extends Apollo.Mutation<
+  OrderingOrderDeleteMutation,
+  OrderingOrderDeleteMutationVariables
+> {
+  override document = OrderingOrderDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const OrderingOrderMutateDocument = gql`
+  mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
+    ordering {
+      order {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              status {
+                code
+                message
+              }
+              payload {
+                ...OrderFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${OrderFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderingOrderMutateGQL extends Apollo.Mutation<
+  OrderingOrderMutateMutation,
+  OrderingOrderMutateMutationVariables
+> {
+  override document = OrderingOrderMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const OrderingOrderReadDocument = gql`
+  query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    ordering {
+      order {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              status {
+                code
+                message
+              }
+              payload {
+                ...OrderFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${OrderFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderingOrderReadGQL extends Apollo.Query<
+  OrderingOrderReadQuery,
+  OrderingOrderReadQueryVariables
+> {
+  override document = OrderingOrderReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

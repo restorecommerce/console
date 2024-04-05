@@ -9,6 +9,7 @@ export const STORE: Readonly<IStoreConstant> = {
     authnState: 'authnStateV1',
     countryState: 'countryStateV1',
     localeState: 'localeStateV1',
+    orderState: 'orderStateV1',
     routerState: 'routerStateV1',
     timezoneState: 'timezoneStateV1',
   },

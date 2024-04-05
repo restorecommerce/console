@@ -62,7 +62,7 @@ export const modulesMainRoutes: Route[] = [
       ),
   },
   {
-    path: ROUTER.pages.main.children.order.path,
+    path: ROUTER.pages.main.children.orders.path,
     component: PrivateTemplateComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
@@ -70,7 +70,7 @@ export const modulesMainRoutes: Route[] = [
       import('@console-modules/order').then((m) => m.ModulesOrderModule),
   },
   {
-    path: ROUTER.pages.main.children.product.path,
+    path: ROUTER.pages.main.children.products.path,
     component: PrivateTemplateComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
@@ -78,7 +78,7 @@ export const modulesMainRoutes: Route[] = [
       import('@console-modules/product').then((m) => m.ModulesProductModule),
   },
   {
-    path: ROUTER.pages.main.children.invoice.path,
+    path: ROUTER.pages.main.children.invoices.path,
     component: PrivateTemplateComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
@@ -86,7 +86,7 @@ export const modulesMainRoutes: Route[] = [
       import('@console-modules/invoice').then((m) => m.ModulesInvoiceModule),
   },
   {
-    path: ROUTER.pages.main.children.fulfillment.path,
+    path: ROUTER.pages.main.children.fulfillments.path,
     component: PrivateTemplateComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],

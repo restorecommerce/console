@@ -19,7 +19,7 @@ const reducer = createReducer<ILocaleState>(
     localeActions.localeReadRequest,
     (state): ILocaleState => ({
       ...state,
-      actionStatus: EActionStatus.CREATED,
+      actionStatus: EActionStatus.Requesting,
     })
   ),
   on(
@@ -27,14 +27,14 @@ const reducer = createReducer<ILocaleState>(
     (state, { payload }): ILocaleState =>
       adapter.setAll(payload, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     localeActions.localeReadRequestFail,
     (state, { error }): ILocaleState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   )

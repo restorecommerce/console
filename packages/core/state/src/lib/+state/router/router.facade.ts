@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, map, startWith } from 'rxjs';
+import { filter, map, startWith } from 'rxjs/operators';
 
 import * as routerSelectors from './router.selectors';
 

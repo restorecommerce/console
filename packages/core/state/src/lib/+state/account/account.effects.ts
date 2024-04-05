@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ENotificationTypes, IUser } from '@console-core/types';
 
@@ -105,7 +106,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'account updated',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -144,7 +145,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'email change has been requested',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -187,7 +188,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'email has been changed',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
@@ -229,7 +230,7 @@ export class AccountEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'password has been changed',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         })
       );
@@ -237,9 +238,9 @@ export class AccountEffects {
     { dispatch: false }
   );
 
-  userDeleteRequest$ = createEffect(() => {
+  userRemoveRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(accountActions.userDeleteRequest),
+      ofType(accountActions.userRemoveRequest),
       switchMap(({ payload }) =>
         this.accountService.remove(payload).pipe(
           map((result) => {
@@ -251,24 +252,24 @@ export class AccountEffects {
               throw new Error(operationStatus?.message || 'unknown error');
             }
 
-            return accountActions.userDeleteSuccess();
+            return accountActions.userRemoveSuccess();
           }),
           catchError((error: Error) =>
-            of(accountActions.userDeleteFail({ error: error.message }))
+            of(accountActions.userRemoveFail({ error: error.message }))
           )
         )
       )
     );
   });
 
-  userDeleteSuccess$ = createEffect(
+  userRemoveSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(accountActions.userDeleteSuccess),
+        ofType(accountActions.userRemoveSuccess),
         tap(() => {
           this.appFacade.addNotification({
             content: 'account deleted',
-            type: ENotificationTypes.SUCCESS,
+            type: ENotificationTypes.Success,
           });
         }),
         tap(() => {
@@ -289,12 +290,12 @@ export class AccountEffects {
           accountActions.userChangeEmailFail,
           accountActions.userConfirmEmailChangeFail,
           accountActions.userChangePasswordFail,
-          accountActions.userDeleteFail
+          accountActions.userRemoveFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

@@ -21,9 +21,6 @@ export class RcPersonalDataComponent {
   user!: IUser | null;
 
   @Input({ required: true })
-  isRequesting!: boolean;
-
-  @Input({ required: true })
   personalFormSchema!: VCLFormFieldSchemaRoot;
 
   @ViewChild('personalForm')

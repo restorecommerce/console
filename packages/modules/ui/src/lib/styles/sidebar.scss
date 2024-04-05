@@ -22,6 +22,10 @@
       background-color: $sidebar-button-hover-color;
     }
   }
+
+  .copyright-text {
+    font-size: 0.6rem !important;
+  }
 }
 
 .drawer-container .drawer-content {
@@ -46,7 +50,7 @@
 }
 
 rc-header.application-header .logo {
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
 }
 
 .rc-drawer-navigation {

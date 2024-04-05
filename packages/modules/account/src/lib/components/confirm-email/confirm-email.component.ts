@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { combineLatest, tap } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -13,7 +14,6 @@ import { buildConfirmEmailSchema } from '../../jss-forms';
     <ng-container *ngIf="vm$ | async as vm">
       <rc-account-confirm-email
         [user]="vm.user"
-        [isRequesting]="vm.isRequesting"
         [confirmEmailFormSchema]="confirmEmailFormSchema"
       />
     </ng-container>
@@ -37,7 +37,6 @@ export class ConfirmEmailComponent {
         this.confirmEmailFormSchema = buildConfirmEmailSchema({ user });
       })
     ),
-    isRequesting: this.accountFacade.isRequesting$,
   });
 
   constructor(private readonly accountFacade: AccountFacade) {}

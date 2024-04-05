@@ -29,9 +29,6 @@ fragment LocationFragment on IoRestorecommerceLocationLocation {
     }
   }
   meta {
-    created
-    modified
-    createdBy
-    modifiedBy
+    ...MetaFragment
   }
 }

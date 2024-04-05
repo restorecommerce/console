@@ -21,9 +21,6 @@ export class RcLocalizationDataComponent {
   user!: IUser | null;
 
   @Input({ required: true })
-  isRequesting!: boolean;
-
-  @Input({ required: true })
   localizationFormSchema!: VCLFormFieldSchemaRoot;
 
   @ViewChild('localizationForm')

@@ -1,0 +1,6 @@
+fragment MetaFragment on IoRestorecommerceMetaMeta {
+  created
+  modified
+  createdBy
+  modifiedBy
+}

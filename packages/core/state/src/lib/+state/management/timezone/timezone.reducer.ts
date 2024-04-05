@@ -20,7 +20,7 @@ const reducer = createReducer<ITimezoneState>(
     timezoneActions.timezoneReadRequest,
     (state): ITimezoneState => ({
       ...state,
-      actionStatus: EActionStatus.CREATED,
+      actionStatus: EActionStatus.Requesting,
     })
   ),
   on(
@@ -28,14 +28,14 @@ const reducer = createReducer<ITimezoneState>(
     (state, { payload }): ITimezoneState =>
       adapter.setAll(payload, {
         ...state,
-        actionStatus: EActionStatus.SUCCEEDED,
+        actionStatus: EActionStatus.Succeeded,
       })
   ),
   on(
     timezoneActions.timezoneReadRequestFail,
     (state, { error }): ITimezoneState => ({
       ...state,
-      actionStatus: EActionStatus.FAILED,
+      actionStatus: EActionStatus.Failed,
       error,
     })
   )

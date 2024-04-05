@@ -27,9 +27,9 @@ export const selectToken = createSelector(
   (state: IAuthnState) => state.token
 );
 
-export const selectIsLoading = createSelector(
+export const selectIsRequesting = createSelector(
   selectAuthn,
-  (state: IAuthnState) => state.actionStatus === EActionStatus.REQUESTING
+  (state: IAuthnState) => state.actionStatus === EActionStatus.Requesting
 );
 
 export const selectActionStatus = createSelector(

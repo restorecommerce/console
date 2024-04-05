@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { STORE } from '@console-core/config';
-import { EActionStatus, ICountryState } from '@console-core/types';
+import { ICountry, ICountryState } from '@console-core/types';
 
 import { adapter } from './country.reducer';
 
@@ -31,12 +31,11 @@ export const selectCountrySelectedId = createSelector(
 export const selectCountrySelected = createSelector(
   selectCountryEntities,
   selectCountrySelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
-);
-
-export const selectIsRequesting = createSelector(
-  selectCountry,
-  (state: ICountryState) => state.actionStatus === EActionStatus.REQUESTING
+  (entities, selectedId) => {
+    return (
+      selectedId && selectedId in entities ? entities[selectedId] : null
+    ) as ICountry | null;
+  }
 );
 
 export const selectActionStatus = createSelector(

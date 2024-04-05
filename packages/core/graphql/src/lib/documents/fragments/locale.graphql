@@ -3,9 +3,6 @@ fragment LocaleFragment on IoRestorecommerceLocaleLocale {
   description
   value
   meta {
-    created
-    modified
-    createdBy
-    modifiedBy
+    ...MetaFragment
   }
 }

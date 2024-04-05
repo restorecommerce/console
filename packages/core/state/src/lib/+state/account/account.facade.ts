@@ -18,9 +18,6 @@ import * as accountSelectors from './account.selectors';
 export class AccountFacade {
   // Selectors
   user$ = this.store.select(accountSelectors.selectUser);
-  isRequesting$ = this.store.select(accountSelectors.selectIsRequesting);
-  isUpdating$ = this.store.select(accountSelectors.selectIsUpdating);
-  isDeleting$ = this.store.select(accountSelectors.selectIsDeleting);
   actionStatus$ = this.store.select(accountSelectors.selectActionStatus);
   error$ = this.store.select(accountSelectors.selectError);
 
@@ -45,8 +42,8 @@ export class AccountFacade {
     payload: IIoRestorecommerceUserChangePasswordRequest
   ) =>
     this.store.dispatch(accountActions.userChangePasswordRequest({ payload }));
-  userDeleteRequest = (payload: IIoRestorecommerceResourcebaseDeleteRequest) =>
-    this.store.dispatch(accountActions.userDeleteRequest({ payload }));
+  userRemoveRequest = (payload: IIoRestorecommerceResourcebaseDeleteRequest) =>
+    this.store.dispatch(accountActions.userRemoveRequest({ payload }));
 
   constructor(private readonly store: Store) {}
 }

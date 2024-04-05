@@ -38,6 +38,7 @@ import {
   RcDataListItemComponent,
   RcDataListLabelComponent,
   RcDataListSublabelComponent,
+  RcDataListStatusComponent,
   RcDataListComponent,
   RcDrawerNavigationItemComponent,
   RcDrawerNavigationComponent,
@@ -62,6 +63,8 @@ import {
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
+  RcCountryViewComponent,
+  RcOrderViewComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -75,6 +78,7 @@ import {
   RcPageOverflowComponent,
   RcPageManagementComponent,
   RcPageAccountComponent,
+  RcPageOrderComponent,
 } from './components/pages';
 import {
   RcPrivateTemplateComponent,
@@ -111,6 +115,7 @@ const organisms = [
   RcDataListItemComponent,
   RcDataListLabelComponent,
   RcDataListSublabelComponent,
+  RcDataListStatusComponent,
   RcMetaComponent,
   RcSearchbarComponent,
   RcToolbarComponent,
@@ -129,6 +134,8 @@ const organisms = [
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
+  RcCountryViewComponent,
+  RcOrderViewComponent,
 ];
 
 const pages = [
@@ -143,6 +150,7 @@ const pages = [
   RcPageSignOutComponent,
   RcPagePasswordRecoveryComponent,
   RcPageAccountComponent,
+  RcPageOrderComponent,
 ];
 
 const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
@@ -154,9 +162,9 @@ const pipes = [HighlightPipe];
     CommonModule,
     NgOptimizedImage,
     FormsModule,
+    PortalModule,
     ReactiveFormsModule,
     RouterModule,
-    PortalModule,
     VCLAlertModule,
     VCLIcogramModule,
     VCLLayerModule,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ENotificationTypes, ITimezone } from '@console-core/types';
 
@@ -42,7 +43,7 @@ export class TimezoneEffects {
         tap(({ error }) => {
           this.appFacade.addNotification({
             content: error ?? 'unknown error',
-            type: ENotificationTypes.ERROR,
+            type: ENotificationTypes.Error,
           });
         })
       );

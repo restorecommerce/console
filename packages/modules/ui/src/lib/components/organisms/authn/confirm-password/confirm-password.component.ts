@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { tap } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { REGEX, ROUTER } from '@console-core/config';
 import { AuthnFacade, RouterFacade } from '@console-core/state';
@@ -22,7 +22,6 @@ export class RcConfirmPasswordComponent {
     { validators: this.validationService.validatePasswordMatch }
   );
   activationCode = '';
-  isLoading$ = this.authnFacade.isLoading$;
   routerParams$ = this.routerFacade.params$.pipe(
     tap((params) => {
       const { code: activationCode, identifier } = params;

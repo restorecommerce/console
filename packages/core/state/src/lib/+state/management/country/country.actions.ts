@@ -56,17 +56,17 @@ export const countryUpdateFail = createAction(
   props<{ error: string }>()
 );
 
-export const countryDeleteRequest = createAction(
-  '[COUNTRY] Country delete request',
-  props<{ payload: { ids: string[] } }>()
+export const countryRemoveRequest = createAction(
+  '[COUNTRY] Country remove request',
+  props<{ payload: { id: string } }>()
 );
 
-export const countryDeleteSuccess = createAction(
-  '[COUNTRY] Country delete success',
-  props<{ payload: { ids: string[] } }>()
+export const countryRemoveSuccess = createAction(
+  '[COUNTRY] Country remove success',
+  props<{ payload: { id: string } }>()
 );
 
-export const countryDeleteFail = createAction(
-  '[COUNTRY] Country delete fail',
+export const countryRemoveFail = createAction(
+  '[COUNTRY] Country remove fail',
   props<{ error: string }>()
 );

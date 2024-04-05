@@ -9,7 +9,7 @@ export const modulesFulfillmentRoutes: Route[] = [
   {
     path: '',
     component: FulfillmentTemplateComponent,
-    title: ROUTER.pages.main.children.fulfillment.title,
+    title: ROUTER.pages.main.children.fulfillments.title,
     children: [
       {
         path: '',
