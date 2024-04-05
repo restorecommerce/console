@@ -3,12 +3,21 @@ import { RouterModule } from '@angular/router';
 
 import { ModulesSharedModule } from '@console-modules/shared';
 
-import { OrderComponent } from './components/order/order.component';
+import { OrderCreateComponent } from './components/order-create.component';
+import { OrderEditComponent } from './components/order-edit.component';
+import { OrderIndexComponent } from './components/order-index.component';
+import { OrderViewComponent } from './components/order-view.component';
 import { OrderTemplateComponent } from './components/template/order-template.component';
 import { modulesOrderRoutes } from './lib.routes';
 
 @NgModule({
-  declarations: [OrderTemplateComponent, OrderComponent],
+  declarations: [
+    OrderTemplateComponent,
+    OrderIndexComponent,
+    OrderCreateComponent,
+    OrderEditComponent,
+    OrderViewComponent,
+  ],
   imports: [ModulesSharedModule, RouterModule.forChild(modulesOrderRoutes)],
 })
 export class ModulesOrderModule {}
