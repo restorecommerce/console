@@ -8,9 +8,9 @@ import { IMeta } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcMetaComponent {
-  @Input()
+  @Input({ required: true })
   id: string | null = null;
 
-  @Input()
+  @Input({ required: true })
   meta?: IMeta | null = null;
 }
