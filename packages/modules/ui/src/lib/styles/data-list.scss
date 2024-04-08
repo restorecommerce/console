@@ -8,9 +8,11 @@
   & .data-list-body {
     height: calc(100% - 225px);
     min-height: calc(100% - 225px);
+    width: calc(100% - 2px);
     overflow: hidden;
 
     &:hover {
+      width: 100%;
       overflow-y: auto;
       overflow-y: overlay;
       -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -18,15 +20,16 @@
   }
 
   & .data-list-item {
-    width: 100%;
     padding: 0.7rem 0.5rem;
     box-sizing: border-box;
 
     & > * {
-      width: 100%;
       margin-bottom: 0.1rem;
 
-      & > .data-list-label {
+      & > .data-list-order,
+      & > .data-list-label,
+      & > .data-list-sublabel,
+      & > .data-list-key-value {
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -34,15 +37,72 @@
       }
 
       &.data-list-sublabel,
-      &.data-list-status {
+      &.data-list-key-value {
         color: $text-secondary-color;
         font-size: 0.9em;
+      }
+
+      .badge-cancelled {
+        background-color: #dc3545;
+        color: $white;
+      }
+
+      .badge-created {
+        background-color: #ffc107;
+        color: $black;
+      }
+
+      .badge-done {
+        background-color: #28a745;
+        color: $white;
+      }
+
+      .badge-failed {
+        background-color: #dc3545;
+        color: $white;
+      }
+
+      .badge-invalid {
+        background-color: #6c757d;
+        color: $white;
+      }
+
+      .badge-in-process {
+        background-color: #007bff;
+        color: $white;
+      }
+
+      .badge-submitted {
+        background-color: #ffc107;
+        color: $black;
+      }
+
+      .badge-withdrawn {
+        background-color: #6c757d;
+        color: $white;
+      }
+
+      .created {
+        align-items: right;
+        color: $text-secondary-color;
+        font-size: 0.8em;
+        margin-top: 3px;
       }
     }
 
     &.selected {
       .data-list-sublabel,
-      .data-list-status {
+      .data-list-key-value {
+        color: $gray-light-5;
+      }
+
+      .data-list-order {
+        .created {
+          color: $gray-light-5;
+        }
+      }
+
+      .secondary-text-color {
         color: $gray-light-5;
       }
     }

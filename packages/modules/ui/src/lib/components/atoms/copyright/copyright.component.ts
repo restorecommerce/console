@@ -11,5 +11,5 @@ import { APP, ROUTER } from '@console-core/config';
 export class RcCopyrightComponent {
   APP = APP;
   ROUTER = ROUTER;
-  year = dayjs().year();
+  dayjs = dayjs;
 }

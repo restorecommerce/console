@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { PreferencesComponent } from './preferences.component';
 
 @NgModule({
+  declarations: [PreferencesComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { PreferencesComponent } from './preferences.component';
       },
     ]),
   ],
-  declarations: [PreferencesComponent],
 })
 export class PreferencesModule {}

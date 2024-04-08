@@ -104,6 +104,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
           const routes = [
             ROUTER.pages.main.children.account.link,
             ROUTER.pages.main.children.management.link,
+            ROUTER.pages.main.children.orders.link,
           ];
           const foundRoute = routes.find((route) => url.startsWith(route));
           return foundRoute || ROUTER.pages.main.children.home.link;

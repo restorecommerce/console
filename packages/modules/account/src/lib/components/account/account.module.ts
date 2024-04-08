@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { AccountComponent } from './account.component';
 
 @NgModule({
+  declarations: [AccountComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { AccountComponent } from './account.component';
       },
     ]),
   ],
-  declarations: [AccountComponent],
 })
 export class AccountModule {}

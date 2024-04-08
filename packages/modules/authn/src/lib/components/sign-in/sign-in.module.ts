@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { SignInComponent } from './sign-in.component';
 
 @NgModule({
+  declarations: [SignInComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { SignInComponent } from './sign-in.component';
       },
     ]),
   ],
-  declarations: [SignInComponent],
 })
 export class SignInModule {}

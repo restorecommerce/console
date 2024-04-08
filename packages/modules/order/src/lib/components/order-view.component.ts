@@ -14,7 +14,6 @@ import {
   selector: 'app-module-order-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      {{ vm | json }}
       <rc-order-view [order]="vm.order" />
     </ng-container>
   `,

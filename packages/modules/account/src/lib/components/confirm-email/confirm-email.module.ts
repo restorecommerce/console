@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { ConfirmEmailComponent } from './confirm-email.component';
 
 @NgModule({
+  declarations: [ConfirmEmailComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { ConfirmEmailComponent } from './confirm-email.component';
       },
     ]),
   ],
-  declarations: [ConfirmEmailComponent],
 })
 export class ConfirmEmailModule {}

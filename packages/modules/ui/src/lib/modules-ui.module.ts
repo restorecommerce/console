@@ -38,7 +38,8 @@ import {
   RcDataListItemComponent,
   RcDataListLabelComponent,
   RcDataListSublabelComponent,
-  RcDataListStatusComponent,
+  RcDataListOrderComponent,
+  RcDataListKeyValueComponent,
   RcDataListComponent,
   RcDrawerNavigationItemComponent,
   RcDrawerNavigationComponent,
@@ -65,6 +66,7 @@ import {
   RcCrudEditComponent,
   RcCountryViewComponent,
   RcOrderViewComponent,
+  RcProductViewComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -115,7 +117,8 @@ const organisms = [
   RcDataListItemComponent,
   RcDataListLabelComponent,
   RcDataListSublabelComponent,
-  RcDataListStatusComponent,
+  RcDataListOrderComponent,
+  RcDataListKeyValueComponent,
   RcMetaComponent,
   RcSearchbarComponent,
   RcToolbarComponent,
@@ -136,6 +139,7 @@ const organisms = [
   RcCrudEditComponent,
   RcCountryViewComponent,
   RcOrderViewComponent,
+  RcProductViewComponent,
 ];
 
 const pages = [
@@ -158,6 +162,22 @@ const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
 const pipes = [HighlightPipe];
 
 @NgModule({
+  declarations: [
+    ...atoms,
+    // ...molecules,
+    ...organisms,
+    ...pages,
+    ...templates,
+    ...pipes,
+  ],
+  exports: [
+    ...atoms,
+    // ...molecules,
+    ...organisms,
+    ...pages,
+    ...templates,
+    ...pipes,
+  ],
   imports: [
     CommonModule,
     NgOptimizedImage,
@@ -181,22 +201,6 @@ const pipes = [HighlightPipe];
     VCLPasswordInputModule,
     VCLDrawerModule,
     VCLFormControlGroupModule,
-  ],
-  declarations: [
-    ...atoms,
-    // ...molecules,
-    ...organisms,
-    ...pages,
-    ...templates,
-    ...pipes,
-  ],
-  exports: [
-    ...atoms,
-    // ...molecules,
-    ...organisms,
-    ...pages,
-    ...templates,
-    ...pipes,
   ],
 })
 export class ModulesUiModule {

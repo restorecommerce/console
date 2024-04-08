@@ -86,7 +86,12 @@
 
       <!-- Home -->
       <ng-container
-        *ngIf="currentRoute === ROUTER.pages.main.children.home.link"
+        *ngIf="
+          [
+            ROUTER.pages.main.children.home.link,
+            ROUTER.pages.main.children.orders.link
+          ].includes(currentRoute)
+        "
       >
         <rc-drawer-navigation-item
           icon="mdi:home-outline"

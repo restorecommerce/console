@@ -7,7 +7,7 @@ import { AuthnTemplateComponent } from './components/template/authn-template.com
 import { modulesAuthnRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesAuthnRoutes)],
   declarations: [AuthnTemplateComponent],
+  imports: [ModulesSharedModule, RouterModule.forChild(modulesAuthnRoutes)],
 })
 export class ModulesAuthnModule {}
