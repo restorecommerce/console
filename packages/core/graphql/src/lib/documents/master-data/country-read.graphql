@@ -14,7 +14,6 @@ query MasterDataCountryRead(
               ...CountryFragment
             }
           }
-          totalCount
         }
       }
     }
