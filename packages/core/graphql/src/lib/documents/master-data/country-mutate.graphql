@@ -10,10 +10,6 @@ mutation MasterDataCountryMutate(
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...CountryFragment
             }

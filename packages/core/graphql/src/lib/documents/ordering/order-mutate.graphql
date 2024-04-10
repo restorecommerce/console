@@ -8,10 +8,6 @@ mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...OrderFragment
             }
