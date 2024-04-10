@@ -1,0 +1,19 @@
+mutation InvoicingInvoiceMutate($input: IIoRestorecommerceInvoiceInvoiceList!) {
+  invoicing {
+    invoice {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...InvoiceFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+query InvoicingInvoiceRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  invoicing {
+    invoice {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...InvoiceFragment
+            }
+          }
+          totalCount
+        }
+      }
+    }
+  }
+}

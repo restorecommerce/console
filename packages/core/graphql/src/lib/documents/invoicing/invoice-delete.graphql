@@ -1,0 +1,16 @@
+mutation InvoicingInvoiceDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  invoicing {
+    invoice {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
