@@ -167,18 +167,114 @@ export const ROUTER: Readonly<IRouterConstant> = {
           link: '/products',
           title: 'Products',
           getLink: () => ['', 'products'],
+          children: {
+            index: {
+              path: 'index',
+              link: '/products/index',
+              getLink: () => ['', 'products', 'index'],
+              title: 'Products',
+            },
+            create: {
+              path: 'create',
+              link: '/products/create',
+              title: 'Create Product',
+              getLink: () => ['', 'products', 'create'],
+            },
+            view: {
+              path: ':id/view',
+              link: '/products/:id/view',
+              title: 'Product',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id
+                  ? ['', 'products', params.id, 'view']
+                  : ['', 'products'],
+            },
+            edit: {
+              path: ':id/edit',
+              link: '/products/:id/edit',
+              title: 'Edit Product',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id
+                  ? ['', 'products', params.id, 'edit']
+                  : ['', 'products'],
+            },
+          },
         },
         invoices: {
           path: 'invoices',
           link: '/invoices',
           title: 'Invoices',
           getLink: () => ['', 'invoices'],
+          children: {
+            index: {
+              path: 'index',
+              link: '/invoices/index',
+              getLink: () => ['', 'invoices', 'index'],
+              title: 'Invoices',
+            },
+            create: {
+              path: 'create',
+              link: '/invoices/create',
+              title: 'Create Invoice',
+              getLink: () => ['', 'invoices', 'create'],
+            },
+            view: {
+              path: ':id/view',
+              link: '/invoices/:id/view',
+              title: 'Invoice',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id
+                  ? ['', 'invoices', params.id, 'view']
+                  : ['', 'invoices'],
+            },
+            edit: {
+              path: ':id/edit',
+              link: '/invoices/:id/edit',
+              title: 'Edit Invoice',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id
+                  ? ['', 'invoices', params.id, 'edit']
+                  : ['', 'invoices'],
+            },
+          },
         },
         fulfillments: {
           path: 'fulfillments',
           link: '/fulfillments',
           title: 'Fulfillments',
           getLink: () => ['', 'fulfillments'],
+          children: {
+            index: {
+              path: 'index',
+              link: '/fulfillments/index',
+              getLink: () => ['', 'fulfillments', 'index'],
+              title: 'Fulfillments',
+            },
+            create: {
+              path: 'create',
+              link: '/fulfillments/create',
+              title: 'Create Fulfillment',
+              getLink: () => ['', 'fulfillments', 'create'],
+            },
+            view: {
+              path: ':id/view',
+              link: '/fulfillments/:id/view',
+              title: 'Fulfillment',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id
+                  ? ['', 'fulfillments', params.id, 'view']
+                  : ['', 'fulfillments'],
+            },
+            edit: {
+              path: ':id/edit',
+              link: '/fulfillments/:id/edit',
+              title: 'Edit Product',
+              getLink: (params?: { id?: number | string }) =>
+                params?.id
+                  ? ['', 'fulfillments', params.id, 'edit']
+                  : ['', 'fulfillments'],
+            },
+          },
         },
         layout: {
           path: 'layout',

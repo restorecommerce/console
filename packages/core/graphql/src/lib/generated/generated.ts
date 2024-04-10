@@ -5205,17 +5205,42 @@ export type SubscriptionOutput = {
   id?: Maybe<Scalars['String']>;
 };
 
-export type CatalogProductReadQueryVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseReadRequest;
+export type CatalogProductDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type CatalogProductReadQuery = {
-  __typename?: 'Query';
+export type CatalogProductDeleteMutation = {
+  __typename?: 'Mutation';
   catalog: {
-    __typename?: 'CatalogQuery';
+    __typename?: 'CatalogMutation';
     product: {
-      __typename?: 'CatalogProductQuery';
-      Read?: {
+      __typename?: 'CatalogProductMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type CatalogProductMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceProductProductList;
+}>;
+
+export type CatalogProductMutateMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    product: {
+      __typename?: 'CatalogProductMutation';
+      Mutate?: {
         __typename?: 'ProtoIoRestorecommerceProductProductListResponse';
         details?: {
           __typename?: 'IoRestorecommerceProductProductListResponse';
@@ -5234,6 +5259,90 @@ export type CatalogProductReadQuery = {
                 __typename?: 'IoRestorecommerceProductIndividualProduct';
                 name?: string | null;
                 description?: string | null;
+                physical?: {
+                  __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                  variants?: Array<{
+                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                    id?: string | null;
+                    name?: string | null;
+                    images?: Array<{
+                      __typename?: 'IoRestorecommerceImageImage';
+                      id?: string | null;
+                      index?: number | null;
+                      filename?: string | null;
+                      caption?: string | null;
+                      contentType?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url?: string | null;
+                    }> | null;
+                  }> | null;
+                } | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type CatalogProductReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type CatalogProductReadQuery = {
+  __typename?: 'Query';
+  catalog: {
+    __typename?: 'CatalogQuery';
+    product: {
+      __typename?: 'CatalogProductQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceProductProductListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceProductProductListResponse';
+          totalCount?: number | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceProductProductResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceProductProduct';
+              id?: string | null;
+              active?: boolean | null;
+              product?: {
+                __typename?: 'IoRestorecommerceProductIndividualProduct';
+                name?: string | null;
+                description?: string | null;
+                physical?: {
+                  __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                  variants?: Array<{
+                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                    id?: string | null;
+                    name?: string | null;
+                    images?: Array<{
+                      __typename?: 'IoRestorecommerceImageImage';
+                      id?: string | null;
+                      index?: number | null;
+                      filename?: string | null;
+                      caption?: string | null;
+                      contentType?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url?: string | null;
+                    }> | null;
+                  }> | null;
+                } | null;
               } | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -5308,6 +5417,36 @@ export type CountryFragmentFragment = {
   countryCode?: string | null;
   geographicalName?: string | null;
   economicAreas?: Array<string> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type FulfillmentFragmentFragment = {
+  __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+  id?: string | null;
+  customerId?: string | null;
+  shopId?: string | null;
+  userId?: string | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type InvoiceFragmentFragment = {
+  __typename?: 'IoRestorecommerceInvoiceInvoice';
+  id?: string | null;
+  customerId?: string | null;
+  shopId?: string | null;
+  userId?: string | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -5412,6 +5551,25 @@ export type ProductFragmentFragment = {
     __typename?: 'IoRestorecommerceProductIndividualProduct';
     name?: string | null;
     description?: string | null;
+    physical?: {
+      __typename?: 'IoRestorecommerceProductPhysicalProduct';
+      variants?: Array<{
+        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+        id?: string | null;
+        name?: string | null;
+        images?: Array<{
+          __typename?: 'IoRestorecommerceImageImage';
+          id?: string | null;
+          index?: number | null;
+          filename?: string | null;
+          caption?: string | null;
+          contentType?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url?: string | null;
+        }> | null;
+      }> | null;
+    } | null;
   } | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -5460,6 +5618,117 @@ export type UserFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
+};
+
+export type FulfillmentFulfillmentDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type FulfillmentFulfillmentDeleteMutation = {
+  __typename?: 'Mutation';
+  fulfillment: {
+    __typename?: 'FulfillmentMutation';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type FulfillmentFulfillmentMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceFulfillmentFulfillmentList;
+}>;
+
+export type FulfillmentFulfillmentMutateMutation = {
+  __typename?: 'Mutation';
+  fulfillment: {
+    __typename?: 'FulfillmentMutation';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+          totalCount?: number | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type FulfillmentFulfillmentReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type FulfillmentFulfillmentReadQuery = {
+  __typename?: 'Query';
+  fulfillment: {
+    __typename?: 'FulfillmentQuery';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+          totalCount?: number | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
 };
 
 export type IdentityUserActivateMutationVariables = Exact<{
@@ -5852,6 +6121,116 @@ export type IdentityUserRequestPasswordChangeMutation = {
   };
 };
 
+export type InvoicingInvoiceDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type InvoicingInvoiceDeleteMutation = {
+  __typename?: 'Mutation';
+  invoicing: {
+    __typename?: 'InvoicingMutation';
+    invoice: {
+      __typename?: 'InvoicingInvoiceMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type InvoicingInvoiceMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceInvoiceInvoiceList;
+}>;
+
+export type InvoicingInvoiceMutateMutation = {
+  __typename?: 'Mutation';
+  invoicing: {
+    __typename?: 'InvoicingMutation';
+    invoice: {
+      __typename?: 'InvoicingInvoiceMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceInvoiceInvoiceListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceInvoiceInvoiceListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceInvoiceInvoice';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type InvoicingInvoiceReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type InvoicingInvoiceReadQuery = {
+  __typename?: 'Query';
+  invoicing: {
+    __typename?: 'InvoicingQuery';
+    invoice: {
+      __typename?: 'InvoicingInvoiceQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceInvoiceInvoiceListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceInvoiceInvoiceListResponse';
+          totalCount?: number | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceInvoiceInvoice';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type MasterDataAddressReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -5866,6 +6245,7 @@ export type MasterDataAddressReadQuery = {
         __typename?: 'ProtoIoRestorecommerceAddressAddressListResponse';
         details?: {
           __typename?: 'IoRestorecommerceAddressAddressListResponse';
+          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6023,6 +6403,7 @@ export type MasterDataCountryReadQuery = {
         __typename?: 'ProtoIoRestorecommerceCountryCountryListResponse';
         details?: {
           __typename?: 'IoRestorecommerceCountryCountryListResponse';
+          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6066,6 +6447,7 @@ export type MasterDataLocaleReadQuery = {
         __typename?: 'ProtoIoRestorecommerceLocaleLocaleListResponse';
         details?: {
           __typename?: 'IoRestorecommerceLocaleLocaleListResponse';
+          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6107,6 +6489,7 @@ export type MasterDataLocationReadQuery = {
         __typename?: 'ProtoIoRestorecommerceLocationLocationListResponse';
         details?: {
           __typename?: 'IoRestorecommerceLocationLocationListResponse';
+          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6180,6 +6563,7 @@ export type MasterDataTimezoneReadQuery = {
         __typename?: 'ProtoIoRestorecommerceTimezoneTimezoneListResponse';
         details?: {
           __typename?: 'IoRestorecommerceTimezoneTimezoneListResponse';
+          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6302,6 +6686,7 @@ export type OrderingOrderReadQuery = {
         __typename?: 'ProtoIoRestorecommerceOrderOrderListResponse';
         details?: {
           __typename?: 'IoRestorecommerceOrderOrderListResponse';
+          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6397,6 +6782,30 @@ export const CountryFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const FulfillmentFragmentFragmentDoc = gql`
+  fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
+    id
+    customerId
+    shopId
+    userId
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
+export const InvoiceFragmentFragmentDoc = gql`
+  fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
+    id
+    customerId
+    shopId
+    userId
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const LocaleFragmentFragmentDoc = gql`
   fragment LocaleFragment on IoRestorecommerceLocaleLocale {
     id
@@ -6468,6 +6877,22 @@ export const ProductFragmentFragmentDoc = gql`
     product {
       name
       description
+      physical {
+        variants {
+          id
+          name
+          images {
+            id
+            index
+            filename
+            caption
+            contentType
+            height
+            width
+            url
+          }
+        }
+      }
     }
     meta {
       ...MetaFragment
@@ -6508,11 +6933,43 @@ export const UserFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
-export const CatalogProductReadDocument = gql`
-  query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+export const CatalogProductDeleteDocument = gql`
+  mutation CatalogProductDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
     catalog {
       product {
-        Read(input: $input) {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CatalogProductDeleteGQL extends Apollo.Mutation<
+  CatalogProductDeleteMutation,
+  CatalogProductDeleteMutationVariables
+> {
+  override document = CatalogProductDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CatalogProductMutateDocument = gql`
+  mutation CatalogProductMutate($input: IIoRestorecommerceProductProductList!) {
+    catalog {
+      product {
+        Mutate(input: $input) {
           details {
             operationStatus {
               code
@@ -6534,11 +6991,158 @@ export const CatalogProductReadDocument = gql`
 @Injectable({
   providedIn: 'root',
 })
+export class CatalogProductMutateGQL extends Apollo.Mutation<
+  CatalogProductMutateMutation,
+  CatalogProductMutateMutationVariables
+> {
+  override document = CatalogProductMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CatalogProductReadDocument = gql`
+  query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    catalog {
+      product {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...ProductFragment
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+  ${ProductFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
 export class CatalogProductReadGQL extends Apollo.Query<
   CatalogProductReadQuery,
   CatalogProductReadQueryVariables
 > {
   override document = CatalogProductReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FulfillmentFulfillmentDeleteDocument = gql`
+  mutation FulfillmentFulfillmentDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    fulfillment {
+      fulfillment {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FulfillmentFulfillmentDeleteGQL extends Apollo.Mutation<
+  FulfillmentFulfillmentDeleteMutation,
+  FulfillmentFulfillmentDeleteMutationVariables
+> {
+  override document = FulfillmentFulfillmentDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FulfillmentFulfillmentMutateDocument = gql`
+  mutation FulfillmentFulfillmentMutate(
+    $input: IIoRestorecommerceFulfillmentFulfillmentList!
+  ) {
+    fulfillment {
+      fulfillment {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...FulfillmentFragment
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+  ${FulfillmentFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FulfillmentFulfillmentMutateGQL extends Apollo.Mutation<
+  FulfillmentFulfillmentMutateMutation,
+  FulfillmentFulfillmentMutateMutationVariables
+> {
+  override document = FulfillmentFulfillmentMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FulfillmentFulfillmentReadDocument = gql`
+  query FulfillmentFulfillmentRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    fulfillment {
+      fulfillment {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...FulfillmentFragment
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+  ${FulfillmentFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FulfillmentFulfillmentReadGQL extends Apollo.Query<
+  FulfillmentFulfillmentReadQuery,
+  FulfillmentFulfillmentReadQueryVariables
+> {
+  override document = FulfillmentFulfillmentReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -6916,6 +7520,115 @@ export class IdentityUserRequestPasswordChangeGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const InvoicingInvoiceDeleteDocument = gql`
+  mutation InvoicingInvoiceDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    invoicing {
+      invoice {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InvoicingInvoiceDeleteGQL extends Apollo.Mutation<
+  InvoicingInvoiceDeleteMutation,
+  InvoicingInvoiceDeleteMutationVariables
+> {
+  override document = InvoicingInvoiceDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const InvoicingInvoiceMutateDocument = gql`
+  mutation InvoicingInvoiceMutate(
+    $input: IIoRestorecommerceInvoiceInvoiceList!
+  ) {
+    invoicing {
+      invoice {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...InvoiceFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${InvoiceFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InvoicingInvoiceMutateGQL extends Apollo.Mutation<
+  InvoicingInvoiceMutateMutation,
+  InvoicingInvoiceMutateMutationVariables
+> {
+  override document = InvoicingInvoiceMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const InvoicingInvoiceReadDocument = gql`
+  query InvoicingInvoiceRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    invoicing {
+      invoice {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...InvoiceFragment
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+  ${InvoiceFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InvoicingInvoiceReadGQL extends Apollo.Query<
+  InvoicingInvoiceReadQuery,
+  InvoicingInvoiceReadQueryVariables
+> {
+  override document = InvoicingInvoiceReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const MasterDataAddressReadDocument = gql`
   query MasterDataAddressRead(
     $input: IIoRestorecommerceResourcebaseReadRequest!
@@ -6933,6 +7646,7 @@ export const MasterDataAddressReadDocument = gql`
                 ...AddressFragment
               }
             }
+            totalCount
           }
         }
       }
@@ -7050,6 +7764,7 @@ export const MasterDataCountryReadDocument = gql`
                 ...CountryFragment
               }
             }
+            totalCount
           }
         }
       }
@@ -7088,6 +7803,7 @@ export const MasterDataLocaleReadDocument = gql`
                 ...LocaleFragment
               }
             }
+            totalCount
           }
         }
       }
@@ -7126,6 +7842,7 @@ export const MasterDataLocationReadDocument = gql`
                 ...LocationFragment
               }
             }
+            totalCount
           }
         }
       }
@@ -7164,6 +7881,7 @@ export const MasterDataTimezoneReadDocument = gql`
                 ...TimezoneFragment
               }
             }
+            totalCount
           }
         }
       }
@@ -7277,6 +7995,7 @@ export const OrderingOrderReadDocument = gql`
                 ...OrderFragment
               }
             }
+            totalCount
           }
         }
       }

@@ -12,6 +12,7 @@ query MasterDataLocaleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
               ...LocaleFragment
             }
           }
+          totalCount
         }
       }
     }

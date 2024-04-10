@@ -12,6 +12,7 @@ query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
               ...OrderFragment
             }
           }
+          totalCount
         }
       }
     }
