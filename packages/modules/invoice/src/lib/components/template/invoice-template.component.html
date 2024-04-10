@@ -1,8 +1,8 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [title]="vm.selectedOrder?.customerOrderNr || feature.name.singular"
-  [id]="vm.selectedOrderId"
+  [title]="vm.selectedInvoice?.id || feature.name.singular"
+  [id]="vm.selectedInvoiceId"
   [total]="vm.dataList.length"
   [urlSegment]="vm.urlSegment"
   [triggerRead]="triggerRead"
@@ -26,19 +26,15 @@
       <rc-data-list class="mb-4 pb-2">
         <rc-data-list-item
           *ngFor="let item of vm.dataList; trackBy: trackByFn"
-          (click)="triggerSelectId.next(vm.selectedOrderId)"
-          [ngClass]="{ selected: item.id === vm.selectedOrderId }"
+          (click)="triggerSelectId.next(vm.selectedInvoiceId)"
+          [ngClass]="{ selected: item.id === vm.selectedInvoiceId }"
           [routerLink]="feature.links.view(item.id)"
           role="option"
         >
-          <rc-data-list-order [order]="item" />
+          <!-- <rc-data-list-order [order]="item" /> -->
           <rc-data-list-key-value
-            [key]="'Fulfillment State'"
-            [value]="item.fulfillmentState.replace('_', ' ')"
-          />
-          <rc-data-list-key-value
-            [key]="'Payment State'"
-            [value]="item.paymentState"
+            [key]="'Invoice name'"
+            [value]="item.id"
           />
         </rc-data-list-item>
       </rc-data-list>
@@ -51,15 +47,15 @@
 
   <ng-container rc-crud-meta>
     <rc-meta
-      *ngIf="vm.selectedOrderId"
-      [id]="vm.selectedOrderId"
-      [meta]="vm.selectedOrder?.meta"
+      *ngIf="vm.selectedInvoiceId"
+      [id]="vm.selectedInvoiceId"
+      [meta]="vm.selectedInvoice?.meta"
     />
   </ng-container>
 </rc-crud-main>
 
 <ng-template #templateNoRecords>
   <div class="pt-4">
-    <rc-no-records message="No orders found!" />
+    <rc-no-records message="No invoices found!" />
   </div>
 </ng-template>

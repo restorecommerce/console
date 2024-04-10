@@ -47,6 +47,21 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     }, 500); // Wait for 500ms after the resize event stops firing
   }
 
+  menuTopLinks = [
+    ROUTER.pages.main.children.account.link,
+    ROUTER.pages.main.children.management.link,
+  ];
+  menuMainWithoutHomeLinks = [
+    ROUTER.pages.main.children.fulfillments.link,
+    ROUTER.pages.main.children.invoices.link,
+    ROUTER.pages.main.children.orders.link,
+    ROUTER.pages.main.children.products.link,
+  ];
+  menuMainLinks = [
+    ROUTER.pages.main.children.home.link,
+    ...this.menuMainWithoutHomeLinks,
+  ];
+
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly router: Router,
@@ -102,9 +117,8 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
 
         map((url: string) => {
           const routes = [
-            ROUTER.pages.main.children.account.link,
-            ROUTER.pages.main.children.management.link,
-            ROUTER.pages.main.children.orders.link,
+            ...this.menuTopLinks,
+            ...this.menuMainWithoutHomeLinks,
           ];
           const foundRoute = routes.find((route) => url.startsWith(route));
           return foundRoute || ROUTER.pages.main.children.home.link;

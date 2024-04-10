@@ -67,6 +67,8 @@ import {
   RcCountryViewComponent,
   RcOrderViewComponent,
   RcProductViewComponent,
+  RcFulfillmentViewComponent,
+  RcInvoiceViewComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -140,6 +142,8 @@ const organisms = [
   RcCountryViewComponent,
   RcOrderViewComponent,
   RcProductViewComponent,
+  RcFulfillmentViewComponent,
+  RcInvoiceViewComponent,
 ];
 
 const pages = [

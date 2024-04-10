@@ -85,14 +85,7 @@
       </vcl-select>
 
       <!-- Home -->
-      <ng-container
-        *ngIf="
-          [
-            ROUTER.pages.main.children.home.link,
-            ROUTER.pages.main.children.orders.link
-          ].includes(currentRoute)
-        "
-      >
+      <ng-container *ngIf="menuMainLinks.includes(currentRoute)">
         <rc-drawer-navigation-item
           icon="mdi:home-outline"
           [routerLink]="ROUTER.pages.main.children.home.link"
