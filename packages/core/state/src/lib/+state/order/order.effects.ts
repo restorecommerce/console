@@ -6,11 +6,6 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
-  IoRestorecommerceFulfillmentState,
-  IoRestorecommerceInvoicePaymentState,
-  IoRestorecommerceOrderOrderState,
-} from '@console-core/graphql';
-import {
   ENotificationTypes,
   IOrder,
   TOperationStatus,
@@ -38,82 +33,7 @@ export class OrderEffects {
             const payload = (
               result?.data?.ordering?.order?.Read?.details?.items || []
             )?.map((item) => item?.payload) as IOrder[];
-            const getRandomDate = () => {
-              // Return random date with format '2024-04-30T00:00:00Z' and previous date '2024-04-30T00:00:00Z'
-              const date = new Date(
-                Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 365
-              );
-              date.setUTCHours(0, 0, 0, 0);
-              return `${date.toISOString().split('.')[0]}Z`;
-            };
-
-            const demoData: IOrder[] = [
-              // Random demo data
-              ...Array.from({ length: 40 }, () => ({
-                id: `ord_${Math.random().toString(36).substring(2, 10)}`,
-                customerId: 'cust_9999',
-                shopId: `Shop_${Math.round(Math.random() * 1000)}`,
-                userId: 'user_4321',
-                orderState:
-                  Math.random() > 0.5
-                    ? Math.random() > 0.5
-                      ? Math.random() > 0.5
-                        ? IoRestorecommerceOrderOrderState.Cancelled
-                        : IoRestorecommerceOrderOrderState.Created
-                      : Math.random() > 0.5
-                      ? IoRestorecommerceOrderOrderState.Done
-                      : IoRestorecommerceOrderOrderState.InProcess
-                    : Math.random() > 0.5
-                    ? IoRestorecommerceOrderOrderState.Submitted
-                    : IoRestorecommerceOrderOrderState.Withdrawn,
-                paymentState:
-                  Math.random() > 0.5
-                    ? IoRestorecommerceInvoicePaymentState.Unpayed
-                    : IoRestorecommerceInvoicePaymentState.Payed,
-                fulfillmentState:
-                  Math.random() > 0.5
-                    ? Math.random() > 0.5
-                      ? IoRestorecommerceFulfillmentState.Created
-                      : IoRestorecommerceFulfillmentState.Fulfilled
-                    : Math.random() > 0.5
-                    ? IoRestorecommerceFulfillmentState.InTransit
-                    : IoRestorecommerceFulfillmentState.Submitted,
-                customerOrderNr: `PO20230801-${Math.random()
-                  .toString(36)
-                  .substring(2, 10)}`,
-                notificationEmail: `notificationEmail_${Math.round(
-                  Math.random() * 1000
-                )}@restorecommerce.io`,
-                meta: {
-                  id: 'meta_0002',
-                  created: getRandomDate(),
-                  modified: getRandomDate(),
-                  createdBy: 'system',
-                  modifiedBy: 'user_4321',
-                },
-              })),
-            ];
-            // Sort by meta.created
-            demoData.sort((a, b) => {
-              if (a.meta?.created < b.meta?.created) {
-                return 1;
-              }
-              if (a.meta?.created > b.meta?.created) {
-                return -1;
-              }
-              return 0;
-            });
-
-            demoData[0].meta = demoData[0].meta = {
-              id: 'meta_0001',
-              created: '2024-04-08T00:00:00Z',
-              modified: '2024-04-08T00:00:00Z',
-              createdBy: 'system',
-              modifiedBy: 'system',
-            };
-            return orderActions.orderReadRequestSuccess({
-              payload: demoData.concat(payload),
-            });
+            return orderActions.orderReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(orderActions.orderReadRequestFail({ error: error.message }))
