@@ -1,12 +1,140 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import {
+  map,
+  tap,
+  distinctUntilChanged,
+  debounceTime,
+  skip,
+} from 'rxjs/operators';
+import { SubSink } from 'subsink';
+
+import { ROUTER } from '@console-core/config';
+import {
+  IIoRestorecommerceResourcebaseReadRequest,
+  IoRestorecommerceResourcebaseSortSortOrder,
+} from '@console-core/graphql';
+import { ProductFacade, RouterFacade } from '@console-core/state';
+import { ICrudFeature, EUrlSegment, IProduct } from '@console-core/types';
 
 @Component({
   selector: 'app-module-product-template',
-  template: `
-    <rc-page-layout>
-      <router-outlet />
-    </rc-page-layout>
-  `,
+  templateUrl: './product-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductTemplateComponent {}
+export class ProductTemplateComponent implements OnInit, OnDestroy {
+  ROUTER = ROUTER;
+  featureRouter = ROUTER.pages.main.children.products.children;
+
+  feature: Readonly<ICrudFeature> = {
+    name: {
+      plural: 'Products',
+      singular: 'Product',
+    },
+    links: {
+      index: () => this.featureRouter.index.getLink(),
+      create: () => this.featureRouter.create.getLink(),
+      edit: (id: string | null) =>
+        this.featureRouter.edit.getLink({ id: id ?? undefined }),
+      view: (id: string | null) =>
+        this.featureRouter.view.getLink({ id: id ?? undefined }),
+    },
+  };
+
+  queryVariables: IIoRestorecommerceResourcebaseReadRequest = {
+    sorts: [
+      {
+        field: 'meta.created',
+        order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
+      },
+    ],
+    limit: 100,
+  };
+
+  readonly triggerRead = new BehaviorSubject<null>(null);
+  readonly triggerRead$ = this.triggerRead
+    .asObservable()
+    .pipe(tap(() => this.productFacade.read(this.queryVariables)));
+
+  readonly triggerSearch = new BehaviorSubject<string>('');
+  readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
+    skip(1),
+    debounceTime(300),
+    distinctUntilChanged(),
+    tap((value) => {
+      this.queryVariables = {
+        ...this.queryVariables,
+        search: {
+          caseSensitive: false,
+          search: value,
+          fields: [],
+        },
+      };
+      this.productFacade.read(this.queryVariables);
+    })
+  );
+
+  readonly triggerSelectId = new BehaviorSubject<string | null>(null);
+  readonly triggerSelectId$ = this.triggerSelectId
+    .asObservable()
+    .pipe(tap((id) => this.productFacade.setSelectedId(id)));
+
+  readonly triggerRemove = new BehaviorSubject<string | null>(null);
+  readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
+    tap((id) => {
+      if (id === null) {
+        return;
+      }
+      this.productFacade.remove({ id });
+    })
+  );
+
+  readonly urlSegment$ = this.routerFacade.url$.pipe(
+    map((url) => url.split('/').pop() as EUrlSegment),
+    distinctUntilChanged(),
+    tap((segment) => {
+      if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
+        this.productFacade.setSelectedId(null);
+      }
+    }),
+    debounceTime(10)
+  );
+
+  readonly vm$ = combineLatest({
+    dataList: this.productFacade.all$,
+    selectedProductId: this.productFacade.selectedId$,
+    selectedProduct: this.productFacade.selected$,
+    urlSegment: this.urlSegment$,
+    triggerRead: this.triggerRead$,
+    triggerSelectId: this.triggerSelectId$,
+    triggerRemove: this.triggerRemove$,
+  });
+
+  private readonly subscriptions = new SubSink();
+
+  constructor(
+    private readonly productFacade: ProductFacade,
+    private readonly routerFacade: RouterFacade
+  ) {}
+
+  ngOnInit(): void {
+    this.subscriptions.sink = this.triggerSearch$.subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  onSearch(value: string): void {
+    this.triggerSearch.next(value);
+  }
+
+  trackByFn(_: number, item: IProduct) {
+    return item.id;
+  }
+}

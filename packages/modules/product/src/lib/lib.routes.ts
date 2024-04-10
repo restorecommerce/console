@@ -2,7 +2,10 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { ProductComponent } from './components/product/product.component';
+import { ProductCreateComponent } from './components/product-create.component';
+import { ProductEditComponent } from './components/product-edit.component';
+import { ProductIndexComponent } from './components/product-index.component';
+import { ProductViewComponent } from './components/product-view.component';
 import { ProductTemplateComponent } from './components/template/product-template.component';
 
 export const modulesProductRoutes: Route[] = [
@@ -12,9 +15,28 @@ export const modulesProductRoutes: Route[] = [
     title: ROUTER.pages.main.children.products.title,
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        component: ProductComponent,
+        path: ROUTER.pages.main.children.products.children.index.path,
+        component: ProductIndexComponent,
+        title: ROUTER.pages.main.children.products.children.index.title,
+      },
+      {
+        path: ROUTER.pages.main.children.products.children.view.path,
+        component: ProductViewComponent,
+        title: ROUTER.pages.main.children.products.children.view.title,
+      },
+      {
+        path: ROUTER.pages.main.children.products.children.create.path,
+        component: ProductCreateComponent,
+        title: ROUTER.pages.main.children.products.children.create.title,
+      },
+      {
+        path: ROUTER.pages.main.children.products.children.edit.path,
+        component: ProductEditComponent,
+        title: ROUTER.pages.main.children.products.children.edit.title,
+      },
+      {
+        path: '**',
+        redirectTo: ROUTER.pages.main.children.products.children.index.path,
       },
     ],
   },

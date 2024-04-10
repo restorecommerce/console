@@ -1,7 +1,7 @@
-query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+mutation CatalogProductMutate($input: IIoRestorecommerceProductProductList!) {
   catalog {
     product {
-      Read(input: $input) {
+      Mutate(input: $input) {
         details {
           operationStatus {
             code
@@ -12,7 +12,6 @@ query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
               ...ProductFragment
             }
           }
-          totalCount
         }
       }
     }

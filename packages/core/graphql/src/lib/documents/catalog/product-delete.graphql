@@ -1,0 +1,16 @@
+mutation CatalogProductDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  catalog {
+    product {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
