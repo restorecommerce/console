@@ -1,0 +1,16 @@
+mutation FulfillmentFulfillmentDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  fulfillment {
+    fulfillment {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

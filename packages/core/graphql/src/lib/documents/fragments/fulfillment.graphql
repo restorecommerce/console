@@ -1,0 +1,9 @@
+fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
+  id
+  customerId
+  shopId
+  userId
+  meta {
+    ...MetaFragment
+  }
+}

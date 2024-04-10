@@ -1,0 +1,22 @@
+mutation FulfillmentFulfillmentMutate(
+  $input: IIoRestorecommerceFulfillmentFulfillmentList!
+) {
+  fulfillment {
+    fulfillment {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...FulfillmentFragment
+            }
+          }
+          totalCount
+        }
+      }
+    }
+  }
+}
