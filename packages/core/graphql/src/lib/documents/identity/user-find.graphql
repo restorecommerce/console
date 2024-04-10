@@ -8,10 +8,6 @@ query IdentityUserFind($input: IIoRestorecommerceUserFindRequest!) {
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...UserFragment
             }

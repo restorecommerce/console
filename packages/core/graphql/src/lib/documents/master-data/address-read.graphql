@@ -10,14 +10,11 @@ query MasterDataAddressRead(
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...AddressFragment
             }
           }
+          totalCount
         }
       }
     }

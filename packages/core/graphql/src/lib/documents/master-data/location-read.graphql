@@ -10,14 +10,11 @@ query MasterDataLocationRead(
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...LocationFragment
             }
           }
+          totalCount
         }
       }
     }

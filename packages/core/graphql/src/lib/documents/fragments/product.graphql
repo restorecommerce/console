@@ -1,0 +1,27 @@
+fragment ProductFragment on IoRestorecommerceProductProduct {
+  id
+  active
+  product {
+    name
+    description
+    physical {
+      variants {
+        id
+        name
+        images {
+          id
+          index
+          filename
+          caption
+          contentType
+          height
+          width
+          url
+        }
+      }
+    }
+  }
+  meta {
+    ...MetaFragment
+  }
+}

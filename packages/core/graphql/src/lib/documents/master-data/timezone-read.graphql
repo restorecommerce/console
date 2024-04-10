@@ -10,14 +10,11 @@ query MasterDataTimezoneRead(
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...TimezoneFragment
             }
           }
+          totalCount
         }
       }
     }

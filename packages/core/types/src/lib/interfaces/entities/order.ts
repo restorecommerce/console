@@ -1,6 +1,6 @@
 import {
   IoRestorecommerceOrderOrderState,
-  IIoRestorecommerceOrderOrder,
+  IoRestorecommerceOrderOrder,
   IoRestorecommerceFulfillmentState,
   IoRestorecommerceInvoicePaymentState,
 } from '@console-core/graphql';
@@ -9,7 +9,7 @@ import { IMeta } from './meta';
 
 export interface IOrder
   extends Omit<
-    IIoRestorecommerceOrderOrder,
+    IoRestorecommerceOrderOrder,
     | 'id'
     | 'customerId'
     | 'shopId'

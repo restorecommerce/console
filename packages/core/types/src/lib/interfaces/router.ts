@@ -68,9 +68,42 @@ export interface IRouterConstant {
             edit: IRouterItem;
           };
         };
-        products: IRouterItem;
-        invoices: IRouterItem;
-        fulfillments: IRouterItem;
+        products: {
+          path: string;
+          link: string;
+          title: string;
+          getLink: () => TRouterLink;
+          children: {
+            index: IRouterItem;
+            create: IRouterItem;
+            view: IRouterItem;
+            edit: IRouterItem;
+          };
+        };
+        invoices: {
+          path: string;
+          link: string;
+          title: string;
+          getLink: () => TRouterLink;
+          children: {
+            index: IRouterItem;
+            create: IRouterItem;
+            view: IRouterItem;
+            edit: IRouterItem;
+          };
+        };
+        fulfillments: {
+          path: string;
+          link: string;
+          title: string;
+          getLink: () => TRouterLink;
+          children: {
+            index: IRouterItem;
+            create: IRouterItem;
+            view: IRouterItem;
+            edit: IRouterItem;
+          };
+        };
         layout: IRouterItem;
         overflow: IRouterItem;
         management: {

@@ -1,8 +1,8 @@
-import { IIoRestorecommerceMetaMeta } from '@console-core/graphql';
+import { IoRestorecommerceMetaMeta } from '@console-core/graphql';
 
 export interface IMeta
   extends Omit<
-    IIoRestorecommerceMetaMeta,
+    IoRestorecommerceMetaMeta,
     'created' | 'createdBy' | 'modified' | 'modifiedBy'
   > {
   id: string;

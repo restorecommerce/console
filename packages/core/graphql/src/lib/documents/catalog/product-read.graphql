@@ -1,0 +1,20 @@
+query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  catalog {
+    product {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...ProductFragment
+            }
+          }
+          totalCount
+        }
+      }
+    }
+  }
+}

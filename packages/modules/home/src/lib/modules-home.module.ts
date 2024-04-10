@@ -1,3 +1,7 @@
+import {
+  ScrollingModule,
+  CdkVirtualScrollViewport,
+} from '@angular/cdk/scrolling';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -9,6 +13,11 @@ import { modulesHomeRoutes } from './lib.routes';
 
 @NgModule({
   declarations: [HomeTemplateComponent, HomeComponent],
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesHomeRoutes)],
+  imports: [
+    ScrollingModule,
+    CdkVirtualScrollViewport,
+    ModulesSharedModule,
+    RouterModule.forChild(modulesHomeRoutes),
+  ],
 })
 export class ModulesHomeModule {}

@@ -1,0 +1,9 @@
+fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
+  id
+  customerId
+  shopId
+  userId
+  meta {
+    ...MetaFragment
+  }
+}

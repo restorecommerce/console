@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { ConfirmPasswordComponent } from './confirm-password.component';
 
 @NgModule({
+  declarations: [ConfirmPasswordComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { ConfirmPasswordComponent } from './confirm-password.component';
       },
     ]),
   ],
-  declarations: [ConfirmPasswordComponent],
 })
 export class ConfirmPasswordModule {}

@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { ActivationComponent } from './activation.component';
 
 @NgModule({
+  declarations: [ActivationComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { ActivationComponent } from './activation.component';
       },
     ]),
   ],
-  declarations: [ActivationComponent],
 })
 export class ActivationModule {}

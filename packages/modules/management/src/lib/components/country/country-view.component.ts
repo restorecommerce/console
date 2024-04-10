@@ -43,7 +43,7 @@ export class CountryViewComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly countryFacade: CountryFacade,
-    private readonly routerFacade: RouterFacade
+    private readonly routerFacade: RouterFacade,
+    private readonly countryFacade: CountryFacade
   ) {}
 }

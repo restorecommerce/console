@@ -9,7 +9,6 @@
   [triggerSelectId]="triggerSelectId"
   [triggerRemove]="triggerRemove"
 >
-  {{ vm | json }}
   <ng-container rc-crud-search>
     <div
       *ngIf="vm.dataList.length > 0"
@@ -53,7 +52,7 @@
     <rc-meta
       *ngIf="vm.selectedCountryId"
       [id]="vm.selectedCountryId"
-      [meta]="vm.selectedCountry?.meta || null"
+      [meta]="vm.selectedCountry?.meta"
     />
   </ng-container>
 </rc-crud-main>

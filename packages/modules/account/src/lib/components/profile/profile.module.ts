@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { ProfileComponent } from './profile.component';
 
 @NgModule({
+  declarations: [ProfileComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { ProfileComponent } from './profile.component';
       },
     ]),
   ],
-  declarations: [ProfileComponent],
 })
 export class ProfileModule {}

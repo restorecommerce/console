@@ -18,13 +18,10 @@ export class LocaleEffects {
       switchMap(({ payload }) =>
         this.localeService.read(payload).pipe(
           map((result) => {
-            const data = result?.data?.master_data?.locale?.Read?.details;
-
-            return localeActions.localeReadRequestSuccess({
-              payload: (data?.items || []).map(
-                (item) => item.payload as ILocale
-              ),
-            });
+            const payload = (
+              result?.data?.master_data?.locale?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as ILocale[];
+            return localeActions.localeReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(localeActions.localeReadRequestFail({ error: error.message }))

@@ -9,7 +9,6 @@
   [triggerSelectId]="triggerSelectId"
   [triggerRemove]="triggerRemove"
 >
-  {{ vm | json }}
   <ng-container rc-crud-search>
     <div
       *ngIf="vm.dataList.length > 0"
@@ -32,11 +31,14 @@
           [routerLink]="feature.links.view(item.id)"
           role="option"
         >
-          <rc-data-list-label
-            [innerHTML]="item.customerOrderNr | highlight : triggerSearch.value"
+          <rc-data-list-order [order]="item" />
+          <rc-data-list-key-value
+            [key]="'Fulfillment State'"
+            [value]="item.fulfillmentState.replace('_', ' ')"
           />
-          <rc-data-list-sublabel
-            [innerHTML]="item.orderState | highlight : triggerSearch.value"
+          <rc-data-list-key-value
+            [key]="'Payment State'"
+            [value]="item.paymentState"
           />
         </rc-data-list-item>
       </rc-data-list>
@@ -51,7 +53,7 @@
     <rc-meta
       *ngIf="vm.selectedOrderId"
       [id]="vm.selectedOrderId"
-      [meta]="vm.selectedOrder?.meta || null"
+      [meta]="vm.selectedOrder?.meta"
     />
   </ng-container>
 </rc-crud-main>

@@ -15,23 +15,6 @@ export const buildOrderSchema = (
   return {
     type: 'form',
     fields: [
-      // {
-      //   name: 'orderState',
-      //   label: 'Order state',
-      //   type: 'input',
-      //   ...(options.order
-      //     ? { defaultValue: IoRestorecommerceOrderOrderState.Created }
-      //     : {}),
-      //   validators: [Validators.required],
-      //   params: {},
-      //   hints: [
-      //     {
-      //       type: 'error',
-      //       error: 'required',
-      //       message: 'This field is required.',
-      //     },
-      //   ],
-      // },
       {
         name: 'notificationEmail',
         label: 'Notification email',

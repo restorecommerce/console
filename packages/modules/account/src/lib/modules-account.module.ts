@@ -7,7 +7,7 @@ import { AccountTemplateComponent } from './components/template/account-template
 import { modulesAccountRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesAccountRoutes)],
   declarations: [AccountTemplateComponent],
+  imports: [ModulesSharedModule, RouterModule.forChild(modulesAccountRoutes)],
 })
 export class ModulesAccountModule {}

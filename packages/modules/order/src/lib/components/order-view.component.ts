@@ -14,7 +14,6 @@ import {
   selector: 'app-module-order-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      {{ vm | json }}
       <rc-order-view [order]="vm.order" />
     </ng-container>
   `,
@@ -44,7 +43,7 @@ export class OrderViewComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly orderFacade: OrderFacade,
-    private readonly routerFacade: RouterFacade
+    private readonly routerFacade: RouterFacade,
+    private readonly orderFacade: OrderFacade
   ) {}
 }

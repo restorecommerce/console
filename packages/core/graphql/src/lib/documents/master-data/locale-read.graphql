@@ -8,14 +8,11 @@ query MasterDataLocaleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
               ...LocaleFragment
             }
           }
+          totalCount
         }
       }
     }

@@ -4,7 +4,7 @@ const getUserFullName = (user: IUser): string =>
   `${user?.firstName} ${user?.lastName}`.trim();
 
 const hasUserRole = (user: IUser, role: string): boolean =>
-  !!user.roleAssociations?.some((r) => r.role === role);
+  !!user?.roleAssociations?.some((r) => r.role === role);
 
 export const getUser = (user: IUser): IUser => ({
   ...user,

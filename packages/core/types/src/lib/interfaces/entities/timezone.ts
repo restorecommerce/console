@@ -1,10 +1,10 @@
-import { IIoRestorecommerceTimezoneTimezone } from '@console-core/graphql';
+import { IoRestorecommerceTimezoneTimezone } from '@console-core/graphql';
 
 import { IMeta } from './meta';
 
 export interface ITimezone
   extends Omit<
-    IIoRestorecommerceTimezoneTimezone,
+    IoRestorecommerceTimezoneTimezone,
     'id' | 'description' | 'meta'
   > {
   id: string;

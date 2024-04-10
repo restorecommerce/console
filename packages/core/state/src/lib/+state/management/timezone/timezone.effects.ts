@@ -18,13 +18,10 @@ export class TimezoneEffects {
       switchMap(({ payload }) =>
         this.timezoneService.read(payload).pipe(
           map((result) => {
-            const data = result?.data?.master_data?.timezone?.Read?.details;
-
-            return timezoneActions.timezoneReadRequestSuccess({
-              payload: (data?.items || []).map(
-                (item) => item.payload as ITimezone
-              ),
-            });
+            const payload = (
+              result?.data?.master_data?.timezone?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as ITimezone[];
+            return timezoneActions.timezoneReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
             of(

@@ -1,0 +1,61 @@
+<rc-crud-main
+  *ngIf="vm$ | async as vm"
+  [feature]="feature"
+  [title]="vm.selectedProduct?.product?.name || feature.name.singular"
+  [id]="vm.selectedProductId"
+  [total]="vm.dataList.length"
+  [urlSegment]="vm.urlSegment"
+  [triggerRead]="triggerRead"
+  [triggerSelectId]="triggerSelectId"
+  [triggerRemove]="triggerRemove"
+>
+  <ng-container rc-crud-search>
+    <div
+      *ngIf="vm.dataList.length > 0"
+      class="flex"
+    >
+      <rc-searchbar
+        [value]="triggerSearch.value"
+        (search)="onSearch($event)"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container rc-crud-data-list>
+    <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
+      <rc-data-list class="mb-4 pb-2">
+        <rc-data-list-item
+          *ngFor="let item of vm.dataList; trackBy: trackByFn"
+          (click)="triggerSelectId.next(vm.selectedProductId)"
+          [ngClass]="{ selected: item.id === vm.selectedProductId }"
+          [routerLink]="feature.links.view(item.id)"
+          role="option"
+        >
+          <!-- <rc-data-list-order [order]="item" /> -->
+          <rc-data-list-key-value
+            [key]="'Product name'"
+            [value]="item.product.name"
+          />
+        </rc-data-list-item>
+      </rc-data-list>
+    </ng-container>
+  </ng-container>
+
+  <ng-container rc-crud-router-outlet>
+    <router-outlet />
+  </ng-container>
+
+  <ng-container rc-crud-meta>
+    <rc-meta
+      *ngIf="vm.selectedProductId"
+      [id]="vm.selectedProductId"
+      [meta]="vm.selectedProduct?.meta"
+    />
+  </ng-container>
+</rc-crud-main>
+
+<ng-template #templateNoRecords>
+  <div class="pt-4">
+    <rc-no-records message="No products found!" />
+  </div>
+</ng-template>

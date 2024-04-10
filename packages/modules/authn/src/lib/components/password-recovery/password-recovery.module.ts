@@ -6,6 +6,7 @@ import { ModulesSharedModule } from '@console-modules/shared';
 import { PasswordRecoveryComponent } from './password-recovery.component';
 
 @NgModule({
+  declarations: [PasswordRecoveryComponent],
   imports: [
     ModulesSharedModule,
     RouterModule.forChild([
@@ -15,6 +16,5 @@ import { PasswordRecoveryComponent } from './password-recovery.component';
       },
     ]),
   ],
-  declarations: [PasswordRecoveryComponent],
 })
 export class PasswordRecoveryModule {}

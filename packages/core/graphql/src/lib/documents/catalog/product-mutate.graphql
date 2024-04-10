@@ -1,0 +1,19 @@
+mutation CatalogProductMutate($input: IIoRestorecommerceProductProductList!) {
+  catalog {
+    product {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...ProductFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
