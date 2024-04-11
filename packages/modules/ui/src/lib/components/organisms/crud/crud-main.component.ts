@@ -1,13 +1,15 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnDestroy,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
-import { AlertService, AlertType } from '@vcl/ng-vcl';
+import { AlertService, AlertType, VCLBreakpoints } from '@vcl/ng-vcl';
 
 import { EUrlSegment, ICrudFeature } from '@console-core/types';
 
@@ -30,11 +32,20 @@ export class RcCrudMainComponent implements OnDestroy {
   @Input() isEdit = true;
   @Input() isDelete = true;
 
+  readonly vm$ = combineLatest({
+    isLg: this.breakpointObserver
+      .observe(VCLBreakpoints.lg)
+      .pipe(map((state) => state.matches)),
+  });
+
   readonly EUrlSegment = EUrlSegment;
 
   private readonly subscriptions = new SubSink();
 
-  constructor(private readonly alertService: AlertService) {}
+  constructor(
+    private readonly alertService: AlertService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

@@ -6,13 +6,10 @@
   }
 
   & .data-list-body {
-    height: calc(100% - 225px);
-    min-height: calc(100% - 225px);
     width: calc(100% - 2px);
     overflow: hidden;
 
     &:hover {
-      width: 100%;
       overflow-y: auto;
       overflow-y: overlay;
       -ms-overflow-style: -ms-autohiding-scrollbar;

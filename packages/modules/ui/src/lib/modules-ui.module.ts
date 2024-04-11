@@ -28,6 +28,7 @@ import {
   RcBusyIndicatorComponent,
   RcCopyrightComponent,
   RcNoRecordsComponent,
+  RcScrollableContainerComponent,
   RcSubmitButtonComponent,
 } from './components/atoms';
 import {
@@ -100,6 +101,7 @@ const atoms = [
   RcBusyIndicatorComponent,
   RcCopyrightComponent,
   RcNoRecordsComponent,
+  RcScrollableContainerComponent,
   RcSubmitButtonComponent,
 ];
 
