@@ -35,18 +35,24 @@
         </button>
       </rc-toolbar>
 
-      <ng-content select="[rc-crud-search]" />
-
-      <rc-scrollable-container height="230px">
-        <ng-content select="[rc-crud-data-list]" />
-      </rc-scrollable-container>
+      <ng-container
+        *ngIf="vm.isXsOrSm && [EUrlSegment.Index].includes(urlSegment)"
+      >
+        <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
+      </ng-container>
+      <ng-container *ngIf="vm.isMdOrLg">
+        <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
+      </ng-container>
     </div>
 
-    <ng-container *ngIf="EUrlSegment.Index !== urlSegment">
+    <ng-container *ngIf="urlSegment !== EUrlSegment.Index">
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
           <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
-            <rc-toolbar *ngIf="title !== 'null'">
+            <rc-toolbar
+              *ngIf="title !== 'null'"
+              [ngClass]="{ 'mt-2': vm.isXsOrSm }"
+            >
               <button
                 *ngIf="isEdit && urlSegment === EUrlSegment.Edit"
                 vcl-button
@@ -124,6 +130,14 @@
       </div>
     </ng-container>
   </div>
+
+  <ng-template #searchAndDataListTemplate>
+    <ng-content select="[rc-crud-search]" />
+
+    <rc-scrollable-container height="230px">
+      <ng-content select="[rc-crud-data-list]" />
+    </rc-scrollable-container>
+  </ng-template>
 
   <ng-template #metaTemplate>
     <ng-content select="[rc-crud-meta]" />

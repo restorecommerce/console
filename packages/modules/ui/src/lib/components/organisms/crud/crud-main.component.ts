@@ -33,8 +33,23 @@ export class RcCrudMainComponent implements OnDestroy {
   @Input() isDelete = true;
 
   readonly vm$ = combineLatest({
+    isXs: this.breakpointObserver
+      .observe(VCLBreakpoints.xs)
+      .pipe(map((state) => state.matches)),
+    isSm: this.breakpointObserver
+      .observe(VCLBreakpoints.sm)
+      .pipe(map((state) => state.matches)),
+    isMd: this.breakpointObserver
+      .observe(VCLBreakpoints.md)
+      .pipe(map((state) => state.matches)),
     isLg: this.breakpointObserver
       .observe(VCLBreakpoints.lg)
+      .pipe(map((state) => state.matches)),
+    isXsOrSm: this.breakpointObserver
+      .observe([VCLBreakpoints.xs, VCLBreakpoints.sm])
+      .pipe(map((state) => state.matches)),
+    isMdOrLg: this.breakpointObserver
+      .observe([VCLBreakpoints.md, VCLBreakpoints.lg])
       .pipe(map((state) => state.matches)),
   });
 
