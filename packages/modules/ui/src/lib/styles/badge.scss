@@ -1,0 +1,53 @@
+@use './theme/_console-variables.scss' as *;
+
+// Orders: Order status
+.badge-cancelled {
+  background-color: $console-badge-red;
+  color: $console-white;
+}
+
+.badge-created {
+  background-color: $console-badge-yellow;
+  color: $console-black;
+}
+
+.badge-done {
+  background-color: $console-badge-green;
+  color: $console-white;
+}
+
+.badge-failed {
+  background-color: $console-badge-red;
+  color: $console-white;
+}
+
+.badge-invalid {
+  background-color: $console-badge-gray;
+  color: $console-white;
+}
+
+.badge-in-process {
+  background-color: $console-badge-blue;
+  color: $console-white;
+}
+
+.badge-submitted {
+  background-color: $console-badge-yellow;
+  color: $console-black;
+}
+
+.badge-withdrawn {
+  background-color: $console-badge-gray;
+  color: $console-white;
+}
+
+// Orders: Payment state
+.badge-payed {
+  background-color: $console-badge-green;
+  color: $console-white;
+}
+
+.badge-unpayed {
+  background-color: $console-badge-gray;
+  color: $console-white;
+}

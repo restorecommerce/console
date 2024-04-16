@@ -4,6 +4,9 @@
 ::-webkit-scrollbar {
   width: 2px; /* For horizontal scrollbar */
   height: 0; /* For vertical scrollbar */
+  &-thumb {
+    background-color: $console-gray-scrollbar-thumb;
+  }
 }
 
 .app {
@@ -48,8 +51,8 @@ rc-header.application-header {
   }
 
   .container {
-    background-color: $white;
-    border-color: $white;
+    background-color: $console-white;
+    border-color: $console-white;
   }
 }
 

@@ -1,4 +1,5 @@
 @use '@vcl/vcl/theme' as *;
+@use './theme/_console-variables.scss' as *;
 
 .data-list.rc-data-list {
   & .data-list-header {
@@ -32,59 +33,19 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+    }
 
-      &.data-list-sublabel,
-      &.data-list-key-value {
-        color: $text-secondary-color;
-        font-size: 0.9em;
-      }
+    .data-list-sublabel,
+    .data-list-key-value {
+      color: $text-secondary-color;
+      font-size: 0.9em;
+    }
 
-      .badge-cancelled {
-        background-color: #dc3545;
-        color: $white;
-      }
-
-      .badge-created {
-        background-color: #ffc107;
-        color: $black;
-      }
-
-      .badge-done {
-        background-color: #28a745;
-        color: $white;
-      }
-
-      .badge-failed {
-        background-color: #dc3545;
-        color: $white;
-      }
-
-      .badge-invalid {
-        background-color: #6c757d;
-        color: $white;
-      }
-
-      .badge-in-process {
-        background-color: #007bff;
-        color: $white;
-      }
-
-      .badge-submitted {
-        background-color: #ffc107;
-        color: $black;
-      }
-
-      .badge-withdrawn {
-        background-color: #6c757d;
-        color: $white;
-      }
-
-      .created {
-        align-items: right;
-        color: $text-secondary-color;
-        font-size: 0.8em;
-        margin-top: 3px;
-      }
+    .created {
+      align-items: right;
+      color: $text-secondary-color;
+      font-size: 0.8em;
+      margin-top: 3px;
     }
 
     &.selected {
