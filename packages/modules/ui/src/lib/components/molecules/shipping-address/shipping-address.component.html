@@ -1,0 +1,197 @@
+<div class="data-list m-0 p-0 ng-star-inserted">
+  <div class="my-2 rc-lv-l-heading">Shipping address</div>
+  <ul class="data-list-body no-border">
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Business name:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="
+            shippingAddress?.address?.businessAddress?.name;
+            else naTemplate
+          "
+          >{{ shippingAddress?.address?.businessAddress?.name }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Full name:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.residentialAddress; else naTemplate"
+          >{{
+            shippingAddress?.address?.residentialAddress?.title +
+              ' ' +
+              shippingAddress?.address?.residentialAddress?.givenName +
+              ' ' +
+              shippingAddress?.address?.residentialAddress?.midName +
+              ' ' +
+              shippingAddress?.address?.residentialAddress?.familyName
+          }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Comments:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="shippingAddress?.comments; else naTemplate">{{
+          shippingAddress?.comments
+        }}</ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Email:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="shippingAddress?.contact?.email; else naTemplate">
+          <a href="mailto:{{ shippingAddress?.contact?.email }}">{{
+            shippingAddress?.contact?.email
+          }}</a>
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Phone:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="shippingAddress?.contact?.phone; else naTemplate">
+          <a href="tel:{{ shippingAddress?.contact?.phone }}">{{
+            shippingAddress?.contact?.phone
+          }}</a>
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Pack station provider:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="
+            shippingAddress?.address?.packStation?.provider;
+            else naTemplate
+          "
+        >
+          {{ shippingAddress?.address?.packStation?.provider }}
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Pack station number:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="
+            shippingAddress?.address?.packStation?.stationNumber;
+            else naTemplate
+          "
+        >
+          {{ shippingAddress?.address?.packStation?.stationNumber }}
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Pack station post number:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="
+            shippingAddress?.address?.packStation?.postNumber;
+            else naTemplate
+          "
+        >
+          {{ shippingAddress?.address?.packStation?.postNumber }}
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Field 1:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="
+            shippingAddress?.address?.addressAddition?.field1;
+            else naTemplate
+          "
+          >{{ shippingAddress?.address?.addressAddition?.field1 }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Field 2:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="
+            shippingAddress?.address?.addressAddition?.field2;
+            else naTemplate
+          "
+          >{{ shippingAddress?.address?.addressAddition?.field2 }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Street:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.street; else naTemplate"
+          >{{ shippingAddress?.address?.street }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Building number:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.buildingNumber; else naTemplate"
+        >
+          {{ shippingAddress?.address?.buildingNumber }}
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Postcode:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.postcode; else naTemplate"
+          >{{ shippingAddress?.address?.postcode }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Region:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.region; else naTemplate"
+          >{{ shippingAddress?.address?.region }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Locality:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.locality; else naTemplate"
+          >{{ shippingAddress?.address?.locality }}</ng-container
+        >
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Country:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="shippingAddress?.address?.country; else naTemplate"
+          >{{ shippingAddress?.address?.country }}</ng-container
+        >
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #naTemplate>N/A</ng-template>

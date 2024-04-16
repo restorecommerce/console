@@ -32,6 +32,13 @@ import {
   RcSubmitButtonComponent,
 } from './components/atoms';
 import {
+  RcOrderInfoComponent,
+  RcOrderItemsComponent,
+  RcOrderTotalsComponent,
+  RcShippingAddressComponent,
+  RcShopInfoComponent,
+} from './components/molecules';
+import {
   RcAppComponent,
   RcSignUpComponent,
   RcPasswordRecoveryComponent,
@@ -105,7 +112,13 @@ const atoms = [
   RcSubmitButtonComponent,
 ];
 
-// const molecules = [];
+const molecules = [
+  RcOrderInfoComponent,
+  RcOrderItemsComponent,
+  RcOrderTotalsComponent,
+  RcShippingAddressComponent,
+  RcShopInfoComponent,
+];
 
 const organisms = [
   RcAppComponent,
@@ -170,7 +183,7 @@ const pipes = [HighlightPipe];
 @NgModule({
   declarations: [
     ...atoms,
-    // ...molecules,
+    ...molecules,
     ...organisms,
     ...pages,
     ...templates,
@@ -178,7 +191,7 @@ const pipes = [HighlightPipe];
   ],
   exports: [
     ...atoms,
-    // ...molecules,
+    ...molecules,
     ...organisms,
     ...pages,
     ...templates,

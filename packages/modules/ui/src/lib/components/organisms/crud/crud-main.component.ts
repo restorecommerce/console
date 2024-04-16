@@ -4,6 +4,7 @@ import {
   Component,
   Input,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,7 +19,7 @@ import { EUrlSegment, ICrudFeature } from '@console-core/types';
   templateUrl: './crud-main.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcCrudMainComponent implements OnDestroy {
+export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input({ required: true }) feature!: ICrudFeature;
   @Input({ required: true }) id: string | null = null;
   @Input({ required: true }) total = 0;
@@ -26,11 +27,18 @@ export class RcCrudMainComponent implements OnDestroy {
   @Input({ required: true }) triggerRead!: BehaviorSubject<null>;
   @Input({ required: true }) triggerSelectId!: BehaviorSubject<string | null>;
   @Input({ required: true }) triggerRemove!: BehaviorSubject<string | null>;
+  @Input() triggerCreateInvoice?: BehaviorSubject<string | null>;
+  @Input() triggerCreateFulfillment?: BehaviorSubject<string | null>;
   @Input() title = '';
   @Input() isRead = true;
   @Input() isCreate = true;
   @Input() isEdit = true;
   @Input() isDelete = true;
+
+  isTriggerCreateInvoice = false;
+  isTriggerCreateFulfillment = false;
+
+  readonly EUrlSegment = EUrlSegment;
 
   readonly vm$ = combineLatest({
     isXs: this.breakpointObserver
@@ -53,14 +61,17 @@ export class RcCrudMainComponent implements OnDestroy {
       .pipe(map((state) => state.matches)),
   });
 
-  readonly EUrlSegment = EUrlSegment;
-
   private readonly subscriptions = new SubSink();
 
   constructor(
     private readonly alertService: AlertService,
     private breakpointObserver: BreakpointObserver
   ) {}
+
+  ngOnInit(): void {
+    this.isTriggerCreateInvoice = !!this.triggerCreateInvoice;
+    this.isTriggerCreateFulfillment = !!this.triggerCreateFulfillment;
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -72,6 +83,14 @@ export class RcCrudMainComponent implements OnDestroy {
 
   onSelectId(id: string | null): void {
     this.triggerSelectId.next(id);
+  }
+
+  onCreateInvoice(id: string | null): void {
+    this.triggerCreateInvoice?.next(id);
+  }
+
+  onCreateFulfillment(id: string | null): void {
+    this.triggerCreateFulfillment?.next(id);
   }
 
   onRemove(id: string | null): void {

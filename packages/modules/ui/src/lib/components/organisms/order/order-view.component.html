@@ -1,4 +1,25 @@
-<!-- // TODO: Add order details -->
-<pre>
-  {{ order | json }}
-</pre>
+<div class="order-details">
+  <h2>Order Number: {{ order.customerOrderNr }}</h2>
+
+  <div class="order-shop">
+    <rc-shop-info [shop]="order.shop" />
+  </div>
+
+  <div class="order-info">
+    <rc-order-info [order]="order" />
+  </div>
+
+  <div class="order-items">
+    <rc-order-items [items]="order.items || []" />
+  </div>
+
+  <div class="order-shipping-address">
+    <rc-shipping-address
+      [shippingAddress]="order.shippingAddress || undefined"
+    />
+  </div>
+
+  <div class="order-totals">
+    <rc-order-totals [totalAmounts]="order.totalAmounts || []" />
+  </div>
+</div>

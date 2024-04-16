@@ -93,6 +93,30 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     })
   );
 
+  readonly triggerCreateInvoice = new BehaviorSubject<string | null>(null);
+  readonly triggerCreateInvoice$ = this.triggerCreateInvoice
+    .asObservable()
+    .pipe(
+      tap((id) => {
+        if (id === null) {
+          return;
+        }
+        console.log('triggerCreateInvoice --->', id);
+      })
+    );
+
+  readonly triggerCreateFulfillment = new BehaviorSubject<string | null>(null);
+  readonly triggerCreateFulfillment$ = this.triggerCreateFulfillment
+    .asObservable()
+    .pipe(
+      tap((id) => {
+        if (id === null) {
+          return;
+        }
+        console.log('triggerCreateFulfillment --->', id);
+      })
+    );
+
   readonly urlSegment$ = this.routerFacade.url$.pipe(
     map((url) => url.split('/').pop() as EUrlSegment),
     distinctUntilChanged(),
@@ -112,6 +136,8 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
     triggerRemove: this.triggerRemove$,
+    triggerCreateInvoice: this.triggerCreateInvoice$,
+    triggerCreateFulfillment: this.triggerCreateFulfillment$,
   });
 
   private readonly subscriptions = new SubSink();

@@ -45,7 +45,7 @@
       </ng-container>
     </div>
 
-    <ng-container *ngIf="urlSegment !== EUrlSegment.Index">
+    <ng-container *ngIf="![EUrlSegment.Index].includes(urlSegment)">
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
           <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
@@ -54,7 +54,7 @@
               [ngClass]="{ 'mt-2': vm.isXsOrSm }"
             >
               <button
-                *ngIf="isEdit && urlSegment === EUrlSegment.Edit"
+                *ngIf="isEdit && [EUrlSegment.Edit].includes(urlSegment)"
                 vcl-button
                 rcPrepend
                 [routerLink]="feature.links.view(id)"
@@ -66,7 +66,7 @@
               <button
                 vcl-button
                 rcPrepend
-                *ngIf="isEdit && urlSegment === EUrlSegment.View"
+                *ngIf="isEdit && [EUrlSegment.View].includes(urlSegment)"
                 [routerLink]="feature.links.edit(id)"
                 class="square half-transparent button"
                 title="Edit"
@@ -76,6 +76,33 @@
 
               {{ title }}
 
+              <button
+                *ngIf="
+                  isTriggerCreateInvoice &&
+                  [EUrlSegment.View].includes(urlSegment)
+                "
+                (click)="onCreateInvoice(id)"
+                vcl-button
+                rcAppend
+                class="square half-transparent button"
+                title="Create Invoice"
+              >
+                <vcl-icon icon="mdi:invoice-plus-outline" />
+              </button>
+
+              <button
+                *ngIf="
+                  isTriggerCreateFulfillment &&
+                  [EUrlSegment.View].includes(urlSegment)
+                "
+                (click)="onCreateFulfillment(id)"
+                vcl-button
+                rcAppend
+                class="square half-transparent button"
+                title="Create Fulfillment"
+              >
+                <vcl-icon icon="mdi:truck-plus-outline" />
+              </button>
               <button
                 vcl-button
                 rcAppend

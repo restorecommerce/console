@@ -4,41 +4,43 @@
     <li class="row data-list-item justify-between">
       <div class="flex text">ID:</div>
       <div class="flex text align-right rc-lv-label">
-        {{ id ?? 'N/A' }}
+        <ng-container *ngIf="id; else naTemplate">{{ id }}</ng-container>
       </div>
     </li>
     <li class="row data-list-item justify-between">
       <div class="flex text">Created:</div>
       <div class="flex text align-right rc-lv-label">
-        {{
-          meta?.created
-            ? (meta?.created | date : 'MMM d, y, hh:mm:ss a')
-            : 'N/A'
-        }}
+        <ng-container *ngIf="meta?.created; else naTemplate">{{
+          meta?.created | date : DATE.format.dateTimeWithSeconds
+        }}</ng-container>
       </div>
     </li>
     <li class="row data-list-item justify-between">
       <div class="flex text">Modified:</div>
       <div class="flex text align-right rc-lv-label">
-        {{
-          meta?.modified
-            ? (meta?.modified | date : 'MMM d, y, hh:mm:ss a')
-            : 'N/A'
-        }}
+        <ng-container *ngIf="meta?.modified; else naTemplate">{{
+          meta?.modified | date : DATE.format.dateTimeWithSeconds
+        }}</ng-container>
       </div>
     </li>
     <li class="row data-list-item justify-between">
       <div class="flex text">Created by:</div>
       <div class="flex text align-right rc-lv-label">
-        {{ meta?.createdBy ?? 'N/A' }}
+        <ng-container *ngIf="meta?.createdBy; else naTemplate">{{
+          meta?.createdBy
+        }}</ng-container>
       </div>
     </li>
 
     <li class="row data-list-item justify-between">
       <div class="flex text">Modified by:</div>
       <div class="flex text align-right rc-lv-label">
-        {{ meta?.modifiedBy ?? 'N/A' }}
+        <ng-container *ngIf="meta?.modifiedBy; else naTemplate">{{
+          meta?.modifiedBy
+        }}</ng-container>
       </div>
     </li>
   </ul>
 </div>
+
+<ng-template #naTemplate>N/A</ng-template>

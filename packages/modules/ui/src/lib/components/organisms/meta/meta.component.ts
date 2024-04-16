@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { DATE } from '@console-core/config';
 import { IMeta } from '@console-core/types';
 
 @Component({
@@ -13,4 +14,6 @@ export class RcMetaComponent {
 
   @Input({ required: true })
   meta?: IMeta | null = null;
+
+  DATE = DATE;
 }

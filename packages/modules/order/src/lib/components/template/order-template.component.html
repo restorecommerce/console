@@ -8,6 +8,8 @@
   [triggerRead]="triggerRead"
   [triggerSelectId]="triggerSelectId"
   [triggerRemove]="triggerRemove"
+  [triggerCreateInvoice]="triggerCreateInvoice"
+  [triggerCreateFulfillment]="triggerCreateFulfillment"
 >
   <ng-container rc-crud-search>
     <div
@@ -32,14 +34,6 @@
           role="option"
         >
           <rc-data-list-order [order]="item" />
-          <rc-data-list-key-value
-            [key]="'Fulfillment State'"
-            [value]="item.fulfillmentState.replace('_', ' ')"
-          />
-          <rc-data-list-key-value
-            [key]="'Payment State'"
-            [value]="item.paymentState"
-          />
         </rc-data-list-item>
       </rc-data-list>
     </ng-container>
