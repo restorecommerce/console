@@ -177,7 +177,7 @@ export const buildCountrySchema = (
         buttons: [
           {
             type: 'button',
-            label: 'Cancel',
+            label: 'Reset',
             action: 'reset',
             class: 'transparent',
           },
