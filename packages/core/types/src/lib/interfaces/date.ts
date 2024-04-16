@@ -5,5 +5,6 @@ export interface IDateConstant {
     dateTimeSeconds: string;
     time: string;
     timeSeconds: string;
+    dateTimeWithSeconds: string;
   };
 }
