@@ -1,0 +1,17 @@
+fragment ContactPointFragment on IoRestorecommerceContactPointContactPoint {
+  id
+  name
+  description
+  email
+  telephone
+  website
+  timezone {
+    ...TimezoneFragment
+  }
+  locale {
+    ...LocaleFragment
+  }
+  meta {
+    ...MetaFragment
+  }
+}

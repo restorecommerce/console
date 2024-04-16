@@ -1,104 +1,172 @@
-<div class="row grid-gutterx-2 full-height-scroll">
-  <div class="flex-4-lg flex-4-md flex-12">
-    <rc-toolbar>
-      <button
-        vcl-button
-        rcPrepend
-        (click)="onSelectId(null)"
-        [routerLink]="feature.links.index()"
-        class="square half-transparent button"
-        title="Index"
-      >
-        <vcl-icon icon="mdi:home" />
-      </button>
-      {{ feature.name.plural }} [{{ total }}]
-      <button
-        vcl-button
-        rcAppend
-        *ngIf="isCreate"
-        [routerLink]="feature.links.create()"
-        class="square half-transparent button"
-        title="Create"
-      >
-        <vcl-icon icon="mdi:plus" />
-      </button>
-      <button
-        vcl-button
-        rcAppend
-        *ngIf="isRead"
-        (click)="onRead()"
-        class="square half-transparent button"
-        title="Refresh"
-      >
-        <vcl-icon icon="mdi:refresh" />
-      </button>
-    </rc-toolbar>
-
-    <ng-content select="[rc-crud-search]" />
-    <ng-content select="[rc-crud-data-list]" />
-  </div>
-
-  <ng-container *ngIf="EUrlSegment.Index !== urlSegment">
-    <div class="lex-8-lg flex-8-md flex-12">
-      <div class="row grid-gutterx-2">
-        <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
-          <rc-toolbar *ngIf="title !== 'null'">
-            <button
-              *ngIf="isEdit && urlSegment === EUrlSegment.Edit"
-              vcl-button
-              rcPrepend
-              [routerLink]="feature.links.view(id)"
-              class="square half-transparent button"
-              title="Go back"
-            >
-              <vcl-icon icon="mdi:arrow-left" />
-            </button>
-            <button
-              vcl-button
-              rcPrepend
-              *ngIf="isEdit && urlSegment === EUrlSegment.View"
-              [routerLink]="feature.links.edit(id)"
-              class="square half-transparent button"
-              title="Edit"
-            >
-              <vcl-icon icon="mdi:pencil" />
-            </button>
-
-            {{ title }}
-
-            <button
-              vcl-button
-              rcAppend
-              *ngIf="
-                isDelete &&
-                [EUrlSegment.View, EUrlSegment.Edit].includes(urlSegment)
-              "
-              (click)="onRemove(id)"
-              class="square half-transparent button"
-              title="Delete &quot;{{ title }}&quot;"
-            >
-              <vcl-icon icon="mdi:delete" />
-            </button>
-          </rc-toolbar>
-          <div class="row">
-            <div class="flex py-2">
-              <ng-content select="[rc-crud-router-outlet]" />
-            </div>
-          </div>
-        </div>
-
-        <div
-          *ngIf="id"
-          class="flex-4-lg flex-12-md flex-12-sm flex-12"
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="row grid-gutterx-2">
+    <div class="flex-4-lg flex-4-md flex-12">
+      <rc-toolbar>
+        <button
+          vcl-button
+          rcPrepend
+          (click)="onSelectId(null)"
+          [routerLink]="feature.links.index()"
+          class="square half-transparent button"
+          title="Index"
         >
-          <rc-toolbar> Meta </rc-toolbar>
-          <div class="row mb-4 pb-2">
-            <div class="flex py-2">
-              <ng-content select="[rc-crud-meta]" />
-            </div>
+          <vcl-icon icon="mdi:home" />
+        </button>
+        {{ feature.name.plural }} [{{ total }}]
+        <button
+          vcl-button
+          rcAppend
+          *ngIf="isCreate"
+          [routerLink]="feature.links.create()"
+          class="square half-transparent button"
+          title="Create"
+        >
+          <vcl-icon icon="mdi:plus" />
+        </button>
+        <button
+          vcl-button
+          rcAppend
+          *ngIf="isRead"
+          (click)="onRead()"
+          class="square half-transparent button"
+          title="Refresh"
+        >
+          <vcl-icon icon="mdi:refresh" />
+        </button>
+      </rc-toolbar>
+
+      <ng-container
+        *ngIf="vm.isXsOrSm && [EUrlSegment.Index].includes(urlSegment)"
+      >
+        <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
+      </ng-container>
+      <ng-container *ngIf="vm.isMdOrLg">
+        <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="![EUrlSegment.Index].includes(urlSegment)">
+      <div class="lex-8-lg flex-8-md flex-12">
+        <div class="row grid-gutterx-2">
+          <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
+            <rc-toolbar
+              *ngIf="title !== 'null'"
+              [ngClass]="{ 'mt-2': vm.isXsOrSm }"
+            >
+              <button
+                *ngIf="isEdit && [EUrlSegment.Edit].includes(urlSegment)"
+                vcl-button
+                rcPrepend
+                [routerLink]="feature.links.view(id)"
+                class="square half-transparent button"
+                title="Go back"
+              >
+                <vcl-icon icon="mdi:arrow-left" />
+              </button>
+              <button
+                vcl-button
+                rcPrepend
+                *ngIf="isEdit && [EUrlSegment.View].includes(urlSegment)"
+                [routerLink]="feature.links.edit(id)"
+                class="square half-transparent button"
+                title="Edit"
+              >
+                <vcl-icon icon="mdi:pencil" />
+              </button>
+
+              {{ title }}
+
+              <button
+                *ngIf="
+                  isTriggerCreateInvoice &&
+                  [EUrlSegment.View].includes(urlSegment)
+                "
+                (click)="onCreateInvoice(id)"
+                vcl-button
+                rcAppend
+                class="square half-transparent button"
+                title="Create Invoice"
+              >
+                <vcl-icon icon="mdi:invoice-plus-outline" />
+              </button>
+
+              <button
+                *ngIf="
+                  isTriggerCreateFulfillment &&
+                  [EUrlSegment.View].includes(urlSegment)
+                "
+                (click)="onCreateFulfillment(id)"
+                vcl-button
+                rcAppend
+                class="square half-transparent button"
+                title="Create Fulfillment"
+              >
+                <vcl-icon icon="mdi:truck-plus-outline" />
+              </button>
+              <button
+                vcl-button
+                rcAppend
+                *ngIf="
+                  isDelete &&
+                  [EUrlSegment.View, EUrlSegment.Edit].includes(urlSegment)
+                "
+                (click)="onRemove(id)"
+                class="square half-transparent button"
+                title="Delete &quot;{{ title }}&quot;"
+              >
+                <vcl-icon icon="mdi:delete" />
+              </button>
+            </rc-toolbar>
+            <rc-scrollable-container height="170px">
+              <div class="row">
+                <div class="flex p-2">
+                  <ng-content select="[rc-crud-router-outlet]" />
+                </div>
+              </div>
+
+              <div
+                *ngIf="!vm.isLg && id"
+                class="row"
+              >
+                <div class="flex">
+                  <rc-toolbar> Meta </rc-toolbar>
+                  <div class="row mb-4 pb-2">
+                    <div class="flex p-2">
+                      <ng-container *ngTemplateOutlet="metaTemplate" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </rc-scrollable-container>
+          </div>
+
+          <div
+            *ngIf="vm.isLg && id"
+            class="flex-4-lg flex-12-md flex-12-sm flex-12"
+          >
+            <rc-toolbar> Meta </rc-toolbar>
+            <rc-scrollable-container height="172px">
+              <div class="row mb-4 pb-2">
+                <div class="flex p-2">
+                  <ng-container *ngTemplateOutlet="metaTemplate" />
+                </div>
+              </div>
+            </rc-scrollable-container>
           </div>
         </div>
       </div>
-    </div>
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
+
+  <ng-template #searchAndDataListTemplate>
+    <ng-content select="[rc-crud-search]" />
+
+    <rc-scrollable-container height="230px">
+      <ng-content select="[rc-crud-data-list]" />
+    </rc-scrollable-container>
+  </ng-template>
+
+  <ng-template #metaTemplate>
+    <ng-content select="[rc-crud-meta]" />
+  </ng-template>
+</ng-container>

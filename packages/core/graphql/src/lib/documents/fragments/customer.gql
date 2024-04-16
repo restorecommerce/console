@@ -1,0 +1,24 @@
+fragment CustomerFragment on IoRestorecommerceCustomerCustomer {
+  id
+  commercial {
+    organization {
+      ...OrganizationFragment
+    }
+  }
+  publicSector {
+    organization {
+      ...OrganizationFragment
+    }
+  }
+  private {
+    user {
+      ...UserFragment
+    }
+    contactPoints {
+      ...ContactPointFragment
+    }
+  }
+  meta {
+    ...MetaFragment
+  }
+}

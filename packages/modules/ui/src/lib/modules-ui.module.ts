@@ -28,8 +28,16 @@ import {
   RcBusyIndicatorComponent,
   RcCopyrightComponent,
   RcNoRecordsComponent,
+  RcScrollableContainerComponent,
   RcSubmitButtonComponent,
 } from './components/atoms';
+import {
+  RcOrderInfoComponent,
+  RcOrderItemsComponent,
+  RcOrderTotalsComponent,
+  RcShippingAddressComponent,
+  RcShopInfoComponent,
+} from './components/molecules';
 import {
   RcAppComponent,
   RcSignUpComponent,
@@ -100,10 +108,17 @@ const atoms = [
   RcBusyIndicatorComponent,
   RcCopyrightComponent,
   RcNoRecordsComponent,
+  RcScrollableContainerComponent,
   RcSubmitButtonComponent,
 ];
 
-// const molecules = [];
+const molecules = [
+  RcOrderInfoComponent,
+  RcOrderItemsComponent,
+  RcOrderTotalsComponent,
+  RcShippingAddressComponent,
+  RcShopInfoComponent,
+];
 
 const organisms = [
   RcAppComponent,
@@ -168,7 +183,7 @@ const pipes = [HighlightPipe];
 @NgModule({
   declarations: [
     ...atoms,
-    // ...molecules,
+    ...molecules,
     ...organisms,
     ...pages,
     ...templates,
@@ -176,7 +191,7 @@ const pipes = [HighlightPipe];
   ],
   exports: [
     ...atoms,
-    // ...molecules,
+    ...molecules,
     ...organisms,
     ...pages,
     ...templates,

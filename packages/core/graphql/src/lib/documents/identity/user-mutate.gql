@@ -1,6 +1,6 @@
-mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
-  ordering {
-    order {
+mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
+  identity {
+    user {
       Mutate(input: $input) {
         details {
           operationStatus {
@@ -8,12 +8,8 @@ mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
-              ...OrderFragment
+              ...UserFragment
             }
           }
         }

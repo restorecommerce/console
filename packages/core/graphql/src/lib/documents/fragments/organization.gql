@@ -1,0 +1,27 @@
+fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
+  id
+  parentId
+  name
+  email
+  website
+  vatId
+  logo {
+    id
+    index
+    filename
+    height
+    width
+    url
+  }
+  contactPoints {
+    ...ContactPointFragment
+  }
+  paymentMethods {
+    id
+    transferType
+    paymentMethod
+  }
+  meta {
+    ...MetaFragment
+  }
+}

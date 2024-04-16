@@ -1,8 +1,8 @@
 // Primary colors
-$white: #fff;
-$black: #000;
-$gray: #6a6a6a;
-$yellow: #ffca6b;
+$console-white: #fff;
+$console-black: #000;
+$console-gray: #6a6a6a;
+$console-yellow: #ffca6b;
 
 // Brand colors
 $console-brand-accent-darker: #ffae44; // #d4882a; // Darker shade
@@ -12,13 +12,14 @@ $console-brand-accent-light: #ffbb5a;
 $console-brand-accent-lighter: #ffc76f;
 
 // Other colors
-$gray-light: #f9f9f9;
-$gray-dark: #303030;
-$gray-darker: #262626;
-$gray-darkest: #1a1a1a;
-$gray-lighter: #e8e8e8;
-$gray-lightest: #f2f2f2;
-$gray-stone-light: #becdd7;
+$console-gray-light: #f9f9f9;
+$console-gray-dark: #303030;
+$console-gray-darker: #262626;
+$console-gray-darkest: #1a1a1a;
+$console-gray-lighter: #e8e8e8;
+$console-gray-lightest: #f2f2f2;
+$console-gray-stone-light: #becdd7;
+$console-gray-scrollbar-thumb: #f2f2f2;
 
 // Header
 $wrapper-popover-user-link-color: #303030;
@@ -27,13 +28,20 @@ $wrapper-popover-user-link-color: #303030;
 $navigation-bg-color: #f9f9f9;
 
 // Sidebar
-$sidebar-bg-color: #f9f9f9;
-$sidebar-button-hover-color: #e8e8e8;
-$sidebar-border-top-color: rgb(229 229 229);
-$sidebar-toggle-sidebar-button-color: #262626;
+$console-sidebar-bg-color: #f9f9f9;
+$console-sidebar-button-hover-color: #e8e8e8;
+$console-sidebar-border-top-color: rgb(229 229 229);
+$console-sidebar-toggle-sidebar-button-color: #262626;
 
 // Drawer
-$drawer-bg-color: #f9f9f9;
-$drawer-item-hover-color: #e8e8e8;
-$drawer-bg-color-rgb: rgb(249 249 249);
-$drawer-item-hover-color-rgb: rgb(232 232 232);
+$console-drawer-bg-color: #f9f9f9;
+$console-drawer-item-hover-color: #e8e8e8;
+$console-drawer-bg-color-rgb: rgb(249 249 249);
+$console-drawer-item-hover-color-rgb: rgb(232 232 232);
+
+// Badge
+$console-badge-red: #dc3545;
+$console-badge-blue: #007bff;
+$console-badge-green: #28a745;
+$console-badge-yellow: #ffc107;
+$console-badge-gray: #6c757d;

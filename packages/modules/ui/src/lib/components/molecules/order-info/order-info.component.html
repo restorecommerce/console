@@ -1,0 +1,68 @@
+<div class="data-list m-0 p-0 ng-star-inserted">
+  <div class="my-2 rc-lv-l-heading">Order</div>
+  <ul class="data-list-body no-border">
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Customer:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="customer; else naTemplate">{{
+          customer.firstName + ' ' + customer.lastName
+        }}</ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Notification email:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container
+          *ngIf="order.notificationEmail || customer?.email; else naTemplate"
+        >
+          <a href="mailto:{{ order.notificationEmail }}">{{
+            order.notificationEmail || customer?.email
+          }}</a>
+        </ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Order state:</div>
+      <div class="flex text align-right rc-lv-label">
+        <span
+          [ngClass]="
+            'badge-' + (order.orderState || '').replace('_', '-').toLowerCase()
+          "
+          class="m-0 badge"
+        >
+          {{ (order.orderState || '').replace('_', ' ') }}
+        </span>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Payment state:</div>
+      <div class="flex text align-right rc-lv-label">
+        <span
+          [ngClass]="'badge-' + (order.paymentState || '').toLowerCase()"
+          class="m-0 badge"
+        >
+          {{ order.paymentState || '' }}
+        </span>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Fulfillment state:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="order.fulfillmentState; else naTemplate">
+          <span
+            [ngClass]="'badge-' + order.fulfillmentState.toLowerCase()"
+            class="m-0 badge"
+          >
+            {{ order.fulfillmentState }}
+          </span>
+        </ng-container>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #naTemplate>N/A</ng-template>

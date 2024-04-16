@@ -1,8 +1,8 @@
-query MasterDataAddressRead(
+query MasterDataCountryRead(
   $input: IIoRestorecommerceResourcebaseReadRequest!
 ) {
   master_data {
-    address {
+    country {
       Read(input: $input) {
         details {
           operationStatus {
@@ -11,10 +11,9 @@ query MasterDataAddressRead(
           }
           items {
             payload {
-              ...AddressFragment
+              ...CountryFragment
             }
           }
-          totalCount
         }
       }
     }

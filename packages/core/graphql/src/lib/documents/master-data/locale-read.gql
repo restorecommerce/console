@@ -1,8 +1,6 @@
-query MasterDataCountryRead(
-  $input: IIoRestorecommerceResourcebaseReadRequest!
-) {
+query MasterDataLocaleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
   master_data {
-    country {
+    locale {
       Read(input: $input) {
         details {
           operationStatus {
@@ -11,10 +9,9 @@ query MasterDataCountryRead(
           }
           items {
             payload {
-              ...CountryFragment
+              ...LocaleFragment
             }
           }
-          totalCount
         }
       }
     }

@@ -1,6 +1,8 @@
-query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
-  ordering {
-    order {
+query MasterDataAddressRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    address {
       Read(input: $input) {
         details {
           operationStatus {
@@ -9,10 +11,9 @@ query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
           }
           items {
             payload {
-              ...OrderFragment
+              ...AddressFragment
             }
           }
-          totalCount
         }
       }
     }

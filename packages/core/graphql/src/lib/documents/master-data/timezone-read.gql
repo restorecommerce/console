@@ -1,8 +1,8 @@
-query MasterDataLocationRead(
+query MasterDataTimezoneRead(
   $input: IIoRestorecommerceResourcebaseReadRequest!
 ) {
   master_data {
-    location {
+    timezone {
       Read(input: $input) {
         details {
           operationStatus {
@@ -11,10 +11,9 @@ query MasterDataLocationRead(
           }
           items {
             payload {
-              ...LocationFragment
+              ...TimezoneFragment
             }
           }
-          totalCount
         }
       }
     }

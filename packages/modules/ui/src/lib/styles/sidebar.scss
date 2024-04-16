@@ -4,13 +4,13 @@
   width: 100%;
   position: fixed;
   bottom: 0;
-  background-color: $sidebar-bg-color;
+  background-color: $console-sidebar-bg-color;
 
   .toggle-sidebar-button {
     height: 38px;
     border: 0;
-    border-top: 1px solid $sidebar-border-top-color;
-    color: $sidebar-toggle-sidebar-button-color;
+    border-top: 1px solid $console-sidebar-border-top-color;
+    color: $console-sidebar-toggle-sidebar-button-color;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -18,8 +18,8 @@
     text-align: center;
 
     &:hover {
-      color: $black;
-      background-color: $sidebar-button-hover-color;
+      color: $console-black;
+      background-color: $console-sidebar-button-hover-color;
     }
   }
 
@@ -44,7 +44,7 @@
   z-index: 100;
 
   &:hover {
-    background-color: $drawer-item-hover-color-rgb;
+    background-color: $console-drawer-item-hover-color-rgb;
     color: inherit;
   }
 }
@@ -54,11 +54,11 @@ rc-header.application-header .logo {
 }
 
 .rc-drawer-navigation {
-  background-color: $drawer-bg-color;
+  background-color: $console-drawer-bg-color;
 
   & .navigation {
     margin-bottom: 7rem;
-    background-color: $drawer-bg-color;
+    background-color: $console-drawer-bg-color;
 
     & .navigation-item {
       display: block;
@@ -76,7 +76,7 @@ rc-header.application-header .logo {
       }
 
       &:hover {
-        background-color: $drawer-item-hover-color-rgb;
+        background-color: $console-drawer-item-hover-color-rgb;
       }
     }
   }

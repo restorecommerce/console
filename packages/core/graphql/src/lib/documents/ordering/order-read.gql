@@ -1,8 +1,6 @@
-query MasterDataTimezoneRead(
-  $input: IIoRestorecommerceResourcebaseReadRequest!
-) {
-  master_data {
-    timezone {
+query OrderingOrderRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  ordering {
+    order {
       Read(input: $input) {
         details {
           operationStatus {
@@ -11,10 +9,9 @@ query MasterDataTimezoneRead(
           }
           items {
             payload {
-              ...TimezoneFragment
+              ...OrderFragment
             }
           }
-          totalCount
         }
       }
     }

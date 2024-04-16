@@ -1,0 +1,24 @@
+<div class="data-list m-0 p-0 ng-star-inserted">
+  <div class="my-2 rc-lv-l-heading">Shop</div>
+  <ul class="data-list-body no-border">
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Name:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="shop.name; else naTemplate">{{
+          shop.name
+        }}</ng-container>
+      </div>
+    </li>
+
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Description:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="shop.description; else naTemplate">{{
+          shop.description
+        }}</ng-container>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #naTemplate>N/A</ng-template>

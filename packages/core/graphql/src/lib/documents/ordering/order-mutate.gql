@@ -1,7 +1,7 @@
-query InvoicingInvoiceRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
-  invoicing {
-    invoice {
-      Read(input: $input) {
+mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
+  ordering {
+    order {
+      Mutate(input: $input) {
         details {
           operationStatus {
             code
@@ -9,10 +9,9 @@ query InvoicingInvoiceRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
           }
           items {
             payload {
-              ...InvoiceFragment
+              ...OrderFragment
             }
           }
-          totalCount
         }
       }
     }

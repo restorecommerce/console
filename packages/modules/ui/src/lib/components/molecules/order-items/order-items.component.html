@@ -1,0 +1,33 @@
+<div class="data-list m-0 p-0 ng-star-inserted">
+  <div class="my-2 rc-lv-l-heading">Items [{{ items.length }}]</div>
+
+  <div
+    class="order-item"
+    *ngFor="let item of items"
+  >
+    <div class="row">
+      <div class="flex-10">
+        <h4>{{ item.product?.product?.name }}</h4>
+      </div>
+      <div class="flex-2 align-right mt-3 secondary-text-color">
+        [Qty: {{ item.quantity }}]
+      </div>
+    </div>
+
+    <img
+      [alt]="item?.product?.product?.physical?.variants?.[0]?.name"
+      [src]="item?.product?.product?.physical?.variants?.[0]?.images?.[0]?.url"
+      sizes="(max-width: 123px) 123px, 123px"
+      width="123"
+      loading="lazy"
+      ngOptimizedImage
+      priority="auto"
+    />
+    <p class="mt-2">
+      <strong>Price:</strong> {{ item.unitPrice?.currency || 'EUR' }}
+      {{ item.unitPrice?.regularPrice }}
+    </p>
+  </div>
+</div>
+
+<ng-template #naTemplate>N/A</ng-template>

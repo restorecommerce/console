@@ -1,9 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   Input,
   OnInit,
 } from '@angular/core';
+import * as dayjs from 'dayjs';
+import * as relativeTime from 'dayjs/plugin/relativeTime';
 
 import {
   IoRestorecommerceProductPhysicalVariant,
@@ -11,13 +14,20 @@ import {
 } from '@console-core/graphql';
 import { IOrder } from '@console-core/types';
 
+dayjs.extend(relativeTime);
+
 @Component({
-  selector: 'rc-order-view',
-  templateUrl: './order-view.component.html',
+  selector: 'rc-data-list-order',
+  templateUrl: './data-list-order.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcOrderViewComponent implements OnInit {
+export class RcDataListOrderComponent implements OnInit {
+  @HostBinding('class.data-list-order')
+  _hostClasses = true;
+
   @Input({ required: true }) order!: IOrder;
+
+  dayjs = dayjs;
 
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;

@@ -23,8 +23,8 @@
     ),
 
   // /* Primary colors */
-  $black: $black,
-  $white: $white,
+  $black: $console-black,
+  $white: $console-white,
 
   // /* Brand colors */
   $brand-accent-darker: $console-brand-accent-darker,
@@ -34,6 +34,6 @@
   $brand-accent-lighter: $console-brand-accent-lighter,
 
   // /* Progress bar */
-  $progress-bar-container-bg-color: $white,
+  $progress-bar-container-bg-color: $console-white,
   $progress-bar-primary-progress-bg-color: $console-brand-accent
 );

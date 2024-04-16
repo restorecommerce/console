@@ -5254,11 +5254,114 @@ export type CatalogProductMutateMutation = {
             payload?: {
               __typename?: 'IoRestorecommerceProductProduct';
               id?: string | null;
-              active?: boolean | null;
+              shop?: {
+                __typename?: 'IoRestorecommerceShopShop';
+                id?: string | null;
+                shopNumber?: string | null;
+                name?: string | null;
+                description?: string | null;
+                domain?: string | null;
+                organization?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  contactPoints?: Array<{
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }> | null;
+                  paymentMethods?: Array<{
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
               product?: {
                 __typename?: 'IoRestorecommerceProductIndividualProduct';
                 name?: string | null;
                 description?: string | null;
+                taxIds?: Array<string> | null;
+                taricCode?: string | null;
+                tax?: Array<{
+                  __typename?: 'IoRestorecommerceTaxTax';
+                  id?: string | null;
+                  rate?: number | null;
+                  type?: {
+                    __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                    id?: string | null;
+                    description?: string | null;
+                  } | null;
+                }> | null;
+                category?: {
+                  __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                  id?: string | null;
+                  name?: string | null;
+                } | null;
                 physical?: {
                   __typename?: 'IoRestorecommerceProductPhysicalProduct';
                   variants?: Array<{
@@ -5308,7 +5411,6 @@ export type CatalogProductReadQuery = {
         __typename?: 'ProtoIoRestorecommerceProductProductListResponse';
         details?: {
           __typename?: 'IoRestorecommerceProductProductListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -5319,11 +5421,114 @@ export type CatalogProductReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceProductProduct';
               id?: string | null;
-              active?: boolean | null;
+              shop?: {
+                __typename?: 'IoRestorecommerceShopShop';
+                id?: string | null;
+                shopNumber?: string | null;
+                name?: string | null;
+                description?: string | null;
+                domain?: string | null;
+                organization?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  contactPoints?: Array<{
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }> | null;
+                  paymentMethods?: Array<{
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
               product?: {
                 __typename?: 'IoRestorecommerceProductIndividualProduct';
                 name?: string | null;
                 description?: string | null;
+                taxIds?: Array<string> | null;
+                taricCode?: string | null;
+                tax?: Array<{
+                  __typename?: 'IoRestorecommerceTaxTax';
+                  id?: string | null;
+                  rate?: number | null;
+                  type?: {
+                    __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                    id?: string | null;
+                    description?: string | null;
+                  } | null;
+                }> | null;
+                category?: {
+                  __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                  id?: string | null;
+                  name?: string | null;
+                } | null;
                 physical?: {
                   __typename?: 'IoRestorecommerceProductPhysicalProduct';
                   variants?: Array<{
@@ -5410,6 +5615,48 @@ export type AddressFragmentFragment = {
   } | null;
 };
 
+export type ContactPointFragmentFragment = {
+  __typename?: 'IoRestorecommerceContactPointContactPoint';
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  website?: string | null;
+  timezone?: {
+    __typename?: 'IoRestorecommerceTimezoneTimezone';
+    id?: string | null;
+    description?: string | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  } | null;
+  locale?: {
+    __typename?: 'IoRestorecommerceLocaleLocale';
+    id?: string | null;
+    description?: string | null;
+    value?: string | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  } | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
 export type CountryFragmentFragment = {
   __typename?: 'IoRestorecommerceCountryCountry';
   id?: string | null;
@@ -5417,6 +5664,238 @@ export type CountryFragmentFragment = {
   countryCode?: string | null;
   geographicalName?: string | null;
   economicAreas?: Array<string> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type CustomerFragmentFragment = {
+  __typename?: 'IoRestorecommerceCustomerCustomer';
+  id?: string | null;
+  commercial?: {
+    __typename?: 'IoRestorecommerceCustomerCommercial';
+    organization?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      parentId?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+      logo?: {
+        __typename?: 'IoRestorecommerceImageImage';
+        id?: string | null;
+        index?: number | null;
+        filename?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url?: string | null;
+      } | null;
+      contactPoints?: Array<{
+        __typename?: 'IoRestorecommerceContactPointContactPoint';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        email?: string | null;
+        telephone?: string | null;
+        website?: string | null;
+        timezone?: {
+          __typename?: 'IoRestorecommerceTimezoneTimezone';
+          id?: string | null;
+          description?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        locale?: {
+          __typename?: 'IoRestorecommerceLocaleLocale';
+          id?: string | null;
+          description?: string | null;
+          value?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      }> | null;
+      paymentMethods?: Array<{
+        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+        id?: string | null;
+        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+      }> | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  publicSector?: {
+    __typename?: 'IoRestorecommerceCustomerPublicSector';
+    organization?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      parentId?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+      logo?: {
+        __typename?: 'IoRestorecommerceImageImage';
+        id?: string | null;
+        index?: number | null;
+        filename?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url?: string | null;
+      } | null;
+      contactPoints?: Array<{
+        __typename?: 'IoRestorecommerceContactPointContactPoint';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        email?: string | null;
+        telephone?: string | null;
+        website?: string | null;
+        timezone?: {
+          __typename?: 'IoRestorecommerceTimezoneTimezone';
+          id?: string | null;
+          description?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        locale?: {
+          __typename?: 'IoRestorecommerceLocaleLocale';
+          id?: string | null;
+          description?: string | null;
+          value?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      }> | null;
+      paymentMethods?: Array<{
+        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+        id?: string | null;
+        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+      }> | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  private?: {
+    __typename?: 'IoRestorecommerceCustomerPrivate';
+    user?: {
+      __typename?: 'IoRestorecommerceUserUser';
+      id?: string | null;
+      active?: boolean | null;
+      activationCode?: string | null;
+      email?: string | null;
+      newEmail?: string | null;
+      name?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      defaultScope?: string | null;
+      localeId?: string | null;
+      timezoneId?: string | null;
+      roleAssociations?: Array<{
+        __typename?: 'IoRestorecommerceAuthRoleAssociation';
+        id?: string | null;
+        role?: string | null;
+      }> | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+    contactPoints?: Array<{
+      __typename?: 'IoRestorecommerceContactPointContactPoint';
+      id?: string | null;
+      name?: string | null;
+      description?: string | null;
+      email?: string | null;
+      telephone?: string | null;
+      website?: string | null;
+      timezone?: {
+        __typename?: 'IoRestorecommerceTimezoneTimezone';
+        id?: string | null;
+        description?: string | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+      locale?: {
+        __typename?: 'IoRestorecommerceLocaleLocale';
+        id?: string | null;
+        description?: string | null;
+        value?: string | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    }> | null;
+  } | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -5527,13 +6006,652 @@ export type MetaFragmentFragment = {
 export type OrderFragmentFragment = {
   __typename?: 'IoRestorecommerceOrderOrder';
   id?: string | null;
-  customerId?: string | null;
-  shopId?: string | null;
-  userId?: string | null;
   customerOrderNr?: string | null;
+  notificationEmail?: string | null;
   paymentState?: IoRestorecommerceInvoicePaymentState | null;
   fulfillmentState?: IoRestorecommerceFulfillmentState | null;
   orderState?: IoRestorecommerceOrderOrderState | null;
+  items?: Array<{
+    __typename?: 'IoRestorecommerceOrderItem';
+    id?: string | null;
+    quantity?: number | null;
+    product?: {
+      __typename?: 'IoRestorecommerceProductProduct';
+      id?: string | null;
+      shop?: {
+        __typename?: 'IoRestorecommerceShopShop';
+        id?: string | null;
+        shopNumber?: string | null;
+        name?: string | null;
+        description?: string | null;
+        domain?: string | null;
+        organization?: {
+          __typename?: 'IoRestorecommerceOrganizationOrganization';
+          id?: string | null;
+          parentId?: string | null;
+          name?: string | null;
+          email?: string | null;
+          website?: string | null;
+          vatId?: string | null;
+          logo?: {
+            __typename?: 'IoRestorecommerceImageImage';
+            id?: string | null;
+            index?: number | null;
+            filename?: string | null;
+            height?: number | null;
+            width?: number | null;
+            url?: string | null;
+          } | null;
+          contactPoints?: Array<{
+            __typename?: 'IoRestorecommerceContactPointContactPoint';
+            id?: string | null;
+            name?: string | null;
+            description?: string | null;
+            email?: string | null;
+            telephone?: string | null;
+            website?: string | null;
+            timezone?: {
+              __typename?: 'IoRestorecommerceTimezoneTimezone';
+              id?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            locale?: {
+              __typename?: 'IoRestorecommerceLocaleLocale';
+              id?: string | null;
+              description?: string | null;
+              value?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          }> | null;
+          paymentMethods?: Array<{
+            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+            id?: string | null;
+            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+          }> | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+      product?: {
+        __typename?: 'IoRestorecommerceProductIndividualProduct';
+        name?: string | null;
+        description?: string | null;
+        taxIds?: Array<string> | null;
+        taricCode?: string | null;
+        tax?: Array<{
+          __typename?: 'IoRestorecommerceTaxTax';
+          id?: string | null;
+          rate?: number | null;
+          type?: {
+            __typename?: 'IoRestorecommerceTaxTypeTaxType';
+            id?: string | null;
+            description?: string | null;
+          } | null;
+        }> | null;
+        category?: {
+          __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+          id?: string | null;
+          name?: string | null;
+        } | null;
+        physical?: {
+          __typename?: 'IoRestorecommerceProductPhysicalProduct';
+          variants?: Array<{
+            __typename?: 'IoRestorecommerceProductPhysicalVariant';
+            id?: string | null;
+            name?: string | null;
+            images?: Array<{
+              __typename?: 'IoRestorecommerceImageImage';
+              id?: string | null;
+              index?: number | null;
+              filename?: string | null;
+              caption?: string | null;
+              contentType?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url?: string | null;
+            }> | null;
+          }> | null;
+        } | null;
+      } | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+    unitPrice?: {
+      __typename?: 'IoRestorecommercePricePrice';
+      regularPrice?: number | null;
+      sale?: boolean | null;
+      salePrice?: number | null;
+      currency?: {
+        __typename?: 'IoRestorecommerceCurrencyCurrency';
+        name?: string | null;
+        symbol?: string | null;
+      } | null;
+    } | null;
+  }> | null;
+  shop?: {
+    __typename?: 'IoRestorecommerceShopShop';
+    id?: string | null;
+    shopNumber?: string | null;
+    name?: string | null;
+    description?: string | null;
+    domain?: string | null;
+    organization?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      parentId?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+      logo?: {
+        __typename?: 'IoRestorecommerceImageImage';
+        id?: string | null;
+        index?: number | null;
+        filename?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url?: string | null;
+      } | null;
+      contactPoints?: Array<{
+        __typename?: 'IoRestorecommerceContactPointContactPoint';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        email?: string | null;
+        telephone?: string | null;
+        website?: string | null;
+        timezone?: {
+          __typename?: 'IoRestorecommerceTimezoneTimezone';
+          id?: string | null;
+          description?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        locale?: {
+          __typename?: 'IoRestorecommerceLocaleLocale';
+          id?: string | null;
+          description?: string | null;
+          value?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      }> | null;
+      paymentMethods?: Array<{
+        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+        id?: string | null;
+        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+      }> | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  } | null;
+  customer?: {
+    __typename?: 'IoRestorecommerceCustomerCustomer';
+    id?: string | null;
+    commercial?: {
+      __typename?: 'IoRestorecommerceCustomerCommercial';
+      organization?: {
+        __typename?: 'IoRestorecommerceOrganizationOrganization';
+        id?: string | null;
+        parentId?: string | null;
+        name?: string | null;
+        email?: string | null;
+        website?: string | null;
+        vatId?: string | null;
+        logo?: {
+          __typename?: 'IoRestorecommerceImageImage';
+          id?: string | null;
+          index?: number | null;
+          filename?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url?: string | null;
+        } | null;
+        contactPoints?: Array<{
+          __typename?: 'IoRestorecommerceContactPointContactPoint';
+          id?: string | null;
+          name?: string | null;
+          description?: string | null;
+          email?: string | null;
+          telephone?: string | null;
+          website?: string | null;
+          timezone?: {
+            __typename?: 'IoRestorecommerceTimezoneTimezone';
+            id?: string | null;
+            description?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          locale?: {
+            __typename?: 'IoRestorecommerceLocaleLocale';
+            id?: string | null;
+            description?: string | null;
+            value?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        }> | null;
+        paymentMethods?: Array<{
+          __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+          id?: string | null;
+          transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+          paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+        }> | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+    } | null;
+    publicSector?: {
+      __typename?: 'IoRestorecommerceCustomerPublicSector';
+      organization?: {
+        __typename?: 'IoRestorecommerceOrganizationOrganization';
+        id?: string | null;
+        parentId?: string | null;
+        name?: string | null;
+        email?: string | null;
+        website?: string | null;
+        vatId?: string | null;
+        logo?: {
+          __typename?: 'IoRestorecommerceImageImage';
+          id?: string | null;
+          index?: number | null;
+          filename?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url?: string | null;
+        } | null;
+        contactPoints?: Array<{
+          __typename?: 'IoRestorecommerceContactPointContactPoint';
+          id?: string | null;
+          name?: string | null;
+          description?: string | null;
+          email?: string | null;
+          telephone?: string | null;
+          website?: string | null;
+          timezone?: {
+            __typename?: 'IoRestorecommerceTimezoneTimezone';
+            id?: string | null;
+            description?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          locale?: {
+            __typename?: 'IoRestorecommerceLocaleLocale';
+            id?: string | null;
+            description?: string | null;
+            value?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        }> | null;
+        paymentMethods?: Array<{
+          __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+          id?: string | null;
+          transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+          paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+        }> | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+    } | null;
+    private?: {
+      __typename?: 'IoRestorecommerceCustomerPrivate';
+      user?: {
+        __typename?: 'IoRestorecommerceUserUser';
+        id?: string | null;
+        active?: boolean | null;
+        activationCode?: string | null;
+        email?: string | null;
+        newEmail?: string | null;
+        name?: string | null;
+        firstName?: string | null;
+        lastName?: string | null;
+        defaultScope?: string | null;
+        localeId?: string | null;
+        timezoneId?: string | null;
+        roleAssociations?: Array<{
+          __typename?: 'IoRestorecommerceAuthRoleAssociation';
+          id?: string | null;
+          role?: string | null;
+        }> | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+      contactPoints?: Array<{
+        __typename?: 'IoRestorecommerceContactPointContactPoint';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        email?: string | null;
+        telephone?: string | null;
+        website?: string | null;
+        timezone?: {
+          __typename?: 'IoRestorecommerceTimezoneTimezone';
+          id?: string | null;
+          description?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        locale?: {
+          __typename?: 'IoRestorecommerceLocaleLocale';
+          id?: string | null;
+          description?: string | null;
+          value?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      }> | null;
+    } | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  } | null;
+  user?: {
+    __typename?: 'IoRestorecommerceUserUser';
+    id?: string | null;
+    active?: boolean | null;
+    activationCode?: string | null;
+    email?: string | null;
+    newEmail?: string | null;
+    name?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    defaultScope?: string | null;
+    localeId?: string | null;
+    timezoneId?: string | null;
+    roleAssociations?: Array<{
+      __typename?: 'IoRestorecommerceAuthRoleAssociation';
+      id?: string | null;
+      role?: string | null;
+    }> | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  } | null;
+  shippingAddress?: {
+    __typename?: 'IoRestorecommerceAddressShippingAddress';
+    comments?: string | null;
+    contact?: {
+      __typename?: 'IoRestorecommerceAddressContact';
+      name?: string | null;
+      email?: string | null;
+      phone?: string | null;
+    } | null;
+    address?: {
+      __typename?: 'IoRestorecommerceAddressAddress';
+      id?: string | null;
+      street?: string | null;
+      buildingNumber?: string | null;
+      postcode?: string | null;
+      businessAddress?: {
+        __typename?: 'IoRestorecommerceAddressBusinessAddress';
+        name?: string | null;
+      } | null;
+      addressAddition?: {
+        __typename?: 'IoRestorecommerceAddressAddressAddition';
+        field1?: string | null;
+        field2?: string | null;
+      } | null;
+      country?: {
+        __typename?: 'IoRestorecommerceCountryCountry';
+        id?: string | null;
+        name?: string | null;
+        countryCode?: string | null;
+      } | null;
+      residentialAddress?: {
+        __typename?: 'IoRestorecommerceAddressResidentialAddress';
+        title?: string | null;
+        givenName?: string | null;
+        midName?: string | null;
+        familyName?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  totalAmounts?: Array<{
+    __typename?: 'IoRestorecommerceAmountAmount';
+    gross?: number | null;
+    net?: number | null;
+    currency?: {
+      __typename?: 'IoRestorecommerceCurrencyCurrency';
+      name?: string | null;
+      customExchangeRates?: Array<{
+        __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+        amount?: number | null;
+        rate?: number | null;
+        expenses?: number | null;
+      }> | null;
+    } | null;
+    vats?: Array<{
+      __typename?: 'IoRestorecommerceAmountVAT';
+      vat?: number | null;
+      tax?: {
+        __typename?: 'IoRestorecommerceTaxTax';
+        rate?: number | null;
+        variant?: string | null;
+        countryId?: string | null;
+        type?: {
+          __typename?: 'IoRestorecommerceTaxTypeTaxType';
+          type?: string | null;
+          description?: string | null;
+        } | null;
+      } | null;
+    }> | null;
+  }> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type OrganizationFragmentFragment = {
+  __typename?: 'IoRestorecommerceOrganizationOrganization';
+  id?: string | null;
+  parentId?: string | null;
+  name?: string | null;
+  email?: string | null;
+  website?: string | null;
+  vatId?: string | null;
+  logo?: {
+    __typename?: 'IoRestorecommerceImageImage';
+    id?: string | null;
+    index?: number | null;
+    filename?: string | null;
+    height?: number | null;
+    width?: number | null;
+    url?: string | null;
+  } | null;
+  contactPoints?: Array<{
+    __typename?: 'IoRestorecommerceContactPointContactPoint';
+    id?: string | null;
+    name?: string | null;
+    description?: string | null;
+    email?: string | null;
+    telephone?: string | null;
+    website?: string | null;
+    timezone?: {
+      __typename?: 'IoRestorecommerceTimezoneTimezone';
+      id?: string | null;
+      description?: string | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+    locale?: {
+      __typename?: 'IoRestorecommerceLocaleLocale';
+      id?: string | null;
+      description?: string | null;
+      value?: string | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  }> | null;
+  paymentMethods?: Array<{
+    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+    id?: string | null;
+    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+  }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -5546,11 +6664,114 @@ export type OrderFragmentFragment = {
 export type ProductFragmentFragment = {
   __typename?: 'IoRestorecommerceProductProduct';
   id?: string | null;
-  active?: boolean | null;
+  shop?: {
+    __typename?: 'IoRestorecommerceShopShop';
+    id?: string | null;
+    shopNumber?: string | null;
+    name?: string | null;
+    description?: string | null;
+    domain?: string | null;
+    organization?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      parentId?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+      logo?: {
+        __typename?: 'IoRestorecommerceImageImage';
+        id?: string | null;
+        index?: number | null;
+        filename?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url?: string | null;
+      } | null;
+      contactPoints?: Array<{
+        __typename?: 'IoRestorecommerceContactPointContactPoint';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        email?: string | null;
+        telephone?: string | null;
+        website?: string | null;
+        timezone?: {
+          __typename?: 'IoRestorecommerceTimezoneTimezone';
+          id?: string | null;
+          description?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        locale?: {
+          __typename?: 'IoRestorecommerceLocaleLocale';
+          id?: string | null;
+          description?: string | null;
+          value?: string | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      }> | null;
+      paymentMethods?: Array<{
+        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+        id?: string | null;
+        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+      }> | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    } | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
+    } | null;
+  } | null;
   product?: {
     __typename?: 'IoRestorecommerceProductIndividualProduct';
     name?: string | null;
     description?: string | null;
+    taxIds?: Array<string> | null;
+    taricCode?: string | null;
+    tax?: Array<{
+      __typename?: 'IoRestorecommerceTaxTax';
+      id?: string | null;
+      rate?: number | null;
+      type?: {
+        __typename?: 'IoRestorecommerceTaxTypeTaxType';
+        id?: string | null;
+        description?: string | null;
+      } | null;
+    }> | null;
+    category?: {
+      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+      id?: string | null;
+      name?: string | null;
+    } | null;
     physical?: {
       __typename?: 'IoRestorecommerceProductPhysicalProduct';
       variants?: Array<{
@@ -5569,6 +6790,94 @@ export type ProductFragmentFragment = {
           url?: string | null;
         }> | null;
       }> | null;
+    } | null;
+  } | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type ShopFragmentFragment = {
+  __typename?: 'IoRestorecommerceShopShop';
+  id?: string | null;
+  shopNumber?: string | null;
+  name?: string | null;
+  description?: string | null;
+  domain?: string | null;
+  organization?: {
+    __typename?: 'IoRestorecommerceOrganizationOrganization';
+    id?: string | null;
+    parentId?: string | null;
+    name?: string | null;
+    email?: string | null;
+    website?: string | null;
+    vatId?: string | null;
+    logo?: {
+      __typename?: 'IoRestorecommerceImageImage';
+      id?: string | null;
+      index?: number | null;
+      filename?: string | null;
+      height?: number | null;
+      width?: number | null;
+      url?: string | null;
+    } | null;
+    contactPoints?: Array<{
+      __typename?: 'IoRestorecommerceContactPointContactPoint';
+      id?: string | null;
+      name?: string | null;
+      description?: string | null;
+      email?: string | null;
+      telephone?: string | null;
+      website?: string | null;
+      timezone?: {
+        __typename?: 'IoRestorecommerceTimezoneTimezone';
+        id?: string | null;
+        description?: string | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+      locale?: {
+        __typename?: 'IoRestorecommerceLocaleLocale';
+        id?: string | null;
+        description?: string | null;
+        value?: string | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
+      } | null;
+      meta?: {
+        __typename?: 'IoRestorecommerceMetaMeta';
+        created?: unknown | null;
+        modified?: unknown | null;
+        createdBy?: string | null;
+        modifiedBy?: string | null;
+      } | null;
+    }> | null;
+    paymentMethods?: Array<{
+      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+      id?: string | null;
+      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+    }> | null;
+    meta?: {
+      __typename?: 'IoRestorecommerceMetaMeta';
+      created?: unknown | null;
+      modified?: unknown | null;
+      createdBy?: string | null;
+      modifiedBy?: string | null;
     } | null;
   } | null;
   meta?: {
@@ -5659,7 +6968,6 @@ export type FulfillmentFulfillmentMutateMutation = {
         __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
         details?: {
           __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -5702,7 +7010,6 @@ export type FulfillmentFulfillmentReadQuery = {
         __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
         details?: {
           __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -5982,11 +7289,6 @@ export type IdentityUserMutateMutation = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceUserUserResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceUserUser';
               id?: string | null;
@@ -6202,7 +7504,6 @@ export type InvoicingInvoiceReadQuery = {
         __typename?: 'ProtoIoRestorecommerceInvoiceInvoiceListResponse';
         details?: {
           __typename?: 'IoRestorecommerceInvoiceInvoiceListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6245,7 +7546,6 @@ export type MasterDataAddressReadQuery = {
         __typename?: 'ProtoIoRestorecommerceAddressAddressListResponse';
         details?: {
           __typename?: 'IoRestorecommerceAddressAddressListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6362,11 +7662,6 @@ export type MasterDataCountryMutateMutation = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceCountryCountryResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceCountryCountry';
               id?: string | null;
@@ -6403,7 +7698,6 @@ export type MasterDataCountryReadQuery = {
         __typename?: 'ProtoIoRestorecommerceCountryCountryListResponse';
         details?: {
           __typename?: 'IoRestorecommerceCountryCountryListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6447,7 +7741,6 @@ export type MasterDataLocaleReadQuery = {
         __typename?: 'ProtoIoRestorecommerceLocaleLocaleListResponse';
         details?: {
           __typename?: 'IoRestorecommerceLocaleLocaleListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6489,7 +7782,6 @@ export type MasterDataLocationReadQuery = {
         __typename?: 'ProtoIoRestorecommerceLocationLocationListResponse';
         details?: {
           __typename?: 'IoRestorecommerceLocationLocationListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6563,7 +7855,6 @@ export type MasterDataTimezoneReadQuery = {
         __typename?: 'ProtoIoRestorecommerceTimezoneTimezoneListResponse';
         details?: {
           __typename?: 'IoRestorecommerceTimezoneTimezoneListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6642,21 +7933,582 @@ export type OrderingOrderMutateMutation = {
           } | null;
           items?: Array<{
             __typename?: 'IoRestorecommerceOrderOrderResponse';
-            status?: {
-              __typename?: 'IoRestorecommerceStatusStatus';
-              code?: number | null;
-              message?: string | null;
-            } | null;
             payload?: {
               __typename?: 'IoRestorecommerceOrderOrder';
               id?: string | null;
-              customerId?: string | null;
-              shopId?: string | null;
-              userId?: string | null;
               customerOrderNr?: string | null;
+              notificationEmail?: string | null;
               paymentState?: IoRestorecommerceInvoicePaymentState | null;
               fulfillmentState?: IoRestorecommerceFulfillmentState | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
+              items?: Array<{
+                __typename?: 'IoRestorecommerceOrderItem';
+                id?: string | null;
+                quantity?: number | null;
+                product?: {
+                  __typename?: 'IoRestorecommerceProductProduct';
+                  id?: string | null;
+                  shop?: {
+                    __typename?: 'IoRestorecommerceShopShop';
+                    id?: string | null;
+                    shopNumber?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    domain?: string | null;
+                    organization?: {
+                      __typename?: 'IoRestorecommerceOrganizationOrganization';
+                      id?: string | null;
+                      parentId?: string | null;
+                      name?: string | null;
+                      email?: string | null;
+                      website?: string | null;
+                      vatId?: string | null;
+                      logo?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        index?: number | null;
+                        filename?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url?: string | null;
+                      } | null;
+                      contactPoints?: Array<{
+                        __typename?: 'IoRestorecommerceContactPointContactPoint';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        email?: string | null;
+                        telephone?: string | null;
+                        website?: string | null;
+                        timezone?: {
+                          __typename?: 'IoRestorecommerceTimezoneTimezone';
+                          id?: string | null;
+                          description?: string | null;
+                          meta?: {
+                            __typename?: 'IoRestorecommerceMetaMeta';
+                            created?: unknown | null;
+                            modified?: unknown | null;
+                            createdBy?: string | null;
+                            modifiedBy?: string | null;
+                          } | null;
+                        } | null;
+                        locale?: {
+                          __typename?: 'IoRestorecommerceLocaleLocale';
+                          id?: string | null;
+                          description?: string | null;
+                          value?: string | null;
+                          meta?: {
+                            __typename?: 'IoRestorecommerceMetaMeta';
+                            created?: unknown | null;
+                            modified?: unknown | null;
+                            createdBy?: string | null;
+                            modifiedBy?: string | null;
+                          } | null;
+                        } | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      }> | null;
+                      paymentMethods?: Array<{
+                        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                        id?: string | null;
+                        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                      }> | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                  product?: {
+                    __typename?: 'IoRestorecommerceProductIndividualProduct';
+                    name?: string | null;
+                    description?: string | null;
+                    taxIds?: Array<string> | null;
+                    taricCode?: string | null;
+                    tax?: Array<{
+                      __typename?: 'IoRestorecommerceTaxTax';
+                      id?: string | null;
+                      rate?: number | null;
+                      type?: {
+                        __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                        id?: string | null;
+                        description?: string | null;
+                      } | null;
+                    }> | null;
+                    category?: {
+                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                      id?: string | null;
+                      name?: string | null;
+                    } | null;
+                    physical?: {
+                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                      variants?: Array<{
+                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                        id?: string | null;
+                        name?: string | null;
+                        images?: Array<{
+                          __typename?: 'IoRestorecommerceImageImage';
+                          id?: string | null;
+                          index?: number | null;
+                          filename?: string | null;
+                          caption?: string | null;
+                          contentType?: string | null;
+                          height?: number | null;
+                          width?: number | null;
+                          url?: string | null;
+                        }> | null;
+                      }> | null;
+                    } | null;
+                  } | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+                unitPrice?: {
+                  __typename?: 'IoRestorecommercePricePrice';
+                  regularPrice?: number | null;
+                  sale?: boolean | null;
+                  salePrice?: number | null;
+                  currency?: {
+                    __typename?: 'IoRestorecommerceCurrencyCurrency';
+                    name?: string | null;
+                    symbol?: string | null;
+                  } | null;
+                } | null;
+              }> | null;
+              shop?: {
+                __typename?: 'IoRestorecommerceShopShop';
+                id?: string | null;
+                shopNumber?: string | null;
+                name?: string | null;
+                description?: string | null;
+                domain?: string | null;
+                organization?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  contactPoints?: Array<{
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }> | null;
+                  paymentMethods?: Array<{
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              customer?: {
+                __typename?: 'IoRestorecommerceCustomerCustomer';
+                id?: string | null;
+                commercial?: {
+                  __typename?: 'IoRestorecommerceCustomerCommercial';
+                  organization?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    parentId?: string | null;
+                    name?: string | null;
+                    email?: string | null;
+                    website?: string | null;
+                    vatId?: string | null;
+                    logo?: {
+                      __typename?: 'IoRestorecommerceImageImage';
+                      id?: string | null;
+                      index?: number | null;
+                      filename?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url?: string | null;
+                    } | null;
+                    contactPoints?: Array<{
+                      __typename?: 'IoRestorecommerceContactPointContactPoint';
+                      id?: string | null;
+                      name?: string | null;
+                      description?: string | null;
+                      email?: string | null;
+                      telephone?: string | null;
+                      website?: string | null;
+                      timezone?: {
+                        __typename?: 'IoRestorecommerceTimezoneTimezone';
+                        id?: string | null;
+                        description?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      locale?: {
+                        __typename?: 'IoRestorecommerceLocaleLocale';
+                        id?: string | null;
+                        description?: string | null;
+                        value?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    }> | null;
+                    paymentMethods?: Array<{
+                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                      id?: string | null;
+                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                    }> | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                publicSector?: {
+                  __typename?: 'IoRestorecommerceCustomerPublicSector';
+                  organization?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    parentId?: string | null;
+                    name?: string | null;
+                    email?: string | null;
+                    website?: string | null;
+                    vatId?: string | null;
+                    logo?: {
+                      __typename?: 'IoRestorecommerceImageImage';
+                      id?: string | null;
+                      index?: number | null;
+                      filename?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url?: string | null;
+                    } | null;
+                    contactPoints?: Array<{
+                      __typename?: 'IoRestorecommerceContactPointContactPoint';
+                      id?: string | null;
+                      name?: string | null;
+                      description?: string | null;
+                      email?: string | null;
+                      telephone?: string | null;
+                      website?: string | null;
+                      timezone?: {
+                        __typename?: 'IoRestorecommerceTimezoneTimezone';
+                        id?: string | null;
+                        description?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      locale?: {
+                        __typename?: 'IoRestorecommerceLocaleLocale';
+                        id?: string | null;
+                        description?: string | null;
+                        value?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    }> | null;
+                    paymentMethods?: Array<{
+                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                      id?: string | null;
+                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                    }> | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                private?: {
+                  __typename?: 'IoRestorecommerceCustomerPrivate';
+                  user?: {
+                    __typename?: 'IoRestorecommerceUserUser';
+                    id?: string | null;
+                    active?: boolean | null;
+                    activationCode?: string | null;
+                    email?: string | null;
+                    newEmail?: string | null;
+                    name?: string | null;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    defaultScope?: string | null;
+                    localeId?: string | null;
+                    timezoneId?: string | null;
+                    roleAssociations?: Array<{
+                      __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                      id?: string | null;
+                      role?: string | null;
+                    }> | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                  contactPoints?: Array<{
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }> | null;
+                } | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              user?: {
+                __typename?: 'IoRestorecommerceUserUser';
+                id?: string | null;
+                active?: boolean | null;
+                activationCode?: string | null;
+                email?: string | null;
+                newEmail?: string | null;
+                name?: string | null;
+                firstName?: string | null;
+                lastName?: string | null;
+                defaultScope?: string | null;
+                localeId?: string | null;
+                timezoneId?: string | null;
+                roleAssociations?: Array<{
+                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                  id?: string | null;
+                  role?: string | null;
+                }> | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              shippingAddress?: {
+                __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  street?: string | null;
+                  buildingNumber?: string | null;
+                  postcode?: string | null;
+                  businessAddress?: {
+                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                    name?: string | null;
+                  } | null;
+                  addressAddition?: {
+                    __typename?: 'IoRestorecommerceAddressAddressAddition';
+                    field1?: string | null;
+                    field2?: string | null;
+                  } | null;
+                  country?: {
+                    __typename?: 'IoRestorecommerceCountryCountry';
+                    id?: string | null;
+                    name?: string | null;
+                    countryCode?: string | null;
+                  } | null;
+                  residentialAddress?: {
+                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                    title?: string | null;
+                    givenName?: string | null;
+                    midName?: string | null;
+                    familyName?: string | null;
+                  } | null;
+                } | null;
+              } | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currency?: {
+                  __typename?: 'IoRestorecommerceCurrencyCurrency';
+                  name?: string | null;
+                  customExchangeRates?: Array<{
+                    __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+                    amount?: number | null;
+                    rate?: number | null;
+                    expenses?: number | null;
+                  }> | null;
+                } | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
+                  tax?: {
+                    __typename?: 'IoRestorecommerceTaxTax';
+                    rate?: number | null;
+                    variant?: string | null;
+                    countryId?: string | null;
+                    type?: {
+                      __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                      type?: string | null;
+                      description?: string | null;
+                    } | null;
+                  } | null;
+                }> | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -6686,7 +8538,6 @@ export type OrderingOrderReadQuery = {
         __typename?: 'ProtoIoRestorecommerceOrderOrderListResponse';
         details?: {
           __typename?: 'IoRestorecommerceOrderOrderListResponse';
-          totalCount?: number | null;
           operationStatus?: {
             __typename?: 'IoRestorecommerceStatusOperationStatus';
             code?: number | null;
@@ -6697,13 +8548,579 @@ export type OrderingOrderReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceOrderOrder';
               id?: string | null;
-              customerId?: string | null;
-              shopId?: string | null;
-              userId?: string | null;
               customerOrderNr?: string | null;
+              notificationEmail?: string | null;
               paymentState?: IoRestorecommerceInvoicePaymentState | null;
               fulfillmentState?: IoRestorecommerceFulfillmentState | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
+              items?: Array<{
+                __typename?: 'IoRestorecommerceOrderItem';
+                id?: string | null;
+                quantity?: number | null;
+                product?: {
+                  __typename?: 'IoRestorecommerceProductProduct';
+                  id?: string | null;
+                  shop?: {
+                    __typename?: 'IoRestorecommerceShopShop';
+                    id?: string | null;
+                    shopNumber?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    domain?: string | null;
+                    organization?: {
+                      __typename?: 'IoRestorecommerceOrganizationOrganization';
+                      id?: string | null;
+                      parentId?: string | null;
+                      name?: string | null;
+                      email?: string | null;
+                      website?: string | null;
+                      vatId?: string | null;
+                      logo?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        index?: number | null;
+                        filename?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url?: string | null;
+                      } | null;
+                      contactPoints?: Array<{
+                        __typename?: 'IoRestorecommerceContactPointContactPoint';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        email?: string | null;
+                        telephone?: string | null;
+                        website?: string | null;
+                        timezone?: {
+                          __typename?: 'IoRestorecommerceTimezoneTimezone';
+                          id?: string | null;
+                          description?: string | null;
+                          meta?: {
+                            __typename?: 'IoRestorecommerceMetaMeta';
+                            created?: unknown | null;
+                            modified?: unknown | null;
+                            createdBy?: string | null;
+                            modifiedBy?: string | null;
+                          } | null;
+                        } | null;
+                        locale?: {
+                          __typename?: 'IoRestorecommerceLocaleLocale';
+                          id?: string | null;
+                          description?: string | null;
+                          value?: string | null;
+                          meta?: {
+                            __typename?: 'IoRestorecommerceMetaMeta';
+                            created?: unknown | null;
+                            modified?: unknown | null;
+                            createdBy?: string | null;
+                            modifiedBy?: string | null;
+                          } | null;
+                        } | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      }> | null;
+                      paymentMethods?: Array<{
+                        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                        id?: string | null;
+                        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                      }> | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                  product?: {
+                    __typename?: 'IoRestorecommerceProductIndividualProduct';
+                    name?: string | null;
+                    description?: string | null;
+                    taxIds?: Array<string> | null;
+                    taricCode?: string | null;
+                    tax?: Array<{
+                      __typename?: 'IoRestorecommerceTaxTax';
+                      id?: string | null;
+                      rate?: number | null;
+                      type?: {
+                        __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                        id?: string | null;
+                        description?: string | null;
+                      } | null;
+                    }> | null;
+                    category?: {
+                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                      id?: string | null;
+                      name?: string | null;
+                    } | null;
+                    physical?: {
+                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                      variants?: Array<{
+                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                        id?: string | null;
+                        name?: string | null;
+                        images?: Array<{
+                          __typename?: 'IoRestorecommerceImageImage';
+                          id?: string | null;
+                          index?: number | null;
+                          filename?: string | null;
+                          caption?: string | null;
+                          contentType?: string | null;
+                          height?: number | null;
+                          width?: number | null;
+                          url?: string | null;
+                        }> | null;
+                      }> | null;
+                    } | null;
+                  } | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+                unitPrice?: {
+                  __typename?: 'IoRestorecommercePricePrice';
+                  regularPrice?: number | null;
+                  sale?: boolean | null;
+                  salePrice?: number | null;
+                  currency?: {
+                    __typename?: 'IoRestorecommerceCurrencyCurrency';
+                    name?: string | null;
+                    symbol?: string | null;
+                  } | null;
+                } | null;
+              }> | null;
+              shop?: {
+                __typename?: 'IoRestorecommerceShopShop';
+                id?: string | null;
+                shopNumber?: string | null;
+                name?: string | null;
+                description?: string | null;
+                domain?: string | null;
+                organization?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  contactPoints?: Array<{
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }> | null;
+                  paymentMethods?: Array<{
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              customer?: {
+                __typename?: 'IoRestorecommerceCustomerCustomer';
+                id?: string | null;
+                commercial?: {
+                  __typename?: 'IoRestorecommerceCustomerCommercial';
+                  organization?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    parentId?: string | null;
+                    name?: string | null;
+                    email?: string | null;
+                    website?: string | null;
+                    vatId?: string | null;
+                    logo?: {
+                      __typename?: 'IoRestorecommerceImageImage';
+                      id?: string | null;
+                      index?: number | null;
+                      filename?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url?: string | null;
+                    } | null;
+                    contactPoints?: Array<{
+                      __typename?: 'IoRestorecommerceContactPointContactPoint';
+                      id?: string | null;
+                      name?: string | null;
+                      description?: string | null;
+                      email?: string | null;
+                      telephone?: string | null;
+                      website?: string | null;
+                      timezone?: {
+                        __typename?: 'IoRestorecommerceTimezoneTimezone';
+                        id?: string | null;
+                        description?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      locale?: {
+                        __typename?: 'IoRestorecommerceLocaleLocale';
+                        id?: string | null;
+                        description?: string | null;
+                        value?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    }> | null;
+                    paymentMethods?: Array<{
+                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                      id?: string | null;
+                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                    }> | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                publicSector?: {
+                  __typename?: 'IoRestorecommerceCustomerPublicSector';
+                  organization?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    parentId?: string | null;
+                    name?: string | null;
+                    email?: string | null;
+                    website?: string | null;
+                    vatId?: string | null;
+                    logo?: {
+                      __typename?: 'IoRestorecommerceImageImage';
+                      id?: string | null;
+                      index?: number | null;
+                      filename?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url?: string | null;
+                    } | null;
+                    contactPoints?: Array<{
+                      __typename?: 'IoRestorecommerceContactPointContactPoint';
+                      id?: string | null;
+                      name?: string | null;
+                      description?: string | null;
+                      email?: string | null;
+                      telephone?: string | null;
+                      website?: string | null;
+                      timezone?: {
+                        __typename?: 'IoRestorecommerceTimezoneTimezone';
+                        id?: string | null;
+                        description?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      locale?: {
+                        __typename?: 'IoRestorecommerceLocaleLocale';
+                        id?: string | null;
+                        description?: string | null;
+                        value?: string | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    }> | null;
+                    paymentMethods?: Array<{
+                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                      id?: string | null;
+                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                    }> | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                private?: {
+                  __typename?: 'IoRestorecommerceCustomerPrivate';
+                  user?: {
+                    __typename?: 'IoRestorecommerceUserUser';
+                    id?: string | null;
+                    active?: boolean | null;
+                    activationCode?: string | null;
+                    email?: string | null;
+                    newEmail?: string | null;
+                    name?: string | null;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    defaultScope?: string | null;
+                    localeId?: string | null;
+                    timezoneId?: string | null;
+                    roleAssociations?: Array<{
+                      __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                      id?: string | null;
+                      role?: string | null;
+                    }> | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  } | null;
+                  contactPoints?: Array<{
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }> | null;
+                } | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              user?: {
+                __typename?: 'IoRestorecommerceUserUser';
+                id?: string | null;
+                active?: boolean | null;
+                activationCode?: string | null;
+                email?: string | null;
+                newEmail?: string | null;
+                name?: string | null;
+                firstName?: string | null;
+                lastName?: string | null;
+                defaultScope?: string | null;
+                localeId?: string | null;
+                timezoneId?: string | null;
+                roleAssociations?: Array<{
+                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                  id?: string | null;
+                  role?: string | null;
+                }> | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              shippingAddress?: {
+                __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  street?: string | null;
+                  buildingNumber?: string | null;
+                  postcode?: string | null;
+                  businessAddress?: {
+                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                    name?: string | null;
+                  } | null;
+                  addressAddition?: {
+                    __typename?: 'IoRestorecommerceAddressAddressAddition';
+                    field1?: string | null;
+                    field2?: string | null;
+                  } | null;
+                  country?: {
+                    __typename?: 'IoRestorecommerceCountryCountry';
+                    id?: string | null;
+                    name?: string | null;
+                    countryCode?: string | null;
+                  } | null;
+                  residentialAddress?: {
+                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                    title?: string | null;
+                    givenName?: string | null;
+                    midName?: string | null;
+                    familyName?: string | null;
+                  } | null;
+                } | null;
+              } | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currency?: {
+                  __typename?: 'IoRestorecommerceCurrencyCurrency';
+                  name?: string | null;
+                  customExchangeRates?: Array<{
+                    __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+                    amount?: number | null;
+                    rate?: number | null;
+                    expenses?: number | null;
+                  }> | null;
+                } | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
+                  tax?: {
+                    __typename?: 'IoRestorecommerceTaxTax';
+                    rate?: number | null;
+                    variant?: string | null;
+                    countryId?: string | null;
+                    type?: {
+                      __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                      type?: string | null;
+                      description?: string | null;
+                    } | null;
+                  } | null;
+                }> | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -6806,17 +9223,6 @@ export const InvoiceFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
-export const LocaleFragmentFragmentDoc = gql`
-  fragment LocaleFragment on IoRestorecommerceLocaleLocale {
-    id
-    description
-    value
-    meta {
-      ...MetaFragment
-    }
-  }
-  ${MetaFragmentFragmentDoc}
-`;
 export const LocationFragmentFragmentDoc = gql`
   fragment LocationFragment on IoRestorecommerceLocationLocation {
     id
@@ -6854,29 +9260,120 @@ export const LocationFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
-export const OrderFragmentFragmentDoc = gql`
-  fragment OrderFragment on IoRestorecommerceOrderOrder {
+export const TimezoneFragmentFragmentDoc = gql`
+  fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
-    customerId
-    shopId
-    userId
-    customerOrderNr
-    paymentState
-    fulfillmentState
-    orderState
+    description
     meta {
       ...MetaFragment
     }
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const LocaleFragmentFragmentDoc = gql`
+  fragment LocaleFragment on IoRestorecommerceLocaleLocale {
+    id
+    description
+    value
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
+export const ContactPointFragmentFragmentDoc = gql`
+  fragment ContactPointFragment on IoRestorecommerceContactPointContactPoint {
+    id
+    name
+    description
+    email
+    telephone
+    website
+    timezone {
+      ...TimezoneFragment
+    }
+    locale {
+      ...LocaleFragment
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${TimezoneFragmentFragmentDoc}
+  ${LocaleFragmentFragmentDoc}
+  ${MetaFragmentFragmentDoc}
+`;
+export const OrganizationFragmentFragmentDoc = gql`
+  fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
+    id
+    parentId
+    name
+    email
+    website
+    vatId
+    logo {
+      id
+      index
+      filename
+      height
+      width
+      url
+    }
+    contactPoints {
+      ...ContactPointFragment
+    }
+    paymentMethods {
+      id
+      transferType
+      paymentMethod
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${ContactPointFragmentFragmentDoc}
+  ${MetaFragmentFragmentDoc}
+`;
+export const ShopFragmentFragmentDoc = gql`
+  fragment ShopFragment on IoRestorecommerceShopShop {
+    id
+    shopNumber
+    name
+    description
+    domain
+    organization {
+      ...OrganizationFragment
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${OrganizationFragmentFragmentDoc}
+  ${MetaFragmentFragmentDoc}
+`;
 export const ProductFragmentFragmentDoc = gql`
   fragment ProductFragment on IoRestorecommerceProductProduct {
     id
-    active
+    shop {
+      ...ShopFragment
+    }
     product {
       name
       description
+      taxIds
+      tax {
+        id
+        rate
+        type {
+          id
+          description
+        }
+      }
+      taricCode
+      category {
+        id
+        name
+      }
       physical {
         variants {
           id
@@ -6898,16 +9395,7 @@ export const ProductFragmentFragmentDoc = gql`
       ...MetaFragment
     }
   }
-  ${MetaFragmentFragmentDoc}
-`;
-export const TimezoneFragmentFragmentDoc = gql`
-  fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
-    id
-    description
-    meta {
-      ...MetaFragment
-    }
-  }
+  ${ShopFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
 export const UserFragmentFragmentDoc = gql`
@@ -6931,6 +9419,135 @@ export const UserFragmentFragmentDoc = gql`
       ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
+`;
+export const CustomerFragmentFragmentDoc = gql`
+  fragment CustomerFragment on IoRestorecommerceCustomerCustomer {
+    id
+    commercial {
+      organization {
+        ...OrganizationFragment
+      }
+    }
+    publicSector {
+      organization {
+        ...OrganizationFragment
+      }
+    }
+    private {
+      user {
+        ...UserFragment
+      }
+      contactPoints {
+        ...ContactPointFragment
+      }
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${OrganizationFragmentFragmentDoc}
+  ${UserFragmentFragmentDoc}
+  ${ContactPointFragmentFragmentDoc}
+  ${MetaFragmentFragmentDoc}
+`;
+export const OrderFragmentFragmentDoc = gql`
+  fragment OrderFragment on IoRestorecommerceOrderOrder {
+    id
+    customerOrderNr
+    notificationEmail
+    paymentState
+    fulfillmentState
+    orderState
+    items {
+      id
+      quantity
+      product {
+        ...ProductFragment
+      }
+      unitPrice {
+        currency {
+          name
+          symbol
+        }
+        regularPrice
+        sale
+        salePrice
+      }
+    }
+    shop {
+      ...ShopFragment
+    }
+    customer {
+      ...CustomerFragment
+    }
+    user {
+      ...UserFragment
+    }
+    shippingAddress {
+      comments
+      contact {
+        name
+        email
+        phone
+      }
+      address {
+        id
+        street
+        buildingNumber
+        businessAddress {
+          name
+        }
+        addressAddition {
+          field1
+          field2
+        }
+        country {
+          id
+          name
+          countryCode
+        }
+        postcode
+        residentialAddress {
+          title
+          givenName
+          midName
+          familyName
+        }
+      }
+    }
+    totalAmounts {
+      currency {
+        name
+        customExchangeRates {
+          amount
+          rate
+          expenses
+        }
+      }
+      gross
+      net
+      vats {
+        tax {
+          rate
+          variant
+          type {
+            type
+            description
+          }
+          countryId
+        }
+        vat
+      }
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${ProductFragmentFragmentDoc}
+  ${ShopFragmentFragmentDoc}
+  ${CustomerFragmentFragmentDoc}
+  ${UserFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
 export const CatalogProductDeleteDocument = gql`
@@ -7016,7 +9633,6 @@ export const CatalogProductReadDocument = gql`
                 ...ProductFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7087,7 +9703,6 @@ export const FulfillmentFulfillmentMutateDocument = gql`
                 ...FulfillmentFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7126,7 +9741,6 @@ export const FulfillmentFulfillmentReadDocument = gql`
                 ...FulfillmentFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7391,10 +10005,6 @@ export const IdentityUserMutateDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...UserFragment
               }
@@ -7607,7 +10217,6 @@ export const InvoicingInvoiceReadDocument = gql`
                 ...InvoiceFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7646,7 +10255,6 @@ export const MasterDataAddressReadDocument = gql`
                 ...AddressFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7718,10 +10326,6 @@ export const MasterDataCountryMutateDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...CountryFragment
               }
@@ -7764,7 +10368,6 @@ export const MasterDataCountryReadDocument = gql`
                 ...CountryFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7803,7 +10406,6 @@ export const MasterDataLocaleReadDocument = gql`
                 ...LocaleFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7842,7 +10444,6 @@ export const MasterDataLocationReadDocument = gql`
                 ...LocationFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7881,7 +10482,6 @@ export const MasterDataTimezoneReadDocument = gql`
                 ...TimezoneFragment
               }
             }
-            totalCount
           }
         }
       }
@@ -7951,10 +10551,6 @@ export const OrderingOrderMutateDocument = gql`
               message
             }
             items {
-              status {
-                code
-                message
-              }
               payload {
                 ...OrderFragment
               }
@@ -7995,7 +10591,6 @@ export const OrderingOrderReadDocument = gql`
                 ...OrderFragment
               }
             }
-            totalCount
           }
         }
       }

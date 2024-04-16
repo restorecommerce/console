@@ -1,6 +1,8 @@
-mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
-  identity {
-    user {
+mutation MasterDataCountryMutate(
+  $input: IIoRestorecommerceCountryCountryList!
+) {
+  master_data {
+    country {
       Mutate(input: $input) {
         details {
           operationStatus {
@@ -8,12 +10,8 @@ mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
             message
           }
           items {
-            status {
-              code
-              message
-            }
             payload {
-              ...UserFragment
+              ...CountryFragment
             }
           }
         }
