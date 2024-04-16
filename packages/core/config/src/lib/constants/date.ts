@@ -7,5 +7,6 @@ export const DATE: Readonly<IDateConstant> = {
     dateTimeSeconds: 'dd/MM/yyyy HH:mm:ss',
     time: 'HH:mm',
     timeSeconds: 'HH:mm:ss',
+    dateTimeWithSeconds: 'MMM d, y, hh:mm:ss a',
   },
 };
