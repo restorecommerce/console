@@ -44,7 +44,7 @@ These commands utilize the @nx/angular plugin provided by Nx to generate the res
 
 ### GraphQL Code Generation
 
-To generate code from GraphQL schemas, you can utilize the following command: `npm run console:graphql:generate`. This command will generate TypeScript types and Angular services for GraphQL schemas and operations located in `./packages/modules/` with extension `.graphql`.
+To generate code from GraphQL schemas, you can utilize the following command: `npm run console:graphql:generate`. This command will generate TypeScript types and Angular services for GraphQL schemas and operations located in `./packages/modules/` with extension `.gql`.
 
 ### Development Server
 

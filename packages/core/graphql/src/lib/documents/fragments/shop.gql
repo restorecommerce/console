@@ -1,0 +1,13 @@
+fragment ShopFragment on IoRestorecommerceShopShop {
+  id
+  shopNumber
+  name
+  description
+  domain
+  organization {
+    ...OrganizationFragment
+  }
+  meta {
+    ...MetaFragment
+  }
+}

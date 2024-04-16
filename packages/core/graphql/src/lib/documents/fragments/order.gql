@@ -1,0 +1,92 @@
+fragment OrderFragment on IoRestorecommerceOrderOrder {
+  id
+  customerOrderNr
+  notificationEmail
+  paymentState
+  fulfillmentState
+  orderState
+  items {
+    id
+    quantity
+    product {
+      ...ProductFragment
+    }
+    unitPrice {
+      currency {
+        name
+        symbol
+      }
+      regularPrice
+      sale
+      salePrice
+    }
+  }
+  shop {
+    ...ShopFragment
+  }
+  customer {
+    ...CustomerFragment
+  }
+  user {
+    ...UserFragment
+  }
+  shippingAddress {
+    comments
+    contact {
+      name
+      email
+      phone
+    }
+    address {
+      id
+      street
+      buildingNumber
+      businessAddress {
+        name
+      }
+      addressAddition {
+        field1
+        field2
+      }
+      country {
+        id
+        name
+        countryCode
+      }
+      postcode
+      residentialAddress {
+        title
+        givenName
+        midName
+        familyName
+      }
+    }
+  }
+  totalAmounts {
+    currency {
+      name
+      customExchangeRates {
+        amount
+        rate
+        expenses
+      }
+    }
+    gross
+    net
+    vats {
+      tax {
+        rate
+        variant
+        type {
+          type
+          description
+        }
+        countryId
+      }
+      vat
+    }
+  }
+  meta {
+    ...MetaFragment
+  }
+}

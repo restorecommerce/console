@@ -1,9 +1,25 @@
 fragment ProductFragment on IoRestorecommerceProductProduct {
   id
-  active
+  shop {
+    ...ShopFragment
+  }
   product {
     name
     description
+    taxIds
+    tax {
+      id
+      rate
+      type {
+        id
+        description
+      }
+    }
+    taricCode
+    category {
+      id
+      name
+    }
     physical {
       variants {
         id
