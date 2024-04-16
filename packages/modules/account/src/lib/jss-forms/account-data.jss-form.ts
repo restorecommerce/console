@@ -40,7 +40,7 @@ export const buildEmailSchema = ({
         buttons: [
           {
             type: 'button',
-            label: 'Reset',
+            label: 'Cancel',
             action: 'resetEmailForm',
             class: 'transparent',
           },
@@ -198,7 +198,7 @@ export const buildPasswordSchema = (): VCLFormFieldSchemaRoot => {
         buttons: [
           {
             type: 'button',
-            label: 'Reset',
+            label: 'Cancel',
             action: 'resetPasswordForm',
             class: 'transparent',
           },

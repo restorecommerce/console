@@ -40,7 +40,7 @@ export const buildConfirmEmailSchema = ({
         buttons: [
           {
             type: 'button',
-            label: 'Reset',
+            label: 'Cancel',
             action: 'reset',
             class: 'transparent',
           },

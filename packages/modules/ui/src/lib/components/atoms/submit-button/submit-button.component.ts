@@ -54,7 +54,7 @@ import { FormGroup } from '@angular/forms';
 export class RcSubmitButtonComponent {
   @Input() buttonClass = '';
   @Input() resetForm?: FormGroup;
-  @Input() resetText? = 'Reset';
+  @Input() resetText? = 'Cancel';
 
   isMobile = window.innerWidth <= 600;
 

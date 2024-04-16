@@ -58,7 +58,7 @@ export const buildProductSchema = (
         buttons: [
           {
             type: 'button',
-            label: 'Reset',
+            label: 'Cancel',
             action: 'reset',
             class: 'transparent',
           },
