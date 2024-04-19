@@ -1029,6 +1029,7 @@ export type IIoRestorecommerceLocaleLocale = {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
+  name?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
 };
 
@@ -1671,9 +1672,11 @@ export type IIoRestorecommerceStatusStatus = {
 };
 
 export type IIoRestorecommerceTaxTax = {
+  abbreviation?: InputMaybe<Scalars['String']>;
   countryId?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
+  name?: InputMaybe<Scalars['String']>;
   rate?: InputMaybe<Scalars['Float']>;
   typeId?: InputMaybe<Scalars['String']>;
   variant?: InputMaybe<Scalars['String']>;
@@ -1703,9 +1706,15 @@ export type IIoRestorecommerceTaxTypeTaxTypeList = {
 };
 
 export type IIoRestorecommerceTimezoneTimezone = {
+  abbreviationDst?: InputMaybe<Scalars['String']>;
+  abbreviationStd?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
+  name?: InputMaybe<Scalars['String']>;
+  offsetDst?: InputMaybe<IIoRestorecommerceTimezoneTimezoneOffset>;
+  offsetStd?: InputMaybe<IIoRestorecommerceTimezoneTimezoneOffset>;
+  value?: InputMaybe<Scalars['String']>;
 };
 
 export type IIoRestorecommerceTimezoneTimezoneList = {
@@ -1714,6 +1723,11 @@ export type IIoRestorecommerceTimezoneTimezoneList = {
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
+};
+
+export type IIoRestorecommerceTimezoneTimezoneOffset = {
+  hours?: InputMaybe<Scalars['Int']>;
+  minutes?: InputMaybe<Scalars['Int']>;
 };
 
 export type IIoRestorecommerceTokenGrantId = {
@@ -2756,11 +2770,11 @@ export type IoRestorecommerceFulfillmentProductVariant = {
 
 export enum IoRestorecommerceFulfillmentState {
   Cancelled = 'CANCELLED',
-  Created = 'CREATED',
+  Completed = 'COMPLETED',
   Failed = 'FAILED',
-  Fulfilled = 'FULFILLED',
   Invalid = 'INVALID',
   InTransit = 'IN_TRANSIT',
+  Pending = 'PENDING',
   Submitted = 'SUBMITTED',
   Withdrawn = 'WITHDRAWN',
 }
@@ -2969,6 +2983,7 @@ export type IoRestorecommerceLocaleLocale = {
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
 };
 
@@ -3149,11 +3164,8 @@ export type IoRestorecommerceOrderOrderResponse = {
 
 export enum IoRestorecommerceOrderOrderState {
   Cancelled = 'CANCELLED',
-  Created = 'CREATED',
-  Done = 'DONE',
-  Failed = 'FAILED',
-  Invalid = 'INVALID',
-  InProcess = 'IN_PROCESS',
+  Completed = 'COMPLETED',
+  Pending = 'PENDING',
   Submitted = 'SUBMITTED',
   Withdrawn = 'WITHDRAWN',
 }
@@ -3713,7 +3725,6 @@ export type IoRestorecommerceProductIndividualProduct = {
   prototypeId?: Maybe<Scalars['String']>;
   service?: Maybe<IoRestorecommerceProductServiceProduct>;
   taricCode?: Maybe<Scalars['String']>;
-  tax?: Maybe<Array<IoRestorecommerceTaxTax>>;
   taxIds?: Maybe<Array<Scalars['String']>>;
   virtual?: Maybe<IoRestorecommerceProductVirtualProduct>;
 };
@@ -3743,7 +3754,6 @@ export type IoRestorecommerceProductPhysicalVariant = {
   properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
-  tax?: Maybe<Array<IoRestorecommerceTaxTax>>;
   taxIds?: Maybe<Array<Scalars['String']>>;
 };
 
@@ -3817,7 +3827,6 @@ export type IoRestorecommerceProductServiceVariant = {
   properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
-  tax?: Maybe<Array<IoRestorecommerceTaxTax>>;
   taxIds?: Maybe<Array<Scalars['String']>>;
 };
 
@@ -3838,7 +3847,6 @@ export type IoRestorecommerceProductVirtualVariant = {
   properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
-  tax?: Maybe<Array<IoRestorecommerceTaxTax>>;
   taxIds?: Maybe<Array<Scalars['String']>>;
 };
 
@@ -4019,10 +4027,12 @@ export type IoRestorecommerceStatusStatusListResponse = {
 
 export type IoRestorecommerceTaxTax = {
   __typename?: 'IoRestorecommerceTaxTax';
+  abbreviation?: Maybe<Scalars['String']>;
   country?: Maybe<IoRestorecommerceCountryCountry>;
   countryId?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
   rate?: Maybe<Scalars['Float']>;
   type?: Maybe<IoRestorecommerceTaxTypeTaxType>;
   typeId?: Maybe<Scalars['String']>;
@@ -4065,9 +4075,15 @@ export type IoRestorecommerceTaxTypeTaxTypeResponse = {
 
 export type IoRestorecommerceTimezoneTimezone = {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
+  abbreviationDst?: Maybe<Scalars['String']>;
+  abbreviationStd?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
+  name?: Maybe<Scalars['String']>;
+  offsetDst?: Maybe<IoRestorecommerceTimezoneTimezoneOffset>;
+  offsetStd?: Maybe<IoRestorecommerceTimezoneTimezoneOffset>;
+  value?: Maybe<Scalars['String']>;
 };
 
 export type IoRestorecommerceTimezoneTimezoneListResponse = {
@@ -4075,6 +4091,12 @@ export type IoRestorecommerceTimezoneTimezoneListResponse = {
   items?: Maybe<Array<IoRestorecommerceTimezoneTimezoneResponse>>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type IoRestorecommerceTimezoneTimezoneOffset = {
+  __typename?: 'IoRestorecommerceTimezoneTimezoneOffset';
+  hours?: Maybe<Scalars['Int']>;
+  minutes?: Maybe<Scalars['Int']>;
 };
 
 export type IoRestorecommerceTimezoneTimezoneResponse = {
@@ -5347,16 +5369,6 @@ export type CatalogProductMutateMutation = {
                 description?: string | null;
                 taxIds?: Array<string> | null;
                 taricCode?: string | null;
-                tax?: Array<{
-                  __typename?: 'IoRestorecommerceTaxTax';
-                  id?: string | null;
-                  rate?: number | null;
-                  type?: {
-                    __typename?: 'IoRestorecommerceTaxTypeTaxType';
-                    id?: string | null;
-                    description?: string | null;
-                  } | null;
-                }> | null;
                 category?: {
                   __typename?: 'IoRestorecommerceProductCategoryProductCategory';
                   id?: string | null;
@@ -5514,16 +5526,6 @@ export type CatalogProductReadQuery = {
                 description?: string | null;
                 taxIds?: Array<string> | null;
                 taricCode?: string | null;
-                tax?: Array<{
-                  __typename?: 'IoRestorecommerceTaxTax';
-                  id?: string | null;
-                  rate?: number | null;
-                  type?: {
-                    __typename?: 'IoRestorecommerceTaxTypeTaxType';
-                    id?: string | null;
-                    description?: string | null;
-                  } | null;
-                }> | null;
                 category?: {
                   __typename?: 'IoRestorecommerceProductCategoryProductCategory';
                   id?: string | null;
@@ -6111,16 +6113,6 @@ export type OrderFragmentFragment = {
         description?: string | null;
         taxIds?: Array<string> | null;
         taricCode?: string | null;
-        tax?: Array<{
-          __typename?: 'IoRestorecommerceTaxTax';
-          id?: string | null;
-          rate?: number | null;
-          type?: {
-            __typename?: 'IoRestorecommerceTaxTypeTaxType';
-            id?: string | null;
-            description?: string | null;
-          } | null;
-        }> | null;
         category?: {
           __typename?: 'IoRestorecommerceProductCategoryProductCategory';
           id?: string | null;
@@ -6757,16 +6749,6 @@ export type ProductFragmentFragment = {
     description?: string | null;
     taxIds?: Array<string> | null;
     taricCode?: string | null;
-    tax?: Array<{
-      __typename?: 'IoRestorecommerceTaxTax';
-      id?: string | null;
-      rate?: number | null;
-      type?: {
-        __typename?: 'IoRestorecommerceTaxTypeTaxType';
-        id?: string | null;
-        description?: string | null;
-      } | null;
-    }> | null;
     category?: {
       __typename?: 'IoRestorecommerceProductCategoryProductCategory';
       id?: string | null;
@@ -8041,16 +8023,6 @@ export type OrderingOrderMutateMutation = {
                     description?: string | null;
                     taxIds?: Array<string> | null;
                     taricCode?: string | null;
-                    tax?: Array<{
-                      __typename?: 'IoRestorecommerceTaxTax';
-                      id?: string | null;
-                      rate?: number | null;
-                      type?: {
-                        __typename?: 'IoRestorecommerceTaxTypeTaxType';
-                        id?: string | null;
-                        description?: string | null;
-                      } | null;
-                    }> | null;
                     category?: {
                       __typename?: 'IoRestorecommerceProductCategoryProductCategory';
                       id?: string | null;
@@ -8653,16 +8625,6 @@ export type OrderingOrderReadQuery = {
                     description?: string | null;
                     taxIds?: Array<string> | null;
                     taricCode?: string | null;
-                    tax?: Array<{
-                      __typename?: 'IoRestorecommerceTaxTax';
-                      id?: string | null;
-                      rate?: number | null;
-                      type?: {
-                        __typename?: 'IoRestorecommerceTaxTypeTaxType';
-                        id?: string | null;
-                        description?: string | null;
-                      } | null;
-                    }> | null;
                     category?: {
                       __typename?: 'IoRestorecommerceProductCategoryProductCategory';
                       id?: string | null;
@@ -9361,14 +9323,6 @@ export const ProductFragmentFragmentDoc = gql`
       name
       description
       taxIds
-      tax {
-        id
-        rate
-        type {
-          id
-          description
-        }
-      }
       taricCode
       category {
         id
