@@ -7,14 +7,6 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
     name
     description
     taxIds
-    tax {
-      id
-      rate
-      type {
-        id
-        description
-      }
-    }
     taricCode
     category {
       id
