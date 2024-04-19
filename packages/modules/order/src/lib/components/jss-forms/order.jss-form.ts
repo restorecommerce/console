@@ -42,9 +42,9 @@ export const buildOrderSchema = (
         label: 'Order state',
         type: 'select',
         // disabled: true,
-        // defaultValue: [IoRestorecommerceOrderOrderState.Created],
+        // defaultValue: [IoRestorecommerceOrderOrderState.Submitted],
         ...(options.order
-          ? { defaultValue: IoRestorecommerceOrderOrderState.Created }
+          ? { defaultValue: IoRestorecommerceOrderOrderState.Submitted }
           : {}),
         validators: [Validators.required],
         params: {
@@ -54,28 +54,16 @@ export const buildOrderSchema = (
           search: false,
           options: [
             {
-              label: 'Created',
-              value: IoRestorecommerceOrderOrderState.Created,
-            },
-            {
-              label: 'In process',
-              value: IoRestorecommerceOrderOrderState.InProcess,
-            },
-            {
               label: 'Submitted',
               value: IoRestorecommerceOrderOrderState.Submitted,
             },
             {
-              label: 'Done',
-              value: IoRestorecommerceOrderOrderState.Done,
+              label: 'Pending',
+              value: IoRestorecommerceOrderOrderState.Pending,
             },
             {
-              label: 'Invalid',
-              value: IoRestorecommerceOrderOrderState.Invalid,
-            },
-            {
-              label: 'Failed',
-              value: IoRestorecommerceOrderOrderState.Failed,
+              label: 'Completed',
+              value: IoRestorecommerceOrderOrderState.Completed,
             },
             {
               label: 'Withdrawn',
