@@ -40,12 +40,17 @@
     <li class="row data-list-item justify-between">
       <div class="flex text">Payment state:</div>
       <div class="flex text align-right rc-lv-label">
-        <span
-          [ngClass]="'badge-' + (order.paymentState || '').toLowerCase()"
-          class="m-0 badge"
-        >
-          {{ order.paymentState || '' }}
-        </span>
+        <ng-container *ngIf="order.paymentState; else naTemplate">
+          <span
+            [ngClass]="
+              'badge-' +
+              (order.paymentState || '').replace('_', '-').toLowerCase()
+            "
+            class="m-0 badge"
+          >
+            {{ (order.paymentState || '').replace('_', ' ') }}
+          </span>
+        </ng-container>
       </div>
     </li>
 
