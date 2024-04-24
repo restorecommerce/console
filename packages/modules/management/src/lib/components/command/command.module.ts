@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { CommandComponent } from './command.component';
 
@@ -21,6 +21,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [CommandComponent],
-  imports: [ModulesSharedModule, RouterModule.forChild(routes)],
+  imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
 export class CommandModule {}

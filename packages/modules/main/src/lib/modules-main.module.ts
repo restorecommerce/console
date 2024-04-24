@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
 
-import { ModulesSharedModule } from '@console-modules/shared';
 import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
 import {
@@ -15,7 +14,6 @@ import { modulesMainRoutes } from './lib.routes';
 @NgModule({
   declarations: [PrivateTemplateComponent, PublicTemplateComponent],
   imports: [
-    ModulesSharedModule,
     ModulesUiBaseModule,
     ModulesUiModule.forRoot(),
     VCLDateAdapterModule.forRoot(),

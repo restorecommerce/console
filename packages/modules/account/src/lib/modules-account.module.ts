@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { AccountTemplateComponent } from './components/template/account-template.component';
 import { modulesAccountRoutes } from './lib.routes';
 
 @NgModule({
   declarations: [AccountTemplateComponent],
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesAccountRoutes)],
+  imports: [
+    RouterModule.forChild(modulesAccountRoutes),
+    ModulesUiModule.forChild(),
+  ],
 })
 export class ModulesAccountModule {}

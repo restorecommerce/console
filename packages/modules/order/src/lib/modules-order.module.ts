@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { OrderCreateComponent } from './components/order-create.component';
 import { OrderEditComponent } from './components/order-edit.component';
@@ -18,6 +18,9 @@ import { modulesOrderRoutes } from './lib.routes';
     OrderEditComponent,
     OrderViewComponent,
   ],
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesOrderRoutes)],
+  imports: [
+    ModulesUiModule.forChild(),
+    RouterModule.forChild(modulesOrderRoutes),
+  ],
 })
 export class ModulesOrderModule {}

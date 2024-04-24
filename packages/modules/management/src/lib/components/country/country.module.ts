@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { CountryCreateComponent } from './country-create.component';
 import { CountryEditComponent } from './country-edit.component';
@@ -65,6 +65,6 @@ const routes: Routes = [
     CountryEditComponent,
     CountryViewComponent,
   ],
-  imports: [ModulesSharedModule, RouterModule.forChild(routes)],
+  imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
 export class CountryModule {}
