@@ -1,0 +1,13 @@
+<div class="data-list m-0 p-0">
+  <div class="my-2 rc-lv-l-heading">
+    Product Variants [{{ variants.length }}]
+  </div>
+  <ul class="data-list-body no-border">
+    <li
+      class="row data-list-item justify-between product-item"
+      *ngFor="let variant of variants"
+    >
+      <rc-product-variant [variant]="variant"></rc-product-variant>
+    </li>
+  </ul>
+</div>

@@ -101,7 +101,10 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
         if (id === null) {
           return;
         }
-        console.log('triggerCreateInvoice --->', id);
+        console.log(
+          '[Log] ~ file: order-template.component.ts:107 ~ OrderTemplateComponent ~ tap ~ console: triggerCreateInvoice --->',
+          id
+        );
       })
     );
 
@@ -113,7 +116,10 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
         if (id === null) {
           return;
         }
-        console.log('triggerCreateFulfillment --->', id);
+        console.log(
+          '[Log] ~ file: order-template.component.ts:118 ~ OrderTemplateComponent ~ tap ~ console: triggerCreateFulfillment --->',
+          id
+        );
       })
     );
 

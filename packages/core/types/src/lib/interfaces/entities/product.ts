@@ -5,7 +5,7 @@ import {
 
 import { IMeta } from './meta';
 
-interface IProductItem
+export interface IProductItem
   extends Omit<
     IoRestorecommerceProductIndividualProduct,
     'name' | 'description'

@@ -3,22 +3,16 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
   shop {
     ...ShopFragment
   }
+  tags
   product {
     name
     description
     taxIds
-    tax {
-      id
-      rate
-      type {
-        id
-        description
-      }
-    }
     taricCode
     category {
       id
       name
+      description
     }
     physical {
       variants {
@@ -33,6 +27,14 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
           height
           width
           url
+        }
+        stockLevel
+        parentVariantId
+        price {
+          currencyId
+          regularPrice
+          sale
+          salePrice
         }
       }
     }

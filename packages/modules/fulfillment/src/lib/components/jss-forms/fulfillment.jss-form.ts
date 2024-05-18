@@ -35,24 +35,6 @@ export const buildFulfillmentSchema = (
           },
         ],
       },
-      // {
-      //   name: 'fulfillmentState',
-      //   label: 'Fulfillment state',
-      //   type: 'input',
-      //   ...(options.fulfillment
-      //     ? { defaultValue: IoRestorecommerceFulfillmentFulfillmentState.Created }
-      //     : {}),
-      //   validators: [Validators.required],
-      //   params: {},
-      //   hints: [
-      //     {
-      //       type: 'error',
-      //       error: 'required',
-      //       message: 'This field is required.',
-      //     },
-      //   ],
-      // },
-
       {
         type: 'buttons',
         buttons: [

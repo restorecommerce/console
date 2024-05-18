@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { InvoiceCreateComponent } from './components/invoice-create.component';
 import { InvoiceEditComponent } from './components/invoice-edit.component';
@@ -18,6 +18,9 @@ import { modulesInvoiceRoutes } from './lib.routes';
     InvoiceEditComponent,
     InvoiceViewComponent,
   ],
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesInvoiceRoutes)],
+  imports: [
+    ModulesUiModule.forChild(),
+    RouterModule.forChild(modulesInvoiceRoutes),
+  ],
 })
 export class ModulesInvoiceModule {}

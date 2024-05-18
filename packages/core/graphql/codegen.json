@@ -7,7 +7,7 @@
         "addExplicitOverride": true,
         "defaultScalarType": "unknown"
       },
-      "documents": "packages/core/graphql/**/*.graphql",
+      "documents": "packages/core/graphql/**/*.gql",
       "hooks": {
         "afterOneFileWrite": ["pretty-quick"]
       },

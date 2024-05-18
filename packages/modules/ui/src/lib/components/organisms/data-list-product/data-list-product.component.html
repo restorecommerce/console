@@ -1,0 +1,25 @@
+<div class="row">
+  <div>
+    <img
+      *ngIf="!isError"
+      [alt]="product.product.name"
+      [src]="product.product.physical?.variants?.[0]?.images?.[0]?.url"
+      (error)="onImageError()"
+      sizes="(max-width: 60px) 60px, 60px"
+      width="60"
+      loading="lazy"
+      ngOptimizedImage
+      priority="auto"
+    />
+  </div>
+  <div class="flex">
+    <div class="row gutter-margin">
+      <div class="flex">
+        <p class="m-0">{{ product.product.name }}</p>
+        <p class="m-0 mt-1 secondary-text-color">
+          {{ product.product.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

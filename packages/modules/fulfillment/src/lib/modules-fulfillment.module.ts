@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { FulfillmentCreateComponent } from './components/fulfillment-create.component';
 import { FulfillmentEditComponent } from './components/fulfillment-edit.component';
@@ -19,7 +19,7 @@ import { modulesFulfillmentRoutes } from './lib.routes';
     FulfillmentViewComponent,
   ],
   imports: [
-    ModulesSharedModule,
+    ModulesUiModule.forChild(),
     RouterModule.forChild(modulesFulfillmentRoutes),
   ],
 })

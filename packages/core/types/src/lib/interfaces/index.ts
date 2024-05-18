@@ -7,6 +7,7 @@ export * from './entities';
 export * from './data-list';
 export * from './date';
 export * from './environment';
+export * from './pagination';
 export * from './regex';
 export * from './router';
 export * from './state';

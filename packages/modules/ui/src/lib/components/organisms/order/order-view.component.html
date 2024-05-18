@@ -1,6 +1,4 @@
 <div class="order-details">
-  <h2>Order Number: {{ order.customerOrderNr }}</h2>
-
   <div class="order-shop">
     <rc-shop-info [shop]="order.shop" />
   </div>
@@ -13,7 +11,7 @@
     <rc-order-items [items]="order.items || []" />
   </div>
 
-  <div class="order-shipping-address">
+  <div class="order-shipping-address pt-3">
     <rc-shipping-address
       [shippingAddress]="order.shippingAddress || undefined"
     />

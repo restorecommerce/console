@@ -1,13 +1,17 @@
 @use '@vcl/vcl/theme' as *;
 @use './theme/_console-variables.scss' as *;
 
+.infinite-scroll-viewport {
+  height: calc(100vh - 230px);
+  overflow-y: scroll;
+}
+
 .data-list.rc-data-list {
   & .data-list-header {
     padding: 0;
   }
 
   & .data-list-body {
-    width: calc(100% - 2px);
     overflow: hidden;
 
     &:hover {

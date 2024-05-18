@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { ManagementTemplateComponent } from './components/template/management-template.component';
 import { modulesManagementRoutes } from './lib.routes';
@@ -9,7 +9,7 @@ import { modulesManagementRoutes } from './lib.routes';
 @NgModule({
   declarations: [ManagementTemplateComponent],
   imports: [
-    ModulesSharedModule,
+    ModulesUiModule.forChild(),
     RouterModule.forChild(modulesManagementRoutes),
   ],
 })

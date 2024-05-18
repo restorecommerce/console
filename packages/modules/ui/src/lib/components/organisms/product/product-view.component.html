@@ -1,4 +1,6 @@
-<!-- // TODO: Add product details -->
-<pre>
-  {{ product | json }}
-</pre>
+<div class="data-list m-0 p-0">
+  <rc-product-details [product]="product.product || {}"></rc-product-details>
+  <rc-product-variants
+    [variants]="product.product?.physical?.variants || []"
+  ></rc-product-variants>
+</div>
