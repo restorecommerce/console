@@ -19,20 +19,28 @@ import * as productActions from './product.actions';
 @Injectable()
 export class ProductEffects {
   productReadRequest$ = createEffect(() => {
+    let isLoadMore = false;
     return this.actions$.pipe(
       ofType(productActions.productReadRequest),
       switchMap(({ payload }) =>
         this.productService.read(payload).pipe(
           tap((result) => {
+            if (payload.offset) {
+              isLoadMore = payload.offset > 0;
+            }
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.catalog?.product?.Read?.details
                 ?.operationStatus as TOperationStatus
             );
           }),
           map((result) => {
-            const payload = (
+            const items = (
               result?.data?.catalog?.product?.Read?.details?.items || []
             )?.map((item) => item?.payload) as IProduct[];
+            const payload = {
+              items: items,
+              isLoadMore,
+            };
             return productActions.productReadRequestSuccess({
               payload,
             });

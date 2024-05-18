@@ -24,11 +24,15 @@ const reducer = createReducer<IProductState>(
   ),
   on(
     productActions.productReadRequestSuccess,
-    (state, { payload }): IProductState =>
-      adapter.setAll(payload, {
+    (state, { payload }): IProductState => {
+      const data = {
         ...state,
         actionStatus: EActionStatus.Succeeded,
-      })
+      };
+      return payload.isLoadMore
+        ? adapter.addMany(payload.items, data)
+        : adapter.setAll(payload.items, data);
+    }
   ),
   on(
     productActions.productReadRequestFail,

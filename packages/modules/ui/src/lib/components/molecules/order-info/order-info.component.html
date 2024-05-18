@@ -1,6 +1,15 @@
-<div class="data-list m-0 p-0 ng-star-inserted">
+<div class="data-list m-0 p-0">
   <div class="my-2 rc-lv-l-heading">Order</div>
   <ul class="data-list-body no-border">
+    <li class="row data-list-item justify-between">
+      <div class="flex text">Order number:</div>
+      <div class="flex text align-right rc-lv-label">
+        <ng-container *ngIf="order.customerOrderNr; else naTemplate">{{
+          order.customerOrderNr
+        }}</ng-container>
+      </div>
+    </li>
+
     <li class="row data-list-item justify-between">
       <div class="flex text">Customer:</div>
       <div class="flex text align-right rc-lv-label">
@@ -34,37 +43,6 @@
         >
           {{ (order.orderState || '').replace('_', ' ') }}
         </span>
-      </div>
-    </li>
-
-    <li class="row data-list-item justify-between">
-      <div class="flex text">Payment state:</div>
-      <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="order.paymentState; else naTemplate">
-          <span
-            [ngClass]="
-              'badge-' +
-              (order.paymentState || '').replace('_', '-').toLowerCase()
-            "
-            class="m-0 badge"
-          >
-            {{ (order.paymentState || '').replace('_', ' ') }}
-          </span>
-        </ng-container>
-      </div>
-    </li>
-
-    <li class="row data-list-item justify-between">
-      <div class="flex text">Fulfillment state:</div>
-      <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="order.fulfillmentState; else naTemplate">
-          <span
-            [ngClass]="'badge-' + order.fulfillmentState.toLowerCase()"
-            class="m-0 badge"
-          >
-            {{ order.fulfillmentState }}
-          </span>
-        </ng-container>
       </div>
     </li>
   </ul>

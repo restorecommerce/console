@@ -11,10 +11,12 @@ import {
   distinctUntilChanged,
   debounceTime,
   skip,
+  switchMap,
+  take,
 } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
-import { ROUTER } from '@console-core/config';
+import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
@@ -30,6 +32,11 @@ import { ICrudFeature, EUrlSegment, IProduct } from '@console-core/types';
 export class ProductTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter = ROUTER.pages.main.children.products.children;
+  page = {
+    limit: PAGINATION.limit,
+    offset: 0,
+    total: 0,
+  };
 
   feature: Readonly<ICrudFeature> = {
     name: {
@@ -53,7 +60,8 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
         order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
       },
     ],
-    limit: 100,
+    limit: this.page.limit,
+    offset: this.page.offset,
   };
 
   readonly triggerRead = new BehaviorSubject<null>(null);
@@ -77,6 +85,24 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
       };
       this.productFacade.read(this.queryVariables);
     })
+  );
+
+  readonly triggerPagination = new BehaviorSubject<null>(null);
+  readonly triggerPagination$ = this.triggerPagination.asObservable().pipe(
+    skip(1),
+    switchMap(() =>
+      this.productFacade.total$.pipe(
+        take(1),
+        tap((total) => {
+          this.page.total = total;
+          this.queryVariables = {
+            ...this.queryVariables,
+            offset: total + this.page.limit,
+          };
+          this.productFacade.read(this.queryVariables);
+        })
+      )
+    )
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
@@ -124,6 +150,7 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.sink = this.triggerSearch$.subscribe();
+    this.subscriptions.sink = this.triggerPagination$.subscribe();
   }
 
   ngOnDestroy(): void {
@@ -132,6 +159,12 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
 
   onSearch(value: string): void {
     this.triggerSearch.next(value);
+  }
+
+  onScrolled(index: number, total: number): void {
+    if (index === total - 1) {
+      this.triggerPagination.next(null);
+    }
   }
 
   trackByFn(_: number, item: IProduct) {

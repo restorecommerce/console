@@ -1,0 +1,32 @@
+@use './theme/_console-variables.scss' as *;
+
+.product-details {
+  margin-top: 20px;
+}
+
+.product-item {
+  border: 1px solid $console-gray-lighter;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.sale {
+  color: $console-red;
+}
+
+.image-gallery {
+  cursor: pointer;
+
+  img {
+    border: solid 2px $console-white;
+  }
+
+  img:hover {
+    border: solid 2px $console-gray-stone-light;
+  }
+
+  .selected,
+  .selected:hover {
+    border: solid 2px $console-brand-accent;
+  }
+}

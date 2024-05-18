@@ -14,7 +14,7 @@ import {
 } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
-import { ROUTER } from '@console-core/config';
+import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
@@ -53,7 +53,7 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
         order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
       },
     ],
-    limit: 100,
+    limit: PAGINATION.limit,
   };
 
   readonly triggerRead = new BehaviorSubject<null>(null);

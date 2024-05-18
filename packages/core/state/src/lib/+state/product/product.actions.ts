@@ -13,7 +13,12 @@ export const productReadRequest = createAction(
 
 export const productReadRequestSuccess = createAction(
   '[PRODUCT] Read success',
-  props<{ payload: IProduct[] }>()
+  props<{
+    payload: {
+      items: IProduct[];
+      isLoadMore: boolean;
+    };
+  }>()
 );
 
 export const productReadRequestFail = createAction(

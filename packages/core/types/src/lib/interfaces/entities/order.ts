@@ -1,8 +1,6 @@
 import {
   IoRestorecommerceOrderOrderState,
   IoRestorecommerceOrderOrder,
-  IoRestorecommerceFulfillmentState,
-  IoRestorecommerceInvoicePaymentState,
   IoRestorecommerceUserUser,
   IoRestorecommerceShopShop,
   IoRestorecommerceCustomerCustomer,
@@ -18,8 +16,6 @@ export interface IOrder
     | 'shop'
     | 'user'
     | 'customerOrderNr'
-    | 'paymentState'
-    | 'fulfillmentState'
     | 'orderState'
     | 'meta'
   > {
@@ -29,7 +25,5 @@ export interface IOrder
   user: IoRestorecommerceUserUser;
   customerOrderNr: string;
   orderState: IoRestorecommerceOrderOrderState;
-  paymentState: IoRestorecommerceInvoicePaymentState;
-  fulfillmentState: IoRestorecommerceFulfillmentState;
   meta: IMeta;
 }

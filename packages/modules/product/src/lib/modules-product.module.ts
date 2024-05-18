@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ModulesSharedModule } from '@console-modules/shared';
+import { ModulesUiModule } from '@console-modules/ui';
 
 import { ProductCreateComponent } from './components/product-create.component';
 import { ProductEditComponent } from './components/product-edit.component';
@@ -18,6 +18,9 @@ import { modulesProductRoutes } from './lib.routes';
     ProductEditComponent,
     ProductViewComponent,
   ],
-  imports: [ModulesSharedModule, RouterModule.forChild(modulesProductRoutes)],
+  imports: [
+    ModulesUiModule.forChild(),
+    RouterModule.forChild(modulesProductRoutes),
+  ],
 })
 export class ModulesProductModule {}
