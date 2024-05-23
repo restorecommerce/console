@@ -14,19 +14,39 @@
   color: $console-red;
 }
 
-.image-gallery {
-  cursor: pointer;
+.image-gallery-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
 
-  img {
-    border: solid 2px $console-white;
+  &::-webkit-scrollbar {
+    height: 2px;
   }
 
-  img:hover {
-    border: solid 2px $console-gray-stone-light;
-  }
+  .image-gallery {
+    align-items: flex-start;
+    display: flex;
+    cursor: pointer;
+    margin: 0 auto;
+    max-width: 350px;
+    width: 100%;
 
-  .selected,
-  .selected:hover {
-    border: solid 2px $console-brand-accent;
+    .image-item {
+      display: inline-block;
+      margin-right: 1rem;
+
+      img {
+        border: solid 1px $console-white;
+
+        &:hover {
+          border: solid 1px $console-gray-stone-light;
+        }
+      }
+
+      .selected,
+      .selected:hover {
+        border: solid 1px $console-brand-accent;
+      }
+    }
   }
 }

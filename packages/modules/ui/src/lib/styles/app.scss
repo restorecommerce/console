@@ -4,6 +4,7 @@
 ::-webkit-scrollbar {
   width: 2px; /* For horizontal scrollbar */
   height: 0; /* For vertical scrollbar */
+
   &-thumb {
     background-color: $console-gray-scrollbar-thumb;
   }
