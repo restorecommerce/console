@@ -1,6 +1,6 @@
 <ng-container *ngIf="isError">
   <div class="row">
-    <div class="flex">
+    <div class="flex-12">
       <div class="callout danger">
         <h4>Error</h4>
         <p>Error loading images</p>
@@ -11,14 +11,12 @@
 
 <ng-container *ngIf="!isError && images.length > 0">
   <div class="row">
-    <div class="flex mt-4 mb-4">
+    <div class="flex-12 my-4">
       <div class="responsive-image-container">
         <img
           [src]="selectedImage.url"
           [alt]="selectedImage.caption"
-          class="selected-image"
-          sizes="(max-width: 500px) 500px, 500px"
-          width="500"
+          class="responsive-image selected-image"
           loading="lazy"
           ngOptimizedImage
           priority="auto"
@@ -27,27 +25,27 @@
     </div>
   </div>
 
-  <div class="row image-gallery">
-    <div
-      *ngFor="let image of images"
-      class="flex m-1"
-      (click)="onSelectImage(image)"
-    >
-      <img
-        [src]="image.url"
-        [alt]="image.caption"
-        [ngClass]="{
-          selected: !isLoading && image.id === selectedImage.id
-        }"
-        (load)="onImageLoad()"
-        (error)="onImageError()"
-        class="p-1 image"
-        sizes="(max-width: 90px) 90px, 90px"
-        width="90"
-        loading="lazy"
-        ngOptimizedImage
-        priority="auto"
-      />
+  <div class="row image-gallery-container">
+    <div class="image-gallery">
+      <div
+        *ngFor="let image of images"
+        class="image-item mr-1"
+        (click)="onSelectImage(image)"
+      >
+        <img
+          [src]="image.url"
+          [alt]="image.caption"
+          [ngClass]="{ selected: !isLoading && image.id === selectedImage.id }"
+          (load)="onImageLoad()"
+          (error)="onImageError()"
+          class="p-1 image"
+          sizes="(max-width: 80px) 80px, 80px"
+          width="80"
+          loading="lazy"
+          ngOptimizedImage
+          priority="auto"
+        />
+      </div>
     </div>
   </div>
 </ng-container>

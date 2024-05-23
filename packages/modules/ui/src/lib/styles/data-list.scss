@@ -7,6 +7,8 @@
 }
 
 .data-list.rc-data-list {
+  -webkit-tap-highlight-color: transparent;
+
   & .data-list-header {
     padding: 0;
   }

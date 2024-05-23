@@ -1,21 +1,30 @@
-<div class="data-list m-0 p-0">
-  <h4>{{ variant.name }}</h4>
-  <ul class="data-list-body no-border">
-    <li class="row data-list-item justify-between">
-      <rc-product-images [images]="variant.images || []"></rc-product-images>
-    </li>
-  </ul>
+<div class="row">
+  <div class="flex-12">
+    <h4>
+      {{ variant.name }}
+    </h4>
+  </div>
+</div>
 
-  <p><strong>Stock:</strong> {{ variant.stockLevel || 0 }} units</p>
-  <p
-    *ngIf="variant.price?.sale"
-    class="mt-2 sale"
-  >
-    <strong>Sale:</strong> {{ variant.price?.currencyId || 'EUR' }}
-    {{ variant.price?.salePrice }}
-  </p>
-  <p>
-    <strong>Price:</strong> {{ variant.price?.currencyId || 'EUR' }}
-    {{ variant.price?.regularPrice }}
-  </p>
+<div class="row">
+  <div class="flex-12">
+    <rc-product-images [images]="variant.images || []"></rc-product-images>
+  </div>
+</div>
+
+<div class="row">
+  <div class="flex-12">
+    <p class="mt-2"><strong>Stock:</strong> {{ variant.stockLevel || 0 }}</p>
+    <p
+      *ngIf="variant.price?.sale"
+      class="sale"
+    >
+      <strong>Sale:</strong> {{ variant.price?.currencyId || 'EUR' }}
+      {{ variant.price?.salePrice }}
+    </p>
+    <p>
+      <strong>Price:</strong> {{ variant.price?.currencyId || 'EUR' }}
+      {{ variant.price?.regularPrice }}
+    </p>
+  </div>
 </div>
