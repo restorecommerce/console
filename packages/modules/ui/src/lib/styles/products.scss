@@ -17,6 +17,7 @@
 .image-gallery-container {
   overflow-x: auto;
   white-space: nowrap;
+  margin: 0 10px;
   -webkit-tap-highlight-color: transparent;
 
   &::-webkit-scrollbar {
@@ -27,13 +28,12 @@
     align-items: flex-start;
     display: flex;
     cursor: pointer;
-    margin: 0 auto;
     max-width: 350px;
     width: 100%;
 
     .image-item {
       display: inline-block;
-      margin-right: 1rem;
+      margin: 0 5px;
 
       img {
         border: solid 1px $console-white;
