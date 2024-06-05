@@ -1,12 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ROUTER } from '@console-core/config';
 
 @Component({
   selector: 'app-module-home-index',
-  template: `
-    <div>
-      <h2>Home content</h2>
-    </div>
-  `,
+  template: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+  constructor(private readonly router: Router) {}
+
+  ngOnInit(): void {
+    this.router.navigate([ROUTER.pages.main.children.orders.link]);
+  }
+}

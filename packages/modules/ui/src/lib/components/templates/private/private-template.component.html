@@ -11,16 +11,16 @@
 
       <rc-header-navigation *ngIf="!smallDevice">
         <rc-header-navigation-item
-          [routerLink]="ROUTER.pages.main.children.home.link"
-          [selected]="currentRoute === ROUTER.pages.main.children.home.link"
+          [routerLink]="ROUTER.pages.main.children.orders.link"
+          [selected]="currentRoute === ROUTER.pages.main.children.orders.link"
         >
           <div class="icogram">
             <div
-              class="icon mdi mdi-home"
+              class="icon mdi mdi-receipt-outline"
               aria-hidden="true"
               role="img"
             ></div>
-            <span class="text">Home</span>
+            <span class="text">Orders</span>
           </div>
         </rc-header-navigation-item>
         <rc-header-navigation-item
@@ -34,7 +34,7 @@
         >
           <div class="icogram">
             <div
-              class="icon mdi mdi-hexagon"
+              class="icon mdi mdi-hexagon-outline"
               aria-hidden="true"
               role="img"
             ></div>
@@ -73,8 +73,10 @@
           [value]="currentRoute"
           (valueChange)="navigateTo($event)"
         >
-          <vcl-select-list-item [value]="ROUTER.pages.main.children.home.link">
-            Home
+          <vcl-select-list-item
+            [value]="ROUTER.pages.main.children.orders.link"
+          >
+            Orders
           </vcl-select-list-item>
           <vcl-select-list-item
             [value]="ROUTER.pages.main.children.management.children.index.link"
@@ -86,14 +88,6 @@
 
       <!-- Home -->
       <ng-container *ngIf="menuMainLinks.includes(currentRoute)">
-        <rc-drawer-navigation-item
-          icon="mdi:home-outline"
-          [routerLink]="ROUTER.pages.main.children.home.link"
-          [routerLinkActive]="['selected']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          Home</rc-drawer-navigation-item
-        >
         <rc-drawer-navigation-item
           icon="mdi:receipt-outline"
           [routerLink]="ROUTER.pages.main.children.orders.link"
