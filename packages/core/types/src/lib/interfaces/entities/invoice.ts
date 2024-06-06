@@ -5,7 +5,7 @@ import { IMeta } from './meta';
 export interface IInvoice
   extends Omit<
     IoRestorecommerceInvoiceInvoice,
-    'id' | 'customerId' | 'shopId' | 'userId' | 'meta'
+    'id' | 'customerId' | 'shopId' | 'userId' | 'meta' | '__typename'
   > {
   id: string;
   customerId: string;

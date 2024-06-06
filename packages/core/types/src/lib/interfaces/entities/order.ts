@@ -18,6 +18,7 @@ export interface IOrder
     | 'customerOrderNr'
     | 'orderState'
     | 'meta'
+    | '__typename'
   > {
   id: string;
   customer: IoRestorecommerceCustomerCustomer;

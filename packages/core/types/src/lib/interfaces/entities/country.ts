@@ -11,6 +11,7 @@ export interface ICountry
     | 'geographicalName'
     | 'economicAreas'
     | 'meta'
+    | '__typename'
   > {
   id: string;
   name: string;

@@ -5,7 +5,7 @@ import { IMeta } from './meta';
 export interface ILocale
   extends Omit<
     IoRestorecommerceLocaleLocale,
-    'id' | 'description' | 'value' | 'meta'
+    'id' | 'description' | 'value' | 'meta' | '__typename'
   > {
   id: string;
   description: string;
