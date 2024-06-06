@@ -5,7 +5,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { OrderFacade } from '@console-core/state';
 
-import { buildOrderSchema } from './jss-forms';
+import { buildOrderSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-order-create',
