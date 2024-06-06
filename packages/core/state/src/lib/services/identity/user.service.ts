@@ -7,11 +7,7 @@ import {
   IdentityUserFindByTokenGQL,
   IdentityUserFindByTokenQuery,
   IIoRestorecommerceUserFindByTokenRequest,
-  IdentityUserMutateGQL,
-  IdentityUserMutateMutation,
   IIoRestorecommerceUserUserList,
-  IdentityUserDeleteGQL,
-  IdentityUserDeleteMutation,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IdentityUserFindGQL,
   IdentityUserFindQuery,
@@ -34,6 +30,13 @@ import {
   IdentityUserRequestPasswordChangeMutation,
   IIoRestorecommerceUserConfirmPasswordChangeRequest,
   IdentityUserConfirmPasswordChangeMutation,
+  IIoRestorecommerceResourcebaseReadRequest,
+  IdentityUserReadGQL,
+  IdentityUserReadQuery,
+  IdentityUserMutateGQL,
+  IdentityUserMutateMutation,
+  IdentityUserDeleteGQL,
+  IdentityUserDeleteMutation,
 } from '@console-core/graphql';
 
 @Injectable({
@@ -44,12 +47,13 @@ export class UserService {
     private readonly identityUserActivateGQL: IdentityUserActivateGQL,
     private readonly identityUserFindGQL: IdentityUserFindGQL,
     private readonly identityUserFindByTokenGQL: IdentityUserFindByTokenGQL,
-    private readonly identityUserMutateGQL: IdentityUserMutateGQL,
     private readonly identityUserRequestEmailChangeGQL: IdentityUserRequestEmailChangeGQL,
     private readonly identityUserConfirmEmailChangeGQL: IdentityUserConfirmEmailChangeGQL,
     private readonly identityUserRequestPasswordChangeGQL: IdentityUserRequestPasswordChangeGQL,
     private readonly identityUserConfirmPasswordChangeGQL: IdentityUserConfirmPasswordChangeGQL,
     private readonly identityUserChangePasswordGQL: IdentityUserChangePasswordGQL,
+    private readonly identityUserReadGQL: IdentityUserReadGQL,
+    private readonly identityUserMutateGQL: IdentityUserMutateGQL,
     private readonly identityUserDeleteGQL: IdentityUserDeleteGQL
   ) {}
 
@@ -75,12 +79,6 @@ export class UserService {
     return this.identityUserFindByTokenGQL.fetch({
       input: payload,
     });
-  }
-
-  mutate(
-    payload: IIoRestorecommerceUserUserList
-  ): Observable<MutationResult<IdentityUserMutateMutation>> {
-    return this.identityUserMutateGQL.mutate({ input: payload });
   }
 
   requestEmailChange(
@@ -115,6 +113,18 @@ export class UserService {
     payload: IIoRestorecommerceUserChangePasswordRequest
   ): Observable<MutationResult<IdentityUserChangePasswordMutation>> {
     return this.identityUserChangePasswordGQL.mutate({ input: payload });
+  }
+
+  read(
+    payload: IIoRestorecommerceResourcebaseReadRequest
+  ): Observable<ApolloQueryResult<IdentityUserReadQuery>> {
+    return this.identityUserReadGQL.fetch({ input: payload });
+  }
+
+  mutate(
+    payload: IIoRestorecommerceUserUserList
+  ): Observable<MutationResult<IdentityUserMutateMutation>> {
+    return this.identityUserMutateGQL.mutate({ input: payload });
   }
 
   remove(
