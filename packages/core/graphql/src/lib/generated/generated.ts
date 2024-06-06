@@ -7074,6 +7074,58 @@ export type TimezoneFragmentFragment = {
   } | null;
 };
 
+export type UserRoleFragmentFragment = {
+  __typename?: 'IoRestorecommerceUserUserRole';
+  id?: string | null;
+  active?: boolean | null;
+  activationCode?: string | null;
+  email?: string | null;
+  newEmail?: string | null;
+  name?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  userType?: IoRestorecommerceUserUserType | null;
+  defaultScope?: string | null;
+  lastAccess?: unknown | null;
+  localeId?: string | null;
+  timezoneId?: string | null;
+  locale?: {
+    __typename?: 'IoRestorecommerceLocaleLocale';
+    id?: string | null;
+    name?: string | null;
+    value?: string | null;
+  } | null;
+  timezone?: {
+    __typename?: 'IoRestorecommerceTimezoneTimezone';
+    id?: string | null;
+    name?: string | null;
+    value?: string | null;
+  } | null;
+  roles?: Array<{
+    __typename?: 'IoRestorecommerceRoleRole';
+    id?: string | null;
+    name?: string | null;
+    assignableByRoles?: Array<string> | null;
+  }> | null;
+  roleAssociations?: Array<{
+    __typename?: 'IoRestorecommerceAuthRoleAssociation';
+    id?: string | null;
+    role?: string | null;
+    attributes?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+    }> | null;
+  }> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
 export type UserFragmentFragment = {
   __typename?: 'IoRestorecommerceUserUser';
   id?: string | null;
@@ -7478,6 +7530,85 @@ export type IdentityUserMutateMutation = {
                 __typename?: 'IoRestorecommerceAuthRoleAssociation';
                 id?: string | null;
                 role?: string | null;
+              }> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type IdentityUserReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type IdentityUserReadQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    user: {
+      __typename?: 'IdentityUserQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserListWithRoleResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceUserUserRoleResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceUserUserRole';
+              id?: string | null;
+              active?: boolean | null;
+              activationCode?: string | null;
+              email?: string | null;
+              newEmail?: string | null;
+              name?: string | null;
+              firstName?: string | null;
+              lastName?: string | null;
+              userType?: IoRestorecommerceUserUserType | null;
+              defaultScope?: string | null;
+              lastAccess?: unknown | null;
+              localeId?: string | null;
+              timezoneId?: string | null;
+              locale?: {
+                __typename?: 'IoRestorecommerceLocaleLocale';
+                id?: string | null;
+                name?: string | null;
+                value?: string | null;
+              } | null;
+              timezone?: {
+                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                id?: string | null;
+                name?: string | null;
+                value?: string | null;
+              } | null;
+              roles?: Array<{
+                __typename?: 'IoRestorecommerceRoleRole';
+                id?: string | null;
+                name?: string | null;
+                assignableByRoles?: Array<string> | null;
+              }> | null;
+              roleAssociations?: Array<{
+                __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                id?: string | null;
+                role?: string | null;
+                attributes?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                }> | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -9720,6 +9851,50 @@ export const OrderFragmentFragmentDoc = gql`
   ${UserFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const UserRoleFragmentFragmentDoc = gql`
+  fragment UserRoleFragment on IoRestorecommerceUserUserRole {
+    id
+    active
+    activationCode
+    email
+    newEmail
+    name
+    firstName
+    lastName
+    userType
+    defaultScope
+    lastAccess
+    localeId
+    locale {
+      id
+      name
+      value
+    }
+    timezoneId
+    timezone {
+      id
+      name
+      value
+    }
+    roles {
+      id
+      name
+      assignableByRoles
+    }
+    roleAssociations {
+      id
+      role
+      attributes {
+        id
+        value
+      }
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const CatalogProductDeleteDocument = gql`
   mutation CatalogProductDelete(
     $input: IIoRestorecommerceResourcebaseDeleteRequest!
@@ -10195,6 +10370,42 @@ export class IdentityUserMutateGQL extends Apollo.Mutation<
   IdentityUserMutateMutationVariables
 > {
   override document = IdentityUserMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserReadDocument = gql`
+  query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    identity {
+      user {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...UserRoleFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${UserRoleFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserReadGQL extends Apollo.Query<
+  IdentityUserReadQuery,
+  IdentityUserReadQueryVariables
+> {
+  override document = IdentityUserReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
