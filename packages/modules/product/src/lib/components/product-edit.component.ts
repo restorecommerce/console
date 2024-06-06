@@ -12,7 +12,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildProductSchema } from './jss-forms';
+import { buildProductSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-product-edit',
