@@ -1,0 +1,41 @@
+fragment UserRoleFragment on IoRestorecommerceUserUserRole {
+  id
+  active
+  activationCode
+  email
+  newEmail
+  name
+  firstName
+  lastName
+  userType
+  defaultScope
+  lastAccess
+  localeId
+  locale {
+    id
+    name
+    value
+  }
+  timezoneId
+  timezone {
+    id
+    name
+    value
+  }
+  roles {
+    id
+    name
+    assignableByRoles
+  }
+  roleAssociations {
+    id
+    role
+    attributes {
+      id
+      value
+    }
+  }
+  meta {
+    ...MetaFragment
+  }
+}
