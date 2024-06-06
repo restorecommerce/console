@@ -12,7 +12,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildInvoiceSchema } from './jss-forms';
+import { buildInvoiceSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-invoice-edit',
