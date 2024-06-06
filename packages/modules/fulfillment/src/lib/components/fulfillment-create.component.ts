@@ -5,7 +5,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { FulfillmentFacade } from '@console-core/state';
 
-import { buildFulfillmentSchema } from './jss-forms';
+import { buildFulfillmentSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-fulfillment-create',

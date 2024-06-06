@@ -12,7 +12,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildFulfillmentSchema } from './jss-forms';
+import { buildFulfillmentSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-fulfillment-edit',
