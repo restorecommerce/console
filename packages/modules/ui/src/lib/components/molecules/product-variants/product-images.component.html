@@ -33,8 +33,8 @@
         (click)="onSelectImage(image)"
       >
         <img
-          [src]="image.url"
           [alt]="image.caption"
+          [src]="image.url"
           [ngClass]="{ selected: !isLoading && image.id === selectedImage.id }"
           (load)="onImageLoad()"
           (error)="onImageError()"

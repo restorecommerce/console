@@ -51,15 +51,11 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     ROUTER.pages.main.children.account.link,
     ROUTER.pages.main.children.management.link,
   ];
-  menuMainWithoutHomeLinks = [
-    ROUTER.pages.main.children.fulfillments.link,
-    ROUTER.pages.main.children.invoices.link,
+  menuMainLinks = [
     ROUTER.pages.main.children.orders.link,
     ROUTER.pages.main.children.products.link,
-  ];
-  menuMainLinks = [
-    ROUTER.pages.main.children.home.link,
-    ...this.menuMainWithoutHomeLinks,
+    ROUTER.pages.main.children.invoices.link,
+    ROUTER.pages.main.children.fulfillments.link,
   ];
 
   constructor(
@@ -116,10 +112,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
         startWith(this.router.url), // Emit the current route immediately
 
         map((url: string) => {
-          const routes = [
-            ...this.menuTopLinks,
-            ...this.menuMainWithoutHomeLinks,
-          ];
+          const routes = [...this.menuTopLinks, ...this.menuMainLinks];
           const foundRoute = routes.find((route) => url.startsWith(route));
           return foundRoute || ROUTER.pages.main.children.home.link;
         })

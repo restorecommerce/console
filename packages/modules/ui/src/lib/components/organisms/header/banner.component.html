@@ -2,8 +2,8 @@
   <ng-container *ngIf="logoLink">
     <a [routerLink]="logoLink">
       <img
-        [ngSrc]="logoUrl"
         [alt]="APP.name"
+        [ngSrc]="logoUrl"
         class="responsive-image logo"
         role="presentation"
         width="56"
@@ -14,8 +14,8 @@
 
   <ng-container *ngIf="!logoLink">
     <img
-      [ngSrc]="logoUrl"
       [alt]="APP.name"
+      [ngSrc]="logoUrl"
       class="responsive-image logo"
       role="presentation"
       width="56"
