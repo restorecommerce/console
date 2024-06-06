@@ -9,6 +9,7 @@ export const STORE: Readonly<IStoreConstant> = {
     authnState: 'authnStateV1',
     countryState: 'countryStateV1',
     fulfillmentState: 'fulfillmentStateV1',
+    iamState: 'iamStateV1',
     invoiceState: 'invoiceStateV1',
     localeState: 'localeStateV1',
     orderState: 'orderStateV1',

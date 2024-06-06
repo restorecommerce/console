@@ -307,18 +307,33 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'iam'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/iam',
-                  getLink: () => ['', 'management', 'iam'],
-                  title: 'IAM',
+                  path: 'index',
+                  link: '/management/iam/index',
+                  getLink: () => ['', 'management', 'iam', 'index'],
+                  title: 'Users',
                 },
-                iam: {
-                  path: ':id',
-                  link: '/management/iam/:id',
-                  title: 'IAM',
+                create: {
+                  path: 'create',
+                  link: '/management/iam/create',
+                  title: 'Create User',
+                  getLink: () => ['', 'management', 'iam', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/iam/:id/view',
+                  title: 'User',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id
-                      ? ['', 'management', 'iam', params.id]
+                      ? ['', 'management', 'iam', params.id, 'view']
+                      : ['', 'management', 'iam'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/iam/:id/edit',
+                  title: 'Edit User',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'iam', params.id, 'edit']
                       : ['', 'management', 'iam'],
                 },
               },
