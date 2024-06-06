@@ -1,0 +1,72 @@
+import { createAction, props } from '@ngrx/store';
+
+import {
+  IIoRestorecommerceUserUserList,
+  IIoRestorecommerceResourcebaseReadRequest,
+} from '@console-core/graphql';
+import { IUser } from '@console-core/types';
+
+export const userReadRequest = createAction(
+  '[IAM] Read request',
+  props<{ payload: IIoRestorecommerceResourcebaseReadRequest }>()
+);
+
+export const userReadRequestSuccess = createAction(
+  '[IAM] Read success',
+  props<{ payload: IUser[] }>()
+);
+
+export const userReadRequestFail = createAction(
+  '[IAM] Read fail',
+  props<{ error: string }>()
+);
+
+export const setSelectedId = createAction(
+  '[IAM] Set selected id',
+  props<{ payload: string | null }>()
+);
+
+export const userCreateRequest = createAction(
+  '[IAM] User create request',
+  props<{ payload: IIoRestorecommerceUserUserList }>()
+);
+
+export const userCreateSuccess = createAction(
+  '[IAM] User create success',
+  props<{ payload: IUser }>()
+);
+
+export const userCreateFail = createAction(
+  '[IAM] User create fail',
+  props<{ error: string }>()
+);
+
+export const userUpdateRequest = createAction(
+  '[IAM] User update request',
+  props<{ payload: IIoRestorecommerceUserUserList }>()
+);
+
+export const userUpdateSuccess = createAction(
+  '[IAM] User update success',
+  props<{ payload: IUser }>()
+);
+
+export const userUpdateFail = createAction(
+  '[IAM] User update fail',
+  props<{ error: string }>()
+);
+
+export const userRemoveRequest = createAction(
+  '[IAM] User remove request',
+  props<{ payload: { id: string } }>()
+);
+
+export const userRemoveSuccess = createAction(
+  '[IAM] User remove success',
+  props<{ payload: { id: string } }>()
+);
+
+export const userRemoveFail = createAction(
+  '[IAM] User remove fail',
+  props<{ error: string }>()
+);
