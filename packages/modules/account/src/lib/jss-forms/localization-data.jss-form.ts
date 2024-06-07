@@ -26,7 +26,7 @@ export const buildLocalizationDataSchema = ({
         validators: [Validators.required],
         params: {
           options: locales.map((locale) => ({
-            label: locale.id,
+            label: locale.value,
             sublabel: locale.description,
             value: locale.id,
           })),
@@ -47,6 +47,7 @@ export const buildLocalizationDataSchema = ({
         validators: [Validators.required],
         params: {
           options: timezones.map((timezone) => ({
+            // TODO: Check timezone value should be available
             label: timezone.id,
             sublabel: timezone.description,
             value: timezone.id,
