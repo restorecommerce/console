@@ -44,11 +44,27 @@ export class RcDataListSublabelComponent {
   selector: 'rc-data-list-key-value',
   template: `
     <span class="secondary-k"> {{ key }}: </span>
-    <span class="secondary-v"> [{{ value }}]</span>
+    <span class="secondary-v"> {{ value }}</span>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListKeyValueComponent {
+  @HostBinding('class.data-list-key-value')
+  _hostClasses = true;
+
+  @Input({ required: true }) key!: string;
+  @Input({ required: true }) value!: string;
+}
+
+@Component({
+  selector: 'rc-data-list-key-value-with-brackets',
+  template: `
+    <span class="secondary-k"> {{ key }}: </span>
+    <span class="secondary-v"> [{{ value }}]</span>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class RcDataListKeyValueWithBracketsComponent {
   @HostBinding('class.data-list-key-value')
   _hostClasses = true;
 
