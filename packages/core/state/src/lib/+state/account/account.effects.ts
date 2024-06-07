@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import {
   ENotificationTypes,
@@ -21,7 +21,7 @@ export class AccountEffects {
   userFindRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(accountActions.userFindRequest),
-      switchMap(({ payload }) =>
+      exhaustMap(({ payload }) =>
         this.accountService.find(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;

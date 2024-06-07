@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
@@ -21,7 +21,7 @@ export class IamEffects {
   userReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(userActions.userReadRequest),
-      switchMap(({ payload }) =>
+      exhaustMap(({ payload }) =>
         this.userService.read(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
@@ -32,7 +32,11 @@ export class IamEffects {
           map((result) => {
             const payload = (
               result?.data?.identity?.user?.Read?.details?.items || []
-            )?.map((item) => item?.payload) as IUser[];
+            )?.map((item) => {
+              const user = item?.payload as IUser;
+              user.fullName = `${user.firstName} ${user.lastName}`;
+              return user;
+            }) as IUser[];
             return userActions.userReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
@@ -58,6 +62,7 @@ export class IamEffects {
             const payload =
               result?.data?.identity?.user?.Mutate?.details?.items?.pop()
                 ?.payload as IUser;
+            payload.fullName = `${payload.firstName} ${payload.lastName}`;
             return userActions.userCreateSuccess({ payload });
           }),
           catchError((error: Error) =>
@@ -105,6 +110,7 @@ export class IamEffects {
             const payload =
               result?.data?.identity?.user?.Mutate?.details?.items?.pop()
                 ?.payload as IUser;
+            payload.fullName = `${payload.firstName} ${payload.lastName}`;
             return userActions.userUpdateSuccess({ payload });
           }),
           catchError((error: Error) =>
