@@ -20,7 +20,7 @@ export const buildLocalizationDataSchema = ({
     fields: [
       {
         name: 'localeId',
-        label: 'Language',
+        label: 'Locale',
         type: 'select',
         defaultValue: user?.localeId,
         validators: [Validators.required],
