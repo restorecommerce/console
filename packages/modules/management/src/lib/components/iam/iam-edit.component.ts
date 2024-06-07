@@ -8,7 +8,9 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { ROUTER } from '@console-core/config';
 import {
   IamFacade,
+  LocaleFacade,
   RouterFacade,
+  TimezoneFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
@@ -49,16 +51,21 @@ export class IamEditComponent {
           );
         }
       }),
-      filterEmptyAndNullishAndUndefined(),
-      tap((user) => {
-        this.schema = buildUserSchema({ user });
-      })
+      filterEmptyAndNullishAndUndefined()
     ),
-  });
+    locales: this.localeFacade.all$,
+    timezones: this.timezoneFacade.all$,
+  }).pipe(
+    tap(({ user, locales, timezones }) => {
+      this.schema = buildUserSchema({ user, locales, timezones });
+    })
+  );
 
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly iamFacade: IamFacade
+    private readonly iamFacade: IamFacade,
+    private readonly localeFacade: LocaleFacade,
+    private readonly timezoneFacade: TimezoneFacade
   ) {}
 }

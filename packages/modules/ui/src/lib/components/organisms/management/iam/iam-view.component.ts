@@ -10,13 +10,6 @@ import { IUser } from '@console-core/types';
       <div class="my-2 rc-lv-l-heading">Data</div>
       <ul class="data-list-body no-border">
         <li class="row data-list-item justify-between">
-          <div class="flex text">Active:</div>
-          <div class="flex text align-right rc-lv-label">
-            {{ user.active ? 'Yes' : 'No' }}
-          </div>
-        </li>
-
-        <li class="row data-list-item justify-between">
           <div class="flex text">First name:</div>
           <div class="flex text align-right rc-lv-label">
             {{ user.firstName }}
@@ -31,6 +24,13 @@ import { IUser } from '@console-core/types';
         </li>
 
         <li class="row data-list-item justify-between">
+          <div class="flex text">Username:</div>
+          <div class="flex text align-right rc-lv-label">
+            {{ user.name }}
+          </div>
+        </li>
+
+        <li class="row data-list-item justify-between">
           <div class="flex text">Email:</div>
           <div class="flex text align-right rc-lv-label">
             <a href="mailto:{{ user.email }}">{{ user.email }}</a>
@@ -38,9 +38,21 @@ import { IUser } from '@console-core/types';
         </li>
 
         <li class="row data-list-item justify-between">
+          <div class="flex text">Active:</div>
+          <div class="flex text align-right rc-lv-label">
+            <span
+              class="badge"
+              [ngClass]="user.active ? 'success' : 'danger'"
+            >
+              {{ user.active ? 'Yes' : 'No' }}
+            </span>
+          </div>
+        </li>
+
+        <li class="row data-list-item justify-between">
           <div class="flex text">Locale:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.locale?.description }} /
+            {{ user.locale?.description }}
             <span class="badge rounded">
               {{ user.locale?.value }}
             </span>
@@ -50,7 +62,7 @@ import { IUser } from '@console-core/types';
         <li class="row data-list-item justify-between">
           <div class="flex text">Timezone:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.timezone?.description }} /
+            {{ user.timezone?.description }}
             <!-- TODO: Check timezone value should be available -->
             <span class="badge rounded">
               {{ user.timezone?.id }}
