@@ -310,7 +310,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: 'index',
                   link: '/management/iam/index',
                   getLink: () => ['', 'management', 'iam', 'index'],
-                  title: 'Users',
+                  title: 'IAM',
                 },
                 create: {
                   path: 'create',
