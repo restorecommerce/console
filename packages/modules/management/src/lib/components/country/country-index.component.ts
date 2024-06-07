@@ -10,7 +10,7 @@ import {
 } from '@console-core/state';
 
 @Component({
-  selector: 'app-module-management-country',
+  selector: 'app-module-management-country-index',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <h3>Countries</h3>
