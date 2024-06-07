@@ -7094,12 +7094,14 @@ export type UserRoleFragmentFragment = {
     id?: string | null;
     name?: string | null;
     value?: string | null;
+    description?: string | null;
   } | null;
   timezone?: {
     __typename?: 'IoRestorecommerceTimezoneTimezone';
     id?: string | null;
     name?: string | null;
     value?: string | null;
+    description?: string | null;
   } | null;
   roles?: Array<{
     __typename?: 'IoRestorecommerceRoleRole';
@@ -7111,11 +7113,6 @@ export type UserRoleFragmentFragment = {
     __typename?: 'IoRestorecommerceAuthRoleAssociation';
     id?: string | null;
     role?: string | null;
-    attributes?: Array<{
-      __typename?: 'IoRestorecommerceAttributeAttribute';
-      id?: string | null;
-      value?: string | null;
-    }> | null;
   }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -7587,12 +7584,14 @@ export type IdentityUserReadQuery = {
                 id?: string | null;
                 name?: string | null;
                 value?: string | null;
+                description?: string | null;
               } | null;
               timezone?: {
                 __typename?: 'IoRestorecommerceTimezoneTimezone';
                 id?: string | null;
                 name?: string | null;
                 value?: string | null;
+                description?: string | null;
               } | null;
               roles?: Array<{
                 __typename?: 'IoRestorecommerceRoleRole';
@@ -7604,11 +7603,6 @@ export type IdentityUserReadQuery = {
                 __typename?: 'IoRestorecommerceAuthRoleAssociation';
                 id?: string | null;
                 role?: string | null;
-                attributes?: Array<{
-                  __typename?: 'IoRestorecommerceAttributeAttribute';
-                  id?: string | null;
-                  value?: string | null;
-                }> | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -9869,12 +9863,14 @@ export const UserRoleFragmentFragmentDoc = gql`
       id
       name
       value
+      description
     }
     timezoneId
     timezone {
       id
       name
       value
+      description
     }
     roles {
       id
@@ -9884,10 +9880,6 @@ export const UserRoleFragmentFragmentDoc = gql`
     roleAssociations {
       id
       role
-      attributes {
-        id
-        value
-      }
     }
     meta {
       ...MetaFragment

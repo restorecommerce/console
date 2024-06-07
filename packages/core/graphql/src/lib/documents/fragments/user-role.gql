@@ -15,12 +15,14 @@ fragment UserRoleFragment on IoRestorecommerceUserUserRole {
     id
     name
     value
+    description
   }
   timezoneId
   timezone {
     id
     name
     value
+    description
   }
   roles {
     id
@@ -30,10 +32,6 @@ fragment UserRoleFragment on IoRestorecommerceUserUserRole {
   roleAssociations {
     id
     role
-    attributes {
-      id
-      value
-    }
   }
   meta {
     ...MetaFragment
