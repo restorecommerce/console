@@ -19,9 +19,8 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { IamFacade, RouterFacade } from '@console-core/state';
+import { IamFacade, RouterFacade, UserService } from '@console-core/state';
 import { ICrudFeature, EUrlSegment, IUser } from '@console-core/types';
-import { UserService } from '@console-modules/shared';
 
 @Component({
   selector: 'app-module-management-iam-template',

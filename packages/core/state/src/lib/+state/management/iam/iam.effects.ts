@@ -32,11 +32,11 @@ export class IamEffects {
           map((result) => {
             const payload = (
               result?.data?.identity?.user?.Read?.details?.items || []
-            )?.map((item) => {
-              const user = item?.payload as IUser;
-              user.fullName = `${user.firstName} ${user.lastName}`;
-              return user;
-            }) as IUser[];
+            )?.map((item) =>
+              this.userService.getUserWithRolesAndFullName(
+                item?.payload as IUser
+              )
+            ) as IUser[];
             return userActions.userReadRequestSuccess({ payload });
           }),
           catchError((error: Error) =>
@@ -62,8 +62,10 @@ export class IamEffects {
             const payload =
               result?.data?.identity?.user?.Mutate?.details?.items?.pop()
                 ?.payload as IUser;
-            payload.fullName = `${payload.firstName} ${payload.lastName}`;
-            return userActions.userCreateSuccess({ payload });
+
+            return userActions.userCreateSuccess({
+              payload: this.userService.getUserWithRolesAndFullName(payload),
+            });
           }),
           catchError((error: Error) =>
             of(userActions.userCreateFail({ error: error.message }))
@@ -110,8 +112,9 @@ export class IamEffects {
             const payload =
               result?.data?.identity?.user?.Mutate?.details?.items?.pop()
                 ?.payload as IUser;
-            payload.fullName = `${payload.firstName} ${payload.lastName}`;
-            return userActions.userUpdateSuccess({ payload });
+            return userActions.userUpdateSuccess({
+              payload: this.userService.getUserWithRolesAndFullName(payload),
+            });
           }),
           catchError((error: Error) =>
             of(userActions.userUpdateFail({ error: error.message }))

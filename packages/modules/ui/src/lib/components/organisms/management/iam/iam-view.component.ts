@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { UserService } from '@console-core/state';
 import { IUser } from '@console-core/types';
-import { UserService } from '@console-modules/shared';
 
 @Component({
   selector: 'rc-management-iam-view',
