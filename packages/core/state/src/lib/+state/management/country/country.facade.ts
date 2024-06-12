@@ -32,6 +32,8 @@ export class CountryFacade {
   // Actions
   read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(countryActions.countryReadRequest({ payload }));
+  readOneById = (payload: { id: string }) =>
+    this.store.dispatch(countryActions.countryReadOneByIdRequest({ payload }));
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(countryActions.setSelectedId({ payload }));
   create = (payload: IIoRestorecommerceCountryCountryList) =>

@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
+import {
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterValueType,
+} from '@console-core/graphql';
 import {
   ENotificationTypes,
   ICountry,
@@ -21,7 +25,7 @@ export class CountryEffects {
   countryReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(countryActions.countryReadRequest),
-      switchMap(({ payload }) =>
+      exhaustMap(({ payload }) =>
         this.countryService.read(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
@@ -39,6 +43,53 @@ export class CountryEffects {
             of(countryActions.countryReadRequestFail({ error: error.message }))
           )
         )
+      )
+    );
+  });
+
+  countryReadOneByIdRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(countryActions.countryReadOneByIdRequest),
+      exhaustMap(({ payload }) =>
+        this.countryService
+          .read({
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'id',
+                    value: payload.id,
+                    type: IoRestorecommerceResourcebaseFilterValueType.String,
+                    operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+                  },
+                ],
+              },
+            ],
+            limit: 1,
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.master_data?.country?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload =
+                result?.data?.master_data?.country?.Read?.details?.items?.pop()
+                  ?.payload as ICountry;
+              return countryActions.countryReadOneByIdRequestSuccess({
+                payload,
+              });
+            }),
+            catchError((error: Error) =>
+              of(
+                countryActions.countryReadOneByIdRequestFail({
+                  error: error.message,
+                })
+              )
+            )
+          )
       )
     );
   });
@@ -175,6 +226,7 @@ export class CountryEffects {
       return this.actions$.pipe(
         ofType(
           countryActions.countryReadRequestFail,
+          countryActions.countryReadOneByIdRequestFail,
           countryActions.countryCreateFail,
           countryActions.countryUpdateFail,
           countryActions.countryRemoveFail

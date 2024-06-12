@@ -39,6 +39,32 @@ const reducer = createReducer<ICountryState>(
     })
   ),
   on(
+    countryActions.countryReadOneByIdRequest,
+    (state): ICountryState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    countryActions.countryReadOneByIdRequestSuccess,
+    (state, { payload }): ICountryState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    countryActions.countryReadOneByIdRequestFail,
+    (state, { error }): ICountryState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
     countryActions.setSelectedId,
     (state, { payload }): ICountryState => ({
       ...state,

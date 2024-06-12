@@ -21,6 +21,21 @@ export const countryReadRequestFail = createAction(
   props<{ error: string }>()
 );
 
+export const countryReadOneByIdRequest = createAction(
+  '[COUNTRY] Read one by id request',
+  props<{ payload: { id: string } }>()
+);
+
+export const countryReadOneByIdRequestSuccess = createAction(
+  '[COUNTRY] Read one by id success',
+  props<{ payload: ICountry }>()
+);
+
+export const countryReadOneByIdRequestFail = createAction(
+  '[COUNTRY] Read one by id fail',
+  props<{ error: string }>()
+);
+
 export const setSelectedId = createAction(
   '[COUNTRY] Set selected id',
   props<{ payload: string | null }>()
