@@ -21,6 +21,21 @@ export const userReadRequestFail = createAction(
   props<{ error: string }>()
 );
 
+export const userReadOneByIdRequest = createAction(
+  '[IAM] Read one by id request',
+  props<{ payload: { id: string } }>()
+);
+
+export const userReadOneByIdRequestSuccess = createAction(
+  '[IAM] Read one by id success',
+  props<{ payload: IUser }>()
+);
+
+export const userReadOneByIdRequestFail = createAction(
+  '[IAM] Read one by id fail',
+  props<{ error: string }>()
+);
+
 export const setSelectedId = createAction(
   '[IAM] Set selected id',
   props<{ payload: string | null }>()

@@ -6,6 +6,10 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterValueType,
+} from '@console-core/graphql';
+import {
   ENotificationTypes,
   IUser,
   TOperationStatus,
@@ -21,8 +25,8 @@ export class IamEffects {
   userReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(userActions.userReadRequest),
-      exhaustMap(({ payload }) =>
-        this.userService.read(payload).pipe(
+      exhaustMap(() =>
+        this.userService.read({}).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.identity?.user?.Read?.details
@@ -43,6 +47,53 @@ export class IamEffects {
             of(userActions.userReadRequestFail({ error: error.message }))
           )
         )
+      )
+    );
+  });
+
+  userReadOneByIdRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(userActions.userReadOneByIdRequest),
+      exhaustMap(({ payload }) =>
+        this.userService
+          .read({
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'id',
+                    value: payload.id,
+                    type: IoRestorecommerceResourcebaseFilterValueType.String,
+                    operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+                  },
+                ],
+              },
+            ],
+            limit: 1,
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.identity?.user?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const first =
+                result?.data?.identity?.user?.Read?.details?.items?.pop()
+                  ?.payload as IUser;
+              const payload =
+                this.userService.getUserWithRolesAndFullName(first);
+              return userActions.userReadOneByIdRequestSuccess({ payload });
+            }),
+            catchError((error: Error) =>
+              of(
+                userActions.userReadOneByIdRequestFail({
+                  error: error.message,
+                })
+              )
+            )
+          )
       )
     );
   });
@@ -184,6 +235,7 @@ export class IamEffects {
       return this.actions$.pipe(
         ofType(
           userActions.userReadRequestFail,
+          userActions.userReadOneByIdRequestFail,
           userActions.userCreateFail,
           userActions.userUpdateFail,
           userActions.userRemoveFail

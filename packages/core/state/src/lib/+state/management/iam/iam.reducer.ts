@@ -39,6 +39,32 @@ const reducer = createReducer<IIamState>(
     })
   ),
   on(
+    userActions.userReadOneByIdRequest,
+    (state): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    userActions.userReadOneByIdRequestSuccess,
+    (state, { payload }): IIamState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    userActions.userReadOneByIdRequestFail,
+    (state, { error }): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
     userActions.setSelectedId,
     (state, { payload }): IIamState => ({
       ...state,

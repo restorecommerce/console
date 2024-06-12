@@ -24,6 +24,8 @@ export class IamFacade {
   // Actions
   read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(userActions.userReadRequest({ payload }));
+  readOneById = (payload: { id: string }) =>
+    this.store.dispatch(userActions.userReadOneByIdRequest({ payload }));
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(userActions.setSelectedId({ payload }));
   create = (payload: IIoRestorecommerceUserUserList) =>
