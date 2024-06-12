@@ -5460,6 +5460,7 @@ export type CatalogProductMutateMutation = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -5628,6 +5629,7 @@ export type CatalogProductReadQuery = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -5798,6 +5800,7 @@ export type ContactPointFragmentFragment = {
   timezone?: {
     __typename?: 'IoRestorecommerceTimezoneTimezone';
     id?: string | null;
+    value?: string | null;
     description?: string | null;
     meta?: {
       __typename?: 'IoRestorecommerceMetaMeta';
@@ -5878,6 +5881,7 @@ export type CustomerFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -5953,6 +5957,7 @@ export type CustomerFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6037,6 +6042,7 @@ export type CustomerFragmentFragment = {
       timezone?: {
         __typename?: 'IoRestorecommerceTimezoneTimezone';
         id?: string | null;
+        value?: string | null;
         description?: string | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
@@ -6224,6 +6230,7 @@ export type OrderFragmentFragment = {
             timezone?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
+              value?: string | null;
               description?: string | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -6372,6 +6379,7 @@ export type OrderFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6457,6 +6465,7 @@ export type OrderFragmentFragment = {
           timezone?: {
             __typename?: 'IoRestorecommerceTimezoneTimezone';
             id?: string | null;
+            value?: string | null;
             description?: string | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6532,6 +6541,7 @@ export type OrderFragmentFragment = {
           timezone?: {
             __typename?: 'IoRestorecommerceTimezoneTimezone';
             id?: string | null;
+            value?: string | null;
             description?: string | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6616,6 +6626,7 @@ export type OrderFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6787,6 +6798,7 @@ export type OrganizationFragmentFragment = {
     timezone?: {
       __typename?: 'IoRestorecommerceTimezoneTimezone';
       id?: string | null;
+      value?: string | null;
       description?: string | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
@@ -6871,6 +6883,7 @@ export type ProductFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -7008,6 +7021,7 @@ export type ShopFragmentFragment = {
       timezone?: {
         __typename?: 'IoRestorecommerceTimezoneTimezone';
         id?: string | null;
+        value?: string | null;
         description?: string | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
@@ -7064,6 +7078,7 @@ export type ShopFragmentFragment = {
 export type TimezoneFragmentFragment = {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   id?: string | null;
+  value?: string | null;
   description?: string | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -8162,6 +8177,7 @@ export type MasterDataTimezoneReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
+              value?: string | null;
               description?: string | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -8279,6 +8295,7 @@ export type OrderingOrderMutateMutation = {
                         timezone?: {
                           __typename?: 'IoRestorecommerceTimezoneTimezone';
                           id?: string | null;
+                          value?: string | null;
                           description?: string | null;
                           meta?: {
                             __typename?: 'IoRestorecommerceMetaMeta';
@@ -8427,6 +8444,7 @@ export type OrderingOrderMutateMutation = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -8512,6 +8530,7 @@ export type OrderingOrderMutateMutation = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -8587,6 +8606,7 @@ export type OrderingOrderMutateMutation = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -8671,6 +8691,7 @@ export type OrderingOrderMutateMutation = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -8890,6 +8911,7 @@ export type OrderingOrderReadQuery = {
                         timezone?: {
                           __typename?: 'IoRestorecommerceTimezoneTimezone';
                           id?: string | null;
+                          value?: string | null;
                           description?: string | null;
                           meta?: {
                             __typename?: 'IoRestorecommerceMetaMeta';
@@ -9038,6 +9060,7 @@ export type OrderingOrderReadQuery = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -9123,6 +9146,7 @@ export type OrderingOrderReadQuery = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -9198,6 +9222,7 @@ export type OrderingOrderReadQuery = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -9282,6 +9307,7 @@ export type OrderingOrderReadQuery = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -9558,6 +9584,7 @@ export const LocationFragmentFragmentDoc = gql`
 export const TimezoneFragmentFragmentDoc = gql`
   fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
+    value
     description
     meta {
       ...MetaFragment
