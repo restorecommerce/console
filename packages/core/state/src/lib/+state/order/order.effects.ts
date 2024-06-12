@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
+import {
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterValueType,
+} from '@console-core/graphql';
 import {
   ENotificationTypes,
   IOrder,
@@ -21,7 +25,7 @@ export class OrderEffects {
   orderReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(orderActions.orderReadRequest),
-      switchMap(({ payload }) =>
+      exhaustMap(({ payload }) =>
         this.orderService.read(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
@@ -39,6 +43,51 @@ export class OrderEffects {
             of(orderActions.orderReadRequestFail({ error: error.message }))
           )
         )
+      )
+    );
+  });
+
+  orderReadOneByIdRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(orderActions.orderReadOneByIdRequest),
+      exhaustMap(({ payload }) =>
+        this.orderService
+          .read({
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'id',
+                    value: payload.id,
+                    type: IoRestorecommerceResourcebaseFilterValueType.String,
+                    operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+                  },
+                ],
+              },
+            ],
+            limit: 1,
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.ordering?.order?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload =
+                result?.data?.ordering?.order?.Read?.details?.items?.pop()
+                  ?.payload as IOrder;
+              return orderActions.orderReadOneByIdRequestSuccess({ payload });
+            }),
+            catchError((error: Error) =>
+              of(
+                orderActions.orderReadOneByIdRequestFail({
+                  error: error.message,
+                })
+              )
+            )
+          )
       )
     );
   });
@@ -175,6 +224,7 @@ export class OrderEffects {
       return this.actions$.pipe(
         ofType(
           orderActions.orderReadRequestFail,
+          orderActions.orderReadOneByIdRequestFail,
           orderActions.orderCreateFail,
           orderActions.orderUpdateFail,
           orderActions.orderRemoveFail
