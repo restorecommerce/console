@@ -32,6 +32,8 @@ export class ProductFacade {
   // Actions
   read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(productActions.productReadRequest({ payload }));
+  readOneById = (payload: { id: string }) =>
+    this.store.dispatch(productActions.productReadOneByIdRequest({ payload }));
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(productActions.setSelectedId({ payload }));
   create = (payload: IIoRestorecommerceProductProductList) =>
