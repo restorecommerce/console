@@ -26,6 +26,7 @@ export class IamViewComponent {
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.iamFacade.setSelectedId(id);
+        this.iamFacade.readOneById({ id });
       })
     ),
     user: this.iamFacade.selected$.pipe(

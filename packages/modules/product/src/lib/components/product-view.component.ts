@@ -26,6 +26,7 @@ export class ProductViewComponent {
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.productFacade.setSelectedId(id);
+        this.productFacade.readOneById({ id });
       })
     ),
     product: this.productFacade.selected$.pipe(

@@ -26,6 +26,7 @@ export class OrderViewComponent {
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.orderFacade.setSelectedId(id);
+        this.orderFacade.readOneById({ id });
       })
     ),
     order: this.orderFacade.selected$.pipe(

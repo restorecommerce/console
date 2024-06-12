@@ -26,6 +26,7 @@ export class CountryViewComponent {
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.countryFacade.setSelectedId(id);
+        this.countryFacade.readOneById({ id });
       })
     ),
     country: this.countryFacade.selected$.pipe(
