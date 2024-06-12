@@ -119,8 +119,7 @@ export const buildUserSchema = ({
         validators: [Validators.required],
         params: {
           options: timezones.map((timezone) => ({
-            // TODO: Check timezone value should be available
-            label: timezone.id,
+            label: timezone.value,
             sublabel: timezone.description,
             value: timezone.id,
           })),

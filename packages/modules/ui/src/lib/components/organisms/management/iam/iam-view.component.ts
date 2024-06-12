@@ -63,9 +63,8 @@ import { IUser } from '@console-core/types';
           <div class="flex text">Timezone:</div>
           <div class="flex text align-right rc-lv-label">
             {{ user.timezone?.description }}
-            <!-- TODO: Check timezone value should be available -->
             <span class="badge rounded">
-              {{ user.timezone?.id }}
+              {{ user.timezone?.value }}
             </span>
           </div>
         </li>
