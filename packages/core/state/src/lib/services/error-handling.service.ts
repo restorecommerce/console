@@ -19,13 +19,13 @@ export class ErrorHandlingService {
       500: 'internal server error',
     };
 
-    if (status?.code === 401) {
-      this.authFacade.signOut(false);
-    }
-
     let errorMessage = '';
 
     if (status?.code) {
+      if (status.code === 401) {
+        this.authFacade.signOut(false);
+      }
+
       if (status?.code in errorMessages) {
         errorMessage = errorMessages[status?.code];
       } else if (status.code !== 200) {
