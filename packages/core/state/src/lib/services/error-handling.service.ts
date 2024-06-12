@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { TOperationStatus } from '@console-core/types';
 
+import { AuthnFacade } from '../+state';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorHandlingService {
+  constructor(private readonly authFacade: AuthnFacade) {}
   public checkStatusAndThrow(status?: TOperationStatus): void {
     const errorMessages: { [key: number]: string } = {
       400: 'bad request',
@@ -15,6 +18,10 @@ export class ErrorHandlingService {
       408: 'request timeout',
       500: 'internal server error',
     };
+
+    if (status?.code === 401) {
+      this.authFacade.signOut(false);
+    }
 
     let errorMessage = '';
 
