@@ -8,6 +8,7 @@ export interface ITimezone
     'id' | 'description' | 'meta' | '__typename'
   > {
   id: string;
+  value: string;
   description: string;
   meta: IMeta;
 }
