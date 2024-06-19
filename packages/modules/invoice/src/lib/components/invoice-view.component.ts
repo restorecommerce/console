@@ -14,7 +14,7 @@ import {
   selector: 'app-module-invoice-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-invoice-view [invoice]="vm.invoice" />
+      <app-module-invoice-view-details [invoice]="vm.invoice" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
