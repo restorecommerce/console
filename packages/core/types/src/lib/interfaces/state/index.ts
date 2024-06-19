@@ -8,6 +8,7 @@ export * from './invoice.state';
 export * from './locale.state';
 export * from './order.state';
 export * from './product.state';
+export * from './role.state';
 export * from './router.state';
 export * from './store.state';
 export * from './timezone.state';

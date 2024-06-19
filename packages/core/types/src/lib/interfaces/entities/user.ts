@@ -34,7 +34,10 @@ export interface IUser
   firstName: string;
   lastName: string;
   fullName: string;
-  roleAssociations: Array<{ id: string; role: string }>;
+  roleAssociations: Array<{
+    id: string;
+    role: string;
+  }>;
   isSuperAdministrator: boolean;
   isAdministrator: boolean;
   isUser: boolean;

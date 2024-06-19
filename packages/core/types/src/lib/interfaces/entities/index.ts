@@ -7,4 +7,5 @@ export * from './order';
 export * from './shop';
 export * from './timezone';
 export * from './product';
+export * from './role';
 export * from './user';
