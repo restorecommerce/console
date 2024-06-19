@@ -26,7 +26,6 @@ export * from './header/header-navigation-item.component';
 export * from './header/header-navigation.component';
 export * from './header/header-toolbar.component';
 export * from './header/header.component';
-export * from './invoice/invoice-view.component';
 export * from './flex-grid/flex-grid.directive';
 export * from './meta/meta.component';
 export * from './order/order-view.component';
