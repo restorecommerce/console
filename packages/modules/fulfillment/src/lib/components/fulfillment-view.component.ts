@@ -14,7 +14,7 @@ import {
   selector: 'app-module-fulfillment-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-fulfillment-view [fulfillment]="vm.fulfillment" />
+      <app-module-fulfillment-view-details [fulfillment]="vm.fulfillment" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

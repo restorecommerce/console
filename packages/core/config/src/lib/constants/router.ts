@@ -307,18 +307,33 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'iam'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/iam',
-                  getLink: () => ['', 'management', 'iam'],
+                  path: 'index',
+                  link: '/management/iam/index',
+                  getLink: () => ['', 'management', 'iam', 'index'],
                   title: 'IAM',
                 },
-                iam: {
-                  path: ':id',
-                  link: '/management/iam/:id',
-                  title: 'IAM',
+                create: {
+                  path: 'create',
+                  link: '/management/iam/create',
+                  title: 'Create User',
+                  getLink: () => ['', 'management', 'iam', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/iam/:id/view',
+                  title: 'User',
                   getLink: (params?: { id?: number | string }) =>
                     params?.id
-                      ? ['', 'management', 'iam', params.id]
+                      ? ['', 'management', 'iam', params.id, 'view']
+                      : ['', 'management', 'iam'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/iam/:id/edit',
+                  title: 'Edit User',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'iam', params.id, 'edit']
                       : ['', 'management', 'iam'],
                 },
               },
@@ -529,7 +544,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   getLink: () => ['', 'management', 'access-control', 'roles'],
                   children: {
                     index: {
-                      path: '',
+                      path: 'index',
                       link: '/management/access-control/roles',
                       getLink: () => [
                         '',
@@ -539,9 +554,21 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       ],
                       title: 'Roles',
                     },
-                    roles: {
-                      path: ':id',
-                      link: '/management/access-control/roles/:id',
+                    create: {
+                      path: 'create',
+                      link: '/management/access-control/roles/create',
+                      title: 'Create Role',
+                      getLink: () => [
+                        '',
+                        'management',
+                        'access-control',
+                        'roles',
+                        'create',
+                      ],
+                    },
+                    view: {
+                      path: ':id/view',
+                      link: '/management/access-control/roles/:id/view',
                       title: 'Role',
                       getLink: (params?: { id?: number | string }) =>
                         params?.id
@@ -551,6 +578,23 @@ export const ROUTER: Readonly<IRouterConstant> = {
                               'access-control',
                               'roles',
                               params.id,
+                              'view',
+                            ]
+                          : ['', 'management', 'access-control', 'roles'],
+                    },
+                    edit: {
+                      path: ':id/edit',
+                      link: '/management/access-control/roles/:id/edit',
+                      title: 'Edit Role',
+                      getLink: (params?: { id?: number | string }) =>
+                        params?.id
+                          ? [
+                              '',
+                              'management',
+                              'access-control',
+                              'roles',
+                              params.id,
+                              'edit',
                             ]
                           : ['', 'management', 'access-control', 'roles'],
                     },

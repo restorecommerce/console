@@ -4,7 +4,12 @@ import { IoRestorecommerceProductProduct } from '@console-core/graphql';
 
 @Component({
   selector: 'rc-product-view',
-  templateUrl: './product-view.component.html',
+  template: `
+    <rc-product-details [product]="product.product || {}" />
+    <rc-product-variants
+      [variants]="product.product?.physical?.variants || []"
+    />
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcProductViewComponent {

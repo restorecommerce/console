@@ -1,0 +1,19 @@
+query IdentityRoleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  identity {
+    role {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...RoleFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

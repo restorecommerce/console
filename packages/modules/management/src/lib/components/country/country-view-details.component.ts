@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ICountry } from '@console-core/types';
 
 @Component({
-  selector: 'rc-management-country-view',
+  selector: 'app-module-management-country-view-details',
   template: `
     <div class="data-list mb-0 p-0">
       <div class="my-2 rc-lv-l-heading">Data</div>
@@ -36,6 +36,6 @@ import { ICountry } from '@console-core/types';
     </div>
   `,
 })
-export class RcCountryViewComponent {
+export class CountryViewDetailsComponent {
   @Input({ required: true }) country!: ICountry;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import {
   ENotificationTypes,
@@ -21,8 +21,8 @@ export class AccountEffects {
   userFindRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(accountActions.userFindRequest),
-      switchMap(({ payload }) =>
-        this.accountService.find(payload).pipe(
+      exhaustMap(({ payload }) =>
+        this.userService.find(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -36,7 +36,7 @@ export class AccountEffects {
           }),
           map((payload) => {
             return accountActions.userFindSuccess({
-              payload,
+              payload: this.userService.getUserWithRolesAndFullName(payload),
             });
           }),
           catchError((error: Error) =>
@@ -51,7 +51,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userFindByTokenRequest),
       switchMap(({ payload }) =>
-        this.accountService.findByToken(payload).pipe(
+        this.userService.findByToken(payload).pipe(
           tap((result) => {
             const identity = result?.data?.identity;
             const status = identity?.user?.FindByToken?.details?.status;
@@ -72,7 +72,9 @@ export class AccountEffects {
           map((result) => {
             const payload = result?.data?.identity?.user?.FindByToken?.details
               ?.payload as IUser;
-            return accountActions.userFindByTokenSuccess({ payload });
+            return accountActions.userFindByTokenSuccess({
+              payload: this.userService.getUserWithRolesAndFullName(payload),
+            });
           }),
           catchError((error: Error) =>
             of(accountActions.userFindByTokenFail({ error: error.message }))
@@ -86,7 +88,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userMutateRequest),
       switchMap(({ payload }) =>
-        this.accountService.mutate(payload).pipe(
+        this.userService.mutate(payload).pipe(
           map((result) => {
             const identity = result?.data?.identity;
             const operationStatus =
@@ -99,7 +101,9 @@ export class AccountEffects {
             return payload;
           }),
           map((payload) => {
-            return accountActions.userMutateSuccess({ payload });
+            return accountActions.userMutateSuccess({
+              payload: this.userService.getUserWithRolesAndFullName(payload),
+            });
           }),
           catchError((error: Error) =>
             of(accountActions.userMutateFail({ error: error.message }))
@@ -128,7 +132,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userChangeEmailRequest),
       switchMap(({ payload }) =>
-        this.accountService.requestEmailChange(payload).pipe(
+        this.userService.requestEmailChange(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.identity?.user?.RequestEmailChange?.details
@@ -165,7 +169,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userConfirmEmailChangeRequest),
       switchMap(({ payload }) =>
-        this.accountService.confirmEmailChange(payload).pipe(
+        this.userService.confirmEmailChange(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.identity?.user?.ConfirmEmailChange?.details
@@ -209,7 +213,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userChangePasswordRequest),
       switchMap(({ payload }) =>
-        this.accountService.passwordChange(payload).pipe(
+        this.userService.passwordChange(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.identity?.user?.ChangePassword?.details
@@ -246,7 +250,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(accountActions.userRemoveRequest),
       switchMap(({ payload }) =>
-        this.accountService.remove(payload).pipe(
+        this.userService.remove(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.identity?.user?.Delete?.details
@@ -316,7 +320,7 @@ export class AccountEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly authnFacade: AuthnFacade,
-    private readonly accountService: UserService,
+    private readonly userService: UserService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

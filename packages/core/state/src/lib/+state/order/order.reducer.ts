@@ -39,6 +39,32 @@ const reducer = createReducer<IOrderState>(
     })
   ),
   on(
+    orderActions.orderReadOneByIdRequest,
+    (state): IOrderState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    orderActions.orderReadOneByIdRequestSuccess,
+    (state, { payload }): IOrderState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    orderActions.orderReadOneByIdRequestFail,
+    (state, { error }): IOrderState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
     orderActions.setSelectedId,
     (state, { payload }): IOrderState => ({
       ...state,

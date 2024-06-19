@@ -12,7 +12,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildOrderSchema } from './jss-forms';
+import { buildOrderSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-order-edit',

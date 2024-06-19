@@ -57,6 +57,7 @@ import {
   RcDataListOrderComponent,
   RcDataListProductComponent,
   RcDataListKeyValueComponent,
+  RcDataListKeyValueWithBracketsComponent,
   RcDataListComponent,
   RcDrawerNavigationItemComponent,
   RcDrawerNavigationComponent,
@@ -81,11 +82,8 @@ import {
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
-  RcCountryViewComponent,
   RcOrderViewComponent,
   RcProductViewComponent,
-  RcFulfillmentViewComponent,
-  RcInvoiceViewComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -178,6 +176,7 @@ const organisms = [
   RcDataListOrderComponent,
   RcDataListProductComponent,
   RcDataListKeyValueComponent,
+  RcDataListKeyValueWithBracketsComponent,
   RcMetaComponent,
   RcSearchbarComponent,
   RcToolbarComponent,
@@ -196,11 +195,8 @@ const organisms = [
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
-  RcCountryViewComponent,
   RcOrderViewComponent,
   RcProductViewComponent,
-  RcFulfillmentViewComponent,
-  RcInvoiceViewComponent,
 ];
 
 const pages = [

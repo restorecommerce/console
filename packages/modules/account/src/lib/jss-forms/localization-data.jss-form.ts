@@ -20,13 +20,13 @@ export const buildLocalizationDataSchema = ({
     fields: [
       {
         name: 'localeId',
-        label: 'Language',
+        label: 'Locale',
         type: 'select',
         defaultValue: user?.localeId,
         validators: [Validators.required],
         params: {
           options: locales.map((locale) => ({
-            label: locale.id,
+            label: locale.value,
             sublabel: locale.description,
             value: locale.id,
           })),
@@ -47,7 +47,7 @@ export const buildLocalizationDataSchema = ({
         validators: [Validators.required],
         params: {
           options: timezones.map((timezone) => ({
-            label: timezone.id,
+            label: timezone.value,
             sublabel: timezone.description,
             value: timezone.id,
           })),

@@ -7,6 +7,7 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { CountryCreateComponent } from './country-create.component';
 import { CountryEditComponent } from './country-edit.component';
 import { CountryIndexComponent } from './country-index.component';
+import { CountryViewDetailsComponent } from './country-view-details.component';
 import { CountryViewComponent } from './country-view.component';
 import { CountryTemplateComponent } from './template/country-template.component';
 
@@ -59,11 +60,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CountryTemplateComponent,
     CountryIndexComponent,
     CountryCreateComponent,
     CountryEditComponent,
     CountryViewComponent,
+    CountryViewDetailsComponent,
+    CountryTemplateComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })

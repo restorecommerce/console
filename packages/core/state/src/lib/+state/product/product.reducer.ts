@@ -43,6 +43,29 @@ const reducer = createReducer<IProductState>(
     })
   ),
   on(
+    productActions.productReadOneByIdRequest,
+    (state): IProductState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    productActions.productReadOneByIdRequestSuccess,
+    (state, { payload }): IProductState =>
+      adapter.addOne(payload, {
+        ...state,
+        actionStatus: EActionStatus.Succeeded,
+      })
+  ),
+  on(
+    productActions.productReadOneByIdRequestFail,
+    (state, { error }): IProductState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
     productActions.setSelectedId,
     (state, { payload }): IProductState => ({
       ...state,

@@ -56,7 +56,8 @@
                   "type:config",
                   "type:graphql",
                   "type:state",
-                  "type:types"
+                  "type:types",
+                  "type:shared"
                 ]
               },
               {

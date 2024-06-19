@@ -3,10 +3,15 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IFulfillment } from '@console-core/types';
 
 @Component({
-  selector: 'rc-fulfillment-view',
-  templateUrl: './fulfillment-view.component.html',
+  selector: 'app-module-fulfillment-view-details',
+  template: `
+    <pre>
+      {{ fulfillment | json }}
+    </pre
+    >
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcFulfillmentViewComponent {
+export class FulfillmentViewDetailsComponent {
   @Input({ required: true }) fulfillment!: IFulfillment;
 }

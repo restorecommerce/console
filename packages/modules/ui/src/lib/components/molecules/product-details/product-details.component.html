@@ -23,7 +23,7 @@
         <ng-container *ngIf="product?.taxIds?.length; else naTemplate">
           <span
             *ngFor="let taxId of product?.taxIds"
-            class="badge rounded mx-1"
+            class="badge rounded"
             >{{ taxId }}</span
           >
         </ng-container>

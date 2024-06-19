@@ -1,0 +1,19 @@
+mutation IdentityRoleMutate($input: IIoRestorecommerceRoleRoleList!) {
+  identity {
+    role {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...RoleFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

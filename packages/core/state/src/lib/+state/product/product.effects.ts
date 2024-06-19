@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
+import {
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterValueType,
+} from '@console-core/graphql';
 import {
   ENotificationTypes,
   IProduct,
@@ -15,6 +19,7 @@ import { ErrorHandlingService, ProductService } from '../../services';
 import { AppFacade } from '../app';
 
 import * as productActions from './product.actions';
+import { productReadOneByIdRequest } from './product.actions';
 
 @Injectable()
 export class ProductEffects {
@@ -22,7 +27,7 @@ export class ProductEffects {
     let isLoadMore = false;
     return this.actions$.pipe(
       ofType(productActions.productReadRequest),
-      switchMap(({ payload }) =>
+      exhaustMap(({ payload }) =>
         this.productService.read(payload).pipe(
           tap((result) => {
             if (payload.offset) {
@@ -49,6 +54,47 @@ export class ProductEffects {
             of(productActions.productReadRequestFail({ error: error.message }))
           )
         )
+      )
+    );
+  });
+
+  productReadOneByIdRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(productReadOneByIdRequest),
+      exhaustMap(({ payload }) =>
+        this.productService
+          .read({
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'id',
+                    value: payload.id,
+                    type: IoRestorecommerceResourcebaseFilterValueType.String,
+                    operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+                  },
+                ],
+              },
+            ],
+            limit: 1,
+          })
+          .pipe(
+            map((result) => {
+              const payload =
+                result?.data?.catalog?.product?.Read?.details?.items?.pop()
+                  ?.payload as IProduct;
+              return productActions.productReadOneByIdRequestSuccess({
+                payload,
+              });
+            }),
+            catchError((error: Error) =>
+              of(
+                productActions.productReadOneByIdRequestFail({
+                  error: error.message,
+                })
+              )
+            )
+          )
       )
     );
   });
@@ -185,6 +231,7 @@ export class ProductEffects {
       return this.actions$.pipe(
         ofType(
           productActions.productReadRequestFail,
+          productActions.productReadOneByIdRequestFail,
           productActions.productCreateFail,
           productActions.productUpdateFail,
           productActions.productRemoveFail

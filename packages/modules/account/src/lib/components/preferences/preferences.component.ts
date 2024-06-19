@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { startWith, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -36,11 +36,6 @@ export class PreferencesComponent implements OnInit {
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
   }).pipe(
-    startWith({
-      user: null,
-      locales: [],
-      timezones: [],
-    }),
     tap(({ user, locales, timezones }) => {
       this.localizationFormSchema = buildLocalizationDataSchema({
         user,

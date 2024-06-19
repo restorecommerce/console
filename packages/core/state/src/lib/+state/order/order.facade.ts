@@ -26,6 +26,8 @@ export class OrderFacade {
   // Actions
   read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(orderActions.orderReadRequest({ payload }));
+  readOneById = (payload: { id: string }) =>
+    this.store.dispatch(orderActions.orderReadOneByIdRequest({ payload }));
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(orderActions.setSelectedId({ payload }));
   create = (payload: IIoRestorecommerceOrderOrderList) =>

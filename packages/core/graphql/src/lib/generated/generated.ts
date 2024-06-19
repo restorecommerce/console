@@ -5460,6 +5460,7 @@ export type CatalogProductMutateMutation = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -5628,6 +5629,7 @@ export type CatalogProductReadQuery = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -5798,6 +5800,7 @@ export type ContactPointFragmentFragment = {
   timezone?: {
     __typename?: 'IoRestorecommerceTimezoneTimezone';
     id?: string | null;
+    value?: string | null;
     description?: string | null;
     meta?: {
       __typename?: 'IoRestorecommerceMetaMeta';
@@ -5878,6 +5881,7 @@ export type CustomerFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -5953,6 +5957,7 @@ export type CustomerFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6037,6 +6042,7 @@ export type CustomerFragmentFragment = {
       timezone?: {
         __typename?: 'IoRestorecommerceTimezoneTimezone';
         id?: string | null;
+        value?: string | null;
         description?: string | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
@@ -6224,6 +6230,7 @@ export type OrderFragmentFragment = {
             timezone?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
+              value?: string | null;
               description?: string | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -6372,6 +6379,7 @@ export type OrderFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6457,6 +6465,7 @@ export type OrderFragmentFragment = {
           timezone?: {
             __typename?: 'IoRestorecommerceTimezoneTimezone';
             id?: string | null;
+            value?: string | null;
             description?: string | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6532,6 +6541,7 @@ export type OrderFragmentFragment = {
           timezone?: {
             __typename?: 'IoRestorecommerceTimezoneTimezone';
             id?: string | null;
+            value?: string | null;
             description?: string | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6616,6 +6626,7 @@ export type OrderFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6787,6 +6798,7 @@ export type OrganizationFragmentFragment = {
     timezone?: {
       __typename?: 'IoRestorecommerceTimezoneTimezone';
       id?: string | null;
+      value?: string | null;
       description?: string | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
@@ -6871,6 +6883,7 @@ export type ProductFragmentFragment = {
         timezone?: {
           __typename?: 'IoRestorecommerceTimezoneTimezone';
           id?: string | null;
+          value?: string | null;
           description?: string | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6973,6 +6986,14 @@ export type ProductFragmentFragment = {
   } | null;
 };
 
+export type RoleFragmentFragment = {
+  __typename?: 'IoRestorecommerceRoleRole';
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
+  assignableByRoles?: Array<string> | null;
+};
+
 export type ShopFragmentFragment = {
   __typename?: 'IoRestorecommerceShopShop';
   id?: string | null;
@@ -7008,6 +7029,7 @@ export type ShopFragmentFragment = {
       timezone?: {
         __typename?: 'IoRestorecommerceTimezoneTimezone';
         id?: string | null;
+        value?: string | null;
         description?: string | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
@@ -7064,7 +7086,58 @@ export type ShopFragmentFragment = {
 export type TimezoneFragmentFragment = {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   id?: string | null;
+  value?: string | null;
   description?: string | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+};
+
+export type UserRoleFragmentFragment = {
+  __typename?: 'IoRestorecommerceUserUserRole';
+  id?: string | null;
+  active?: boolean | null;
+  activationCode?: string | null;
+  email?: string | null;
+  newEmail?: string | null;
+  name?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  userType?: IoRestorecommerceUserUserType | null;
+  defaultScope?: string | null;
+  lastAccess?: unknown | null;
+  localeId?: string | null;
+  timezoneId?: string | null;
+  locale?: {
+    __typename?: 'IoRestorecommerceLocaleLocale';
+    id?: string | null;
+    name?: string | null;
+    value?: string | null;
+    description?: string | null;
+  } | null;
+  timezone?: {
+    __typename?: 'IoRestorecommerceTimezoneTimezone';
+    id?: string | null;
+    name?: string | null;
+    value?: string | null;
+    description?: string | null;
+  } | null;
+  roles?: Array<{
+    __typename?: 'IoRestorecommerceRoleRole';
+    id?: string | null;
+    name?: string | null;
+    description?: string | null;
+    assignableByRoles?: Array<string> | null;
+  }> | null;
+  roleAssociations?: Array<{
+    __typename?: 'IoRestorecommerceAuthRoleAssociation';
+    id?: string | null;
+    role?: string | null;
+  }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -7202,6 +7275,101 @@ export type FulfillmentFulfillmentReadQuery = {
                 createdBy?: string | null;
                 modifiedBy?: string | null;
               } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type IdentityRoleDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type IdentityRoleDeleteMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    role: {
+      __typename?: 'IdentityRoleMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type IdentityRoleMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceRoleRoleList;
+}>;
+
+export type IdentityRoleMutateMutation = {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    role: {
+      __typename?: 'IdentityRoleMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceRoleRoleListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceRoleRoleListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceRoleRoleResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceRoleRole';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              assignableByRoles?: Array<string> | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type IdentityRoleReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type IdentityRoleReadQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    role: {
+      __typename?: 'IdentityRoleQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceRoleRoleListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceRoleRoleListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceRoleRoleResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceRoleRole';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              assignableByRoles?: Array<string> | null;
             } | null;
           }> | null;
         } | null;
@@ -7474,6 +7642,83 @@ export type IdentityUserMutateMutation = {
               defaultScope?: string | null;
               localeId?: string | null;
               timezoneId?: string | null;
+              roleAssociations?: Array<{
+                __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                id?: string | null;
+                role?: string | null;
+              }> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type IdentityUserReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type IdentityUserReadQuery = {
+  __typename?: 'Query';
+  identity: {
+    __typename?: 'IdentityQuery';
+    user: {
+      __typename?: 'IdentityUserQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserListWithRoleResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceUserUserRoleResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceUserUserRole';
+              id?: string | null;
+              active?: boolean | null;
+              activationCode?: string | null;
+              email?: string | null;
+              newEmail?: string | null;
+              name?: string | null;
+              firstName?: string | null;
+              lastName?: string | null;
+              userType?: IoRestorecommerceUserUserType | null;
+              defaultScope?: string | null;
+              lastAccess?: unknown | null;
+              localeId?: string | null;
+              timezoneId?: string | null;
+              locale?: {
+                __typename?: 'IoRestorecommerceLocaleLocale';
+                id?: string | null;
+                name?: string | null;
+                value?: string | null;
+                description?: string | null;
+              } | null;
+              timezone?: {
+                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                id?: string | null;
+                name?: string | null;
+                value?: string | null;
+                description?: string | null;
+              } | null;
+              roles?: Array<{
+                __typename?: 'IoRestorecommerceRoleRole';
+                id?: string | null;
+                name?: string | null;
+                description?: string | null;
+                assignableByRoles?: Array<string> | null;
+              }> | null;
               roleAssociations?: Array<{
                 __typename?: 'IoRestorecommerceAuthRoleAssociation';
                 id?: string | null;
@@ -8037,6 +8282,7 @@ export type MasterDataTimezoneReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
+              value?: string | null;
               description?: string | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -8154,6 +8400,7 @@ export type OrderingOrderMutateMutation = {
                         timezone?: {
                           __typename?: 'IoRestorecommerceTimezoneTimezone';
                           id?: string | null;
+                          value?: string | null;
                           description?: string | null;
                           meta?: {
                             __typename?: 'IoRestorecommerceMetaMeta';
@@ -8302,6 +8549,7 @@ export type OrderingOrderMutateMutation = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -8387,6 +8635,7 @@ export type OrderingOrderMutateMutation = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -8462,6 +8711,7 @@ export type OrderingOrderMutateMutation = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -8546,6 +8796,7 @@ export type OrderingOrderMutateMutation = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -8765,6 +9016,7 @@ export type OrderingOrderReadQuery = {
                         timezone?: {
                           __typename?: 'IoRestorecommerceTimezoneTimezone';
                           id?: string | null;
+                          value?: string | null;
                           description?: string | null;
                           meta?: {
                             __typename?: 'IoRestorecommerceMetaMeta';
@@ -8913,6 +9165,7 @@ export type OrderingOrderReadQuery = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -8998,6 +9251,7 @@ export type OrderingOrderReadQuery = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -9073,6 +9327,7 @@ export type OrderingOrderReadQuery = {
                       timezone?: {
                         __typename?: 'IoRestorecommerceTimezoneTimezone';
                         id?: string | null;
+                        value?: string | null;
                         description?: string | null;
                         meta?: {
                           __typename?: 'IoRestorecommerceMetaMeta';
@@ -9157,6 +9412,7 @@ export type OrderingOrderReadQuery = {
                     timezone?: {
                       __typename?: 'IoRestorecommerceTimezoneTimezone';
                       id?: string | null;
+                      value?: string | null;
                       description?: string | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
@@ -9433,6 +9689,7 @@ export const LocationFragmentFragmentDoc = gql`
 export const TimezoneFragmentFragmentDoc = gql`
   fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
+    value
     description
     meta {
       ...MetaFragment
@@ -9720,6 +9977,55 @@ export const OrderFragmentFragmentDoc = gql`
   ${UserFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const RoleFragmentFragmentDoc = gql`
+  fragment RoleFragment on IoRestorecommerceRoleRole {
+    id
+    name
+    description
+    assignableByRoles
+  }
+`;
+export const UserRoleFragmentFragmentDoc = gql`
+  fragment UserRoleFragment on IoRestorecommerceUserUserRole {
+    id
+    active
+    activationCode
+    email
+    newEmail
+    name
+    firstName
+    lastName
+    userType
+    defaultScope
+    lastAccess
+    localeId
+    locale {
+      id
+      name
+      value
+      description
+    }
+    timezoneId
+    timezone {
+      id
+      name
+      value
+      description
+    }
+    roles {
+      ...RoleFragment
+    }
+    roleAssociations {
+      id
+      role
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${RoleFragmentFragmentDoc}
+  ${MetaFragmentFragmentDoc}
+`;
 export const CatalogProductDeleteDocument = gql`
   mutation CatalogProductDelete(
     $input: IIoRestorecommerceResourcebaseDeleteRequest!
@@ -9927,6 +10233,110 @@ export class FulfillmentFulfillmentReadGQL extends Apollo.Query<
   FulfillmentFulfillmentReadQueryVariables
 > {
   override document = FulfillmentFulfillmentReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityRoleDeleteDocument = gql`
+  mutation IdentityRoleDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    identity {
+      role {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityRoleDeleteGQL extends Apollo.Mutation<
+  IdentityRoleDeleteMutation,
+  IdentityRoleDeleteMutationVariables
+> {
+  override document = IdentityRoleDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityRoleMutateDocument = gql`
+  mutation IdentityRoleMutate($input: IIoRestorecommerceRoleRoleList!) {
+    identity {
+      role {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...RoleFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${RoleFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityRoleMutateGQL extends Apollo.Mutation<
+  IdentityRoleMutateMutation,
+  IdentityRoleMutateMutationVariables
+> {
+  override document = IdentityRoleMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityRoleReadDocument = gql`
+  query IdentityRoleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    identity {
+      role {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...RoleFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${RoleFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityRoleReadGQL extends Apollo.Query<
+  IdentityRoleReadQuery,
+  IdentityRoleReadQueryVariables
+> {
+  override document = IdentityRoleReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -10195,6 +10605,42 @@ export class IdentityUserMutateGQL extends Apollo.Mutation<
   IdentityUserMutateMutationVariables
 > {
   override document = IdentityUserMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserReadDocument = gql`
+  query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    identity {
+      user {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...UserRoleFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${UserRoleFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserReadGQL extends Apollo.Query<
+  IdentityUserReadQuery,
+  IdentityUserReadQueryVariables
+> {
+  override document = IdentityUserReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

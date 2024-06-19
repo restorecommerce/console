@@ -5,7 +5,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ProductFacade } from '@console-core/state';
 
-import { buildProductSchema } from './jss-forms';
+import { buildProductSchema } from '../jss-forms';
 
 @Component({
   selector: 'app-module-product-create',

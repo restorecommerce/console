@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { TOperationStatus } from '@console-core/types';
 
+import { AuthnFacade } from '../+state';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorHandlingService {
+  constructor(private readonly authFacade: AuthnFacade) {}
   public checkStatusAndThrow(status?: TOperationStatus): void {
     const errorMessages: { [key: number]: string } = {
       400: 'bad request',
@@ -19,6 +22,10 @@ export class ErrorHandlingService {
     let errorMessage = '';
 
     if (status?.code) {
+      if (status.code === 401) {
+        this.authFacade.signOut(false);
+      }
+
       if (status?.code in errorMessages) {
         errorMessage = errorMessages[status?.code];
       } else if (status.code !== 200) {

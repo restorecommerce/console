@@ -120,7 +120,9 @@ export interface IRouterConstant {
               getLink: () => TRouterLink;
               children: {
                 index: IRouterItem;
-                iam: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
               };
             };
             addresses: {
@@ -209,7 +211,9 @@ export interface IRouterConstant {
                   getLink: () => TRouterLink;
                   children: {
                     index: IRouterItem;
-                    roles: IRouterItem;
+                    create: IRouterItem;
+                    view: IRouterItem;
+                    edit: IRouterItem;
                   };
                 };
                 rules: {

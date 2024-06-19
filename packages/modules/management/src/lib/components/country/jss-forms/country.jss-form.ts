@@ -8,9 +8,9 @@ interface ISchemaOptions {
   country?: ICountry;
 }
 
-export const buildCountrySchema = (
-  options: ISchemaOptions
-): VCLFormFieldSchemaRoot => {
+export const buildCountrySchema = ({
+  country,
+}: ISchemaOptions): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
     fields: [
@@ -18,7 +18,7 @@ export const buildCountrySchema = (
         name: 'name',
         label: 'Name',
         type: 'input',
-        ...(options.country ? { defaultValue: options.country.name } : {}),
+        ...(country ? { defaultValue: country.name } : {}),
         validators: [Validators.required],
         params: {},
         hints: [
@@ -33,9 +33,7 @@ export const buildCountrySchema = (
         name: 'geographicalName',
         label: 'Geographical name',
         type: 'input',
-        ...(options.country
-          ? { defaultValue: options.country.geographicalName }
-          : {}),
+        ...(country ? { defaultValue: country.geographicalName } : {}),
         validators: [Validators.required],
         params: {},
         hints: [
@@ -50,9 +48,7 @@ export const buildCountrySchema = (
         name: 'countryCode',
         label: 'Country code',
         type: 'input',
-        ...(options.country
-          ? { defaultValue: options.country.countryCode }
-          : {}),
+        ...(country ? { defaultValue: country.countryCode } : {}),
         validators: [Validators.required, Validators.pattern('^[A-Z]{2}$')],
         params: {},
         hints: [
@@ -72,19 +68,13 @@ export const buildCountrySchema = (
         name: 'economicAreas',
         label: 'Economic areas',
         type: 'select',
-        ...(options.country
-          ? { defaultValue: options.country.economicAreas || [] }
-          : {}),
+        ...(country ? { defaultValue: country.economicAreas || [] } : {}),
         validators: [Validators.required],
         params: {
           placeholder: 'Select economic areas',
           selectionMode: 'multiple',
           clearable: true,
           search: false,
-          // emptyComponent: {
-          //   component: emptyComponent,
-          //   data: 'No economic areas found!',
-          // },
           // TODO: Load from API
           options: [
             {
