@@ -84,7 +84,6 @@ import {
   RcCrudEditComponent,
   RcOrderViewComponent,
   RcProductViewComponent,
-  RcFulfillmentViewComponent,
   RcInvoiceViewComponent,
 } from './components/organisms';
 import {
@@ -199,7 +198,6 @@ const organisms = [
   RcCrudEditComponent,
   RcOrderViewComponent,
   RcProductViewComponent,
-  RcFulfillmentViewComponent,
   RcInvoiceViewComponent,
 ];
 
