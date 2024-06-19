@@ -29,8 +29,6 @@ export * from './header/header.component';
 export * from './invoice/invoice-view.component';
 export * from './flex-grid/flex-grid.directive';
 export * from './fulfillment/fulfillment-view.component';
-export * from './management/country/country-view.component';
-export * from './management/iam/iam-view.component';
 export * from './meta/meta.component';
 export * from './order/order-view.component';
 export * from './page-header/page-header.component';

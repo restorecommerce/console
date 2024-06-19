@@ -25,6 +25,10 @@ vcl-jss-form {
       border-radius: 0;
       margin-inline-start: -1px;
       margin-inline-end: 0;
+
+      legend {
+        font-weight: normal;
+      }
     }
   }
 }

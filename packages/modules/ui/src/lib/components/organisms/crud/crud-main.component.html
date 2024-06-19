@@ -128,7 +128,10 @@
                 *ngIf="!vm.isLg && id"
                 class="row"
               >
-                <div class="flex">
+                <div
+                  *ngIf="isMeta"
+                  class="flex"
+                >
                   <rc-toolbar> Meta </rc-toolbar>
                   <div class="row mb-4 pb-2">
                     <div class="flex p-2">
