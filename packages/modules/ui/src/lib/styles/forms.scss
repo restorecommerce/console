@@ -1,3 +1,5 @@
+@use '@vcl/vcl/theme' as *;
+
 vcl-jss-form {
   .loose-button-group {
     display: flex;
@@ -14,6 +16,15 @@ vcl-jss-form {
       .button + .button {
         margin-top: 0.8rem;
       }
+    }
+  }
+
+  vcl-jss-form-array {
+    .fieldset {
+      border: 1px solid $input-border-color;
+      border-radius: 0;
+      margin-inline-start: -1px;
+      margin-inline-end: 0;
     }
   }
 }
