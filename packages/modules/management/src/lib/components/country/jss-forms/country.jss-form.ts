@@ -75,10 +75,6 @@ export const buildCountrySchema = ({
           selectionMode: 'multiple',
           clearable: true,
           search: false,
-          // emptyComponent: {
-          //   component: emptyComponent,
-          //   data: 'No economic areas found!',
-          // },
           // TODO: Load from API
           options: [
             {
