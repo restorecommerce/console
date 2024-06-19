@@ -1,0 +1,16 @@
+mutation IdentityRoleDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  identity {
+    role {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

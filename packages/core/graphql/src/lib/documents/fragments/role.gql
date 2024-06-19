@@ -1,0 +1,6 @@
+fragment RoleFragment on IoRestorecommerceRoleRole {
+  id
+  name
+  description
+  assignableByRoles
+}

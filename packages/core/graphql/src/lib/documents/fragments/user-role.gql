@@ -25,9 +25,7 @@ fragment UserRoleFragment on IoRestorecommerceUserUserRole {
     description
   }
   roles {
-    id
-    name
-    assignableByRoles
+    ...RoleFragment
   }
   roleAssociations {
     id
