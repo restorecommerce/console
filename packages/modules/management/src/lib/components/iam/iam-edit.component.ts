@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { ROUTER } from '@console-core/config';
 import {
   IamFacade,
   LocaleFacade,
+  RoleFacade,
   RouterFacade,
   TimezoneFacade,
   filterEmptyAndNullishAndUndefined,
@@ -31,14 +32,16 @@ import { buildUserSchema } from './jss-forms';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IamEditComponent {
+export class IamEditComponent implements OnInit {
   schema!: VCLFormFieldSchemaRoot;
   update = this.iamFacade.update;
+  id: string | null = null;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
       map(({ id }) => id),
       tap((id) => {
+        this.id = id;
         this.iamFacade.setSelectedId(id);
       })
     ),
@@ -55,9 +58,10 @@ export class IamEditComponent {
     ),
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
+    roles: this.roleFacade.all$,
   }).pipe(
-    tap(({ user, locales, timezones }) => {
-      this.schema = buildUserSchema({ user, locales, timezones });
+    tap(({ user, locales, timezones, roles }) => {
+      this.schema = buildUserSchema({ user, locales, timezones, roles });
     })
   );
 
@@ -66,6 +70,13 @@ export class IamEditComponent {
     private readonly routerFacade: RouterFacade,
     private readonly iamFacade: IamFacade,
     private readonly localeFacade: LocaleFacade,
-    private readonly timezoneFacade: TimezoneFacade
+    private readonly timezoneFacade: TimezoneFacade,
+    private readonly roleFacade: RoleFacade
   ) {}
+
+  ngOnInit(): void {
+    this.localeFacade.read({});
+    this.timezoneFacade.read({});
+    this.roleFacade.read({});
+  }
 }

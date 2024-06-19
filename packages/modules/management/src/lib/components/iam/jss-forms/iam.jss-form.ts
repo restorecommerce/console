@@ -2,18 +2,20 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { ILocale, ITimezone, IUser } from '@console-core/types';
+import { ILocale, IRole, ITimezone, IUser } from '@console-core/types';
 
 interface ISchemaOptions {
   user: IUser | null;
   locales: ILocale[];
   timezones: ITimezone[];
+  roles: IRole[];
 }
 
 export const buildUserSchema = ({
   user,
   locales,
   timezones,
+  roles,
 }: ISchemaOptions): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
@@ -88,7 +90,9 @@ export const buildUserSchema = ({
         label: 'Active',
         type: 'checkbox',
         ...(user ? { defaultValue: user.active } : { defaultValue: true }),
+        validators: [],
         params: {},
+        hints: [],
       },
       {
         name: 'localeId',
@@ -131,6 +135,74 @@ export const buildUserSchema = ({
             message: 'This field is required.',
           },
         ],
+      },
+
+      {
+        name: 'roleAssociations',
+        label: 'Role associations',
+        type: 'array',
+        initialFields: 1,
+        fieldLabel: (index) => `Role ${index + 1}`,
+        noFieldsLabel: 'No role associations',
+        field: {
+          name: 'roles',
+          type: 'object',
+          fields: [
+            {
+              name: 'roles',
+              label: 'Role',
+              type: 'select',
+              // ...(user
+              //   ? {
+              //       defaultValue: user.roles?.map((role) => role.id),
+              //     }
+              //   : {}),
+              validators: [Validators.required],
+              params: {
+                placeholder: 'Select role',
+                selectionMode: 'single',
+                clearable: true,
+                search: false,
+                options: roles.map((role) => ({
+                  label: role.name,
+                  sublabel: role.description,
+                  value: role.id,
+                })),
+              },
+              hints: [
+                {
+                  type: 'error',
+                  error: 'required',
+                  message: 'This field is required.',
+                },
+              ],
+            },
+            {
+              name: 'organizationId',
+              label: 'Organization',
+              type: 'input',
+              defaultValue: '',
+              validators: [Validators.required],
+              hints: [
+                {
+                  type: 'error',
+                  error: 'required',
+                  message: 'This field is required.',
+                },
+              ],
+            },
+          ],
+        },
+        // TODO: Check to add validators
+        // validators: [Validators.required],
+        // params: {},
+        // hints: [
+        //   {
+        //     type: 'error',
+        //     error: 'required',
+        //     message: 'This field is required.',
+        //   },
+        // ],
       },
       {
         type: 'buttons',

@@ -14,7 +14,7 @@ import {
   selector: 'app-module-management-iam-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-management-iam-view [user]="vm.user" />
+      <app-module-management-iam-view-details [user]="vm.user" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

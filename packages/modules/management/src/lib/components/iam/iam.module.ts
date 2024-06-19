@@ -7,6 +7,7 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { IamCreateComponent } from './iam-create.component';
 import { IamEditComponent } from './iam-edit.component';
 import { IamIndexComponent } from './iam-index.component';
+import { IamViewDetailsComponent } from './iam-view-details.component';
 import { IamViewComponent } from './iam-view.component';
 import { IamTemplateComponent } from './template/iam-template.component';
 
@@ -63,6 +64,7 @@ const routes: Routes = [
     IamEditComponent,
     IamIndexComponent,
     IamViewComponent,
+    IamViewDetailsComponent,
     IamTemplateComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],

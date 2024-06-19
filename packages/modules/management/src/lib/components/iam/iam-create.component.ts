@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IamFacade, LocaleFacade, TimezoneFacade } from '@console-core/state';
+import {
+  IamFacade,
+  LocaleFacade,
+  RoleFacade,
+  TimezoneFacade,
+} from '@console-core/state';
 
 import { buildUserSchema } from './jss-forms';
 
@@ -22,7 +27,7 @@ import { buildUserSchema } from './jss-forms';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IamCreateComponent {
+export class IamCreateComponent implements OnInit {
   schema!: VCLFormFieldSchemaRoot; // = buildUserSchema({});
   create = this.iamFacade.create;
 
@@ -30,15 +35,23 @@ export class IamCreateComponent {
     user: this.iamFacade.selected$,
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
+    roles: this.roleFacade.all$,
   }).pipe(
-    tap(({ user, locales, timezones }) => {
-      this.schema = buildUserSchema({ user, locales, timezones });
+    tap(({ user, locales, timezones, roles }) => {
+      this.schema = buildUserSchema({ user, locales, timezones, roles });
     })
   );
 
   constructor(
     private readonly iamFacade: IamFacade,
     private readonly localeFacade: LocaleFacade,
-    private readonly timezoneFacade: TimezoneFacade
+    private readonly timezoneFacade: TimezoneFacade,
+    private readonly roleFacade: RoleFacade
   ) {}
+
+  ngOnInit(): void {
+    this.localeFacade.read({});
+    this.timezoneFacade.read({});
+    this.roleFacade.read({});
+  }
 }
