@@ -44,7 +44,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
       this.isResizing = false;
-    }, 500); // Wait for 500ms after the resize event stops firing
+    }, 500) as unknown as number; // Wait for 500ms after the resize event stops firing
   }
 
   menuTopLinks = [
