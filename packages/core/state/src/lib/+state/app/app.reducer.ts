@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import { STORE } from '@console-core/config';
 import { EActionStatus, IAppState, INotification } from '@console-core/types';
