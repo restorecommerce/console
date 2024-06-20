@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import { APP, ROUTER } from '@console-core/config';
 @Component({
