@@ -5,10 +5,13 @@ e-commerce suite based on [Angular](https://angular.io/).
 
 **Live demo at [console.restorecommerce.io](https://console.restorecommerce.io/)**.
 
+**[Demo Accosts](https://github.com/restorecommerce/data/blob/master/datasets/demo-shop/data/seed-data/users.yaml)**
+
 ## Goals and Features
 
 - Performant by default
 - Internationalization
+- Multi tenancy
 - Responsive
 - UI Components
 - Theming

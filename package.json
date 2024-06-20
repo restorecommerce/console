@@ -1,7 +1,18 @@
 {
-  "name": "console-base",
+  "name": "restorecommerce-console",
   "version": "0.0.0",
+  "author": "n-fuse GmbH",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/restorecommerce/console.git"
+  },
   "license": "MIT",
+  "keywords": [
+    "restore",
+    "commerce",
+    "console",
+    "front-end"
+  ],
   "scripts": {
     "console:serve:dev": "nx run restorecommerce:serve --configuration=development",
     "console:serve:prod": "nx run restorecommerce:serve --configuration=production",
