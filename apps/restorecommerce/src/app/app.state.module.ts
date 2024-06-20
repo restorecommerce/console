@@ -57,6 +57,7 @@ const reducers: ActionReducerMap<IStore, Action> = !environment.production
       name: STORE.ngrx.storeDevtoolsModule.name,
       maxAge: STORE.ngrx.storeDevtoolsModule.maxAge,
       logOnly: environment.production,
+      connectInZone: true,
     }),
   ],
 })

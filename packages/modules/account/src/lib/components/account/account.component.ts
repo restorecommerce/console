@@ -62,7 +62,7 @@ import { AccountFacade } from '@console-core/state';
           </ul>
 
           <h3>Support</h3>
-          <p>Contact us at support@restorecommerce.io</p>
+          <p>Contact us at support&#64;restorecommerce.io</p>
         </div>
       </div>
     </ng-container>
