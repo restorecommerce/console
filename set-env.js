@@ -3,7 +3,7 @@ const { resolve } = require('path');
 
 const isProduction = process.argv[2] === 'production';
 const oidcKey = process.env.CONSOLE_OIDC_KEY;
-const apiUrl = process.env.CONSOLE_API_URL || 'http://localhost:4200';
+const apiUrl = process.env.CONSOLE_API_URL || 'http://127.0.0.1:5000';
 const targetPath = resolve(
   __dirname,
   `apps/restorecommerce/src/environments/environment${
