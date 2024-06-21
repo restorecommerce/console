@@ -1,12 +1,11 @@
 import { IEnvironment } from '@console-core/types';
 
-const baseUrl = 'http://localhost:5000';
-
 export const environment: Readonly<IEnvironment> = {
   production: false,
+  oidcKey: 'VEVTVF9DTElFTlRfSUQ6VEVTVF9DTElFTlRfU0VDUkVU=',
   storagePrefix: 'console.dev.',
   urls: {
-    api: baseUrl,
-    graphql: `${baseUrl}/graphql`,
+    api: 'http://192.168.1.38:5000',
+    graphql: 'http://192.168.1.38:5000/graphql',
   },
 };
