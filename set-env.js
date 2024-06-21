@@ -12,8 +12,7 @@ const targetPath = resolve(
 );
 
 // Define environment variables
-const envConfigFile = `
-import { IEnvironment } from '@console-core/types';
+const envConfigFile = `import { IEnvironment } from '@console-core/types';
 
 export const environment: Readonly<IEnvironment> = {
   production: ${isProduction},
