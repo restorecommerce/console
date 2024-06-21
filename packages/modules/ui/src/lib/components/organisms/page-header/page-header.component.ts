@@ -24,7 +24,7 @@ import { IBreadcrumb } from '@console-core/types';
     >
       <nav class="breadcrumb-nav">
         <div class="row">
-          <div class="flex">
+          <div class="flex pt-2">
             <ol>
               <li>
                 <a
@@ -57,12 +57,6 @@ import { IBreadcrumb } from '@console-core/types';
           </div>
         </div>
       </nav>
-
-      <div class="row">
-        <div class="flex">
-          <h2 class="title">{{ title }}</h2>
-        </div>
-      </div>
     </ng-container>
   `,
 })
