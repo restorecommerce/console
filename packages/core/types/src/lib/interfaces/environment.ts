@@ -1,6 +1,6 @@
 export interface IEnvironment {
   readonly production: boolean;
-  readonly oidcClientSecret: string;
+  readonly oidcKey: string;
   readonly storagePrefix: string;
   readonly urls: {
     readonly api: string;
