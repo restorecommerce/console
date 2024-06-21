@@ -76,6 +76,18 @@
       },
       "defaultConfiguration": "development"
     },
+    "set-env": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "node set-env.js {args.configuration}",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false
+      }
+    },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
