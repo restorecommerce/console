@@ -7,6 +7,9 @@ WORKDIR /app
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
+# TODO: Add env file
+COPY .env.template .env
+
 RUN npm ci --legacy-peer-deps
 
 COPY --chown=node:node . .
