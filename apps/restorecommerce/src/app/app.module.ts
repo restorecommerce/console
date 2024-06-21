@@ -33,6 +33,10 @@ import { RoutesTitleStrategyService } from './routes-title-strategy.service';
   ],
   providers: [
     {
+      provide: 'oidcKey',
+      useValue: environment.oidcKey,
+    },
+    {
       provide: 'apiUrl',
       useValue: environment.urls.api,
     },
