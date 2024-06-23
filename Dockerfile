@@ -11,6 +11,9 @@ RUN npm ci --legacy-peer-deps
 
 COPY --chown=node:node . .
 
+COPY --from=build /app/.env /app/.env
+RUN chown node:node /app/.env
+
 RUN npm run console:build:prod
 
 
