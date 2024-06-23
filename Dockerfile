@@ -10,7 +10,6 @@ COPY package-lock.json package-lock.json
 RUN npm ci --legacy-peer-deps
 
 COPY --chown=node:node . .
-RUN chown node:node /app/.env
 
 RUN npm run console:build:prod
 
