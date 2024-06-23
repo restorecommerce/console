@@ -40,3 +40,6 @@ Thumbs.db
 
 .angular
 .nx
+
+# Environment variables
+.env

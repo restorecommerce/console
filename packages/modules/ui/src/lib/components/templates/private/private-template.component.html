@@ -6,7 +6,6 @@
         [logoUrl]="APP.logoUrl"
         [logoLink]="ROUTER.pages.main.children.home.link"
       >
-        {{ APP.name }}
       </rc-banner>
 
       <rc-header-navigation *ngIf="!smallDevice">
@@ -110,7 +109,7 @@
           icon="mdi:truck-outline"
           [routerLink]="ROUTER.pages.main.children.fulfillments.link"
           [routerLinkActive]="['selected']"
-          >Fulfillment</rc-drawer-navigation-item
+          >Fulfillments</rc-drawer-navigation-item
         >
       </ng-container>
       <!-- /Home -->

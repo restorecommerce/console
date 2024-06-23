@@ -49,6 +49,17 @@ These commands utilize the @nx/angular plugin provided by Nx to generate the res
 
 To generate code from GraphQL schemas, you can utilize the following command: `npm run console:graphql:generate`. This command will generate TypeScript types and Angular services for GraphQL schemas and operations located in `./packages/modules/` with extension `.gql`.
 
+### Set Environment Variables
+
+Create a `.env` file in the root directory of the project with the following content:
+
+```bash
+# Environment variables
+CONSOLE_API_URL=http://127.0.0.1:5000
+CONSOLE_OIDC_KEY=VEVTVF9DTElFTlRfSUQ6VEVTVF9DTElFTlRfU0VDUkVU=
+
+```
+
 ### Development Server
 
 To start the development server, run `npm run console:serve:dev`. Navigate to `http://localhost:4200/`. The app will automatically reload if you make any changes to the source files.

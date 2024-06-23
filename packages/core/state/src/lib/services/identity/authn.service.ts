@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { MutationResult } from 'apollo-angular';
 import { Observable } from 'rxjs';
 
@@ -21,9 +21,10 @@ import { ApiService } from '../api.service';
   providedIn: 'root',
 })
 export class AuthnService {
-  private readonly headers = new HttpHeaders(AUTH.headers);
+  private readonly headers = new HttpHeaders(AUTH(this.oidcKey));
 
   constructor(
+    @Inject('oidcKey') private oidcKey: string,
     private readonly httpClient: HttpClient,
     private readonly apiService: ApiService,
     private readonly identityUserRegisterGQL: IdentityUserRegisterGQL

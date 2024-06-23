@@ -1,7 +1,13 @@
 import { IAuthnState, IStoreConstant } from '../interfaces';
 
-type AuthnStateKey = IStoreConstant['states']['authnState'];
+type TAuthnStateKey = IStoreConstant['states']['authnState'];
 
-export type IAuthnStateType = {
-  [key in AuthnStateKey]: IAuthnState;
+export type TAuthnStateType = {
+  [key in TAuthnStateKey]: IAuthnState;
+};
+
+export type TAuthnConstant = (key: string) => {
+  Accept: string;
+  'Content-type': string;
+  Authorization: string;
 };
