@@ -44,7 +44,7 @@ import { EUserRoleAssociation, IUser } from '@console-core/types';
   providedIn: 'root',
 })
 export class UserService {
-  private roleAssociationsCache: { [key: string]: string } = {};
+  private roleAssociationsCache: Record<string, string> = {};
 
   constructor(
     private readonly identityUserActivateGQL: IdentityUserActivateGQL,
@@ -162,6 +162,16 @@ export class UserService {
     return {
       ...user,
       fullName: `${user.firstName} ${user.lastName}`,
+      locale: {
+        ...user.locale,
+        name: user.locale?.name ?? '',
+      },
+      timezone: {
+        ...user.timezone,
+        name: user.timezone?.name ?? '',
+      },
+      roles: user.roles ?? [],
+      roleAssociations: user.roleAssociations ?? [],
       isSuperAdministrator: this.hasUserRoleAssociations(
         user,
         'superadministrator-r-id'
@@ -172,6 +182,6 @@ export class UserService {
   }
 
   private hasUserRoleAssociations(user: IUser, roleId: string): boolean {
-    return !!user.roleAssociations.some((ra) => ra.role === roleId);
+    return !!user?.roleAssociations?.some((ra) => ra.role === roleId);
   }
 }
