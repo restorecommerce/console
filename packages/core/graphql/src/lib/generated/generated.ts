@@ -3,7 +3,7 @@ import { gql } from 'apollo-angular';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
+export type Exact<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K];
 };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
@@ -13,7 +13,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: string;
   String: string;
   Boolean: boolean;
@@ -38,269 +38,269 @@ export type Scalars = {
   TodoScalar: unknown;
   /** The `Upload` scalar type represents a file upload. */
   Upload: unknown;
-};
+}
 
-export type AccessControlAccessControlQuery = {
+export interface AccessControlAccessControlQuery {
   __typename?: 'AccessControlAccessControlQuery';
   IsAllowed?: Maybe<ProtoIoRestorecommerceAccessControlResponse>;
   WhatIsAllowed?: Maybe<ProtoIoRestorecommerceAccessControlReverseQuery>;
-};
+}
 
-export type AccessControlAccessControlQueryIsAllowedArgs = {
+export interface AccessControlAccessControlQueryIsAllowedArgs {
   input: IIoRestorecommerceAccessControlRequest;
-};
+}
 
-export type AccessControlAccessControlQueryWhatIsAllowedArgs = {
+export interface AccessControlAccessControlQueryWhatIsAllowedArgs {
   input: IIoRestorecommerceAccessControlRequest;
-};
+}
 
-export type AccessControlMutation = {
+export interface AccessControlMutation {
   __typename?: 'AccessControlMutation';
   policy: AccessControlPolicyMutation;
   policy_set: AccessControlPolicySetMutation;
   rule: AccessControlRuleMutation;
-};
+}
 
-export type AccessControlPolicyMutation = {
+export interface AccessControlPolicyMutation {
   __typename?: 'AccessControlPolicyMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommercePolicyPolicyListResponse>;
-};
+}
 
-export type AccessControlPolicyMutationDeleteArgs = {
+export interface AccessControlPolicyMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type AccessControlPolicyMutationMutateArgs = {
+export interface AccessControlPolicyMutationMutateArgs {
   input: IIoRestorecommercePolicyPolicyList;
-};
+}
 
-export type AccessControlPolicyQuery = {
+export interface AccessControlPolicyQuery {
   __typename?: 'AccessControlPolicyQuery';
   Read?: Maybe<ProtoIoRestorecommercePolicyPolicyListResponse>;
-};
+}
 
-export type AccessControlPolicyQueryReadArgs = {
+export interface AccessControlPolicyQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type AccessControlPolicySetMutation = {
+export interface AccessControlPolicySetMutation {
   __typename?: 'AccessControlPolicySetMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommercePolicySetPolicySetListResponse>;
-};
+}
 
-export type AccessControlPolicySetMutationDeleteArgs = {
+export interface AccessControlPolicySetMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type AccessControlPolicySetMutationMutateArgs = {
+export interface AccessControlPolicySetMutationMutateArgs {
   input: IIoRestorecommercePolicySetPolicySetList;
-};
+}
 
-export type AccessControlPolicySetQuery = {
+export interface AccessControlPolicySetQuery {
   __typename?: 'AccessControlPolicySetQuery';
   Read?: Maybe<ProtoIoRestorecommercePolicySetPolicySetListResponse>;
-};
+}
 
-export type AccessControlPolicySetQueryReadArgs = {
+export interface AccessControlPolicySetQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type AccessControlQuery = {
+export interface AccessControlQuery {
   __typename?: 'AccessControlQuery';
   access_control: AccessControlAccessControlQuery;
   policy: AccessControlPolicyQuery;
   policy_set: AccessControlPolicySetQuery;
   rule: AccessControlRuleQuery;
-};
+}
 
-export type AccessControlRuleMutation = {
+export interface AccessControlRuleMutation {
   __typename?: 'AccessControlRuleMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceRuleRuleListResponse>;
-};
+}
 
-export type AccessControlRuleMutationDeleteArgs = {
+export interface AccessControlRuleMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type AccessControlRuleMutationMutateArgs = {
+export interface AccessControlRuleMutationMutateArgs {
   input: IIoRestorecommerceRuleRuleList;
-};
+}
 
-export type AccessControlRuleQuery = {
+export interface AccessControlRuleQuery {
   __typename?: 'AccessControlRuleQuery';
   Read?: Maybe<ProtoIoRestorecommerceRuleRuleListResponse>;
-};
+}
 
-export type AccessControlRuleQueryReadArgs = {
+export interface AccessControlRuleQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type CatalogManufacturerMutation = {
+export interface CatalogManufacturerMutation {
   __typename?: 'CatalogManufacturerMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceManufacturerManufacturerListResponse>;
-};
+}
 
-export type CatalogManufacturerMutationDeleteArgs = {
+export interface CatalogManufacturerMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type CatalogManufacturerMutationMutateArgs = {
+export interface CatalogManufacturerMutationMutateArgs {
   input: IIoRestorecommerceManufacturerManufacturerList;
-};
+}
 
-export type CatalogManufacturerQuery = {
+export interface CatalogManufacturerQuery {
   __typename?: 'CatalogManufacturerQuery';
   Read?: Maybe<ProtoIoRestorecommerceManufacturerManufacturerListResponse>;
-};
+}
 
-export type CatalogManufacturerQueryReadArgs = {
+export interface CatalogManufacturerQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type CatalogMutation = {
+export interface CatalogMutation {
   __typename?: 'CatalogMutation';
   manufacturer: CatalogManufacturerMutation;
   price_group: CatalogPriceGroupMutation;
   product: CatalogProductMutation;
   product_category: CatalogProductCategoryMutation;
   product_prototype: CatalogProductPrototypeMutation;
-};
+}
 
-export type CatalogPriceGroupMutation = {
+export interface CatalogPriceGroupMutation {
   __typename?: 'CatalogPriceGroupMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommercePriceGroupPriceGroupListResponse>;
-};
+}
 
-export type CatalogPriceGroupMutationDeleteArgs = {
+export interface CatalogPriceGroupMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type CatalogPriceGroupMutationMutateArgs = {
+export interface CatalogPriceGroupMutationMutateArgs {
   input: IIoRestorecommercePriceGroupPriceGroupList;
-};
+}
 
-export type CatalogPriceGroupQuery = {
+export interface CatalogPriceGroupQuery {
   __typename?: 'CatalogPriceGroupQuery';
   Read?: Maybe<ProtoIoRestorecommercePriceGroupPriceGroupListResponse>;
-};
+}
 
-export type CatalogPriceGroupQueryReadArgs = {
+export interface CatalogPriceGroupQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type CatalogProductCategoryMutation = {
+export interface CatalogProductCategoryMutation {
   __typename?: 'CatalogProductCategoryMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceProductCategoryProductCategoryListResponse>;
-};
+}
 
-export type CatalogProductCategoryMutationDeleteArgs = {
+export interface CatalogProductCategoryMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type CatalogProductCategoryMutationMutateArgs = {
+export interface CatalogProductCategoryMutationMutateArgs {
   input: IIoRestorecommerceProductCategoryProductCategoryList;
-};
+}
 
-export type CatalogProductCategoryQuery = {
+export interface CatalogProductCategoryQuery {
   __typename?: 'CatalogProductCategoryQuery';
   Read?: Maybe<ProtoIoRestorecommerceProductCategoryProductCategoryListResponse>;
-};
+}
 
-export type CatalogProductCategoryQueryReadArgs = {
+export interface CatalogProductCategoryQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type CatalogProductMutation = {
+export interface CatalogProductMutation {
   __typename?: 'CatalogProductMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceProductProductListResponse>;
-};
+}
 
-export type CatalogProductMutationDeleteArgs = {
+export interface CatalogProductMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type CatalogProductMutationMutateArgs = {
+export interface CatalogProductMutationMutateArgs {
   input: IIoRestorecommerceProductProductList;
-};
+}
 
-export type CatalogProductPrototypeMutation = {
+export interface CatalogProductPrototypeMutation {
   __typename?: 'CatalogProductPrototypeMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse>;
-};
+}
 
-export type CatalogProductPrototypeMutationDeleteArgs = {
+export interface CatalogProductPrototypeMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type CatalogProductPrototypeMutationMutateArgs = {
+export interface CatalogProductPrototypeMutationMutateArgs {
   input: IIoRestorecommerceProductPrototypeProductPrototypeList;
-};
+}
 
-export type CatalogProductPrototypeQuery = {
+export interface CatalogProductPrototypeQuery {
   __typename?: 'CatalogProductPrototypeQuery';
   Read?: Maybe<ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse>;
-};
+}
 
-export type CatalogProductPrototypeQueryReadArgs = {
+export interface CatalogProductPrototypeQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type CatalogProductQuery = {
+export interface CatalogProductQuery {
   __typename?: 'CatalogProductQuery';
   Read?: Maybe<ProtoIoRestorecommerceProductProductListResponse>;
-};
+}
 
-export type CatalogProductQueryReadArgs = {
+export interface CatalogProductQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type CatalogQuery = {
+export interface CatalogQuery {
   __typename?: 'CatalogQuery';
   manufacturer: CatalogManufacturerQuery;
   price_group: CatalogPriceGroupQuery;
   product: CatalogProductQuery;
   product_category: CatalogProductCategoryQuery;
   product_prototype: CatalogProductPrototypeQuery;
-};
+}
 
 /** The facade status */
-export type FacadeStatusType = {
+export interface FacadeStatusType {
   __typename?: 'FacadeStatusType';
   running: Scalars['Boolean'];
-};
+}
 
-export type FulfillmentFulfillmentCourierMutation = {
+export interface FulfillmentFulfillmentCourierMutation {
   __typename?: 'FulfillmentFulfillmentCourierMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
-};
+}
 
-export type FulfillmentFulfillmentCourierMutationDeleteArgs = {
+export interface FulfillmentFulfillmentCourierMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type FulfillmentFulfillmentCourierMutationMutateArgs = {
+export interface FulfillmentFulfillmentCourierMutationMutateArgs {
   input: IIoRestorecommerceFulfillmentCourierFulfillmentCourierList;
-};
+}
 
-export type FulfillmentFulfillmentCourierQuery = {
+export interface FulfillmentFulfillmentCourierQuery {
   __typename?: 'FulfillmentFulfillmentCourierQuery';
   Read?: Maybe<ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
-};
+}
 
-export type FulfillmentFulfillmentCourierQueryReadArgs = {
+export interface FulfillmentFulfillmentCourierQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type FulfillmentFulfillmentMutation = {
+export interface FulfillmentFulfillmentMutation {
   __typename?: 'FulfillmentFulfillmentMutation';
   Cancel?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
   CreateInvoice?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
@@ -311,118 +311,118 @@ export type FulfillmentFulfillmentMutation = {
   Track?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
   TriggerInvoice?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
   Withdraw?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
-};
+}
 
-export type FulfillmentFulfillmentMutationCancelArgs = {
+export interface FulfillmentFulfillmentMutationCancelArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentIdList;
-};
+}
 
-export type FulfillmentFulfillmentMutationCreateInvoiceArgs = {
+export interface FulfillmentFulfillmentMutationCreateInvoiceArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentInvoiceRequestList;
-};
+}
 
-export type FulfillmentFulfillmentMutationDeleteArgs = {
+export interface FulfillmentFulfillmentMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type FulfillmentFulfillmentMutationEvaluateArgs = {
+export interface FulfillmentFulfillmentMutationEvaluateArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentList;
-};
+}
 
-export type FulfillmentFulfillmentMutationMutateArgs = {
+export interface FulfillmentFulfillmentMutationMutateArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentList;
-};
+}
 
-export type FulfillmentFulfillmentMutationSubmitArgs = {
+export interface FulfillmentFulfillmentMutationSubmitArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentList;
-};
+}
 
-export type FulfillmentFulfillmentMutationTrackArgs = {
+export interface FulfillmentFulfillmentMutationTrackArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentIdList;
-};
+}
 
-export type FulfillmentFulfillmentMutationTriggerInvoiceArgs = {
+export interface FulfillmentFulfillmentMutationTriggerInvoiceArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentInvoiceRequestList;
-};
+}
 
-export type FulfillmentFulfillmentMutationWithdrawArgs = {
+export interface FulfillmentFulfillmentMutationWithdrawArgs {
   input: IIoRestorecommerceFulfillmentFulfillmentIdList;
-};
+}
 
-export type FulfillmentFulfillmentProductMutation = {
+export interface FulfillmentFulfillmentProductMutation {
   __typename?: 'FulfillmentFulfillmentProductMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
-};
+}
 
-export type FulfillmentFulfillmentProductMutationDeleteArgs = {
+export interface FulfillmentFulfillmentProductMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type FulfillmentFulfillmentProductMutationMutateArgs = {
+export interface FulfillmentFulfillmentProductMutationMutateArgs {
   input: IIoRestorecommerceFulfillmentProductFulfillmentProductList;
-};
+}
 
-export type FulfillmentFulfillmentProductQuery = {
+export interface FulfillmentFulfillmentProductQuery {
   __typename?: 'FulfillmentFulfillmentProductQuery';
   Find?: Maybe<ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse>;
   Read?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
-};
+}
 
-export type FulfillmentFulfillmentProductQueryFindArgs = {
+export interface FulfillmentFulfillmentProductQueryFindArgs {
   input: IIoRestorecommerceFulfillmentProductPackingSolutionQueryList;
-};
+}
 
-export type FulfillmentFulfillmentProductQueryReadArgs = {
+export interface FulfillmentFulfillmentProductQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type FulfillmentFulfillmentQuery = {
+export interface FulfillmentFulfillmentQuery {
   __typename?: 'FulfillmentFulfillmentQuery';
   Read?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
-};
+}
 
-export type FulfillmentFulfillmentQueryReadArgs = {
+export interface FulfillmentFulfillmentQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type FulfillmentMutation = {
+export interface FulfillmentMutation {
   __typename?: 'FulfillmentMutation';
   fulfillment: FulfillmentFulfillmentMutation;
   fulfillment_courier: FulfillmentFulfillmentCourierMutation;
   fulfillment_product: FulfillmentFulfillmentProductMutation;
-};
+}
 
-export type FulfillmentQuery = {
+export interface FulfillmentQuery {
   __typename?: 'FulfillmentQuery';
   fulfillment: FulfillmentFulfillmentQuery;
   fulfillment_courier: FulfillmentFulfillmentCourierQuery;
   fulfillment_product: FulfillmentFulfillmentProductQuery;
-};
+}
 
-export type GoogleProtobufAny = {
+export interface GoogleProtobufAny {
   __typename?: 'GoogleProtobufAny';
   typeUrl?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['GoogleProtobufAnyValue']>;
-};
+}
 
-export type IGoogleProtobufAny = {
+export interface IGoogleProtobufAny {
   typeUrl?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['GoogleProtobufAnyValue']>;
-};
+}
 
-export type IIoRestorecommerceAccessControlContext = {
-  resources?: InputMaybe<Array<IGoogleProtobufAny>>;
+export interface IIoRestorecommerceAccessControlContext {
+  resources?: InputMaybe<IGoogleProtobufAny[]>;
   security?: InputMaybe<IGoogleProtobufAny>;
   subject?: InputMaybe<IGoogleProtobufAny>;
-};
+}
 
-export type IIoRestorecommerceAccessControlRequest = {
+export interface IIoRestorecommerceAccessControlRequest {
   context?: InputMaybe<IIoRestorecommerceAccessControlContext>;
   target?: InputMaybe<IIoRestorecommerceRuleTarget>;
-};
+}
 
-export type IIoRestorecommerceAddressAddress = {
+export interface IIoRestorecommerceAddressAddress {
   addressAddition?: InputMaybe<IIoRestorecommerceAddressAddressAddition>;
   altitude?: InputMaybe<Scalars['Float']>;
   buildingNumber?: InputMaybe<Scalars['String']>;
@@ -437,98 +437,98 @@ export type IIoRestorecommerceAddressAddress = {
   region?: InputMaybe<Scalars['String']>;
   residentialAddress?: InputMaybe<IIoRestorecommerceAddressResidentialAddress>;
   street?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAddressAddressAddition = {
+export interface IIoRestorecommerceAddressAddressAddition {
   field1?: InputMaybe<Scalars['String']>;
   field2?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAddressAddressList = {
-  items?: InputMaybe<Array<IIoRestorecommerceAddressAddress>>;
+export interface IIoRestorecommerceAddressAddressList {
+  items?: InputMaybe<IIoRestorecommerceAddressAddress[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceAddressBillingAddress = {
+export interface IIoRestorecommerceAddressBillingAddress {
   address?: InputMaybe<IIoRestorecommerceAddressAddress>;
   comments?: InputMaybe<Scalars['String']>;
   contact?: InputMaybe<IIoRestorecommerceAddressContact>;
-};
+}
 
-export type IIoRestorecommerceAddressBusinessAddress = {
+export interface IIoRestorecommerceAddressBusinessAddress {
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAddressContact = {
+export interface IIoRestorecommerceAddressContact {
   email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   phone?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAddressGeoPoint = {
+export interface IIoRestorecommerceAddressGeoPoint {
   latitude?: InputMaybe<Scalars['Float']>;
   longitude?: InputMaybe<Scalars['Float']>;
-};
+}
 
-export type IIoRestorecommerceAddressPackStation = {
+export interface IIoRestorecommerceAddressPackStation {
   postNumber?: InputMaybe<Scalars['String']>;
   provider?: InputMaybe<Scalars['String']>;
   stationNumber?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAddressResidentialAddress = {
+export interface IIoRestorecommerceAddressResidentialAddress {
   familyName?: InputMaybe<Scalars['String']>;
   givenName?: InputMaybe<Scalars['String']>;
   midName?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAddressShippingAddress = {
+export interface IIoRestorecommerceAddressShippingAddress {
   address?: InputMaybe<IIoRestorecommerceAddressAddress>;
   comments?: InputMaybe<Scalars['String']>;
   contact?: InputMaybe<IIoRestorecommerceAddressContact>;
-};
+}
 
-export type IIoRestorecommerceAmountAmount = {
+export interface IIoRestorecommerceAmountAmount {
   currencyId?: InputMaybe<Scalars['String']>;
   gross?: InputMaybe<Scalars['Float']>;
   net?: InputMaybe<Scalars['Float']>;
-  vats?: InputMaybe<Array<IIoRestorecommerceAmountVat>>;
-};
+  vats?: InputMaybe<IIoRestorecommerceAmountVat[]>;
+}
 
-export type IIoRestorecommerceAmountVat = {
+export interface IIoRestorecommerceAmountVat {
   taxId?: InputMaybe<Scalars['String']>;
   vat?: InputMaybe<Scalars['Float']>;
-};
+}
 
-export type IIoRestorecommerceAttributeAttribute = {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceAttributeAttribute {
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   id?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAuthRoleAssociation = {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceAuthRoleAssociation {
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   created?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAuthTokens = {
+export interface IIoRestorecommerceAuthTokens {
   clientId?: InputMaybe<Scalars['String']>;
   expiresIn?: InputMaybe<Scalars['IDateTime']>;
   interactive?: InputMaybe<Scalars['Boolean']>;
   lastLogin?: InputMaybe<Scalars['IDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  scopes?: InputMaybe<Array<Scalars['String']>>;
+  scopes?: InputMaybe<Scalars['String'][]>;
   token?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAuthenticationLogAuthenticationLog = {
+export interface IIoRestorecommerceAuthenticationLogAuthenticationLog {
   activity?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
@@ -539,43 +539,41 @@ export type IIoRestorecommerceAuthenticationLogAuthenticationLog = {
   subjectId?: InputMaybe<Scalars['String']>;
   tokenName?: InputMaybe<Scalars['String']>;
   userAgent?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceAuthenticationLogAuthenticationLogList = {
-  items?: InputMaybe<
-    Array<IIoRestorecommerceAuthenticationLogAuthenticationLog>
-  >;
+export interface IIoRestorecommerceAuthenticationLogAuthenticationLogList {
+  items?: InputMaybe<IIoRestorecommerceAuthenticationLogAuthenticationLog[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceCommandCommand = {
+export interface IIoRestorecommerceCommandCommand {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-  parameters?: InputMaybe<Array<IIoRestorecommerceCommandCommandParameter>>;
-};
+  parameters?: InputMaybe<IIoRestorecommerceCommandCommandParameter[]>;
+}
 
-export type IIoRestorecommerceCommandCommandList = {
-  items?: InputMaybe<Array<IIoRestorecommerceCommandCommand>>;
+export interface IIoRestorecommerceCommandCommandList {
+  items?: InputMaybe<IIoRestorecommerceCommandCommand[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceCommandCommandParameter = {
+export interface IIoRestorecommerceCommandCommandParameter {
   description?: InputMaybe<Scalars['String']>;
   field?: InputMaybe<Scalars['String']>;
   properties?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<IoRestorecommerceCommandCommandParameterParameterType>;
-};
+}
 
-export type IIoRestorecommerceContactPointContactPoint = {
-  contactPointTypeIds?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceContactPointContactPoint {
+  contactPointTypeIds?: InputMaybe<Scalars['String'][]>;
   description?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
@@ -586,48 +584,48 @@ export type IIoRestorecommerceContactPointContactPoint = {
   telephone?: InputMaybe<Scalars['String']>;
   timezoneId?: InputMaybe<Scalars['String']>;
   website?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceContactPointContactPointList = {
-  items?: InputMaybe<Array<IIoRestorecommerceContactPointContactPoint>>;
+export interface IIoRestorecommerceContactPointContactPointList {
+  items?: InputMaybe<IIoRestorecommerceContactPointContactPoint[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceContactPointTypeContactPointType = {
+export interface IIoRestorecommerceContactPointTypeContactPointType {
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceContactPointTypeContactPointTypeList = {
-  items?: InputMaybe<Array<IIoRestorecommerceContactPointTypeContactPointType>>;
+export interface IIoRestorecommerceContactPointTypeContactPointTypeList {
+  items?: InputMaybe<IIoRestorecommerceContactPointTypeContactPointType[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceCountryCountry = {
+export interface IIoRestorecommerceCountryCountry {
   countryCode?: InputMaybe<Scalars['String']>;
-  economicAreas?: InputMaybe<Array<Scalars['String']>>;
+  economicAreas?: InputMaybe<Scalars['String'][]>;
   geographicalName?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceCountryCountryList = {
-  items?: InputMaybe<Array<IIoRestorecommerceCountryCountry>>;
+export interface IIoRestorecommerceCountryCountryList {
+  items?: InputMaybe<IIoRestorecommerceCountryCountry[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceCredentialCredential = {
+export interface IIoRestorecommerceCredentialCredential {
   credentials?: InputMaybe<IGoogleProtobufAny>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
@@ -635,72 +633,72 @@ export type IIoRestorecommerceCredentialCredential = {
   name?: InputMaybe<Scalars['String']>;
   pass?: InputMaybe<Scalars['String']>;
   user?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceCredentialCredentialList = {
-  items?: InputMaybe<Array<IIoRestorecommerceCredentialCredential>>;
+export interface IIoRestorecommerceCredentialCredentialList {
+  items?: InputMaybe<IIoRestorecommerceCredentialCredential[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceCustomerCommercial = {
+export interface IIoRestorecommerceCustomerCommercial {
   organizationId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceCustomerCustomer = {
+export interface IIoRestorecommerceCustomerCustomer {
   commercial?: InputMaybe<IIoRestorecommerceCustomerCommercial>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   private?: InputMaybe<IIoRestorecommerceCustomerPrivate>;
   publicSector?: InputMaybe<IIoRestorecommerceCustomerPublicSector>;
-  settings?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-};
+  settings?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IIoRestorecommerceCustomerCustomerList = {
-  items?: InputMaybe<Array<IIoRestorecommerceCustomerCustomer>>;
+export interface IIoRestorecommerceCustomerCustomerList {
+  items?: InputMaybe<IIoRestorecommerceCustomerCustomer[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceCustomerPrivate = {
-  contactPointIds?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceCustomerPrivate {
+  contactPointIds?: InputMaybe<Scalars['String'][]>;
   userId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceCustomerPublicSector = {
+export interface IIoRestorecommerceCustomerPublicSector {
   organizationId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFileFile = {
+export interface IIoRestorecommerceFileFile {
   bytes?: InputMaybe<Scalars['Int']>;
   caption?: InputMaybe<Scalars['String']>;
   contentType?: InputMaybe<Scalars['String']>;
   filename?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   index?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tags?: InputMaybe<Scalars['String'][]>;
   thumbnail?: InputMaybe<IIoRestorecommerceImageImage>;
   url?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFilterFilter = {
+export interface IIoRestorecommerceFilterFilter {
   field?: InputMaybe<Scalars['String']>;
-  filters?: InputMaybe<Array<IIoRestorecommerceFilterFilterOp>>;
+  filters?: InputMaybe<IIoRestorecommerceFilterFilterOp[]>;
   operation?: InputMaybe<IoRestorecommerceFilterFilterOperation>;
   type?: InputMaybe<IoRestorecommerceFilterFilterValueType>;
   value?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFilterFilterOp = {
-  filters?: InputMaybe<Array<IIoRestorecommerceFilterFilter>>;
+export interface IIoRestorecommerceFilterFilterOp {
+  filters?: InputMaybe<IIoRestorecommerceFilterFilter[]>;
   operator?: InputMaybe<IoRestorecommerceFilterFilterOpOperator>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentCourierFulfillmentCourier = {
+export interface IIoRestorecommerceFulfillmentCourierFulfillmentCourier {
   configuration?: InputMaybe<IGoogleProtobufAny>;
   credentialId?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
@@ -708,89 +706,85 @@ export type IIoRestorecommerceFulfillmentCourierFulfillmentCourier = {
   logo?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-  shopIds?: InputMaybe<Array<Scalars['String']>>;
+  shopIds?: InputMaybe<Scalars['String'][]>;
   stubType?: InputMaybe<Scalars['String']>;
   website?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentCourierFulfillmentCourierList = {
-  items?: InputMaybe<
-    Array<IIoRestorecommerceFulfillmentCourierFulfillmentCourier>
-  >;
+export interface IIoRestorecommerceFulfillmentCourierFulfillmentCourierList {
+  items?: InputMaybe<IIoRestorecommerceFulfillmentCourierFulfillmentCourier[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentEvent = {
+export interface IIoRestorecommerceFulfillmentEvent {
   details?: InputMaybe<IGoogleProtobufAny>;
   location?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<IIoRestorecommerceStatusStatus>;
   timestamp?: InputMaybe<Scalars['IDateTime']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentFulfillment = {
+export interface IIoRestorecommerceFulfillmentFulfillment {
   customerId?: InputMaybe<Scalars['String']>;
   fulfillmentState?: InputMaybe<IoRestorecommerceFulfillmentFulfillmentState>;
   id?: InputMaybe<Scalars['String']>;
-  labels?: InputMaybe<Array<IIoRestorecommerceFulfillmentLabel>>;
+  labels?: InputMaybe<IIoRestorecommerceFulfillmentLabel[]>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   packaging?: InputMaybe<IIoRestorecommerceFulfillmentPackaging>;
-  references?: InputMaybe<Array<IIoRestorecommerceReferenceReference>>;
+  references?: InputMaybe<IIoRestorecommerceReferenceReference[]>;
   shopId?: InputMaybe<Scalars['String']>;
-  totalAmounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
-  trackings?: InputMaybe<Array<IIoRestorecommerceFulfillmentTracking>>;
+  totalAmounts?: InputMaybe<IIoRestorecommerceAmountAmount[]>;
+  trackings?: InputMaybe<IIoRestorecommerceFulfillmentTracking[]>;
   userId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentFulfillmentId = {
+export interface IIoRestorecommerceFulfillmentFulfillmentId {
   id?: InputMaybe<Scalars['String']>;
   options?: InputMaybe<IGoogleProtobufAny>;
-  shipmentNumbers?: InputMaybe<Array<Scalars['String']>>;
-};
+  shipmentNumbers?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceFulfillmentFulfillmentIdList = {
-  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentFulfillmentId>>;
+export interface IIoRestorecommerceFulfillmentFulfillmentIdList {
+  items?: InputMaybe<IIoRestorecommerceFulfillmentFulfillmentId[]>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentFulfillmentInvoiceRequest = {
+export interface IIoRestorecommerceFulfillmentFulfillmentInvoiceRequest {
   invoiceNumber?: InputMaybe<Scalars['String']>;
-  paymentHints?: InputMaybe<Array<Scalars['String']>>;
+  paymentHints?: InputMaybe<Scalars['String'][]>;
   sections?: InputMaybe<
-    Array<IIoRestorecommerceFulfillmentFulfillmentInvoiceSection>
+    IIoRestorecommerceFulfillmentFulfillmentInvoiceSection[]
   >;
-};
+}
 
-export type IIoRestorecommerceFulfillmentFulfillmentInvoiceRequestList = {
-  items?: InputMaybe<
-    Array<IIoRestorecommerceFulfillmentFulfillmentInvoiceRequest>
-  >;
+export interface IIoRestorecommerceFulfillmentFulfillmentInvoiceRequestList {
+  items?: InputMaybe<IIoRestorecommerceFulfillmentFulfillmentInvoiceRequest[]>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentFulfillmentInvoiceSection = {
+export interface IIoRestorecommerceFulfillmentFulfillmentInvoiceSection {
   fulfillmentId?: InputMaybe<Scalars['String']>;
-  selectedParcels?: InputMaybe<Array<Scalars['String']>>;
-};
+  selectedParcels?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceFulfillmentFulfillmentList = {
-  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentFulfillment>>;
+export interface IIoRestorecommerceFulfillmentFulfillmentList {
+  items?: InputMaybe<IIoRestorecommerceFulfillmentFulfillment[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentItem = {
+export interface IIoRestorecommerceFulfillmentItem {
   package?: InputMaybe<IIoRestorecommerceProductPackage>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Int']>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentLabel = {
+export interface IIoRestorecommerceFulfillmentLabel {
   parcelId?: InputMaybe<Scalars['String']>;
   pdf?: InputMaybe<Scalars['String']>;
   png?: InputMaybe<Scalars['String']>;
@@ -798,97 +792,95 @@ export type IIoRestorecommerceFulfillmentLabel = {
   state?: InputMaybe<IoRestorecommerceFulfillmentFulfillmentState>;
   status?: InputMaybe<IIoRestorecommerceStatusStatus>;
   url?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentPackaging = {
+export interface IIoRestorecommerceFulfillmentPackaging {
   exportDescription?: InputMaybe<Scalars['String']>;
   exportType?: InputMaybe<Scalars['String']>;
   invoiceNumber?: InputMaybe<Scalars['String']>;
   notify?: InputMaybe<Scalars['String']>;
-  parcels?: InputMaybe<Array<IIoRestorecommerceFulfillmentParcel>>;
+  parcels?: InputMaybe<IIoRestorecommerceFulfillmentParcel[]>;
   recipient?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
   sender?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentParcel = {
+export interface IIoRestorecommerceFulfillmentParcel {
   amount?: InputMaybe<IIoRestorecommerceAmountAmount>;
   id?: InputMaybe<Scalars['String']>;
-  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentItem>>;
+  items?: InputMaybe<IIoRestorecommerceFulfillmentItem[]>;
   package?: InputMaybe<IIoRestorecommerceProductPackage>;
   price?: InputMaybe<IIoRestorecommercePricePrice>;
   productId?: InputMaybe<Scalars['String']>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentProductFulfillmentProduct = {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceFulfillmentProductFulfillmentProduct {
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   courierId?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  destinationZones?: InputMaybe<Array<Scalars['String']>>;
+  destinationZones?: InputMaybe<Scalars['String'][]>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-  startZones?: InputMaybe<Array<Scalars['String']>>;
-  taxIds?: InputMaybe<Array<Scalars['String']>>;
-  variants?: InputMaybe<Array<IIoRestorecommerceFulfillmentProductVariant>>;
-};
+  startZones?: InputMaybe<Scalars['String'][]>;
+  taxIds?: InputMaybe<Scalars['String'][]>;
+  variants?: InputMaybe<IIoRestorecommerceFulfillmentProductVariant[]>;
+}
 
-export type IIoRestorecommerceFulfillmentProductFulfillmentProductList = {
-  items?: InputMaybe<
-    Array<IIoRestorecommerceFulfillmentProductFulfillmentProduct>
-  >;
+export interface IIoRestorecommerceFulfillmentProductFulfillmentProductList {
+  items?: InputMaybe<IIoRestorecommerceFulfillmentProductFulfillmentProduct[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentProductPackingSolutionQuery = {
+export interface IIoRestorecommerceFulfillmentProductPackingSolutionQuery {
   customerId?: InputMaybe<Scalars['String']>;
-  items?: InputMaybe<Array<IIoRestorecommerceFulfillmentItem>>;
+  items?: InputMaybe<IIoRestorecommerceFulfillmentItem[]>;
   preferences?: InputMaybe<IIoRestorecommerceFulfillmentProductPreferences>;
   recipient?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
   reference?: InputMaybe<IIoRestorecommerceReferenceReference>;
   sender?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
   shopId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentProductPackingSolutionQueryList = {
+export interface IIoRestorecommerceFulfillmentProductPackingSolutionQueryList {
   items?: InputMaybe<
-    Array<IIoRestorecommerceFulfillmentProductPackingSolutionQuery>
+    IIoRestorecommerceFulfillmentProductPackingSolutionQuery[]
   >;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentProductPreferences = {
-  couriers?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  options?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-};
+export interface IIoRestorecommerceFulfillmentProductPreferences {
+  couriers?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+  options?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IIoRestorecommerceFulfillmentProductVariant = {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceFulfillmentProductVariant {
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   maxSize?: InputMaybe<IIoRestorecommerceGeometryBoundingBox3D>;
   maxWeight?: InputMaybe<Scalars['Float']>;
   name?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<IIoRestorecommercePricePrice>;
-};
+}
 
-export type IIoRestorecommerceFulfillmentTracking = {
+export interface IIoRestorecommerceFulfillmentTracking {
   details?: InputMaybe<IGoogleProtobufAny>;
-  events?: InputMaybe<Array<IIoRestorecommerceFulfillmentEvent>>;
+  events?: InputMaybe<IIoRestorecommerceFulfillmentEvent[]>;
   shipmentNumber?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<IIoRestorecommerceStatusStatus>;
-};
+}
 
-export type IIoRestorecommerceGeometryBoundingBox3D = {
+export interface IIoRestorecommerceGeometryBoundingBox3D {
   height?: InputMaybe<Scalars['Float']>;
   length?: InputMaybe<Scalars['Float']>;
   width?: InputMaybe<Scalars['Float']>;
-};
+}
 
-export type IIoRestorecommerceImageImage = {
+export interface IIoRestorecommerceImageImage {
   caption?: InputMaybe<Scalars['String']>;
   contentType?: InputMaybe<Scalars['String']>;
   filename?: InputMaybe<Scalars['String']>;
@@ -896,67 +888,67 @@ export type IIoRestorecommerceImageImage = {
   id?: InputMaybe<Scalars['String']>;
   index?: InputMaybe<Scalars['Int']>;
   length?: InputMaybe<Scalars['Float']>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tags?: InputMaybe<Scalars['String'][]>;
   url?: InputMaybe<Scalars['String']>;
   width?: InputMaybe<Scalars['Float']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceFulfillmentItem = {
+export interface IIoRestorecommerceInvoiceFulfillmentItem {
   productId?: InputMaybe<Scalars['String']>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceInvoice = {
+export interface IIoRestorecommerceInvoiceInvoice {
   customerId?: InputMaybe<Scalars['String']>;
-  documents?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  documents?: InputMaybe<IIoRestorecommerceFileFile[]>;
   fromDate?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   invoiceNumber?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
-  paymentHints?: InputMaybe<Array<Scalars['String']>>;
+  paymentHints?: InputMaybe<Scalars['String'][]>;
   paymentState?: InputMaybe<IoRestorecommerceInvoicePaymentState>;
   recipient?: InputMaybe<IIoRestorecommerceAddressBillingAddress>;
-  references?: InputMaybe<Array<IIoRestorecommerceReferenceReference>>;
-  sections?: InputMaybe<Array<IIoRestorecommerceInvoiceSection>>;
+  references?: InputMaybe<IIoRestorecommerceReferenceReference[]>;
+  sections?: InputMaybe<IIoRestorecommerceInvoiceSection[]>;
   sender?: InputMaybe<IIoRestorecommerceAddressBillingAddress>;
   sent?: InputMaybe<Scalars['Boolean']>;
   shopId?: InputMaybe<Scalars['String']>;
   timestamp?: InputMaybe<Scalars['IDateTime']>;
   toDate?: InputMaybe<Scalars['IDateTime']>;
-  totalAmounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+  totalAmounts?: InputMaybe<IIoRestorecommerceAmountAmount[]>;
   userId?: InputMaybe<Scalars['String']>;
   withdrawn?: InputMaybe<Scalars['Boolean']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceInvoiceId = {
-  channelIds?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceInvoiceInvoiceId {
+  channelIds?: InputMaybe<Scalars['String'][]>;
   id?: InputMaybe<Scalars['String']>;
   options?: InputMaybe<IGoogleProtobufAny>;
-};
+}
 
-export type IIoRestorecommerceInvoiceInvoiceIdList = {
-  items?: InputMaybe<Array<IIoRestorecommerceInvoiceInvoiceId>>;
+export interface IIoRestorecommerceInvoiceInvoiceIdList {
+  items?: InputMaybe<IIoRestorecommerceInvoiceInvoiceId[]>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceInvoiceList = {
-  items?: InputMaybe<Array<IIoRestorecommerceInvoiceInvoice>>;
+export interface IIoRestorecommerceInvoiceInvoiceList {
+  items?: InputMaybe<IIoRestorecommerceInvoiceInvoice[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceManualItem = {
+export interface IIoRestorecommerceInvoiceManualItem {
   descritpion?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  properties?: InputMaybe<IIoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceInvoicePosition = {
+export interface IIoRestorecommerceInvoicePosition {
   amount?: InputMaybe<IIoRestorecommerceAmountAmount>;
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   contractStartDate?: InputMaybe<Scalars['Float']>;
   fulfillmentItem?: InputMaybe<IIoRestorecommerceInvoiceFulfillmentItem>;
   id?: InputMaybe<Scalars['String']>;
@@ -964,59 +956,59 @@ export type IIoRestorecommerceInvoicePosition = {
   productItem?: InputMaybe<IIoRestorecommerceInvoiceProductItem>;
   quantity?: InputMaybe<Scalars['Int']>;
   unitPrice?: InputMaybe<IIoRestorecommercePricePrice>;
-};
+}
 
-export type IIoRestorecommerceInvoiceProductItem = {
+export interface IIoRestorecommerceInvoiceProductItem {
   productId?: InputMaybe<Scalars['String']>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceRequestInvoiceNumber = {
+export interface IIoRestorecommerceInvoiceRequestInvoiceNumber {
   context?: InputMaybe<IGoogleProtobufAny>;
   shopId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceInvoiceSection = {
-  amounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+export interface IIoRestorecommerceInvoiceSection {
+  amounts?: InputMaybe<IIoRestorecommerceAmountAmount[]>;
   customerRemark?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  positions?: InputMaybe<Array<IIoRestorecommerceInvoicePosition>>;
-};
+  positions?: InputMaybe<IIoRestorecommerceInvoicePosition[]>;
+}
 
-export type IIoRestorecommerceJobBackoff = {
+export interface IIoRestorecommerceJobBackoff {
   delay?: InputMaybe<Scalars['Float']>;
   type?: InputMaybe<IoRestorecommerceJobBackoffType>;
-};
+}
 
-export type IIoRestorecommerceJobData = {
+export interface IIoRestorecommerceJobData {
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   payload?: InputMaybe<IGoogleProtobufAny>;
   subjectId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceJobJob = {
+export interface IIoRestorecommerceJobJob {
   data?: InputMaybe<IIoRestorecommerceJobData>;
   id?: InputMaybe<Scalars['String']>;
   options?: InputMaybe<IIoRestorecommerceJobJobOptions>;
   queueName?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
   when?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceJobJobFilter = {
-  jobIds?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceJobJobFilter {
+  jobIds?: InputMaybe<Scalars['String'][]>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceJobJobList = {
-  items?: InputMaybe<Array<IIoRestorecommerceJobJob>>;
+export interface IIoRestorecommerceJobJobList {
+  items?: InputMaybe<IIoRestorecommerceJobJob[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceJobJobOptions = {
+export interface IIoRestorecommerceJobJobOptions {
   attempts?: InputMaybe<Scalars['Int']>;
   backoff?: InputMaybe<IIoRestorecommerceJobBackoff>;
   jobId?: InputMaybe<Scalars['String']>;
@@ -1024,18 +1016,18 @@ export type IIoRestorecommerceJobJobOptions = {
   removeOnComplete?: InputMaybe<Scalars['Boolean']>;
   repeat?: InputMaybe<IIoRestorecommerceJobRepeat>;
   timeout?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceJobJobReadRequest = {
-  fields?: InputMaybe<Array<IIoRestorecommerceResourcebaseFieldFilter>>;
+export interface IIoRestorecommerceJobJobReadRequest {
+  fields?: InputMaybe<IIoRestorecommerceResourcebaseFieldFilter[]>;
   filter?: InputMaybe<IIoRestorecommerceJobJobFilter>;
   limit?: InputMaybe<Scalars['Int']>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   sort?: InputMaybe<IoRestorecommerceJobJobReadRequestSortOrder>;
-};
+}
 
-export type IIoRestorecommerceJobRepeat = {
+export interface IIoRestorecommerceJobRepeat {
   count?: InputMaybe<Scalars['Int']>;
   cron?: InputMaybe<Scalars['String']>;
   endDate?: InputMaybe<Scalars['String']>;
@@ -1043,25 +1035,25 @@ export type IIoRestorecommerceJobRepeat = {
   jobId?: InputMaybe<Scalars['String']>;
   startDate?: InputMaybe<Scalars['String']>;
   tz?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceLocaleLocale = {
+export interface IIoRestorecommerceLocaleLocale {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceLocaleLocaleList = {
-  items?: InputMaybe<Array<IIoRestorecommerceLocaleLocale>>;
+export interface IIoRestorecommerceLocaleLocaleList {
+  items?: InputMaybe<IIoRestorecommerceLocaleLocale[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceLocationLocation = {
+export interface IIoRestorecommerceLocationLocation {
   addressId?: InputMaybe<Scalars['String']>;
   data?: InputMaybe<IGoogleProtobufAny>;
   description?: InputMaybe<Scalars['String']>;
@@ -1071,86 +1063,86 @@ export type IIoRestorecommerceLocationLocation = {
   organizationId?: InputMaybe<Scalars['String']>;
   parentId?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceLocationLocationList = {
-  items?: InputMaybe<Array<IIoRestorecommerceLocationLocation>>;
+export interface IIoRestorecommerceLocationLocationList {
+  items?: InputMaybe<IIoRestorecommerceLocationLocation[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceManufacturerManufacturer = {
+export interface IIoRestorecommerceManufacturerManufacturer {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceManufacturerManufacturerList = {
-  items?: InputMaybe<Array<IIoRestorecommerceManufacturerManufacturer>>;
+export interface IIoRestorecommerceManufacturerManufacturerList {
+  items?: InputMaybe<IIoRestorecommerceManufacturerManufacturer[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceMetaMeta = {
-  acls?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceMetaMeta {
+  acls?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   created?: InputMaybe<Scalars['IDateTime']>;
   createdBy?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['IDateTime']>;
   modifiedBy?: InputMaybe<Scalars['String']>;
-  owners?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-};
+  owners?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IIoRestorecommerceNotificationNotification = {
+export interface IIoRestorecommerceNotificationNotification {
   bodyTemplate?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-  notificationChannelIds?: InputMaybe<Array<Scalars['String']>>;
+  notificationChannelIds?: InputMaybe<Scalars['String'][]>;
   subjectTemplate?: InputMaybe<Scalars['String']>;
   telephoneNumber?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceNotificationNotificationList = {
-  items?: InputMaybe<Array<IIoRestorecommerceNotificationNotification>>;
+export interface IIoRestorecommerceNotificationNotificationList {
+  items?: InputMaybe<IIoRestorecommerceNotificationNotification[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceOauthExchangeCodeRequest = {
+export interface IIoRestorecommerceOauthExchangeCodeRequest {
   code?: InputMaybe<Scalars['String']>;
   service?: InputMaybe<Scalars['String']>;
   state?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOauthGetTokenRequest = {
+export interface IIoRestorecommerceOauthGetTokenRequest {
   service?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOrderFulfillmentRequest = {
+export interface IIoRestorecommerceOrderFulfillmentRequest {
   data?: InputMaybe<IGoogleProtobufAny>;
   exportDescription?: InputMaybe<Scalars['String']>;
   exportType?: InputMaybe<Scalars['String']>;
   invoiceNumber?: InputMaybe<Scalars['String']>;
   orderId?: InputMaybe<Scalars['String']>;
-  selectedItems?: InputMaybe<Array<Scalars['String']>>;
+  selectedItems?: InputMaybe<Scalars['String'][]>;
   senderAddress?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
-};
+}
 
-export type IIoRestorecommerceOrderFulfillmentRequestList = {
-  items?: InputMaybe<Array<IIoRestorecommerceOrderFulfillmentRequest>>;
+export interface IIoRestorecommerceOrderFulfillmentRequestList {
+  items?: InputMaybe<IIoRestorecommerceOrderFulfillmentRequest[]>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceOrderItem = {
+export interface IIoRestorecommerceOrderItem {
   amount?: InputMaybe<IIoRestorecommerceAmountAmount>;
   id?: InputMaybe<Scalars['String']>;
   parentItemId?: InputMaybe<Scalars['String']>;
@@ -1158,59 +1150,59 @@ export type IIoRestorecommerceOrderItem = {
   quantity?: InputMaybe<Scalars['Int']>;
   unitPrice?: InputMaybe<IIoRestorecommercePricePrice>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOrderOrder = {
+export interface IIoRestorecommerceOrderOrder {
   billingAddress?: InputMaybe<IIoRestorecommerceAddressBillingAddress>;
   customerId?: InputMaybe<Scalars['String']>;
   customerOrderNr?: InputMaybe<Scalars['String']>;
   customerRemark?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  items?: InputMaybe<Array<IIoRestorecommerceOrderItem>>;
+  items?: InputMaybe<IIoRestorecommerceOrderItem[]>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   notificationEmail?: InputMaybe<Scalars['String']>;
   orderState?: InputMaybe<IoRestorecommerceOrderOrderState>;
   packagingPreferences?: InputMaybe<IIoRestorecommerceFulfillmentProductPreferences>;
   shippingAddress?: InputMaybe<IIoRestorecommerceAddressShippingAddress>;
   shopId?: InputMaybe<Scalars['String']>;
-  totalAmounts?: InputMaybe<Array<IIoRestorecommerceAmountAmount>>;
+  totalAmounts?: InputMaybe<IIoRestorecommerceAmountAmount[]>;
   userId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOrderOrderIdList = {
-  ids?: InputMaybe<Array<Scalars['String']>>;
-};
+export interface IIoRestorecommerceOrderOrderIdList {
+  ids?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceOrderOrderList = {
-  items?: InputMaybe<Array<IIoRestorecommerceOrderOrder>>;
+export interface IIoRestorecommerceOrderOrderList {
+  items?: InputMaybe<IIoRestorecommerceOrderOrder[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceOrderOrderingInvoiceRequest = {
+export interface IIoRestorecommerceOrderOrderingInvoiceRequest {
   invoiceNumber?: InputMaybe<Scalars['String']>;
-  paymentHints?: InputMaybe<Array<Scalars['String']>>;
-  sections?: InputMaybe<Array<IIoRestorecommerceOrderOrderingInvoiceSection>>;
-};
+  paymentHints?: InputMaybe<Scalars['String'][]>;
+  sections?: InputMaybe<IIoRestorecommerceOrderOrderingInvoiceSection[]>;
+}
 
-export type IIoRestorecommerceOrderOrderingInvoiceRequestList = {
-  items?: InputMaybe<Array<IIoRestorecommerceOrderOrderingInvoiceRequest>>;
+export interface IIoRestorecommerceOrderOrderingInvoiceRequestList {
+  items?: InputMaybe<IIoRestorecommerceOrderOrderingInvoiceRequest[]>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceOrderOrderingInvoiceSection = {
+export interface IIoRestorecommerceOrderOrderingInvoiceSection {
   fulfillmentMode?: InputMaybe<IoRestorecommerceOrderFulfillmentInvoiceMode>;
   orderId?: InputMaybe<Scalars['String']>;
   selectedFulfillments?: InputMaybe<
-    Array<IIoRestorecommerceFulfillmentFulfillmentInvoiceSection>
+    IIoRestorecommerceFulfillmentFulfillmentInvoiceSection[]
   >;
-  selectedItems?: InputMaybe<Array<Scalars['String']>>;
-};
+  selectedItems?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceOrganizationOrganization = {
-  contactPointIds?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceOrganizationOrganization {
+  contactPointIds?: InputMaybe<Scalars['String'][]>;
   data?: InputMaybe<IGoogleProtobufAny>;
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
@@ -1219,75 +1211,75 @@ export type IIoRestorecommerceOrganizationOrganization = {
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   parentId?: InputMaybe<Scalars['String']>;
-  paymentMethodIds?: InputMaybe<Array<Scalars['String']>>;
+  paymentMethodIds?: InputMaybe<Scalars['String'][]>;
   registration?: InputMaybe<Scalars['String']>;
   registrationCourt?: InputMaybe<Scalars['String']>;
   vatId?: InputMaybe<Scalars['String']>;
   website?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOrganizationOrganizationList = {
-  items?: InputMaybe<Array<IIoRestorecommerceOrganizationOrganization>>;
+export interface IIoRestorecommerceOrganizationOrganizationList {
+  items?: InputMaybe<IIoRestorecommerceOrganizationOrganization[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceOstorageCopyRequestItem = {
+export interface IIoRestorecommerceOstorageCopyRequestItem {
   bucket?: InputMaybe<Scalars['String']>;
   copySource?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   options?: InputMaybe<IIoRestorecommerceOstorageOptions>;
-};
+}
 
-export type IIoRestorecommerceOstorageCopyRequestList = {
-  items?: InputMaybe<Array<IIoRestorecommerceOstorageCopyRequestItem>>;
-};
+export interface IIoRestorecommerceOstorageCopyRequestList {
+  items?: InputMaybe<IIoRestorecommerceOstorageCopyRequestItem[]>;
+}
 
-export type IIoRestorecommerceOstorageDeleteRequest = {
+export interface IIoRestorecommerceOstorageDeleteRequest {
   bucket?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOstorageGetRequest = {
+export interface IIoRestorecommerceOstorageGetRequest {
   bucket?: InputMaybe<Scalars['String']>;
   download?: InputMaybe<Scalars['Boolean']>;
   key?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOstorageListRequest = {
+export interface IIoRestorecommerceOstorageListRequest {
   bucket?: InputMaybe<Scalars['String']>;
   filters?: InputMaybe<IIoRestorecommerceFilterFilterOp>;
   maxKeys?: InputMaybe<Scalars['Int']>;
   prefix?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOstorageMoveRequestItem = {
+export interface IIoRestorecommerceOstorageMoveRequestItem {
   bucket?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   options?: InputMaybe<IIoRestorecommerceOstorageOptions>;
   sourceObject?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOstorageMoveRequestList = {
-  items?: InputMaybe<Array<IIoRestorecommerceOstorageMoveRequestItem>>;
-};
+export interface IIoRestorecommerceOstorageMoveRequestList {
+  items?: InputMaybe<IIoRestorecommerceOstorageMoveRequestItem[]>;
+}
 
-export type IIoRestorecommerceOstorageObject = {
+export interface IIoRestorecommerceOstorageObject {
   bucket?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   object?: InputMaybe<Scalars['Upload']>;
   options?: InputMaybe<IIoRestorecommerceOstorageOptions>;
   url?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceOstorageOptions = {
+export interface IIoRestorecommerceOstorageOptions {
   contentDisposition?: InputMaybe<Scalars['String']>;
   contentLanguage?: InputMaybe<Scalars['String']>;
   contentType?: InputMaybe<Scalars['String']>;
@@ -1295,48 +1287,48 @@ export type IIoRestorecommerceOstorageOptions = {
   encoding?: InputMaybe<Scalars['String']>;
   length?: InputMaybe<Scalars['Int']>;
   md5?: InputMaybe<Scalars['String']>;
-  tags?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  tags?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   version?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommercePaymentCaptureRequest = {
+export interface IIoRestorecommercePaymentCaptureRequest {
   currency?: InputMaybe<Scalars['String']>;
   paymentId?: InputMaybe<Scalars['String']>;
   paymentSum?: InputMaybe<Scalars['Int']>;
   provider?: InputMaybe<IoRestorecommercePaymentProvider>;
-};
+}
 
-export type IIoRestorecommercePaymentItem = {
+export interface IIoRestorecommercePaymentItem {
   amount?: InputMaybe<Scalars['Int']>;
   description?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommercePaymentPaymentRequest = {
+export interface IIoRestorecommercePaymentPaymentRequest {
   currency?: InputMaybe<Scalars['String']>;
   payerId?: InputMaybe<Scalars['String']>;
   paymentId?: InputMaybe<Scalars['String']>;
   paymentSum?: InputMaybe<Scalars['Int']>;
   provider?: InputMaybe<IoRestorecommercePaymentProvider>;
   token?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommercePaymentSetupRequest = {
+export interface IIoRestorecommercePaymentSetupRequest {
   allowGuestCheckout?: InputMaybe<Scalars['Boolean']>;
   cancelReturnUrl?: InputMaybe<Scalars['String']>;
   currency?: InputMaybe<Scalars['String']>;
   handling?: InputMaybe<Scalars['Int']>;
   ip?: InputMaybe<Scalars['String']>;
-  items?: InputMaybe<Array<IIoRestorecommercePaymentItem>>;
+  items?: InputMaybe<IIoRestorecommercePaymentItem[]>;
   provider?: InputMaybe<IoRestorecommercePaymentProvider>;
   returnUrl?: InputMaybe<Scalars['String']>;
   shipping?: InputMaybe<Scalars['Int']>;
   subtotal?: InputMaybe<Scalars['Int']>;
   tax?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommercePolicyPolicy = {
+export interface IIoRestorecommercePolicyPolicy {
   combiningAlgorithm?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   effect?: InputMaybe<IoRestorecommerceRuleEffect>;
@@ -1344,87 +1336,87 @@ export type IIoRestorecommercePolicyPolicy = {
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-  rules?: InputMaybe<Array<Scalars['String']>>;
+  rules?: InputMaybe<Scalars['String'][]>;
   target?: InputMaybe<IIoRestorecommerceRuleTarget>;
-};
+}
 
-export type IIoRestorecommercePolicyPolicyList = {
-  items?: InputMaybe<Array<IIoRestorecommercePolicyPolicy>>;
+export interface IIoRestorecommercePolicyPolicyList {
+  items?: InputMaybe<IIoRestorecommercePolicyPolicy[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommercePolicySetPolicySet = {
+export interface IIoRestorecommercePolicySetPolicySet {
   combiningAlgorithm?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-  policies?: InputMaybe<Array<Scalars['String']>>;
+  policies?: InputMaybe<Scalars['String'][]>;
   target?: InputMaybe<IIoRestorecommerceRuleTarget>;
-};
+}
 
-export type IIoRestorecommercePolicySetPolicySetList = {
-  items?: InputMaybe<Array<IIoRestorecommercePolicySetPolicySet>>;
+export interface IIoRestorecommercePolicySetPolicySetList {
+  items?: InputMaybe<IIoRestorecommercePolicySetPolicySet[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommercePriceGroupPriceGroup = {
+export interface IIoRestorecommercePriceGroupPriceGroup {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommercePriceGroupPriceGroupList = {
-  items?: InputMaybe<Array<IIoRestorecommercePriceGroupPriceGroup>>;
+export interface IIoRestorecommercePriceGroupPriceGroupList {
+  items?: InputMaybe<IIoRestorecommercePriceGroupPriceGroup[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommercePricePrice = {
+export interface IIoRestorecommercePricePrice {
   currencyId?: InputMaybe<Scalars['String']>;
   regularPrice?: InputMaybe<Scalars['Float']>;
   sale?: InputMaybe<Scalars['Boolean']>;
   salePrice?: InputMaybe<Scalars['Float']>;
-};
+}
 
-export type IIoRestorecommerceProductAssociation = {
+export interface IIoRestorecommerceProductAssociation {
   data?: InputMaybe<IGoogleProtobufAny>;
   productId?: InputMaybe<Scalars['String']>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tags?: InputMaybe<Scalars['String'][]>;
   type?: InputMaybe<IoRestorecommerceProductAssociationType>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceProductBundle = {
+export interface IIoRestorecommerceProductBundle {
   description?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<IIoRestorecommerceImageImage[]>;
   name?: InputMaybe<Scalars['String']>;
   prePackaged?: InputMaybe<IIoRestorecommerceProductPackage>;
   price?: InputMaybe<IIoRestorecommercePricePrice>;
-  products?: InputMaybe<Array<IIoRestorecommerceProductBundleProduct>>;
-};
+  products?: InputMaybe<IIoRestorecommerceProductBundleProduct[]>;
+}
 
-export type IIoRestorecommerceProductBundleProduct = {
+export interface IIoRestorecommerceProductBundleProduct {
   priceRatio?: InputMaybe<Scalars['Float']>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Int']>;
   variantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceProductCategoryParent = {
+export interface IIoRestorecommerceProductCategoryParent {
   parentId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceProductCategoryProductCategory = {
+export interface IIoRestorecommerceProductCategoryProductCategory {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<IIoRestorecommerceImageImage>;
@@ -1432,17 +1424,17 @@ export type IIoRestorecommerceProductCategoryProductCategory = {
   name?: InputMaybe<Scalars['String']>;
   parent?: InputMaybe<IIoRestorecommerceProductCategoryParent>;
   priceGroupId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceProductCategoryProductCategoryList = {
-  items?: InputMaybe<Array<IIoRestorecommerceProductCategoryProductCategory>>;
+export interface IIoRestorecommerceProductCategoryProductCategoryList {
+  items?: InputMaybe<IIoRestorecommerceProductCategoryProductCategory[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceProductIndividualProduct = {
+export interface IIoRestorecommerceProductIndividualProduct {
   categoryId?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   gtin?: InputMaybe<Scalars['String']>;
@@ -1453,193 +1445,193 @@ export type IIoRestorecommerceProductIndividualProduct = {
   prototypeId?: InputMaybe<Scalars['String']>;
   service?: InputMaybe<IIoRestorecommerceProductServiceProduct>;
   taricCode?: InputMaybe<Scalars['String']>;
-  taxIds?: InputMaybe<Array<Scalars['String']>>;
+  taxIds?: InputMaybe<Scalars['String'][]>;
   virtual?: InputMaybe<IIoRestorecommerceProductVirtualProduct>;
-};
+}
 
-export type IIoRestorecommerceProductPackage = {
+export interface IIoRestorecommerceProductPackage {
   rotatable?: InputMaybe<Scalars['Boolean']>;
   sizeInCm?: InputMaybe<IIoRestorecommerceGeometryBoundingBox3D>;
   weightInKg?: InputMaybe<Scalars['Float']>;
-};
+}
 
-export type IIoRestorecommerceProductPhysicalProduct = {
-  variants?: InputMaybe<Array<IIoRestorecommerceProductPhysicalVariant>>;
-};
+export interface IIoRestorecommerceProductPhysicalProduct {
+  variants?: InputMaybe<IIoRestorecommerceProductPhysicalVariant[]>;
+}
 
-export type IIoRestorecommerceProductPhysicalVariant = {
+export interface IIoRestorecommerceProductPhysicalVariant {
   description?: InputMaybe<Scalars['String']>;
-  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  files?: InputMaybe<IIoRestorecommerceFileFile[]>;
   id?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<IIoRestorecommerceImageImage[]>;
   name?: InputMaybe<Scalars['String']>;
   package?: InputMaybe<IIoRestorecommerceProductPackage>;
   parentVariantId?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<IIoRestorecommercePricePrice>;
-  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  properties?: InputMaybe<IIoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: InputMaybe<Scalars['String']>;
   stockLevel?: InputMaybe<Scalars['Int']>;
-  taxIds?: InputMaybe<Array<Scalars['String']>>;
-};
+  taxIds?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceProductProduct = {
+export interface IIoRestorecommerceProductProduct {
   active?: InputMaybe<Scalars['Boolean']>;
-  associations?: InputMaybe<Array<IIoRestorecommerceProductAssociation>>;
+  associations?: InputMaybe<IIoRestorecommerceProductAssociation[]>;
   bundle?: InputMaybe<IIoRestorecommerceProductBundle>;
   data?: InputMaybe<IGoogleProtobufAny>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   product?: InputMaybe<IIoRestorecommerceProductIndividualProduct>;
   shopId?: InputMaybe<Scalars['String']>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
-};
+  tags?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceProductProductList = {
-  items?: InputMaybe<Array<IIoRestorecommerceProductProduct>>;
+export interface IIoRestorecommerceProductProductList {
+  items?: InputMaybe<IIoRestorecommerceProductProduct[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceProductPrototypeProductPrototype = {
+export interface IIoRestorecommerceProductPrototypeProductPrototype {
   categoryId?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   version?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceProductPrototypeProductPrototypeList = {
-  items?: InputMaybe<Array<IIoRestorecommerceProductPrototypeProductPrototype>>;
+export interface IIoRestorecommerceProductPrototypeProductPrototypeList {
+  items?: InputMaybe<IIoRestorecommerceProductPrototypeProductPrototype[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceProductServiceProduct = {
-  variants?: InputMaybe<Array<IIoRestorecommerceProductServiceVariant>>;
-};
+export interface IIoRestorecommerceProductServiceProduct {
+  variants?: InputMaybe<IIoRestorecommerceProductServiceVariant[]>;
+}
 
-export type IIoRestorecommerceProductServiceVariant = {
+export interface IIoRestorecommerceProductServiceVariant {
   description?: InputMaybe<Scalars['String']>;
-  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  files?: InputMaybe<IIoRestorecommerceFileFile[]>;
   id?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<IIoRestorecommerceImageImage[]>;
   name?: InputMaybe<Scalars['String']>;
   parentVariantId?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<IIoRestorecommercePricePrice>;
-  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  properties?: InputMaybe<IIoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: InputMaybe<Scalars['String']>;
   stockLevel?: InputMaybe<Scalars['Int']>;
-  taxIds?: InputMaybe<Array<Scalars['String']>>;
-};
+  taxIds?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceProductVirtualProduct = {
-  variants?: InputMaybe<Array<IIoRestorecommerceProductVirtualVariant>>;
-};
+export interface IIoRestorecommerceProductVirtualProduct {
+  variants?: InputMaybe<IIoRestorecommerceProductVirtualVariant[]>;
+}
 
-export type IIoRestorecommerceProductVirtualVariant = {
+export interface IIoRestorecommerceProductVirtualVariant {
   description?: InputMaybe<Scalars['String']>;
-  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  files?: InputMaybe<IIoRestorecommerceFileFile[]>;
   id?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<IIoRestorecommerceImageImage[]>;
   name?: InputMaybe<Scalars['String']>;
   parentVariantId?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<IIoRestorecommercePricePrice>;
-  properties?: InputMaybe<Array<IIoRestorecommercePropertyProperty>>;
+  properties?: InputMaybe<IIoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: InputMaybe<Scalars['String']>;
   stockLevel?: InputMaybe<Scalars['Int']>;
-  taxIds?: InputMaybe<Array<Scalars['String']>>;
-};
+  taxIds?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommercePropertyProperty = {
+export interface IIoRestorecommercePropertyProperty {
   id?: InputMaybe<Scalars['String']>;
   unitCode?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceReferenceReference = {
+export interface IIoRestorecommerceReferenceReference {
   instanceId?: InputMaybe<Scalars['String']>;
   instanceType?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceResourcebaseDeleteRequest = {
-  analyzers?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceResourcebaseDeleteRequest {
+  analyzers?: InputMaybe<Scalars['String'][]>;
   collection?: InputMaybe<Scalars['Boolean']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Scalars['String'][]>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
-  views?: InputMaybe<Array<Scalars['String']>>;
-};
+  views?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceResourcebaseFieldFilter = {
+export interface IIoRestorecommerceResourcebaseFieldFilter {
   include?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceResourcebaseFilter = {
+export interface IIoRestorecommerceResourcebaseFilter {
   field?: InputMaybe<Scalars['String']>;
-  filters?: InputMaybe<Array<IIoRestorecommerceFilterFilterOp>>;
+  filters?: InputMaybe<IIoRestorecommerceFilterFilterOp[]>;
   operation?: InputMaybe<IoRestorecommerceResourcebaseFilterOperation>;
   type?: InputMaybe<IoRestorecommerceResourcebaseFilterValueType>;
   value?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceResourcebaseFilterOp = {
-  filters?: InputMaybe<Array<IIoRestorecommerceResourcebaseFilter>>;
+export interface IIoRestorecommerceResourcebaseFilterOp {
+  filters?: InputMaybe<IIoRestorecommerceResourcebaseFilter[]>;
   operator?: InputMaybe<IoRestorecommerceResourcebaseFilterOpOperator>;
-};
+}
 
-export type IIoRestorecommerceResourcebaseReadRequest = {
+export interface IIoRestorecommerceResourcebaseReadRequest {
   customArguments?: InputMaybe<IGoogleProtobufAny>;
-  customQueries?: InputMaybe<Array<Scalars['String']>>;
-  fields?: InputMaybe<Array<IIoRestorecommerceResourcebaseFieldFilter>>;
-  filters?: InputMaybe<Array<IIoRestorecommerceResourcebaseFilterOp>>;
+  customQueries?: InputMaybe<Scalars['String'][]>;
+  fields?: InputMaybe<IIoRestorecommerceResourcebaseFieldFilter[]>;
+  filters?: InputMaybe<IIoRestorecommerceResourcebaseFilterOp[]>;
   limit?: InputMaybe<Scalars['Int']>;
-  localesLimiter?: InputMaybe<Array<Scalars['String']>>;
+  localesLimiter?: InputMaybe<Scalars['String'][]>;
   offset?: InputMaybe<Scalars['Int']>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   search?: InputMaybe<IIoRestorecommerceResourcebaseSearch>;
-  sorts?: InputMaybe<Array<IIoRestorecommerceResourcebaseSort>>;
-};
+  sorts?: InputMaybe<IIoRestorecommerceResourcebaseSort[]>;
+}
 
-export type IIoRestorecommerceResourcebaseSearch = {
+export interface IIoRestorecommerceResourcebaseSearch {
   caseSensitive?: InputMaybe<Scalars['Boolean']>;
-  fields?: InputMaybe<Array<Scalars['String']>>;
+  fields?: InputMaybe<Scalars['String'][]>;
   search?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceResourcebaseSort = {
+export interface IIoRestorecommerceResourcebaseSort {
   field?: InputMaybe<Scalars['String']>;
   order?: InputMaybe<IoRestorecommerceResourcebaseSortSortOrder>;
-};
+}
 
-export type IIoRestorecommerceRoleRole = {
-  assignableByRoles?: InputMaybe<Array<Scalars['String']>>;
+export interface IIoRestorecommerceRoleRole {
+  assignableByRoles?: InputMaybe<Scalars['String'][]>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceRoleRoleList = {
-  items?: InputMaybe<Array<IIoRestorecommerceRoleRole>>;
+export interface IIoRestorecommerceRoleRoleList {
+  items?: InputMaybe<IIoRestorecommerceRoleRole[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceRuleContextQuery = {
-  filters?: InputMaybe<Array<IIoRestorecommerceFilterFilterOp>>;
+export interface IIoRestorecommerceRuleContextQuery {
+  filters?: InputMaybe<IIoRestorecommerceFilterFilterOp[]>;
   query?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceRuleRule = {
+export interface IIoRestorecommerceRuleRule {
   condition?: InputMaybe<Scalars['String']>;
   contextQuery?: InputMaybe<IIoRestorecommerceRuleContextQuery>;
   description?: InputMaybe<Scalars['String']>;
@@ -1649,48 +1641,48 @@ export type IIoRestorecommerceRuleRule = {
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   target?: InputMaybe<IIoRestorecommerceRuleTarget>;
-};
+}
 
-export type IIoRestorecommerceRuleRuleList = {
-  items?: InputMaybe<Array<IIoRestorecommerceRuleRule>>;
+export interface IIoRestorecommerceRuleRuleList {
+  items?: InputMaybe<IIoRestorecommerceRuleRule[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceRuleTarget = {
-  actions?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  resources?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  subjects?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-};
+export interface IIoRestorecommerceRuleTarget {
+  actions?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+  resources?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+  subjects?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IIoRestorecommerceShopShop = {
+export interface IIoRestorecommerceShopShop {
   description?: InputMaybe<Scalars['String']>;
   domain?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   organizationId?: InputMaybe<Scalars['String']>;
-  settings?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+  settings?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   shopNumber?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceShopShopList = {
-  items?: InputMaybe<Array<IIoRestorecommerceShopShop>>;
+export interface IIoRestorecommerceShopShopList {
+  items?: InputMaybe<IIoRestorecommerceShopShop[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceStatusStatus = {
+export interface IIoRestorecommerceStatusStatus {
   code?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
   message?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceTaxTax = {
+export interface IIoRestorecommerceTaxTax {
   abbreviation?: InputMaybe<Scalars['String']>;
   countryId?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
@@ -1699,51 +1691,51 @@ export type IIoRestorecommerceTaxTax = {
   rate?: InputMaybe<Scalars['Float']>;
   typeId?: InputMaybe<Scalars['String']>;
   variant?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceTaxTaxList = {
-  items?: InputMaybe<Array<IIoRestorecommerceTaxTax>>;
+export interface IIoRestorecommerceTaxTaxList {
+  items?: InputMaybe<IIoRestorecommerceTaxTax[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceTaxTypeTaxType = {
+export interface IIoRestorecommerceTaxTypeTaxType {
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceTaxTypeTaxTypeList = {
-  items?: InputMaybe<Array<IIoRestorecommerceTaxTypeTaxType>>;
+export interface IIoRestorecommerceTaxTypeTaxTypeList {
+  items?: InputMaybe<IIoRestorecommerceTaxTypeTaxType[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceTemplateTemplate = {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceTemplateTemplate {
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   description?: InputMaybe<Scalars['String']>;
-  files?: InputMaybe<Array<IIoRestorecommerceFileFile>>;
+  files?: InputMaybe<IIoRestorecommerceFileFile[]>;
   id?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<Array<IIoRestorecommerceImageImage>>;
+  images?: InputMaybe<IIoRestorecommerceImageImage[]>;
   meta?: InputMaybe<IIoRestorecommerceMetaMeta>;
   name?: InputMaybe<Scalars['String']>;
   reference?: InputMaybe<IIoRestorecommerceReferenceReference>;
-};
+}
 
-export type IIoRestorecommerceTemplateTemplateList = {
-  items?: InputMaybe<Array<IIoRestorecommerceTemplateTemplate>>;
+export interface IIoRestorecommerceTemplateTemplateList {
+  items?: InputMaybe<IIoRestorecommerceTemplateTemplate[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceTimezoneTimezone = {
+export interface IIoRestorecommerceTimezoneTimezone {
   abbreviationDst?: InputMaybe<Scalars['String']>;
   abbreviationStd?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
@@ -1753,38 +1745,38 @@ export type IIoRestorecommerceTimezoneTimezone = {
   offsetDst?: InputMaybe<IIoRestorecommerceTimezoneTimezoneOffset>;
   offsetStd?: InputMaybe<IIoRestorecommerceTimezoneTimezoneOffset>;
   value?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceTimezoneTimezoneList = {
-  items?: InputMaybe<Array<IIoRestorecommerceTimezoneTimezone>>;
+export interface IIoRestorecommerceTimezoneTimezoneList {
+  items?: InputMaybe<IIoRestorecommerceTimezoneTimezone[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceTimezoneTimezoneOffset = {
+export interface IIoRestorecommerceTimezoneTimezoneOffset {
   hours?: InputMaybe<Scalars['Int']>;
   minutes?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceTokenGrantId = {
+export interface IIoRestorecommerceTokenGrantId {
   grantId?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceTokenIdentifier = {
+export interface IIoRestorecommerceTokenIdentifier {
   id?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceTokenTokenData = {
+export interface IIoRestorecommerceTokenTokenData {
   expiresIn?: InputMaybe<Scalars['IDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   payload?: InputMaybe<IGoogleProtobufAny>;
   type?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUnitCodeUnitCode = {
+export interface IIoRestorecommerceUnitCodeUnitCode {
   commonCode?: InputMaybe<Scalars['String']>;
   conversionFactor?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
@@ -1798,74 +1790,74 @@ export type IIoRestorecommerceUnitCodeUnitCode = {
   sector?: InputMaybe<IoRestorecommerceUnitCodeSector>;
   status?: InputMaybe<IoRestorecommerceUnitCodeStatusCode>;
   symbol?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUnitCodeUnitCodeList = {
-  items?: InputMaybe<Array<IIoRestorecommerceUnitCodeUnitCode>>;
+export interface IIoRestorecommerceUnitCodeUnitCodeList {
+  items?: InputMaybe<IIoRestorecommerceUnitCodeUnitCode[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IIoRestorecommerceUserActivateRequest = {
+export interface IIoRestorecommerceUserActivateRequest {
   activationCode?: InputMaybe<Scalars['String']>;
   identifier?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserChangeEmailRequest = {
+export interface IIoRestorecommerceUserChangeEmailRequest {
   identifier?: InputMaybe<Scalars['String']>;
   newEmail?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserChangePasswordRequest = {
+export interface IIoRestorecommerceUserChangePasswordRequest {
   newPassword?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserConfirmEmailChangeRequest = {
+export interface IIoRestorecommerceUserConfirmEmailChangeRequest {
   activationCode?: InputMaybe<Scalars['String']>;
   identifier?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserConfirmPasswordChangeRequest = {
-  activationCode?: InputMaybe<Scalars['String']>;
-  identifier?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
-};
-
-export type IIoRestorecommerceUserConfirmUserInvitationRequest = {
+export interface IIoRestorecommerceUserConfirmPasswordChangeRequest {
   activationCode?: InputMaybe<Scalars['String']>;
   identifier?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserFindByRoleRequest = {
-  attributes?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
+export interface IIoRestorecommerceUserConfirmUserInvitationRequest {
+  activationCode?: InputMaybe<Scalars['String']>;
+  identifier?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+}
+
+export interface IIoRestorecommerceUserFindByRoleRequest {
+  attributes?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
   role?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserFindByTokenRequest = {
+export interface IIoRestorecommerceUserFindByTokenRequest {
   token?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserFindRequest = {
+export interface IIoRestorecommerceUserFindRequest {
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserLoginRequest = {
+export interface IIoRestorecommerceUserLoginRequest {
   identifier?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
   token?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserOrgIdRequest = {
-  orgIds?: InputMaybe<Array<Scalars['String']>>;
-};
+export interface IIoRestorecommerceUserOrgIdRequest {
+  orgIds?: InputMaybe<Scalars['String'][]>;
+}
 
-export type IIoRestorecommerceUserRegisterRequest = {
+export interface IIoRestorecommerceUserRegisterRequest {
   captchaCode?: InputMaybe<Scalars['String']>;
   data?: InputMaybe<IGoogleProtobufAny>;
   defaultScope?: InputMaybe<Scalars['String']>;
@@ -1880,30 +1872,30 @@ export type IIoRestorecommerceUserRegisterRequest = {
   password?: InputMaybe<Scalars['String']>;
   timezoneId?: InputMaybe<Scalars['String']>;
   userType?: InputMaybe<IoRestorecommerceUserUserType>;
-};
+}
 
-export type IIoRestorecommerceUserRequestPasswordChangeRequest = {
+export interface IIoRestorecommerceUserRequestPasswordChangeRequest {
   identifier?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserSendActivationEmailRequest = {
+export interface IIoRestorecommerceUserSendActivationEmailRequest {
   identifier?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserSendInvitationEmailRequest = {
+export interface IIoRestorecommerceUserSendInvitationEmailRequest {
   identifier?: InputMaybe<Scalars['String']>;
   invitedByUserIdentifier?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserTenantRequest = {
+export interface IIoRestorecommerceUserTenantRequest {
   domain?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserUnregisterRequest = {
+export interface IIoRestorecommerceUserUnregisterRequest {
   identifier?: InputMaybe<Scalars['String']>;
-};
+}
 
-export type IIoRestorecommerceUserUser = {
+export interface IIoRestorecommerceUserUser {
   activationCode?: InputMaybe<Scalars['String']>;
   active?: InputMaybe<Scalars['Boolean']>;
   data?: InputMaybe<IGoogleProtobufAny>;
@@ -1925,134 +1917,134 @@ export type IIoRestorecommerceUserUser = {
   newEmail?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
   passwordHash?: InputMaybe<Scalars['String']>;
-  properties?: InputMaybe<Array<IIoRestorecommerceAttributeAttribute>>;
-  roleAssociations?: InputMaybe<Array<IIoRestorecommerceAuthRoleAssociation>>;
+  properties?: InputMaybe<IIoRestorecommerceAttributeAttribute[]>;
+  roleAssociations?: InputMaybe<IIoRestorecommerceAuthRoleAssociation[]>;
   timezoneId?: InputMaybe<Scalars['String']>;
-  tokens?: InputMaybe<Array<IIoRestorecommerceAuthTokens>>;
+  tokens?: InputMaybe<IIoRestorecommerceAuthTokens[]>;
   userType?: InputMaybe<IoRestorecommerceUserUserType>;
-};
+}
 
-export type IIoRestorecommerceUserUserList = {
-  items?: InputMaybe<Array<IIoRestorecommerceUserUser>>;
+export interface IIoRestorecommerceUserUserList {
+  items?: InputMaybe<IIoRestorecommerceUserUser[]>;
   mode?: InputMaybe<ModeType>;
   /** target scope */
   scope?: InputMaybe<Scalars['String']>;
   totalCount?: InputMaybe<Scalars['Int']>;
-};
+}
 
-export type IdentityAuthenticationLogMutation = {
+export interface IdentityAuthenticationLogMutation {
   __typename?: 'IdentityAuthenticationLogMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListResponse>;
-};
+}
 
-export type IdentityAuthenticationLogMutationDeleteArgs = {
+export interface IdentityAuthenticationLogMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type IdentityAuthenticationLogMutationMutateArgs = {
+export interface IdentityAuthenticationLogMutationMutateArgs {
   input: IIoRestorecommerceAuthenticationLogAuthenticationLogList;
-};
+}
 
-export type IdentityAuthenticationLogQuery = {
+export interface IdentityAuthenticationLogQuery {
   __typename?: 'IdentityAuthenticationLogQuery';
   Read?: Maybe<ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListResponse>;
-};
+}
 
-export type IdentityAuthenticationLogQueryReadArgs = {
+export interface IdentityAuthenticationLogQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type IdentityMutation = {
+export interface IdentityMutation {
   __typename?: 'IdentityMutation';
   authentication_log: IdentityAuthenticationLogMutation;
   o_auth: IdentityOAuthMutation;
   role: IdentityRoleMutation;
   token: IdentityTokenMutation;
   user: IdentityUserMutation;
-};
+}
 
-export type IdentityOAuthMutation = {
+export interface IdentityOAuthMutation {
   __typename?: 'IdentityOAuthMutation';
   AvailableServices?: Maybe<ProtoIoRestorecommerceOauthServicesResponse>;
   ExchangeCode?: Maybe<ProtoIoRestorecommerceOauthExchangeCodeResponse>;
   GenerateLinks?: Maybe<ProtoIoRestorecommerceOauthGenerateLinksResponse>;
   GetToken?: Maybe<ProtoIoRestorecommerceOauthGetTokenResponse>;
-};
+}
 
-export type IdentityOAuthMutationExchangeCodeArgs = {
+export interface IdentityOAuthMutationExchangeCodeArgs {
   input: IIoRestorecommerceOauthExchangeCodeRequest;
-};
+}
 
-export type IdentityOAuthMutationGetTokenArgs = {
+export interface IdentityOAuthMutationGetTokenArgs {
   input: IIoRestorecommerceOauthGetTokenRequest;
-};
+}
 
-export type IdentityQuery = {
+export interface IdentityQuery {
   __typename?: 'IdentityQuery';
   authentication_log: IdentityAuthenticationLogQuery;
   role: IdentityRoleQuery;
   token: IdentityTokenQuery;
   user: IdentityUserQuery;
-};
+}
 
-export type IdentityRoleMutation = {
+export interface IdentityRoleMutation {
   __typename?: 'IdentityRoleMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceRoleRoleListResponse>;
-};
+}
 
-export type IdentityRoleMutationDeleteArgs = {
+export interface IdentityRoleMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type IdentityRoleMutationMutateArgs = {
+export interface IdentityRoleMutationMutateArgs {
   input: IIoRestorecommerceRoleRoleList;
-};
+}
 
-export type IdentityRoleQuery = {
+export interface IdentityRoleQuery {
   __typename?: 'IdentityRoleQuery';
   Read?: Maybe<ProtoIoRestorecommerceRoleRoleListResponse>;
-};
+}
 
-export type IdentityRoleQueryReadArgs = {
+export interface IdentityRoleQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type IdentityTokenMutation = {
+export interface IdentityTokenMutation {
   __typename?: 'IdentityTokenMutation';
   consume?: Maybe<ProtoGoogleProtobufAny>;
   destroy?: Maybe<ProtoGoogleProtobufAny>;
   revokeByGrantId?: Maybe<ProtoGoogleProtobufAny>;
   upsert?: Maybe<ProtoGoogleProtobufAny>;
-};
+}
 
-export type IdentityTokenMutationConsumeArgs = {
+export interface IdentityTokenMutationConsumeArgs {
   input: IIoRestorecommerceTokenIdentifier;
-};
+}
 
-export type IdentityTokenMutationDestroyArgs = {
+export interface IdentityTokenMutationDestroyArgs {
   input: IIoRestorecommerceTokenIdentifier;
-};
+}
 
-export type IdentityTokenMutationRevokeByGrantIdArgs = {
+export interface IdentityTokenMutationRevokeByGrantIdArgs {
   input: IIoRestorecommerceTokenGrantId;
-};
+}
 
-export type IdentityTokenMutationUpsertArgs = {
+export interface IdentityTokenMutationUpsertArgs {
   input: IIoRestorecommerceTokenTokenData;
-};
+}
 
-export type IdentityTokenQuery = {
+export interface IdentityTokenQuery {
   __typename?: 'IdentityTokenQuery';
   find?: Maybe<ProtoGoogleProtobufAny>;
-};
+}
 
-export type IdentityTokenQueryFindArgs = {
+export interface IdentityTokenQueryFindArgs {
   input: IIoRestorecommerceTokenIdentifier;
-};
+}
 
-export type IdentityUserMutation = {
+export interface IdentityUserMutation {
   __typename?: 'IdentityUserMutation';
   Activate?: Maybe<ProtoIoRestorecommerceStatusOperationStatusObj>;
   ChangePassword?: Maybe<ProtoIoRestorecommerceStatusOperationStatusObj>;
@@ -2070,97 +2062,97 @@ export type IdentityUserMutation = {
   SendActivationEmail?: Maybe<ProtoIoRestorecommerceStatusOperationStatusObj>;
   SendInvitationEmail?: Maybe<ProtoIoRestorecommerceStatusOperationStatusObj>;
   Unregister?: Maybe<ProtoIoRestorecommerceStatusOperationStatusObj>;
-};
+}
 
-export type IdentityUserMutationActivateArgs = {
+export interface IdentityUserMutationActivateArgs {
   input: IIoRestorecommerceUserActivateRequest;
-};
+}
 
-export type IdentityUserMutationChangePasswordArgs = {
+export interface IdentityUserMutationChangePasswordArgs {
   input: IIoRestorecommerceUserChangePasswordRequest;
-};
+}
 
-export type IdentityUserMutationConfirmEmailChangeArgs = {
+export interface IdentityUserMutationConfirmEmailChangeArgs {
   input: IIoRestorecommerceUserConfirmEmailChangeRequest;
-};
+}
 
-export type IdentityUserMutationConfirmPasswordChangeArgs = {
+export interface IdentityUserMutationConfirmPasswordChangeArgs {
   input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
-};
+}
 
-export type IdentityUserMutationConfirmUserInvitationArgs = {
+export interface IdentityUserMutationConfirmUserInvitationArgs {
   input: IIoRestorecommerceUserConfirmUserInvitationRequest;
-};
+}
 
-export type IdentityUserMutationDeleteArgs = {
+export interface IdentityUserMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type IdentityUserMutationDeleteUsersByOrgArgs = {
+export interface IdentityUserMutationDeleteUsersByOrgArgs {
   input: IIoRestorecommerceUserOrgIdRequest;
-};
+}
 
-export type IdentityUserMutationGetUnauthenticatedSubjectTokenForTenantArgs = {
+export interface IdentityUserMutationGetUnauthenticatedSubjectTokenForTenantArgs {
   input: IIoRestorecommerceUserTenantRequest;
-};
+}
 
-export type IdentityUserMutationLoginArgs = {
+export interface IdentityUserMutationLoginArgs {
   input: IIoRestorecommerceUserLoginRequest;
-};
+}
 
-export type IdentityUserMutationMutateArgs = {
+export interface IdentityUserMutationMutateArgs {
   input: IIoRestorecommerceUserUserList;
-};
+}
 
-export type IdentityUserMutationRegisterArgs = {
+export interface IdentityUserMutationRegisterArgs {
   input: IIoRestorecommerceUserRegisterRequest;
-};
+}
 
-export type IdentityUserMutationRequestEmailChangeArgs = {
+export interface IdentityUserMutationRequestEmailChangeArgs {
   input: IIoRestorecommerceUserChangeEmailRequest;
-};
+}
 
-export type IdentityUserMutationRequestPasswordChangeArgs = {
+export interface IdentityUserMutationRequestPasswordChangeArgs {
   input: IIoRestorecommerceUserRequestPasswordChangeRequest;
-};
+}
 
-export type IdentityUserMutationSendActivationEmailArgs = {
+export interface IdentityUserMutationSendActivationEmailArgs {
   input: IIoRestorecommerceUserSendActivationEmailRequest;
-};
+}
 
-export type IdentityUserMutationSendInvitationEmailArgs = {
+export interface IdentityUserMutationSendInvitationEmailArgs {
   input: IIoRestorecommerceUserSendInvitationEmailRequest;
-};
+}
 
-export type IdentityUserMutationUnregisterArgs = {
+export interface IdentityUserMutationUnregisterArgs {
   input: IIoRestorecommerceUserUnregisterRequest;
-};
+}
 
-export type IdentityUserQuery = {
+export interface IdentityUserQuery {
   __typename?: 'IdentityUserQuery';
   Find?: Maybe<ProtoIoRestorecommerceUserUserListResponse>;
   FindByRole?: Maybe<ProtoIoRestorecommerceUserUserListResponse>;
   FindByToken?: Maybe<ProtoIoRestorecommerceUserUserResponse>;
   Read?: Maybe<ProtoIoRestorecommerceUserUserListWithRoleResponse>;
-};
+}
 
-export type IdentityUserQueryFindArgs = {
+export interface IdentityUserQueryFindArgs {
   input: IIoRestorecommerceUserFindRequest;
-};
+}
 
-export type IdentityUserQueryFindByRoleArgs = {
+export interface IdentityUserQueryFindByRoleArgs {
   input: IIoRestorecommerceUserFindByRoleRequest;
-};
+}
 
-export type IdentityUserQueryFindByTokenArgs = {
+export interface IdentityUserQueryFindByTokenArgs {
   input: IIoRestorecommerceUserFindByTokenRequest;
-};
+}
 
-export type IdentityUserQueryReadArgs = {
+export interface IdentityUserQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type InvoicingInvoiceMutation = {
+export interface InvoicingInvoiceMutation {
   __typename?: 'InvoicingInvoiceMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   GenerateInvoiceNumber?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceNumberResponse>;
@@ -2168,58 +2160,58 @@ export type InvoicingInvoiceMutation = {
   Render?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
   Send?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
   Withdraw?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
-};
+}
 
-export type InvoicingInvoiceMutationDeleteArgs = {
+export interface InvoicingInvoiceMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type InvoicingInvoiceMutationGenerateInvoiceNumberArgs = {
+export interface InvoicingInvoiceMutationGenerateInvoiceNumberArgs {
   input: IIoRestorecommerceInvoiceRequestInvoiceNumber;
-};
+}
 
-export type InvoicingInvoiceMutationMutateArgs = {
+export interface InvoicingInvoiceMutationMutateArgs {
   input: IIoRestorecommerceInvoiceInvoiceList;
-};
+}
 
-export type InvoicingInvoiceMutationRenderArgs = {
+export interface InvoicingInvoiceMutationRenderArgs {
   input: IIoRestorecommerceInvoiceInvoiceList;
-};
+}
 
-export type InvoicingInvoiceMutationSendArgs = {
+export interface InvoicingInvoiceMutationSendArgs {
   input: IIoRestorecommerceInvoiceInvoiceIdList;
-};
+}
 
-export type InvoicingInvoiceMutationWithdrawArgs = {
+export interface InvoicingInvoiceMutationWithdrawArgs {
   input: IIoRestorecommerceInvoiceInvoiceIdList;
-};
+}
 
-export type InvoicingInvoiceQuery = {
+export interface InvoicingInvoiceQuery {
   __typename?: 'InvoicingInvoiceQuery';
   Read?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
-};
+}
 
-export type InvoicingInvoiceQueryReadArgs = {
+export interface InvoicingInvoiceQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type InvoicingMutation = {
+export interface InvoicingMutation {
   __typename?: 'InvoicingMutation';
   invoice: InvoicingInvoiceMutation;
-};
+}
 
-export type InvoicingQuery = {
+export interface InvoicingQuery {
   __typename?: 'InvoicingQuery';
   invoice: InvoicingInvoiceQuery;
-};
+}
 
-export type IoRestorecommerceAccessControlResponse = {
+export interface IoRestorecommerceAccessControlResponse {
   __typename?: 'IoRestorecommerceAccessControlResponse';
   decision?: Maybe<IoRestorecommerceAccessControlResponseDecision>;
   evaluationCacheable?: Maybe<Scalars['Boolean']>;
-  obligations?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  obligations?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-};
+}
 
 export enum IoRestorecommerceAccessControlResponseDecision {
   Deny = 'DENY',
@@ -2228,14 +2220,14 @@ export enum IoRestorecommerceAccessControlResponseDecision {
   Permit = 'PERMIT',
 }
 
-export type IoRestorecommerceAccessControlReverseQuery = {
+export interface IoRestorecommerceAccessControlReverseQuery {
   __typename?: 'IoRestorecommerceAccessControlReverseQuery';
-  obligations?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  obligations?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  policySets?: Maybe<Array<IoRestorecommercePolicySetPolicySetRq>>;
-};
+  policySets?: Maybe<IoRestorecommercePolicySetPolicySetRq[]>;
+}
 
-export type IoRestorecommerceAddressAddress = {
+export interface IoRestorecommerceAddressAddress {
   __typename?: 'IoRestorecommerceAddressAddress';
   addressAddition?: Maybe<IoRestorecommerceAddressAddressAddition>;
   altitude?: Maybe<Scalars['Float']>;
@@ -2252,118 +2244,118 @@ export type IoRestorecommerceAddressAddress = {
   region?: Maybe<Scalars['String']>;
   residentialAddress?: Maybe<IoRestorecommerceAddressResidentialAddress>;
   street?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAddressAddressAddition = {
+export interface IoRestorecommerceAddressAddressAddition {
   __typename?: 'IoRestorecommerceAddressAddressAddition';
   field1?: Maybe<Scalars['String']>;
   field2?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAddressAddressListResponse = {
+export interface IoRestorecommerceAddressAddressListResponse {
   __typename?: 'IoRestorecommerceAddressAddressListResponse';
-  items?: Maybe<Array<IoRestorecommerceAddressAddressResponse>>;
+  items?: Maybe<IoRestorecommerceAddressAddressResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceAddressAddressResponse = {
+export interface IoRestorecommerceAddressAddressResponse {
   __typename?: 'IoRestorecommerceAddressAddressResponse';
   payload?: Maybe<IoRestorecommerceAddressAddress>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceAddressBillingAddress = {
+export interface IoRestorecommerceAddressBillingAddress {
   __typename?: 'IoRestorecommerceAddressBillingAddress';
   address?: Maybe<IoRestorecommerceAddressAddress>;
   comments?: Maybe<Scalars['String']>;
   contact?: Maybe<IoRestorecommerceAddressContact>;
-};
+}
 
-export type IoRestorecommerceAddressBusinessAddress = {
+export interface IoRestorecommerceAddressBusinessAddress {
   __typename?: 'IoRestorecommerceAddressBusinessAddress';
   name?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAddressContact = {
+export interface IoRestorecommerceAddressContact {
   __typename?: 'IoRestorecommerceAddressContact';
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAddressGeoPoint = {
+export interface IoRestorecommerceAddressGeoPoint {
   __typename?: 'IoRestorecommerceAddressGeoPoint';
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
-};
+}
 
-export type IoRestorecommerceAddressPackStation = {
+export interface IoRestorecommerceAddressPackStation {
   __typename?: 'IoRestorecommerceAddressPackStation';
   postNumber?: Maybe<Scalars['String']>;
   provider?: Maybe<Scalars['String']>;
   stationNumber?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAddressResidentialAddress = {
+export interface IoRestorecommerceAddressResidentialAddress {
   __typename?: 'IoRestorecommerceAddressResidentialAddress';
   familyName?: Maybe<Scalars['String']>;
   givenName?: Maybe<Scalars['String']>;
   midName?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAddressShippingAddress = {
+export interface IoRestorecommerceAddressShippingAddress {
   __typename?: 'IoRestorecommerceAddressShippingAddress';
   address?: Maybe<IoRestorecommerceAddressAddress>;
   comments?: Maybe<Scalars['String']>;
   contact?: Maybe<IoRestorecommerceAddressContact>;
-};
+}
 
-export type IoRestorecommerceAmountAmount = {
+export interface IoRestorecommerceAmountAmount {
   __typename?: 'IoRestorecommerceAmountAmount';
   currency?: Maybe<IoRestorecommerceCurrencyCurrency>;
   currencyId?: Maybe<Scalars['String']>;
   gross?: Maybe<Scalars['Float']>;
   net?: Maybe<Scalars['Float']>;
-  vats?: Maybe<Array<IoRestorecommerceAmountVat>>;
-};
+  vats?: Maybe<IoRestorecommerceAmountVat[]>;
+}
 
-export type IoRestorecommerceAmountVat = {
+export interface IoRestorecommerceAmountVat {
   __typename?: 'IoRestorecommerceAmountVAT';
   tax?: Maybe<IoRestorecommerceTaxTax>;
   taxId?: Maybe<Scalars['String']>;
   vat?: Maybe<Scalars['Float']>;
-};
+}
 
-export type IoRestorecommerceAttributeAttribute = {
+export interface IoRestorecommerceAttributeAttribute {
   __typename?: 'IoRestorecommerceAttributeAttribute';
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  attributes?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   id?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAuthRoleAssociation = {
+export interface IoRestorecommerceAuthRoleAssociation {
   __typename?: 'IoRestorecommerceAuthRoleAssociation';
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  attributes?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   created?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   role?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAuthTokens = {
+export interface IoRestorecommerceAuthTokens {
   __typename?: 'IoRestorecommerceAuthTokens';
   clientId?: Maybe<Scalars['String']>;
   expiresIn?: Maybe<Scalars['DateTime']>;
   interactive?: Maybe<Scalars['Boolean']>;
   lastLogin?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
-  scopes?: Maybe<Array<Scalars['String']>>;
+  scopes?: Maybe<Scalars['String'][]>;
   token?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAuthenticationLogAuthenticationLog = {
+export interface IoRestorecommerceAuthenticationLogAuthenticationLog {
   __typename?: 'IoRestorecommerceAuthenticationLogAuthenticationLog';
   activity?: Maybe<Scalars['String']>;
   date?: Maybe<Scalars['DateTime']>;
@@ -2375,46 +2367,44 @@ export type IoRestorecommerceAuthenticationLogAuthenticationLog = {
   subjectId?: Maybe<Scalars['String']>;
   tokenName?: Maybe<Scalars['String']>;
   userAgent?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceAuthenticationLogAuthenticationLogListResponse = {
+export interface IoRestorecommerceAuthenticationLogAuthenticationLogListResponse {
   __typename?: 'IoRestorecommerceAuthenticationLogAuthenticationLogListResponse';
-  items?: Maybe<
-    Array<IoRestorecommerceAuthenticationLogAuthenticationLogResponse>
-  >;
+  items?: Maybe<IoRestorecommerceAuthenticationLogAuthenticationLogResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceAuthenticationLogAuthenticationLogResponse = {
+export interface IoRestorecommerceAuthenticationLogAuthenticationLogResponse {
   __typename?: 'IoRestorecommerceAuthenticationLogAuthenticationLogResponse';
   payload?: Maybe<IoRestorecommerceAuthenticationLogAuthenticationLog>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceCommandCommand = {
+export interface IoRestorecommerceCommandCommand {
   __typename?: 'IoRestorecommerceCommandCommand';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-  parameters?: Maybe<Array<IoRestorecommerceCommandCommandParameter>>;
-};
+  parameters?: Maybe<IoRestorecommerceCommandCommandParameter[]>;
+}
 
-export type IoRestorecommerceCommandCommandListResponse = {
+export interface IoRestorecommerceCommandCommandListResponse {
   __typename?: 'IoRestorecommerceCommandCommandListResponse';
-  items?: Maybe<Array<IoRestorecommerceCommandCommandResponse>>;
+  items?: Maybe<IoRestorecommerceCommandCommandResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceCommandCommandParameter = {
+export interface IoRestorecommerceCommandCommandParameter {
   __typename?: 'IoRestorecommerceCommandCommandParameter';
   description?: Maybe<Scalars['String']>;
   field?: Maybe<Scalars['String']>;
   properties?: Maybe<Scalars['String']>;
   type?: Maybe<IoRestorecommerceCommandCommandParameterParameterType>;
-};
+}
 
 export enum IoRestorecommerceCommandCommandParameterParameterType {
   ArrayValue = 'array_value',
@@ -2424,18 +2414,16 @@ export enum IoRestorecommerceCommandCommandParameterParameterType {
   StringValue = 'string_value',
 }
 
-export type IoRestorecommerceCommandCommandResponse = {
+export interface IoRestorecommerceCommandCommandResponse {
   __typename?: 'IoRestorecommerceCommandCommandResponse';
   payload?: Maybe<IoRestorecommerceCommandCommand>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceContactPointContactPoint = {
+export interface IoRestorecommerceContactPointContactPoint {
   __typename?: 'IoRestorecommerceContactPointContactPoint';
-  contactPointType?: Maybe<
-    Array<IoRestorecommerceContactPointTypeContactPointType>
-  >;
-  contactPointTypeIds?: Maybe<Array<Scalars['String']>>;
+  contactPointType?: Maybe<IoRestorecommerceContactPointTypeContactPointType[]>;
+  contactPointTypeIds?: Maybe<Scalars['String'][]>;
   description?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -2449,67 +2437,65 @@ export type IoRestorecommerceContactPointContactPoint = {
   timezone?: Maybe<IoRestorecommerceTimezoneTimezone>;
   timezoneId?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceContactPointContactPointListResponse = {
+export interface IoRestorecommerceContactPointContactPointListResponse {
   __typename?: 'IoRestorecommerceContactPointContactPointListResponse';
-  items?: Maybe<Array<IoRestorecommerceContactPointContactPointResponse>>;
+  items?: Maybe<IoRestorecommerceContactPointContactPointResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceContactPointContactPointResponse = {
+export interface IoRestorecommerceContactPointContactPointResponse {
   __typename?: 'IoRestorecommerceContactPointContactPointResponse';
   payload?: Maybe<IoRestorecommerceContactPointContactPoint>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceContactPointTypeContactPointType = {
+export interface IoRestorecommerceContactPointTypeContactPointType {
   __typename?: 'IoRestorecommerceContactPointTypeContactPointType';
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   type?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceContactPointTypeContactPointTypeListResponse = {
+export interface IoRestorecommerceContactPointTypeContactPointTypeListResponse {
   __typename?: 'IoRestorecommerceContactPointTypeContactPointTypeListResponse';
-  items?: Maybe<
-    Array<IoRestorecommerceContactPointTypeContactPointTypeResponse>
-  >;
+  items?: Maybe<IoRestorecommerceContactPointTypeContactPointTypeResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceContactPointTypeContactPointTypeResponse = {
+export interface IoRestorecommerceContactPointTypeContactPointTypeResponse {
   __typename?: 'IoRestorecommerceContactPointTypeContactPointTypeResponse';
   payload?: Maybe<IoRestorecommerceContactPointTypeContactPointType>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceCountryCountry = {
+export interface IoRestorecommerceCountryCountry {
   __typename?: 'IoRestorecommerceCountryCountry';
   countryCode?: Maybe<Scalars['String']>;
-  economicAreas?: Maybe<Array<Scalars['String']>>;
+  economicAreas?: Maybe<Scalars['String'][]>;
   geographicalName?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceCountryCountryListResponse = {
+export interface IoRestorecommerceCountryCountryListResponse {
   __typename?: 'IoRestorecommerceCountryCountryListResponse';
-  items?: Maybe<Array<IoRestorecommerceCountryCountryResponse>>;
+  items?: Maybe<IoRestorecommerceCountryCountryResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceCountryCountryResponse = {
+export interface IoRestorecommerceCountryCountryResponse {
   __typename?: 'IoRestorecommerceCountryCountryResponse';
   payload?: Maybe<IoRestorecommerceCountryCountry>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceCredentialCredential = {
+export interface IoRestorecommerceCredentialCredential {
   __typename?: 'IoRestorecommerceCredentialCredential';
   credentials?: Maybe<GoogleProtobufAny>;
   description?: Maybe<Scalars['String']>;
@@ -2518,83 +2504,83 @@ export type IoRestorecommerceCredentialCredential = {
   name?: Maybe<Scalars['String']>;
   pass?: Maybe<Scalars['String']>;
   user?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceCredentialCredentialListResponse = {
+export interface IoRestorecommerceCredentialCredentialListResponse {
   __typename?: 'IoRestorecommerceCredentialCredentialListResponse';
-  items?: Maybe<Array<IoRestorecommerceCredentialCredentialResponse>>;
+  items?: Maybe<IoRestorecommerceCredentialCredentialResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceCredentialCredentialResponse = {
+export interface IoRestorecommerceCredentialCredentialResponse {
   __typename?: 'IoRestorecommerceCredentialCredentialResponse';
   payload?: Maybe<IoRestorecommerceCredentialCredential>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceCurrencyCurrency = {
+export interface IoRestorecommerceCurrencyCurrency {
   __typename?: 'IoRestorecommerceCurrencyCurrency';
   countryId?: Maybe<Scalars['String']>;
-  customExchangeRates?: Maybe<Array<IoRestorecommerceCurrencyExchangeRate>>;
+  customExchangeRates?: Maybe<IoRestorecommerceCurrencyExchangeRate[]>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
   symbol?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceCurrencyExchangeRate = {
+export interface IoRestorecommerceCurrencyExchangeRate {
   __typename?: 'IoRestorecommerceCurrencyExchangeRate';
   amount?: Maybe<Scalars['Float']>;
   expenses?: Maybe<Scalars['Float']>;
   rate?: Maybe<Scalars['Float']>;
   toCurrencyId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceCustomerCommercial = {
+export interface IoRestorecommerceCustomerCommercial {
   __typename?: 'IoRestorecommerceCustomerCommercial';
   organization?: Maybe<IoRestorecommerceOrganizationOrganization>;
   organizationId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceCustomerCustomer = {
+export interface IoRestorecommerceCustomerCustomer {
   __typename?: 'IoRestorecommerceCustomerCustomer';
   commercial?: Maybe<IoRestorecommerceCustomerCommercial>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   private?: Maybe<IoRestorecommerceCustomerPrivate>;
   publicSector?: Maybe<IoRestorecommerceCustomerPublicSector>;
-  settings?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-};
+  settings?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IoRestorecommerceCustomerCustomerListResponse = {
+export interface IoRestorecommerceCustomerCustomerListResponse {
   __typename?: 'IoRestorecommerceCustomerCustomerListResponse';
-  items?: Maybe<Array<IoRestorecommerceCustomerCustomerResponse>>;
+  items?: Maybe<IoRestorecommerceCustomerCustomerResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceCustomerCustomerResponse = {
+export interface IoRestorecommerceCustomerCustomerResponse {
   __typename?: 'IoRestorecommerceCustomerCustomerResponse';
   payload?: Maybe<IoRestorecommerceCustomerCustomer>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceCustomerPrivate = {
+export interface IoRestorecommerceCustomerPrivate {
   __typename?: 'IoRestorecommerceCustomerPrivate';
-  contactPointIds?: Maybe<Array<Scalars['String']>>;
-  contactPoints?: Maybe<Array<IoRestorecommerceContactPointContactPoint>>;
+  contactPointIds?: Maybe<Scalars['String'][]>;
+  contactPoints?: Maybe<IoRestorecommerceContactPointContactPoint[]>;
   user?: Maybe<IoRestorecommerceUserUser>;
   userId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceCustomerPublicSector = {
+export interface IoRestorecommerceCustomerPublicSector {
   __typename?: 'IoRestorecommerceCustomerPublicSector';
   organization?: Maybe<IoRestorecommerceOrganizationOrganization>;
   organizationId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFileFile = {
+export interface IoRestorecommerceFileFile {
   __typename?: 'IoRestorecommerceFileFile';
   bytes?: Maybe<Scalars['Int']>;
   caption?: Maybe<Scalars['String']>;
@@ -2602,25 +2588,25 @@ export type IoRestorecommerceFileFile = {
   filename?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   index?: Maybe<Scalars['Int']>;
-  tags?: Maybe<Array<Scalars['String']>>;
+  tags?: Maybe<Scalars['String'][]>;
   thumbnail?: Maybe<IoRestorecommerceImageImage>;
   url?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFilterFilter = {
+export interface IoRestorecommerceFilterFilter {
   __typename?: 'IoRestorecommerceFilterFilter';
   field?: Maybe<Scalars['String']>;
-  filters?: Maybe<Array<IoRestorecommerceFilterFilterOp>>;
+  filters?: Maybe<IoRestorecommerceFilterFilterOp[]>;
   operation?: Maybe<IoRestorecommerceFilterFilterOperation>;
   type?: Maybe<IoRestorecommerceFilterFilterValueType>;
   value?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFilterFilterOp = {
+export interface IoRestorecommerceFilterFilterOp {
   __typename?: 'IoRestorecommerceFilterFilterOp';
-  filters?: Maybe<Array<IoRestorecommerceFilterFilter>>;
+  filters?: Maybe<IoRestorecommerceFilterFilter[]>;
   operator?: Maybe<IoRestorecommerceFilterFilterOpOperator>;
-};
+}
 
 export enum IoRestorecommerceFilterFilterOpOperator {
   And = 'and',
@@ -2647,7 +2633,7 @@ export enum IoRestorecommerceFilterFilterValueType {
   String = 'STRING',
 }
 
-export type IoRestorecommerceFulfillmentCourierFulfillmentCourier = {
+export interface IoRestorecommerceFulfillmentCourierFulfillmentCourier {
   __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourier';
   configuration?: Maybe<GoogleProtobufAny>;
   credentialId?: Maybe<Scalars['String']>;
@@ -2656,66 +2642,65 @@ export type IoRestorecommerceFulfillmentCourierFulfillmentCourier = {
   logo?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-  shopIds?: Maybe<Array<Scalars['String']>>;
-  shops?: Maybe<Array<IoRestorecommerceShopShop>>;
+  shopIds?: Maybe<Scalars['String'][]>;
+  shops?: Maybe<IoRestorecommerceShopShop[]>;
   stubType?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse =
-  {
-    __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse';
-    items?: Maybe<
-      Array<IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse>
-    >;
-    operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-    totalCount?: Maybe<Scalars['Int']>;
-  };
+export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse';
+  items?: Maybe<
+    IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse[]
+  >;
+  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
+  totalCount?: Maybe<Scalars['Int']>;
+}
 
-export type IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse = {
+export interface IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse {
   __typename?: 'IoRestorecommerceFulfillmentCourierFulfillmentCourierResponse';
   payload?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourier>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceFulfillmentEvent = {
+export interface IoRestorecommerceFulfillmentEvent {
   __typename?: 'IoRestorecommerceFulfillmentEvent';
   details?: Maybe<GoogleProtobufAny>;
   location?: Maybe<Scalars['String']>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
   timestamp?: Maybe<Scalars['DateTime']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentFulfillment = {
+export interface IoRestorecommerceFulfillmentFulfillment {
   __typename?: 'IoRestorecommerceFulfillmentFulfillment';
   customer?: Maybe<IoRestorecommerceCustomerCustomer>;
   customerId?: Maybe<Scalars['String']>;
   fulfillmentState?: Maybe<IoRestorecommerceFulfillmentFulfillmentState>;
   id?: Maybe<Scalars['String']>;
-  labels?: Maybe<Array<IoRestorecommerceFulfillmentLabel>>;
+  labels?: Maybe<IoRestorecommerceFulfillmentLabel[]>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   packaging?: Maybe<IoRestorecommerceFulfillmentPackaging>;
-  references?: Maybe<Array<IoRestorecommerceReferenceReference>>;
+  references?: Maybe<IoRestorecommerceReferenceReference[]>;
   shop?: Maybe<IoRestorecommerceShopShop>;
   shopId?: Maybe<Scalars['String']>;
-  totalAmounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
-  trackings?: Maybe<Array<IoRestorecommerceFulfillmentTracking>>;
+  totalAmounts?: Maybe<IoRestorecommerceAmountAmount[]>;
+  trackings?: Maybe<IoRestorecommerceFulfillmentTracking[]>;
   user?: Maybe<IoRestorecommerceUserUser>;
   userId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentFulfillmentListResponse = {
+export interface IoRestorecommerceFulfillmentFulfillmentListResponse {
   __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
-  items?: Maybe<Array<IoRestorecommerceFulfillmentFulfillmentResponse>>;
+  items?: Maybe<IoRestorecommerceFulfillmentFulfillmentResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentFulfillmentResponse = {
+export interface IoRestorecommerceFulfillmentFulfillmentResponse {
   __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
   payload?: Maybe<IoRestorecommerceFulfillmentFulfillment>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
 export enum IoRestorecommerceFulfillmentFulfillmentState {
   Cancelled = 'CANCELLED',
@@ -2728,15 +2713,15 @@ export enum IoRestorecommerceFulfillmentFulfillmentState {
   Withdrawn = 'WITHDRAWN',
 }
 
-export type IoRestorecommerceFulfillmentItem = {
+export interface IoRestorecommerceFulfillmentItem {
   __typename?: 'IoRestorecommerceFulfillmentItem';
   package?: Maybe<IoRestorecommerceProductPackage>;
   productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentLabel = {
+export interface IoRestorecommerceFulfillmentLabel {
   __typename?: 'IoRestorecommerceFulfillmentLabel';
   parcelId?: Maybe<Scalars['String']>;
   pdf?: Maybe<Scalars['String']>;
@@ -2745,120 +2730,117 @@ export type IoRestorecommerceFulfillmentLabel = {
   state?: Maybe<IoRestorecommerceFulfillmentFulfillmentState>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
   url?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentPackaging = {
+export interface IoRestorecommerceFulfillmentPackaging {
   __typename?: 'IoRestorecommerceFulfillmentPackaging';
   exportDescription?: Maybe<Scalars['String']>;
   exportType?: Maybe<Scalars['String']>;
   invoiceNumber?: Maybe<Scalars['String']>;
   notify?: Maybe<Scalars['String']>;
-  parcels?: Maybe<Array<IoRestorecommerceFulfillmentParcel>>;
+  parcels?: Maybe<IoRestorecommerceFulfillmentParcel[]>;
   recipient?: Maybe<IoRestorecommerceAddressShippingAddress>;
   sender?: Maybe<IoRestorecommerceAddressShippingAddress>;
-};
+}
 
-export type IoRestorecommerceFulfillmentParcel = {
+export interface IoRestorecommerceFulfillmentParcel {
   __typename?: 'IoRestorecommerceFulfillmentParcel';
   amount?: Maybe<IoRestorecommerceAmountAmount>;
   id?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<IoRestorecommerceFulfillmentItem>>;
+  items?: Maybe<IoRestorecommerceFulfillmentItem[]>;
   package?: Maybe<IoRestorecommerceProductPackage>;
   price?: Maybe<IoRestorecommercePricePrice>;
   product?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
   productId?: Maybe<Scalars['String']>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentProductFulfillmentProduct = {
+export interface IoRestorecommerceFulfillmentProductFulfillmentProduct {
   __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProduct';
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  attributes?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   courier?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourier>;
   courierId?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  destinationZones?: Maybe<Array<Scalars['String']>>;
+  destinationZones?: Maybe<Scalars['String'][]>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-  startZones?: Maybe<Array<Scalars['String']>>;
-  taxIds?: Maybe<Array<Scalars['String']>>;
-  variants?: Maybe<Array<IoRestorecommerceFulfillmentProductVariant>>;
-};
+  startZones?: Maybe<Scalars['String'][]>;
+  taxIds?: Maybe<Scalars['String'][]>;
+  variants?: Maybe<IoRestorecommerceFulfillmentProductVariant[]>;
+}
 
-export type IoRestorecommerceFulfillmentProductFulfillmentProductListResponse =
-  {
-    __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductListResponse';
-    items?: Maybe<
-      Array<IoRestorecommerceFulfillmentProductFulfillmentProductResponse>
-    >;
-    operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-    totalCount?: Maybe<Scalars['Int']>;
-  };
-
-export type IoRestorecommerceFulfillmentProductFulfillmentProductResponse = {
-  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductResponse';
-  payload?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
-  status?: Maybe<IoRestorecommerceStatusStatus>;
-};
-
-export type IoRestorecommerceFulfillmentProductPackingSolution = {
-  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolution';
-  amounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
-  compactness?: Maybe<Scalars['Float']>;
-  homogeneity?: Maybe<Scalars['Float']>;
-  parcels?: Maybe<Array<IoRestorecommerceFulfillmentParcel>>;
-  score?: Maybe<Scalars['Float']>;
-};
-
-export type IoRestorecommerceFulfillmentProductPackingSolutionListResponse = {
-  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionListResponse';
+export interface IoRestorecommerceFulfillmentProductFulfillmentProductListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductListResponse';
   items?: Maybe<
-    Array<IoRestorecommerceFulfillmentProductPackingSolutionResponse>
+    IoRestorecommerceFulfillmentProductFulfillmentProductResponse[]
   >;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceFulfillmentProductPackingSolutionResponse = {
+export interface IoRestorecommerceFulfillmentProductFulfillmentProductResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProductResponse';
+  payload?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
+  status?: Maybe<IoRestorecommerceStatusStatus>;
+}
+
+export interface IoRestorecommerceFulfillmentProductPackingSolution {
+  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolution';
+  amounts?: Maybe<IoRestorecommerceAmountAmount[]>;
+  compactness?: Maybe<Scalars['Float']>;
+  homogeneity?: Maybe<Scalars['Float']>;
+  parcels?: Maybe<IoRestorecommerceFulfillmentParcel[]>;
+  score?: Maybe<Scalars['Float']>;
+}
+
+export interface IoRestorecommerceFulfillmentProductPackingSolutionListResponse {
+  __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionListResponse';
+  items?: Maybe<IoRestorecommerceFulfillmentProductPackingSolutionResponse[]>;
+  operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
+  totalCount?: Maybe<Scalars['Int']>;
+}
+
+export interface IoRestorecommerceFulfillmentProductPackingSolutionResponse {
   __typename?: 'IoRestorecommerceFulfillmentProductPackingSolutionResponse';
   reference?: Maybe<IoRestorecommerceReferenceReference>;
-  solutions?: Maybe<Array<IoRestorecommerceFulfillmentProductPackingSolution>>;
+  solutions?: Maybe<IoRestorecommerceFulfillmentProductPackingSolution[]>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceFulfillmentProductPreferences = {
+export interface IoRestorecommerceFulfillmentProductPreferences {
   __typename?: 'IoRestorecommerceFulfillmentProductPreferences';
-  couriers?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  options?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-};
+  couriers?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+  options?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IoRestorecommerceFulfillmentProductVariant = {
+export interface IoRestorecommerceFulfillmentProductVariant {
   __typename?: 'IoRestorecommerceFulfillmentProductVariant';
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  attributes?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   maxSize?: Maybe<IoRestorecommerceGeometryBoundingBox3D>;
   maxWeight?: Maybe<Scalars['Float']>;
   name?: Maybe<Scalars['String']>;
   price?: Maybe<IoRestorecommercePricePrice>;
-};
+}
 
-export type IoRestorecommerceFulfillmentTracking = {
+export interface IoRestorecommerceFulfillmentTracking {
   __typename?: 'IoRestorecommerceFulfillmentTracking';
   details?: Maybe<GoogleProtobufAny>;
-  events?: Maybe<Array<IoRestorecommerceFulfillmentEvent>>;
+  events?: Maybe<IoRestorecommerceFulfillmentEvent[]>;
   shipmentNumber?: Maybe<Scalars['String']>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceGeometryBoundingBox3D = {
+export interface IoRestorecommerceGeometryBoundingBox3D {
   __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
   height?: Maybe<Scalars['Float']>;
   length?: Maybe<Scalars['Float']>;
   width?: Maybe<Scalars['Float']>;
-};
+}
 
-export type IoRestorecommerceImageImage = {
+export interface IoRestorecommerceImageImage {
   __typename?: 'IoRestorecommerceImageImage';
   caption?: Maybe<Scalars['String']>;
   contentType?: Maybe<Scalars['String']>;
@@ -2867,80 +2849,80 @@ export type IoRestorecommerceImageImage = {
   id?: Maybe<Scalars['String']>;
   index?: Maybe<Scalars['Int']>;
   length?: Maybe<Scalars['Float']>;
-  tags?: Maybe<Array<Scalars['String']>>;
+  tags?: Maybe<Scalars['String'][]>;
   url?: Maybe<Scalars['String']>;
   width?: Maybe<Scalars['Float']>;
-};
+}
 
-export type IoRestorecommerceInvoiceFulfillmentItem = {
+export interface IoRestorecommerceInvoiceFulfillmentItem {
   __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
   product?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProduct>;
   productId?: Maybe<Scalars['String']>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceInvoiceInvoice = {
+export interface IoRestorecommerceInvoiceInvoice {
   __typename?: 'IoRestorecommerceInvoiceInvoice';
   customer?: Maybe<IoRestorecommerceCustomerCustomer>;
   customerId?: Maybe<Scalars['String']>;
-  documents?: Maybe<Array<IoRestorecommerceFileFile>>;
+  documents?: Maybe<IoRestorecommerceFileFile[]>;
   fromDate?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   invoiceNumber?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
-  paymentHints?: Maybe<Array<Scalars['String']>>;
+  paymentHints?: Maybe<Scalars['String'][]>;
   paymentState?: Maybe<IoRestorecommerceInvoicePaymentState>;
   recipient?: Maybe<IoRestorecommerceAddressBillingAddress>;
-  references?: Maybe<Array<IoRestorecommerceReferenceReference>>;
-  sections?: Maybe<Array<IoRestorecommerceInvoiceSection>>;
+  references?: Maybe<IoRestorecommerceReferenceReference[]>;
+  sections?: Maybe<IoRestorecommerceInvoiceSection[]>;
   sender?: Maybe<IoRestorecommerceAddressBillingAddress>;
   sent?: Maybe<Scalars['Boolean']>;
   shop?: Maybe<IoRestorecommerceShopShop>;
   shopId?: Maybe<Scalars['String']>;
   timestamp?: Maybe<Scalars['DateTime']>;
   toDate?: Maybe<Scalars['DateTime']>;
-  totalAmounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  totalAmounts?: Maybe<IoRestorecommerceAmountAmount[]>;
   user?: Maybe<IoRestorecommerceUserUser>;
   userId?: Maybe<Scalars['String']>;
   withdrawn?: Maybe<Scalars['Boolean']>;
-};
+}
 
-export type IoRestorecommerceInvoiceInvoiceListResponse = {
+export interface IoRestorecommerceInvoiceInvoiceListResponse {
   __typename?: 'IoRestorecommerceInvoiceInvoiceListResponse';
-  items?: Maybe<Array<IoRestorecommerceInvoiceInvoiceResponse>>;
+  items?: Maybe<IoRestorecommerceInvoiceInvoiceResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceInvoiceInvoiceNumberResponse = {
+export interface IoRestorecommerceInvoiceInvoiceNumberResponse {
   __typename?: 'IoRestorecommerceInvoiceInvoiceNumberResponse';
   invoiceNumber?: Maybe<Scalars['String']>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-};
+}
 
-export type IoRestorecommerceInvoiceInvoiceResponse = {
+export interface IoRestorecommerceInvoiceInvoiceResponse {
   __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
   payload?: Maybe<IoRestorecommerceInvoiceInvoice>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceInvoiceManualItem = {
+export interface IoRestorecommerceInvoiceManualItem {
   __typename?: 'IoRestorecommerceInvoiceManualItem';
   descritpion?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  properties?: Maybe<IoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
-};
+}
 
 export enum IoRestorecommerceInvoicePaymentState {
   Payed = 'PAYED',
   Unpayed = 'UNPAYED',
 }
 
-export type IoRestorecommerceInvoicePosition = {
+export interface IoRestorecommerceInvoicePosition {
   __typename?: 'IoRestorecommerceInvoicePosition';
   amount?: Maybe<IoRestorecommerceAmountAmount>;
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  attributes?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   contractStartDate?: Maybe<Scalars['Float']>;
   fulfillmentItem?: Maybe<IoRestorecommerceInvoiceFulfillmentItem>;
   id?: Maybe<Scalars['String']>;
@@ -2948,42 +2930,42 @@ export type IoRestorecommerceInvoicePosition = {
   productItem?: Maybe<IoRestorecommerceInvoiceProductItem>;
   quantity?: Maybe<Scalars['Int']>;
   unitPrice?: Maybe<IoRestorecommercePricePrice>;
-};
+}
 
-export type IoRestorecommerceInvoiceProductItem = {
+export interface IoRestorecommerceInvoiceProductItem {
   __typename?: 'IoRestorecommerceInvoiceProductItem';
   product?: Maybe<IoRestorecommerceProductProduct>;
   productId?: Maybe<Scalars['String']>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceInvoiceSection = {
+export interface IoRestorecommerceInvoiceSection {
   __typename?: 'IoRestorecommerceInvoiceSection';
-  amounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  amounts?: Maybe<IoRestorecommerceAmountAmount[]>;
   customerRemark?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  positions?: Maybe<Array<IoRestorecommerceInvoicePosition>>;
-};
+  positions?: Maybe<IoRestorecommerceInvoicePosition[]>;
+}
 
-export type IoRestorecommerceJobBackoff = {
+export interface IoRestorecommerceJobBackoff {
   __typename?: 'IoRestorecommerceJobBackoff';
   delay?: Maybe<Scalars['Float']>;
   type?: Maybe<IoRestorecommerceJobBackoffType>;
-};
+}
 
 export enum IoRestorecommerceJobBackoffType {
   Exponential = 'EXPONENTIAL',
   Fixed = 'FIXED',
 }
 
-export type IoRestorecommerceJobData = {
+export interface IoRestorecommerceJobData {
   __typename?: 'IoRestorecommerceJobData';
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   payload?: Maybe<GoogleProtobufAny>;
   subjectId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceJobJob = {
+export interface IoRestorecommerceJobJob {
   __typename?: 'IoRestorecommerceJobJob';
   data?: Maybe<IoRestorecommerceJobData>;
   id?: Maybe<Scalars['String']>;
@@ -2991,16 +2973,16 @@ export type IoRestorecommerceJobJob = {
   queueName?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   when?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceJobJobListResponse = {
+export interface IoRestorecommerceJobJobListResponse {
   __typename?: 'IoRestorecommerceJobJobListResponse';
-  items?: Maybe<Array<IoRestorecommerceJobJobResponse>>;
+  items?: Maybe<IoRestorecommerceJobJobResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceJobJobOptions = {
+export interface IoRestorecommerceJobJobOptions {
   __typename?: 'IoRestorecommerceJobJobOptions';
   attempts?: Maybe<Scalars['Int']>;
   backoff?: Maybe<IoRestorecommerceJobBackoff>;
@@ -3009,7 +2991,7 @@ export type IoRestorecommerceJobJobOptions = {
   removeOnComplete?: Maybe<Scalars['Boolean']>;
   repeat?: Maybe<IoRestorecommerceJobRepeat>;
   timeout?: Maybe<Scalars['Int']>;
-};
+}
 
 export enum IoRestorecommerceJobJobOptionsPriority {
   Critical = 'CRITICAL',
@@ -3025,13 +3007,13 @@ export enum IoRestorecommerceJobJobReadRequestSortOrder {
   Unsorted = 'UNSORTED',
 }
 
-export type IoRestorecommerceJobJobResponse = {
+export interface IoRestorecommerceJobJobResponse {
   __typename?: 'IoRestorecommerceJobJobResponse';
   payload?: Maybe<IoRestorecommerceJobJob>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceJobRepeat = {
+export interface IoRestorecommerceJobRepeat {
   __typename?: 'IoRestorecommerceJobRepeat';
   count?: Maybe<Scalars['Int']>;
   cron?: Maybe<Scalars['String']>;
@@ -3040,31 +3022,31 @@ export type IoRestorecommerceJobRepeat = {
   jobId?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['String']>;
   tz?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceLocaleLocale = {
+export interface IoRestorecommerceLocaleLocale {
   __typename?: 'IoRestorecommerceLocaleLocale';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceLocaleLocaleListResponse = {
+export interface IoRestorecommerceLocaleLocaleListResponse {
   __typename?: 'IoRestorecommerceLocaleLocaleListResponse';
-  items?: Maybe<Array<IoRestorecommerceLocaleLocaleResponse>>;
+  items?: Maybe<IoRestorecommerceLocaleLocaleResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceLocaleLocaleResponse = {
+export interface IoRestorecommerceLocaleLocaleResponse {
   __typename?: 'IoRestorecommerceLocaleLocaleResponse';
   payload?: Maybe<IoRestorecommerceLocaleLocale>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceLocationLocation = {
+export interface IoRestorecommerceLocationLocation {
   __typename?: 'IoRestorecommerceLocationLocation';
   address?: Maybe<IoRestorecommerceAddressAddress>;
   addressId?: Maybe<Scalars['String']>;
@@ -3078,53 +3060,53 @@ export type IoRestorecommerceLocationLocation = {
   parent?: Maybe<IoRestorecommerceLocationLocation>;
   parentId?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceLocationLocationListResponse = {
+export interface IoRestorecommerceLocationLocationListResponse {
   __typename?: 'IoRestorecommerceLocationLocationListResponse';
-  items?: Maybe<Array<IoRestorecommerceLocationLocationResponse>>;
+  items?: Maybe<IoRestorecommerceLocationLocationResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceLocationLocationResponse = {
+export interface IoRestorecommerceLocationLocationResponse {
   __typename?: 'IoRestorecommerceLocationLocationResponse';
   payload?: Maybe<IoRestorecommerceLocationLocation>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceManufacturerManufacturer = {
+export interface IoRestorecommerceManufacturerManufacturer {
   __typename?: 'IoRestorecommerceManufacturerManufacturer';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceManufacturerManufacturerListResponse = {
+export interface IoRestorecommerceManufacturerManufacturerListResponse {
   __typename?: 'IoRestorecommerceManufacturerManufacturerListResponse';
-  items?: Maybe<Array<IoRestorecommerceManufacturerManufacturerResponse>>;
+  items?: Maybe<IoRestorecommerceManufacturerManufacturerResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceManufacturerManufacturerResponse = {
+export interface IoRestorecommerceManufacturerManufacturerResponse {
   __typename?: 'IoRestorecommerceManufacturerManufacturerResponse';
   payload?: Maybe<IoRestorecommerceManufacturerManufacturer>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceMetaMeta = {
+export interface IoRestorecommerceMetaMeta {
   __typename?: 'IoRestorecommerceMetaMeta';
-  acls?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  acls?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   created?: Maybe<Scalars['DateTime']>;
   createdBy?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['DateTime']>;
   modifiedBy?: Maybe<Scalars['String']>;
-  owners?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-};
+  owners?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IoRestorecommerceNotificationNotification = {
+export interface IoRestorecommerceNotificationNotification {
   __typename?: 'IoRestorecommerceNotificationNotification';
   bodyTemplate?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -3132,53 +3114,53 @@ export type IoRestorecommerceNotificationNotification = {
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-  notificationChannelIds?: Maybe<Array<Scalars['String']>>;
+  notificationChannelIds?: Maybe<Scalars['String'][]>;
   subjectTemplate?: Maybe<Scalars['String']>;
   telephoneNumber?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceNotificationNotificationListResponse = {
+export interface IoRestorecommerceNotificationNotificationListResponse {
   __typename?: 'IoRestorecommerceNotificationNotificationListResponse';
-  items?: Maybe<Array<IoRestorecommerceNotificationNotificationResponse>>;
+  items?: Maybe<IoRestorecommerceNotificationNotificationResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceNotificationNotificationResponse = {
+export interface IoRestorecommerceNotificationNotificationResponse {
   __typename?: 'IoRestorecommerceNotificationNotificationResponse';
   payload?: Maybe<IoRestorecommerceNotificationNotification>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOauthExchangeCodeResponse = {
+export interface IoRestorecommerceOauthExchangeCodeResponse {
   __typename?: 'IoRestorecommerceOauthExchangeCodeResponse';
   email?: Maybe<Scalars['String']>;
   token?: Maybe<IoRestorecommerceAuthTokens>;
   user?: Maybe<IoRestorecommerceUserUserResponse>;
-};
+}
 
-export type IoRestorecommerceOauthGenerateLinksResponse = {
+export interface IoRestorecommerceOauthGenerateLinksResponse {
   __typename?: 'IoRestorecommerceOauthGenerateLinksResponse';
   links?: Maybe<Scalars['MapScalar']>;
-};
+}
 
-export type IoRestorecommerceOauthGetTokenResponse = {
+export interface IoRestorecommerceOauthGetTokenResponse {
   __typename?: 'IoRestorecommerceOauthGetTokenResponse';
   status?: Maybe<IoRestorecommerceStatusStatus>;
   token?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOauthServicesResponse = {
+export interface IoRestorecommerceOauthServicesResponse {
   __typename?: 'IoRestorecommerceOauthServicesResponse';
-  services?: Maybe<Array<Scalars['String']>>;
-};
+  services?: Maybe<Scalars['String'][]>;
+}
 
 export enum IoRestorecommerceOrderFulfillmentInvoiceMode {
   Exclude = 'EXCLUDE',
   Include = 'INCLUDE',
 }
 
-export type IoRestorecommerceOrderItem = {
+export interface IoRestorecommerceOrderItem {
   __typename?: 'IoRestorecommerceOrderItem';
   amount?: Maybe<IoRestorecommerceAmountAmount>;
   id?: Maybe<Scalars['String']>;
@@ -3188,9 +3170,9 @@ export type IoRestorecommerceOrderItem = {
   quantity?: Maybe<Scalars['Int']>;
   unitPrice?: Maybe<IoRestorecommercePricePrice>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOrderOrder = {
+export interface IoRestorecommerceOrderOrder {
   __typename?: 'IoRestorecommerceOrderOrder';
   billingAddress?: Maybe<IoRestorecommerceAddressBillingAddress>;
   customer?: Maybe<IoRestorecommerceCustomerCustomer>;
@@ -3198,7 +3180,7 @@ export type IoRestorecommerceOrderOrder = {
   customerOrderNr?: Maybe<Scalars['String']>;
   customerRemark?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<IoRestorecommerceOrderItem>>;
+  items?: Maybe<IoRestorecommerceOrderItem[]>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   notificationEmail?: Maybe<Scalars['String']>;
   orderState?: Maybe<IoRestorecommerceOrderOrderState>;
@@ -3206,23 +3188,23 @@ export type IoRestorecommerceOrderOrder = {
   shippingAddress?: Maybe<IoRestorecommerceAddressShippingAddress>;
   shop?: Maybe<IoRestorecommerceShopShop>;
   shopId?: Maybe<Scalars['String']>;
-  totalAmounts?: Maybe<Array<IoRestorecommerceAmountAmount>>;
+  totalAmounts?: Maybe<IoRestorecommerceAmountAmount[]>;
   user?: Maybe<IoRestorecommerceUserUser>;
   userId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOrderOrderListResponse = {
+export interface IoRestorecommerceOrderOrderListResponse {
   __typename?: 'IoRestorecommerceOrderOrderListResponse';
-  items?: Maybe<Array<IoRestorecommerceOrderOrderResponse>>;
+  items?: Maybe<IoRestorecommerceOrderOrderResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceOrderOrderResponse = {
+export interface IoRestorecommerceOrderOrderResponse {
   __typename?: 'IoRestorecommerceOrderOrderResponse';
   payload?: Maybe<IoRestorecommerceOrderOrder>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
 export enum IoRestorecommerceOrderOrderState {
   Cancelled = 'CANCELLED',
@@ -3232,18 +3214,18 @@ export enum IoRestorecommerceOrderOrderState {
   Withdrawn = 'WITHDRAWN',
 }
 
-export type IoRestorecommerceOrderOrderSubmitListResponse = {
+export interface IoRestorecommerceOrderOrderSubmitListResponse {
   __typename?: 'IoRestorecommerceOrderOrderSubmitListResponse';
-  fulfillments?: Maybe<Array<IoRestorecommerceFulfillmentFulfillmentResponse>>;
-  invoices?: Maybe<Array<IoRestorecommerceInvoiceInvoiceResponse>>;
+  fulfillments?: Maybe<IoRestorecommerceFulfillmentFulfillmentResponse[]>;
+  invoices?: Maybe<IoRestorecommerceInvoiceInvoiceResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  orders?: Maybe<Array<IoRestorecommerceOrderOrderResponse>>;
-};
+  orders?: Maybe<IoRestorecommerceOrderOrderResponse[]>;
+}
 
-export type IoRestorecommerceOrganizationOrganization = {
+export interface IoRestorecommerceOrganizationOrganization {
   __typename?: 'IoRestorecommerceOrganizationOrganization';
-  contactPointIds?: Maybe<Array<Scalars['String']>>;
-  contactPoints?: Maybe<Array<IoRestorecommerceContactPointContactPoint>>;
+  contactPointIds?: Maybe<Scalars['String'][]>;
+  contactPoints?: Maybe<IoRestorecommerceContactPointContactPoint[]>;
   data?: Maybe<GoogleProtobufAny>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -3253,95 +3235,89 @@ export type IoRestorecommerceOrganizationOrganization = {
   name?: Maybe<Scalars['String']>;
   parent?: Maybe<IoRestorecommerceOrganizationOrganization>;
   parentId?: Maybe<Scalars['String']>;
-  paymentMethodIds?: Maybe<Array<Scalars['String']>>;
-  paymentMethods?: Maybe<Array<IoRestorecommercePaymentMethodPaymentMethod>>;
+  paymentMethodIds?: Maybe<Scalars['String'][]>;
+  paymentMethods?: Maybe<IoRestorecommercePaymentMethodPaymentMethod[]>;
   registration?: Maybe<Scalars['String']>;
   registrationCourt?: Maybe<Scalars['String']>;
   vatId?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOrganizationOrganizationListResponse = {
+export interface IoRestorecommerceOrganizationOrganizationListResponse {
   __typename?: 'IoRestorecommerceOrganizationOrganizationListResponse';
-  items?: Maybe<Array<IoRestorecommerceOrganizationOrganizationResponse>>;
+  items?: Maybe<IoRestorecommerceOrganizationOrganizationResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceOrganizationOrganizationResponse = {
+export interface IoRestorecommerceOrganizationOrganizationResponse {
   __typename?: 'IoRestorecommerceOrganizationOrganizationResponse';
   payload?: Maybe<IoRestorecommerceOrganizationOrganization>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageCopyResponseItem = {
+export interface IoRestorecommerceOstorageCopyResponseItem {
   __typename?: 'IoRestorecommerceOstorageCopyResponseItem';
   bucket?: Maybe<Scalars['String']>;
   copySource?: Maybe<Scalars['String']>;
   key?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   options?: Maybe<IoRestorecommerceOstorageOptions>;
-};
+}
 
-export type IoRestorecommerceOstorageCopyResponseList = {
+export interface IoRestorecommerceOstorageCopyResponseList {
   __typename?: 'IoRestorecommerceOstorageCopyResponseList';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  responses?: Maybe<
-    Array<IoRestorecommerceOstorageCopyResponsePayloadWithStatus>
-  >;
-};
+  responses?: Maybe<IoRestorecommerceOstorageCopyResponsePayloadWithStatus[]>;
+}
 
-export type IoRestorecommerceOstorageCopyResponsePayloadWithStatus = {
+export interface IoRestorecommerceOstorageCopyResponsePayloadWithStatus {
   __typename?: 'IoRestorecommerceOstorageCopyResponsePayloadWithStatus';
   payload?: Maybe<IoRestorecommerceOstorageCopyResponseItem>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageListResponse = {
+export interface IoRestorecommerceOstorageListResponse {
   __typename?: 'IoRestorecommerceOstorageListResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  responses?: Maybe<
-    Array<IoRestorecommerceOstorageObjectsDataWithPayloadStatus>
-  >;
-};
+  responses?: Maybe<IoRestorecommerceOstorageObjectsDataWithPayloadStatus[]>;
+}
 
-export type IoRestorecommerceOstorageMoveResponseItem = {
+export interface IoRestorecommerceOstorageMoveResponseItem {
   __typename?: 'IoRestorecommerceOstorageMoveResponseItem';
   bucket?: Maybe<Scalars['String']>;
   key?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   options?: Maybe<IoRestorecommerceOstorageOptions>;
   sourceObject?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOstorageMoveResponseList = {
+export interface IoRestorecommerceOstorageMoveResponseList {
   __typename?: 'IoRestorecommerceOstorageMoveResponseList';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  responses?: Maybe<
-    Array<IoRestorecommerceOstorageMoveResponsePayloadWithStatus>
-  >;
-};
+  responses?: Maybe<IoRestorecommerceOstorageMoveResponsePayloadWithStatus[]>;
+}
 
-export type IoRestorecommerceOstorageMoveResponsePayloadWithStatus = {
+export interface IoRestorecommerceOstorageMoveResponsePayloadWithStatus {
   __typename?: 'IoRestorecommerceOstorageMoveResponsePayloadWithStatus';
   payload?: Maybe<IoRestorecommerceOstorageMoveResponseItem>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageObjectData = {
+export interface IoRestorecommerceOstorageObjectData {
   __typename?: 'IoRestorecommerceOstorageObjectData';
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   objectName?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOstorageObjectResponse = {
+export interface IoRestorecommerceOstorageObjectResponse {
   __typename?: 'IoRestorecommerceOstorageObjectResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   response?: Maybe<IoRestorecommerceOstorageObjectResponsePayloadWithStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageObjectResponsePayload = {
+export interface IoRestorecommerceOstorageObjectResponsePayload {
   __typename?: 'IoRestorecommerceOstorageObjectResponsePayload';
   bucket?: Maybe<Scalars['String']>;
   key?: Maybe<Scalars['String']>;
@@ -3349,21 +3325,21 @@ export type IoRestorecommerceOstorageObjectResponsePayload = {
   object?: Maybe<Scalars['TodoScalar']>;
   options?: Maybe<IoRestorecommerceOstorageOptions>;
   url?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOstorageObjectResponsePayloadWithStatus = {
+export interface IoRestorecommerceOstorageObjectResponsePayloadWithStatus {
   __typename?: 'IoRestorecommerceOstorageObjectResponsePayloadWithStatus';
   payload?: Maybe<IoRestorecommerceOstorageObjectResponsePayload>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageObjectsDataWithPayloadStatus = {
+export interface IoRestorecommerceOstorageObjectsDataWithPayloadStatus {
   __typename?: 'IoRestorecommerceOstorageObjectsDataWithPayloadStatus';
   payload?: Maybe<IoRestorecommerceOstorageObjectData>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageOptions = {
+export interface IoRestorecommerceOstorageOptions {
   __typename?: 'IoRestorecommerceOstorageOptions';
   contentDisposition?: Maybe<Scalars['String']>;
   contentLanguage?: Maybe<Scalars['String']>;
@@ -3372,40 +3348,40 @@ export type IoRestorecommerceOstorageOptions = {
   encoding?: Maybe<Scalars['String']>;
   length?: Maybe<Scalars['Int']>;
   md5?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  tags?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   version?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceOstoragePutResponse = {
+export interface IoRestorecommerceOstoragePutResponse {
   __typename?: 'IoRestorecommerceOstoragePutResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   response?: Maybe<IoRestorecommerceOstoragePutResponseWithPayloadStatus>;
-};
+}
 
-export type IoRestorecommerceOstoragePutResponseWithPayloadStatus = {
+export interface IoRestorecommerceOstoragePutResponseWithPayloadStatus {
   __typename?: 'IoRestorecommerceOstoragePutResponseWithPayloadStatus';
   payload?: Maybe<IoRestorecommerceOstorageResponse>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceOstorageResponse = {
+export interface IoRestorecommerceOstorageResponse {
   __typename?: 'IoRestorecommerceOstorageResponse';
   bucket?: Maybe<Scalars['String']>;
   key?: Maybe<Scalars['String']>;
   length?: Maybe<Scalars['Int']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
-  tags?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  tags?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   url?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommercePaymentMethodPaymentMethod = {
+export interface IoRestorecommercePaymentMethodPaymentMethod {
   __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
   data?: Maybe<GoogleProtobufAny>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   paymentMethod?: Maybe<IoRestorecommercePaymentMethodPaymentMethodEnum>;
   transferType?: Maybe<IoRestorecommercePaymentMethodTransferTypeEnum>;
-};
+}
 
 export enum IoRestorecommercePaymentMethodPaymentMethodEnum {
   DirectDebit = 'DIRECT_DEBIT',
@@ -3419,23 +3395,23 @@ export enum IoRestorecommercePaymentMethodTransferTypeEnum {
   Send = 'SEND',
 }
 
-export type IoRestorecommercePaymentPaymentPayload = {
+export interface IoRestorecommercePaymentPaymentPayload {
   __typename?: 'IoRestorecommercePaymentPaymentPayload';
   executedOn?: Maybe<Scalars['String']>;
   paymentId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommercePaymentPaymentPayloadStatus = {
+export interface IoRestorecommercePaymentPaymentPayloadStatus {
   __typename?: 'IoRestorecommercePaymentPaymentPayloadStatus';
   payload?: Maybe<IoRestorecommercePaymentPaymentPayload>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommercePaymentPaymentResponse = {
+export interface IoRestorecommercePaymentPaymentResponse {
   __typename?: 'IoRestorecommercePaymentPaymentResponse';
   item?: Maybe<IoRestorecommercePaymentPaymentPayloadStatus>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-};
+}
 
 export enum IoRestorecommercePaymentProvider {
   Adyen = 'Adyen',
@@ -3587,26 +3563,26 @@ export enum IoRestorecommercePaymentProvider {
   StPayGatewayNet = 'stPayGatewayNet',
 }
 
-export type IoRestorecommercePaymentSetupPayload = {
+export interface IoRestorecommercePaymentSetupPayload {
   __typename?: 'IoRestorecommercePaymentSetupPayload';
   confirmInitiationUrl?: Maybe<Scalars['String']>;
   initiatedOn?: Maybe<Scalars['String']>;
   token?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommercePaymentSetupPayloadStatus = {
+export interface IoRestorecommercePaymentSetupPayloadStatus {
   __typename?: 'IoRestorecommercePaymentSetupPayloadStatus';
   payload?: Maybe<IoRestorecommercePaymentSetupPayload>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommercePaymentSetupResponse = {
+export interface IoRestorecommercePaymentSetupResponse {
   __typename?: 'IoRestorecommercePaymentSetupResponse';
   item?: Maybe<IoRestorecommercePaymentSetupPayloadStatus>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-};
+}
 
-export type IoRestorecommercePolicyPolicy = {
+export interface IoRestorecommercePolicyPolicy {
   __typename?: 'IoRestorecommercePolicyPolicy';
   combiningAlgorithm?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -3615,106 +3591,106 @@ export type IoRestorecommercePolicyPolicy = {
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-  rules?: Maybe<Array<Scalars['String']>>;
+  rules?: Maybe<Scalars['String'][]>;
   target?: Maybe<IoRestorecommerceRuleTarget>;
-};
+}
 
-export type IoRestorecommercePolicyPolicyListResponse = {
+export interface IoRestorecommercePolicyPolicyListResponse {
   __typename?: 'IoRestorecommercePolicyPolicyListResponse';
-  items?: Maybe<Array<IoRestorecommercePolicyPolicyResponse>>;
+  items?: Maybe<IoRestorecommercePolicyPolicyResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommercePolicyPolicyRq = {
+export interface IoRestorecommercePolicyPolicyRq {
   __typename?: 'IoRestorecommercePolicyPolicyRQ';
   combiningAlgorithm?: Maybe<Scalars['String']>;
   effect?: Maybe<IoRestorecommerceRuleEffect>;
   evaluationCacheable?: Maybe<Scalars['Boolean']>;
   hasRules?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
-  rules?: Maybe<Array<IoRestorecommerceRuleRuleRq>>;
+  rules?: Maybe<IoRestorecommerceRuleRuleRq[]>;
   target?: Maybe<IoRestorecommerceRuleTarget>;
-};
+}
 
-export type IoRestorecommercePolicyPolicyResponse = {
+export interface IoRestorecommercePolicyPolicyResponse {
   __typename?: 'IoRestorecommercePolicyPolicyResponse';
   payload?: Maybe<IoRestorecommercePolicyPolicy>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommercePolicySetPolicySet = {
+export interface IoRestorecommercePolicySetPolicySet {
   __typename?: 'IoRestorecommercePolicySetPolicySet';
   combiningAlgorithm?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-  policies?: Maybe<Array<Scalars['String']>>;
+  policies?: Maybe<Scalars['String'][]>;
   target?: Maybe<IoRestorecommerceRuleTarget>;
-};
+}
 
-export type IoRestorecommercePolicySetPolicySetListResponse = {
+export interface IoRestorecommercePolicySetPolicySetListResponse {
   __typename?: 'IoRestorecommercePolicySetPolicySetListResponse';
-  items?: Maybe<Array<IoRestorecommercePolicySetPolicySetResponse>>;
+  items?: Maybe<IoRestorecommercePolicySetPolicySetResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommercePolicySetPolicySetRq = {
+export interface IoRestorecommercePolicySetPolicySetRq {
   __typename?: 'IoRestorecommercePolicySetPolicySetRQ';
   combiningAlgorithm?: Maybe<Scalars['String']>;
   effect?: Maybe<IoRestorecommerceRuleEffect>;
   id?: Maybe<Scalars['String']>;
-  policies?: Maybe<Array<IoRestorecommercePolicyPolicyRq>>;
+  policies?: Maybe<IoRestorecommercePolicyPolicyRq[]>;
   target?: Maybe<IoRestorecommerceRuleTarget>;
-};
+}
 
-export type IoRestorecommercePolicySetPolicySetResponse = {
+export interface IoRestorecommercePolicySetPolicySetResponse {
   __typename?: 'IoRestorecommercePolicySetPolicySetResponse';
   payload?: Maybe<IoRestorecommercePolicySetPolicySet>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommercePriceGroupPriceGroup = {
+export interface IoRestorecommercePriceGroupPriceGroup {
   __typename?: 'IoRestorecommercePriceGroupPriceGroup';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommercePriceGroupPriceGroupListResponse = {
+export interface IoRestorecommercePriceGroupPriceGroupListResponse {
   __typename?: 'IoRestorecommercePriceGroupPriceGroupListResponse';
-  items?: Maybe<Array<IoRestorecommercePriceGroupPriceGroupResponse>>;
+  items?: Maybe<IoRestorecommercePriceGroupPriceGroupResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommercePriceGroupPriceGroupResponse = {
+export interface IoRestorecommercePriceGroupPriceGroupResponse {
   __typename?: 'IoRestorecommercePriceGroupPriceGroupResponse';
   payload?: Maybe<IoRestorecommercePriceGroupPriceGroup>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommercePricePrice = {
+export interface IoRestorecommercePricePrice {
   __typename?: 'IoRestorecommercePricePrice';
   currency?: Maybe<IoRestorecommerceCurrencyCurrency>;
   currencyId?: Maybe<Scalars['String']>;
   regularPrice?: Maybe<Scalars['Float']>;
   sale?: Maybe<Scalars['Boolean']>;
   salePrice?: Maybe<Scalars['Float']>;
-};
+}
 
-export type IoRestorecommerceProductAssociation = {
+export interface IoRestorecommerceProductAssociation {
   __typename?: 'IoRestorecommerceProductAssociation';
   data?: Maybe<GoogleProtobufAny>;
   product?: Maybe<IoRestorecommerceProductProduct>;
   productId?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Scalars['String']>>;
+  tags?: Maybe<Scalars['String'][]>;
   type?: Maybe<IoRestorecommerceProductAssociationType>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
 export enum IoRestorecommerceProductAssociationType {
   Accessory = 'ACCESSORY',
@@ -3722,31 +3698,31 @@ export enum IoRestorecommerceProductAssociationType {
   Recommendation = 'RECOMMENDATION',
 }
 
-export type IoRestorecommerceProductBundle = {
+export interface IoRestorecommerceProductBundle {
   __typename?: 'IoRestorecommerceProductBundle';
   description?: Maybe<Scalars['String']>;
-  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<IoRestorecommerceImageImage[]>;
   name?: Maybe<Scalars['String']>;
   prePackaged?: Maybe<IoRestorecommerceProductPackage>;
   price?: Maybe<IoRestorecommercePricePrice>;
-  products?: Maybe<Array<IoRestorecommerceProductBundleProduct>>;
-};
+  products?: Maybe<IoRestorecommerceProductBundleProduct[]>;
+}
 
-export type IoRestorecommerceProductBundleProduct = {
+export interface IoRestorecommerceProductBundleProduct {
   __typename?: 'IoRestorecommerceProductBundleProduct';
   priceRatio?: Maybe<Scalars['Float']>;
   product?: Maybe<IoRestorecommerceProductProduct>;
   productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
   variantId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceProductCategoryParent = {
+export interface IoRestorecommerceProductCategoryParent {
   __typename?: 'IoRestorecommerceProductCategoryParent';
   parentId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceProductCategoryProductCategory = {
+export interface IoRestorecommerceProductCategoryProductCategory {
   __typename?: 'IoRestorecommerceProductCategoryProductCategory';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -3756,22 +3732,22 @@ export type IoRestorecommerceProductCategoryProductCategory = {
   parent?: Maybe<IoRestorecommerceProductCategoryParent>;
   priceGroup?: Maybe<IoRestorecommercePriceGroupPriceGroup>;
   priceGroupId?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceProductCategoryProductCategoryListResponse = {
+export interface IoRestorecommerceProductCategoryProductCategoryListResponse {
   __typename?: 'IoRestorecommerceProductCategoryProductCategoryListResponse';
-  items?: Maybe<Array<IoRestorecommerceProductCategoryProductCategoryResponse>>;
+  items?: Maybe<IoRestorecommerceProductCategoryProductCategoryResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceProductCategoryProductCategoryResponse = {
+export interface IoRestorecommerceProductCategoryProductCategoryResponse {
   __typename?: 'IoRestorecommerceProductCategoryProductCategoryResponse';
   payload?: Maybe<IoRestorecommerceProductCategoryProductCategory>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceProductIndividualProduct = {
+export interface IoRestorecommerceProductIndividualProduct {
   __typename?: 'IoRestorecommerceProductIndividualProduct';
   category?: Maybe<IoRestorecommerceProductCategoryProductCategory>;
   categoryId?: Maybe<Scalars['String']>;
@@ -3787,42 +3763,42 @@ export type IoRestorecommerceProductIndividualProduct = {
   prototypeId?: Maybe<Scalars['String']>;
   service?: Maybe<IoRestorecommerceProductServiceProduct>;
   taricCode?: Maybe<Scalars['String']>;
-  taxIds?: Maybe<Array<Scalars['String']>>;
+  taxIds?: Maybe<Scalars['String'][]>;
   virtual?: Maybe<IoRestorecommerceProductVirtualProduct>;
-};
+}
 
-export type IoRestorecommerceProductPackage = {
+export interface IoRestorecommerceProductPackage {
   __typename?: 'IoRestorecommerceProductPackage';
   rotatable?: Maybe<Scalars['Boolean']>;
   sizeInCm?: Maybe<IoRestorecommerceGeometryBoundingBox3D>;
   weightInKg?: Maybe<Scalars['Float']>;
-};
+}
 
-export type IoRestorecommerceProductPhysicalProduct = {
+export interface IoRestorecommerceProductPhysicalProduct {
   __typename?: 'IoRestorecommerceProductPhysicalProduct';
-  variants?: Maybe<Array<IoRestorecommerceProductPhysicalVariant>>;
-};
+  variants?: Maybe<IoRestorecommerceProductPhysicalVariant[]>;
+}
 
-export type IoRestorecommerceProductPhysicalVariant = {
+export interface IoRestorecommerceProductPhysicalVariant {
   __typename?: 'IoRestorecommerceProductPhysicalVariant';
   description?: Maybe<Scalars['String']>;
-  files?: Maybe<Array<IoRestorecommerceFileFile>>;
+  files?: Maybe<IoRestorecommerceFileFile[]>;
   id?: Maybe<Scalars['String']>;
-  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<IoRestorecommerceImageImage[]>;
   name?: Maybe<Scalars['String']>;
   package?: Maybe<IoRestorecommerceProductPackage>;
   parentVariantId?: Maybe<Scalars['String']>;
   price?: Maybe<IoRestorecommercePricePrice>;
-  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  properties?: Maybe<IoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
-  taxIds?: Maybe<Array<Scalars['String']>>;
-};
+  taxIds?: Maybe<Scalars['String'][]>;
+}
 
-export type IoRestorecommerceProductProduct = {
+export interface IoRestorecommerceProductProduct {
   __typename?: 'IoRestorecommerceProductProduct';
   active?: Maybe<Scalars['Boolean']>;
-  associations?: Maybe<Array<IoRestorecommerceProductAssociation>>;
+  associations?: Maybe<IoRestorecommerceProductAssociation[]>;
   bundle?: Maybe<IoRestorecommerceProductBundle>;
   data?: Maybe<GoogleProtobufAny>;
   id?: Maybe<Scalars['String']>;
@@ -3830,23 +3806,23 @@ export type IoRestorecommerceProductProduct = {
   product?: Maybe<IoRestorecommerceProductIndividualProduct>;
   shop?: Maybe<IoRestorecommerceShopShop>;
   shopId?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Scalars['String']>>;
-};
+  tags?: Maybe<Scalars['String'][]>;
+}
 
-export type IoRestorecommerceProductProductListResponse = {
+export interface IoRestorecommerceProductProductListResponse {
   __typename?: 'IoRestorecommerceProductProductListResponse';
-  items?: Maybe<Array<IoRestorecommerceProductProductResponse>>;
+  items?: Maybe<IoRestorecommerceProductProductResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceProductProductResponse = {
+export interface IoRestorecommerceProductProductResponse {
   __typename?: 'IoRestorecommerceProductProductResponse';
   payload?: Maybe<IoRestorecommerceProductProduct>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceProductPrototypeProductPrototype = {
+export interface IoRestorecommerceProductPrototypeProductPrototype {
   __typename?: 'IoRestorecommerceProductPrototypeProductPrototype';
   category?: Maybe<IoRestorecommerceProductCategoryProductCategory>;
   categoryId?: Maybe<Scalars['String']>;
@@ -3855,81 +3831,79 @@ export type IoRestorecommerceProductPrototypeProductPrototype = {
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
   version?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceProductPrototypeProductPrototypeListResponse = {
+export interface IoRestorecommerceProductPrototypeProductPrototypeListResponse {
   __typename?: 'IoRestorecommerceProductPrototypeProductPrototypeListResponse';
-  items?: Maybe<
-    Array<IoRestorecommerceProductPrototypeProductPrototypeResponse>
-  >;
+  items?: Maybe<IoRestorecommerceProductPrototypeProductPrototypeResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceProductPrototypeProductPrototypeResponse = {
+export interface IoRestorecommerceProductPrototypeProductPrototypeResponse {
   __typename?: 'IoRestorecommerceProductPrototypeProductPrototypeResponse';
   payload?: Maybe<IoRestorecommerceProductPrototypeProductPrototype>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceProductServiceProduct = {
+export interface IoRestorecommerceProductServiceProduct {
   __typename?: 'IoRestorecommerceProductServiceProduct';
-  variants?: Maybe<Array<IoRestorecommerceProductServiceVariant>>;
-};
+  variants?: Maybe<IoRestorecommerceProductServiceVariant[]>;
+}
 
-export type IoRestorecommerceProductServiceVariant = {
+export interface IoRestorecommerceProductServiceVariant {
   __typename?: 'IoRestorecommerceProductServiceVariant';
   description?: Maybe<Scalars['String']>;
-  files?: Maybe<Array<IoRestorecommerceFileFile>>;
+  files?: Maybe<IoRestorecommerceFileFile[]>;
   id?: Maybe<Scalars['String']>;
-  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<IoRestorecommerceImageImage[]>;
   name?: Maybe<Scalars['String']>;
   parentVariantId?: Maybe<Scalars['String']>;
   price?: Maybe<IoRestorecommercePricePrice>;
-  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  properties?: Maybe<IoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
-  taxIds?: Maybe<Array<Scalars['String']>>;
-};
+  taxIds?: Maybe<Scalars['String'][]>;
+}
 
-export type IoRestorecommerceProductVirtualProduct = {
+export interface IoRestorecommerceProductVirtualProduct {
   __typename?: 'IoRestorecommerceProductVirtualProduct';
-  variants?: Maybe<Array<IoRestorecommerceProductVirtualVariant>>;
-};
+  variants?: Maybe<IoRestorecommerceProductVirtualVariant[]>;
+}
 
-export type IoRestorecommerceProductVirtualVariant = {
+export interface IoRestorecommerceProductVirtualVariant {
   __typename?: 'IoRestorecommerceProductVirtualVariant';
   description?: Maybe<Scalars['String']>;
-  files?: Maybe<Array<IoRestorecommerceFileFile>>;
+  files?: Maybe<IoRestorecommerceFileFile[]>;
   id?: Maybe<Scalars['String']>;
-  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<IoRestorecommerceImageImage[]>;
   name?: Maybe<Scalars['String']>;
   parentVariantId?: Maybe<Scalars['String']>;
   price?: Maybe<IoRestorecommercePricePrice>;
-  properties?: Maybe<Array<IoRestorecommercePropertyProperty>>;
+  properties?: Maybe<IoRestorecommercePropertyProperty[]>;
   stockKeepingUnit?: Maybe<Scalars['String']>;
   stockLevel?: Maybe<Scalars['Int']>;
-  taxIds?: Maybe<Array<Scalars['String']>>;
-};
+  taxIds?: Maybe<Scalars['String'][]>;
+}
 
-export type IoRestorecommercePropertyProperty = {
+export interface IoRestorecommercePropertyProperty {
   __typename?: 'IoRestorecommercePropertyProperty';
   id?: Maybe<Scalars['String']>;
   unitCode?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceReferenceReference = {
+export interface IoRestorecommerceReferenceReference {
   __typename?: 'IoRestorecommerceReferenceReference';
   instanceId?: Maybe<Scalars['String']>;
   instanceType?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceResourcebaseDeleteResponse = {
+export interface IoRestorecommerceResourcebaseDeleteResponse {
   __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  status?: Maybe<Array<IoRestorecommerceStatusStatus>>;
-};
+  status?: Maybe<IoRestorecommerceStatusStatus[]>;
+}
 
 export enum IoRestorecommerceResourcebaseFilterOpOperator {
   And = 'and',
@@ -3962,40 +3936,40 @@ export enum IoRestorecommerceResourcebaseSortSortOrder {
   Unsorted = 'UNSORTED',
 }
 
-export type IoRestorecommerceRoleRole = {
+export interface IoRestorecommerceRoleRole {
   __typename?: 'IoRestorecommerceRoleRole';
-  assignableByRoles?: Maybe<Array<Scalars['String']>>;
+  assignableByRoles?: Maybe<Scalars['String'][]>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceRoleRoleListResponse = {
+export interface IoRestorecommerceRoleRoleListResponse {
   __typename?: 'IoRestorecommerceRoleRoleListResponse';
-  items?: Maybe<Array<IoRestorecommerceRoleRoleResponse>>;
+  items?: Maybe<IoRestorecommerceRoleRoleResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceRoleRoleResponse = {
+export interface IoRestorecommerceRoleRoleResponse {
   __typename?: 'IoRestorecommerceRoleRoleResponse';
   payload?: Maybe<IoRestorecommerceRoleRole>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceRuleContextQuery = {
+export interface IoRestorecommerceRuleContextQuery {
   __typename?: 'IoRestorecommerceRuleContextQuery';
-  filters?: Maybe<Array<IoRestorecommerceFilterFilterOp>>;
+  filters?: Maybe<IoRestorecommerceFilterFilterOp[]>;
   query?: Maybe<Scalars['String']>;
-};
+}
 
 export enum IoRestorecommerceRuleEffect {
   Deny = 'DENY',
   Permit = 'PERMIT',
 }
 
-export type IoRestorecommerceRuleRule = {
+export interface IoRestorecommerceRuleRule {
   __typename?: 'IoRestorecommerceRuleRule';
   condition?: Maybe<Scalars['String']>;
   contextQuery?: Maybe<IoRestorecommerceRuleContextQuery>;
@@ -4006,16 +3980,16 @@ export type IoRestorecommerceRuleRule = {
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
   target?: Maybe<IoRestorecommerceRuleTarget>;
-};
+}
 
-export type IoRestorecommerceRuleRuleListResponse = {
+export interface IoRestorecommerceRuleRuleListResponse {
   __typename?: 'IoRestorecommerceRuleRuleListResponse';
-  items?: Maybe<Array<IoRestorecommerceRuleRuleResponse>>;
+  items?: Maybe<IoRestorecommerceRuleRuleResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceRuleRuleRq = {
+export interface IoRestorecommerceRuleRuleRq {
   __typename?: 'IoRestorecommerceRuleRuleRQ';
   condition?: Maybe<Scalars['String']>;
   contextQuery?: Maybe<IoRestorecommerceRuleContextQuery>;
@@ -4023,22 +3997,22 @@ export type IoRestorecommerceRuleRuleRq = {
   evaluationCacheable?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   target?: Maybe<IoRestorecommerceRuleTarget>;
-};
+}
 
-export type IoRestorecommerceRuleRuleResponse = {
+export interface IoRestorecommerceRuleRuleResponse {
   __typename?: 'IoRestorecommerceRuleRuleResponse';
   payload?: Maybe<IoRestorecommerceRuleRule>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceRuleTarget = {
+export interface IoRestorecommerceRuleTarget {
   __typename?: 'IoRestorecommerceRuleTarget';
-  actions?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  resources?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  subjects?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-};
+  actions?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+  resources?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+  subjects?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+}
 
-export type IoRestorecommerceShopShop = {
+export interface IoRestorecommerceShopShop {
   __typename?: 'IoRestorecommerceShopShop';
   description?: Maybe<Scalars['String']>;
   domain?: Maybe<Scalars['String']>;
@@ -4047,48 +4021,48 @@ export type IoRestorecommerceShopShop = {
   name?: Maybe<Scalars['String']>;
   organization?: Maybe<IoRestorecommerceOrganizationOrganization>;
   organizationId?: Maybe<Scalars['String']>;
-  settings?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  settings?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   shopNumber?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceShopShopListResponse = {
+export interface IoRestorecommerceShopShopListResponse {
   __typename?: 'IoRestorecommerceShopShopListResponse';
-  items?: Maybe<Array<IoRestorecommerceShopShopResponse>>;
+  items?: Maybe<IoRestorecommerceShopShopResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceShopShopResponse = {
+export interface IoRestorecommerceShopShopResponse {
   __typename?: 'IoRestorecommerceShopShopResponse';
   payload?: Maybe<IoRestorecommerceShopShop>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceStatusOperationStatus = {
+export interface IoRestorecommerceStatusOperationStatus {
   __typename?: 'IoRestorecommerceStatusOperationStatus';
   code?: Maybe<Scalars['Int']>;
   message?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceStatusOperationStatusObj = {
+export interface IoRestorecommerceStatusOperationStatusObj {
   __typename?: 'IoRestorecommerceStatusOperationStatusObj';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-};
+}
 
-export type IoRestorecommerceStatusStatus = {
+export interface IoRestorecommerceStatusStatus {
   __typename?: 'IoRestorecommerceStatusStatus';
   code?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   message?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceStatusStatusListResponse = {
+export interface IoRestorecommerceStatusStatusListResponse {
   __typename?: 'IoRestorecommerceStatusStatusListResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  status?: Maybe<Array<IoRestorecommerceStatusStatus>>;
-};
+  status?: Maybe<IoRestorecommerceStatusStatus[]>;
+}
 
-export type IoRestorecommerceTaxTax = {
+export interface IoRestorecommerceTaxTax {
   __typename?: 'IoRestorecommerceTaxTax';
   abbreviation?: Maybe<Scalars['String']>;
   country?: Maybe<IoRestorecommerceCountryCountry>;
@@ -4100,68 +4074,68 @@ export type IoRestorecommerceTaxTax = {
   type?: Maybe<IoRestorecommerceTaxTypeTaxType>;
   typeId?: Maybe<Scalars['String']>;
   variant?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceTaxTaxListResponse = {
+export interface IoRestorecommerceTaxTaxListResponse {
   __typename?: 'IoRestorecommerceTaxTaxListResponse';
-  items?: Maybe<Array<IoRestorecommerceTaxTaxResponse>>;
+  items?: Maybe<IoRestorecommerceTaxTaxResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceTaxTaxResponse = {
+export interface IoRestorecommerceTaxTaxResponse {
   __typename?: 'IoRestorecommerceTaxTaxResponse';
   payload?: Maybe<IoRestorecommerceTaxTax>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceTaxTypeTaxType = {
+export interface IoRestorecommerceTaxTypeTaxType {
   __typename?: 'IoRestorecommerceTaxTypeTaxType';
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   type?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceTaxTypeTaxTypeListResponse = {
+export interface IoRestorecommerceTaxTypeTaxTypeListResponse {
   __typename?: 'IoRestorecommerceTaxTypeTaxTypeListResponse';
-  items?: Maybe<Array<IoRestorecommerceTaxTypeTaxTypeResponse>>;
+  items?: Maybe<IoRestorecommerceTaxTypeTaxTypeResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceTaxTypeTaxTypeResponse = {
+export interface IoRestorecommerceTaxTypeTaxTypeResponse {
   __typename?: 'IoRestorecommerceTaxTypeTaxTypeResponse';
   payload?: Maybe<IoRestorecommerceTaxTypeTaxType>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceTemplateTemplate = {
+export interface IoRestorecommerceTemplateTemplate {
   __typename?: 'IoRestorecommerceTemplateTemplate';
-  attributes?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
+  attributes?: Maybe<IoRestorecommerceAttributeAttribute[]>;
   description?: Maybe<Scalars['String']>;
-  files?: Maybe<Array<IoRestorecommerceFileFile>>;
+  files?: Maybe<IoRestorecommerceFileFile[]>;
   id?: Maybe<Scalars['String']>;
-  images?: Maybe<Array<IoRestorecommerceImageImage>>;
+  images?: Maybe<IoRestorecommerceImageImage[]>;
   meta?: Maybe<IoRestorecommerceMetaMeta>;
   name?: Maybe<Scalars['String']>;
   reference?: Maybe<IoRestorecommerceReferenceReference>;
-};
+}
 
-export type IoRestorecommerceTemplateTemplateListResponse = {
+export interface IoRestorecommerceTemplateTemplateListResponse {
   __typename?: 'IoRestorecommerceTemplateTemplateListResponse';
-  items?: Maybe<Array<IoRestorecommerceTemplateTemplateResponse>>;
+  items?: Maybe<IoRestorecommerceTemplateTemplateResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceTemplateTemplateResponse = {
+export interface IoRestorecommerceTemplateTemplateResponse {
   __typename?: 'IoRestorecommerceTemplateTemplateResponse';
   payload?: Maybe<IoRestorecommerceTemplateTemplate>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceTimezoneTimezone = {
+export interface IoRestorecommerceTimezoneTimezone {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   abbreviationDst?: Maybe<Scalars['String']>;
   abbreviationStd?: Maybe<Scalars['String']>;
@@ -4172,26 +4146,26 @@ export type IoRestorecommerceTimezoneTimezone = {
   offsetDst?: Maybe<IoRestorecommerceTimezoneTimezoneOffset>;
   offsetStd?: Maybe<IoRestorecommerceTimezoneTimezoneOffset>;
   value?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceTimezoneTimezoneListResponse = {
+export interface IoRestorecommerceTimezoneTimezoneListResponse {
   __typename?: 'IoRestorecommerceTimezoneTimezoneListResponse';
-  items?: Maybe<Array<IoRestorecommerceTimezoneTimezoneResponse>>;
+  items?: Maybe<IoRestorecommerceTimezoneTimezoneResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceTimezoneTimezoneOffset = {
+export interface IoRestorecommerceTimezoneTimezoneOffset {
   __typename?: 'IoRestorecommerceTimezoneTimezoneOffset';
   hours?: Maybe<Scalars['Int']>;
   minutes?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceTimezoneTimezoneResponse = {
+export interface IoRestorecommerceTimezoneTimezoneResponse {
   __typename?: 'IoRestorecommerceTimezoneTimezoneResponse';
   payload?: Maybe<IoRestorecommerceTimezoneTimezone>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
 export enum IoRestorecommerceUnitCodeSector {
   Acoustics = 'ACOUSTICS',
@@ -4219,7 +4193,7 @@ export enum IoRestorecommerceUnitCodeStatusCode {
   Reinstated = 'REINSTATED',
 }
 
-export type IoRestorecommerceUnitCodeUnitCode = {
+export interface IoRestorecommerceUnitCodeUnitCode {
   __typename?: 'IoRestorecommerceUnitCodeUnitCode';
   commonCode?: Maybe<Scalars['String']>;
   conversionFactor?: Maybe<Scalars['String']>;
@@ -4234,33 +4208,33 @@ export type IoRestorecommerceUnitCodeUnitCode = {
   sector?: Maybe<IoRestorecommerceUnitCodeSector>;
   status?: Maybe<IoRestorecommerceUnitCodeStatusCode>;
   symbol?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceUnitCodeUnitCodeListResponse = {
+export interface IoRestorecommerceUnitCodeUnitCodeListResponse {
   __typename?: 'IoRestorecommerceUnitCodeUnitCodeListResponse';
-  items?: Maybe<Array<IoRestorecommerceUnitCodeUnitCodeResponse>>;
+  items?: Maybe<IoRestorecommerceUnitCodeUnitCodeResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceUnitCodeUnitCodeResponse = {
+export interface IoRestorecommerceUnitCodeUnitCodeResponse {
   __typename?: 'IoRestorecommerceUnitCodeUnitCodeResponse';
   payload?: Maybe<IoRestorecommerceUnitCodeUnitCode>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceUserDeleteUsersByOrgResponse = {
+export interface IoRestorecommerceUserDeleteUsersByOrgResponse {
   __typename?: 'IoRestorecommerceUserDeleteUsersByOrgResponse';
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
-  userIds?: Maybe<Array<Scalars['String']>>;
-};
+  userIds?: Maybe<Scalars['String'][]>;
+}
 
-export type IoRestorecommerceUserTenantResponse = {
+export interface IoRestorecommerceUserTenantResponse {
   __typename?: 'IoRestorecommerceUserTenantResponse';
   token?: Maybe<Scalars['String']>;
-};
+}
 
-export type IoRestorecommerceUserUser = {
+export interface IoRestorecommerceUserUser {
   __typename?: 'IoRestorecommerceUserUser';
   activationCode?: Maybe<Scalars['String']>;
   active?: Maybe<Scalars['Boolean']>;
@@ -4284,35 +4258,35 @@ export type IoRestorecommerceUserUser = {
   newEmail?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   passwordHash?: Maybe<Scalars['String']>;
-  properties?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  roleAssociations?: Maybe<Array<IoRestorecommerceAuthRoleAssociation>>;
+  properties?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+  roleAssociations?: Maybe<IoRestorecommerceAuthRoleAssociation[]>;
   timezone?: Maybe<IoRestorecommerceTimezoneTimezone>;
   timezoneId?: Maybe<Scalars['String']>;
-  tokens?: Maybe<Array<IoRestorecommerceAuthTokens>>;
+  tokens?: Maybe<IoRestorecommerceAuthTokens[]>;
   userType?: Maybe<IoRestorecommerceUserUserType>;
-};
+}
 
-export type IoRestorecommerceUserUserListResponse = {
+export interface IoRestorecommerceUserUserListResponse {
   __typename?: 'IoRestorecommerceUserUserListResponse';
-  items?: Maybe<Array<IoRestorecommerceUserUserResponse>>;
+  items?: Maybe<IoRestorecommerceUserUserResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceUserUserListWithRoleResponse = {
+export interface IoRestorecommerceUserUserListWithRoleResponse {
   __typename?: 'IoRestorecommerceUserUserListWithRoleResponse';
-  items?: Maybe<Array<IoRestorecommerceUserUserRoleResponse>>;
+  items?: Maybe<IoRestorecommerceUserUserRoleResponse[]>;
   operationStatus?: Maybe<IoRestorecommerceStatusOperationStatus>;
   totalCount?: Maybe<Scalars['Int']>;
-};
+}
 
-export type IoRestorecommerceUserUserResponse = {
+export interface IoRestorecommerceUserUserResponse {
   __typename?: 'IoRestorecommerceUserUserResponse';
   payload?: Maybe<IoRestorecommerceUserUser>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
-export type IoRestorecommerceUserUserRole = {
+export interface IoRestorecommerceUserUserRole {
   __typename?: 'IoRestorecommerceUserUserRole';
   activationCode?: Maybe<Scalars['String']>;
   active?: Maybe<Scalars['Boolean']>;
@@ -4336,20 +4310,20 @@ export type IoRestorecommerceUserUserRole = {
   newEmail?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   passwordHash?: Maybe<Scalars['String']>;
-  properties?: Maybe<Array<IoRestorecommerceAttributeAttribute>>;
-  roleAssociations?: Maybe<Array<IoRestorecommerceAuthRoleAssociation>>;
-  roles?: Maybe<Array<IoRestorecommerceRoleRole>>;
+  properties?: Maybe<IoRestorecommerceAttributeAttribute[]>;
+  roleAssociations?: Maybe<IoRestorecommerceAuthRoleAssociation[]>;
+  roles?: Maybe<IoRestorecommerceRoleRole[]>;
   timezone?: Maybe<IoRestorecommerceTimezoneTimezone>;
   timezoneId?: Maybe<Scalars['String']>;
-  tokens?: Maybe<Array<IoRestorecommerceAuthTokens>>;
+  tokens?: Maybe<IoRestorecommerceAuthTokens[]>;
   userType?: Maybe<IoRestorecommerceUserUserType>;
-};
+}
 
-export type IoRestorecommerceUserUserRoleResponse = {
+export interface IoRestorecommerceUserUserRoleResponse {
   __typename?: 'IoRestorecommerceUserUserRoleResponse';
   payload?: Maybe<IoRestorecommerceUserUserRole>;
   status?: Maybe<IoRestorecommerceStatusStatus>;
-};
+}
 
 export enum IoRestorecommerceUserUserType {
   Guest = 'GUEST',
@@ -4364,7 +4338,7 @@ export enum ModeType {
   Upsert = 'UPSERT',
 }
 
-export type Mutation = {
+export interface Mutation {
   __typename?: 'Mutation';
   access_control: AccessControlMutation;
   catalog: CatalogMutation;
@@ -4377,47 +4351,47 @@ export type Mutation = {
   ostorage: OstorageMutation;
   payment: PaymentMutation;
   scheduling: SchedulingMutation;
-};
+}
 
-export type NotificationMutation = {
+export interface NotificationMutation {
   __typename?: 'NotificationMutation';
   notification: NotificationNotificationMutation;
-};
+}
 
-export type NotificationNotificationMutation = {
+export interface NotificationNotificationMutation {
   __typename?: 'NotificationNotificationMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceNotificationNotificationListResponse>;
-};
+}
 
-export type NotificationNotificationMutationDeleteArgs = {
+export interface NotificationNotificationMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type NotificationNotificationMutationMutateArgs = {
+export interface NotificationNotificationMutationMutateArgs {
   input: IIoRestorecommerceNotificationNotificationList;
-};
+}
 
-export type NotificationNotificationQuery = {
+export interface NotificationNotificationQuery {
   __typename?: 'NotificationNotificationQuery';
   Read?: Maybe<ProtoIoRestorecommerceNotificationNotificationListResponse>;
-};
+}
 
-export type NotificationNotificationQueryReadArgs = {
+export interface NotificationNotificationQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type NotificationQuery = {
+export interface NotificationQuery {
   __typename?: 'NotificationQuery';
   notification: NotificationNotificationQuery;
-};
+}
 
-export type OrderingMutation = {
+export interface OrderingMutation {
   __typename?: 'OrderingMutation';
   order: OrderingOrderMutation;
-};
+}
 
-export type OrderingOrderMutation = {
+export interface OrderingOrderMutation {
   __typename?: 'OrderingOrderMutation';
   Cancel?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
   CreateFulfillment?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
@@ -4430,446 +4404,440 @@ export type OrderingOrderMutation = {
   TriggerFulfillment?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
   TriggerInvoice?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
   Withdraw?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
-};
+}
 
-export type OrderingOrderMutationCancelArgs = {
+export interface OrderingOrderMutationCancelArgs {
   input: IIoRestorecommerceOrderOrderIdList;
-};
+}
 
-export type OrderingOrderMutationCreateFulfillmentArgs = {
+export interface OrderingOrderMutationCreateFulfillmentArgs {
   input: IIoRestorecommerceOrderFulfillmentRequestList;
-};
+}
 
-export type OrderingOrderMutationCreateInvoiceArgs = {
+export interface OrderingOrderMutationCreateInvoiceArgs {
   input: IIoRestorecommerceOrderOrderingInvoiceRequestList;
-};
+}
 
-export type OrderingOrderMutationDeleteArgs = {
+export interface OrderingOrderMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type OrderingOrderMutationEvaluateArgs = {
+export interface OrderingOrderMutationEvaluateArgs {
   input: IIoRestorecommerceOrderOrderList;
-};
+}
 
-export type OrderingOrderMutationMutateArgs = {
+export interface OrderingOrderMutationMutateArgs {
   input: IIoRestorecommerceOrderOrderList;
-};
+}
 
-export type OrderingOrderMutationQueryPackingSolutionArgs = {
+export interface OrderingOrderMutationQueryPackingSolutionArgs {
   input: IIoRestorecommerceOrderFulfillmentRequestList;
-};
+}
 
-export type OrderingOrderMutationSubmitArgs = {
+export interface OrderingOrderMutationSubmitArgs {
   input: IIoRestorecommerceOrderOrderList;
-};
+}
 
-export type OrderingOrderMutationTriggerFulfillmentArgs = {
+export interface OrderingOrderMutationTriggerFulfillmentArgs {
   input: IIoRestorecommerceOrderFulfillmentRequestList;
-};
+}
 
-export type OrderingOrderMutationTriggerInvoiceArgs = {
+export interface OrderingOrderMutationTriggerInvoiceArgs {
   input: IIoRestorecommerceOrderOrderingInvoiceRequestList;
-};
+}
 
-export type OrderingOrderMutationWithdrawArgs = {
+export interface OrderingOrderMutationWithdrawArgs {
   input: IIoRestorecommerceOrderOrderIdList;
-};
+}
 
-export type OrderingOrderQuery = {
+export interface OrderingOrderQuery {
   __typename?: 'OrderingOrderQuery';
   Read?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
-};
+}
 
-export type OrderingOrderQueryReadArgs = {
+export interface OrderingOrderQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type OrderingQuery = {
+export interface OrderingQuery {
   __typename?: 'OrderingQuery';
   order: OrderingOrderQuery;
-};
+}
 
-export type OstorageMutation = {
+export interface OstorageMutation {
   __typename?: 'OstorageMutation';
   object: OstorageObjectMutation;
-};
+}
 
-export type OstorageObjectMutation = {
+export interface OstorageObjectMutation {
   __typename?: 'OstorageObjectMutation';
   Copy?: Maybe<ProtoIoRestorecommerceOstorageCopyResponseList>;
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Move?: Maybe<ProtoIoRestorecommerceOstorageMoveResponseList>;
   Put?: Maybe<ProtoIoRestorecommerceOstoragePutResponse>;
-};
+}
 
-export type OstorageObjectMutationCopyArgs = {
+export interface OstorageObjectMutationCopyArgs {
   input: IIoRestorecommerceOstorageCopyRequestList;
-};
+}
 
-export type OstorageObjectMutationDeleteArgs = {
+export interface OstorageObjectMutationDeleteArgs {
   input: IIoRestorecommerceOstorageDeleteRequest;
-};
+}
 
-export type OstorageObjectMutationMoveArgs = {
+export interface OstorageObjectMutationMoveArgs {
   input: IIoRestorecommerceOstorageMoveRequestList;
-};
+}
 
-export type OstorageObjectMutationPutArgs = {
+export interface OstorageObjectMutationPutArgs {
   input: IIoRestorecommerceOstorageObject;
-};
+}
 
-export type OstorageObjectQuery = {
+export interface OstorageObjectQuery {
   __typename?: 'OstorageObjectQuery';
   Get?: Maybe<ProtoIoRestorecommerceOstorageObjectResponse>;
   List?: Maybe<ProtoIoRestorecommerceOstorageListResponse>;
-};
+}
 
-export type OstorageObjectQueryGetArgs = {
+export interface OstorageObjectQueryGetArgs {
   input: IIoRestorecommerceOstorageGetRequest;
-};
+}
 
-export type OstorageObjectQueryListArgs = {
+export interface OstorageObjectQueryListArgs {
   input: IIoRestorecommerceOstorageListRequest;
-};
+}
 
-export type OstorageQuery = {
+export interface OstorageQuery {
   __typename?: 'OstorageQuery';
   object: OstorageObjectQuery;
-};
+}
 
-export type PaymentMutation = {
+export interface PaymentMutation {
   __typename?: 'PaymentMutation';
   payment: PaymentPaymentMutation;
-};
+}
 
-export type PaymentPaymentMutation = {
+export interface PaymentPaymentMutation {
   __typename?: 'PaymentPaymentMutation';
   Authorize?: Maybe<ProtoIoRestorecommercePaymentPaymentResponse>;
   Capture?: Maybe<ProtoIoRestorecommercePaymentPaymentResponse>;
   Purchase?: Maybe<ProtoIoRestorecommercePaymentPaymentResponse>;
   SetupAuthorization?: Maybe<ProtoIoRestorecommercePaymentSetupResponse>;
   SetupPurchase?: Maybe<ProtoIoRestorecommercePaymentSetupResponse>;
-};
+}
 
-export type PaymentPaymentMutationAuthorizeArgs = {
+export interface PaymentPaymentMutationAuthorizeArgs {
   input: IIoRestorecommercePaymentPaymentRequest;
-};
+}
 
-export type PaymentPaymentMutationCaptureArgs = {
+export interface PaymentPaymentMutationCaptureArgs {
   input: IIoRestorecommercePaymentCaptureRequest;
-};
+}
 
-export type PaymentPaymentMutationPurchaseArgs = {
+export interface PaymentPaymentMutationPurchaseArgs {
   input: IIoRestorecommercePaymentPaymentRequest;
-};
+}
 
-export type PaymentPaymentMutationSetupAuthorizationArgs = {
+export interface PaymentPaymentMutationSetupAuthorizationArgs {
   input: IIoRestorecommercePaymentSetupRequest;
-};
+}
 
-export type PaymentPaymentMutationSetupPurchaseArgs = {
+export interface PaymentPaymentMutationSetupPurchaseArgs {
   input: IIoRestorecommercePaymentSetupRequest;
-};
+}
 
-export type ProtoGoogleProtobufAny = {
+export interface ProtoGoogleProtobufAny {
   __typename?: 'ProtoGoogleProtobufAny';
   details?: Maybe<GoogleProtobufAny>;
-};
+}
 
-export type ProtoIoRestorecommerceAccessControlResponse = {
+export interface ProtoIoRestorecommerceAccessControlResponse {
   __typename?: 'ProtoIoRestorecommerceAccessControlResponse';
   details?: Maybe<IoRestorecommerceAccessControlResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceAccessControlReverseQuery = {
+export interface ProtoIoRestorecommerceAccessControlReverseQuery {
   __typename?: 'ProtoIoRestorecommerceAccessControlReverseQuery';
   details?: Maybe<IoRestorecommerceAccessControlReverseQuery>;
-};
+}
 
-export type ProtoIoRestorecommerceAddressAddressListResponse = {
+export interface ProtoIoRestorecommerceAddressAddressListResponse {
   __typename?: 'ProtoIoRestorecommerceAddressAddressListResponse';
   details?: Maybe<IoRestorecommerceAddressAddressListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListResponse =
-  {
-    __typename?: 'ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListResponse';
-    details?: Maybe<IoRestorecommerceAuthenticationLogAuthenticationLogListResponse>;
-  };
+export interface ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListResponse {
+  __typename?: 'ProtoIoRestorecommerceAuthenticationLogAuthenticationLogListResponse';
+  details?: Maybe<IoRestorecommerceAuthenticationLogAuthenticationLogListResponse>;
+}
 
-export type ProtoIoRestorecommerceCommandCommandListResponse = {
+export interface ProtoIoRestorecommerceCommandCommandListResponse {
   __typename?: 'ProtoIoRestorecommerceCommandCommandListResponse';
   details?: Maybe<IoRestorecommerceCommandCommandListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceContactPointContactPointListResponse = {
+export interface ProtoIoRestorecommerceContactPointContactPointListResponse {
   __typename?: 'ProtoIoRestorecommerceContactPointContactPointListResponse';
   details?: Maybe<IoRestorecommerceContactPointContactPointListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceContactPointTypeContactPointTypeListResponse =
-  {
-    __typename?: 'ProtoIoRestorecommerceContactPointTypeContactPointTypeListResponse';
-    details?: Maybe<IoRestorecommerceContactPointTypeContactPointTypeListResponse>;
-  };
+export interface ProtoIoRestorecommerceContactPointTypeContactPointTypeListResponse {
+  __typename?: 'ProtoIoRestorecommerceContactPointTypeContactPointTypeListResponse';
+  details?: Maybe<IoRestorecommerceContactPointTypeContactPointTypeListResponse>;
+}
 
-export type ProtoIoRestorecommerceCountryCountryListResponse = {
+export interface ProtoIoRestorecommerceCountryCountryListResponse {
   __typename?: 'ProtoIoRestorecommerceCountryCountryListResponse';
   details?: Maybe<IoRestorecommerceCountryCountryListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceCredentialCredentialListResponse = {
+export interface ProtoIoRestorecommerceCredentialCredentialListResponse {
   __typename?: 'ProtoIoRestorecommerceCredentialCredentialListResponse';
   details?: Maybe<IoRestorecommerceCredentialCredentialListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceCustomerCustomerListResponse = {
+export interface ProtoIoRestorecommerceCustomerCustomerListResponse {
   __typename?: 'ProtoIoRestorecommerceCustomerCustomerListResponse';
   details?: Maybe<IoRestorecommerceCustomerCustomerListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse =
-  {
-    __typename?: 'ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse';
-    details?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
-  };
+export interface ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentCourierFulfillmentCourierListResponse>;
+}
 
-export type ProtoIoRestorecommerceFulfillmentFulfillmentListResponse = {
+export interface ProtoIoRestorecommerceFulfillmentFulfillmentListResponse {
   __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
   details?: Maybe<IoRestorecommerceFulfillmentFulfillmentListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse =
-  {
-    __typename?: 'ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse';
-    details?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
-  };
+export interface ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentProductFulfillmentProductListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentProductFulfillmentProductListResponse>;
+}
 
-export type ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse =
-  {
-    __typename?: 'ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse';
-    details?: Maybe<IoRestorecommerceFulfillmentProductPackingSolutionListResponse>;
-  };
+export interface ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse {
+  __typename?: 'ProtoIoRestorecommerceFulfillmentProductPackingSolutionListResponse';
+  details?: Maybe<IoRestorecommerceFulfillmentProductPackingSolutionListResponse>;
+}
 
-export type ProtoIoRestorecommerceInvoiceInvoiceListResponse = {
+export interface ProtoIoRestorecommerceInvoiceInvoiceListResponse {
   __typename?: 'ProtoIoRestorecommerceInvoiceInvoiceListResponse';
   details?: Maybe<IoRestorecommerceInvoiceInvoiceListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceInvoiceInvoiceNumberResponse = {
+export interface ProtoIoRestorecommerceInvoiceInvoiceNumberResponse {
   __typename?: 'ProtoIoRestorecommerceInvoiceInvoiceNumberResponse';
   details?: Maybe<IoRestorecommerceInvoiceInvoiceNumberResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceJobJobListResponse = {
+export interface ProtoIoRestorecommerceJobJobListResponse {
   __typename?: 'ProtoIoRestorecommerceJobJobListResponse';
   details?: Maybe<IoRestorecommerceJobJobListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceLocaleLocaleListResponse = {
+export interface ProtoIoRestorecommerceLocaleLocaleListResponse {
   __typename?: 'ProtoIoRestorecommerceLocaleLocaleListResponse';
   details?: Maybe<IoRestorecommerceLocaleLocaleListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceLocationLocationListResponse = {
+export interface ProtoIoRestorecommerceLocationLocationListResponse {
   __typename?: 'ProtoIoRestorecommerceLocationLocationListResponse';
   details?: Maybe<IoRestorecommerceLocationLocationListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceManufacturerManufacturerListResponse = {
+export interface ProtoIoRestorecommerceManufacturerManufacturerListResponse {
   __typename?: 'ProtoIoRestorecommerceManufacturerManufacturerListResponse';
   details?: Maybe<IoRestorecommerceManufacturerManufacturerListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceNotificationNotificationListResponse = {
+export interface ProtoIoRestorecommerceNotificationNotificationListResponse {
   __typename?: 'ProtoIoRestorecommerceNotificationNotificationListResponse';
   details?: Maybe<IoRestorecommerceNotificationNotificationListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOauthExchangeCodeResponse = {
+export interface ProtoIoRestorecommerceOauthExchangeCodeResponse {
   __typename?: 'ProtoIoRestorecommerceOauthExchangeCodeResponse';
   details?: Maybe<IoRestorecommerceOauthExchangeCodeResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOauthGenerateLinksResponse = {
+export interface ProtoIoRestorecommerceOauthGenerateLinksResponse {
   __typename?: 'ProtoIoRestorecommerceOauthGenerateLinksResponse';
   details?: Maybe<IoRestorecommerceOauthGenerateLinksResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOauthGetTokenResponse = {
+export interface ProtoIoRestorecommerceOauthGetTokenResponse {
   __typename?: 'ProtoIoRestorecommerceOauthGetTokenResponse';
   details?: Maybe<IoRestorecommerceOauthGetTokenResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOauthServicesResponse = {
+export interface ProtoIoRestorecommerceOauthServicesResponse {
   __typename?: 'ProtoIoRestorecommerceOauthServicesResponse';
   details?: Maybe<IoRestorecommerceOauthServicesResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOrderOrderListResponse = {
+export interface ProtoIoRestorecommerceOrderOrderListResponse {
   __typename?: 'ProtoIoRestorecommerceOrderOrderListResponse';
   details?: Maybe<IoRestorecommerceOrderOrderListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOrderOrderSubmitListResponse = {
+export interface ProtoIoRestorecommerceOrderOrderSubmitListResponse {
   __typename?: 'ProtoIoRestorecommerceOrderOrderSubmitListResponse';
   details?: Maybe<IoRestorecommerceOrderOrderSubmitListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOrganizationOrganizationListResponse = {
+export interface ProtoIoRestorecommerceOrganizationOrganizationListResponse {
   __typename?: 'ProtoIoRestorecommerceOrganizationOrganizationListResponse';
   details?: Maybe<IoRestorecommerceOrganizationOrganizationListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOstorageCopyResponseList = {
+export interface ProtoIoRestorecommerceOstorageCopyResponseList {
   __typename?: 'ProtoIoRestorecommerceOstorageCopyResponseList';
   details?: Maybe<IoRestorecommerceOstorageCopyResponseList>;
-};
+}
 
-export type ProtoIoRestorecommerceOstorageListResponse = {
+export interface ProtoIoRestorecommerceOstorageListResponse {
   __typename?: 'ProtoIoRestorecommerceOstorageListResponse';
   details?: Maybe<IoRestorecommerceOstorageListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOstorageMoveResponseList = {
+export interface ProtoIoRestorecommerceOstorageMoveResponseList {
   __typename?: 'ProtoIoRestorecommerceOstorageMoveResponseList';
   details?: Maybe<IoRestorecommerceOstorageMoveResponseList>;
-};
+}
 
-export type ProtoIoRestorecommerceOstorageObjectResponse = {
+export interface ProtoIoRestorecommerceOstorageObjectResponse {
   __typename?: 'ProtoIoRestorecommerceOstorageObjectResponse';
   details?: Maybe<IoRestorecommerceOstorageObjectResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceOstoragePutResponse = {
+export interface ProtoIoRestorecommerceOstoragePutResponse {
   __typename?: 'ProtoIoRestorecommerceOstoragePutResponse';
   details?: Maybe<IoRestorecommerceOstoragePutResponse>;
-};
+}
 
-export type ProtoIoRestorecommercePaymentPaymentResponse = {
+export interface ProtoIoRestorecommercePaymentPaymentResponse {
   __typename?: 'ProtoIoRestorecommercePaymentPaymentResponse';
   details?: Maybe<IoRestorecommercePaymentPaymentResponse>;
-};
+}
 
-export type ProtoIoRestorecommercePaymentSetupResponse = {
+export interface ProtoIoRestorecommercePaymentSetupResponse {
   __typename?: 'ProtoIoRestorecommercePaymentSetupResponse';
   details?: Maybe<IoRestorecommercePaymentSetupResponse>;
-};
+}
 
-export type ProtoIoRestorecommercePolicyPolicyListResponse = {
+export interface ProtoIoRestorecommercePolicyPolicyListResponse {
   __typename?: 'ProtoIoRestorecommercePolicyPolicyListResponse';
   details?: Maybe<IoRestorecommercePolicyPolicyListResponse>;
-};
+}
 
-export type ProtoIoRestorecommercePolicySetPolicySetListResponse = {
+export interface ProtoIoRestorecommercePolicySetPolicySetListResponse {
   __typename?: 'ProtoIoRestorecommercePolicySetPolicySetListResponse';
   details?: Maybe<IoRestorecommercePolicySetPolicySetListResponse>;
-};
+}
 
-export type ProtoIoRestorecommercePriceGroupPriceGroupListResponse = {
+export interface ProtoIoRestorecommercePriceGroupPriceGroupListResponse {
   __typename?: 'ProtoIoRestorecommercePriceGroupPriceGroupListResponse';
   details?: Maybe<IoRestorecommercePriceGroupPriceGroupListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceProductCategoryProductCategoryListResponse = {
+export interface ProtoIoRestorecommerceProductCategoryProductCategoryListResponse {
   __typename?: 'ProtoIoRestorecommerceProductCategoryProductCategoryListResponse';
   details?: Maybe<IoRestorecommerceProductCategoryProductCategoryListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceProductProductListResponse = {
+export interface ProtoIoRestorecommerceProductProductListResponse {
   __typename?: 'ProtoIoRestorecommerceProductProductListResponse';
   details?: Maybe<IoRestorecommerceProductProductListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse =
-  {
-    __typename?: 'ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse';
-    details?: Maybe<IoRestorecommerceProductPrototypeProductPrototypeListResponse>;
-  };
+export interface ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse {
+  __typename?: 'ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse';
+  details?: Maybe<IoRestorecommerceProductPrototypeProductPrototypeListResponse>;
+}
 
-export type ProtoIoRestorecommerceResourcebaseDeleteResponse = {
+export interface ProtoIoRestorecommerceResourcebaseDeleteResponse {
   __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
   details?: Maybe<IoRestorecommerceResourcebaseDeleteResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceRoleRoleListResponse = {
+export interface ProtoIoRestorecommerceRoleRoleListResponse {
   __typename?: 'ProtoIoRestorecommerceRoleRoleListResponse';
   details?: Maybe<IoRestorecommerceRoleRoleListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceRuleRuleListResponse = {
+export interface ProtoIoRestorecommerceRuleRuleListResponse {
   __typename?: 'ProtoIoRestorecommerceRuleRuleListResponse';
   details?: Maybe<IoRestorecommerceRuleRuleListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceShopShopListResponse = {
+export interface ProtoIoRestorecommerceShopShopListResponse {
   __typename?: 'ProtoIoRestorecommerceShopShopListResponse';
   details?: Maybe<IoRestorecommerceShopShopListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceStatusOperationStatusObj = {
+export interface ProtoIoRestorecommerceStatusOperationStatusObj {
   __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
   details?: Maybe<IoRestorecommerceStatusOperationStatusObj>;
-};
+}
 
-export type ProtoIoRestorecommerceStatusStatusListResponse = {
+export interface ProtoIoRestorecommerceStatusStatusListResponse {
   __typename?: 'ProtoIoRestorecommerceStatusStatusListResponse';
   details?: Maybe<IoRestorecommerceStatusStatusListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceTaxTaxListResponse = {
+export interface ProtoIoRestorecommerceTaxTaxListResponse {
   __typename?: 'ProtoIoRestorecommerceTaxTaxListResponse';
   details?: Maybe<IoRestorecommerceTaxTaxListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceTaxTypeTaxTypeListResponse = {
+export interface ProtoIoRestorecommerceTaxTypeTaxTypeListResponse {
   __typename?: 'ProtoIoRestorecommerceTaxTypeTaxTypeListResponse';
   details?: Maybe<IoRestorecommerceTaxTypeTaxTypeListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceTemplateTemplateListResponse = {
+export interface ProtoIoRestorecommerceTemplateTemplateListResponse {
   __typename?: 'ProtoIoRestorecommerceTemplateTemplateListResponse';
   details?: Maybe<IoRestorecommerceTemplateTemplateListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceTimezoneTimezoneListResponse = {
+export interface ProtoIoRestorecommerceTimezoneTimezoneListResponse {
   __typename?: 'ProtoIoRestorecommerceTimezoneTimezoneListResponse';
   details?: Maybe<IoRestorecommerceTimezoneTimezoneListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceUnitCodeUnitCodeListResponse = {
+export interface ProtoIoRestorecommerceUnitCodeUnitCodeListResponse {
   __typename?: 'ProtoIoRestorecommerceUnitCodeUnitCodeListResponse';
   details?: Maybe<IoRestorecommerceUnitCodeUnitCodeListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceUserDeleteUsersByOrgResponse = {
+export interface ProtoIoRestorecommerceUserDeleteUsersByOrgResponse {
   __typename?: 'ProtoIoRestorecommerceUserDeleteUsersByOrgResponse';
   details?: Maybe<IoRestorecommerceUserDeleteUsersByOrgResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceUserTenantResponse = {
+export interface ProtoIoRestorecommerceUserTenantResponse {
   __typename?: 'ProtoIoRestorecommerceUserTenantResponse';
   details?: Maybe<IoRestorecommerceUserTenantResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceUserUserListResponse = {
+export interface ProtoIoRestorecommerceUserUserListResponse {
   __typename?: 'ProtoIoRestorecommerceUserUserListResponse';
   details?: Maybe<IoRestorecommerceUserUserListResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceUserUserListWithRoleResponse = {
+export interface ProtoIoRestorecommerceUserUserListWithRoleResponse {
   __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse';
   details?: Maybe<IoRestorecommerceUserUserListWithRoleResponse>;
-};
+}
 
-export type ProtoIoRestorecommerceUserUserResponse = {
+export interface ProtoIoRestorecommerceUserUserResponse {
   __typename?: 'ProtoIoRestorecommerceUserUserResponse';
   details?: Maybe<IoRestorecommerceUserUserResponse>;
-};
+}
 
 /** The root of all queries */
-export type Query = {
+export interface Query {
   __typename?: 'Query';
   access_control: AccessControlQuery;
   catalog: CatalogQuery;
@@ -4882,216 +4850,216 @@ export type Query = {
   ostorage: OstorageQuery;
   scheduling: SchedulingQuery;
   status?: Maybe<FacadeStatusType>;
-};
+}
 
-export type ResourceAddressMutation = {
+export interface ResourceAddressMutation {
   __typename?: 'ResourceAddressMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceAddressAddressListResponse>;
-};
+}
 
-export type ResourceAddressMutationDeleteArgs = {
+export interface ResourceAddressMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceAddressMutationMutateArgs = {
+export interface ResourceAddressMutationMutateArgs {
   input: IIoRestorecommerceAddressAddressList;
-};
+}
 
-export type ResourceAddressQuery = {
+export interface ResourceAddressQuery {
   __typename?: 'ResourceAddressQuery';
   Read?: Maybe<ProtoIoRestorecommerceAddressAddressListResponse>;
-};
+}
 
-export type ResourceAddressQueryReadArgs = {
+export interface ResourceAddressQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceCommandMutation = {
+export interface ResourceCommandMutation {
   __typename?: 'ResourceCommandMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceCommandCommandListResponse>;
-};
+}
 
-export type ResourceCommandMutationDeleteArgs = {
+export interface ResourceCommandMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceCommandMutationMutateArgs = {
+export interface ResourceCommandMutationMutateArgs {
   input: IIoRestorecommerceCommandCommandList;
-};
+}
 
-export type ResourceCommandQuery = {
+export interface ResourceCommandQuery {
   __typename?: 'ResourceCommandQuery';
   Read?: Maybe<ProtoIoRestorecommerceCommandCommandListResponse>;
-};
+}
 
-export type ResourceCommandQueryReadArgs = {
+export interface ResourceCommandQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceContactPointMutation = {
+export interface ResourceContactPointMutation {
   __typename?: 'ResourceContactPointMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceContactPointContactPointListResponse>;
-};
+}
 
-export type ResourceContactPointMutationDeleteArgs = {
+export interface ResourceContactPointMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceContactPointMutationMutateArgs = {
+export interface ResourceContactPointMutationMutateArgs {
   input: IIoRestorecommerceContactPointContactPointList;
-};
+}
 
-export type ResourceContactPointQuery = {
+export interface ResourceContactPointQuery {
   __typename?: 'ResourceContactPointQuery';
   Read?: Maybe<ProtoIoRestorecommerceContactPointContactPointListResponse>;
-};
+}
 
-export type ResourceContactPointQueryReadArgs = {
+export interface ResourceContactPointQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceContactPointTypeMutation = {
+export interface ResourceContactPointTypeMutation {
   __typename?: 'ResourceContactPointTypeMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceContactPointTypeContactPointTypeListResponse>;
-};
+}
 
-export type ResourceContactPointTypeMutationDeleteArgs = {
+export interface ResourceContactPointTypeMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceContactPointTypeMutationMutateArgs = {
+export interface ResourceContactPointTypeMutationMutateArgs {
   input: IIoRestorecommerceContactPointTypeContactPointTypeList;
-};
+}
 
-export type ResourceContactPointTypeQuery = {
+export interface ResourceContactPointTypeQuery {
   __typename?: 'ResourceContactPointTypeQuery';
   Read?: Maybe<ProtoIoRestorecommerceContactPointTypeContactPointTypeListResponse>;
-};
+}
 
-export type ResourceContactPointTypeQueryReadArgs = {
+export interface ResourceContactPointTypeQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceCountryMutation = {
+export interface ResourceCountryMutation {
   __typename?: 'ResourceCountryMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceCountryCountryListResponse>;
-};
+}
 
-export type ResourceCountryMutationDeleteArgs = {
+export interface ResourceCountryMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceCountryMutationMutateArgs = {
+export interface ResourceCountryMutationMutateArgs {
   input: IIoRestorecommerceCountryCountryList;
-};
+}
 
-export type ResourceCountryQuery = {
+export interface ResourceCountryQuery {
   __typename?: 'ResourceCountryQuery';
   Read?: Maybe<ProtoIoRestorecommerceCountryCountryListResponse>;
-};
+}
 
-export type ResourceCountryQueryReadArgs = {
+export interface ResourceCountryQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceCredentialMutation = {
+export interface ResourceCredentialMutation {
   __typename?: 'ResourceCredentialMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceCredentialCredentialListResponse>;
-};
+}
 
-export type ResourceCredentialMutationDeleteArgs = {
+export interface ResourceCredentialMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceCredentialMutationMutateArgs = {
+export interface ResourceCredentialMutationMutateArgs {
   input: IIoRestorecommerceCredentialCredentialList;
-};
+}
 
-export type ResourceCredentialQuery = {
+export interface ResourceCredentialQuery {
   __typename?: 'ResourceCredentialQuery';
   Read?: Maybe<ProtoIoRestorecommerceCredentialCredentialListResponse>;
-};
+}
 
-export type ResourceCredentialQueryReadArgs = {
+export interface ResourceCredentialQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceCustomerMutation = {
+export interface ResourceCustomerMutation {
   __typename?: 'ResourceCustomerMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceCustomerCustomerListResponse>;
-};
+}
 
-export type ResourceCustomerMutationDeleteArgs = {
+export interface ResourceCustomerMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceCustomerMutationMutateArgs = {
+export interface ResourceCustomerMutationMutateArgs {
   input: IIoRestorecommerceCustomerCustomerList;
-};
+}
 
-export type ResourceCustomerQuery = {
+export interface ResourceCustomerQuery {
   __typename?: 'ResourceCustomerQuery';
   Read?: Maybe<ProtoIoRestorecommerceCustomerCustomerListResponse>;
-};
+}
 
-export type ResourceCustomerQueryReadArgs = {
+export interface ResourceCustomerQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceLocaleMutation = {
+export interface ResourceLocaleMutation {
   __typename?: 'ResourceLocaleMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceLocaleLocaleListResponse>;
-};
+}
 
-export type ResourceLocaleMutationDeleteArgs = {
+export interface ResourceLocaleMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceLocaleMutationMutateArgs = {
+export interface ResourceLocaleMutationMutateArgs {
   input: IIoRestorecommerceLocaleLocaleList;
-};
+}
 
-export type ResourceLocaleQuery = {
+export interface ResourceLocaleQuery {
   __typename?: 'ResourceLocaleQuery';
   Read?: Maybe<ProtoIoRestorecommerceLocaleLocaleListResponse>;
-};
+}
 
-export type ResourceLocaleQueryReadArgs = {
+export interface ResourceLocaleQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceLocationMutation = {
+export interface ResourceLocationMutation {
   __typename?: 'ResourceLocationMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceLocationLocationListResponse>;
-};
+}
 
-export type ResourceLocationMutationDeleteArgs = {
+export interface ResourceLocationMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceLocationMutationMutateArgs = {
+export interface ResourceLocationMutationMutateArgs {
   input: IIoRestorecommerceLocationLocationList;
-};
+}
 
-export type ResourceLocationQuery = {
+export interface ResourceLocationQuery {
   __typename?: 'ResourceLocationQuery';
   Read?: Maybe<ProtoIoRestorecommerceLocationLocationListResponse>;
-};
+}
 
-export type ResourceLocationQueryReadArgs = {
+export interface ResourceLocationQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceMutation = {
+export interface ResourceMutation {
   __typename?: 'ResourceMutation';
   address: ResourceAddressMutation;
   command: ResourceCommandMutation;
@@ -5109,32 +5077,32 @@ export type ResourceMutation = {
   template: ResourceTemplateMutation;
   timezone: ResourceTimezoneMutation;
   unit_code: ResourceUnitCodeMutation;
-};
+}
 
-export type ResourceOrganizationMutation = {
+export interface ResourceOrganizationMutation {
   __typename?: 'ResourceOrganizationMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceOrganizationOrganizationListResponse>;
-};
+}
 
-export type ResourceOrganizationMutationDeleteArgs = {
+export interface ResourceOrganizationMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceOrganizationMutationMutateArgs = {
+export interface ResourceOrganizationMutationMutateArgs {
   input: IIoRestorecommerceOrganizationOrganizationList;
-};
+}
 
-export type ResourceOrganizationQuery = {
+export interface ResourceOrganizationQuery {
   __typename?: 'ResourceOrganizationQuery';
   Read?: Maybe<ProtoIoRestorecommerceOrganizationOrganizationListResponse>;
-};
+}
 
-export type ResourceOrganizationQueryReadArgs = {
+export interface ResourceOrganizationQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceQuery = {
+export interface ResourceQuery {
   __typename?: 'ResourceQuery';
   address: ResourceAddressQuery;
   command: ResourceCommandQuery;
@@ -5152,180 +5120,180 @@ export type ResourceQuery = {
   template: ResourceTemplateQuery;
   timezone: ResourceTimezoneQuery;
   unit_code: ResourceUnitCodeQuery;
-};
+}
 
-export type ResourceShopMutation = {
+export interface ResourceShopMutation {
   __typename?: 'ResourceShopMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceShopShopListResponse>;
-};
+}
 
-export type ResourceShopMutationDeleteArgs = {
+export interface ResourceShopMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceShopMutationMutateArgs = {
+export interface ResourceShopMutationMutateArgs {
   input: IIoRestorecommerceShopShopList;
-};
+}
 
-export type ResourceShopQuery = {
+export interface ResourceShopQuery {
   __typename?: 'ResourceShopQuery';
   Read?: Maybe<ProtoIoRestorecommerceShopShopListResponse>;
-};
+}
 
-export type ResourceShopQueryReadArgs = {
+export interface ResourceShopQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceTaxMutation = {
+export interface ResourceTaxMutation {
   __typename?: 'ResourceTaxMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceTaxTaxListResponse>;
-};
+}
 
-export type ResourceTaxMutationDeleteArgs = {
+export interface ResourceTaxMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceTaxMutationMutateArgs = {
+export interface ResourceTaxMutationMutateArgs {
   input: IIoRestorecommerceTaxTaxList;
-};
+}
 
-export type ResourceTaxQuery = {
+export interface ResourceTaxQuery {
   __typename?: 'ResourceTaxQuery';
   Read?: Maybe<ProtoIoRestorecommerceTaxTaxListResponse>;
-};
+}
 
-export type ResourceTaxQueryReadArgs = {
+export interface ResourceTaxQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceTaxTypeMutation = {
+export interface ResourceTaxTypeMutation {
   __typename?: 'ResourceTaxTypeMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceTaxTypeTaxTypeListResponse>;
-};
+}
 
-export type ResourceTaxTypeMutationDeleteArgs = {
+export interface ResourceTaxTypeMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceTaxTypeMutationMutateArgs = {
+export interface ResourceTaxTypeMutationMutateArgs {
   input: IIoRestorecommerceTaxTypeTaxTypeList;
-};
+}
 
-export type ResourceTaxTypeQuery = {
+export interface ResourceTaxTypeQuery {
   __typename?: 'ResourceTaxTypeQuery';
   Read?: Maybe<ProtoIoRestorecommerceTaxTypeTaxTypeListResponse>;
-};
+}
 
-export type ResourceTaxTypeQueryReadArgs = {
+export interface ResourceTaxTypeQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceTemplateMutation = {
+export interface ResourceTemplateMutation {
   __typename?: 'ResourceTemplateMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceTemplateTemplateListResponse>;
-};
+}
 
-export type ResourceTemplateMutationDeleteArgs = {
+export interface ResourceTemplateMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceTemplateMutationMutateArgs = {
+export interface ResourceTemplateMutationMutateArgs {
   input: IIoRestorecommerceTemplateTemplateList;
-};
+}
 
-export type ResourceTemplateQuery = {
+export interface ResourceTemplateQuery {
   __typename?: 'ResourceTemplateQuery';
   Read?: Maybe<ProtoIoRestorecommerceTemplateTemplateListResponse>;
-};
+}
 
-export type ResourceTemplateQueryReadArgs = {
+export interface ResourceTemplateQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceTimezoneMutation = {
+export interface ResourceTimezoneMutation {
   __typename?: 'ResourceTimezoneMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceTimezoneTimezoneListResponse>;
-};
+}
 
-export type ResourceTimezoneMutationDeleteArgs = {
+export interface ResourceTimezoneMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceTimezoneMutationMutateArgs = {
+export interface ResourceTimezoneMutationMutateArgs {
   input: IIoRestorecommerceTimezoneTimezoneList;
-};
+}
 
-export type ResourceTimezoneQuery = {
+export interface ResourceTimezoneQuery {
   __typename?: 'ResourceTimezoneQuery';
   Read?: Maybe<ProtoIoRestorecommerceTimezoneTimezoneListResponse>;
-};
+}
 
-export type ResourceTimezoneQueryReadArgs = {
+export interface ResourceTimezoneQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type ResourceUnitCodeMutation = {
+export interface ResourceUnitCodeMutation {
   __typename?: 'ResourceUnitCodeMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceUnitCodeUnitCodeListResponse>;
-};
+}
 
-export type ResourceUnitCodeMutationDeleteArgs = {
+export interface ResourceUnitCodeMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type ResourceUnitCodeMutationMutateArgs = {
+export interface ResourceUnitCodeMutationMutateArgs {
   input: IIoRestorecommerceUnitCodeUnitCodeList;
-};
+}
 
-export type ResourceUnitCodeQuery = {
+export interface ResourceUnitCodeQuery {
   __typename?: 'ResourceUnitCodeQuery';
   Read?: Maybe<ProtoIoRestorecommerceUnitCodeUnitCodeListResponse>;
-};
+}
 
-export type ResourceUnitCodeQueryReadArgs = {
+export interface ResourceUnitCodeQueryReadArgs {
   input: IIoRestorecommerceResourcebaseReadRequest;
-};
+}
 
-export type SchedulingJobMutation = {
+export interface SchedulingJobMutation {
   __typename?: 'SchedulingJobMutation';
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceJobJobListResponse>;
-};
+}
 
-export type SchedulingJobMutationDeleteArgs = {
+export interface SchedulingJobMutationDeleteArgs {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
-};
+}
 
-export type SchedulingJobMutationMutateArgs = {
+export interface SchedulingJobMutationMutateArgs {
   input: IIoRestorecommerceJobJobList;
-};
+}
 
-export type SchedulingJobQuery = {
+export interface SchedulingJobQuery {
   __typename?: 'SchedulingJobQuery';
   Read?: Maybe<ProtoIoRestorecommerceJobJobListResponse>;
-};
+}
 
-export type SchedulingJobQueryReadArgs = {
+export interface SchedulingJobQueryReadArgs {
   input: IIoRestorecommerceJobJobReadRequest;
-};
+}
 
-export type SchedulingMutation = {
+export interface SchedulingMutation {
   __typename?: 'SchedulingMutation';
   job: SchedulingJobMutation;
-};
+}
 
-export type SchedulingQuery = {
+export interface SchedulingQuery {
   __typename?: 'SchedulingQuery';
   job: SchedulingJobQuery;
-};
+}
 
-export type Subscription = {
+export interface Subscription {
   __typename?: 'Subscription';
   catalogProducts?: Maybe<SubscriptionOutput>;
   fulfillmentFulfillmentCouriers?: Maybe<SubscriptionOutput>;
@@ -5334,35 +5302,35 @@ export type Subscription = {
   identityUsers?: Maybe<SubscriptionOutput>;
   invoicingInvoices?: Maybe<SubscriptionOutput>;
   orderingOrders?: Maybe<SubscriptionOutput>;
-};
+}
 
-export type SubscriptionCatalogProductsArgs = {
+export interface SubscriptionCatalogProductsArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
-export type SubscriptionFulfillmentFulfillmentCouriersArgs = {
+export interface SubscriptionFulfillmentFulfillmentCouriersArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
-export type SubscriptionFulfillmentFulfillment_ProductsArgs = {
+export interface SubscriptionFulfillmentFulfillment_ProductsArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
-export type SubscriptionFulfillmentFulfillmentsArgs = {
+export interface SubscriptionFulfillmentFulfillmentsArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
-export type SubscriptionIdentityUsersArgs = {
+export interface SubscriptionIdentityUsersArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
-export type SubscriptionInvoicingInvoicesArgs = {
+export interface SubscriptionInvoicingInvoicesArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
-export type SubscriptionOrderingOrdersArgs = {
+export interface SubscriptionOrderingOrdersArgs {
   action?: InputMaybe<SubscriptionAction>;
-};
+}
 
 export enum SubscriptionAction {
   Created = 'CREATED',
@@ -5370,16 +5338,16 @@ export enum SubscriptionAction {
   Updated = 'UPDATED',
 }
 
-export type SubscriptionOutput = {
+export interface SubscriptionOutput {
   __typename?: 'SubscriptionOutput';
   id?: Maybe<Scalars['String']>;
-};
+}
 
 export type CatalogProductDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type CatalogProductDeleteMutation = {
+export interface CatalogProductDeleteMutation {
   __typename?: 'Mutation';
   catalog: {
     __typename?: 'CatalogMutation';
@@ -5398,13 +5366,13 @@ export type CatalogProductDeleteMutation = {
       } | null;
     };
   };
-};
+}
 
 export type CatalogProductMutateMutationVariables = Exact<{
   input: IIoRestorecommerceProductProductList;
 }>;
 
-export type CatalogProductMutateMutation = {
+export interface CatalogProductMutateMutation {
   __typename?: 'Mutation';
   catalog: {
     __typename?: 'CatalogMutation';
@@ -5419,62 +5387,89 @@ export type CatalogProductMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceProductProductResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceProductProduct';
-              id?: string | null;
-              tags?: Array<string> | null;
-              shop?: {
-                __typename?: 'IoRestorecommerceShopShop';
-                id?: string | null;
-                shopNumber?: string | null;
-                name?: string | null;
-                description?: string | null;
-                domain?: string | null;
-                organization?: {
-                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceProductProductResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceProductProduct';
                   id?: string | null;
-                  parentId?: string | null;
-                  name?: string | null;
-                  email?: string | null;
-                  website?: string | null;
-                  vatId?: string | null;
-                  logo?: {
-                    __typename?: 'IoRestorecommerceImageImage';
+                  tags?: string[] | null;
+                  shop?: {
+                    __typename?: 'IoRestorecommerceShopShop';
                     id?: string | null;
-                    index?: number | null;
-                    filename?: string | null;
-                    height?: number | null;
-                    width?: number | null;
-                    url?: string | null;
-                  } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
+                    shopNumber?: string | null;
                     name?: string | null;
                     description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                    domain?: string | null;
+                    organization?: {
+                      __typename?: 'IoRestorecommerceOrganizationOrganization';
                       id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                      parentId?: string | null;
+                      name?: string | null;
+                      email?: string | null;
+                      website?: string | null;
+                      vatId?: string | null;
+                      logo?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        index?: number | null;
+                        filename?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url?: string | null;
                       } | null;
-                    } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      description?: string | null;
-                      value?: string | null;
+                      contactPoints?:
+                        | {
+                            __typename?: 'IoRestorecommerceContactPointContactPoint';
+                            id?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            email?: string | null;
+                            telephone?: string | null;
+                            website?: string | null;
+                            timezone?: {
+                              __typename?: 'IoRestorecommerceTimezoneTimezone';
+                              id?: string | null;
+                              value?: string | null;
+                              description?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            locale?: {
+                              __typename?: 'IoRestorecommerceLocaleLocale';
+                              id?: string | null;
+                              description?: string | null;
+                              value?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          }[]
+                        | null;
+                      paymentMethods?:
+                        | {
+                            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                            id?: string | null;
+                            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                          }[]
+                        | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
                         created?: unknown | null;
@@ -5490,13 +5485,52 @@ export type CatalogProductMutateMutation = {
                       createdBy?: string | null;
                       modifiedBy?: string | null;
                     } | null;
-                  }> | null;
-                  paymentMethods?: Array<{
-                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                    id?: string | null;
-                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                  }> | null;
+                  } | null;
+                  product?: {
+                    __typename?: 'IoRestorecommerceProductIndividualProduct';
+                    name?: string | null;
+                    description?: string | null;
+                    taxIds?: string[] | null;
+                    taricCode?: string | null;
+                    category?: {
+                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                      id?: string | null;
+                      name?: string | null;
+                      description?: string | null;
+                    } | null;
+                    physical?: {
+                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                      variants?:
+                        | {
+                            __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                            id?: string | null;
+                            name?: string | null;
+                            stockLevel?: number | null;
+                            parentVariantId?: string | null;
+                            images?:
+                              | {
+                                  __typename?: 'IoRestorecommerceImageImage';
+                                  id?: string | null;
+                                  index?: number | null;
+                                  filename?: string | null;
+                                  caption?: string | null;
+                                  contentType?: string | null;
+                                  height?: number | null;
+                                  width?: number | null;
+                                  url?: string | null;
+                                }[]
+                              | null;
+                            price?: {
+                              __typename?: 'IoRestorecommercePricePrice';
+                              currencyId?: string | null;
+                              regularPrice?: number | null;
+                              sale?: boolean | null;
+                              salePrice?: number | null;
+                            } | null;
+                          }[]
+                        | null;
+                    } | null;
+                  } | null;
                   meta?: {
                     __typename?: 'IoRestorecommerceMetaMeta';
                     created?: unknown | null;
@@ -5505,75 +5539,19 @@ export type CatalogProductMutateMutation = {
                     modifiedBy?: string | null;
                   } | null;
                 } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              product?: {
-                __typename?: 'IoRestorecommerceProductIndividualProduct';
-                name?: string | null;
-                description?: string | null;
-                taxIds?: Array<string> | null;
-                taricCode?: string | null;
-                category?: {
-                  __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                  id?: string | null;
-                  name?: string | null;
-                  description?: string | null;
-                } | null;
-                physical?: {
-                  __typename?: 'IoRestorecommerceProductPhysicalProduct';
-                  variants?: Array<{
-                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
-                    id?: string | null;
-                    name?: string | null;
-                    stockLevel?: number | null;
-                    parentVariantId?: string | null;
-                    images?: Array<{
-                      __typename?: 'IoRestorecommerceImageImage';
-                      id?: string | null;
-                      index?: number | null;
-                      filename?: string | null;
-                      caption?: string | null;
-                      contentType?: string | null;
-                      height?: number | null;
-                      width?: number | null;
-                      url?: string | null;
-                    }> | null;
-                    price?: {
-                      __typename?: 'IoRestorecommercePricePrice';
-                      currencyId?: string | null;
-                      regularPrice?: number | null;
-                      sale?: boolean | null;
-                      salePrice?: number | null;
-                    } | null;
-                  }> | null;
-                } | null;
-              } | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type CatalogProductReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type CatalogProductReadQuery = {
+export interface CatalogProductReadQuery {
   __typename?: 'Query';
   catalog: {
     __typename?: 'CatalogQuery';
@@ -5588,62 +5566,89 @@ export type CatalogProductReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceProductProductResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceProductProduct';
-              id?: string | null;
-              tags?: Array<string> | null;
-              shop?: {
-                __typename?: 'IoRestorecommerceShopShop';
-                id?: string | null;
-                shopNumber?: string | null;
-                name?: string | null;
-                description?: string | null;
-                domain?: string | null;
-                organization?: {
-                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceProductProductResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceProductProduct';
                   id?: string | null;
-                  parentId?: string | null;
-                  name?: string | null;
-                  email?: string | null;
-                  website?: string | null;
-                  vatId?: string | null;
-                  logo?: {
-                    __typename?: 'IoRestorecommerceImageImage';
+                  tags?: string[] | null;
+                  shop?: {
+                    __typename?: 'IoRestorecommerceShopShop';
                     id?: string | null;
-                    index?: number | null;
-                    filename?: string | null;
-                    height?: number | null;
-                    width?: number | null;
-                    url?: string | null;
-                  } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
+                    shopNumber?: string | null;
                     name?: string | null;
                     description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                    domain?: string | null;
+                    organization?: {
+                      __typename?: 'IoRestorecommerceOrganizationOrganization';
                       id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                      parentId?: string | null;
+                      name?: string | null;
+                      email?: string | null;
+                      website?: string | null;
+                      vatId?: string | null;
+                      logo?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        index?: number | null;
+                        filename?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url?: string | null;
                       } | null;
-                    } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      description?: string | null;
-                      value?: string | null;
+                      contactPoints?:
+                        | {
+                            __typename?: 'IoRestorecommerceContactPointContactPoint';
+                            id?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            email?: string | null;
+                            telephone?: string | null;
+                            website?: string | null;
+                            timezone?: {
+                              __typename?: 'IoRestorecommerceTimezoneTimezone';
+                              id?: string | null;
+                              value?: string | null;
+                              description?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            locale?: {
+                              __typename?: 'IoRestorecommerceLocaleLocale';
+                              id?: string | null;
+                              description?: string | null;
+                              value?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          }[]
+                        | null;
+                      paymentMethods?:
+                        | {
+                            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                            id?: string | null;
+                            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                          }[]
+                        | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
                         created?: unknown | null;
@@ -5659,13 +5664,52 @@ export type CatalogProductReadQuery = {
                       createdBy?: string | null;
                       modifiedBy?: string | null;
                     } | null;
-                  }> | null;
-                  paymentMethods?: Array<{
-                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                    id?: string | null;
-                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                  }> | null;
+                  } | null;
+                  product?: {
+                    __typename?: 'IoRestorecommerceProductIndividualProduct';
+                    name?: string | null;
+                    description?: string | null;
+                    taxIds?: string[] | null;
+                    taricCode?: string | null;
+                    category?: {
+                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                      id?: string | null;
+                      name?: string | null;
+                      description?: string | null;
+                    } | null;
+                    physical?: {
+                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                      variants?:
+                        | {
+                            __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                            id?: string | null;
+                            name?: string | null;
+                            stockLevel?: number | null;
+                            parentVariantId?: string | null;
+                            images?:
+                              | {
+                                  __typename?: 'IoRestorecommerceImageImage';
+                                  id?: string | null;
+                                  index?: number | null;
+                                  filename?: string | null;
+                                  caption?: string | null;
+                                  contentType?: string | null;
+                                  height?: number | null;
+                                  width?: number | null;
+                                  url?: string | null;
+                                }[]
+                              | null;
+                            price?: {
+                              __typename?: 'IoRestorecommercePricePrice';
+                              currencyId?: string | null;
+                              regularPrice?: number | null;
+                              sale?: boolean | null;
+                              salePrice?: number | null;
+                            } | null;
+                          }[]
+                        | null;
+                    } | null;
+                  } | null;
                   meta?: {
                     __typename?: 'IoRestorecommerceMetaMeta';
                     created?: unknown | null;
@@ -5674,71 +5718,15 @@ export type CatalogProductReadQuery = {
                     modifiedBy?: string | null;
                   } | null;
                 } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              product?: {
-                __typename?: 'IoRestorecommerceProductIndividualProduct';
-                name?: string | null;
-                description?: string | null;
-                taxIds?: Array<string> | null;
-                taricCode?: string | null;
-                category?: {
-                  __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                  id?: string | null;
-                  name?: string | null;
-                  description?: string | null;
-                } | null;
-                physical?: {
-                  __typename?: 'IoRestorecommerceProductPhysicalProduct';
-                  variants?: Array<{
-                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
-                    id?: string | null;
-                    name?: string | null;
-                    stockLevel?: number | null;
-                    parentVariantId?: string | null;
-                    images?: Array<{
-                      __typename?: 'IoRestorecommerceImageImage';
-                      id?: string | null;
-                      index?: number | null;
-                      filename?: string | null;
-                      caption?: string | null;
-                      contentType?: string | null;
-                      height?: number | null;
-                      width?: number | null;
-                      url?: string | null;
-                    }> | null;
-                    price?: {
-                      __typename?: 'IoRestorecommercePricePrice';
-                      currencyId?: string | null;
-                      regularPrice?: number | null;
-                      sale?: boolean | null;
-                      salePrice?: number | null;
-                    } | null;
-                  }> | null;
-                } | null;
-              } | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
-export type AddressFragmentFragment = {
+export interface AddressFragmentFragment {
   __typename?: 'IoRestorecommerceAddressAddress';
   id?: string | null;
   buildingNumber?: string | null;
@@ -5787,9 +5775,9 @@ export type AddressFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type ContactPointFragmentFragment = {
+export interface ContactPointFragmentFragment {
   __typename?: 'IoRestorecommerceContactPointContactPoint';
   id?: string | null;
   name?: string | null;
@@ -5830,15 +5818,15 @@ export type ContactPointFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type CountryFragmentFragment = {
+export interface CountryFragmentFragment {
   __typename?: 'IoRestorecommerceCountryCountry';
   id?: string | null;
   name?: string | null;
   countryCode?: string | null;
   geographicalName?: string | null;
-  economicAreas?: Array<string> | null;
+  economicAreas?: string[] | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -5846,9 +5834,9 @@ export type CountryFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type CustomerFragmentFragment = {
+export interface CustomerFragmentFragment {
   __typename?: 'IoRestorecommerceCustomerCustomer';
   id?: string | null;
   commercial?: {
@@ -5870,54 +5858,58 @@ export type CustomerFragmentFragment = {
         width?: number | null;
         url?: string | null;
       } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          description?: string | null;
-          value?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      }> | null;
-      paymentMethods?: Array<{
-        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-        id?: string | null;
-        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-      }> | null;
+      contactPoints?:
+        | {
+            __typename?: 'IoRestorecommerceContactPointContactPoint';
+            id?: string | null;
+            name?: string | null;
+            description?: string | null;
+            email?: string | null;
+            telephone?: string | null;
+            website?: string | null;
+            timezone?: {
+              __typename?: 'IoRestorecommerceTimezoneTimezone';
+              id?: string | null;
+              value?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            locale?: {
+              __typename?: 'IoRestorecommerceLocaleLocale';
+              id?: string | null;
+              description?: string | null;
+              value?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          }[]
+        | null;
+      paymentMethods?:
+        | {
+            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+            id?: string | null;
+            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+          }[]
+        | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
         created?: unknown | null;
@@ -5946,54 +5938,58 @@ export type CustomerFragmentFragment = {
         width?: number | null;
         url?: string | null;
       } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          description?: string | null;
-          value?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      }> | null;
-      paymentMethods?: Array<{
-        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-        id?: string | null;
-        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-      }> | null;
+      contactPoints?:
+        | {
+            __typename?: 'IoRestorecommerceContactPointContactPoint';
+            id?: string | null;
+            name?: string | null;
+            description?: string | null;
+            email?: string | null;
+            telephone?: string | null;
+            website?: string | null;
+            timezone?: {
+              __typename?: 'IoRestorecommerceTimezoneTimezone';
+              id?: string | null;
+              value?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            locale?: {
+              __typename?: 'IoRestorecommerceLocaleLocale';
+              id?: string | null;
+              description?: string | null;
+              value?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          }[]
+        | null;
+      paymentMethods?:
+        | {
+            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+            id?: string | null;
+            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+          }[]
+        | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
         created?: unknown | null;
@@ -6018,11 +6014,13 @@ export type CustomerFragmentFragment = {
       defaultScope?: string | null;
       localeId?: string | null;
       timezoneId?: string | null;
-      roleAssociations?: Array<{
-        __typename?: 'IoRestorecommerceAuthRoleAssociation';
-        id?: string | null;
-        role?: string | null;
-      }> | null;
+      roleAssociations?:
+        | {
+            __typename?: 'IoRestorecommerceAuthRoleAssociation';
+            id?: string | null;
+            role?: string | null;
+          }[]
+        | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
         created?: unknown | null;
@@ -6031,48 +6029,50 @@ export type CustomerFragmentFragment = {
         modifiedBy?: string | null;
       } | null;
     } | null;
-    contactPoints?: Array<{
-      __typename?: 'IoRestorecommerceContactPointContactPoint';
-      id?: string | null;
-      name?: string | null;
-      description?: string | null;
-      email?: string | null;
-      telephone?: string | null;
-      website?: string | null;
-      timezone?: {
-        __typename?: 'IoRestorecommerceTimezoneTimezone';
-        id?: string | null;
-        value?: string | null;
-        description?: string | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      } | null;
-      locale?: {
-        __typename?: 'IoRestorecommerceLocaleLocale';
-        id?: string | null;
-        description?: string | null;
-        value?: string | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      } | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-      } | null;
-    }> | null;
+    contactPoints?:
+      | {
+          __typename?: 'IoRestorecommerceContactPointContactPoint';
+          id?: string | null;
+          name?: string | null;
+          description?: string | null;
+          email?: string | null;
+          telephone?: string | null;
+          website?: string | null;
+          timezone?: {
+            __typename?: 'IoRestorecommerceTimezoneTimezone';
+            id?: string | null;
+            value?: string | null;
+            description?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          locale?: {
+            __typename?: 'IoRestorecommerceLocaleLocale';
+            id?: string | null;
+            description?: string | null;
+            value?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        }[]
+      | null;
   } | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -6081,9 +6081,9 @@ export type CustomerFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type FulfillmentFragmentFragment = {
+export interface FulfillmentFragmentFragment {
   __typename?: 'IoRestorecommerceFulfillmentFulfillment';
   id?: string | null;
   customerId?: string | null;
@@ -6096,9 +6096,9 @@ export type FulfillmentFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type InvoiceFragmentFragment = {
+export interface InvoiceFragmentFragment {
   __typename?: 'IoRestorecommerceInvoiceInvoice';
   id?: string | null;
   customerId?: string | null;
@@ -6111,9 +6111,9 @@ export type InvoiceFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type LocaleFragmentFragment = {
+export interface LocaleFragmentFragment {
   __typename?: 'IoRestorecommerceLocaleLocale';
   id?: string | null;
   description?: string | null;
@@ -6125,9 +6125,9 @@ export type LocaleFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type LocationFragmentFragment = {
+export interface LocationFragmentFragment {
   __typename?: 'IoRestorecommerceLocationLocation';
   id?: string | null;
   name?: string | null;
@@ -6171,55 +6171,215 @@ export type LocationFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type MetaFragmentFragment = {
+export interface MetaFragmentFragment {
   __typename?: 'IoRestorecommerceMetaMeta';
   created?: unknown | null;
   modified?: unknown | null;
   createdBy?: string | null;
   modifiedBy?: string | null;
-};
+}
 
-export type OrderFragmentFragment = {
+export interface OrderFragmentFragment {
   __typename?: 'IoRestorecommerceOrderOrder';
   id?: string | null;
   customerOrderNr?: string | null;
   notificationEmail?: string | null;
   orderState?: IoRestorecommerceOrderOrderState | null;
-  items?: Array<{
-    __typename?: 'IoRestorecommerceOrderItem';
-    id?: string | null;
-    quantity?: number | null;
-    product?: {
-      __typename?: 'IoRestorecommerceProductProduct';
-      id?: string | null;
-      tags?: Array<string> | null;
-      shop?: {
-        __typename?: 'IoRestorecommerceShopShop';
+  items?:
+    | {
+        __typename?: 'IoRestorecommerceOrderItem';
         id?: string | null;
-        shopNumber?: string | null;
-        name?: string | null;
-        description?: string | null;
-        domain?: string | null;
-        organization?: {
-          __typename?: 'IoRestorecommerceOrganizationOrganization';
+        quantity?: number | null;
+        product?: {
+          __typename?: 'IoRestorecommerceProductProduct';
           id?: string | null;
-          parentId?: string | null;
-          name?: string | null;
-          email?: string | null;
-          website?: string | null;
-          vatId?: string | null;
-          logo?: {
-            __typename?: 'IoRestorecommerceImageImage';
+          tags?: string[] | null;
+          shop?: {
+            __typename?: 'IoRestorecommerceShopShop';
             id?: string | null;
-            index?: number | null;
-            filename?: string | null;
-            height?: number | null;
-            width?: number | null;
-            url?: string | null;
+            shopNumber?: string | null;
+            name?: string | null;
+            description?: string | null;
+            domain?: string | null;
+            organization?: {
+              __typename?: 'IoRestorecommerceOrganizationOrganization';
+              id?: string | null;
+              parentId?: string | null;
+              name?: string | null;
+              email?: string | null;
+              website?: string | null;
+              vatId?: string | null;
+              logo?: {
+                __typename?: 'IoRestorecommerceImageImage';
+                id?: string | null;
+                index?: number | null;
+                filename?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url?: string | null;
+              } | null;
+              contactPoints?:
+                | {
+                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    email?: string | null;
+                    telephone?: string | null;
+                    website?: string | null;
+                    timezone?: {
+                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                      id?: string | null;
+                      value?: string | null;
+                      description?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    locale?: {
+                      __typename?: 'IoRestorecommerceLocaleLocale';
+                      id?: string | null;
+                      description?: string | null;
+                      value?: string | null;
+                      meta?: {
+                        __typename?: 'IoRestorecommerceMetaMeta';
+                        created?: unknown | null;
+                        modified?: unknown | null;
+                        createdBy?: string | null;
+                        modifiedBy?: string | null;
+                      } | null;
+                    } | null;
+                    meta?: {
+                      __typename?: 'IoRestorecommerceMetaMeta';
+                      created?: unknown | null;
+                      modified?: unknown | null;
+                      createdBy?: string | null;
+                      modifiedBy?: string | null;
+                    } | null;
+                  }[]
+                | null;
+              paymentMethods?:
+                | {
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }[]
+                | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
           } | null;
-          contactPoints?: Array<{
+          product?: {
+            __typename?: 'IoRestorecommerceProductIndividualProduct';
+            name?: string | null;
+            description?: string | null;
+            taxIds?: string[] | null;
+            taricCode?: string | null;
+            category?: {
+              __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+            } | null;
+            physical?: {
+              __typename?: 'IoRestorecommerceProductPhysicalProduct';
+              variants?:
+                | {
+                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                    id?: string | null;
+                    name?: string | null;
+                    stockLevel?: number | null;
+                    parentVariantId?: string | null;
+                    images?:
+                      | {
+                          __typename?: 'IoRestorecommerceImageImage';
+                          id?: string | null;
+                          index?: number | null;
+                          filename?: string | null;
+                          caption?: string | null;
+                          contentType?: string | null;
+                          height?: number | null;
+                          width?: number | null;
+                          url?: string | null;
+                        }[]
+                      | null;
+                    price?: {
+                      __typename?: 'IoRestorecommercePricePrice';
+                      currencyId?: string | null;
+                      regularPrice?: number | null;
+                      sale?: boolean | null;
+                      salePrice?: number | null;
+                    } | null;
+                  }[]
+                | null;
+            } | null;
+          } | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        } | null;
+        unitPrice?: {
+          __typename?: 'IoRestorecommercePricePrice';
+          regularPrice?: number | null;
+          sale?: boolean | null;
+          salePrice?: number | null;
+          currency?: {
+            __typename?: 'IoRestorecommerceCurrencyCurrency';
+            name?: string | null;
+            symbol?: string | null;
+          } | null;
+        } | null;
+      }[]
+    | null;
+  shop?: {
+    __typename?: 'IoRestorecommerceShopShop';
+    id?: string | null;
+    shopNumber?: string | null;
+    name?: string | null;
+    description?: string | null;
+    domain?: string | null;
+    organization?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      parentId?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+      logo?: {
+        __typename?: 'IoRestorecommerceImageImage';
+        id?: string | null;
+        index?: number | null;
+        filename?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url?: string | null;
+      } | null;
+      contactPoints?:
+        | {
             __typename?: 'IoRestorecommerceContactPointContactPoint';
             id?: string | null;
             name?: string | null;
@@ -6260,162 +6420,16 @@ export type OrderFragmentFragment = {
               createdBy?: string | null;
               modifiedBy?: string | null;
             } | null;
-          }> | null;
-          paymentMethods?: Array<{
+          }[]
+        | null;
+      paymentMethods?:
+        | {
             __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
             id?: string | null;
             transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
             paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-          }> | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      } | null;
-      product?: {
-        __typename?: 'IoRestorecommerceProductIndividualProduct';
-        name?: string | null;
-        description?: string | null;
-        taxIds?: Array<string> | null;
-        taricCode?: string | null;
-        category?: {
-          __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-          id?: string | null;
-          name?: string | null;
-          description?: string | null;
-        } | null;
-        physical?: {
-          __typename?: 'IoRestorecommerceProductPhysicalProduct';
-          variants?: Array<{
-            __typename?: 'IoRestorecommerceProductPhysicalVariant';
-            id?: string | null;
-            name?: string | null;
-            stockLevel?: number | null;
-            parentVariantId?: string | null;
-            images?: Array<{
-              __typename?: 'IoRestorecommerceImageImage';
-              id?: string | null;
-              index?: number | null;
-              filename?: string | null;
-              caption?: string | null;
-              contentType?: string | null;
-              height?: number | null;
-              width?: number | null;
-              url?: string | null;
-            }> | null;
-            price?: {
-              __typename?: 'IoRestorecommercePricePrice';
-              currencyId?: string | null;
-              regularPrice?: number | null;
-              sale?: boolean | null;
-              salePrice?: number | null;
-            } | null;
-          }> | null;
-        } | null;
-      } | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-      } | null;
-    } | null;
-    unitPrice?: {
-      __typename?: 'IoRestorecommercePricePrice';
-      regularPrice?: number | null;
-      sale?: boolean | null;
-      salePrice?: number | null;
-      currency?: {
-        __typename?: 'IoRestorecommerceCurrencyCurrency';
-        name?: string | null;
-        symbol?: string | null;
-      } | null;
-    } | null;
-  }> | null;
-  shop?: {
-    __typename?: 'IoRestorecommerceShopShop';
-    id?: string | null;
-    shopNumber?: string | null;
-    name?: string | null;
-    description?: string | null;
-    domain?: string | null;
-    organization?: {
-      __typename?: 'IoRestorecommerceOrganizationOrganization';
-      id?: string | null;
-      parentId?: string | null;
-      name?: string | null;
-      email?: string | null;
-      website?: string | null;
-      vatId?: string | null;
-      logo?: {
-        __typename?: 'IoRestorecommerceImageImage';
-        id?: string | null;
-        index?: number | null;
-        filename?: string | null;
-        height?: number | null;
-        width?: number | null;
-        url?: string | null;
-      } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          description?: string | null;
-          value?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      }> | null;
-      paymentMethods?: Array<{
-        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-        id?: string | null;
-        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-      }> | null;
+          }[]
+        | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
         created?: unknown | null;
@@ -6454,54 +6468,58 @@ export type OrderFragmentFragment = {
           width?: number | null;
           url?: string | null;
         } | null;
-        contactPoints?: Array<{
-          __typename?: 'IoRestorecommerceContactPointContactPoint';
-          id?: string | null;
-          name?: string | null;
-          description?: string | null;
-          email?: string | null;
-          telephone?: string | null;
-          website?: string | null;
-          timezone?: {
-            __typename?: 'IoRestorecommerceTimezoneTimezone';
-            id?: string | null;
-            value?: string | null;
-            description?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
-          } | null;
-          locale?: {
-            __typename?: 'IoRestorecommerceLocaleLocale';
-            id?: string | null;
-            description?: string | null;
-            value?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
-          } | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        }> | null;
-        paymentMethods?: Array<{
-          __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-          id?: string | null;
-          transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-          paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-        }> | null;
+        contactPoints?:
+          | {
+              __typename?: 'IoRestorecommerceContactPointContactPoint';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              email?: string | null;
+              telephone?: string | null;
+              website?: string | null;
+              timezone?: {
+                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                id?: string | null;
+                value?: string | null;
+                description?: string | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              locale?: {
+                __typename?: 'IoRestorecommerceLocaleLocale';
+                id?: string | null;
+                description?: string | null;
+                value?: string | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            }[]
+          | null;
+        paymentMethods?:
+          | {
+              __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+              id?: string | null;
+              transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+              paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+            }[]
+          | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
           created?: unknown | null;
@@ -6530,54 +6548,58 @@ export type OrderFragmentFragment = {
           width?: number | null;
           url?: string | null;
         } | null;
-        contactPoints?: Array<{
-          __typename?: 'IoRestorecommerceContactPointContactPoint';
-          id?: string | null;
-          name?: string | null;
-          description?: string | null;
-          email?: string | null;
-          telephone?: string | null;
-          website?: string | null;
-          timezone?: {
-            __typename?: 'IoRestorecommerceTimezoneTimezone';
-            id?: string | null;
-            value?: string | null;
-            description?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
-          } | null;
-          locale?: {
-            __typename?: 'IoRestorecommerceLocaleLocale';
-            id?: string | null;
-            description?: string | null;
-            value?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
-          } | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        }> | null;
-        paymentMethods?: Array<{
-          __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-          id?: string | null;
-          transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-          paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-        }> | null;
+        contactPoints?:
+          | {
+              __typename?: 'IoRestorecommerceContactPointContactPoint';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              email?: string | null;
+              telephone?: string | null;
+              website?: string | null;
+              timezone?: {
+                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                id?: string | null;
+                value?: string | null;
+                description?: string | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              locale?: {
+                __typename?: 'IoRestorecommerceLocaleLocale';
+                id?: string | null;
+                description?: string | null;
+                value?: string | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                } | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            }[]
+          | null;
+        paymentMethods?:
+          | {
+              __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+              id?: string | null;
+              transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+              paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+            }[]
+          | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
           created?: unknown | null;
@@ -6602,11 +6624,13 @@ export type OrderFragmentFragment = {
         defaultScope?: string | null;
         localeId?: string | null;
         timezoneId?: string | null;
-        roleAssociations?: Array<{
-          __typename?: 'IoRestorecommerceAuthRoleAssociation';
-          id?: string | null;
-          role?: string | null;
-        }> | null;
+        roleAssociations?:
+          | {
+              __typename?: 'IoRestorecommerceAuthRoleAssociation';
+              id?: string | null;
+              role?: string | null;
+            }[]
+          | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
           created?: unknown | null;
@@ -6615,48 +6639,50 @@ export type OrderFragmentFragment = {
           modifiedBy?: string | null;
         } | null;
       } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          description?: string | null;
-          value?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      }> | null;
+      contactPoints?:
+        | {
+            __typename?: 'IoRestorecommerceContactPointContactPoint';
+            id?: string | null;
+            name?: string | null;
+            description?: string | null;
+            email?: string | null;
+            telephone?: string | null;
+            website?: string | null;
+            timezone?: {
+              __typename?: 'IoRestorecommerceTimezoneTimezone';
+              id?: string | null;
+              value?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            locale?: {
+              __typename?: 'IoRestorecommerceLocaleLocale';
+              id?: string | null;
+              description?: string | null;
+              value?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          }[]
+        | null;
     } | null;
     meta?: {
       __typename?: 'IoRestorecommerceMetaMeta';
@@ -6679,11 +6705,13 @@ export type OrderFragmentFragment = {
     defaultScope?: string | null;
     localeId?: string | null;
     timezoneId?: string | null;
-    roleAssociations?: Array<{
-      __typename?: 'IoRestorecommerceAuthRoleAssociation';
-      id?: string | null;
-      role?: string | null;
-    }> | null;
+    roleAssociations?:
+      | {
+          __typename?: 'IoRestorecommerceAuthRoleAssociation';
+          id?: string | null;
+          role?: string | null;
+        }[]
+      | null;
     meta?: {
       __typename?: 'IoRestorecommerceMetaMeta';
       created?: unknown | null;
@@ -6731,36 +6759,42 @@ export type OrderFragmentFragment = {
       } | null;
     } | null;
   } | null;
-  totalAmounts?: Array<{
-    __typename?: 'IoRestorecommerceAmountAmount';
-    gross?: number | null;
-    net?: number | null;
-    currency?: {
-      __typename?: 'IoRestorecommerceCurrencyCurrency';
-      name?: string | null;
-      customExchangeRates?: Array<{
-        __typename?: 'IoRestorecommerceCurrencyExchangeRate';
-        amount?: number | null;
-        rate?: number | null;
-        expenses?: number | null;
-      }> | null;
-    } | null;
-    vats?: Array<{
-      __typename?: 'IoRestorecommerceAmountVAT';
-      vat?: number | null;
-      tax?: {
-        __typename?: 'IoRestorecommerceTaxTax';
-        rate?: number | null;
-        variant?: string | null;
-        countryId?: string | null;
-        type?: {
-          __typename?: 'IoRestorecommerceTaxTypeTaxType';
-          type?: string | null;
-          description?: string | null;
+  totalAmounts?:
+    | {
+        __typename?: 'IoRestorecommerceAmountAmount';
+        gross?: number | null;
+        net?: number | null;
+        currency?: {
+          __typename?: 'IoRestorecommerceCurrencyCurrency';
+          name?: string | null;
+          customExchangeRates?:
+            | {
+                __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+                amount?: number | null;
+                rate?: number | null;
+                expenses?: number | null;
+              }[]
+            | null;
         } | null;
-      } | null;
-    }> | null;
-  }> | null;
+        vats?:
+          | {
+              __typename?: 'IoRestorecommerceAmountVAT';
+              vat?: number | null;
+              tax?: {
+                __typename?: 'IoRestorecommerceTaxTax';
+                rate?: number | null;
+                variant?: string | null;
+                countryId?: string | null;
+                type?: {
+                  __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                  type?: string | null;
+                  description?: string | null;
+                } | null;
+              } | null;
+            }[]
+          | null;
+      }[]
+    | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -6768,9 +6802,9 @@ export type OrderFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type OrganizationFragmentFragment = {
+export interface OrganizationFragmentFragment {
   __typename?: 'IoRestorecommerceOrganizationOrganization';
   id?: string | null;
   parentId?: string | null;
@@ -6787,92 +6821,8 @@ export type OrganizationFragmentFragment = {
     width?: number | null;
     url?: string | null;
   } | null;
-  contactPoints?: Array<{
-    __typename?: 'IoRestorecommerceContactPointContactPoint';
-    id?: string | null;
-    name?: string | null;
-    description?: string | null;
-    email?: string | null;
-    telephone?: string | null;
-    website?: string | null;
-    timezone?: {
-      __typename?: 'IoRestorecommerceTimezoneTimezone';
-      id?: string | null;
-      value?: string | null;
-      description?: string | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-      } | null;
-    } | null;
-    locale?: {
-      __typename?: 'IoRestorecommerceLocaleLocale';
-      id?: string | null;
-      description?: string | null;
-      value?: string | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-      } | null;
-    } | null;
-    meta?: {
-      __typename?: 'IoRestorecommerceMetaMeta';
-      created?: unknown | null;
-      modified?: unknown | null;
-      createdBy?: string | null;
-      modifiedBy?: string | null;
-    } | null;
-  }> | null;
-  paymentMethods?: Array<{
-    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-    id?: string | null;
-    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-  }> | null;
-  meta?: {
-    __typename?: 'IoRestorecommerceMetaMeta';
-    created?: unknown | null;
-    modified?: unknown | null;
-    createdBy?: string | null;
-    modifiedBy?: string | null;
-  } | null;
-};
-
-export type ProductFragmentFragment = {
-  __typename?: 'IoRestorecommerceProductProduct';
-  id?: string | null;
-  tags?: Array<string> | null;
-  shop?: {
-    __typename?: 'IoRestorecommerceShopShop';
-    id?: string | null;
-    shopNumber?: string | null;
-    name?: string | null;
-    description?: string | null;
-    domain?: string | null;
-    organization?: {
-      __typename?: 'IoRestorecommerceOrganizationOrganization';
-      id?: string | null;
-      parentId?: string | null;
-      name?: string | null;
-      email?: string | null;
-      website?: string | null;
-      vatId?: string | null;
-      logo?: {
-        __typename?: 'IoRestorecommerceImageImage';
-        id?: string | null;
-        index?: number | null;
-        filename?: string | null;
-        height?: number | null;
-        width?: number | null;
-        url?: string | null;
-      } | null;
-      contactPoints?: Array<{
+  contactPoints?:
+    | {
         __typename?: 'IoRestorecommerceContactPointContactPoint';
         id?: string | null;
         name?: string | null;
@@ -6913,13 +6863,105 @@ export type ProductFragmentFragment = {
           createdBy?: string | null;
           modifiedBy?: string | null;
         } | null;
-      }> | null;
-      paymentMethods?: Array<{
+      }[]
+    | null;
+  paymentMethods?:
+    | {
         __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
         id?: string | null;
         transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
         paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-      }> | null;
+      }[]
+    | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
+}
+
+export interface ProductFragmentFragment {
+  __typename?: 'IoRestorecommerceProductProduct';
+  id?: string | null;
+  tags?: string[] | null;
+  shop?: {
+    __typename?: 'IoRestorecommerceShopShop';
+    id?: string | null;
+    shopNumber?: string | null;
+    name?: string | null;
+    description?: string | null;
+    domain?: string | null;
+    organization?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      parentId?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+      logo?: {
+        __typename?: 'IoRestorecommerceImageImage';
+        id?: string | null;
+        index?: number | null;
+        filename?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url?: string | null;
+      } | null;
+      contactPoints?:
+        | {
+            __typename?: 'IoRestorecommerceContactPointContactPoint';
+            id?: string | null;
+            name?: string | null;
+            description?: string | null;
+            email?: string | null;
+            telephone?: string | null;
+            website?: string | null;
+            timezone?: {
+              __typename?: 'IoRestorecommerceTimezoneTimezone';
+              id?: string | null;
+              value?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            locale?: {
+              __typename?: 'IoRestorecommerceLocaleLocale';
+              id?: string | null;
+              description?: string | null;
+              value?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+              } | null;
+            } | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          }[]
+        | null;
+      paymentMethods?:
+        | {
+            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+            id?: string | null;
+            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+          }[]
+        | null;
       meta?: {
         __typename?: 'IoRestorecommerceMetaMeta';
         created?: unknown | null;
@@ -6940,7 +6982,7 @@ export type ProductFragmentFragment = {
     __typename?: 'IoRestorecommerceProductIndividualProduct';
     name?: string | null;
     description?: string | null;
-    taxIds?: Array<string> | null;
+    taxIds?: string[] | null;
     taricCode?: string | null;
     category?: {
       __typename?: 'IoRestorecommerceProductCategoryProductCategory';
@@ -6950,31 +6992,35 @@ export type ProductFragmentFragment = {
     } | null;
     physical?: {
       __typename?: 'IoRestorecommerceProductPhysicalProduct';
-      variants?: Array<{
-        __typename?: 'IoRestorecommerceProductPhysicalVariant';
-        id?: string | null;
-        name?: string | null;
-        stockLevel?: number | null;
-        parentVariantId?: string | null;
-        images?: Array<{
-          __typename?: 'IoRestorecommerceImageImage';
-          id?: string | null;
-          index?: number | null;
-          filename?: string | null;
-          caption?: string | null;
-          contentType?: string | null;
-          height?: number | null;
-          width?: number | null;
-          url?: string | null;
-        }> | null;
-        price?: {
-          __typename?: 'IoRestorecommercePricePrice';
-          currencyId?: string | null;
-          regularPrice?: number | null;
-          sale?: boolean | null;
-          salePrice?: number | null;
-        } | null;
-      }> | null;
+      variants?:
+        | {
+            __typename?: 'IoRestorecommerceProductPhysicalVariant';
+            id?: string | null;
+            name?: string | null;
+            stockLevel?: number | null;
+            parentVariantId?: string | null;
+            images?:
+              | {
+                  __typename?: 'IoRestorecommerceImageImage';
+                  id?: string | null;
+                  index?: number | null;
+                  filename?: string | null;
+                  caption?: string | null;
+                  contentType?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url?: string | null;
+                }[]
+              | null;
+            price?: {
+              __typename?: 'IoRestorecommercePricePrice';
+              currencyId?: string | null;
+              regularPrice?: number | null;
+              sale?: boolean | null;
+              salePrice?: number | null;
+            } | null;
+          }[]
+        | null;
     } | null;
   } | null;
   meta?: {
@@ -6984,17 +7030,17 @@ export type ProductFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type RoleFragmentFragment = {
+export interface RoleFragmentFragment {
   __typename?: 'IoRestorecommerceRoleRole';
   id?: string | null;
   name?: string | null;
   description?: string | null;
-  assignableByRoles?: Array<string> | null;
-};
+  assignableByRoles?: string[] | null;
+}
 
-export type ShopFragmentFragment = {
+export interface ShopFragmentFragment {
   __typename?: 'IoRestorecommerceShopShop';
   id?: string | null;
   shopNumber?: string | null;
@@ -7018,54 +7064,58 @@ export type ShopFragmentFragment = {
       width?: number | null;
       url?: string | null;
     } | null;
-    contactPoints?: Array<{
-      __typename?: 'IoRestorecommerceContactPointContactPoint';
-      id?: string | null;
-      name?: string | null;
-      description?: string | null;
-      email?: string | null;
-      telephone?: string | null;
-      website?: string | null;
-      timezone?: {
-        __typename?: 'IoRestorecommerceTimezoneTimezone';
-        id?: string | null;
-        value?: string | null;
-        description?: string | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      } | null;
-      locale?: {
-        __typename?: 'IoRestorecommerceLocaleLocale';
-        id?: string | null;
-        description?: string | null;
-        value?: string | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-        } | null;
-      } | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-      } | null;
-    }> | null;
-    paymentMethods?: Array<{
-      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-      id?: string | null;
-      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-    }> | null;
+    contactPoints?:
+      | {
+          __typename?: 'IoRestorecommerceContactPointContactPoint';
+          id?: string | null;
+          name?: string | null;
+          description?: string | null;
+          email?: string | null;
+          telephone?: string | null;
+          website?: string | null;
+          timezone?: {
+            __typename?: 'IoRestorecommerceTimezoneTimezone';
+            id?: string | null;
+            value?: string | null;
+            description?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          locale?: {
+            __typename?: 'IoRestorecommerceLocaleLocale';
+            id?: string | null;
+            description?: string | null;
+            value?: string | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+          meta?: {
+            __typename?: 'IoRestorecommerceMetaMeta';
+            created?: unknown | null;
+            modified?: unknown | null;
+            createdBy?: string | null;
+            modifiedBy?: string | null;
+          } | null;
+        }[]
+      | null;
+    paymentMethods?:
+      | {
+          __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+          id?: string | null;
+          transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+          paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+        }[]
+      | null;
     meta?: {
       __typename?: 'IoRestorecommerceMetaMeta';
       created?: unknown | null;
@@ -7081,9 +7131,9 @@ export type ShopFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type TimezoneFragmentFragment = {
+export interface TimezoneFragmentFragment {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   id?: string | null;
   value?: string | null;
@@ -7095,9 +7145,9 @@ export type TimezoneFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type UserRoleFragmentFragment = {
+export interface UserRoleFragmentFragment {
   __typename?: 'IoRestorecommerceUserUserRole';
   id?: string | null;
   active?: boolean | null;
@@ -7126,18 +7176,22 @@ export type UserRoleFragmentFragment = {
     value?: string | null;
     description?: string | null;
   } | null;
-  roles?: Array<{
-    __typename?: 'IoRestorecommerceRoleRole';
-    id?: string | null;
-    name?: string | null;
-    description?: string | null;
-    assignableByRoles?: Array<string> | null;
-  }> | null;
-  roleAssociations?: Array<{
-    __typename?: 'IoRestorecommerceAuthRoleAssociation';
-    id?: string | null;
-    role?: string | null;
-  }> | null;
+  roles?:
+    | {
+        __typename?: 'IoRestorecommerceRoleRole';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        assignableByRoles?: string[] | null;
+      }[]
+    | null;
+  roleAssociations?:
+    | {
+        __typename?: 'IoRestorecommerceAuthRoleAssociation';
+        id?: string | null;
+        role?: string | null;
+      }[]
+    | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -7145,9 +7199,9 @@ export type UserRoleFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
-export type UserFragmentFragment = {
+export interface UserFragmentFragment {
   __typename?: 'IoRestorecommerceUserUser';
   id?: string | null;
   active?: boolean | null;
@@ -7160,11 +7214,13 @@ export type UserFragmentFragment = {
   defaultScope?: string | null;
   localeId?: string | null;
   timezoneId?: string | null;
-  roleAssociations?: Array<{
-    __typename?: 'IoRestorecommerceAuthRoleAssociation';
-    id?: string | null;
-    role?: string | null;
-  }> | null;
+  roleAssociations?:
+    | {
+        __typename?: 'IoRestorecommerceAuthRoleAssociation';
+        id?: string | null;
+        role?: string | null;
+      }[]
+    | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -7172,13 +7228,13 @@ export type UserFragmentFragment = {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-};
+}
 
 export type FulfillmentFulfillmentDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type FulfillmentFulfillmentDeleteMutation = {
+export interface FulfillmentFulfillmentDeleteMutation {
   __typename?: 'Mutation';
   fulfillment: {
     __typename?: 'FulfillmentMutation';
@@ -7197,13 +7253,13 @@ export type FulfillmentFulfillmentDeleteMutation = {
       } | null;
     };
   };
-};
+}
 
 export type FulfillmentFulfillmentMutateMutationVariables = Exact<{
   input: IIoRestorecommerceFulfillmentFulfillmentList;
 }>;
 
-export type FulfillmentFulfillmentMutateMutation = {
+export interface FulfillmentFulfillmentMutateMutation {
   __typename?: 'Mutation';
   fulfillment: {
     __typename?: 'FulfillmentMutation';
@@ -7218,34 +7274,36 @@ export type FulfillmentFulfillmentMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
-              id?: string | null;
-              customerId?: string | null;
-              shopId?: string | null;
-              userId?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+                  id?: string | null;
+                  customerId?: string | null;
+                  shopId?: string | null;
+                  userId?: string | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type FulfillmentFulfillmentReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type FulfillmentFulfillmentReadQuery = {
+export interface FulfillmentFulfillmentReadQuery {
   __typename?: 'Query';
   fulfillment: {
     __typename?: 'FulfillmentQuery';
@@ -7260,34 +7318,36 @@ export type FulfillmentFulfillmentReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
-              id?: string | null;
-              customerId?: string | null;
-              shopId?: string | null;
-              userId?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+                  id?: string | null;
+                  customerId?: string | null;
+                  shopId?: string | null;
+                  userId?: string | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type IdentityRoleDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type IdentityRoleDeleteMutation = {
+export interface IdentityRoleDeleteMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7306,13 +7366,13 @@ export type IdentityRoleDeleteMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityRoleMutateMutationVariables = Exact<{
   input: IIoRestorecommerceRoleRoleList;
 }>;
 
-export type IdentityRoleMutateMutation = {
+export interface IdentityRoleMutateMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7327,27 +7387,29 @@ export type IdentityRoleMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceRoleRoleResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceRoleRole';
-              id?: string | null;
-              name?: string | null;
-              description?: string | null;
-              assignableByRoles?: Array<string> | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceRoleRoleResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceRoleRole';
+                  id?: string | null;
+                  name?: string | null;
+                  description?: string | null;
+                  assignableByRoles?: string[] | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type IdentityRoleReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type IdentityRoleReadQuery = {
+export interface IdentityRoleReadQuery {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -7362,27 +7424,29 @@ export type IdentityRoleReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceRoleRoleResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceRoleRole';
-              id?: string | null;
-              name?: string | null;
-              description?: string | null;
-              assignableByRoles?: Array<string> | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceRoleRoleResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceRoleRole';
+                  id?: string | null;
+                  name?: string | null;
+                  description?: string | null;
+                  assignableByRoles?: string[] | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserActivateMutationVariables = Exact<{
   input: IIoRestorecommerceUserActivateRequest;
 }>;
 
-export type IdentityUserActivateMutation = {
+export interface IdentityUserActivateMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7401,13 +7465,13 @@ export type IdentityUserActivateMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserChangePasswordMutationVariables = Exact<{
   input: IIoRestorecommerceUserChangePasswordRequest;
 }>;
 
-export type IdentityUserChangePasswordMutation = {
+export interface IdentityUserChangePasswordMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7426,13 +7490,13 @@ export type IdentityUserChangePasswordMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserConfirmEmailChangeMutationVariables = Exact<{
   input: IIoRestorecommerceUserConfirmEmailChangeRequest;
 }>;
 
-export type IdentityUserConfirmEmailChangeMutation = {
+export interface IdentityUserConfirmEmailChangeMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7451,13 +7515,13 @@ export type IdentityUserConfirmEmailChangeMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserConfirmPasswordChangeMutationVariables = Exact<{
   input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
 }>;
 
-export type IdentityUserConfirmPasswordChangeMutation = {
+export interface IdentityUserConfirmPasswordChangeMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7476,13 +7540,13 @@ export type IdentityUserConfirmPasswordChangeMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type IdentityUserDeleteMutation = {
+export interface IdentityUserDeleteMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7501,13 +7565,13 @@ export type IdentityUserDeleteMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserFindByTokenQueryVariables = Exact<{
   input: IIoRestorecommerceUserFindByTokenRequest;
 }>;
 
-export type IdentityUserFindByTokenQuery = {
+export interface IdentityUserFindByTokenQuery {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -7535,11 +7599,13 @@ export type IdentityUserFindByTokenQuery = {
             defaultScope?: string | null;
             localeId?: string | null;
             timezoneId?: string | null;
-            roleAssociations?: Array<{
-              __typename?: 'IoRestorecommerceAuthRoleAssociation';
-              id?: string | null;
-              role?: string | null;
-            }> | null;
+            roleAssociations?:
+              | {
+                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                  id?: string | null;
+                  role?: string | null;
+                }[]
+              | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
               created?: unknown | null;
@@ -7552,13 +7618,13 @@ export type IdentityUserFindByTokenQuery = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserFindQueryVariables = Exact<{
   input: IIoRestorecommerceUserFindRequest;
 }>;
 
-export type IdentityUserFindQuery = {
+export interface IdentityUserFindQuery {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -7573,46 +7639,50 @@ export type IdentityUserFindQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceUserUserResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceUserUser';
-              id?: string | null;
-              active?: boolean | null;
-              activationCode?: string | null;
-              email?: string | null;
-              newEmail?: string | null;
-              name?: string | null;
-              firstName?: string | null;
-              lastName?: string | null;
-              defaultScope?: string | null;
-              localeId?: string | null;
-              timezoneId?: string | null;
-              roleAssociations?: Array<{
-                __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                id?: string | null;
-                role?: string | null;
-              }> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceUserUserResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceUserUser';
+                  id?: string | null;
+                  active?: boolean | null;
+                  activationCode?: string | null;
+                  email?: string | null;
+                  newEmail?: string | null;
+                  name?: string | null;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  defaultScope?: string | null;
+                  localeId?: string | null;
+                  timezoneId?: string | null;
+                  roleAssociations?:
+                    | {
+                        __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                        id?: string | null;
+                        role?: string | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserMutateMutationVariables = Exact<{
   input: IIoRestorecommerceUserUserList;
 }>;
 
-export type IdentityUserMutateMutation = {
+export interface IdentityUserMutateMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7627,46 +7697,50 @@ export type IdentityUserMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceUserUserResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceUserUser';
-              id?: string | null;
-              active?: boolean | null;
-              activationCode?: string | null;
-              email?: string | null;
-              newEmail?: string | null;
-              name?: string | null;
-              firstName?: string | null;
-              lastName?: string | null;
-              defaultScope?: string | null;
-              localeId?: string | null;
-              timezoneId?: string | null;
-              roleAssociations?: Array<{
-                __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                id?: string | null;
-                role?: string | null;
-              }> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceUserUserResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceUserUser';
+                  id?: string | null;
+                  active?: boolean | null;
+                  activationCode?: string | null;
+                  email?: string | null;
+                  newEmail?: string | null;
+                  name?: string | null;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  defaultScope?: string | null;
+                  localeId?: string | null;
+                  timezoneId?: string | null;
+                  roleAssociations?:
+                    | {
+                        __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                        id?: string | null;
+                        role?: string | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type IdentityUserReadQuery = {
+export interface IdentityUserReadQuery {
   __typename?: 'Query';
   identity: {
     __typename?: 'IdentityQuery';
@@ -7681,69 +7755,75 @@ export type IdentityUserReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceUserUserRoleResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceUserUserRole';
-              id?: string | null;
-              active?: boolean | null;
-              activationCode?: string | null;
-              email?: string | null;
-              newEmail?: string | null;
-              name?: string | null;
-              firstName?: string | null;
-              lastName?: string | null;
-              userType?: IoRestorecommerceUserUserType | null;
-              defaultScope?: string | null;
-              lastAccess?: unknown | null;
-              localeId?: string | null;
-              timezoneId?: string | null;
-              locale?: {
-                __typename?: 'IoRestorecommerceLocaleLocale';
-                id?: string | null;
-                name?: string | null;
-                value?: string | null;
-                description?: string | null;
-              } | null;
-              timezone?: {
-                __typename?: 'IoRestorecommerceTimezoneTimezone';
-                id?: string | null;
-                name?: string | null;
-                value?: string | null;
-                description?: string | null;
-              } | null;
-              roles?: Array<{
-                __typename?: 'IoRestorecommerceRoleRole';
-                id?: string | null;
-                name?: string | null;
-                description?: string | null;
-                assignableByRoles?: Array<string> | null;
-              }> | null;
-              roleAssociations?: Array<{
-                __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                id?: string | null;
-                role?: string | null;
-              }> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceUserUserRoleResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceUserUserRole';
+                  id?: string | null;
+                  active?: boolean | null;
+                  activationCode?: string | null;
+                  email?: string | null;
+                  newEmail?: string | null;
+                  name?: string | null;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  userType?: IoRestorecommerceUserUserType | null;
+                  defaultScope?: string | null;
+                  lastAccess?: unknown | null;
+                  localeId?: string | null;
+                  timezoneId?: string | null;
+                  locale?: {
+                    __typename?: 'IoRestorecommerceLocaleLocale';
+                    id?: string | null;
+                    name?: string | null;
+                    value?: string | null;
+                    description?: string | null;
+                  } | null;
+                  timezone?: {
+                    __typename?: 'IoRestorecommerceTimezoneTimezone';
+                    id?: string | null;
+                    name?: string | null;
+                    value?: string | null;
+                    description?: string | null;
+                  } | null;
+                  roles?:
+                    | {
+                        __typename?: 'IoRestorecommerceRoleRole';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        assignableByRoles?: string[] | null;
+                      }[]
+                    | null;
+                  roleAssociations?:
+                    | {
+                        __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                        id?: string | null;
+                        role?: string | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserRegisterMutationVariables = Exact<{
   input: IIoRestorecommerceUserRegisterRequest;
 }>;
 
-export type IdentityUserRegisterMutation = {
+export interface IdentityUserRegisterMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7771,11 +7851,13 @@ export type IdentityUserRegisterMutation = {
             defaultScope?: string | null;
             localeId?: string | null;
             timezoneId?: string | null;
-            roleAssociations?: Array<{
-              __typename?: 'IoRestorecommerceAuthRoleAssociation';
-              id?: string | null;
-              role?: string | null;
-            }> | null;
+            roleAssociations?:
+              | {
+                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                  id?: string | null;
+                  role?: string | null;
+                }[]
+              | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
               created?: unknown | null;
@@ -7788,13 +7870,13 @@ export type IdentityUserRegisterMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserRequestEmailChangeMutationVariables = Exact<{
   input: IIoRestorecommerceUserChangeEmailRequest;
 }>;
 
-export type IdentityUserRequestEmailChangeMutation = {
+export interface IdentityUserRequestEmailChangeMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7813,13 +7895,13 @@ export type IdentityUserRequestEmailChangeMutation = {
       } | null;
     };
   };
-};
+}
 
 export type IdentityUserRequestPasswordChangeMutationVariables = Exact<{
   input: IIoRestorecommerceUserRequestPasswordChangeRequest;
 }>;
 
-export type IdentityUserRequestPasswordChangeMutation = {
+export interface IdentityUserRequestPasswordChangeMutation {
   __typename?: 'Mutation';
   identity: {
     __typename?: 'IdentityMutation';
@@ -7838,13 +7920,13 @@ export type IdentityUserRequestPasswordChangeMutation = {
       } | null;
     };
   };
-};
+}
 
 export type InvoicingInvoiceDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type InvoicingInvoiceDeleteMutation = {
+export interface InvoicingInvoiceDeleteMutation {
   __typename?: 'Mutation';
   invoicing: {
     __typename?: 'InvoicingMutation';
@@ -7863,13 +7945,13 @@ export type InvoicingInvoiceDeleteMutation = {
       } | null;
     };
   };
-};
+}
 
 export type InvoicingInvoiceMutateMutationVariables = Exact<{
   input: IIoRestorecommerceInvoiceInvoiceList;
 }>;
 
-export type InvoicingInvoiceMutateMutation = {
+export interface InvoicingInvoiceMutateMutation {
   __typename?: 'Mutation';
   invoicing: {
     __typename?: 'InvoicingMutation';
@@ -7884,34 +7966,36 @@ export type InvoicingInvoiceMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceInvoiceInvoice';
-              id?: string | null;
-              customerId?: string | null;
-              shopId?: string | null;
-              userId?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceInvoiceInvoice';
+                  id?: string | null;
+                  customerId?: string | null;
+                  shopId?: string | null;
+                  userId?: string | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type InvoicingInvoiceReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type InvoicingInvoiceReadQuery = {
+export interface InvoicingInvoiceReadQuery {
   __typename?: 'Query';
   invoicing: {
     __typename?: 'InvoicingQuery';
@@ -7926,34 +8010,36 @@ export type InvoicingInvoiceReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceInvoiceInvoice';
-              id?: string | null;
-              customerId?: string | null;
-              shopId?: string | null;
-              userId?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceInvoiceInvoice';
+                  id?: string | null;
+                  customerId?: string | null;
+                  shopId?: string | null;
+                  userId?: string | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataAddressReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type MasterDataAddressReadQuery = {
+export interface MasterDataAddressReadQuery {
   __typename?: 'Query';
   master_data: {
     __typename?: 'ResourceQuery';
@@ -7968,70 +8054,72 @@ export type MasterDataAddressReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceAddressAddressResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceAddressAddress';
-              id?: string | null;
-              buildingNumber?: string | null;
-              street?: string | null;
-              postcode?: string | null;
-              locality?: string | null;
-              region?: string | null;
-              addressAddition?: {
-                __typename?: 'IoRestorecommerceAddressAddressAddition';
-                field1?: string | null;
-                field2?: string | null;
-              } | null;
-              businessAddress?: {
-                __typename?: 'IoRestorecommerceAddressBusinessAddress';
-                name?: string | null;
-              } | null;
-              packStation?: {
-                __typename?: 'IoRestorecommerceAddressPackStation';
-                postNumber?: string | null;
-                provider?: string | null;
-                stationNumber?: string | null;
-              } | null;
-              residentialAddress?: {
-                __typename?: 'IoRestorecommerceAddressResidentialAddress';
-                title?: string | null;
-                givenName?: string | null;
-                familyName?: string | null;
-                midName?: string | null;
-              } | null;
-              country?: {
-                __typename?: 'IoRestorecommerceCountryCountry';
-                id?: string | null;
-                name?: string | null;
-                countryCode?: string | null;
-                geographicalName?: string | null;
-              } | null;
-              geoCoordinates?: {
-                __typename?: 'IoRestorecommerceAddressGeoPoint';
-                latitude?: number | null;
-                longitude?: number | null;
-              } | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceAddressAddressResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  postcode?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  addressAddition?: {
+                    __typename?: 'IoRestorecommerceAddressAddressAddition';
+                    field1?: string | null;
+                    field2?: string | null;
+                  } | null;
+                  businessAddress?: {
+                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                    name?: string | null;
+                  } | null;
+                  packStation?: {
+                    __typename?: 'IoRestorecommerceAddressPackStation';
+                    postNumber?: string | null;
+                    provider?: string | null;
+                    stationNumber?: string | null;
+                  } | null;
+                  residentialAddress?: {
+                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                    title?: string | null;
+                    givenName?: string | null;
+                    familyName?: string | null;
+                    midName?: string | null;
+                  } | null;
+                  country?: {
+                    __typename?: 'IoRestorecommerceCountryCountry';
+                    id?: string | null;
+                    name?: string | null;
+                    countryCode?: string | null;
+                    geographicalName?: string | null;
+                  } | null;
+                  geoCoordinates?: {
+                    __typename?: 'IoRestorecommerceAddressGeoPoint';
+                    latitude?: number | null;
+                    longitude?: number | null;
+                  } | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataCountryDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type MasterDataCountryDeleteMutation = {
+export interface MasterDataCountryDeleteMutation {
   __typename?: 'Mutation';
   master_data: {
     __typename?: 'ResourceMutation';
@@ -8046,23 +8134,25 @@ export type MasterDataCountryDeleteMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          status?: Array<{
-            __typename?: 'IoRestorecommerceStatusStatus';
-            id?: string | null;
-            code?: number | null;
-            message?: string | null;
-          }> | null;
+          status?:
+            | {
+                __typename?: 'IoRestorecommerceStatusStatus';
+                id?: string | null;
+                code?: number | null;
+                message?: string | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataCountryMutateMutationVariables = Exact<{
   input: IIoRestorecommerceCountryCountryList;
 }>;
 
-export type MasterDataCountryMutateMutation = {
+export interface MasterDataCountryMutateMutation {
   __typename?: 'Mutation';
   master_data: {
     __typename?: 'ResourceMutation';
@@ -8077,35 +8167,37 @@ export type MasterDataCountryMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceCountryCountryResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceCountryCountry';
-              id?: string | null;
-              name?: string | null;
-              countryCode?: string | null;
-              geographicalName?: string | null;
-              economicAreas?: Array<string> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceCountryCountryResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceCountryCountry';
+                  id?: string | null;
+                  name?: string | null;
+                  countryCode?: string | null;
+                  geographicalName?: string | null;
+                  economicAreas?: string[] | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataCountryReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type MasterDataCountryReadQuery = {
+export interface MasterDataCountryReadQuery {
   __typename?: 'Query';
   master_data: {
     __typename?: 'ResourceQuery';
@@ -8120,35 +8212,37 @@ export type MasterDataCountryReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceCountryCountryResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceCountryCountry';
-              id?: string | null;
-              name?: string | null;
-              countryCode?: string | null;
-              geographicalName?: string | null;
-              economicAreas?: Array<string> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceCountryCountryResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceCountryCountry';
+                  id?: string | null;
+                  name?: string | null;
+                  countryCode?: string | null;
+                  geographicalName?: string | null;
+                  economicAreas?: string[] | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataLocaleReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type MasterDataLocaleReadQuery = {
+export interface MasterDataLocaleReadQuery {
   __typename?: 'Query';
   master_data: {
     __typename?: 'ResourceQuery';
@@ -8163,33 +8257,35 @@ export type MasterDataLocaleReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceLocaleLocaleResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceLocaleLocale';
-              id?: string | null;
-              description?: string | null;
-              value?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceLocaleLocaleResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceLocaleLocale';
+                  id?: string | null;
+                  description?: string | null;
+                  value?: string | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataLocationReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type MasterDataLocationReadQuery = {
+export interface MasterDataLocationReadQuery {
   __typename?: 'Query';
   master_data: {
     __typename?: 'ResourceQuery';
@@ -8204,65 +8300,67 @@ export type MasterDataLocationReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceLocationLocationResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceLocationLocation';
-              id?: string | null;
-              name?: string | null;
-              description?: string | null;
-              parent?: {
-                __typename?: 'IoRestorecommerceLocationLocation';
-                id?: string | null;
-                name?: string | null;
-              } | null;
-              organization?: {
-                __typename?: 'IoRestorecommerceOrganizationOrganization';
-                id?: string | null;
-                name?: string | null;
-              } | null;
-              address?: {
-                __typename?: 'IoRestorecommerceAddressAddress';
-                id?: string | null;
-                buildingNumber?: string | null;
-                postcode?: string | null;
-                street?: string | null;
-                locality?: string | null;
-                businessAddress?: {
-                  __typename?: 'IoRestorecommerceAddressBusinessAddress';
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceLocationLocationResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceLocationLocation';
+                  id?: string | null;
                   name?: string | null;
+                  description?: string | null;
+                  parent?: {
+                    __typename?: 'IoRestorecommerceLocationLocation';
+                    id?: string | null;
+                    name?: string | null;
+                  } | null;
+                  organization?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    name?: string | null;
+                  } | null;
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    buildingNumber?: string | null;
+                    postcode?: string | null;
+                    street?: string | null;
+                    locality?: string | null;
+                    businessAddress?: {
+                      __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                      name?: string | null;
+                    } | null;
+                    residentialAddress?: {
+                      __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                      familyName?: string | null;
+                      midName?: string | null;
+                      title?: string | null;
+                    } | null;
+                    country?: {
+                      __typename?: 'IoRestorecommerceCountryCountry';
+                      name?: string | null;
+                    } | null;
+                  } | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
                 } | null;
-                residentialAddress?: {
-                  __typename?: 'IoRestorecommerceAddressResidentialAddress';
-                  familyName?: string | null;
-                  midName?: string | null;
-                  title?: string | null;
-                } | null;
-                country?: {
-                  __typename?: 'IoRestorecommerceCountryCountry';
-                  name?: string | null;
-                } | null;
-              } | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type MasterDataTimezoneReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type MasterDataTimezoneReadQuery = {
+export interface MasterDataTimezoneReadQuery {
   __typename?: 'Query';
   master_data: {
     __typename?: 'ResourceQuery';
@@ -8277,33 +8375,35 @@ export type MasterDataTimezoneReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceTimezoneTimezoneResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceTimezoneTimezone';
-              id?: string | null;
-              value?: string | null;
-              description?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceTimezoneTimezoneResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceTimezoneTimezone';
+                  id?: string | null;
+                  value?: string | null;
+                  description?: string | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type OrderingOrderDeleteMutationVariables = Exact<{
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 }>;
 
-export type OrderingOrderDeleteMutation = {
+export interface OrderingOrderDeleteMutation {
   __typename?: 'Mutation';
   ordering: {
     __typename?: 'OrderingMutation';
@@ -8318,23 +8418,25 @@ export type OrderingOrderDeleteMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          status?: Array<{
-            __typename?: 'IoRestorecommerceStatusStatus';
-            id?: string | null;
-            code?: number | null;
-            message?: string | null;
-          }> | null;
+          status?:
+            | {
+                __typename?: 'IoRestorecommerceStatusStatus';
+                id?: string | null;
+                code?: number | null;
+                message?: string | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type OrderingOrderMutateMutationVariables = Exact<{
   input: IIoRestorecommerceOrderOrderList;
 }>;
 
-export type OrderingOrderMutateMutation = {
+export interface OrderingOrderMutateMutation {
   __typename?: 'Mutation';
   ordering: {
     __typename?: 'OrderingMutation';
@@ -8349,22 +8451,182 @@ export type OrderingOrderMutateMutation = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceOrderOrderResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceOrderOrder';
-              id?: string | null;
-              customerOrderNr?: string | null;
-              notificationEmail?: string | null;
-              orderState?: IoRestorecommerceOrderOrderState | null;
-              items?: Array<{
-                __typename?: 'IoRestorecommerceOrderItem';
-                id?: string | null;
-                quantity?: number | null;
-                product?: {
-                  __typename?: 'IoRestorecommerceProductProduct';
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceOrderOrderResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceOrderOrder';
                   id?: string | null;
-                  tags?: Array<string> | null;
+                  customerOrderNr?: string | null;
+                  notificationEmail?: string | null;
+                  orderState?: IoRestorecommerceOrderOrderState | null;
+                  items?:
+                    | {
+                        __typename?: 'IoRestorecommerceOrderItem';
+                        id?: string | null;
+                        quantity?: number | null;
+                        product?: {
+                          __typename?: 'IoRestorecommerceProductProduct';
+                          id?: string | null;
+                          tags?: string[] | null;
+                          shop?: {
+                            __typename?: 'IoRestorecommerceShopShop';
+                            id?: string | null;
+                            shopNumber?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            domain?: string | null;
+                            organization?: {
+                              __typename?: 'IoRestorecommerceOrganizationOrganization';
+                              id?: string | null;
+                              parentId?: string | null;
+                              name?: string | null;
+                              email?: string | null;
+                              website?: string | null;
+                              vatId?: string | null;
+                              logo?: {
+                                __typename?: 'IoRestorecommerceImageImage';
+                                id?: string | null;
+                                index?: number | null;
+                                filename?: string | null;
+                                height?: number | null;
+                                width?: number | null;
+                                url?: string | null;
+                              } | null;
+                              contactPoints?:
+                                | {
+                                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                                    id?: string | null;
+                                    name?: string | null;
+                                    description?: string | null;
+                                    email?: string | null;
+                                    telephone?: string | null;
+                                    website?: string | null;
+                                    timezone?: {
+                                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                                      id?: string | null;
+                                      value?: string | null;
+                                      description?: string | null;
+                                      meta?: {
+                                        __typename?: 'IoRestorecommerceMetaMeta';
+                                        created?: unknown | null;
+                                        modified?: unknown | null;
+                                        createdBy?: string | null;
+                                        modifiedBy?: string | null;
+                                      } | null;
+                                    } | null;
+                                    locale?: {
+                                      __typename?: 'IoRestorecommerceLocaleLocale';
+                                      id?: string | null;
+                                      description?: string | null;
+                                      value?: string | null;
+                                      meta?: {
+                                        __typename?: 'IoRestorecommerceMetaMeta';
+                                        created?: unknown | null;
+                                        modified?: unknown | null;
+                                        createdBy?: string | null;
+                                        modifiedBy?: string | null;
+                                      } | null;
+                                    } | null;
+                                    meta?: {
+                                      __typename?: 'IoRestorecommerceMetaMeta';
+                                      created?: unknown | null;
+                                      modified?: unknown | null;
+                                      createdBy?: string | null;
+                                      modifiedBy?: string | null;
+                                    } | null;
+                                  }[]
+                                | null;
+                              paymentMethods?:
+                                | {
+                                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                                    id?: string | null;
+                                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                                  }[]
+                                | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          } | null;
+                          product?: {
+                            __typename?: 'IoRestorecommerceProductIndividualProduct';
+                            name?: string | null;
+                            description?: string | null;
+                            taxIds?: string[] | null;
+                            taricCode?: string | null;
+                            category?: {
+                              __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                              id?: string | null;
+                              name?: string | null;
+                              description?: string | null;
+                            } | null;
+                            physical?: {
+                              __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                              variants?:
+                                | {
+                                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                                    id?: string | null;
+                                    name?: string | null;
+                                    stockLevel?: number | null;
+                                    parentVariantId?: string | null;
+                                    images?:
+                                      | {
+                                          __typename?: 'IoRestorecommerceImageImage';
+                                          id?: string | null;
+                                          index?: number | null;
+                                          filename?: string | null;
+                                          caption?: string | null;
+                                          contentType?: string | null;
+                                          height?: number | null;
+                                          width?: number | null;
+                                          url?: string | null;
+                                        }[]
+                                      | null;
+                                    price?: {
+                                      __typename?: 'IoRestorecommercePricePrice';
+                                      currencyId?: string | null;
+                                      regularPrice?: number | null;
+                                      sale?: boolean | null;
+                                      salePrice?: number | null;
+                                    } | null;
+                                  }[]
+                                | null;
+                            } | null;
+                          } | null;
+                          meta?: {
+                            __typename?: 'IoRestorecommerceMetaMeta';
+                            created?: unknown | null;
+                            modified?: unknown | null;
+                            createdBy?: string | null;
+                            modifiedBy?: string | null;
+                          } | null;
+                        } | null;
+                        unitPrice?: {
+                          __typename?: 'IoRestorecommercePricePrice';
+                          regularPrice?: number | null;
+                          sale?: boolean | null;
+                          salePrice?: number | null;
+                          currency?: {
+                            __typename?: 'IoRestorecommerceCurrencyCurrency';
+                            name?: string | null;
+                            symbol?: string | null;
+                          } | null;
+                        } | null;
+                      }[]
+                    | null;
                   shop?: {
                     __typename?: 'IoRestorecommerceShopShop';
                     id?: string | null;
@@ -8389,54 +8651,58 @@ export type OrderingOrderMutateMutation = {
                         width?: number | null;
                         url?: string | null;
                       } | null;
-                      contactPoints?: Array<{
-                        __typename?: 'IoRestorecommerceContactPointContactPoint';
-                        id?: string | null;
-                        name?: string | null;
-                        description?: string | null;
-                        email?: string | null;
-                        telephone?: string | null;
-                        website?: string | null;
-                        timezone?: {
-                          __typename?: 'IoRestorecommerceTimezoneTimezone';
-                          id?: string | null;
-                          value?: string | null;
-                          description?: string | null;
-                          meta?: {
-                            __typename?: 'IoRestorecommerceMetaMeta';
-                            created?: unknown | null;
-                            modified?: unknown | null;
-                            createdBy?: string | null;
-                            modifiedBy?: string | null;
-                          } | null;
-                        } | null;
-                        locale?: {
-                          __typename?: 'IoRestorecommerceLocaleLocale';
-                          id?: string | null;
-                          description?: string | null;
-                          value?: string | null;
-                          meta?: {
-                            __typename?: 'IoRestorecommerceMetaMeta';
-                            created?: unknown | null;
-                            modified?: unknown | null;
-                            createdBy?: string | null;
-                            modifiedBy?: string | null;
-                          } | null;
-                        } | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      }> | null;
-                      paymentMethods?: Array<{
-                        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                        id?: string | null;
-                        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                      }> | null;
+                      contactPoints?:
+                        | {
+                            __typename?: 'IoRestorecommerceContactPointContactPoint';
+                            id?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            email?: string | null;
+                            telephone?: string | null;
+                            website?: string | null;
+                            timezone?: {
+                              __typename?: 'IoRestorecommerceTimezoneTimezone';
+                              id?: string | null;
+                              value?: string | null;
+                              description?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            locale?: {
+                              __typename?: 'IoRestorecommerceLocaleLocale';
+                              id?: string | null;
+                              description?: string | null;
+                              value?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          }[]
+                        | null;
+                      paymentMethods?:
+                        | {
+                            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                            id?: string | null;
+                            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                          }[]
+                        | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
                         created?: unknown | null;
@@ -8453,124 +8719,243 @@ export type OrderingOrderMutateMutation = {
                       modifiedBy?: string | null;
                     } | null;
                   } | null;
-                  product?: {
-                    __typename?: 'IoRestorecommerceProductIndividualProduct';
-                    name?: string | null;
-                    description?: string | null;
-                    taxIds?: Array<string> | null;
-                    taricCode?: string | null;
-                    category?: {
-                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                    } | null;
-                    physical?: {
-                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
-                      variants?: Array<{
-                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                  customer?: {
+                    __typename?: 'IoRestorecommerceCustomerCustomer';
+                    id?: string | null;
+                    commercial?: {
+                      __typename?: 'IoRestorecommerceCustomerCommercial';
+                      organization?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
                         id?: string | null;
+                        parentId?: string | null;
                         name?: string | null;
-                        stockLevel?: number | null;
-                        parentVariantId?: string | null;
-                        images?: Array<{
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                        logo?: {
                           __typename?: 'IoRestorecommerceImageImage';
                           id?: string | null;
                           index?: number | null;
                           filename?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
                           height?: number | null;
                           width?: number | null;
                           url?: string | null;
-                        }> | null;
-                        price?: {
-                          __typename?: 'IoRestorecommercePricePrice';
-                          currencyId?: string | null;
-                          regularPrice?: number | null;
-                          sale?: boolean | null;
-                          salePrice?: number | null;
                         } | null;
-                      }> | null;
-                    } | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                  } | null;
-                } | null;
-                unitPrice?: {
-                  __typename?: 'IoRestorecommercePricePrice';
-                  regularPrice?: number | null;
-                  sale?: boolean | null;
-                  salePrice?: number | null;
-                  currency?: {
-                    __typename?: 'IoRestorecommerceCurrencyCurrency';
-                    name?: string | null;
-                    symbol?: string | null;
-                  } | null;
-                } | null;
-              }> | null;
-              shop?: {
-                __typename?: 'IoRestorecommerceShopShop';
-                id?: string | null;
-                shopNumber?: string | null;
-                name?: string | null;
-                description?: string | null;
-                domain?: string | null;
-                organization?: {
-                  __typename?: 'IoRestorecommerceOrganizationOrganization';
-                  id?: string | null;
-                  parentId?: string | null;
-                  name?: string | null;
-                  email?: string | null;
-                  website?: string | null;
-                  vatId?: string | null;
-                  logo?: {
-                    __typename?: 'IoRestorecommerceImageImage';
-                    id?: string | null;
-                    index?: number | null;
-                    filename?: string | null;
-                    height?: number | null;
-                    width?: number | null;
-                    url?: string | null;
-                  } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
-                    name?: string | null;
-                    description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
-                      id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                        contactPoints?:
+                          | {
+                              __typename?: 'IoRestorecommerceContactPointContactPoint';
+                              id?: string | null;
+                              name?: string | null;
+                              description?: string | null;
+                              email?: string | null;
+                              telephone?: string | null;
+                              website?: string | null;
+                              timezone?: {
+                                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                                id?: string | null;
+                                value?: string | null;
+                                description?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              locale?: {
+                                __typename?: 'IoRestorecommerceLocaleLocale';
+                                id?: string | null;
+                                description?: string | null;
+                                value?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            }[]
+                          | null;
+                        paymentMethods?:
+                          | {
+                              __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                              id?: string | null;
+                              transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                              paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                            }[]
+                          | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
                       } | null;
                     } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      description?: string | null;
-                      value?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                    publicSector?: {
+                      __typename?: 'IoRestorecommerceCustomerPublicSector';
+                      organization?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
+                        id?: string | null;
+                        parentId?: string | null;
+                        name?: string | null;
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                        logo?: {
+                          __typename?: 'IoRestorecommerceImageImage';
+                          id?: string | null;
+                          index?: number | null;
+                          filename?: string | null;
+                          height?: number | null;
+                          width?: number | null;
+                          url?: string | null;
+                        } | null;
+                        contactPoints?:
+                          | {
+                              __typename?: 'IoRestorecommerceContactPointContactPoint';
+                              id?: string | null;
+                              name?: string | null;
+                              description?: string | null;
+                              email?: string | null;
+                              telephone?: string | null;
+                              website?: string | null;
+                              timezone?: {
+                                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                                id?: string | null;
+                                value?: string | null;
+                                description?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              locale?: {
+                                __typename?: 'IoRestorecommerceLocaleLocale';
+                                id?: string | null;
+                                description?: string | null;
+                                value?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            }[]
+                          | null;
+                        paymentMethods?:
+                          | {
+                              __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                              id?: string | null;
+                              transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                              paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                            }[]
+                          | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
                       } | null;
+                    } | null;
+                    private?: {
+                      __typename?: 'IoRestorecommerceCustomerPrivate';
+                      user?: {
+                        __typename?: 'IoRestorecommerceUserUser';
+                        id?: string | null;
+                        active?: boolean | null;
+                        activationCode?: string | null;
+                        email?: string | null;
+                        newEmail?: string | null;
+                        name?: string | null;
+                        firstName?: string | null;
+                        lastName?: string | null;
+                        defaultScope?: string | null;
+                        localeId?: string | null;
+                        timezoneId?: string | null;
+                        roleAssociations?:
+                          | {
+                              __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                              id?: string | null;
+                              role?: string | null;
+                            }[]
+                          | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      contactPoints?:
+                        | {
+                            __typename?: 'IoRestorecommerceContactPointContactPoint';
+                            id?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            email?: string | null;
+                            telephone?: string | null;
+                            website?: string | null;
+                            timezone?: {
+                              __typename?: 'IoRestorecommerceTimezoneTimezone';
+                              id?: string | null;
+                              value?: string | null;
+                              description?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            locale?: {
+                              __typename?: 'IoRestorecommerceLocaleLocale';
+                              id?: string | null;
+                              description?: string | null;
+                              value?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          }[]
+                        | null;
                     } | null;
                     meta?: {
                       __typename?: 'IoRestorecommerceMetaMeta';
@@ -8579,186 +8964,7 @@ export type OrderingOrderMutateMutation = {
                       createdBy?: string | null;
                       modifiedBy?: string | null;
                     } | null;
-                  }> | null;
-                  paymentMethods?: Array<{
-                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                    id?: string | null;
-                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                  }> | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
                   } | null;
-                } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              customer?: {
-                __typename?: 'IoRestorecommerceCustomerCustomer';
-                id?: string | null;
-                commercial?: {
-                  __typename?: 'IoRestorecommerceCustomerCommercial';
-                  organization?: {
-                    __typename?: 'IoRestorecommerceOrganizationOrganization';
-                    id?: string | null;
-                    parentId?: string | null;
-                    name?: string | null;
-                    email?: string | null;
-                    website?: string | null;
-                    vatId?: string | null;
-                    logo?: {
-                      __typename?: 'IoRestorecommerceImageImage';
-                      id?: string | null;
-                      index?: number | null;
-                      filename?: string | null;
-                      height?: number | null;
-                      width?: number | null;
-                      url?: string | null;
-                    } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        description?: string | null;
-                        value?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
-                    }> | null;
-                    paymentMethods?: Array<{
-                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                      id?: string | null;
-                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                    }> | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                    } | null;
-                  } | null;
-                } | null;
-                publicSector?: {
-                  __typename?: 'IoRestorecommerceCustomerPublicSector';
-                  organization?: {
-                    __typename?: 'IoRestorecommerceOrganizationOrganization';
-                    id?: string | null;
-                    parentId?: string | null;
-                    name?: string | null;
-                    email?: string | null;
-                    website?: string | null;
-                    vatId?: string | null;
-                    logo?: {
-                      __typename?: 'IoRestorecommerceImageImage';
-                      id?: string | null;
-                      index?: number | null;
-                      filename?: string | null;
-                      height?: number | null;
-                      width?: number | null;
-                      url?: string | null;
-                    } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        description?: string | null;
-                        value?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
-                    }> | null;
-                    paymentMethods?: Array<{
-                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                      id?: string | null;
-                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                    }> | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                    } | null;
-                  } | null;
-                } | null;
-                private?: {
-                  __typename?: 'IoRestorecommerceCustomerPrivate';
                   user?: {
                     __typename?: 'IoRestorecommerceUserUser';
                     id?: string | null;
@@ -8772,11 +8978,13 @@ export type OrderingOrderMutateMutation = {
                     defaultScope?: string | null;
                     localeId?: string | null;
                     timezoneId?: string | null;
-                    roleAssociations?: Array<{
-                      __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                      id?: string | null;
-                      role?: string | null;
-                    }> | null;
+                    roleAssociations?:
+                      | {
+                          __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                          id?: string | null;
+                          role?: string | null;
+                        }[]
+                      | null;
                     meta?: {
                       __typename?: 'IoRestorecommerceMetaMeta';
                       created?: unknown | null;
@@ -8785,172 +8993,102 @@ export type OrderingOrderMutateMutation = {
                       modifiedBy?: string | null;
                     } | null;
                   } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
-                    name?: string | null;
-                    description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                  shippingAddress?: {
+                    __typename?: 'IoRestorecommerceAddressShippingAddress';
+                    comments?: string | null;
+                    contact?: {
+                      __typename?: 'IoRestorecommerceAddressContact';
+                      name?: string | null;
+                      email?: string | null;
+                      phone?: string | null;
+                    } | null;
+                    address?: {
+                      __typename?: 'IoRestorecommerceAddressAddress';
                       id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                      street?: string | null;
+                      buildingNumber?: string | null;
+                      postcode?: string | null;
+                      businessAddress?: {
+                        __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                        name?: string | null;
+                      } | null;
+                      addressAddition?: {
+                        __typename?: 'IoRestorecommerceAddressAddressAddition';
+                        field1?: string | null;
+                        field2?: string | null;
+                      } | null;
+                      country?: {
+                        __typename?: 'IoRestorecommerceCountryCountry';
+                        id?: string | null;
+                        name?: string | null;
+                        countryCode?: string | null;
+                      } | null;
+                      residentialAddress?: {
+                        __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                        title?: string | null;
+                        givenName?: string | null;
+                        midName?: string | null;
+                        familyName?: string | null;
                       } | null;
                     } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      description?: string | null;
-                      value?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
-                    } | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                    } | null;
-                  }> | null;
-                } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              user?: {
-                __typename?: 'IoRestorecommerceUserUser';
-                id?: string | null;
-                active?: boolean | null;
-                activationCode?: string | null;
-                email?: string | null;
-                newEmail?: string | null;
-                name?: string | null;
-                firstName?: string | null;
-                lastName?: string | null;
-                defaultScope?: string | null;
-                localeId?: string | null;
-                timezoneId?: string | null;
-                roleAssociations?: Array<{
-                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                  id?: string | null;
-                  role?: string | null;
-                }> | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              shippingAddress?: {
-                __typename?: 'IoRestorecommerceAddressShippingAddress';
-                comments?: string | null;
-                contact?: {
-                  __typename?: 'IoRestorecommerceAddressContact';
-                  name?: string | null;
-                  email?: string | null;
-                  phone?: string | null;
-                } | null;
-                address?: {
-                  __typename?: 'IoRestorecommerceAddressAddress';
-                  id?: string | null;
-                  street?: string | null;
-                  buildingNumber?: string | null;
-                  postcode?: string | null;
-                  businessAddress?: {
-                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
-                    name?: string | null;
                   } | null;
-                  addressAddition?: {
-                    __typename?: 'IoRestorecommerceAddressAddressAddition';
-                    field1?: string | null;
-                    field2?: string | null;
-                  } | null;
-                  country?: {
-                    __typename?: 'IoRestorecommerceCountryCountry';
-                    id?: string | null;
-                    name?: string | null;
-                    countryCode?: string | null;
-                  } | null;
-                  residentialAddress?: {
-                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
-                    title?: string | null;
-                    givenName?: string | null;
-                    midName?: string | null;
-                    familyName?: string | null;
+                  totalAmounts?:
+                    | {
+                        __typename?: 'IoRestorecommerceAmountAmount';
+                        gross?: number | null;
+                        net?: number | null;
+                        currency?: {
+                          __typename?: 'IoRestorecommerceCurrencyCurrency';
+                          name?: string | null;
+                          customExchangeRates?:
+                            | {
+                                __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+                                amount?: number | null;
+                                rate?: number | null;
+                                expenses?: number | null;
+                              }[]
+                            | null;
+                        } | null;
+                        vats?:
+                          | {
+                              __typename?: 'IoRestorecommerceAmountVAT';
+                              vat?: number | null;
+                              tax?: {
+                                __typename?: 'IoRestorecommerceTaxTax';
+                                rate?: number | null;
+                                variant?: string | null;
+                                countryId?: string | null;
+                                type?: {
+                                  __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                                  type?: string | null;
+                                  description?: string | null;
+                                } | null;
+                              } | null;
+                            }[]
+                          | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
                   } | null;
                 } | null;
-              } | null;
-              totalAmounts?: Array<{
-                __typename?: 'IoRestorecommerceAmountAmount';
-                gross?: number | null;
-                net?: number | null;
-                currency?: {
-                  __typename?: 'IoRestorecommerceCurrencyCurrency';
-                  name?: string | null;
-                  customExchangeRates?: Array<{
-                    __typename?: 'IoRestorecommerceCurrencyExchangeRate';
-                    amount?: number | null;
-                    rate?: number | null;
-                    expenses?: number | null;
-                  }> | null;
-                } | null;
-                vats?: Array<{
-                  __typename?: 'IoRestorecommerceAmountVAT';
-                  vat?: number | null;
-                  tax?: {
-                    __typename?: 'IoRestorecommerceTaxTax';
-                    rate?: number | null;
-                    variant?: string | null;
-                    countryId?: string | null;
-                    type?: {
-                      __typename?: 'IoRestorecommerceTaxTypeTaxType';
-                      type?: string | null;
-                      description?: string | null;
-                    } | null;
-                  } | null;
-                }> | null;
-              }> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export type OrderingOrderReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
-export type OrderingOrderReadQuery = {
+export interface OrderingOrderReadQuery {
   __typename?: 'Query';
   ordering: {
     __typename?: 'OrderingQuery';
@@ -8965,22 +9103,182 @@ export type OrderingOrderReadQuery = {
             code?: number | null;
             message?: string | null;
           } | null;
-          items?: Array<{
-            __typename?: 'IoRestorecommerceOrderOrderResponse';
-            payload?: {
-              __typename?: 'IoRestorecommerceOrderOrder';
-              id?: string | null;
-              customerOrderNr?: string | null;
-              notificationEmail?: string | null;
-              orderState?: IoRestorecommerceOrderOrderState | null;
-              items?: Array<{
-                __typename?: 'IoRestorecommerceOrderItem';
-                id?: string | null;
-                quantity?: number | null;
-                product?: {
-                  __typename?: 'IoRestorecommerceProductProduct';
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceOrderOrderResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceOrderOrder';
                   id?: string | null;
-                  tags?: Array<string> | null;
+                  customerOrderNr?: string | null;
+                  notificationEmail?: string | null;
+                  orderState?: IoRestorecommerceOrderOrderState | null;
+                  items?:
+                    | {
+                        __typename?: 'IoRestorecommerceOrderItem';
+                        id?: string | null;
+                        quantity?: number | null;
+                        product?: {
+                          __typename?: 'IoRestorecommerceProductProduct';
+                          id?: string | null;
+                          tags?: string[] | null;
+                          shop?: {
+                            __typename?: 'IoRestorecommerceShopShop';
+                            id?: string | null;
+                            shopNumber?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            domain?: string | null;
+                            organization?: {
+                              __typename?: 'IoRestorecommerceOrganizationOrganization';
+                              id?: string | null;
+                              parentId?: string | null;
+                              name?: string | null;
+                              email?: string | null;
+                              website?: string | null;
+                              vatId?: string | null;
+                              logo?: {
+                                __typename?: 'IoRestorecommerceImageImage';
+                                id?: string | null;
+                                index?: number | null;
+                                filename?: string | null;
+                                height?: number | null;
+                                width?: number | null;
+                                url?: string | null;
+                              } | null;
+                              contactPoints?:
+                                | {
+                                    __typename?: 'IoRestorecommerceContactPointContactPoint';
+                                    id?: string | null;
+                                    name?: string | null;
+                                    description?: string | null;
+                                    email?: string | null;
+                                    telephone?: string | null;
+                                    website?: string | null;
+                                    timezone?: {
+                                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                                      id?: string | null;
+                                      value?: string | null;
+                                      description?: string | null;
+                                      meta?: {
+                                        __typename?: 'IoRestorecommerceMetaMeta';
+                                        created?: unknown | null;
+                                        modified?: unknown | null;
+                                        createdBy?: string | null;
+                                        modifiedBy?: string | null;
+                                      } | null;
+                                    } | null;
+                                    locale?: {
+                                      __typename?: 'IoRestorecommerceLocaleLocale';
+                                      id?: string | null;
+                                      description?: string | null;
+                                      value?: string | null;
+                                      meta?: {
+                                        __typename?: 'IoRestorecommerceMetaMeta';
+                                        created?: unknown | null;
+                                        modified?: unknown | null;
+                                        createdBy?: string | null;
+                                        modifiedBy?: string | null;
+                                      } | null;
+                                    } | null;
+                                    meta?: {
+                                      __typename?: 'IoRestorecommerceMetaMeta';
+                                      created?: unknown | null;
+                                      modified?: unknown | null;
+                                      createdBy?: string | null;
+                                      modifiedBy?: string | null;
+                                    } | null;
+                                  }[]
+                                | null;
+                              paymentMethods?:
+                                | {
+                                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                                    id?: string | null;
+                                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                                  }[]
+                                | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          } | null;
+                          product?: {
+                            __typename?: 'IoRestorecommerceProductIndividualProduct';
+                            name?: string | null;
+                            description?: string | null;
+                            taxIds?: string[] | null;
+                            taricCode?: string | null;
+                            category?: {
+                              __typename?: 'IoRestorecommerceProductCategoryProductCategory';
+                              id?: string | null;
+                              name?: string | null;
+                              description?: string | null;
+                            } | null;
+                            physical?: {
+                              __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                              variants?:
+                                | {
+                                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                                    id?: string | null;
+                                    name?: string | null;
+                                    stockLevel?: number | null;
+                                    parentVariantId?: string | null;
+                                    images?:
+                                      | {
+                                          __typename?: 'IoRestorecommerceImageImage';
+                                          id?: string | null;
+                                          index?: number | null;
+                                          filename?: string | null;
+                                          caption?: string | null;
+                                          contentType?: string | null;
+                                          height?: number | null;
+                                          width?: number | null;
+                                          url?: string | null;
+                                        }[]
+                                      | null;
+                                    price?: {
+                                      __typename?: 'IoRestorecommercePricePrice';
+                                      currencyId?: string | null;
+                                      regularPrice?: number | null;
+                                      sale?: boolean | null;
+                                      salePrice?: number | null;
+                                    } | null;
+                                  }[]
+                                | null;
+                            } | null;
+                          } | null;
+                          meta?: {
+                            __typename?: 'IoRestorecommerceMetaMeta';
+                            created?: unknown | null;
+                            modified?: unknown | null;
+                            createdBy?: string | null;
+                            modifiedBy?: string | null;
+                          } | null;
+                        } | null;
+                        unitPrice?: {
+                          __typename?: 'IoRestorecommercePricePrice';
+                          regularPrice?: number | null;
+                          sale?: boolean | null;
+                          salePrice?: number | null;
+                          currency?: {
+                            __typename?: 'IoRestorecommerceCurrencyCurrency';
+                            name?: string | null;
+                            symbol?: string | null;
+                          } | null;
+                        } | null;
+                      }[]
+                    | null;
                   shop?: {
                     __typename?: 'IoRestorecommerceShopShop';
                     id?: string | null;
@@ -9005,54 +9303,58 @@ export type OrderingOrderReadQuery = {
                         width?: number | null;
                         url?: string | null;
                       } | null;
-                      contactPoints?: Array<{
-                        __typename?: 'IoRestorecommerceContactPointContactPoint';
-                        id?: string | null;
-                        name?: string | null;
-                        description?: string | null;
-                        email?: string | null;
-                        telephone?: string | null;
-                        website?: string | null;
-                        timezone?: {
-                          __typename?: 'IoRestorecommerceTimezoneTimezone';
-                          id?: string | null;
-                          value?: string | null;
-                          description?: string | null;
-                          meta?: {
-                            __typename?: 'IoRestorecommerceMetaMeta';
-                            created?: unknown | null;
-                            modified?: unknown | null;
-                            createdBy?: string | null;
-                            modifiedBy?: string | null;
-                          } | null;
-                        } | null;
-                        locale?: {
-                          __typename?: 'IoRestorecommerceLocaleLocale';
-                          id?: string | null;
-                          description?: string | null;
-                          value?: string | null;
-                          meta?: {
-                            __typename?: 'IoRestorecommerceMetaMeta';
-                            created?: unknown | null;
-                            modified?: unknown | null;
-                            createdBy?: string | null;
-                            modifiedBy?: string | null;
-                          } | null;
-                        } | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      }> | null;
-                      paymentMethods?: Array<{
-                        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                        id?: string | null;
-                        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                      }> | null;
+                      contactPoints?:
+                        | {
+                            __typename?: 'IoRestorecommerceContactPointContactPoint';
+                            id?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            email?: string | null;
+                            telephone?: string | null;
+                            website?: string | null;
+                            timezone?: {
+                              __typename?: 'IoRestorecommerceTimezoneTimezone';
+                              id?: string | null;
+                              value?: string | null;
+                              description?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            locale?: {
+                              __typename?: 'IoRestorecommerceLocaleLocale';
+                              id?: string | null;
+                              description?: string | null;
+                              value?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          }[]
+                        | null;
+                      paymentMethods?:
+                        | {
+                            __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                            id?: string | null;
+                            transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                            paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                          }[]
+                        | null;
                       meta?: {
                         __typename?: 'IoRestorecommerceMetaMeta';
                         created?: unknown | null;
@@ -9069,124 +9371,243 @@ export type OrderingOrderReadQuery = {
                       modifiedBy?: string | null;
                     } | null;
                   } | null;
-                  product?: {
-                    __typename?: 'IoRestorecommerceProductIndividualProduct';
-                    name?: string | null;
-                    description?: string | null;
-                    taxIds?: Array<string> | null;
-                    taricCode?: string | null;
-                    category?: {
-                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                    } | null;
-                    physical?: {
-                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
-                      variants?: Array<{
-                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                  customer?: {
+                    __typename?: 'IoRestorecommerceCustomerCustomer';
+                    id?: string | null;
+                    commercial?: {
+                      __typename?: 'IoRestorecommerceCustomerCommercial';
+                      organization?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
                         id?: string | null;
+                        parentId?: string | null;
                         name?: string | null;
-                        stockLevel?: number | null;
-                        parentVariantId?: string | null;
-                        images?: Array<{
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                        logo?: {
                           __typename?: 'IoRestorecommerceImageImage';
                           id?: string | null;
                           index?: number | null;
                           filename?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
                           height?: number | null;
                           width?: number | null;
                           url?: string | null;
-                        }> | null;
-                        price?: {
-                          __typename?: 'IoRestorecommercePricePrice';
-                          currencyId?: string | null;
-                          regularPrice?: number | null;
-                          sale?: boolean | null;
-                          salePrice?: number | null;
                         } | null;
-                      }> | null;
-                    } | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                  } | null;
-                } | null;
-                unitPrice?: {
-                  __typename?: 'IoRestorecommercePricePrice';
-                  regularPrice?: number | null;
-                  sale?: boolean | null;
-                  salePrice?: number | null;
-                  currency?: {
-                    __typename?: 'IoRestorecommerceCurrencyCurrency';
-                    name?: string | null;
-                    symbol?: string | null;
-                  } | null;
-                } | null;
-              }> | null;
-              shop?: {
-                __typename?: 'IoRestorecommerceShopShop';
-                id?: string | null;
-                shopNumber?: string | null;
-                name?: string | null;
-                description?: string | null;
-                domain?: string | null;
-                organization?: {
-                  __typename?: 'IoRestorecommerceOrganizationOrganization';
-                  id?: string | null;
-                  parentId?: string | null;
-                  name?: string | null;
-                  email?: string | null;
-                  website?: string | null;
-                  vatId?: string | null;
-                  logo?: {
-                    __typename?: 'IoRestorecommerceImageImage';
-                    id?: string | null;
-                    index?: number | null;
-                    filename?: string | null;
-                    height?: number | null;
-                    width?: number | null;
-                    url?: string | null;
-                  } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
-                    name?: string | null;
-                    description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
-                      id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                        contactPoints?:
+                          | {
+                              __typename?: 'IoRestorecommerceContactPointContactPoint';
+                              id?: string | null;
+                              name?: string | null;
+                              description?: string | null;
+                              email?: string | null;
+                              telephone?: string | null;
+                              website?: string | null;
+                              timezone?: {
+                                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                                id?: string | null;
+                                value?: string | null;
+                                description?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              locale?: {
+                                __typename?: 'IoRestorecommerceLocaleLocale';
+                                id?: string | null;
+                                description?: string | null;
+                                value?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            }[]
+                          | null;
+                        paymentMethods?:
+                          | {
+                              __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                              id?: string | null;
+                              transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                              paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                            }[]
+                          | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
                       } | null;
                     } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      description?: string | null;
-                      value?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                    publicSector?: {
+                      __typename?: 'IoRestorecommerceCustomerPublicSector';
+                      organization?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
+                        id?: string | null;
+                        parentId?: string | null;
+                        name?: string | null;
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                        logo?: {
+                          __typename?: 'IoRestorecommerceImageImage';
+                          id?: string | null;
+                          index?: number | null;
+                          filename?: string | null;
+                          height?: number | null;
+                          width?: number | null;
+                          url?: string | null;
+                        } | null;
+                        contactPoints?:
+                          | {
+                              __typename?: 'IoRestorecommerceContactPointContactPoint';
+                              id?: string | null;
+                              name?: string | null;
+                              description?: string | null;
+                              email?: string | null;
+                              telephone?: string | null;
+                              website?: string | null;
+                              timezone?: {
+                                __typename?: 'IoRestorecommerceTimezoneTimezone';
+                                id?: string | null;
+                                value?: string | null;
+                                description?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              locale?: {
+                                __typename?: 'IoRestorecommerceLocaleLocale';
+                                id?: string | null;
+                                description?: string | null;
+                                value?: string | null;
+                                meta?: {
+                                  __typename?: 'IoRestorecommerceMetaMeta';
+                                  created?: unknown | null;
+                                  modified?: unknown | null;
+                                  createdBy?: string | null;
+                                  modifiedBy?: string | null;
+                                } | null;
+                              } | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            }[]
+                          | null;
+                        paymentMethods?:
+                          | {
+                              __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                              id?: string | null;
+                              transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                              paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                            }[]
+                          | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
                       } | null;
+                    } | null;
+                    private?: {
+                      __typename?: 'IoRestorecommerceCustomerPrivate';
+                      user?: {
+                        __typename?: 'IoRestorecommerceUserUser';
+                        id?: string | null;
+                        active?: boolean | null;
+                        activationCode?: string | null;
+                        email?: string | null;
+                        newEmail?: string | null;
+                        name?: string | null;
+                        firstName?: string | null;
+                        lastName?: string | null;
+                        defaultScope?: string | null;
+                        localeId?: string | null;
+                        timezoneId?: string | null;
+                        roleAssociations?:
+                          | {
+                              __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                              id?: string | null;
+                              role?: string | null;
+                            }[]
+                          | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      } | null;
+                      contactPoints?:
+                        | {
+                            __typename?: 'IoRestorecommerceContactPointContactPoint';
+                            id?: string | null;
+                            name?: string | null;
+                            description?: string | null;
+                            email?: string | null;
+                            telephone?: string | null;
+                            website?: string | null;
+                            timezone?: {
+                              __typename?: 'IoRestorecommerceTimezoneTimezone';
+                              id?: string | null;
+                              value?: string | null;
+                              description?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            locale?: {
+                              __typename?: 'IoRestorecommerceLocaleLocale';
+                              id?: string | null;
+                              description?: string | null;
+                              value?: string | null;
+                              meta?: {
+                                __typename?: 'IoRestorecommerceMetaMeta';
+                                created?: unknown | null;
+                                modified?: unknown | null;
+                                createdBy?: string | null;
+                                modifiedBy?: string | null;
+                              } | null;
+                            } | null;
+                            meta?: {
+                              __typename?: 'IoRestorecommerceMetaMeta';
+                              created?: unknown | null;
+                              modified?: unknown | null;
+                              createdBy?: string | null;
+                              modifiedBy?: string | null;
+                            } | null;
+                          }[]
+                        | null;
                     } | null;
                     meta?: {
                       __typename?: 'IoRestorecommerceMetaMeta';
@@ -9195,186 +9616,7 @@ export type OrderingOrderReadQuery = {
                       createdBy?: string | null;
                       modifiedBy?: string | null;
                     } | null;
-                  }> | null;
-                  paymentMethods?: Array<{
-                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                    id?: string | null;
-                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                  }> | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
                   } | null;
-                } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              customer?: {
-                __typename?: 'IoRestorecommerceCustomerCustomer';
-                id?: string | null;
-                commercial?: {
-                  __typename?: 'IoRestorecommerceCustomerCommercial';
-                  organization?: {
-                    __typename?: 'IoRestorecommerceOrganizationOrganization';
-                    id?: string | null;
-                    parentId?: string | null;
-                    name?: string | null;
-                    email?: string | null;
-                    website?: string | null;
-                    vatId?: string | null;
-                    logo?: {
-                      __typename?: 'IoRestorecommerceImageImage';
-                      id?: string | null;
-                      index?: number | null;
-                      filename?: string | null;
-                      height?: number | null;
-                      width?: number | null;
-                      url?: string | null;
-                    } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        description?: string | null;
-                        value?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
-                    }> | null;
-                    paymentMethods?: Array<{
-                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                      id?: string | null;
-                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                    }> | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                    } | null;
-                  } | null;
-                } | null;
-                publicSector?: {
-                  __typename?: 'IoRestorecommerceCustomerPublicSector';
-                  organization?: {
-                    __typename?: 'IoRestorecommerceOrganizationOrganization';
-                    id?: string | null;
-                    parentId?: string | null;
-                    name?: string | null;
-                    email?: string | null;
-                    website?: string | null;
-                    vatId?: string | null;
-                    logo?: {
-                      __typename?: 'IoRestorecommerceImageImage';
-                      id?: string | null;
-                      index?: number | null;
-                      filename?: string | null;
-                      height?: number | null;
-                      width?: number | null;
-                      url?: string | null;
-                    } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        description?: string | null;
-                        value?: string | null;
-                        meta?: {
-                          __typename?: 'IoRestorecommerceMetaMeta';
-                          created?: unknown | null;
-                          modified?: unknown | null;
-                          createdBy?: string | null;
-                          modifiedBy?: string | null;
-                        } | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
-                    }> | null;
-                    paymentMethods?: Array<{
-                      __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
-                      id?: string | null;
-                      transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
-                      paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
-                    }> | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                    } | null;
-                  } | null;
-                } | null;
-                private?: {
-                  __typename?: 'IoRestorecommerceCustomerPrivate';
                   user?: {
                     __typename?: 'IoRestorecommerceUserUser';
                     id?: string | null;
@@ -9388,11 +9630,13 @@ export type OrderingOrderReadQuery = {
                     defaultScope?: string | null;
                     localeId?: string | null;
                     timezoneId?: string | null;
-                    roleAssociations?: Array<{
-                      __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                      id?: string | null;
-                      role?: string | null;
-                    }> | null;
+                    roleAssociations?:
+                      | {
+                          __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                          id?: string | null;
+                          role?: string | null;
+                        }[]
+                      | null;
                     meta?: {
                       __typename?: 'IoRestorecommerceMetaMeta';
                       created?: unknown | null;
@@ -9401,166 +9645,96 @@ export type OrderingOrderReadQuery = {
                       modifiedBy?: string | null;
                     } | null;
                   } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
-                    name?: string | null;
-                    description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
+                  shippingAddress?: {
+                    __typename?: 'IoRestorecommerceAddressShippingAddress';
+                    comments?: string | null;
+                    contact?: {
+                      __typename?: 'IoRestorecommerceAddressContact';
+                      name?: string | null;
+                      email?: string | null;
+                      phone?: string | null;
+                    } | null;
+                    address?: {
+                      __typename?: 'IoRestorecommerceAddressAddress';
                       id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
+                      street?: string | null;
+                      buildingNumber?: string | null;
+                      postcode?: string | null;
+                      businessAddress?: {
+                        __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                        name?: string | null;
+                      } | null;
+                      addressAddition?: {
+                        __typename?: 'IoRestorecommerceAddressAddressAddition';
+                        field1?: string | null;
+                        field2?: string | null;
+                      } | null;
+                      country?: {
+                        __typename?: 'IoRestorecommerceCountryCountry';
+                        id?: string | null;
+                        name?: string | null;
+                        countryCode?: string | null;
+                      } | null;
+                      residentialAddress?: {
+                        __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                        title?: string | null;
+                        givenName?: string | null;
+                        midName?: string | null;
+                        familyName?: string | null;
                       } | null;
                     } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      description?: string | null;
-                      value?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
-                    } | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                    } | null;
-                  }> | null;
-                } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              user?: {
-                __typename?: 'IoRestorecommerceUserUser';
-                id?: string | null;
-                active?: boolean | null;
-                activationCode?: string | null;
-                email?: string | null;
-                newEmail?: string | null;
-                name?: string | null;
-                firstName?: string | null;
-                lastName?: string | null;
-                defaultScope?: string | null;
-                localeId?: string | null;
-                timezoneId?: string | null;
-                roleAssociations?: Array<{
-                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                  id?: string | null;
-                  role?: string | null;
-                }> | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
-              } | null;
-              shippingAddress?: {
-                __typename?: 'IoRestorecommerceAddressShippingAddress';
-                comments?: string | null;
-                contact?: {
-                  __typename?: 'IoRestorecommerceAddressContact';
-                  name?: string | null;
-                  email?: string | null;
-                  phone?: string | null;
-                } | null;
-                address?: {
-                  __typename?: 'IoRestorecommerceAddressAddress';
-                  id?: string | null;
-                  street?: string | null;
-                  buildingNumber?: string | null;
-                  postcode?: string | null;
-                  businessAddress?: {
-                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
-                    name?: string | null;
                   } | null;
-                  addressAddition?: {
-                    __typename?: 'IoRestorecommerceAddressAddressAddition';
-                    field1?: string | null;
-                    field2?: string | null;
-                  } | null;
-                  country?: {
-                    __typename?: 'IoRestorecommerceCountryCountry';
-                    id?: string | null;
-                    name?: string | null;
-                    countryCode?: string | null;
-                  } | null;
-                  residentialAddress?: {
-                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
-                    title?: string | null;
-                    givenName?: string | null;
-                    midName?: string | null;
-                    familyName?: string | null;
+                  totalAmounts?:
+                    | {
+                        __typename?: 'IoRestorecommerceAmountAmount';
+                        gross?: number | null;
+                        net?: number | null;
+                        currency?: {
+                          __typename?: 'IoRestorecommerceCurrencyCurrency';
+                          name?: string | null;
+                          customExchangeRates?:
+                            | {
+                                __typename?: 'IoRestorecommerceCurrencyExchangeRate';
+                                amount?: number | null;
+                                rate?: number | null;
+                                expenses?: number | null;
+                              }[]
+                            | null;
+                        } | null;
+                        vats?:
+                          | {
+                              __typename?: 'IoRestorecommerceAmountVAT';
+                              vat?: number | null;
+                              tax?: {
+                                __typename?: 'IoRestorecommerceTaxTax';
+                                rate?: number | null;
+                                variant?: string | null;
+                                countryId?: string | null;
+                                type?: {
+                                  __typename?: 'IoRestorecommerceTaxTypeTaxType';
+                                  type?: string | null;
+                                  description?: string | null;
+                                } | null;
+                              } | null;
+                            }[]
+                          | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
                   } | null;
                 } | null;
-              } | null;
-              totalAmounts?: Array<{
-                __typename?: 'IoRestorecommerceAmountAmount';
-                gross?: number | null;
-                net?: number | null;
-                currency?: {
-                  __typename?: 'IoRestorecommerceCurrencyCurrency';
-                  name?: string | null;
-                  customExchangeRates?: Array<{
-                    __typename?: 'IoRestorecommerceCurrencyExchangeRate';
-                    amount?: number | null;
-                    rate?: number | null;
-                    expenses?: number | null;
-                  }> | null;
-                } | null;
-                vats?: Array<{
-                  __typename?: 'IoRestorecommerceAmountVAT';
-                  vat?: number | null;
-                  tax?: {
-                    __typename?: 'IoRestorecommerceTaxTax';
-                    rate?: number | null;
-                    variant?: string | null;
-                    countryId?: string | null;
-                    type?: {
-                      __typename?: 'IoRestorecommerceTaxTypeTaxType';
-                      type?: string | null;
-                      description?: string | null;
-                    } | null;
-                  } | null;
-                }> | null;
-              }> | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
-            } | null;
-          }> | null;
+              }[]
+            | null;
         } | null;
       } | null;
     };
   };
-};
+}
 
 export const MetaFragmentFragmentDoc = gql`
   fragment MetaFragment on IoRestorecommerceMetaMeta {

@@ -10,7 +10,7 @@ import { AuthnFacade } from '../+state';
 export class ErrorHandlingService {
   constructor(private readonly authFacade: AuthnFacade) {}
   public checkStatusAndThrow(status?: TOperationStatus): void {
-    const errorMessages: { [key: number]: string } = {
+    const errorMessages: Record<number, string> = {
       400: 'bad request',
       401: 'unauthorized',
       403: 'access not allowed',

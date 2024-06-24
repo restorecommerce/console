@@ -7,7 +7,7 @@ import { AbstractControl } from '@angular/forms';
 export class RcValidationService {
   validatePasswordMatch(
     control: AbstractControl
-  ): { [key: string]: boolean } | null {
+  ): Record<string, boolean> | null {
     const password = control.get('password');
     const passwordConfirmation = control.get('passwordConfirmation');
 
