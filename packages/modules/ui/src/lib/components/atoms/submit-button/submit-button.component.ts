@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
     <div class="row">
       <div class="flex">
         <div class="btn-container align-right">
-          <button
+          <!-- <button
             vcl-button
             *ngIf="resetForm"
             (click)="onResetForm()"
@@ -19,7 +19,7 @@ import { FormGroup } from '@angular/forms';
             type="button"
           >
             {{ resetText }}
-          </button>
+          </button> -->
 
           <button
             vcl-button

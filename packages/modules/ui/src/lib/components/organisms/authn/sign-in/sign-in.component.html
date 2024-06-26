@@ -57,18 +57,13 @@
   </vcl-form-control-group>
   <div class="row">
     <div class="flex">
-      <p>
+      <p class="mt-3">
         <a
           [routerLink]="
             ROUTER.pages.main.children.auth.children.passwordRecovery.link
           "
         >
-          <button
-            type="button"
-            class="button half-transparent"
-          >
-            Forgot your password?
-          </button>
+          Forgot your password?
         </a>
       </p>
     </div>
@@ -76,12 +71,7 @@
 
   <div class="row">
     <div class="flex align-right">
-      <rc-submit-button
-        [resetForm]="form"
-        [resetText]="'Cancel'"
-      >
-        Sign In</rc-submit-button
-      >
+      <rc-submit-button [resetForm]="form"> Sign In</rc-submit-button>
     </div>
   </div>
 </form>
