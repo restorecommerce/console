@@ -19,24 +19,23 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { RoleFacade, RouterFacade } from '@console-core/state';
-import { ICrudFeature, EUrlSegment, IRole } from '@console-core/types';
+import { OrganizationFacade, RouterFacade } from '@console-core/state';
+import { ICrudFeature, EUrlSegment, IOrganization } from '@console-core/types';
 
 @Component({
-  selector: 'app-module-management-role-template',
-  templateUrl: './role-template.component.html',
+  selector: 'app-module-management-organization-template',
+  templateUrl: './organization-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoleTemplateComponent implements OnInit, OnDestroy {
+export class OrganizationTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter =
-    ROUTER.pages.main.children.management.children.accessControl.children.roles
-      .children;
+    ROUTER.pages.main.children.management.children.organizations.children;
 
   feature: Readonly<ICrudFeature> = {
     name: {
-      plural: 'Roles',
-      singular: 'Role',
+      plural: 'Organizations',
+      singular: 'Organization',
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
@@ -60,7 +59,7 @@ export class RoleTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.roleFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.organizationFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -73,17 +72,17 @@ export class RoleTemplateComponent implements OnInit, OnDestroy {
         search: {
           caseSensitive: false,
           search: value,
-          fields: ['name', 'description'],
+          fields: ['name', 'email', 'website'],
         },
       };
-      this.roleFacade.read(this.queryVariables);
+      this.organizationFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.roleFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.organizationFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -91,7 +90,7 @@ export class RoleTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.roleFacade.remove({ id });
+      this.organizationFacade.remove({ id });
     })
   );
 
@@ -100,16 +99,16 @@ export class RoleTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.roleFacade.setSelectedId(null);
+        this.organizationFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.roleFacade.all$,
-    selectedRoleId: this.roleFacade.selectedId$,
-    selectedRole: this.roleFacade.selected$,
+    dataList: this.organizationFacade.all$,
+    selectedOrganizationId: this.organizationFacade.selectedId$,
+    selectedOrganization: this.organizationFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -119,7 +118,7 @@ export class RoleTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly roleFacade: RoleFacade,
+    private readonly organizationFacade: OrganizationFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 
@@ -135,7 +134,7 @@ export class RoleTemplateComponent implements OnInit, OnDestroy {
     this.triggerSearch.next(value);
   }
 
-  trackByFn(_: number, item: IRole) {
+  trackByFn(_: number, item: IOrganization) {
     return item.id;
   }
 }
