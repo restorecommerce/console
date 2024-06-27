@@ -129,6 +129,61 @@
         </rc-drawer-navigation-item>
 
         <rc-drawer-navigation-item
+          icon="mdi:lock-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.accessControl.link
+          "
+          [routerLinkActive]="['selected']"
+        >
+          Access Control
+          <rc-drawer-navigation-item
+            icon="mdi:account-multiple-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.teams.link
+            "
+            [routerLinkActive]="['selected']"
+            >Teams</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-key-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.roles.link
+            "
+            [routerLinkActive]="['selected']"
+            >Roles</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:account-convert-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.rules.link
+            "
+            [routerLinkActive]="['selected']"
+            >Rules</rc-drawer-navigation-item
+          >
+          <rc-drawer-navigation-item
+            icon="mdi:folder-account-outline"
+            [routerLink]="
+              ROUTER.pages.main.children.management.children.accessControl
+                .children.polices.link
+            "
+            [routerLinkActive]="['selected']"
+            >Policies</rc-drawer-navigation-item
+          >
+        </rc-drawer-navigation-item>
+
+        <rc-drawer-navigation-item
+          icon="mdi:domain"
+          [routerLink]="
+            ROUTER.pages.main.children.management.children.organizations.link
+          "
+          [routerLinkActive]="['selected']"
+          >Organizations
+        </rc-drawer-navigation-item>
+
+        <rc-drawer-navigation-item
           icon="mdi:home-map-marker"
           [routerLink]="
             ROUTER.pages.main.children.management.children.addresses.link
@@ -185,52 +240,6 @@
           [routerLinkActive]="['selected']"
         >
           Commands
-        </rc-drawer-navigation-item>
-
-        <rc-drawer-navigation-item
-          icon="mdi:lock-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.accessControl.link
-          "
-          [routerLinkActive]="['selected']"
-        >
-          Access Control
-          <rc-drawer-navigation-item
-            icon="mdi:account-multiple-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.teams.link
-            "
-            [routerLinkActive]="['selected']"
-            >Teams</rc-drawer-navigation-item
-          >
-          <rc-drawer-navigation-item
-            icon="mdi:account-key-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.roles.link
-            "
-            [routerLinkActive]="['selected']"
-            >Roles</rc-drawer-navigation-item
-          >
-          <rc-drawer-navigation-item
-            icon="mdi:account-convert-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.rules.link
-            "
-            [routerLinkActive]="['selected']"
-            >Rules</rc-drawer-navigation-item
-          >
-          <rc-drawer-navigation-item
-            icon="mdi:folder-account-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.polices.link
-            "
-            [routerLinkActive]="['selected']"
-            >Policies</rc-drawer-navigation-item
-          >
         </rc-drawer-navigation-item>
       </ng-container>
       <!-- /Management -->

@@ -1,0 +1,21 @@
+mutation MasterDataOrganizationMutate(
+  $input: IIoRestorecommerceOrganizationOrganizationList!
+) {
+  master_data {
+    organization {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...OrganizationFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,6 +27,26 @@ export const modulesManagementRoutes: Route[] = [
             .title,
       },
       {
+        path: ROUTER.pages.main.children.management.children.accessControl.path,
+        loadChildren: () =>
+          import('./components/access-control/access-control.module').then(
+            (m) => m.AccessControlModule
+          ),
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .index.title,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.organizations.path,
+        loadChildren: () =>
+          import('./components/organization/organization.module').then(
+            (m) => m.OrganizationModule
+          ),
+        title:
+          ROUTER.pages.main.children.management.children.organizations.children
+            .index.title,
+      },
+      {
         path: ROUTER.pages.main.children.management.children.addresses.path,
         loadChildren: () =>
           import('./components/address/address.module').then(
@@ -84,16 +104,6 @@ export const modulesManagementRoutes: Route[] = [
           ),
         title:
           ROUTER.pages.main.children.management.children.contracts.children
-            .index.title,
-      },
-      {
-        path: ROUTER.pages.main.children.management.children.accessControl.path,
-        loadChildren: () =>
-          import('./components/access-control/access-control.module').then(
-            (m) => m.AccessControlModule
-          ),
-        title:
-          ROUTER.pages.main.children.management.children.accessControl.children
             .index.title,
       },
       {

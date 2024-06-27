@@ -5409,6 +5409,14 @@ export interface CatalogProductMutateMutation {
                       email?: string | null;
                       website?: string | null;
                       vatId?: string | null;
+                      parent?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
+                        id?: string | null;
+                        name?: string | null;
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                      } | null;
                       logo?: {
                         __typename?: 'IoRestorecommerceImageImage';
                         id?: string | null;
@@ -5432,26 +5440,12 @@ export interface CatalogProductMutateMutation {
                               id?: string | null;
                               value?: string | null;
                               description?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
                             } | null;
                             locale?: {
                               __typename?: 'IoRestorecommerceLocaleLocale';
                               id?: string | null;
-                              description?: string | null;
                               value?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
+                              description?: string | null;
                             } | null;
                             meta?: {
                               __typename?: 'IoRestorecommerceMetaMeta';
@@ -5588,6 +5582,14 @@ export interface CatalogProductReadQuery {
                       email?: string | null;
                       website?: string | null;
                       vatId?: string | null;
+                      parent?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
+                        id?: string | null;
+                        name?: string | null;
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                      } | null;
                       logo?: {
                         __typename?: 'IoRestorecommerceImageImage';
                         id?: string | null;
@@ -5611,26 +5613,12 @@ export interface CatalogProductReadQuery {
                               id?: string | null;
                               value?: string | null;
                               description?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
                             } | null;
                             locale?: {
                               __typename?: 'IoRestorecommerceLocaleLocale';
                               id?: string | null;
-                              description?: string | null;
                               value?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
+                              description?: string | null;
                             } | null;
                             meta?: {
                               __typename?: 'IoRestorecommerceMetaMeta';
@@ -5790,26 +5778,12 @@ export interface ContactPointFragmentFragment {
     id?: string | null;
     value?: string | null;
     description?: string | null;
-    meta?: {
-      __typename?: 'IoRestorecommerceMetaMeta';
-      created?: unknown | null;
-      modified?: unknown | null;
-      createdBy?: string | null;
-      modifiedBy?: string | null;
-    } | null;
   } | null;
   locale?: {
     __typename?: 'IoRestorecommerceLocaleLocale';
     id?: string | null;
-    description?: string | null;
     value?: string | null;
-    meta?: {
-      __typename?: 'IoRestorecommerceMetaMeta';
-      created?: unknown | null;
-      modified?: unknown | null;
-      createdBy?: string | null;
-      modifiedBy?: string | null;
-    } | null;
+    description?: string | null;
   } | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -5849,6 +5823,14 @@ export interface CustomerFragmentFragment {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
+      parent?: {
+        __typename?: 'IoRestorecommerceOrganizationOrganization';
+        id?: string | null;
+        name?: string | null;
+        email?: string | null;
+        website?: string | null;
+        vatId?: string | null;
+      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -5872,26 +5854,12 @@ export interface CustomerFragmentFragment {
               id?: string | null;
               value?: string | null;
               description?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
             } | null;
             locale?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
-              description?: string | null;
               value?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
+              description?: string | null;
             } | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -5929,6 +5897,14 @@ export interface CustomerFragmentFragment {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
+      parent?: {
+        __typename?: 'IoRestorecommerceOrganizationOrganization';
+        id?: string | null;
+        name?: string | null;
+        email?: string | null;
+        website?: string | null;
+        vatId?: string | null;
+      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -5952,26 +5928,12 @@ export interface CustomerFragmentFragment {
               id?: string | null;
               value?: string | null;
               description?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
             } | null;
             locale?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
-              description?: string | null;
               value?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
+              description?: string | null;
             } | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6043,26 +6005,12 @@ export interface CustomerFragmentFragment {
             id?: string | null;
             value?: string | null;
             description?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
           } | null;
           locale?: {
             __typename?: 'IoRestorecommerceLocaleLocale';
             id?: string | null;
-            description?: string | null;
             value?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
+            description?: string | null;
           } | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -6211,6 +6159,14 @@ export interface OrderFragmentFragment {
               email?: string | null;
               website?: string | null;
               vatId?: string | null;
+              parent?: {
+                __typename?: 'IoRestorecommerceOrganizationOrganization';
+                id?: string | null;
+                name?: string | null;
+                email?: string | null;
+                website?: string | null;
+                vatId?: string | null;
+              } | null;
               logo?: {
                 __typename?: 'IoRestorecommerceImageImage';
                 id?: string | null;
@@ -6234,26 +6190,12 @@ export interface OrderFragmentFragment {
                       id?: string | null;
                       value?: string | null;
                       description?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
                     } | null;
                     locale?: {
                       __typename?: 'IoRestorecommerceLocaleLocale';
                       id?: string | null;
-                      description?: string | null;
                       value?: string | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                      } | null;
+                      description?: string | null;
                     } | null;
                     meta?: {
                       __typename?: 'IoRestorecommerceMetaMeta';
@@ -6369,6 +6311,14 @@ export interface OrderFragmentFragment {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
+      parent?: {
+        __typename?: 'IoRestorecommerceOrganizationOrganization';
+        id?: string | null;
+        name?: string | null;
+        email?: string | null;
+        website?: string | null;
+        vatId?: string | null;
+      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -6392,26 +6342,12 @@ export interface OrderFragmentFragment {
               id?: string | null;
               value?: string | null;
               description?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
             } | null;
             locale?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
-              description?: string | null;
               value?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
+              description?: string | null;
             } | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6459,6 +6395,14 @@ export interface OrderFragmentFragment {
         email?: string | null;
         website?: string | null;
         vatId?: string | null;
+        parent?: {
+          __typename?: 'IoRestorecommerceOrganizationOrganization';
+          id?: string | null;
+          name?: string | null;
+          email?: string | null;
+          website?: string | null;
+          vatId?: string | null;
+        } | null;
         logo?: {
           __typename?: 'IoRestorecommerceImageImage';
           id?: string | null;
@@ -6482,26 +6426,12 @@ export interface OrderFragmentFragment {
                 id?: string | null;
                 value?: string | null;
                 description?: string | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
               } | null;
               locale?: {
                 __typename?: 'IoRestorecommerceLocaleLocale';
                 id?: string | null;
-                description?: string | null;
                 value?: string | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
+                description?: string | null;
               } | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -6539,6 +6469,14 @@ export interface OrderFragmentFragment {
         email?: string | null;
         website?: string | null;
         vatId?: string | null;
+        parent?: {
+          __typename?: 'IoRestorecommerceOrganizationOrganization';
+          id?: string | null;
+          name?: string | null;
+          email?: string | null;
+          website?: string | null;
+          vatId?: string | null;
+        } | null;
         logo?: {
           __typename?: 'IoRestorecommerceImageImage';
           id?: string | null;
@@ -6562,26 +6500,12 @@ export interface OrderFragmentFragment {
                 id?: string | null;
                 value?: string | null;
                 description?: string | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
               } | null;
               locale?: {
                 __typename?: 'IoRestorecommerceLocaleLocale';
                 id?: string | null;
-                description?: string | null;
                 value?: string | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                } | null;
+                description?: string | null;
               } | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -6653,26 +6577,12 @@ export interface OrderFragmentFragment {
               id?: string | null;
               value?: string | null;
               description?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
             } | null;
             locale?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
-              description?: string | null;
               value?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
+              description?: string | null;
             } | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -6812,6 +6722,14 @@ export interface OrganizationFragmentFragment {
   email?: string | null;
   website?: string | null;
   vatId?: string | null;
+  parent?: {
+    __typename?: 'IoRestorecommerceOrganizationOrganization';
+    id?: string | null;
+    name?: string | null;
+    email?: string | null;
+    website?: string | null;
+    vatId?: string | null;
+  } | null;
   logo?: {
     __typename?: 'IoRestorecommerceImageImage';
     id?: string | null;
@@ -6835,26 +6753,12 @@ export interface OrganizationFragmentFragment {
           id?: string | null;
           value?: string | null;
           description?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
         } | null;
         locale?: {
           __typename?: 'IoRestorecommerceLocaleLocale';
           id?: string | null;
-          description?: string | null;
           value?: string | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-          } | null;
+          description?: string | null;
         } | null;
         meta?: {
           __typename?: 'IoRestorecommerceMetaMeta';
@@ -6901,6 +6805,14 @@ export interface ProductFragmentFragment {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
+      parent?: {
+        __typename?: 'IoRestorecommerceOrganizationOrganization';
+        id?: string | null;
+        name?: string | null;
+        email?: string | null;
+        website?: string | null;
+        vatId?: string | null;
+      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -6924,26 +6836,12 @@ export interface ProductFragmentFragment {
               id?: string | null;
               value?: string | null;
               description?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
             } | null;
             locale?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
-              description?: string | null;
               value?: string | null;
-              meta?: {
-                __typename?: 'IoRestorecommerceMetaMeta';
-                created?: unknown | null;
-                modified?: unknown | null;
-                createdBy?: string | null;
-                modifiedBy?: string | null;
-              } | null;
+              description?: string | null;
             } | null;
             meta?: {
               __typename?: 'IoRestorecommerceMetaMeta';
@@ -7055,6 +6953,14 @@ export interface ShopFragmentFragment {
     email?: string | null;
     website?: string | null;
     vatId?: string | null;
+    parent?: {
+      __typename?: 'IoRestorecommerceOrganizationOrganization';
+      id?: string | null;
+      name?: string | null;
+      email?: string | null;
+      website?: string | null;
+      vatId?: string | null;
+    } | null;
     logo?: {
       __typename?: 'IoRestorecommerceImageImage';
       id?: string | null;
@@ -7078,26 +6984,12 @@ export interface ShopFragmentFragment {
             id?: string | null;
             value?: string | null;
             description?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
           } | null;
           locale?: {
             __typename?: 'IoRestorecommerceLocaleLocale';
             id?: string | null;
-            description?: string | null;
             value?: string | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
+            description?: string | null;
           } | null;
           meta?: {
             __typename?: 'IoRestorecommerceMetaMeta';
@@ -8356,6 +8248,233 @@ export interface MasterDataLocationReadQuery {
   };
 }
 
+export type MasterDataOrganizationDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface MasterDataOrganizationDeleteMutation {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    organization: {
+      __typename?: 'ResourceOrganizationMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type MasterDataOrganizationMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceOrganizationOrganizationList;
+}>;
+
+export interface MasterDataOrganizationMutateMutation {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    organization: {
+      __typename?: 'ResourceOrganizationMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceOrganizationOrganizationListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceOrganizationOrganizationListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceOrganizationOrganizationResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  parent?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    name?: string | null;
+                    email?: string | null;
+                    website?: string | null;
+                    vatId?: string | null;
+                  } | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  contactPoints?:
+                    | {
+                        __typename?: 'IoRestorecommerceContactPointContactPoint';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        email?: string | null;
+                        telephone?: string | null;
+                        website?: string | null;
+                        timezone?: {
+                          __typename?: 'IoRestorecommerceTimezoneTimezone';
+                          id?: string | null;
+                          value?: string | null;
+                          description?: string | null;
+                        } | null;
+                        locale?: {
+                          __typename?: 'IoRestorecommerceLocaleLocale';
+                          id?: string | null;
+                          value?: string | null;
+                          description?: string | null;
+                        } | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      }[]
+                    | null;
+                  paymentMethods?:
+                    | {
+                        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                        id?: string | null;
+                        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type MasterDataOrganizationReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export interface MasterDataOrganizationReadQuery {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    organization: {
+      __typename?: 'ResourceOrganizationQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceOrganizationOrganizationListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceOrganizationOrganizationListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?:
+            | {
+                __typename?: 'IoRestorecommerceOrganizationOrganizationResponse';
+                payload?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  parent?: {
+                    __typename?: 'IoRestorecommerceOrganizationOrganization';
+                    id?: string | null;
+                    name?: string | null;
+                    email?: string | null;
+                    website?: string | null;
+                    vatId?: string | null;
+                  } | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  contactPoints?:
+                    | {
+                        __typename?: 'IoRestorecommerceContactPointContactPoint';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        email?: string | null;
+                        telephone?: string | null;
+                        website?: string | null;
+                        timezone?: {
+                          __typename?: 'IoRestorecommerceTimezoneTimezone';
+                          id?: string | null;
+                          value?: string | null;
+                          description?: string | null;
+                        } | null;
+                        locale?: {
+                          __typename?: 'IoRestorecommerceLocaleLocale';
+                          id?: string | null;
+                          value?: string | null;
+                          description?: string | null;
+                        } | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
+                      }[]
+                    | null;
+                  paymentMethods?:
+                    | {
+                        __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                        id?: string | null;
+                        transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                        paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                      }[]
+                    | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
+                } | null;
+              }[]
+            | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
 export type MasterDataTimezoneReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -8484,6 +8603,14 @@ export interface OrderingOrderMutateMutation {
                               email?: string | null;
                               website?: string | null;
                               vatId?: string | null;
+                              parent?: {
+                                __typename?: 'IoRestorecommerceOrganizationOrganization';
+                                id?: string | null;
+                                name?: string | null;
+                                email?: string | null;
+                                website?: string | null;
+                                vatId?: string | null;
+                              } | null;
                               logo?: {
                                 __typename?: 'IoRestorecommerceImageImage';
                                 id?: string | null;
@@ -8507,26 +8634,12 @@ export interface OrderingOrderMutateMutation {
                                       id?: string | null;
                                       value?: string | null;
                                       description?: string | null;
-                                      meta?: {
-                                        __typename?: 'IoRestorecommerceMetaMeta';
-                                        created?: unknown | null;
-                                        modified?: unknown | null;
-                                        createdBy?: string | null;
-                                        modifiedBy?: string | null;
-                                      } | null;
                                     } | null;
                                     locale?: {
                                       __typename?: 'IoRestorecommerceLocaleLocale';
                                       id?: string | null;
-                                      description?: string | null;
                                       value?: string | null;
-                                      meta?: {
-                                        __typename?: 'IoRestorecommerceMetaMeta';
-                                        created?: unknown | null;
-                                        modified?: unknown | null;
-                                        createdBy?: string | null;
-                                        modifiedBy?: string | null;
-                                      } | null;
+                                      description?: string | null;
                                     } | null;
                                     meta?: {
                                       __typename?: 'IoRestorecommerceMetaMeta';
@@ -8642,6 +8755,14 @@ export interface OrderingOrderMutateMutation {
                       email?: string | null;
                       website?: string | null;
                       vatId?: string | null;
+                      parent?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
+                        id?: string | null;
+                        name?: string | null;
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                      } | null;
                       logo?: {
                         __typename?: 'IoRestorecommerceImageImage';
                         id?: string | null;
@@ -8665,26 +8786,12 @@ export interface OrderingOrderMutateMutation {
                               id?: string | null;
                               value?: string | null;
                               description?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
                             } | null;
                             locale?: {
                               __typename?: 'IoRestorecommerceLocaleLocale';
                               id?: string | null;
-                              description?: string | null;
                               value?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
+                              description?: string | null;
                             } | null;
                             meta?: {
                               __typename?: 'IoRestorecommerceMetaMeta';
@@ -8732,6 +8839,14 @@ export interface OrderingOrderMutateMutation {
                         email?: string | null;
                         website?: string | null;
                         vatId?: string | null;
+                        parent?: {
+                          __typename?: 'IoRestorecommerceOrganizationOrganization';
+                          id?: string | null;
+                          name?: string | null;
+                          email?: string | null;
+                          website?: string | null;
+                          vatId?: string | null;
+                        } | null;
                         logo?: {
                           __typename?: 'IoRestorecommerceImageImage';
                           id?: string | null;
@@ -8755,26 +8870,12 @@ export interface OrderingOrderMutateMutation {
                                 id?: string | null;
                                 value?: string | null;
                                 description?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
                               } | null;
                               locale?: {
                                 __typename?: 'IoRestorecommerceLocaleLocale';
                                 id?: string | null;
-                                description?: string | null;
                                 value?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
+                                description?: string | null;
                               } | null;
                               meta?: {
                                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -8812,6 +8913,14 @@ export interface OrderingOrderMutateMutation {
                         email?: string | null;
                         website?: string | null;
                         vatId?: string | null;
+                        parent?: {
+                          __typename?: 'IoRestorecommerceOrganizationOrganization';
+                          id?: string | null;
+                          name?: string | null;
+                          email?: string | null;
+                          website?: string | null;
+                          vatId?: string | null;
+                        } | null;
                         logo?: {
                           __typename?: 'IoRestorecommerceImageImage';
                           id?: string | null;
@@ -8835,26 +8944,12 @@ export interface OrderingOrderMutateMutation {
                                 id?: string | null;
                                 value?: string | null;
                                 description?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
                               } | null;
                               locale?: {
                                 __typename?: 'IoRestorecommerceLocaleLocale';
                                 id?: string | null;
-                                description?: string | null;
                                 value?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
+                                description?: string | null;
                               } | null;
                               meta?: {
                                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -8926,26 +9021,12 @@ export interface OrderingOrderMutateMutation {
                               id?: string | null;
                               value?: string | null;
                               description?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
                             } | null;
                             locale?: {
                               __typename?: 'IoRestorecommerceLocaleLocale';
                               id?: string | null;
-                              description?: string | null;
                               value?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
+                              description?: string | null;
                             } | null;
                             meta?: {
                               __typename?: 'IoRestorecommerceMetaMeta';
@@ -9136,6 +9217,14 @@ export interface OrderingOrderReadQuery {
                               email?: string | null;
                               website?: string | null;
                               vatId?: string | null;
+                              parent?: {
+                                __typename?: 'IoRestorecommerceOrganizationOrganization';
+                                id?: string | null;
+                                name?: string | null;
+                                email?: string | null;
+                                website?: string | null;
+                                vatId?: string | null;
+                              } | null;
                               logo?: {
                                 __typename?: 'IoRestorecommerceImageImage';
                                 id?: string | null;
@@ -9159,26 +9248,12 @@ export interface OrderingOrderReadQuery {
                                       id?: string | null;
                                       value?: string | null;
                                       description?: string | null;
-                                      meta?: {
-                                        __typename?: 'IoRestorecommerceMetaMeta';
-                                        created?: unknown | null;
-                                        modified?: unknown | null;
-                                        createdBy?: string | null;
-                                        modifiedBy?: string | null;
-                                      } | null;
                                     } | null;
                                     locale?: {
                                       __typename?: 'IoRestorecommerceLocaleLocale';
                                       id?: string | null;
-                                      description?: string | null;
                                       value?: string | null;
-                                      meta?: {
-                                        __typename?: 'IoRestorecommerceMetaMeta';
-                                        created?: unknown | null;
-                                        modified?: unknown | null;
-                                        createdBy?: string | null;
-                                        modifiedBy?: string | null;
-                                      } | null;
+                                      description?: string | null;
                                     } | null;
                                     meta?: {
                                       __typename?: 'IoRestorecommerceMetaMeta';
@@ -9294,6 +9369,14 @@ export interface OrderingOrderReadQuery {
                       email?: string | null;
                       website?: string | null;
                       vatId?: string | null;
+                      parent?: {
+                        __typename?: 'IoRestorecommerceOrganizationOrganization';
+                        id?: string | null;
+                        name?: string | null;
+                        email?: string | null;
+                        website?: string | null;
+                        vatId?: string | null;
+                      } | null;
                       logo?: {
                         __typename?: 'IoRestorecommerceImageImage';
                         id?: string | null;
@@ -9317,26 +9400,12 @@ export interface OrderingOrderReadQuery {
                               id?: string | null;
                               value?: string | null;
                               description?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
                             } | null;
                             locale?: {
                               __typename?: 'IoRestorecommerceLocaleLocale';
                               id?: string | null;
-                              description?: string | null;
                               value?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
+                              description?: string | null;
                             } | null;
                             meta?: {
                               __typename?: 'IoRestorecommerceMetaMeta';
@@ -9384,6 +9453,14 @@ export interface OrderingOrderReadQuery {
                         email?: string | null;
                         website?: string | null;
                         vatId?: string | null;
+                        parent?: {
+                          __typename?: 'IoRestorecommerceOrganizationOrganization';
+                          id?: string | null;
+                          name?: string | null;
+                          email?: string | null;
+                          website?: string | null;
+                          vatId?: string | null;
+                        } | null;
                         logo?: {
                           __typename?: 'IoRestorecommerceImageImage';
                           id?: string | null;
@@ -9407,26 +9484,12 @@ export interface OrderingOrderReadQuery {
                                 id?: string | null;
                                 value?: string | null;
                                 description?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
                               } | null;
                               locale?: {
                                 __typename?: 'IoRestorecommerceLocaleLocale';
                                 id?: string | null;
-                                description?: string | null;
                                 value?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
+                                description?: string | null;
                               } | null;
                               meta?: {
                                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -9464,6 +9527,14 @@ export interface OrderingOrderReadQuery {
                         email?: string | null;
                         website?: string | null;
                         vatId?: string | null;
+                        parent?: {
+                          __typename?: 'IoRestorecommerceOrganizationOrganization';
+                          id?: string | null;
+                          name?: string | null;
+                          email?: string | null;
+                          website?: string | null;
+                          vatId?: string | null;
+                        } | null;
                         logo?: {
                           __typename?: 'IoRestorecommerceImageImage';
                           id?: string | null;
@@ -9487,26 +9558,12 @@ export interface OrderingOrderReadQuery {
                                 id?: string | null;
                                 value?: string | null;
                                 description?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
                               } | null;
                               locale?: {
                                 __typename?: 'IoRestorecommerceLocaleLocale';
                                 id?: string | null;
-                                description?: string | null;
                                 value?: string | null;
-                                meta?: {
-                                  __typename?: 'IoRestorecommerceMetaMeta';
-                                  created?: unknown | null;
-                                  modified?: unknown | null;
-                                  createdBy?: string | null;
-                                  modifiedBy?: string | null;
-                                } | null;
+                                description?: string | null;
                               } | null;
                               meta?: {
                                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -9578,26 +9635,12 @@ export interface OrderingOrderReadQuery {
                               id?: string | null;
                               value?: string | null;
                               description?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
                             } | null;
                             locale?: {
                               __typename?: 'IoRestorecommerceLocaleLocale';
                               id?: string | null;
-                              description?: string | null;
                               value?: string | null;
-                              meta?: {
-                                __typename?: 'IoRestorecommerceMetaMeta';
-                                created?: unknown | null;
-                                modified?: unknown | null;
-                                createdBy?: string | null;
-                                modifiedBy?: string | null;
-                              } | null;
+                              description?: string | null;
                             } | null;
                             meta?: {
                               __typename?: 'IoRestorecommerceMetaMeta';
@@ -9823,6 +9866,17 @@ export const InvoiceFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const LocaleFragmentFragmentDoc = gql`
+  fragment LocaleFragment on IoRestorecommerceLocaleLocale {
+    id
+    description
+    value
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const LocationFragmentFragmentDoc = gql`
   fragment LocationFragment on IoRestorecommerceLocationLocation {
     id
@@ -9860,28 +9914,6 @@ export const LocationFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
-export const TimezoneFragmentFragmentDoc = gql`
-  fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
-    id
-    value
-    description
-    meta {
-      ...MetaFragment
-    }
-  }
-  ${MetaFragmentFragmentDoc}
-`;
-export const LocaleFragmentFragmentDoc = gql`
-  fragment LocaleFragment on IoRestorecommerceLocaleLocale {
-    id
-    description
-    value
-    meta {
-      ...MetaFragment
-    }
-  }
-  ${MetaFragmentFragmentDoc}
-`;
 export const ContactPointFragmentFragmentDoc = gql`
   fragment ContactPointFragment on IoRestorecommerceContactPointContactPoint {
     id
@@ -9891,23 +9923,32 @@ export const ContactPointFragmentFragmentDoc = gql`
     telephone
     website
     timezone {
-      ...TimezoneFragment
+      id
+      value
+      description
     }
     locale {
-      ...LocaleFragment
+      id
+      value
+      description
     }
     meta {
       ...MetaFragment
     }
   }
-  ${TimezoneFragmentFragmentDoc}
-  ${LocaleFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
 export const OrganizationFragmentFragmentDoc = gql`
   fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
     id
     parentId
+    parent {
+      id
+      name
+      email
+      website
+      vatId
+    }
     name
     email
     website
@@ -10149,6 +10190,17 @@ export const OrderFragmentFragmentDoc = gql`
   ${ShopFragmentFragmentDoc}
   ${CustomerFragmentFragmentDoc}
   ${UserFragmentFragmentDoc}
+  ${MetaFragmentFragmentDoc}
+`;
+export const TimezoneFragmentFragmentDoc = gql`
+  fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
+    id
+    value
+    description
+    meta {
+      ...MetaFragment
+    }
+  }
   ${MetaFragmentFragmentDoc}
 `;
 export const RoleFragmentFragmentDoc = gql`
@@ -11250,6 +11302,114 @@ export class MasterDataLocationReadGQL extends Apollo.Query<
   MasterDataLocationReadQueryVariables
 > {
   override document = MasterDataLocationReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataOrganizationDeleteDocument = gql`
+  mutation MasterDataOrganizationDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      organization {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataOrganizationDeleteGQL extends Apollo.Mutation<
+  MasterDataOrganizationDeleteMutation,
+  MasterDataOrganizationDeleteMutationVariables
+> {
+  override document = MasterDataOrganizationDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataOrganizationMutateDocument = gql`
+  mutation MasterDataOrganizationMutate(
+    $input: IIoRestorecommerceOrganizationOrganizationList!
+  ) {
+    master_data {
+      organization {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...OrganizationFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${OrganizationFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataOrganizationMutateGQL extends Apollo.Mutation<
+  MasterDataOrganizationMutateMutation,
+  MasterDataOrganizationMutateMutationVariables
+> {
+  override document = MasterDataOrganizationMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataOrganizationReadDocument = gql`
+  query MasterDataOrganizationRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      organization {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...OrganizationFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${OrganizationFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataOrganizationReadGQL extends Apollo.Query<
+  MasterDataOrganizationReadQuery,
+  MasterDataOrganizationReadQueryVariables
+> {
+  override document = MasterDataOrganizationReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

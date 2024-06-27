@@ -1,6 +1,13 @@
 fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
   id
   parentId
+  parent {
+    id
+    name
+    email
+    website
+    vatId
+  }
   name
   email
   website

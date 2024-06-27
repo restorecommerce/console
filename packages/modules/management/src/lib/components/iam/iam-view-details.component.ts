@@ -12,21 +12,27 @@ import { IUser } from '@console-core/types';
         <li class="row data-list-item justify-between">
           <div class="flex text">First name:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.firstName }}
+            <ng-container *ngIf="user.firstName; else naTemplate">{{
+              user.firstName
+            }}</ng-container>
           </div>
         </li>
 
         <li class="row data-list-item justify-between">
           <div class="flex text">Last name:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.lastName }}
+            <ng-container *ngIf="user.lastName; else naTemplate">{{
+              user.lastName
+            }}</ng-container>
           </div>
         </li>
 
         <li class="row data-list-item justify-between">
           <div class="flex text">Username:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.name }}
+            <ng-container *ngIf="user.name; else naTemplate">{{
+              user.name
+            }}</ng-container>
           </div>
         </li>
 
@@ -52,20 +58,28 @@ import { IUser } from '@console-core/types';
         <li class="row data-list-item justify-between">
           <div class="flex text">Locale:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.locale?.description }}
-            <span class="badge rounded">
-              {{ user.locale?.value }}
-            </span>
+            <ng-container *ngIf="user.locale?.value; else naTemplate">
+              <ng-container *ngIf="user.locale?.description">
+                {{ user.locale?.description }}
+              </ng-container>
+              <span class="badge rounded">
+                {{ user.locale?.value }}
+              </span>
+            </ng-container>
           </div>
         </li>
 
         <li class="row data-list-item justify-between">
           <div class="flex text">Timezone:</div>
           <div class="flex text align-right rc-lv-label">
-            {{ user.timezone?.description }}
-            <span class="badge rounded">
-              {{ user.timezone?.value }}
-            </span>
+            <ng-container *ngIf="user.timezone?.value; else naTemplate">
+              <ng-container *ngIf="user.timezone?.description">
+                {{ user.timezone?.description }}
+              </ng-container>
+              <span class="badge rounded">
+                {{ user.timezone?.value }}
+              </span>
+            </ng-container>
           </div>
         </li>
 
@@ -77,6 +91,8 @@ import { IUser } from '@console-core/types';
         </li>
       </ul>
     </div>
+
+    <ng-template #naTemplate>N/A</ng-template>
   `,
 })
 export class IamViewDetailsComponent {

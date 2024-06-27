@@ -125,6 +125,18 @@ export interface IRouterConstant {
                 edit: IRouterItem;
               };
             };
+            organizations: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
             addresses: {
               path: string;
               link: string;
