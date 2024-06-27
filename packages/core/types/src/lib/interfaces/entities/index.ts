@@ -4,6 +4,7 @@ export * from './locale';
 export * from './invoice';
 export * from './meta';
 export * from './order';
+export * from './organization';
 export * from './shop';
 export * from './timezone';
 export * from './product';
