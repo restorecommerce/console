@@ -6,10 +6,14 @@ fragment ContactPointFragment on IoRestorecommerceContactPointContactPoint {
   telephone
   website
   timezone {
-    ...TimezoneFragment
+    id
+    value
+    description
   }
   locale {
-    ...LocaleFragment
+    id
+    value
+    description
   }
   meta {
     ...MetaFragment

@@ -1,0 +1,21 @@
+query MasterDataOrganizationRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    organization {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...OrganizationFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
