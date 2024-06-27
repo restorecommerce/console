@@ -1,25 +1,32 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { ROUTER } from '@console-core/config';
+
 @Component({
   selector: 'rc-submit-button',
   template: `
     <div class="row">
       <div class="flex">
         <div class="btn-container align-right">
-          <!-- <button
-            vcl-button
-            *ngIf="resetForm"
-            (click)="onResetForm()"
-            [ngClass]="{
-              button: true,
-              transparent: true,
-              btn: isMobile
-            }"
-            type="button"
+          <a
+            *ngIf="showResetText"
+            [routerLink]="ROUTER.pages.main.children.auth.children.signIn.link"
           >
-            {{ resetText }}
-          </button> -->
+            <button
+              vcl-button
+              *ngIf="resetForm"
+              (click)="onResetForm()"
+              [ngClass]="{
+                button: true,
+                transparent: true,
+                btn: isMobile
+              }"
+              type="button"
+            >
+              {{ resetText }}
+            </button>
+          </a>
 
           <button
             vcl-button
@@ -52,8 +59,10 @@ import { FormGroup } from '@angular/forms';
   ],
 })
 export class RcSubmitButtonComponent {
+  ROUTER = ROUTER;
   @Input() buttonClass = '';
   @Input() resetForm?: FormGroup;
+  @Input() showResetText? = true;
   @Input() resetText? = 'Cancel';
 
   isMobile = window.innerWidth <= 600;
@@ -67,5 +76,9 @@ export class RcSubmitButtonComponent {
     if (this.resetForm) {
       this.resetForm.reset();
     }
+  }
+
+  navigateToSignIn() {
+    this.resetForm?.reset();
   }
 }
