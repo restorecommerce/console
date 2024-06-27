@@ -25,30 +25,18 @@ export const buildUserSchema = ({
         label: 'First name',
         type: 'input',
         ...(user ? { defaultValue: user.firstName } : {}),
-        validators: [Validators.required],
+        validators: [],
         params: {},
-        hints: [
-          {
-            type: 'error',
-            error: 'required',
-            message: 'This field is required.',
-          },
-        ],
+        hints: [],
       },
       {
         name: 'lastName',
         label: 'Last name',
         type: 'input',
         ...(user ? { defaultValue: user.lastName } : {}),
-        validators: [Validators.required],
+        validators: [],
         params: {},
-        hints: [
-          {
-            type: 'error',
-            error: 'required',
-            message: 'This field is required.',
-          },
-        ],
+        hints: [],
       },
       {
         name: 'name',
