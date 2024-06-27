@@ -338,6 +338,44 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 },
               },
             },
+            organizations: {
+              path: 'organizations',
+              link: '/management/organizations',
+              title: 'Organizations',
+              getLink: () => ['', 'management', 'organizations'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/management/organizations/index',
+                  getLink: () => ['', 'management', 'organizations', 'index'],
+                  title: 'Organizations',
+                },
+                create: {
+                  path: 'create',
+                  link: '/management/organizations/create',
+                  title: 'Create Organization',
+                  getLink: () => ['', 'management', 'organizations', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/organizations/:id/view',
+                  title: 'Organization',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'organizations', params.id, 'view']
+                      : ['', 'management', 'organizations'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/organizations/:id/edit',
+                  title: 'Edit Organization',
+                  getLink: (params?: { id?: number | string }) =>
+                    params?.id
+                      ? ['', 'management', 'organizations', params.id, 'edit']
+                      : ['', 'management', 'organizations'],
+                },
+              },
+            },
             addresses: {
               path: 'addresses',
               link: '/management/addresses',
@@ -345,9 +383,9 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'addresses'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/addresses',
-                  getLink: () => ['', 'management', 'addresses'],
+                  path: 'index',
+                  link: '/management/addresses/index',
+                  getLink: () => ['', 'management', 'addresses', 'index'],
                   title: 'Addresses',
                 },
                 addresses: {
@@ -368,9 +406,9 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'contact-points'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/contact-points',
-                  getLink: () => ['', 'management', 'contact-points'],
+                  path: 'index',
+                  link: '/management/contact-points/index',
+                  getLink: () => ['', 'management', 'contact-points', 'index'],
                   title: 'Contact Points',
                 },
                 contactPoints: {
@@ -391,9 +429,9 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'contracts'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/contracts',
-                  getLink: () => ['', 'management', 'contracts'],
+                  path: 'index',
+                  link: '/management/contracts/index',
+                  getLink: () => ['', 'management', 'contracts', 'index'],
                   title: 'Contracts',
                 },
                 contracts: {
@@ -414,9 +452,9 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'commands'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/commands',
-                  getLink: () => ['', 'management', 'commands'],
+                  path: 'index',
+                  link: '/management/commands/index',
+                  getLink: () => ['', 'management', 'commands', 'index'],
                   title: 'Commands',
                 },
                 commands: {
@@ -437,9 +475,9 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'locations'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/locations',
-                  getLink: () => ['', 'management', 'locations'],
+                  path: 'index',
+                  link: '/management/locations/index',
+                  getLink: () => ['', 'management', 'locations', 'index'],
                   title: 'Locations',
                 },
                 locations: {
@@ -498,9 +536,9 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'management', 'access-control'],
               children: {
                 index: {
-                  path: '',
-                  link: '/management/access-control',
-                  getLink: () => ['', 'management', 'access-control'],
+                  path: 'index',
+                  link: '/management/access-control/index',
+                  getLink: () => ['', 'management', 'access-control', 'index'],
                   title: 'Access Control',
                 },
                 teams: {
@@ -510,13 +548,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   getLink: () => ['', 'management', 'access-control', 'teams'],
                   children: {
                     index: {
-                      path: '',
-                      link: '/management/access-control/teams',
+                      path: 'index',
+                      link: '/management/access-control/teams/index',
                       getLink: () => [
                         '',
                         'management',
                         'access-control',
                         'teams',
+                        'index',
                       ],
                       title: 'Teams',
                     },
@@ -545,12 +584,13 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   children: {
                     index: {
                       path: 'index',
-                      link: '/management/access-control/roles',
+                      link: '/management/access-control/roles/index',
                       getLink: () => [
                         '',
                         'management',
                         'access-control',
                         'roles',
+                        'index',
                       ],
                       title: 'Roles',
                     },
@@ -607,13 +647,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   getLink: () => ['', 'management', 'access-control', 'rules'],
                   children: {
                     index: {
-                      path: '',
-                      link: '/management/access-control/rules',
+                      path: 'index',
+                      link: '/management/access-control/rules/index',
                       getLink: () => [
                         '',
                         'management',
                         'access-control',
                         'rules',
+                        'index',
                       ],
                       title: 'Rules',
                     },
@@ -646,13 +687,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   ],
                   children: {
                     index: {
-                      path: '',
-                      link: '/management/access-control/polices',
+                      path: 'index',
+                      link: '/management/access-control/polices/index',
                       getLink: () => [
                         '',
                         'management',
                         'access-control',
                         'polices',
+                        'index',
                       ],
                       title: 'Polices',
                     },
