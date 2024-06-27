@@ -12,7 +12,7 @@ export class HighlightPipe implements PipeTransform {
       return value;
     }
     const regex = new RegExp(args, 'gi');
-    const highlighted = value.replace(
+    const highlighted = value?.replace(
       regex,
       (match) => `<span class="highlight">${match}</span>`
     );
