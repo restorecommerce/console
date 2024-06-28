@@ -2,10 +2,11 @@ import { IEnvironment } from '@console-core/types';
 
 export const environment: Readonly<IEnvironment> = {
   production: false,
-  oidcKey: 'VEVTVF9DTElFTlRfSUQ6VEVTVF9DTElFTlRfU0VDUkVU=',
+  oidcKey:
+    'cEpxYVdXQWNqdGRZVzZqQno5ZmhVUmJqYXBmaldvanI6dW05VU5vWVc2cXc5bVpDRGdNZVB5N2dDbkRHVEdSVkI=',
   storagePrefix: 'console.dev.',
   urls: {
-    api: 'http://192.168.1.38:5000',
-    graphql: 'http://192.168.1.38:5000/graphql',
+    api: 'https://api.restorecommerce.io',
+    graphql: 'https://api.restorecommerce.io/graphql',
   },
 };

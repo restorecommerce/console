@@ -57,8 +57,9 @@ Create a `.env` file in the root directory of the project with the following con
 # Environment variables
 CONSOLE_API_URL=http://127.0.0.1:5000
 CONSOLE_OIDC_KEY=VEVTVF9DTElFTlRfSUQ6VEVTVF9DTElFTlRfU0VDUkVU=
-
 ```
+
+The `CONSOLE_OIDC_KEY` can be built like so: `echo 'id:secret' | base64 -w0`
 
 ### Development Server
 
