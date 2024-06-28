@@ -1,0 +1,122 @@
+@use '@vcl/vcl/theme' as *;
+@use './theme/_console-variables.scss' as *;
+
+.rc-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+
+  .rc-auth-wrapper {
+    background-color: #fff;
+    padding: 30px;
+
+    header {
+      h1 a {
+        text-decoration: none;
+        color: $console-gray-dark;
+      }
+    }
+
+    main {
+      margin: 30px 0 40px;
+    }
+
+    .rc-sign-in-form,
+    .rc-sign-up-form,
+    .rc-password-recovery-form,
+    .rc-password-confirm,
+    .rc-activation,
+    .rc-sign-out {
+      & > div {
+        width: 450px;
+        box-sizing: border-box;
+        border-radius: 0.3rem;
+        background: $white;
+        padding: 1rem;
+      }
+    }
+
+    .rc-sign-in-form {
+      margin-left: 0;
+      margin-right: 0;
+
+      & .rc-sign-in-form-divider-v {
+        display: flex;
+      }
+
+      & .rc-sign-in-form-divider-h {
+        display: none;
+      }
+
+      & .button.half-transparent {
+        font-weight: normal;
+      }
+
+      & > div {
+        width: 815px;
+      }
+    }
+
+    @media (max-width: 750px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      .rc-sign-in-form,
+      .rc-sign-up-form,
+      .rc-password-recovery-form,
+      .rc-password-confirm,
+      .rc-activation,
+      .rc-sign-out {
+        & > div {
+          width: 370px;
+          box-sizing: border-box;
+          border-radius: 0.3rem;
+          // background: $white;
+          // padding: 1rem;
+        }
+      }
+
+      .rc-sign-in-form {
+        & .rc-sign-in-form-divider-v {
+          display: none;
+        }
+
+        & .rc-sign-in-form-divider-h {
+          display: flex;
+        }
+
+        & > div {
+          border-radius: 0;
+          min-width: auto;
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+
+        & .rc-sign-in-form-inner {
+          flex-direction: column;
+        }
+
+        & [class^='span-'],
+        & [class*=' span-'] {
+          width: 100%;
+        }
+
+        & .w-45p {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,19 +1,27 @@
 <ng-container *ngIf="vm$ | async as vm">
-  <div class="align-centered">
-    <p>
-      Thank you for activating your account! We're processing your request now
-      and will have your account ready for use as soon as possible.
-    </p>
+  <div class="self-center justify-center">
+    <div class="row rc-activation">
+      <div class="gutter-margin-t-b">
+        <div class="align-centered">
+          <h2>Account Activation</h2>
 
-    <p>Please be patient while we complete the activation process.</p>
+          <p>
+            Thank you for activating your account! We're processing your request
+            now and will have your account ready for use as soon as possible.
+          </p>
 
-    <ng-container *ngIf="!vm?.isRequesting">
-      <div class="align-left">
-        <ng-container
-          *ngIf="vm?.error; then templateError; else templateSuccess"
-        />
+          <p>Please be patient while we complete the activation process.</p>
+
+          <ng-container *ngIf="!vm?.isRequesting">
+            <div class="align-left">
+              <ng-container
+                *ngIf="vm?.error; then templateError; else templateSuccess"
+              />
+            </div>
+          </ng-container>
+        </div>
       </div>
-    </ng-container>
+    </div>
   </div>
 </ng-container>
 
