@@ -43,8 +43,15 @@ rc-header.application-header {
     height: 100%;
   }
 
-  button.user {
-    height: 43px;
+  rc-header-toolbar {
+    button.user {
+      height: 43px;
+    }
+
+    vcl-icon {
+      font-size: 1rem;
+      padding-bottom: 2px;
+    }
   }
 }
 
@@ -54,6 +61,7 @@ rc-header.application-header {
   }
 
   .container {
+    height: 100vh;
     background-color: $console-white;
     border-color: $console-white;
   }
@@ -78,7 +86,7 @@ vcl-hint-error {
   color: $wrapper-popover-user-link-color;
 
   vcl-icon {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   div {
