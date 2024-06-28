@@ -1,4 +1,3 @@
-@use '@vcl/vcl/theme' as *;
 @use './theme/_console-variables.scss' as *;
 
 .rc-auth {
@@ -9,7 +8,6 @@
   margin: 0;
 
   .rc-auth-wrapper {
-    background-color: #fff;
     padding: 30px;
 
     header {
@@ -33,7 +31,7 @@
         width: 450px;
         box-sizing: border-box;
         border-radius: 0.3rem;
-        background: $white;
+        background: $console-white;
         padding: 1rem;
       }
     }
@@ -52,10 +50,6 @@
 
       & .button.half-transparent {
         font-weight: normal;
-      }
-
-      & > div {
-        width: 815px;
       }
     }
 
@@ -83,8 +77,6 @@
           width: 370px;
           box-sizing: border-box;
           border-radius: 0.3rem;
-          // background: $white;
-          // padding: 1rem;
         }
       }
 
