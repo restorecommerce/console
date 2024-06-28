@@ -22,12 +22,8 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/restorecommerce/tsconfig.app.json",
         "assets": [
-          "apps/restorecommerce/src/manifest.webmanifest",
-          {
-            "input": "apps/restorecommerce/src/assets",
-            "glob": "**/*",
-            "output": "./assets"
-          }
+          "apps/restorecommerce/src/assets",
+          "apps/restorecommerce/src/manifest.webmanifest"
         ],
         "styles": [
           "packages/modules/ui/src/lib/modules-ui.styles.scss",
