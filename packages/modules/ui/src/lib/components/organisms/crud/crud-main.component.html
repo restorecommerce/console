@@ -126,7 +126,7 @@
               </div>
 
               <div
-                *ngIf="!vm.isLg && id"
+                *ngIf="!vm.isLgOrXl && id"
                 class="row"
               >
                 <div
@@ -145,7 +145,7 @@
           </div>
 
           <div
-            *ngIf="vm.isLg && id"
+            *ngIf="vm.isLgOrXl && id"
             class="flex-4-lg flex-12-md flex-12-sm flex-12"
           >
             <rc-toolbar> Meta </rc-toolbar>
