@@ -40,7 +40,8 @@
       >
         <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
       </ng-container>
-      <ng-container *ngIf="vm.isMdOrLg">
+
+      <ng-container *ngIf="vm.isMdOrLgOrXl">
         <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
       </ng-container>
     </div>
