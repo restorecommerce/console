@@ -54,11 +54,17 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
     isLg: this.breakpointObserver
       .observe(VCLBreakpoints.lg)
       .pipe(map((state) => state.matches)),
+    isXl: this.breakpointObserver
+      .observe(VCLBreakpoints.xl)
+      .pipe(map((state) => state.matches)),
+    isLgOrXl: this.breakpointObserver
+      .observe([VCLBreakpoints.lg, VCLBreakpoints.xl])
+      .pipe(map((state) => state.matches)),
     isXsOrSm: this.breakpointObserver
       .observe([VCLBreakpoints.xs, VCLBreakpoints.sm])
       .pipe(map((state) => state.matches)),
-    isMdOrLg: this.breakpointObserver
-      .observe([VCLBreakpoints.md, VCLBreakpoints.lg])
+    isMdOrLgOrXl: this.breakpointObserver
+      .observe([VCLBreakpoints.md, VCLBreakpoints.lg, VCLBreakpoints.xl])
       .pipe(map((state) => state.matches)),
   });
 

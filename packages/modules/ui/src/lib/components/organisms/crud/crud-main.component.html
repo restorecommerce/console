@@ -40,7 +40,8 @@
       >
         <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
       </ng-container>
-      <ng-container *ngIf="vm.isMdOrLg">
+
+      <ng-container *ngIf="vm.isMdOrLgOrXl">
         <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
       </ng-container>
     </div>
@@ -125,7 +126,7 @@
               </div>
 
               <div
-                *ngIf="!vm.isLg && id"
+                *ngIf="!vm.isLgOrXl && id"
                 class="row"
               >
                 <div
@@ -144,7 +145,7 @@
           </div>
 
           <div
-            *ngIf="vm.isLg && id"
+            *ngIf="vm.isLgOrXl && id"
             class="flex-4-lg flex-12-md flex-12-sm flex-12"
           >
             <rc-toolbar> Meta </rc-toolbar>
