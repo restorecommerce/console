@@ -165,7 +165,11 @@
 
   <div class="row">
     <div class="flex align-right mt-3">
-      <rc-submit-button [resetForm]="form">Sign Up</rc-submit-button>
+      <rc-submit-button
+        [resetForm]="form"
+        [isNavigateToSignIn]="true"
+        >Sign Up</rc-submit-button
+      >
     </div>
   </div>
 </form>
