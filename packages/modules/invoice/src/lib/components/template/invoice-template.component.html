@@ -1,7 +1,7 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [title]="vm.selectedInvoice?.id ?? 'N/A'"
+  [title]="vm.selectedInvoice?.id ?? feature.name.singular"
   [id]="vm.selectedInvoiceId"
   [total]="vm.dataList.length"
   [urlSegment]="vm.urlSegment"
