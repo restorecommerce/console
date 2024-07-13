@@ -1,12 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { RoleFacade } from '@console-core/state';
 
-import { buildRoleSchema } from './jss-forms';
+import { JssFormService } from './services';
 
 @Component({
   selector: 'app-module-management-role-create',
@@ -14,27 +11,28 @@ import { buildRoleSchema } from './jss-forms';
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
         <rc-crud-create
-          [schema]="schema"
+          [schema]="vm.schema"
           [create]="create"
         />
       </div>
     </ng-container>
   `,
+  providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoleCreateComponent {
-  schema!: VCLFormFieldSchemaRoot;
+export class RoleCreateComponent implements OnDestroy {
   create = this.roleFacade.create;
 
   readonly vm$ = combineLatest({
-    role: this.roleFacade.selected$,
-    allDistinctAssignableByRoles: this.roleFacade.allDistinctAssignableByRoles$,
-  }).pipe(
-    tap(({ allDistinctAssignableByRoles }) => {
-      const assignableByRoles = allDistinctAssignableByRoles || [];
-      this.schema = buildRoleSchema({ assignableByRoles });
-    })
-  );
+    schema: this.jssFormService.roleSchema$,
+  });
 
-  constructor(private readonly roleFacade: RoleFacade) {}
+  constructor(
+    private readonly roleFacade: RoleFacade,
+    private readonly jssFormService: JssFormService
+  ) {}
+
+  ngOnDestroy(): void {
+    this.jssFormService.destroy();
+  }
 }

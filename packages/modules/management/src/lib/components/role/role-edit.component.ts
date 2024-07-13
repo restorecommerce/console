@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
 import {
@@ -12,7 +10,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildRoleSchema } from './jss-forms';
+import { JssFormService } from './services';
 
 @Component({
   selector: 'app-module-management-role-edit',
@@ -21,16 +19,16 @@ import { buildRoleSchema } from './jss-forms';
       <div class="mt-2">
         <rc-crud-edit
           [id]="vm.id"
-          [schema]="schema"
+          [schema]="vm.schema"
           [update]="update"
         />
       </div>
     </ng-container>
   `,
+  providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoleEditComponent {
-  schema!: VCLFormFieldSchemaRoot;
+export class RoleEditComponent implements OnDestroy {
   update = this.roleFacade.update;
 
   readonly vm$ = combineLatest({
@@ -51,17 +49,17 @@ export class RoleEditComponent {
       }),
       filterEmptyAndNullishAndUndefined()
     ),
-    allDistinctAssignableByRoles: this.roleFacade.allDistinctAssignableByRoles$,
-  }).pipe(
-    tap(({ role, allDistinctAssignableByRoles }) => {
-      const assignableByRoles = allDistinctAssignableByRoles || [];
-      this.schema = buildRoleSchema({ role, assignableByRoles });
-    })
-  );
+    schema: this.jssFormService.roleSchema$,
+  });
 
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly roleFacade: RoleFacade
+    private readonly roleFacade: RoleFacade,
+    private readonly jssFormService: JssFormService
   ) {}
+
+  ngOnDestroy(): void {
+    this.jssFormService.destroy();
+  }
 }
