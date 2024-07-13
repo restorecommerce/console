@@ -66,9 +66,11 @@
                   <button
                     *ngIf="
                       isEdit &&
-                      [EUrlSegment.Edit, EUrlSegment.ChangePassword].includes(
-                        urlSegment
-                      )
+                      ![
+                        EUrlSegment.Index,
+                        EUrlSegment.Create,
+                        EUrlSegment.View
+                      ].includes(urlSegment)
                     "
                     vcl-button
                     [routerLink]="feature.links.view(id)"
