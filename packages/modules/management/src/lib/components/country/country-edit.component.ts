@@ -12,7 +12,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildCountrySchema } from './jss-forms';
+import { JssFormsService } from './services';
 
 @Component({
   selector: 'app-module-management-country-edit',
@@ -51,7 +51,7 @@ export class CountryEditComponent {
       }),
       filterEmptyAndNullishAndUndefined(),
       tap((country) => {
-        this.schema = buildCountrySchema({ country });
+        this.schema = this.jssFormService.buildCountrySchema({ country });
       })
     ),
   });
@@ -59,6 +59,7 @@ export class CountryEditComponent {
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly countryFacade: CountryFacade
+    private readonly countryFacade: CountryFacade,
+    private readonly jssFormService: JssFormsService
   ) {}
 }

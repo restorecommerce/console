@@ -5,7 +5,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { CountryFacade } from '@console-core/state';
 
-import { buildCountrySchema } from './jss-forms';
+import { JssFormsService } from './services';
 
 @Component({
   selector: 'app-module-management-country-create',
@@ -22,12 +22,15 @@ import { buildCountrySchema } from './jss-forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryCreateComponent {
-  schema: VCLFormFieldSchemaRoot = buildCountrySchema({});
+  schema: VCLFormFieldSchemaRoot = this.jssFormService.buildCountrySchema({});
   create = this.countryFacade.create;
 
   readonly vm$ = combineLatest({
     country: this.countryFacade.selected$,
   });
 
-  constructor(private readonly countryFacade: CountryFacade) {}
+  constructor(
+    private readonly countryFacade: CountryFacade,
+    private readonly jssFormService: JssFormsService
+  ) {}
 }
