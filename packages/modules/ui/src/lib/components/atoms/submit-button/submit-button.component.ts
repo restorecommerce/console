@@ -1,5 +1,6 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
@@ -9,24 +10,19 @@ import { ROUTER } from '@console-core/config';
     <div class="row">
       <div class="flex">
         <div class="btn-container align-right">
-          <a
-            *ngIf="showResetText"
-            [routerLink]="ROUTER.pages.main.children.auth.children.signIn.link"
+          <button
+            vcl-button
+            *ngIf="resetForm && showResetText"
+            (click)="onResetForm()"
+            [ngClass]="{
+              button: true,
+              transparent: true,
+              btn: isMobile
+            }"
+            type="button"
           >
-            <button
-              vcl-button
-              *ngIf="resetForm"
-              (click)="onResetForm()"
-              [ngClass]="{
-                button: true,
-                transparent: true,
-                btn: isMobile
-              }"
-              type="button"
-            >
-              {{ resetText }}
-            </button>
-          </a>
+            {{ resetText }}
+          </button>
 
           <button
             vcl-button
@@ -63,6 +59,7 @@ export class RcSubmitButtonComponent {
   @Input() buttonClass = '';
   @Input() resetForm?: FormGroup;
   @Input() showResetText? = true;
+  @Input() isNavigateToSignIn? = false;
   @Input() resetText? = 'Cancel';
 
   isMobile = window.innerWidth <= 600;
@@ -72,13 +69,19 @@ export class RcSubmitButtonComponent {
     this.isMobile = window.innerWidth <= 600;
   }
 
+  constructor(private readonly router: Router) {}
+
   onResetForm() {
-    if (this.resetForm) {
+    if (this.isNavigateToSignIn) {
+      this.navigateToSignIn();
+    } else if (this.resetForm) {
       this.resetForm.reset();
     }
   }
 
   navigateToSignIn() {
-    this.resetForm?.reset();
+    this.router.navigate([
+      ROUTER.pages.main.children.auth.children.signIn.link,
+    ]);
   }
 }
