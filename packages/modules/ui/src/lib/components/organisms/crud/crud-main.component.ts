@@ -30,11 +30,11 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() triggerCreateInvoice?: BehaviorSubject<string | null>;
   @Input() triggerCreateFulfillment?: BehaviorSubject<string | null>;
   @Input() title = '';
-  @Input() isMeta = true;
   @Input() isRead = true;
   @Input() isCreate = true;
   @Input() isEdit = true;
   @Input() isDelete = true;
+  @Input() isMeta = true;
 
   isTriggerCreateInvoice = false;
   isTriggerCreateFulfillment = false;

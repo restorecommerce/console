@@ -13,7 +13,7 @@ import { ModeType } from '@console-core/graphql';
   selector: 'rc-crud-edit',
   template: `
     <div class="row">
-      <div class="flex-12 mb-4">
+      <div class="flex-12">
         <vcl-jss-form
           autocomplete="off"
           ngDefaultControl
