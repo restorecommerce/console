@@ -143,21 +143,21 @@ export const ROUTER: Readonly<IRouterConstant> = {
             create: {
               path: 'create',
               link: '/orders/create',
-              title: 'Create Order',
+              title: 'Create',
               getLink: () => ['', 'orders', 'create'],
             },
             view: {
               path: ':id/view',
               link: '/orders/:id/view',
               title: 'Order',
-              getLink: (params?: { id?: number | string }) =>
+              getLink: (params?: { id?: string }) =>
                 params?.id ? ['', 'orders', params.id, 'view'] : ['', 'orders'],
             },
             edit: {
               path: ':id/edit',
               link: '/orders/:id/edit',
-              title: 'Edit Order',
-              getLink: (params?: { id?: number | string }) =>
+              title: 'Edit',
+              getLink: (params?: { id?: string }) =>
                 params?.id ? ['', 'orders', params.id, 'edit'] : ['', 'orders'],
             },
           },
@@ -177,14 +177,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             create: {
               path: 'create',
               link: '/products/create',
-              title: 'Create Product',
+              title: 'Create',
               getLink: () => ['', 'products', 'create'],
             },
             view: {
               path: ':id/view',
               link: '/products/:id/view',
               title: 'Product',
-              getLink: (params?: { id?: number | string }) =>
+              getLink: (params?: { id?: string }) =>
                 params?.id
                   ? ['', 'products', params.id, 'view']
                   : ['', 'products'],
@@ -192,8 +192,8 @@ export const ROUTER: Readonly<IRouterConstant> = {
             edit: {
               path: ':id/edit',
               link: '/products/:id/edit',
-              title: 'Edit Product',
-              getLink: (params?: { id?: number | string }) =>
+              title: 'Edit',
+              getLink: (params?: { id?: string }) =>
                 params?.id
                   ? ['', 'products', params.id, 'edit']
                   : ['', 'products'],
@@ -215,14 +215,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             create: {
               path: 'create',
               link: '/invoices/create',
-              title: 'Create Invoice',
+              title: 'Create',
               getLink: () => ['', 'invoices', 'create'],
             },
             view: {
               path: ':id/view',
               link: '/invoices/:id/view',
               title: 'Invoice',
-              getLink: (params?: { id?: number | string }) =>
+              getLink: (params?: { id?: string }) =>
                 params?.id
                   ? ['', 'invoices', params.id, 'view']
                   : ['', 'invoices'],
@@ -230,8 +230,8 @@ export const ROUTER: Readonly<IRouterConstant> = {
             edit: {
               path: ':id/edit',
               link: '/invoices/:id/edit',
-              title: 'Edit Invoice',
-              getLink: (params?: { id?: number | string }) =>
+              title: 'Edit',
+              getLink: (params?: { id?: string }) =>
                 params?.id
                   ? ['', 'invoices', params.id, 'edit']
                   : ['', 'invoices'],
@@ -253,14 +253,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             create: {
               path: 'create',
               link: '/fulfillments/create',
-              title: 'Create Fulfillment',
+              title: 'Create',
               getLink: () => ['', 'fulfillments', 'create'],
             },
             view: {
               path: ':id/view',
               link: '/fulfillments/:id/view',
               title: 'Fulfillments',
-              getLink: (params?: { id?: number | string }) =>
+              getLink: (params?: { id?: string }) =>
                 params?.id
                   ? ['', 'fulfillments', params.id, 'view']
                   : ['', 'fulfillments'],
@@ -268,8 +268,8 @@ export const ROUTER: Readonly<IRouterConstant> = {
             edit: {
               path: ':id/edit',
               link: '/fulfillments/:id/edit',
-              title: 'Edit Product',
-              getLink: (params?: { id?: number | string }) =>
+              title: 'Edit',
+              getLink: (params?: { id?: string }) =>
                 params?.id
                   ? ['', 'fulfillments', params.id, 'edit']
                   : ['', 'fulfillments'],
@@ -315,14 +315,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 create: {
                   path: 'create',
                   link: '/management/iam/create',
-                  title: 'Create User',
+                  title: 'Create',
                   getLink: () => ['', 'management', 'iam', 'create'],
                 },
                 view: {
                   path: ':id/view',
                   link: '/management/iam/:id/view',
                   title: 'User',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'iam', params.id, 'view']
                       : ['', 'management', 'iam'],
@@ -330,10 +330,19 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 edit: {
                   path: ':id/edit',
                   link: '/management/iam/:id/edit',
-                  title: 'Edit User',
-                  getLink: (params?: { id?: number | string }) =>
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'iam', params.id, 'edit']
+                      : ['', 'management', 'iam'],
+                },
+                'change-password': {
+                  path: ':id/change-password',
+                  link: '/management/iam/:id/change-password',
+                  title: 'Change Password',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'iam', params.id, 'change-password']
                       : ['', 'management', 'iam'],
                 },
               },
@@ -353,14 +362,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 create: {
                   path: 'create',
                   link: '/management/organizations/create',
-                  title: 'Create Organization',
+                  title: 'Create',
                   getLink: () => ['', 'management', 'organizations', 'create'],
                 },
                 view: {
                   path: ':id/view',
                   link: '/management/organizations/:id/view',
                   title: 'Organization',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'organizations', params.id, 'view']
                       : ['', 'management', 'organizations'],
@@ -368,8 +377,8 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 edit: {
                   path: ':id/edit',
                   link: '/management/organizations/:id/edit',
-                  title: 'Edit Organization',
-                  getLink: (params?: { id?: number | string }) =>
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'organizations', params.id, 'edit']
                       : ['', 'management', 'organizations'],
@@ -392,7 +401,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: ':id',
                   link: '/management/addresses/:id',
                   title: 'Address',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'addresses', params.id]
                       : ['', 'management', 'addresses'],
@@ -415,7 +424,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: ':id',
                   link: '/management/contact-points/:id',
                   title: 'Contact Point',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'contact-points', params.id]
                       : ['', 'management', 'contact-points'],
@@ -438,7 +447,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: ':id',
                   link: '/management/contracts/:id',
                   title: 'Contract',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'contracts', params.id]
                       : ['', 'management', 'contracts'],
@@ -461,7 +470,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: ':id',
                   link: '/management/commands/:id',
                   title: 'Command',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'commands', params.id]
                       : ['', 'management', 'commands'],
@@ -484,7 +493,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                   path: ':id',
                   link: '/management/locations/:id',
                   title: 'Location',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'locations', params.id]
                       : ['', 'management', 'locations'],
@@ -506,14 +515,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 create: {
                   path: 'create',
                   link: '/management/countries/create',
-                  title: 'Create Country',
+                  title: 'Create',
                   getLink: () => ['', 'management', 'countries', 'create'],
                 },
                 view: {
                   path: ':id/view',
                   link: '/management/countries/:id/view',
                   title: 'Country',
-                  getLink: (params?: { id?: number | string }) =>
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'countries', params.id, 'view']
                       : ['', 'management', 'countries'],
@@ -521,8 +530,8 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 edit: {
                   path: ':id/edit',
                   link: '/management/countries/:id/edit',
-                  title: 'Edit Country',
-                  getLink: (params?: { id?: number | string }) =>
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'management', 'countries', params.id, 'edit']
                       : ['', 'management', 'countries'],
@@ -563,7 +572,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       path: ':id',
                       link: '/management/access-control/teams/:id',
                       title: 'Team',
-                      getLink: (params?: { id?: number | string }) =>
+                      getLink: (params?: { id?: string }) =>
                         params?.id
                           ? [
                               '',
@@ -597,7 +606,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                     create: {
                       path: 'create',
                       link: '/management/access-control/roles/create',
-                      title: 'Create Role',
+                      title: 'Create',
                       getLink: () => [
                         '',
                         'management',
@@ -610,7 +619,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       path: ':id/view',
                       link: '/management/access-control/roles/:id/view',
                       title: 'Role',
-                      getLink: (params?: { id?: number | string }) =>
+                      getLink: (params?: { id?: string }) =>
                         params?.id
                           ? [
                               '',
@@ -625,8 +634,8 @@ export const ROUTER: Readonly<IRouterConstant> = {
                     edit: {
                       path: ':id/edit',
                       link: '/management/access-control/roles/:id/edit',
-                      title: 'Edit Role',
-                      getLink: (params?: { id?: number | string }) =>
+                      title: 'Edit',
+                      getLink: (params?: { id?: string }) =>
                         params?.id
                           ? [
                               '',
@@ -662,7 +671,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       path: ':id',
                       link: '/management/access-control/rules/:id',
                       title: 'Rule',
-                      getLink: (params?: { id?: number | string }) =>
+                      getLink: (params?: { id?: string }) =>
                         params?.id
                           ? [
                               '',
@@ -702,7 +711,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                       path: ':id',
                       link: '/management/access-control/polices/:id',
                       title: 'Policy',
-                      getLink: (params?: { id?: number | string }) =>
+                      getLink: (params?: { id?: string }) =>
                         params?.id
                           ? [
                               '',
