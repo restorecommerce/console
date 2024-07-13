@@ -59,7 +59,7 @@ export class OrganizationTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.organizationFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.organizationFacade.readParents({})));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -75,7 +75,7 @@ export class OrganizationTemplateComponent implements OnInit, OnDestroy {
           fields: ['name', 'email', 'website'],
         },
       };
-      this.organizationFacade.read(this.queryVariables);
+      this.organizationFacade.readParents(this.queryVariables);
     })
   );
 

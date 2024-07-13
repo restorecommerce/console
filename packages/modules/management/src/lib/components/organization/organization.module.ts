@@ -7,10 +7,10 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { OrganizationCreateComponent } from './organization-create.component';
 import { OrganizationEditComponent } from './organization-edit.component';
 import { OrganizationIndexComponent } from './organization-index.component';
-import { OrganizationViewDetailsComponent } from './organization-view-details.component';
-import { OrganizationParentViewDetailsComponent } from './organization-view-parent-details.component';
 import { OrganizationViewComponent } from './organization-view.component';
 import { OrganizationTemplateComponent } from './template/organization-template.component';
+import { OrganizationParentDetailsComponent } from './views/organization-parent-details.component';
+import { OrganizationDetailsComponent } from './views/organization-view-details.component';
 
 const routes: Routes = [
   {
@@ -65,8 +65,8 @@ const routes: Routes = [
     OrganizationCreateComponent,
     OrganizationEditComponent,
     OrganizationViewComponent,
-    OrganizationViewDetailsComponent,
-    OrganizationParentViewDetailsComponent,
+    OrganizationDetailsComponent,
+    OrganizationParentDetailsComponent,
     OrganizationTemplateComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
