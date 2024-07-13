@@ -26,6 +26,7 @@ import {
   VCLPasswordInputModule,
   VCLDrawerModule,
   VCLFormControlGroupModule,
+  VCLDataListModule,
 } from '@vcl/ng-vcl';
 
 import {
@@ -137,6 +138,7 @@ const modules = [
   VCLPasswordInputModule,
   VCLDrawerModule,
   VCLFormControlGroupModule,
+  VCLDataListModule,
 ];
 
 const atoms = [
