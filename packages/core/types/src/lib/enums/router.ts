@@ -3,4 +3,5 @@ export enum EUrlSegment {
   Create = 'create',
   Edit = 'edit',
   View = 'view',
+  ChangePassword = 'change-password',
 }
