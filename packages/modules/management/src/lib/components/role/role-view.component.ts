@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -14,12 +14,12 @@ import {
   selector: 'app-module-management-role-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <app-module-management-role-view-details [role]="vm.role" />
+      <app-module-management-role-details [vm]="vm" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoleViewComponent {
+export class RoleViewComponent implements OnInit {
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
       map(({ id }) => id),
@@ -40,6 +40,7 @@ export class RoleViewComponent {
       }),
       filterEmptyAndNullishAndUndefined()
     ),
+    rolesHash: this.roleFacade.entities$,
   });
 
   constructor(
@@ -47,4 +48,8 @@ export class RoleViewComponent {
     private readonly routerFacade: RouterFacade,
     private readonly roleFacade: RoleFacade
   ) {}
+
+  ngOnInit(): void {
+    this.roleFacade.read({});
+  }
 }
