@@ -1,1 +1,1 @@
-export * from './jss-forms.service';
+export * from './jss-form.service';
