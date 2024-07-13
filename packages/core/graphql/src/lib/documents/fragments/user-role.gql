@@ -28,8 +28,15 @@ fragment UserRoleFragment on IoRestorecommerceUserUserRole {
     ...RoleFragment
   }
   roleAssociations {
-    id
     role
+    attributes {
+      id
+      value
+      attributes {
+        id
+        value
+      }
+    }
   }
   meta {
     ...MetaFragment

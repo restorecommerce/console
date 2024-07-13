@@ -17,3 +17,20 @@ mutation InvoicingInvoiceMutate($input: IIoRestorecommerceInvoiceInvoiceList!) {
     }
   }
 }
+
+mutation InvoicingInvoiceDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  invoicing {
+    invoice {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

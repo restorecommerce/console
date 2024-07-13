@@ -17,3 +17,20 @@ mutation IdentityRoleMutate($input: IIoRestorecommerceRoleRoleList!) {
     }
   }
 }
+
+mutation IdentityRoleDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  identity {
+    role {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

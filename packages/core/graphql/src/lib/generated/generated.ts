@@ -5343,31 +5343,6 @@ export interface SubscriptionOutput {
   id?: Maybe<Scalars['String']>;
 }
 
-export type CatalogProductDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface CatalogProductDeleteMutation {
-  __typename?: 'Mutation';
-  catalog: {
-    __typename?: 'CatalogMutation';
-    product: {
-      __typename?: 'CatalogProductMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
 export type CatalogProductMutateMutationVariables = Exact<{
   input: IIoRestorecommerceProductProductList;
 }>;
@@ -5535,6 +5510,31 @@ export interface CatalogProductMutateMutation {
                 } | null;
               }[]
             | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type CatalogProductDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface CatalogProductDeleteMutateMutation {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    product: {
+      __typename?: 'CatalogProductMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -5979,8 +5979,21 @@ export interface CustomerFragmentFragment {
       roleAssociations?:
         | {
             __typename?: 'IoRestorecommerceAuthRoleAssociation';
-            id?: string | null;
             role?: string | null;
+            attributes?:
+              | {
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?:
+                    | {
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }[]
+                    | null;
+                }[]
+              | null;
           }[]
         | null;
       meta?: {
@@ -6551,8 +6564,21 @@ export interface OrderFragmentFragment {
         roleAssociations?:
           | {
               __typename?: 'IoRestorecommerceAuthRoleAssociation';
-              id?: string | null;
               role?: string | null;
+              attributes?:
+                | {
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?:
+                      | {
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }[]
+                      | null;
+                  }[]
+                | null;
             }[]
           | null;
         meta?: {
@@ -6618,8 +6644,21 @@ export interface OrderFragmentFragment {
     roleAssociations?:
       | {
           __typename?: 'IoRestorecommerceAuthRoleAssociation';
-          id?: string | null;
           role?: string | null;
+          attributes?:
+            | {
+                __typename?: 'IoRestorecommerceAttributeAttribute';
+                id?: string | null;
+                value?: string | null;
+                attributes?:
+                  | {
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }[]
+                  | null;
+              }[]
+            | null;
         }[]
       | null;
     meta?: {
@@ -6936,6 +6975,13 @@ export interface RoleFragmentFragment {
   name?: string | null;
   description?: string | null;
   assignableByRoles?: string[] | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+  } | null;
 }
 
 export interface ShopFragmentFragment {
@@ -7075,13 +7121,33 @@ export interface UserRoleFragmentFragment {
         name?: string | null;
         description?: string | null;
         assignableByRoles?: string[] | null;
+        meta?: {
+          __typename?: 'IoRestorecommerceMetaMeta';
+          created?: unknown | null;
+          modified?: unknown | null;
+          createdBy?: string | null;
+          modifiedBy?: string | null;
+        } | null;
       }[]
     | null;
   roleAssociations?:
     | {
         __typename?: 'IoRestorecommerceAuthRoleAssociation';
-        id?: string | null;
         role?: string | null;
+        attributes?:
+          | {
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+              attributes?:
+                | {
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }[]
+                | null;
+            }[]
+          | null;
       }[]
     | null;
   meta?: {
@@ -7109,8 +7175,21 @@ export interface UserFragmentFragment {
   roleAssociations?:
     | {
         __typename?: 'IoRestorecommerceAuthRoleAssociation';
-        id?: string | null;
         role?: string | null;
+        attributes?:
+          | {
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+              attributes?:
+                | {
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }[]
+                | null;
+            }[]
+          | null;
       }[]
     | null;
   meta?: {
@@ -7120,31 +7199,6 @@ export interface UserFragmentFragment {
     createdBy?: string | null;
     modifiedBy?: string | null;
   } | null;
-}
-
-export type FulfillmentFulfillmentDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface FulfillmentFulfillmentDeleteMutation {
-  __typename?: 'Mutation';
-  fulfillment: {
-    __typename?: 'FulfillmentMutation';
-    fulfillment: {
-      __typename?: 'FulfillmentFulfillmentMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
 }
 
 export type FulfillmentFulfillmentMutateMutationVariables = Exact<{
@@ -7185,6 +7239,31 @@ export interface FulfillmentFulfillmentMutateMutation {
                 } | null;
               }[]
             | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type FulfillmentFulfillmentDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface FulfillmentFulfillmentDeleteMutateMutation {
+  __typename?: 'Mutation';
+  fulfillment: {
+    __typename?: 'FulfillmentMutation';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -7235,31 +7314,6 @@ export interface FulfillmentFulfillmentReadQuery {
   };
 }
 
-export type IdentityRoleDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface IdentityRoleDeleteMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    role: {
-      __typename?: 'IdentityRoleMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
 export type IdentityRoleMutateMutationVariables = Exact<{
   input: IIoRestorecommerceRoleRoleList;
 }>;
@@ -7288,9 +7342,41 @@ export interface IdentityRoleMutateMutation {
                   name?: string | null;
                   description?: string | null;
                   assignableByRoles?: string[] | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
                 } | null;
               }[]
             | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityRoleDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface IdentityRoleDeleteMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    role: {
+      __typename?: 'IdentityRoleMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -7325,134 +7411,16 @@ export interface IdentityRoleReadQuery {
                   name?: string | null;
                   description?: string | null;
                   assignableByRoles?: string[] | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                  } | null;
                 } | null;
               }[]
             | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserActivateMutationVariables = Exact<{
-  input: IIoRestorecommerceUserActivateRequest;
-}>;
-
-export interface IdentityUserActivateMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      Activate?: {
-        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
-        details?: {
-          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserChangePasswordMutationVariables = Exact<{
-  input: IIoRestorecommerceUserChangePasswordRequest;
-}>;
-
-export interface IdentityUserChangePasswordMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      ChangePassword?: {
-        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
-        details?: {
-          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserConfirmEmailChangeMutationVariables = Exact<{
-  input: IIoRestorecommerceUserConfirmEmailChangeRequest;
-}>;
-
-export interface IdentityUserConfirmEmailChangeMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      ConfirmEmailChange?: {
-        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
-        details?: {
-          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserConfirmPasswordChangeMutationVariables = Exact<{
-  input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
-}>;
-
-export interface IdentityUserConfirmPasswordChangeMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      ConfirmPasswordChange?: {
-        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
-        details?: {
-          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface IdentityUserDeleteMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
         } | null;
       } | null;
     };
@@ -7494,8 +7462,21 @@ export interface IdentityUserFindByTokenQuery {
             roleAssociations?:
               | {
                   __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                  id?: string | null;
                   role?: string | null;
+                  attributes?:
+                    | {
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?:
+                          | {
+                              __typename?: 'IoRestorecommerceAttributeAttribute';
+                              id?: string | null;
+                              value?: string | null;
+                            }[]
+                          | null;
+                      }[]
+                    | null;
                 }[]
               | null;
             meta?: {
@@ -7550,8 +7531,21 @@ export interface IdentityUserFindQuery {
                   roleAssociations?:
                     | {
                         __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                        id?: string | null;
                         role?: string | null;
+                        attributes?:
+                          | {
+                              __typename?: 'IoRestorecommerceAttributeAttribute';
+                              id?: string | null;
+                              value?: string | null;
+                              attributes?:
+                                | {
+                                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                                    id?: string | null;
+                                    value?: string | null;
+                                  }[]
+                                | null;
+                            }[]
+                          | null;
                       }[]
                     | null;
                   meta?: {
@@ -7608,8 +7602,21 @@ export interface IdentityUserMutateMutation {
                   roleAssociations?:
                     | {
                         __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                        id?: string | null;
                         role?: string | null;
+                        attributes?:
+                          | {
+                              __typename?: 'IoRestorecommerceAttributeAttribute';
+                              id?: string | null;
+                              value?: string | null;
+                              attributes?:
+                                | {
+                                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                                    id?: string | null;
+                                    value?: string | null;
+                                  }[]
+                                | null;
+                            }[]
+                          | null;
                       }[]
                     | null;
                   meta?: {
@@ -7622,6 +7629,247 @@ export interface IdentityUserMutateMutation {
                 } | null;
               }[]
             | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserRegisterMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserRegisterRequest;
+}>;
+
+export interface IdentityUserRegisterMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      Register?: {
+        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceUserUserResponse';
+          status?: {
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          payload?: {
+            __typename?: 'IoRestorecommerceUserUser';
+            id?: string | null;
+            active?: boolean | null;
+            activationCode?: string | null;
+            email?: string | null;
+            newEmail?: string | null;
+            name?: string | null;
+            firstName?: string | null;
+            lastName?: string | null;
+            defaultScope?: string | null;
+            localeId?: string | null;
+            timezoneId?: string | null;
+            roleAssociations?:
+              | {
+                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                  role?: string | null;
+                  attributes?:
+                    | {
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?:
+                          | {
+                              __typename?: 'IoRestorecommerceAttributeAttribute';
+                              id?: string | null;
+                              value?: string | null;
+                            }[]
+                          | null;
+                      }[]
+                    | null;
+                }[]
+              | null;
+            meta?: {
+              __typename?: 'IoRestorecommerceMetaMeta';
+              created?: unknown | null;
+              modified?: unknown | null;
+              createdBy?: string | null;
+              modifiedBy?: string | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserActivateMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserActivateRequest;
+}>;
+
+export interface IdentityUserActivateMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      Activate?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserRequestEmailChangeMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserChangeEmailRequest;
+}>;
+
+export interface IdentityUserRequestEmailChangeMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      RequestEmailChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserConfirmEmailChangeMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserConfirmEmailChangeRequest;
+}>;
+
+export interface IdentityUserConfirmEmailChangeMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      ConfirmEmailChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserRequestPasswordChangeMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserRequestPasswordChangeRequest;
+}>;
+
+export interface IdentityUserRequestPasswordChangeMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      RequestPasswordChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserConfirmPasswordChangeMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserConfirmPasswordChangeRequest;
+}>;
+
+export interface IdentityUserConfirmPasswordChangeMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      ConfirmPasswordChange?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserChangePasswordMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceUserChangePasswordRequest;
+}>;
+
+export interface IdentityUserChangePasswordMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      ChangePassword?: {
+        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
+        details?: {
+          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type IdentityUserDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface IdentityUserDeleteMutateMutation {
+  __typename?: 'Mutation';
+  identity: {
+    __typename?: 'IdentityMutation';
+    user: {
+      __typename?: 'IdentityUserMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -7686,13 +7934,33 @@ export interface IdentityUserReadQuery {
                         name?: string | null;
                         description?: string | null;
                         assignableByRoles?: string[] | null;
+                        meta?: {
+                          __typename?: 'IoRestorecommerceMetaMeta';
+                          created?: unknown | null;
+                          modified?: unknown | null;
+                          createdBy?: string | null;
+                          modifiedBy?: string | null;
+                        } | null;
                       }[]
                     | null;
                   roleAssociations?:
                     | {
                         __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                        id?: string | null;
                         role?: string | null;
+                        attributes?:
+                          | {
+                              __typename?: 'IoRestorecommerceAttributeAttribute';
+                              id?: string | null;
+                              value?: string | null;
+                              attributes?:
+                                | {
+                                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                                    id?: string | null;
+                                    value?: string | null;
+                                  }[]
+                                | null;
+                            }[]
+                          | null;
                       }[]
                     | null;
                   meta?: {
@@ -7705,134 +7973,6 @@ export interface IdentityUserReadQuery {
                 } | null;
               }[]
             | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserRegisterMutationVariables = Exact<{
-  input: IIoRestorecommerceUserRegisterRequest;
-}>;
-
-export interface IdentityUserRegisterMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      Register?: {
-        __typename?: 'ProtoIoRestorecommerceUserUserResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceUserUserResponse';
-          status?: {
-            __typename?: 'IoRestorecommerceStatusStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-          payload?: {
-            __typename?: 'IoRestorecommerceUserUser';
-            id?: string | null;
-            active?: boolean | null;
-            activationCode?: string | null;
-            email?: string | null;
-            newEmail?: string | null;
-            name?: string | null;
-            firstName?: string | null;
-            lastName?: string | null;
-            defaultScope?: string | null;
-            localeId?: string | null;
-            timezoneId?: string | null;
-            roleAssociations?:
-              | {
-                  __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                  id?: string | null;
-                  role?: string | null;
-                }[]
-              | null;
-            meta?: {
-              __typename?: 'IoRestorecommerceMetaMeta';
-              created?: unknown | null;
-              modified?: unknown | null;
-              createdBy?: string | null;
-              modifiedBy?: string | null;
-            } | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserRequestEmailChangeMutationVariables = Exact<{
-  input: IIoRestorecommerceUserChangeEmailRequest;
-}>;
-
-export interface IdentityUserRequestEmailChangeMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      RequestEmailChange?: {
-        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
-        details?: {
-          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type IdentityUserRequestPasswordChangeMutationVariables = Exact<{
-  input: IIoRestorecommerceUserRequestPasswordChangeRequest;
-}>;
-
-export interface IdentityUserRequestPasswordChangeMutation {
-  __typename?: 'Mutation';
-  identity: {
-    __typename?: 'IdentityMutation';
-    user: {
-      __typename?: 'IdentityUserMutation';
-      RequestPasswordChange?: {
-        __typename?: 'ProtoIoRestorecommerceStatusOperationStatusObj';
-        details?: {
-          __typename?: 'IoRestorecommerceStatusOperationStatusObj';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type InvoicingInvoiceDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface InvoicingInvoiceDeleteMutation {
-  __typename?: 'Mutation';
-  invoicing: {
-    __typename?: 'InvoicingMutation';
-    invoice: {
-      __typename?: 'InvoicingInvoiceMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
         } | null;
       } | null;
     };
@@ -7877,6 +8017,31 @@ export interface InvoicingInvoiceMutateMutation {
                 } | null;
               }[]
             | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type InvoicingInvoiceDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface InvoicingInvoiceDeleteMutateMutation {
+  __typename?: 'Mutation';
+  invoicing: {
+    __typename?: 'InvoicingMutation';
+    invoice: {
+      __typename?: 'InvoicingInvoiceMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -8007,39 +8172,6 @@ export interface MasterDataAddressReadQuery {
   };
 }
 
-export type MasterDataCountryDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface MasterDataCountryDeleteMutation {
-  __typename?: 'Mutation';
-  master_data: {
-    __typename?: 'ResourceMutation';
-    country: {
-      __typename?: 'ResourceCountryMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-          status?:
-            | {
-                __typename?: 'IoRestorecommerceStatusStatus';
-                id?: string | null;
-                code?: number | null;
-                message?: string | null;
-              }[]
-            | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
 export type MasterDataCountryMutateMutationVariables = Exact<{
   input: IIoRestorecommerceCountryCountryList;
 }>;
@@ -8077,6 +8209,39 @@ export interface MasterDataCountryMutateMutation {
                     modifiedBy?: string | null;
                   } | null;
                 } | null;
+              }[]
+            | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type MasterDataCountryDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface MasterDataCountryDeleteMutateMutation {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    country: {
+      __typename?: 'ResourceCountryMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?:
+            | {
+                __typename?: 'IoRestorecommerceStatusStatus';
+                id?: string | null;
+                code?: number | null;
+                message?: string | null;
               }[]
             | null;
         } | null;
@@ -8248,31 +8413,6 @@ export interface MasterDataLocationReadQuery {
   };
 }
 
-export type MasterDataOrganizationDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface MasterDataOrganizationDeleteMutation {
-  __typename?: 'Mutation';
-  master_data: {
-    __typename?: 'ResourceMutation';
-    organization: {
-      __typename?: 'ResourceOrganizationMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
 export type MasterDataOrganizationMutateMutationVariables = Exact<{
   input: IIoRestorecommerceOrganizationOrganizationList;
 }>;
@@ -8368,6 +8508,31 @@ export interface MasterDataOrganizationMutateMutation {
                 } | null;
               }[]
             | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type MasterDataOrganizationDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface MasterDataOrganizationDeleteMutateMutation {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    organization: {
+      __typename?: 'ResourceOrganizationMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -8510,39 +8675,6 @@ export interface MasterDataTimezoneReadQuery {
                     modifiedBy?: string | null;
                   } | null;
                 } | null;
-              }[]
-            | null;
-        } | null;
-      } | null;
-    };
-  };
-}
-
-export type OrderingOrderDeleteMutationVariables = Exact<{
-  input: IIoRestorecommerceResourcebaseDeleteRequest;
-}>;
-
-export interface OrderingOrderDeleteMutation {
-  __typename?: 'Mutation';
-  ordering: {
-    __typename?: 'OrderingMutation';
-    order: {
-      __typename?: 'OrderingOrderMutation';
-      Delete?: {
-        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
-        details?: {
-          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
-          operationStatus?: {
-            __typename?: 'IoRestorecommerceStatusOperationStatus';
-            code?: number | null;
-            message?: string | null;
-          } | null;
-          status?:
-            | {
-                __typename?: 'IoRestorecommerceStatusStatus';
-                id?: string | null;
-                code?: number | null;
-                message?: string | null;
               }[]
             | null;
         } | null;
@@ -8995,8 +9127,21 @@ export interface OrderingOrderMutateMutation {
                         roleAssociations?:
                           | {
                               __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                              id?: string | null;
                               role?: string | null;
+                              attributes?:
+                                | {
+                                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                                    id?: string | null;
+                                    value?: string | null;
+                                    attributes?:
+                                      | {
+                                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                                          id?: string | null;
+                                          value?: string | null;
+                                        }[]
+                                      | null;
+                                  }[]
+                                | null;
                             }[]
                           | null;
                         meta?: {
@@ -9062,8 +9207,21 @@ export interface OrderingOrderMutateMutation {
                     roleAssociations?:
                       | {
                           __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                          id?: string | null;
                           role?: string | null;
+                          attributes?:
+                            | {
+                                __typename?: 'IoRestorecommerceAttributeAttribute';
+                                id?: string | null;
+                                value?: string | null;
+                                attributes?:
+                                  | {
+                                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                                      id?: string | null;
+                                      value?: string | null;
+                                    }[]
+                                  | null;
+                              }[]
+                            | null;
                         }[]
                       | null;
                     meta?: {
@@ -9157,6 +9315,39 @@ export interface OrderingOrderMutateMutation {
                     modifiedBy?: string | null;
                   } | null;
                 } | null;
+              }[]
+            | null;
+        } | null;
+      } | null;
+    };
+  };
+}
+
+export type OrderingOrderDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export interface OrderingOrderDeleteMutateMutation {
+  __typename?: 'Mutation';
+  ordering: {
+    __typename?: 'OrderingMutation';
+    order: {
+      __typename?: 'OrderingOrderMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?:
+            | {
+                __typename?: 'IoRestorecommerceStatusStatus';
+                id?: string | null;
+                code?: number | null;
+                message?: string | null;
               }[]
             | null;
         } | null;
@@ -9609,8 +9800,21 @@ export interface OrderingOrderReadQuery {
                         roleAssociations?:
                           | {
                               __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                              id?: string | null;
                               role?: string | null;
+                              attributes?:
+                                | {
+                                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                                    id?: string | null;
+                                    value?: string | null;
+                                    attributes?:
+                                      | {
+                                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                                          id?: string | null;
+                                          value?: string | null;
+                                        }[]
+                                      | null;
+                                  }[]
+                                | null;
                             }[]
                           | null;
                         meta?: {
@@ -9676,8 +9880,21 @@ export interface OrderingOrderReadQuery {
                     roleAssociations?:
                       | {
                           __typename?: 'IoRestorecommerceAuthRoleAssociation';
-                          id?: string | null;
                           role?: string | null;
+                          attributes?:
+                            | {
+                                __typename?: 'IoRestorecommerceAttributeAttribute';
+                                id?: string | null;
+                                value?: string | null;
+                                attributes?:
+                                  | {
+                                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                                      id?: string | null;
+                                      value?: string | null;
+                                    }[]
+                                  | null;
+                              }[]
+                            | null;
                         }[]
                       | null;
                     meta?: {
@@ -10056,8 +10273,15 @@ export const UserFragmentFragmentDoc = gql`
     localeId
     timezoneId
     roleAssociations {
-      id
       role
+      attributes {
+        id
+        value
+        attributes {
+          id
+          value
+        }
+      }
     }
     meta {
       ...MetaFragment
@@ -10209,7 +10433,11 @@ export const RoleFragmentFragmentDoc = gql`
     name
     description
     assignableByRoles
+    meta {
+      ...MetaFragment
+    }
   }
+  ${MetaFragmentFragmentDoc}
 `;
 export const UserRoleFragmentFragmentDoc = gql`
   fragment UserRoleFragment on IoRestorecommerceUserUserRole {
@@ -10242,8 +10470,15 @@ export const UserRoleFragmentFragmentDoc = gql`
       ...RoleFragment
     }
     roleAssociations {
-      id
       role
+      attributes {
+        id
+        value
+        attributes {
+          id
+          value
+        }
+      }
     }
     meta {
       ...MetaFragment
@@ -10252,38 +10487,6 @@ export const UserRoleFragmentFragmentDoc = gql`
   ${RoleFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
-export const CatalogProductDeleteDocument = gql`
-  mutation CatalogProductDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    catalog {
-      product {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class CatalogProductDeleteGQL extends Apollo.Mutation<
-  CatalogProductDeleteMutation,
-  CatalogProductDeleteMutationVariables
-> {
-  override document = CatalogProductDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const CatalogProductMutateDocument = gql`
   mutation CatalogProductMutate($input: IIoRestorecommerceProductProductList!) {
     catalog {
@@ -10320,6 +10523,38 @@ export class CatalogProductMutateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const CatalogProductDeleteMutateDocument = gql`
+  mutation CatalogProductDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    catalog {
+      product {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CatalogProductDeleteMutateGQL extends Apollo.Mutation<
+  CatalogProductDeleteMutateMutation,
+  CatalogProductDeleteMutateMutationVariables
+> {
+  override document = CatalogProductDeleteMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const CatalogProductReadDocument = gql`
   query CatalogProductRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
     catalog {
@@ -10351,38 +10586,6 @@ export class CatalogProductReadGQL extends Apollo.Query<
   CatalogProductReadQueryVariables
 > {
   override document = CatalogProductReadDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const FulfillmentFulfillmentDeleteDocument = gql`
-  mutation FulfillmentFulfillmentDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    fulfillment {
-      fulfillment {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class FulfillmentFulfillmentDeleteGQL extends Apollo.Mutation<
-  FulfillmentFulfillmentDeleteMutation,
-  FulfillmentFulfillmentDeleteMutationVariables
-> {
-  override document = FulfillmentFulfillmentDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -10426,6 +10629,38 @@ export class FulfillmentFulfillmentMutateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const FulfillmentFulfillmentDeleteMutateDocument = gql`
+  mutation FulfillmentFulfillmentDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    fulfillment {
+      fulfillment {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FulfillmentFulfillmentDeleteMutateGQL extends Apollo.Mutation<
+  FulfillmentFulfillmentDeleteMutateMutation,
+  FulfillmentFulfillmentDeleteMutateMutationVariables
+> {
+  override document = FulfillmentFulfillmentDeleteMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const FulfillmentFulfillmentReadDocument = gql`
   query FulfillmentFulfillmentRead(
     $input: IIoRestorecommerceResourcebaseReadRequest!
@@ -10459,38 +10694,6 @@ export class FulfillmentFulfillmentReadGQL extends Apollo.Query<
   FulfillmentFulfillmentReadQueryVariables
 > {
   override document = FulfillmentFulfillmentReadDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityRoleDeleteDocument = gql`
-  mutation IdentityRoleDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    identity {
-      role {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityRoleDeleteGQL extends Apollo.Mutation<
-  IdentityRoleDeleteMutation,
-  IdentityRoleDeleteMutationVariables
-> {
-  override document = IdentityRoleDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -10532,6 +10735,38 @@ export class IdentityRoleMutateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const IdentityRoleDeleteMutateDocument = gql`
+  mutation IdentityRoleDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    identity {
+      role {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityRoleDeleteMutateGQL extends Apollo.Mutation<
+  IdentityRoleDeleteMutateMutation,
+  IdentityRoleDeleteMutateMutationVariables
+> {
+  override document = IdentityRoleDeleteMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const IdentityRoleReadDocument = gql`
   query IdentityRoleRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
     identity {
@@ -10563,166 +10798,6 @@ export class IdentityRoleReadGQL extends Apollo.Query<
   IdentityRoleReadQueryVariables
 > {
   override document = IdentityRoleReadDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserActivateDocument = gql`
-  mutation IdentityUserActivate(
-    $input: IIoRestorecommerceUserActivateRequest!
-  ) {
-    identity {
-      user {
-        Activate(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserActivateGQL extends Apollo.Mutation<
-  IdentityUserActivateMutation,
-  IdentityUserActivateMutationVariables
-> {
-  override document = IdentityUserActivateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserChangePasswordDocument = gql`
-  mutation IdentityUserChangePassword(
-    $input: IIoRestorecommerceUserChangePasswordRequest!
-  ) {
-    identity {
-      user {
-        ChangePassword(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserChangePasswordGQL extends Apollo.Mutation<
-  IdentityUserChangePasswordMutation,
-  IdentityUserChangePasswordMutationVariables
-> {
-  override document = IdentityUserChangePasswordDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserConfirmEmailChangeDocument = gql`
-  mutation IdentityUserConfirmEmailChange(
-    $input: IIoRestorecommerceUserConfirmEmailChangeRequest!
-  ) {
-    identity {
-      user {
-        ConfirmEmailChange(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserConfirmEmailChangeGQL extends Apollo.Mutation<
-  IdentityUserConfirmEmailChangeMutation,
-  IdentityUserConfirmEmailChangeMutationVariables
-> {
-  override document = IdentityUserConfirmEmailChangeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserConfirmPasswordChangeDocument = gql`
-  mutation IdentityUserConfirmPasswordChange(
-    $input: IIoRestorecommerceUserConfirmPasswordChangeRequest!
-  ) {
-    identity {
-      user {
-        ConfirmPasswordChange(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserConfirmPasswordChangeGQL extends Apollo.Mutation<
-  IdentityUserConfirmPasswordChangeMutation,
-  IdentityUserConfirmPasswordChangeMutationVariables
-> {
-  override document = IdentityUserConfirmPasswordChangeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserDeleteDocument = gql`
-  mutation IdentityUserDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    identity {
-      user {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserDeleteGQL extends Apollo.Mutation<
-  IdentityUserDeleteMutation,
-  IdentityUserDeleteMutationVariables
-> {
-  override document = IdentityUserDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -10836,6 +10911,266 @@ export class IdentityUserMutateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const IdentityUserRegisterMutateDocument = gql`
+  mutation IdentityUserRegisterMutate(
+    $input: IIoRestorecommerceUserRegisterRequest!
+  ) {
+    identity {
+      user {
+        Register(input: $input) {
+          details {
+            status {
+              code
+              message
+            }
+            payload {
+              ...UserFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${UserFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserRegisterMutateGQL extends Apollo.Mutation<
+  IdentityUserRegisterMutateMutation,
+  IdentityUserRegisterMutateMutationVariables
+> {
+  override document = IdentityUserRegisterMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserActivateMutateDocument = gql`
+  mutation IdentityUserActivateMutate(
+    $input: IIoRestorecommerceUserActivateRequest!
+  ) {
+    identity {
+      user {
+        Activate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserActivateMutateGQL extends Apollo.Mutation<
+  IdentityUserActivateMutateMutation,
+  IdentityUserActivateMutateMutationVariables
+> {
+  override document = IdentityUserActivateMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserRequestEmailChangeMutateDocument = gql`
+  mutation IdentityUserRequestEmailChangeMutate(
+    $input: IIoRestorecommerceUserChangeEmailRequest!
+  ) {
+    identity {
+      user {
+        RequestEmailChange(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserRequestEmailChangeMutateGQL extends Apollo.Mutation<
+  IdentityUserRequestEmailChangeMutateMutation,
+  IdentityUserRequestEmailChangeMutateMutationVariables
+> {
+  override document = IdentityUserRequestEmailChangeMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserConfirmEmailChangeMutateDocument = gql`
+  mutation IdentityUserConfirmEmailChangeMutate(
+    $input: IIoRestorecommerceUserConfirmEmailChangeRequest!
+  ) {
+    identity {
+      user {
+        ConfirmEmailChange(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserConfirmEmailChangeMutateGQL extends Apollo.Mutation<
+  IdentityUserConfirmEmailChangeMutateMutation,
+  IdentityUserConfirmEmailChangeMutateMutationVariables
+> {
+  override document = IdentityUserConfirmEmailChangeMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserRequestPasswordChangeMutateDocument = gql`
+  mutation IdentityUserRequestPasswordChangeMutate(
+    $input: IIoRestorecommerceUserRequestPasswordChangeRequest!
+  ) {
+    identity {
+      user {
+        RequestPasswordChange(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserRequestPasswordChangeMutateGQL extends Apollo.Mutation<
+  IdentityUserRequestPasswordChangeMutateMutation,
+  IdentityUserRequestPasswordChangeMutateMutationVariables
+> {
+  override document = IdentityUserRequestPasswordChangeMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserConfirmPasswordChangeMutateDocument = gql`
+  mutation IdentityUserConfirmPasswordChangeMutate(
+    $input: IIoRestorecommerceUserConfirmPasswordChangeRequest!
+  ) {
+    identity {
+      user {
+        ConfirmPasswordChange(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserConfirmPasswordChangeMutateGQL extends Apollo.Mutation<
+  IdentityUserConfirmPasswordChangeMutateMutation,
+  IdentityUserConfirmPasswordChangeMutateMutationVariables
+> {
+  override document = IdentityUserConfirmPasswordChangeMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserChangePasswordMutateDocument = gql`
+  mutation IdentityUserChangePasswordMutate(
+    $input: IIoRestorecommerceUserChangePasswordRequest!
+  ) {
+    identity {
+      user {
+        ChangePassword(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserChangePasswordMutateGQL extends Apollo.Mutation<
+  IdentityUserChangePasswordMutateMutation,
+  IdentityUserChangePasswordMutateMutationVariables
+> {
+  override document = IdentityUserChangePasswordMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const IdentityUserDeleteMutateDocument = gql`
+  mutation IdentityUserDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    identity {
+      user {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IdentityUserDeleteMutateGQL extends Apollo.Mutation<
+  IdentityUserDeleteMutateMutation,
+  IdentityUserDeleteMutateMutationVariables
+> {
+  override document = IdentityUserDeleteMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const IdentityUserReadDocument = gql`
   query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
     identity {
@@ -10867,138 +11202,6 @@ export class IdentityUserReadGQL extends Apollo.Query<
   IdentityUserReadQueryVariables
 > {
   override document = IdentityUserReadDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserRegisterDocument = gql`
-  mutation IdentityUserRegister(
-    $input: IIoRestorecommerceUserRegisterRequest!
-  ) {
-    identity {
-      user {
-        Register(input: $input) {
-          details {
-            status {
-              code
-              message
-            }
-            payload {
-              ...UserFragment
-            }
-          }
-        }
-      }
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserRegisterGQL extends Apollo.Mutation<
-  IdentityUserRegisterMutation,
-  IdentityUserRegisterMutationVariables
-> {
-  override document = IdentityUserRegisterDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserRequestEmailChangeDocument = gql`
-  mutation IdentityUserRequestEmailChange(
-    $input: IIoRestorecommerceUserChangeEmailRequest!
-  ) {
-    identity {
-      user {
-        RequestEmailChange(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserRequestEmailChangeGQL extends Apollo.Mutation<
-  IdentityUserRequestEmailChangeMutation,
-  IdentityUserRequestEmailChangeMutationVariables
-> {
-  override document = IdentityUserRequestEmailChangeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const IdentityUserRequestPasswordChangeDocument = gql`
-  mutation IdentityUserRequestPasswordChange(
-    $input: IIoRestorecommerceUserRequestPasswordChangeRequest!
-  ) {
-    identity {
-      user {
-        RequestPasswordChange(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class IdentityUserRequestPasswordChangeGQL extends Apollo.Mutation<
-  IdentityUserRequestPasswordChangeMutation,
-  IdentityUserRequestPasswordChangeMutationVariables
-> {
-  override document = IdentityUserRequestPasswordChangeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InvoicingInvoiceDeleteDocument = gql`
-  mutation InvoicingInvoiceDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    invoicing {
-      invoice {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class InvoicingInvoiceDeleteGQL extends Apollo.Mutation<
-  InvoicingInvoiceDeleteMutation,
-  InvoicingInvoiceDeleteMutationVariables
-> {
-  override document = InvoicingInvoiceDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -11037,6 +11240,38 @@ export class InvoicingInvoiceMutateGQL extends Apollo.Mutation<
   InvoicingInvoiceMutateMutationVariables
 > {
   override document = InvoicingInvoiceMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const InvoicingInvoiceDeleteMutateDocument = gql`
+  mutation InvoicingInvoiceDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    invoicing {
+      invoice {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InvoicingInvoiceDeleteMutateGQL extends Apollo.Mutation<
+  InvoicingInvoiceDeleteMutateMutation,
+  InvoicingInvoiceDeleteMutateMutationVariables
+> {
+  override document = InvoicingInvoiceDeleteMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -11118,43 +11353,6 @@ export class MasterDataAddressReadGQL extends Apollo.Query<
     super(apollo);
   }
 }
-export const MasterDataCountryDeleteDocument = gql`
-  mutation MasterDataCountryDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    master_data {
-      country {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-            status {
-              id
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MasterDataCountryDeleteGQL extends Apollo.Mutation<
-  MasterDataCountryDeleteMutation,
-  MasterDataCountryDeleteMutationVariables
-> {
-  override document = MasterDataCountryDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const MasterDataCountryMutateDocument = gql`
   mutation MasterDataCountryMutate(
     $input: IIoRestorecommerceCountryCountryList!
@@ -11188,6 +11386,43 @@ export class MasterDataCountryMutateGQL extends Apollo.Mutation<
   MasterDataCountryMutateMutationVariables
 > {
   override document = MasterDataCountryMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCountryDeleteMutateDocument = gql`
+  mutation MasterDataCountryDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      country {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCountryDeleteMutateGQL extends Apollo.Mutation<
+  MasterDataCountryDeleteMutateMutation,
+  MasterDataCountryDeleteMutateMutationVariables
+> {
+  override document = MasterDataCountryDeleteMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -11307,38 +11542,6 @@ export class MasterDataLocationReadGQL extends Apollo.Query<
     super(apollo);
   }
 }
-export const MasterDataOrganizationDeleteDocument = gql`
-  mutation MasterDataOrganizationDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    master_data {
-      organization {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MasterDataOrganizationDeleteGQL extends Apollo.Mutation<
-  MasterDataOrganizationDeleteMutation,
-  MasterDataOrganizationDeleteMutationVariables
-> {
-  override document = MasterDataOrganizationDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const MasterDataOrganizationMutateDocument = gql`
   mutation MasterDataOrganizationMutate(
     $input: IIoRestorecommerceOrganizationOrganizationList!
@@ -11372,6 +11575,38 @@ export class MasterDataOrganizationMutateGQL extends Apollo.Mutation<
   MasterDataOrganizationMutateMutationVariables
 > {
   override document = MasterDataOrganizationMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataOrganizationDeleteMutateDocument = gql`
+  mutation MasterDataOrganizationDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      organization {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataOrganizationDeleteMutateGQL extends Apollo.Mutation<
+  MasterDataOrganizationDeleteMutateMutation,
+  MasterDataOrganizationDeleteMutateMutationVariables
+> {
+  override document = MasterDataOrganizationDeleteMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -11453,43 +11688,6 @@ export class MasterDataTimezoneReadGQL extends Apollo.Query<
     super(apollo);
   }
 }
-export const OrderingOrderDeleteDocument = gql`
-  mutation OrderingOrderDelete(
-    $input: IIoRestorecommerceResourcebaseDeleteRequest!
-  ) {
-    ordering {
-      order {
-        Delete(input: $input) {
-          details {
-            operationStatus {
-              code
-              message
-            }
-            status {
-              id
-              code
-              message
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class OrderingOrderDeleteGQL extends Apollo.Mutation<
-  OrderingOrderDeleteMutation,
-  OrderingOrderDeleteMutationVariables
-> {
-  override document = OrderingOrderDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const OrderingOrderMutateDocument = gql`
   mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
     ordering {
@@ -11521,6 +11719,43 @@ export class OrderingOrderMutateGQL extends Apollo.Mutation<
   OrderingOrderMutateMutationVariables
 > {
   override document = OrderingOrderMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const OrderingOrderDeleteMutateDocument = gql`
+  mutation OrderingOrderDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    ordering {
+      order {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderingOrderDeleteMutateGQL extends Apollo.Mutation<
+  OrderingOrderDeleteMutateMutation,
+  OrderingOrderDeleteMutateMutationVariables
+> {
+  override document = OrderingOrderDeleteMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

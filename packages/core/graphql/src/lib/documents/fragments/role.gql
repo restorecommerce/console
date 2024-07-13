@@ -3,4 +3,7 @@ fragment RoleFragment on IoRestorecommerceRoleRole {
   name
   description
   assignableByRoles
+  meta {
+    ...MetaFragment
+  }
 }

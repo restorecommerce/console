@@ -19,3 +19,25 @@ mutation MasterDataCountryMutate(
     }
   }
 }
+
+mutation MasterDataCountryDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  master_data {
+    country {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
