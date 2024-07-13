@@ -1,19 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
+import { CountryFacade } from '@console-core/state';
 import { ICountry } from '@console-core/types';
 
 interface ISchemaOptions {
-  country?: ICountry;
+  country: ICountry | null;
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class JssFormsService {
-  buildCountrySchema({ country }: ISchemaOptions): VCLFormFieldSchemaRoot {
+export class JssFormService {
+  country: ICountry | null = null;
+
+  countrySchema$ = new BehaviorSubject<VCLFormFieldSchemaRoot>(
+    this.buildCountrySchema({ country: null })
+  );
+
+  private destroy$ = new Subject<void>();
+
+  constructor(private readonly countryFacade: CountryFacade) {
+    this.init();
+  }
+
+  init() {
+    combineLatest({
+      country: this.countryFacade.selected$,
+    })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(({ country }) => {
+        this.countrySchema$.next(this.buildCountrySchema({ country }));
+      });
+  }
+
+  destroy() {
+    this.countrySchema$.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private buildCountrySchema({
+    country,
+  }: ISchemaOptions): VCLFormFieldSchemaRoot {
     return {
       type: 'form',
       fields: [
@@ -78,7 +111,6 @@ export class JssFormsService {
             selectionMode: 'multiple',
             clearable: true,
             search: false,
-            // TODO: Load from API
             options: [
               {
                 label: 'EU',
