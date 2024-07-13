@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   OnDestroy,
   ChangeDetectorRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink';
@@ -35,7 +36,11 @@ import { IBreadcrumb } from '@console-core/types';
                 <vcl-icon icon="vcl:arrow-right" />
               </li>
               <ng-container
-                *ngFor="let breadcrumb of breadcrumbs; let last = last"
+                *ngFor="
+                  let breadcrumb of breadcrumbs;
+                  let last = last;
+                  trackBy: trackByFn
+                "
               >
                 <li [ngClass]="{ selected: last }">
                   <ng-container *ngIf="!last">
@@ -59,6 +64,7 @@ import { IBreadcrumb } from '@console-core/types';
       </nav>
     </ng-container>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   title = '';
@@ -76,26 +82,30 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.subscriptions.sink = this.routerFacade.eventsNavigationEnd$.subscribe(
       () => {
-        this.breadcrumbs = this.createBreadcrumbs(
-          this.activatedRoute.root
-        ).reduce((acc, { label, url }) => {
-          if (
-            label !== '' &&
-            !acc.some((breadcrumb) => breadcrumb.url === url)
-          ) {
-            acc.push({ label, url });
-          }
-          return acc;
-        }, [] as IBreadcrumb[]);
-
-        this.title = this.breadcrumbs[this.breadcrumbs.length - 1]?.label ?? '';
-        this.changeDetectorRef.detectChanges();
+        this.updateBreadcrumbs();
       }
     );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  private updateBreadcrumbs(): void {
+    const newBreadcrumbs = this.createBreadcrumbs(
+      this.activatedRoute.root
+    ).reduce((acc, { label, url }) => {
+      if (label !== '' && !acc.some((breadcrumb) => breadcrumb.url === url)) {
+        acc.push({ label, url });
+      }
+      return acc;
+    }, [] as IBreadcrumb[]);
+
+    if (this.breadcrumbs !== newBreadcrumbs) {
+      this.breadcrumbs = newBreadcrumbs;
+      this.title = this.breadcrumbs[this.breadcrumbs.length - 1]?.label ?? '';
+      this.changeDetectorRef.markForCheck();
+    }
   }
 
   private createBreadcrumbs(
@@ -118,10 +128,23 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
         url += `/${routeURL}`;
       }
 
-      breadcrumbs.push({ label: child.snapshot.title ?? '', url: url });
+      const label =
+        child.snapshot.data['breadcrumb'] ?? child.snapshot.title ?? '';
+
+      if (
+        label !== '' &&
+        label !== breadcrumbs[breadcrumbs.length - 1]?.label
+      ) {
+        breadcrumbs.push({ label, url });
+      }
+
       return this.createBreadcrumbs(child, url, breadcrumbs);
     }
 
     return breadcrumbs;
+  }
+
+  trackByFn(index: number, item: IBreadcrumb): string {
+    return item.url;
   }
 }
