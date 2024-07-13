@@ -1,9 +1,12 @@
 import {
+  IoRestorecommerceAuthRoleAssociation,
   IoRestorecommerceUserUser,
   IoRestorecommerceUserUserRole,
 } from '@console-core/graphql';
 
 import { IMeta } from './meta';
+import { IOrganization } from './organization';
+import { IRole } from './role';
 
 export interface IUser
   extends Omit<
@@ -34,12 +37,11 @@ export interface IUser
   firstName: string;
   lastName: string;
   fullName: string;
-  roleAssociations: {
-    id: string;
-    role: string;
-  }[];
-  isSuperAdministrator: boolean;
-  isAdministrator: boolean;
-  isUser: boolean;
+  roleAssociations: IoRestorecommerceAuthRoleAssociation[];
   meta: IMeta;
+}
+
+export interface IRoleAssociationScopingInstance {
+  role: IRole | null;
+  organization: IOrganization | null;
 }

@@ -14,7 +14,7 @@ export class Notifier {
         .forEach((notification) => {
           this.notifierService[notification.type]({
             content: notification.content,
-            position: NotifierPosition.TopRight,
+            position: NotifierPosition.BottomRight,
           });
         });
     });
