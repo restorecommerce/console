@@ -66,7 +66,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userMutateRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),
@@ -91,7 +91,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangeEmailRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),
@@ -115,7 +115,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userConfirmEmailChangeRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),
@@ -139,7 +139,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userChangePasswordRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),
@@ -163,7 +163,7 @@ const reducer = createReducer<IAccountState>(
     accountActions.userRemoveRequest,
     (state): IAccountState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),

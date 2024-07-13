@@ -121,6 +121,28 @@ const reducer = createReducer<IIamState>(
     })
   ),
   on(
+    userActions.userChangePasswordRequest,
+    (state): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    userActions.userChangePasswordSuccess,
+    (state): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Succeeded,
+    })
+  ),
+  on(
+    userActions.userChangePasswordFail,
+    (state, { error }): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
     userActions.userRemoveRequest,
     (state): IIamState => ({
       ...state,

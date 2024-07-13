@@ -7,8 +7,8 @@ import {
   IIoRestorecommerceProductProductList,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
-  CatalogProductDeleteGQL,
-  CatalogProductDeleteMutation,
+  CatalogProductDeleteMutateGQL,
+  CatalogProductDeleteMutateMutation,
   CatalogProductMutateGQL,
   CatalogProductMutateMutation,
   CatalogProductReadGQL,
@@ -22,7 +22,7 @@ export class ProductService {
   constructor(
     private readonly catalogProductReadGQL: CatalogProductReadGQL,
     private readonly catalogProductMutateGQL: CatalogProductMutateGQL,
-    private readonly catalogProductDeleteGQL: CatalogProductDeleteGQL
+    private readonly catalogProductDeleteMutateGQL: CatalogProductDeleteMutateGQL
   ) {}
 
   read(
@@ -43,8 +43,8 @@ export class ProductService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<CatalogProductDeleteMutation>> {
-    return this.catalogProductDeleteGQL.mutate({
+  ): Observable<MutationResult<CatalogProductDeleteMutateMutation>> {
+    return this.catalogProductDeleteMutateGQL.mutate({
       input: payload,
     });
   }

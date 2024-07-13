@@ -7,8 +7,8 @@ import {
   IIoRestorecommerceCountryCountryList,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
-  MasterDataCountryDeleteGQL,
-  MasterDataCountryDeleteMutation,
+  MasterDataCountryDeleteMutateGQL,
+  MasterDataCountryDeleteMutateMutation,
   MasterDataCountryMutateGQL,
   MasterDataCountryMutateMutation,
   MasterDataCountryReadGQL,
@@ -22,7 +22,7 @@ export class CountryService {
   constructor(
     private readonly masterDataCountryReadGQL: MasterDataCountryReadGQL,
     private readonly masterDataCountryMutateGQL: MasterDataCountryMutateGQL,
-    private readonly masterDataCountryDeleteGQL: MasterDataCountryDeleteGQL
+    private readonly masterDataCountryDeleteMutateGQL: MasterDataCountryDeleteMutateGQL
   ) {}
 
   read(
@@ -43,8 +43,8 @@ export class CountryService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<MasterDataCountryDeleteMutation>> {
-    return this.masterDataCountryDeleteGQL.mutate({
+  ): Observable<MutationResult<MasterDataCountryDeleteMutateMutation>> {
+    return this.masterDataCountryDeleteMutateGQL.mutate({
       input: payload,
     });
   }

@@ -32,6 +32,8 @@ export class IamFacade {
     this.store.dispatch(userActions.userCreateRequest({ payload }));
   update = (payload: IIoRestorecommerceUserUserList) =>
     this.store.dispatch(userActions.userUpdateRequest({ payload }));
+  changePassword = (payload: IIoRestorecommerceUserUserList) =>
+    this.store.dispatch(userActions.userChangePasswordRequest({ payload }));
   remove = (payload: { id: string }) =>
     this.store.dispatch(userActions.userRemoveRequest({ payload }));
 

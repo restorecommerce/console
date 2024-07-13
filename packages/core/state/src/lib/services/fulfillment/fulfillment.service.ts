@@ -7,8 +7,8 @@ import {
   IIoRestorecommerceFulfillmentFulfillmentList,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
-  FulfillmentFulfillmentDeleteGQL,
-  FulfillmentFulfillmentDeleteMutation,
+  FulfillmentFulfillmentDeleteMutateGQL,
+  FulfillmentFulfillmentDeleteMutateMutation,
   FulfillmentFulfillmentMutateGQL,
   FulfillmentFulfillmentMutateMutation,
   FulfillmentFulfillmentReadGQL,
@@ -22,7 +22,7 @@ export class FulfillmentService {
   constructor(
     private readonly invoicingFulfillmentReadGQL: FulfillmentFulfillmentReadGQL,
     private readonly invoicingFulfillmentMutateGQL: FulfillmentFulfillmentMutateGQL,
-    private readonly invoicingFulfillmentDeleteGQL: FulfillmentFulfillmentDeleteGQL
+    private readonly invoicingFulfillmentDeleteMutateGQL: FulfillmentFulfillmentDeleteMutateGQL
   ) {}
 
   read(
@@ -43,8 +43,8 @@ export class FulfillmentService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<FulfillmentFulfillmentDeleteMutation>> {
-    return this.invoicingFulfillmentDeleteGQL.mutate({
+  ): Observable<MutationResult<FulfillmentFulfillmentDeleteMutateMutation>> {
+    return this.invoicingFulfillmentDeleteMutateGQL.mutate({
       input: payload,
     });
   }

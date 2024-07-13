@@ -71,6 +71,20 @@ export const userUpdateFail = createAction(
   props<{ error: string }>()
 );
 
+export const userChangePasswordRequest = createAction(
+  '[IAM] User change password request',
+  props<{ payload: IIoRestorecommerceUserUserList }>()
+);
+
+export const userChangePasswordSuccess = createAction(
+  '[IAM] User change password success'
+);
+
+export const userChangePasswordFail = createAction(
+  '[IAM] User change password fail',
+  props<{ error: string }>()
+);
+
 export const userRemoveRequest = createAction(
   '[IAM] User remove request',
   props<{ payload: { id: string } }>()

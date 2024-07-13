@@ -6,6 +6,7 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
+  IIoRestorecommerceUserUser,
   IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
@@ -37,9 +38,7 @@ export class IamEffects {
             const payload = (
               result?.data?.identity?.user?.Read?.details?.items || []
             )?.map((item) =>
-              this.userService.getUserWithRolesAndFullName(
-                item?.payload as IUser
-              )
+              this.userService.getUserFormatted(item?.payload as IUser)
             ) as IUser[];
             return userActions.userReadRequestSuccess({ payload });
           }),
@@ -82,8 +81,7 @@ export class IamEffects {
               const first =
                 result?.data?.identity?.user?.Read?.details?.items?.pop()
                   ?.payload as IUser;
-              const payload =
-                this.userService.getUserWithRolesAndFullName(first);
+              const payload = this.userService.getUserFormatted(first);
               return userActions.userReadOneByIdRequestSuccess({ payload });
             }),
             catchError((error: Error) =>
@@ -115,7 +113,7 @@ export class IamEffects {
                 ?.payload as IUser;
 
             return userActions.userCreateSuccess({
-              payload: this.userService.getUserWithRolesAndFullName(payload),
+              payload: this.userService.getUserFormatted(payload),
             });
           }),
           catchError((error: Error) =>
@@ -151,27 +149,53 @@ export class IamEffects {
   userUpdateRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(userActions.userUpdateRequest),
-      switchMap(({ payload }) =>
-        this.userService.mutate(payload).pipe(
-          tap((result) => {
-            this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.identity?.user?.Mutate?.details
-                ?.operationStatus as TOperationStatus
-            );
-          }),
-          map((result) => {
-            const payload =
-              result?.data?.identity?.user?.Mutate?.details?.items?.pop()
-                ?.payload as IUser;
-            return userActions.userUpdateSuccess({
-              payload: this.userService.getUserWithRolesAndFullName(payload),
-            });
-          }),
-          catchError((error: Error) =>
-            of(userActions.userUpdateFail({ error: error.message }))
-          )
-        )
-      )
+      switchMap(({ payload }) => {
+        const items = (payload.items || []).map((item) => {
+          return {
+            ...item,
+            roleAssociations: item.roleAssociations?.map((ra) => ({
+              role: ra.role,
+              attributes: [
+                {
+                  id: 'urn:restorecommerce:acs:names:roleScopingEntity',
+                  value: 'urn:restorecommerce:acs:model:user.User',
+                  attributes: [
+                    {
+                      id: 'urn:restorecommerce:acs:names:roleScopingInstance',
+                      value: ra.attributes,
+                    },
+                  ],
+                },
+              ],
+            })),
+          } as IIoRestorecommerceUserUser;
+        });
+
+        return this.userService
+          .mutate({
+            ...payload,
+            items,
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.identity?.user?.Mutate?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload =
+                result?.data?.identity?.user?.Mutate?.details?.items?.pop()
+                  ?.payload as IUser;
+              return userActions.userUpdateSuccess({
+                payload: this.userService.getUserFormatted(payload),
+              });
+            }),
+            catchError((error: Error) =>
+              of(userActions.userUpdateFail({ error: error.message }))
+            )
+          );
+      })
     );
   });
 
@@ -182,6 +206,43 @@ export class IamEffects {
         tap(() => {
           this.appFacade.addNotification({
             content: 'user updated',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  userChangePasswordRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(userActions.userChangePasswordRequest),
+      switchMap(({ payload }) => {
+        return this.userService.mutate(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.identity?.user?.Mutate?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map(() => {
+            return userActions.userChangePasswordSuccess();
+          }),
+          catchError((error: Error) =>
+            of(userActions.userChangePasswordFail({ error: error.message }))
+          )
+        );
+      })
+    );
+  });
+
+  userChangePasswordSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(userActions.userChangePasswordSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'password changed',
             type: ENotificationTypes.Success,
           });
         })
@@ -238,6 +299,7 @@ export class IamEffects {
           userActions.userReadOneByIdRequestFail,
           userActions.userCreateFail,
           userActions.userUpdateFail,
+          userActions.userChangePasswordFail,
           userActions.userRemoveFail
         ),
         tap(({ error }) => {

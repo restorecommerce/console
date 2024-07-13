@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { AUTH } from '@console-core/config';
 import {
   IIoRestorecommerceUserRegisterRequest,
-  IdentityUserRegisterGQL,
-  IdentityUserRegisterMutation,
+  IdentityUserRegisterMutateGQL,
+  IdentityUserRegisterMutateMutation,
 } from '@console-core/graphql';
 import {
   IAuthnTokenSignInPayload,
@@ -27,12 +27,12 @@ export class AuthnService {
     @Inject('oidcKey') private oidcKey: string,
     private readonly httpClient: HttpClient,
     private readonly apiService: ApiService,
-    private readonly identityUserRegisterGQL: IdentityUserRegisterGQL
+    private readonly identityUserRegisterGQL: IdentityUserRegisterMutateGQL
   ) {}
 
   signUp(
     payload: IIoRestorecommerceUserRegisterRequest
-  ): Observable<MutationResult<IdentityUserRegisterMutation>> {
+  ): Observable<MutationResult<IdentityUserRegisterMutateMutation>> {
     return this.identityUserRegisterGQL.mutate({
       input: payload,
     });

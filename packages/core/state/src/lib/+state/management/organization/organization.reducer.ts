@@ -14,6 +14,13 @@ export const adapter: EntityAdapter<IOrganization> =
 
 export const initialState: IOrganizationState = adapter.getInitialState({
   selectedId: null,
+  selectedGlobalOrganizationId: null,
+  selectedParentId: null,
+  parentIds: [],
+  parentEntities: {},
+  selectedChildId: null,
+  childIds: [],
+  childEntities: {},
   actionStatus: EActionStatus.INIT,
   error: null,
 });
@@ -37,6 +44,37 @@ const reducer = createReducer<IOrganizationState>(
   ),
   on(
     organizationActions.organizationReadRequestFail,
+    (state, { error }): IOrganizationState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
+    organizationActions.organizationReadParentsRequest,
+    (state): IOrganizationState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    organizationActions.organizationReadParentsRequestSuccess,
+    (state, { payload }): IOrganizationState => {
+      const parentIds = payload.map((o) => o.id);
+      const parentEntities = payload.reduce(
+        (acc, o) => ({ ...acc, [o.id]: o }),
+        {}
+      );
+      return {
+        ...state,
+        parentIds,
+        parentEntities,
+        actionStatus: EActionStatus.Succeeded,
+      };
+    }
+  ),
+  on(
+    organizationActions.organizationReadParentsRequestFail,
     (state, { error }): IOrganizationState => ({
       ...state,
       actionStatus: EActionStatus.Failed,
@@ -74,6 +112,13 @@ const reducer = createReducer<IOrganizationState>(
     (state, { payload }): IOrganizationState => ({
       ...state,
       selectedId: payload,
+    })
+  ),
+  on(
+    organizationActions.setSelectedGlobalOrganizationId,
+    (state, { payload }): IOrganizationState => ({
+      ...state,
+      selectedGlobalOrganizationId: payload,
     })
   ),
   on(

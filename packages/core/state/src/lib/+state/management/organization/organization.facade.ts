@@ -30,6 +30,36 @@ export class OrganizationFacade {
   readonly selected$ = this.store.select(
     organizationSelectors.selectOrganizationSelected
   );
+  readonly parentIds$ = this.store.select(
+    organizationSelectors.selectOrganizationParentIds
+  );
+  readonly parentEntities$ = this.store.select(
+    organizationSelectors.selectOrganizationParentEntities
+  );
+  readonly parentsAll$ = this.store.select(
+    organizationSelectors.selectOrganizationParentsAll
+  );
+  readonly selectedParentId$ = this.store.select(
+    organizationSelectors.selectOrganizationSelectedParentId
+  );
+  readonly selectedParent$ = this.store.select(
+    organizationSelectors.selectOrganizationSelectedParent
+  );
+  readonly childIds$ = this.store.select(
+    organizationSelectors.selectOrganizationChildIds
+  );
+  readonly childEntities$ = this.store.select(
+    organizationSelectors.selectOrganizationChildEntities
+  );
+  readonly childsAll$ = this.store.select(
+    organizationSelectors.selectOrganizationChildsAll
+  );
+  readonly globalOrganizationId$ = this.store.select(
+    organizationSelectors.selectOrganizationSelectedGlobalOrganizationId
+  );
+  readonly globalOrganization$ = this.store.select(
+    organizationSelectors.selectOrganizationSelectedGlobalOrganization
+  );
   readonly actionStatus$ = this.store.select(
     organizationSelectors.selectActionStatus
   );
@@ -40,12 +70,20 @@ export class OrganizationFacade {
     this.store.dispatch(
       organizationActions.organizationReadRequest({ payload })
     );
+  readParents = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
+    this.store.dispatch(
+      organizationActions.organizationReadParentsRequest({ payload })
+    );
   readOneById = (payload: { id: string }) =>
     this.store.dispatch(
       organizationActions.organizationReadOneByIdRequest({ payload })
     );
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(organizationActions.setSelectedId({ payload }));
+  setSelectedGlobalOrganizationId = (payload: string | null) =>
+    this.store.dispatch(
+      organizationActions.setSelectedGlobalOrganizationId({ payload })
+    );
   create = (payload: IIoRestorecommerceOrganizationOrganizationList) =>
     this.store.dispatch(
       organizationActions.organizationCreateRequest({ payload })

@@ -54,6 +54,54 @@ export class OrganizationEffects {
     );
   });
 
+  organizationReadParentsRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(organizationActions.organizationReadParentsRequest),
+      exhaustMap(({ payload }) => {
+        const payloadWithFilters = {
+          ...payload,
+          filters: [
+            {
+              filters: [
+                ...(payload.filters || []),
+                {
+                  field: 'parent_id',
+                  value: '',
+                  type: IoRestorecommerceResourcebaseFilterValueType.String,
+                  operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+                },
+              ],
+            },
+          ],
+        };
+        return this.organizationService.read(payloadWithFilters).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.master_data?.organization?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload = (
+              result?.data?.master_data?.organization?.Read?.details?.items ||
+              []
+            )?.map((item) => item?.payload) as IOrganization[];
+            return organizationActions.organizationReadParentsRequestSuccess({
+              payload,
+            });
+          }),
+          catchError((error: Error) =>
+            of(
+              organizationActions.organizationReadParentsRequestFail({
+                error: error.message,
+              })
+            )
+          )
+        );
+      })
+    );
+  });
+
   organizationReadOneByIdRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(organizationActions.organizationReadOneByIdRequest),
@@ -245,6 +293,7 @@ export class OrganizationEffects {
       return this.actions$.pipe(
         ofType(
           organizationActions.organizationReadRequestFail,
+          organizationActions.organizationReadParentsRequestFail,
           organizationActions.organizationReadOneByIdRequestFail,
           organizationActions.organizationCreateFail,
           organizationActions.organizationUpdateFail,

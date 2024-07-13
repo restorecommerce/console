@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client';
+import { Dictionary } from '@ngrx/entity';
 import { MutationResult } from 'apollo-angular';
 import { Observable } from 'rxjs';
 
@@ -12,58 +13,70 @@ import {
   IdentityUserFindGQL,
   IdentityUserFindQuery,
   IIoRestorecommerceUserFindRequest,
-  IdentityUserChangePasswordGQL,
-  IdentityUserChangePasswordMutation,
-  IdentityUserRequestEmailChangeGQL,
-  IdentityUserRequestEmailChangeMutation,
+  IdentityUserChangePasswordMutateGQL,
+  IdentityUserChangePasswordMutateMutation,
+  IdentityUserRequestEmailChangeMutateGQL,
+  IdentityUserRequestEmailChangeMutateMutation,
   IIoRestorecommerceUserChangeEmailRequest,
-  IdentityUserConfirmEmailChangeGQL,
-  IdentityUserConfirmEmailChangeMutation,
+  IdentityUserConfirmEmailChangeMutateGQL,
+  IdentityUserConfirmEmailChangeMutateMutation,
   IIoRestorecommerceUserConfirmEmailChangeRequest,
   IIoRestorecommerceUserChangePasswordRequest,
-  IdentityUserActivateGQL,
+  IdentityUserActivateMutateGQL,
   IIoRestorecommerceUserActivateRequest,
-  IdentityUserActivateMutation,
-  IdentityUserRequestPasswordChangeGQL,
-  IdentityUserConfirmPasswordChangeGQL,
+  IdentityUserActivateMutateMutation,
+  IdentityUserRequestPasswordChangeMutateGQL,
+  IdentityUserConfirmPasswordChangeMutateGQL,
   IIoRestorecommerceUserRequestPasswordChangeRequest,
-  IdentityUserRequestPasswordChangeMutation,
+  IdentityUserRequestPasswordChangeMutateMutation,
   IIoRestorecommerceUserConfirmPasswordChangeRequest,
-  IdentityUserConfirmPasswordChangeMutation,
+  IdentityUserConfirmPasswordChangeMutateMutation,
   IIoRestorecommerceResourcebaseReadRequest,
   IdentityUserReadGQL,
   IdentityUserReadQuery,
   IdentityUserMutateGQL,
   IdentityUserMutateMutation,
-  IdentityUserDeleteGQL,
-  IdentityUserDeleteMutation,
+  IdentityUserDeleteMutateGQL,
+  IdentityUserDeleteMutateMutation,
+  IoRestorecommerceAttributeAttribute,
+  IoRestorecommerceAuthRoleAssociation,
 } from '@console-core/graphql';
-import { EUserRoleAssociation, IUser } from '@console-core/types';
+import {
+  IOrganization,
+  IRole,
+  IRoleAssociationScopingInstance,
+  IUser,
+} from '@console-core/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private roleAssociationsCache: Record<string, string> = {};
+  private roleAssociationsFormattedCache: Record<string, string> = {};
+  private roleAssociationsRolesCache: Record<string, IRole[]> = {};
+  private roleAssociationsScopingInstancesCache: Record<
+    string,
+    IRoleAssociationScopingInstance[]
+  > = {};
 
   constructor(
-    private readonly identityUserActivateGQL: IdentityUserActivateGQL,
+    private readonly identityUserActivateMutateGQL: IdentityUserActivateMutateGQL,
     private readonly identityUserFindGQL: IdentityUserFindGQL,
     private readonly identityUserFindByTokenGQL: IdentityUserFindByTokenGQL,
-    private readonly identityUserRequestEmailChangeGQL: IdentityUserRequestEmailChangeGQL,
-    private readonly identityUserConfirmEmailChangeGQL: IdentityUserConfirmEmailChangeGQL,
-    private readonly identityUserRequestPasswordChangeGQL: IdentityUserRequestPasswordChangeGQL,
-    private readonly identityUserConfirmPasswordChangeGQL: IdentityUserConfirmPasswordChangeGQL,
-    private readonly identityUserChangePasswordGQL: IdentityUserChangePasswordGQL,
+    private readonly identityUserRequestEmailChangeMutateGQL: IdentityUserRequestEmailChangeMutateGQL,
+    private readonly identityUserConfirmEmailChangeMutateGQL: IdentityUserConfirmEmailChangeMutateGQL,
+    private readonly identityUserRequestPasswordChangeMutateGQL: IdentityUserRequestPasswordChangeMutateGQL,
+    private readonly identityUserConfirmPasswordChangeMutateGQL: IdentityUserConfirmPasswordChangeMutateGQL,
+    private readonly identityUserChangePasswordMutateGQL: IdentityUserChangePasswordMutateGQL,
     private readonly identityUserReadGQL: IdentityUserReadGQL,
     private readonly identityUserMutateGQL: IdentityUserMutateGQL,
-    private readonly identityUserDeleteGQL: IdentityUserDeleteGQL
+    private readonly identityUserDeleteMutateGQL: IdentityUserDeleteMutateGQL
   ) {}
 
   activate(
     payload: IIoRestorecommerceUserActivateRequest
-  ): Observable<MutationResult<IdentityUserActivateMutation>> {
-    return this.identityUserActivateGQL.mutate({
+  ): Observable<MutationResult<IdentityUserActivateMutateMutation>> {
+    return this.identityUserActivateMutateGQL.mutate({
       input: payload,
     });
   }
@@ -86,36 +99,44 @@ export class UserService {
 
   requestEmailChange(
     payload: IIoRestorecommerceUserChangeEmailRequest
-  ): Observable<MutationResult<IdentityUserRequestEmailChangeMutation>> {
-    return this.identityUserRequestEmailChangeGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityUserRequestEmailChangeMutateMutation>> {
+    return this.identityUserRequestEmailChangeMutateGQL.mutate({
+      input: payload,
+    });
   }
 
   confirmEmailChange(
     payload: IIoRestorecommerceUserConfirmEmailChangeRequest
-  ): Observable<MutationResult<IdentityUserConfirmEmailChangeMutation>> {
-    return this.identityUserConfirmEmailChangeGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityUserConfirmEmailChangeMutateMutation>> {
+    return this.identityUserConfirmEmailChangeMutateGQL.mutate({
+      input: payload,
+    });
   }
 
   requestPasswordChange(
     payload: IIoRestorecommerceUserRequestPasswordChangeRequest
-  ): Observable<MutationResult<IdentityUserRequestPasswordChangeMutation>> {
-    return this.identityUserRequestPasswordChangeGQL.mutate({
+  ): Observable<
+    MutationResult<IdentityUserRequestPasswordChangeMutateMutation>
+  > {
+    return this.identityUserRequestPasswordChangeMutateGQL.mutate({
       input: payload,
     });
   }
 
   confirmPasswordChange(
     payload: IIoRestorecommerceUserConfirmPasswordChangeRequest
-  ): Observable<MutationResult<IdentityUserConfirmPasswordChangeMutation>> {
-    return this.identityUserConfirmPasswordChangeGQL.mutate({
+  ): Observable<
+    MutationResult<IdentityUserConfirmPasswordChangeMutateMutation>
+  > {
+    return this.identityUserConfirmPasswordChangeMutateGQL.mutate({
       input: payload,
     });
   }
 
   passwordChange(
     payload: IIoRestorecommerceUserChangePasswordRequest
-  ): Observable<MutationResult<IdentityUserChangePasswordMutation>> {
-    return this.identityUserChangePasswordGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityUserChangePasswordMutateMutation>> {
+    return this.identityUserChangePasswordMutateGQL.mutate({ input: payload });
   }
 
   read(
@@ -132,56 +153,124 @@ export class UserService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<IdentityUserDeleteMutation>> {
-    return this.identityUserDeleteGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityUserDeleteMutateMutation>> {
+    return this.identityUserDeleteMutateGQL.mutate({ input: payload });
   }
 
-  getRoleAssociations(user: IUser): string {
-    const cacheKey = user.id + user.meta.modified;
-
-    if (this.roleAssociationsCache[cacheKey]) {
-      return this.roleAssociationsCache[cacheKey];
-    }
-
-    const result = user.roleAssociations.length
-      ? [...new Set(user.roleAssociations.map((ra) => ra.role))]
-          .map(
-            (ra) =>
-              EUserRoleAssociation[ra as keyof typeof EUserRoleAssociation]
-          )
-          .sort((a, b) => a.localeCompare(b))
-          .join(', ')
-      : '';
-
-    this.roleAssociationsCache[cacheKey] = result;
-
-    return result;
-  }
-
-  getUserWithRolesAndFullName(user: IUser): IUser {
+  getUserFormatted(user: IUser): IUser {
     return {
       ...user,
-      fullName: `${user.firstName} ${user.lastName}`,
+      fullName:
+        user.firstName && user.lastName
+          ? `${user.firstName} ${user.lastName}`
+          : 'N/A',
       locale: {
         ...user.locale,
-        name: user.locale?.name ?? '',
+        name: user.locale?.name ?? user.locale?.id ?? null,
       },
       timezone: {
         ...user.timezone,
-        name: user.timezone?.name ?? '',
+        name: user.timezone?.name ?? user.locale?.id ?? null,
       },
       roles: user.roles ?? [],
       roleAssociations: user.roleAssociations ?? [],
-      isSuperAdministrator: this.hasUserRoleAssociations(
-        user,
-        'superadministrator-r-id'
-      ),
-      isAdministrator: this.hasUserRoleAssociations(user, 'administrator-r-id'),
-      isUser: this.hasUserRoleAssociations(user, 'user-r-id'),
     };
   }
 
-  private hasUserRoleAssociations(user: IUser, roleId: string): boolean {
-    return !!user?.roleAssociations?.some((ra) => ra.role === roleId);
+  getRoleAssociationsRoles(user: IUser, rolesHash: Dictionary<IRole>): IRole[] {
+    const cacheKey = user.id + user.meta.modified + JSON.stringify(rolesHash);
+
+    if (this.roleAssociationsRolesCache[cacheKey]) {
+      return this.roleAssociationsRolesCache[cacheKey] as IRole[];
+    }
+
+    const roles: IRole[] = [];
+
+    user.roleAssociations?.forEach((roleAssociation) => {
+      if (!roleAssociation.role) {
+        return;
+      }
+      const role = rolesHash[roleAssociation.role ?? ''];
+      if (role) {
+        roles.push(role);
+      } else {
+        console.warn(
+          `Role with ID "${roleAssociation.role}" not found for user "${user.id}"`
+        );
+        roles.push({
+          id: roleAssociation.role ?? 'N/A',
+          name: 'N/A',
+          description: 'N/A',
+          assignableByRoles: [],
+          meta: {
+            id: roleAssociation.role ?? 'N/A',
+            created: 'N/A',
+            createdBy: 'N/A',
+            modified: 'N/A',
+            modifiedBy: 'N/A',
+          },
+        });
+      }
+    });
+
+    const uniqueRoles = [...new Set(roles)];
+
+    uniqueRoles.sort((a, b) => a.name.localeCompare(b.name));
+    this.roleAssociationsRolesCache[cacheKey] = uniqueRoles;
+    return uniqueRoles;
+  }
+
+  getRoleAssociationsScopingInstances(
+    user: IUser,
+    rolesHash: Dictionary<IRole>,
+    organizationsHash: Dictionary<IOrganization>
+  ): IRoleAssociationScopingInstance[] {
+    const cacheKey =
+      user.id +
+      user.meta.modified +
+      JSON.stringify(rolesHash) +
+      JSON.stringify(organizationsHash);
+
+    if (this.roleAssociationsScopingInstancesCache[cacheKey]) {
+      return this.roleAssociationsScopingInstancesCache[
+        cacheKey
+      ] as IRoleAssociationScopingInstance[];
+    }
+
+    const results: IRoleAssociationScopingInstance[] = [];
+
+    const recursiveSearch = (
+      roleAssociation: IoRestorecommerceAuthRoleAssociation,
+      data:
+        | IoRestorecommerceAttributeAttribute
+        | IoRestorecommerceAttributeAttribute[]
+    ): void => {
+      if (Array.isArray(data)) {
+        data.forEach((item) => {
+          recursiveSearch(roleAssociation, item);
+        });
+      } else if (
+        roleAssociation.role &&
+        data.id === 'urn:restorecommerce:acs:names:roleScopingInstance' &&
+        data.value
+      ) {
+        results.push({
+          role: rolesHash[roleAssociation.role] ?? null,
+          organization: organizationsHash[data.value] ?? null,
+        });
+      } else if (data.attributes) {
+        recursiveSearch(roleAssociation, data.attributes);
+      }
+    };
+
+    user.roleAssociations?.forEach((roleAssociation) => {
+      if (roleAssociation.attributes) {
+        recursiveSearch(roleAssociation, roleAssociation.attributes);
+      }
+    });
+
+    this.roleAssociationsScopingInstancesCache[cacheKey] = results;
+
+    return results;
   }
 }

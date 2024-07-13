@@ -36,7 +36,7 @@ export class AccountEffects {
           }),
           map((payload) => {
             return accountActions.userFindSuccess({
-              payload: this.userService.getUserWithRolesAndFullName(payload),
+              payload: this.userService.getUserFormatted(payload),
             });
           }),
           catchError((error: Error) =>
@@ -73,7 +73,7 @@ export class AccountEffects {
             const payload = result?.data?.identity?.user?.FindByToken?.details
               ?.payload as IUser;
             return accountActions.userFindByTokenSuccess({
-              payload: this.userService.getUserWithRolesAndFullName(payload),
+              payload: this.userService.getUserFormatted(payload),
             });
           }),
           catchError((error: Error) =>
@@ -102,7 +102,7 @@ export class AccountEffects {
           }),
           map((payload) => {
             return accountActions.userMutateSuccess({
-              payload: this.userService.getUserWithRolesAndFullName(payload),
+              payload: this.userService.getUserFormatted(payload),
             });
           }),
           catchError((error: Error) =>
