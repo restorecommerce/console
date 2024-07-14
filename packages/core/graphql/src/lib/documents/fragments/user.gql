@@ -11,8 +11,15 @@ fragment UserFragment on IoRestorecommerceUserUser {
   localeId
   timezoneId
   roleAssociations {
-    id
     role
+    attributes {
+      id
+      value
+      attributes {
+        id
+        value
+      }
+    }
   }
   meta {
     ...MetaFragment

@@ -1,348 +1,267 @@
-<ng-container *ngIf="vm$ | async as vm">
-  <rc-app>
-    <rc-header>
-      <rc-toggle-drawer />
-      <rc-banner
-        [logoUrl]="APP.logoUrl"
-        [logoLink]="ROUTER.pages.main.children.home.link"
-      >
-      </rc-banner>
-
-      <rc-header-navigation *ngIf="!smallDevice">
-        <rc-header-navigation-item
-          [routerLink]="ROUTER.pages.main.children.orders.link"
-          [selected]="currentRoute === ROUTER.pages.main.children.orders.link"
-        >
-          <div class="icogram">
-            <div
-              class="icon mdi mdi-receipt-outline"
-              aria-hidden="true"
-              role="img"
-            ></div>
-            <span class="text">Orders</span>
-          </div>
-        </rc-header-navigation-item>
-        <rc-header-navigation-item
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.index.link
-          "
-          [selected]="
-            currentRoute ===
-            ROUTER.pages.main.children.management.children.index.link
-          "
-        >
-          <div class="icogram">
-            <div
-              class="icon mdi mdi-hexagon-outline"
-              aria-hidden="true"
-              role="img"
-            ></div>
-            <span class="text">Management</span>
-          </div>
-        </rc-header-navigation-item>
-      </rc-header-navigation>
-
-      <div class="flex"></div>
-      <rc-header-toolbar>
-        <button
-          vcl-button
-          [selectable]="true"
-          (click)="templatePopoverUser.toggle()"
-          class="half-transparent user"
-        >
-          <vcl-icogram>
-            <vcl-icon icon="mdi:account-outline" />
-            {{ vm.user?.fullName }}
-            <vcl-icon icon="mdi:chevron-down" />
-          </vcl-icogram>
-        </button>
-      </rc-header-toolbar>
-      <span
-        #popoverUserTarget
-        id="target-popover-user"
-      ></span>
-    </rc-header>
-
-    <rc-drawer-navigation
-      (selectItem)="onSelectItem()"
-      class="scrollable"
+<rc-app>
+  <rc-header>
+    <rc-toggle-drawer />
+    <rc-banner
+      [logoUrl]="APP.logoUrl"
+      [logoLink]="ROUTER.pages.main.children.home.link"
     >
-      <vcl-select *ngIf="smallDevice">
-        <vcl-select-list
-          [value]="currentRoute"
-          (valueChange)="navigateTo($event)"
-        >
-          <vcl-select-list-item
-            [value]="ROUTER.pages.main.children.orders.link"
-          >
-            Orders
-          </vcl-select-list-item>
-          <vcl-select-list-item
-            [value]="ROUTER.pages.main.children.management.children.index.link"
-          >
-            Management
-          </vcl-select-list-item>
-        </vcl-select-list>
-      </vcl-select>
+    </rc-banner>
 
-      <!-- Home -->
-      <ng-container *ngIf="menuMainLinks.includes(currentRoute)">
-        <rc-drawer-navigation-item
-          icon="mdi:receipt-outline"
-          [routerLink]="ROUTER.pages.main.children.orders.link"
-          [routerLinkActive]="['selected']"
-          >Orders</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:tag-outline"
-          [routerLink]="ROUTER.pages.main.children.products.link"
-          [routerLinkActive]="['selected']"
-          >Products</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:invoice-outline"
-          [routerLink]="ROUTER.pages.main.children.invoices.link"
-          [routerLinkActive]="['selected']"
-          >Invoices</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:truck-outline"
-          [routerLink]="ROUTER.pages.main.children.fulfillments.link"
-          [routerLinkActive]="['selected']"
-          >Fulfillments</rc-drawer-navigation-item
-        >
-      </ng-container>
-      <!-- /Home -->
-
-      <!-- Management -->
-      <ng-container
-        *ngIf="
+    <rc-header-navigation *ngIf="!smallDevice">
+      <rc-header-navigation-item
+        [routerLink]="ROUTER.pages.main.children.orders.link"
+        [selected]="currentRoute === ROUTER.pages.main.children.orders.link"
+      >
+        <div class="icogram">
+          <div
+            class="icon mdi mdi-receipt-outline"
+            aria-hidden="true"
+            role="img"
+          ></div>
+          <span class="text">Orders</span>
+        </div>
+      </rc-header-navigation-item>
+      <rc-header-navigation-item
+        [routerLink]="ROUTER.pages.main.children.management.children.index.link"
+        [selected]="
           currentRoute ===
           ROUTER.pages.main.children.management.children.index.link
         "
       >
+        <div class="icogram">
+          <div
+            class="icon mdi mdi-hexagon-outline"
+            aria-hidden="true"
+            role="img"
+          ></div>
+          <span class="text">Management</span>
+        </div>
+      </rc-header-navigation-item>
+    </rc-header-navigation>
+
+    <div class="flex"></div>
+    <rc-header-toolbar />
+  </rc-header>
+
+  <rc-drawer-navigation
+    (selectItem)="onSelectItem()"
+    class="scrollable"
+  >
+    <vcl-select *ngIf="smallDevice">
+      <vcl-select-list
+        [value]="currentRoute"
+        (valueChange)="navigateTo($event)"
+      >
+        <vcl-select-list-item [value]="ROUTER.pages.main.children.orders.link">
+          Orders
+        </vcl-select-list-item>
+        <vcl-select-list-item
+          [value]="ROUTER.pages.main.children.management.children.index.link"
+        >
+          Management
+        </vcl-select-list-item>
+      </vcl-select-list>
+    </vcl-select>
+
+    <!-- Home -->
+    <ng-container *ngIf="menuMainLinks.includes(currentRoute)">
+      <rc-drawer-navigation-item
+        icon="mdi:receipt-outline"
+        [routerLink]="ROUTER.pages.main.children.orders.link"
+        [routerLinkActive]="['selected']"
+        >Orders</rc-drawer-navigation-item
+      >
+      <rc-drawer-navigation-item
+        icon="mdi:tag-outline"
+        [routerLink]="ROUTER.pages.main.children.products.link"
+        [routerLinkActive]="['selected']"
+        >Products</rc-drawer-navigation-item
+      >
+      <rc-drawer-navigation-item
+        icon="mdi:invoice-outline"
+        [routerLink]="ROUTER.pages.main.children.invoices.link"
+        [routerLinkActive]="['selected']"
+        >Invoices</rc-drawer-navigation-item
+      >
+      <rc-drawer-navigation-item
+        icon="mdi:truck-outline"
+        [routerLink]="ROUTER.pages.main.children.fulfillments.link"
+        [routerLinkActive]="['selected']"
+        >Fulfillments</rc-drawer-navigation-item
+      >
+    </ng-container>
+    <!-- /Home -->
+
+    <!-- Management -->
+    <ng-container
+      *ngIf="
+        currentRoute ===
+        ROUTER.pages.main.children.management.children.index.link
+      "
+    >
+      <rc-drawer-navigation-item
+        icon="mdi:account-multiple-outline"
+        [routerLink]="ROUTER.pages.main.children.management.children.iam.link"
+        [routerLinkActive]="['selected']"
+        >IAM
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
+        icon="mdi:lock-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.accessControl.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Access Control
         <rc-drawer-navigation-item
           icon="mdi:account-multiple-outline"
-          [routerLink]="ROUTER.pages.main.children.management.children.iam.link"
-          [routerLinkActive]="['selected']"
-          >IAM
-        </rc-drawer-navigation-item>
-
-        <rc-drawer-navigation-item
-          icon="mdi:lock-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.accessControl.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.teams.link
           "
           [routerLinkActive]="['selected']"
+          >Teams</rc-drawer-navigation-item
         >
-          Access Control
-          <rc-drawer-navigation-item
-            icon="mdi:account-multiple-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.teams.link
-            "
-            [routerLinkActive]="['selected']"
-            >Teams</rc-drawer-navigation-item
-          >
-          <rc-drawer-navigation-item
-            icon="mdi:account-key-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.roles.link
-            "
-            [routerLinkActive]="['selected']"
-            >Roles</rc-drawer-navigation-item
-          >
-          <rc-drawer-navigation-item
-            icon="mdi:account-convert-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.rules.link
-            "
-            [routerLinkActive]="['selected']"
-            >Rules</rc-drawer-navigation-item
-          >
-          <rc-drawer-navigation-item
-            icon="mdi:folder-account-outline"
-            [routerLink]="
-              ROUTER.pages.main.children.management.children.accessControl
-                .children.polices.link
-            "
-            [routerLinkActive]="['selected']"
-            >Policies</rc-drawer-navigation-item
-          >
-        </rc-drawer-navigation-item>
-
         <rc-drawer-navigation-item
-          icon="mdi:domain"
+          icon="mdi:account-key-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.organizations.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.roles.link
           "
           [routerLinkActive]="['selected']"
-          >Organizations
-        </rc-drawer-navigation-item>
-
-        <rc-drawer-navigation-item
-          icon="mdi:home-map-marker"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.addresses.link
-          "
-          [routerLinkActive]="['selected']"
-          >Addresses
-        </rc-drawer-navigation-item>
-
-        <rc-drawer-navigation-item
-          icon="mdi:city-variant-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.locations.link
-          "
-          [routerLinkActive]="['selected']"
+          >Roles</rc-drawer-navigation-item
         >
-          Locations
-        </rc-drawer-navigation-item>
-
         <rc-drawer-navigation-item
-          icon="mdi:map-marker-outline"
+          icon="mdi:account-convert-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.countries.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.rules.link
           "
           [routerLinkActive]="['selected']"
+          >Rules</rc-drawer-navigation-item
         >
-          Countries
-        </rc-drawer-navigation-item>
-
         <rc-drawer-navigation-item
-          icon="mdi:card-account-mail-outline"
+          icon="mdi:folder-account-outline"
           [routerLink]="
-            ROUTER.pages.main.children.management.children.contactPoints.link
+            ROUTER.pages.main.children.management.children.accessControl
+              .children.polices.link
           "
           [routerLinkActive]="['selected']"
+          >Policies</rc-drawer-navigation-item
         >
-          Contact Points
-        </rc-drawer-navigation-item>
+      </rc-drawer-navigation-item>
 
-        <rc-drawer-navigation-item
-          icon="mdi:certificate-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.contracts.link
-          "
-          [routerLinkActive]="['selected']"
-        >
-          Contracts
-        </rc-drawer-navigation-item>
+      <rc-drawer-navigation-item
+        icon="mdi:domain"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.organizations.link
+        "
+        [routerLinkActive]="['selected']"
+        >Organizations
+      </rc-drawer-navigation-item>
 
-        <rc-drawer-navigation-item
-          icon="mdi:pound"
-          [routerLink]="
-            ROUTER.pages.main.children.management.children.commands.link
-          "
-          [routerLinkActive]="['selected']"
-        >
-          Commands
-        </rc-drawer-navigation-item>
-      </ng-container>
-      <!-- /Management -->
+      <rc-drawer-navigation-item
+        icon="mdi:home-map-marker"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.addresses.link
+        "
+        [routerLinkActive]="['selected']"
+        >Addresses
+      </rc-drawer-navigation-item>
 
-      <!-- Account -->
-      <ng-container
-        *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
+      <rc-drawer-navigation-item
+        icon="mdi:city-variant-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.locations.link
+        "
+        [routerLinkActive]="['selected']"
       >
-        <rc-drawer-navigation-item
-          icon="mdi:account-cog-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.profile.link
-          "
-          [routerLinkActive]="['selected']"
-          >Profile</rc-drawer-navigation-item
-        >
-        <rc-drawer-navigation-item
-          icon="mdi:cog-outline"
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.preferences.link
-          "
-          [routerLinkActive]="['selected']"
-          >Preferences</rc-drawer-navigation-item
-        >
-      </ng-container>
-      <!-- /Account -->
+        Locations
+      </rc-drawer-navigation-item>
 
-      <div class="side-menu-bottom-container">
-        <rc-copyright />
-        <a
-          title="Collapse sidebar"
-          class="toggle-sidebar-button"
-          (click)="collapseDrawer()"
-        >
-          <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
-        </a>
-      </div>
-    </rc-drawer-navigation>
+      <rc-drawer-navigation-item
+        icon="mdi:map-marker-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.countries.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Countries
+      </rc-drawer-navigation-item>
 
-    <div class="container">
-      <div class="row grid-gutterx-2">
-        <div class="flex">
-          <rc-page-header />
-        </div>
-      </div>
+      <rc-drawer-navigation-item
+        icon="mdi:card-account-mail-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.contactPoints.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Contact Points
+      </rc-drawer-navigation-item>
 
-      <ng-content />
-    </div>
-  </rc-app>
+      <rc-drawer-navigation-item
+        icon="mdi:certificate-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.contracts.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Contracts
+      </rc-drawer-navigation-item>
 
-  <ng-template
-    vclPopover
-    #templatePopoverUser="vclPopover"
-    [target]="popoverUserTarget"
-    [closeOnOffClick]="true"
-  >
-    <div
-      id="wrapper-popover-user"
-      class="data-list item-selectability item-hover-highlight m-0 p-0"
+      <rc-drawer-navigation-item
+        icon="mdi:pound"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.commands.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Commands
+      </rc-drawer-navigation-item>
+    </ng-container>
+    <!-- /Management -->
+
+    <!-- Account -->
+    <ng-container
+      *ngIf="currentRoute === ROUTER.pages.main.children.account.link"
     >
-      <ul
-        class="data-list-body no-border"
-        role="listbox"
-        aria-multiselectable="false"
+      <rc-drawer-navigation-item
+        icon="mdi:account-cog-outline"
+        [routerLink]="ROUTER.pages.main.children.account.children.profile.link"
+        [routerLinkActive]="['selected']"
+        >Profile</rc-drawer-navigation-item
       >
-        <li
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.profile.link
-          "
-          class="data-list-item row justify-between center"
-        >
-          <div class="flex">
-            <vcl-icogram>
-              <vcl-icon icon="mdi:account-cog-outline" />
-            </vcl-icogram>
-            <span class="text">Profile</span>
-          </div>
-        </li>
-        <li
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.preferences.link
-          "
-          class="data-list-item row justify-between center"
-        >
-          <div class="flex">
-            <vcl-icogram>
-              <vcl-icon icon="mdi:cog-outline" />
-            </vcl-icogram>
-            <span class="text">Preferences</span>
-          </div>
-        </li>
-        <li
-          [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
-          class="data-list-item row justify-between center"
-        >
-          <div class="flex">
-            <vcl-icogram>
-              <vcl-icon icon="mdi:logout" />
-            </vcl-icogram>
-            <span class="text red">Sign Out</span>
-          </div>
-        </li>
-      </ul>
+      <rc-drawer-navigation-item
+        icon="mdi:cog-outline"
+        [routerLink]="
+          ROUTER.pages.main.children.account.children.preferences.link
+        "
+        [routerLinkActive]="['selected']"
+        >Preferences</rc-drawer-navigation-item
+      >
+    </ng-container>
+    <!-- /Account -->
+
+    <div class="side-menu-bottom-container">
+      <rc-copyright />
+      <a
+        title="Collapse sidebar"
+        class="toggle-sidebar-button"
+        (click)="collapseDrawer()"
+      >
+        <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
+      </a>
     </div>
-  </ng-template>
-</ng-container>
+  </rc-drawer-navigation>
+
+  <div class="container">
+    <div class="row grid-gutterx-2">
+      <div class="flex">
+        <rc-page-header />
+      </div>
+    </div>
+
+    <ng-content />
+  </div>
+</rc-app>

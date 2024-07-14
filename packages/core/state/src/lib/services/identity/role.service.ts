@@ -7,8 +7,8 @@ import {
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
   IIoRestorecommerceRoleRoleList,
-  IdentityRoleDeleteGQL,
-  IdentityRoleDeleteMutation,
+  IdentityRoleDeleteMutateGQL,
+  IdentityRoleDeleteMutateMutation,
   IdentityRoleMutateGQL,
   IdentityRoleMutateMutation,
   IdentityRoleReadGQL,
@@ -19,10 +19,12 @@ import {
   providedIn: 'root',
 })
 export class RoleService {
+  private assignableByRolesFormattedCache: Record<string, string> = {};
+
   constructor(
     private readonly identityRoleReadGQL: IdentityRoleReadGQL,
     private readonly identityRoleMutateGQL: IdentityRoleMutateGQL,
-    private readonly identityRoleDeleteGQL: IdentityRoleDeleteGQL
+    private readonly identityRoleDeleteMutateGQL: IdentityRoleDeleteMutateGQL
   ) {}
 
   read(
@@ -39,7 +41,7 @@ export class RoleService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<IdentityRoleDeleteMutation>> {
-    return this.identityRoleDeleteGQL.mutate({ input: payload });
+  ): Observable<MutationResult<IdentityRoleDeleteMutateMutation>> {
+    return this.identityRoleDeleteMutateGQL.mutate({ input: payload });
   }
 }

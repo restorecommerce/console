@@ -17,3 +17,20 @@ mutation CatalogProductMutate($input: IIoRestorecommerceProductProductList!) {
     }
   }
 }
+
+mutation CatalogProductDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  catalog {
+    product {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

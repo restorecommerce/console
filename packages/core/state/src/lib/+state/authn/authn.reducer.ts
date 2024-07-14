@@ -43,7 +43,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.activateRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),
@@ -118,7 +118,7 @@ const reducer = createReducer<IAuthnState>(
     authnActions.confirmPasswordRequest,
     (state): IAuthnState => ({
       ...state,
-      actionStatus: EActionStatus.Requesting,
+      actionStatus: EActionStatus.Mutating,
       error: null,
     })
   ),

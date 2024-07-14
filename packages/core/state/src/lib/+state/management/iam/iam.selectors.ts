@@ -35,6 +35,16 @@ export const selectUserSelected = createSelector(
   }
 );
 
+export const selectUserTemp = createSelector(
+  selectUser,
+  (state: IIamState) => state.temp
+);
+
+export const selectUserTempRoleAssociations = createSelector(
+  selectUserTemp,
+  (temp) => temp.roleAssociations
+);
+
 export const selectActionStatus = createSelector(
   selectUser,
   (state: IIamState) => state.actionStatus

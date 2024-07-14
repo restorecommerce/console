@@ -1,21 +1,27 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+import { JssFormComponent, LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
 import {
   IamFacade,
-  LocaleFacade,
-  RoleFacade,
   RouterFacade,
-  TimezoneFacade,
+  UserService,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildUserSchema } from './jss-forms';
+import { JssFormService } from './services';
 
 @Component({
   selector: 'app-module-management-iam-edit',
@@ -24,24 +30,56 @@ import { buildUserSchema } from './jss-forms';
       <div class="mt-2">
         <rc-crud-edit
           [id]="vm.id"
-          [schema]="schema"
+          [schema]="vm.userSchema"
           [update]="update"
+          (actionEvent)="handleActionEvent($event)"
         />
       </div>
+
+      <ng-template
+        #tplLayerRef
+        let-title="title"
+      >
+        <vcl-panel-dialog
+          [showCloseButton]="true"
+          (close)="tplLayer.close()"
+          style="min-width: 420px;"
+        >
+          <vcl-panel-title>{{ title }}</vcl-panel-title>
+          <div class="row">
+            <div class="flex-12">
+              <vcl-jss-form
+                autocomplete="off"
+                ngDefaultControl
+                #roleAssociationsForm="vclJssForm"
+                [schema]="vm.roleAssociationsSchema"
+                (formAction)="onAction($event)"
+                (formSubmit)="onSubmit()"
+              />
+            </div>
+          </div>
+        </vcl-panel-dialog>
+      </ng-template>
     </ng-container>
   `,
+  providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IamEditComponent implements OnInit {
-  schema!: VCLFormFieldSchemaRoot;
+export class IamEditComponent implements OnDestroy, AfterViewInit {
+  @ViewChild('roleAssociationsForm')
+  roleAssociationsForm!: JssFormComponent;
+
+  @ViewChild('tplLayerRef')
+  tplLayerRef!: TemplateRef<HTMLElement>;
+
+  tplLayer!: LayerRef;
+
   update = this.iamFacade.update;
-  id: string | null = null;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
       map(({ id }) => id),
       tap((id) => {
-        this.id = id;
         this.iamFacade.setSelectedId(id);
       })
     ),
@@ -56,27 +94,61 @@ export class IamEditComponent implements OnInit {
       }),
       filterEmptyAndNullishAndUndefined()
     ),
-    locales: this.localeFacade.all$,
-    timezones: this.timezoneFacade.all$,
-    roles: this.roleFacade.all$,
-  }).pipe(
-    tap(({ user, locales, timezones, roles }) => {
-      this.schema = buildUserSchema({ user, locales, timezones, roles });
-    })
-  );
+    userSchema: this.jssFormService.userSchema$,
+    roleAssociationsSchema: this.jssFormService.roleAssociationsSchema$,
+  });
 
   constructor(
     private readonly router: Router,
+    private readonly layerService: LayerService,
+    private readonly viewContainerRef: ViewContainerRef,
     private readonly routerFacade: RouterFacade,
     private readonly iamFacade: IamFacade,
-    private readonly localeFacade: LocaleFacade,
-    private readonly timezoneFacade: TimezoneFacade,
-    private readonly roleFacade: RoleFacade
+    private readonly userService: UserService,
+    private readonly jssFormService: JssFormService
   ) {}
 
-  ngOnInit(): void {
-    this.localeFacade.read({});
-    this.timezoneFacade.read({});
-    this.roleFacade.read({});
+  ngAfterViewInit(): void {
+    this.tplLayer = this.layerService.createTemplateLayer(
+      this.tplLayerRef,
+      this.viewContainerRef
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.jssFormService.destroy();
+    this.iamFacade.setTempRoleAssociations([]);
+  }
+
+  handleActionEvent(action: string): void {
+    if (action === 'addRoleAssociations') {
+      this.tplLayer.open({ data: { title: 'Assign Roles' } });
+    }
+  }
+
+  onAction(action: string): void {
+    if ('close' === action) {
+      this.tplLayer.close();
+    }
+  }
+
+  onSubmit(): void {
+    if (
+      this.roleAssociationsForm?.form.invalid ||
+      this.roleAssociationsForm?.form.pristine
+    ) {
+      return;
+    }
+
+    this.tplLayer.close();
+
+    const roleAssociations =
+      this.roleAssociationsForm.form?.value.roleAssociationsArray.map(
+        (ra: { role: string; organization: string }) => ({
+          ...this.userService.createRoleAssociation(ra.role, ra.organization),
+        })
+      );
+
+    this.iamFacade.setTempRoleAssociations(roleAssociations);
   }
 }

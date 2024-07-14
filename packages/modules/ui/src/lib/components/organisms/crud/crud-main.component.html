@@ -4,20 +4,26 @@
       <rc-toolbar>
         <button
           vcl-button
-          rcPrepend
+          rc-prepend
           (click)="onSelectId(null)"
           [routerLink]="feature.links.index()"
+          [ngClass]="{
+            active: [EUrlSegment.Index].includes(urlSegment)
+          }"
           class="square half-transparent button"
           title="Index"
         >
-          <vcl-icon icon="mdi:home" />
+          <vcl-icon icon="mdi:home-outline" />
         </button>
         {{ feature.name.plural }}
         <button
           vcl-button
-          rcAppend
+          rc-append
           *ngIf="isCreate"
           [routerLink]="feature.links.create()"
+          [ngClass]="{
+            active: [EUrlSegment.Create].includes(urlSegment)
+          }"
           class="square half-transparent button"
           title="Create"
         >
@@ -25,7 +31,7 @@
         </button>
         <button
           vcl-button
-          rcAppend
+          rc-append
           *ngIf="isRead"
           (click)="onRead()"
           class="square half-transparent button"
@@ -50,89 +56,116 @@
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
           <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
-            <rc-toolbar
-              *ngIf="title !== 'null'"
-              [ngClass]="{ 'mt-2': vm.isXsOrSm }"
-            >
-              <button
-                *ngIf="isEdit && [EUrlSegment.Edit].includes(urlSegment)"
-                vcl-button
-                rcPrepend
-                [routerLink]="feature.links.view(id)"
-                class="square half-transparent button"
-                title="Go back"
+            <ng-container *ngIf="title !== 'null'">
+              <div
+                [ngClass]="{ 'mt-2': vm.isXsOrSm }"
+                class="row justify-between center toolbar rc-toolbar"
               >
-                <vcl-icon icon="mdi:arrow-left" />
-              </button>
-              <button
-                vcl-button
-                rcPrepend
-                *ngIf="isEdit && [EUrlSegment.View].includes(urlSegment)"
-                [routerLink]="feature.links.edit(id)"
-                class="square half-transparent button"
-                title="Edit"
-              >
-                <vcl-icon icon="mdi:pencil" />
-              </button>
+                <!-- <rc-toolbar> -->
+                <div class="loose-button-group">
+                  <button
+                    *ngIf="
+                      isEdit &&
+                      ![
+                        EUrlSegment.Index,
+                        EUrlSegment.Create,
+                        EUrlSegment.View
+                      ].includes(urlSegment)
+                    "
+                    vcl-button
+                    [routerLink]="feature.links.view(id)"
+                    class="square half-transparent button"
+                    title="Go back"
+                  >
+                    <vcl-icon icon="mdi:arrow-left" />
+                  </button>
 
-              {{ title }}
+                  <ng-container
+                    *ngTemplateOutlet="toolbarButtonsStartTemplate"
+                  />
+                </div>
+                <div class="overflow-ellipsis">
+                  {{ title }}
+                </div>
+                <div class="loose-button-group">
+                  <!-- TODO: Move these buttons to the feature orders module -->
+                  <button
+                    *ngIf="
+                      isTriggerCreateInvoice &&
+                      [EUrlSegment.View].includes(urlSegment)
+                    "
+                    (click)="onCreateInvoice(id)"
+                    vcl-button
+                    class="square half-transparent button"
+                    title="Create Invoice"
+                  >
+                    <vcl-icon icon="mdi:invoice-plus-outline" />
+                  </button>
 
-              <button
-                *ngIf="
-                  isTriggerCreateInvoice &&
-                  [EUrlSegment.View].includes(urlSegment)
-                "
-                (click)="onCreateInvoice(id)"
-                vcl-button
-                rcAppend
-                class="square half-transparent button"
-                title="Create Invoice"
-              >
-                <vcl-icon icon="mdi:invoice-plus-outline" />
-              </button>
+                  <!-- TODO: Move these buttons to the feature orders module -->
+                  <button
+                    *ngIf="
+                      isTriggerCreateFulfillment &&
+                      [EUrlSegment.View].includes(urlSegment)
+                    "
+                    (click)="onCreateFulfillment(id)"
+                    vcl-button
+                    class="square half-transparent button"
+                    title="Create Fulfillment"
+                  >
+                    <vcl-icon icon="mdi:truck-plus-outline" />
+                  </button>
 
-              <button
-                *ngIf="
-                  isTriggerCreateFulfillment &&
-                  [EUrlSegment.View].includes(urlSegment)
-                "
-                (click)="onCreateFulfillment(id)"
-                vcl-button
-                rcAppend
-                class="square half-transparent button"
-                title="Create Fulfillment"
-              >
-                <vcl-icon icon="mdi:truck-plus-outline" />
-              </button>
-              <button
-                vcl-button
-                rcAppend
-                *ngIf="
-                  isDelete &&
-                  [EUrlSegment.View, EUrlSegment.Edit].includes(urlSegment)
-                "
-                (click)="onRemove(id)"
-                class="square half-transparent button"
-                title="Delete &quot;{{ title }}&quot;"
-              >
-                <vcl-icon icon="mdi:delete" />
-              </button>
-            </rc-toolbar>
+                  <button
+                    vcl-button
+                    *ngIf="
+                      ![EUrlSegment.Index, EUrlSegment.Create].includes(
+                        urlSegment
+                      )
+                    "
+                    [routerLink]="feature.links.edit(id)"
+                    [ngClass]="{
+                      active: [EUrlSegment.Edit].includes(urlSegment)
+                    }"
+                    class="square half-transparent button"
+                    title="Edit"
+                  >
+                    <vcl-icon icon="mdi:pencil-outline" />
+                  </button>
+
+                  <ng-container *ngTemplateOutlet="toolbarButtonsEndTemplate" />
+
+                  <button
+                    vcl-button
+                    *ngIf="
+                      isDelete &&
+                      ![EUrlSegment.Index, EUrlSegment.Create].includes(
+                        urlSegment
+                      )
+                    "
+                    (click)="onRemove(id)"
+                    class="square half-transparent button"
+                    title="Delete"
+                  >
+                    <vcl-icon icon="mdi:delete-outline" />
+                  </button>
+                </div>
+                <!-- </rc-toolbar> -->
+              </div>
+            </ng-container>
+
             <rc-scrollable-container height="145px">
               <div class="row">
-                <div class="flex p-2">
+                <div class="flex p-2 mb-4">
                   <ng-content select="[rc-crud-router-outlet]" />
                 </div>
               </div>
 
               <div
-                *ngIf="!vm.isLgOrXl && id"
+                *ngIf="isMeta && id && !vm.isLgOrXl"
                 class="row"
               >
-                <div
-                  *ngIf="isMeta"
-                  class="flex"
-                >
+                <div class="flex">
                   <rc-toolbar> Meta </rc-toolbar>
                   <div class="row mb-4 pb-2">
                     <div class="flex p-2">
@@ -145,7 +178,7 @@
           </div>
 
           <div
-            *ngIf="vm.isLgOrXl && id"
+            *ngIf="isMeta && id && vm.isLgOrXl"
             class="flex-4-lg flex-12-md flex-12-sm flex-12"
           >
             <rc-toolbar> Meta </rc-toolbar>
@@ -168,6 +201,14 @@
     <rc-scrollable-container height="193px">
       <ng-content select="[rc-crud-data-list]" />
     </rc-scrollable-container>
+  </ng-template>
+
+  <ng-template #toolbarButtonsStartTemplate>
+    <ng-content select="[rc-toolbar-start-buttons]"></ng-content>
+  </ng-template>
+
+  <ng-template #toolbarButtonsEndTemplate>
+    <ng-content select="[rc-toolbar-end-buttons]"></ng-content>
   </ng-template>
 
   <ng-template #metaTemplate>

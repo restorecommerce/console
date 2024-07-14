@@ -47,6 +47,93 @@ export const selectOrganizationSelected = createSelector(
   }
 );
 
+export const selectOrganizationParentIds = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.parentIds
+);
+
+export const selectOrganizationParentEntities = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.parentEntities
+);
+
+export const selectOrganizationParentsAll = createSelector(
+  selectOrganizationParentEntities,
+  (entities) => Object.values(entities)
+);
+
+export const selectOrganizationSelectedParentId = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.selectedParentId
+);
+
+export const selectOrganizationSelectedParent = createSelector(
+  selectOrganizationParentEntities,
+  selectOrganizationSelectedParentId,
+  (entities, selectedParentId) => {
+    return (
+      selectedParentId && selectedParentId in entities
+        ? entities[selectedParentId]
+        : null
+    ) as IOrganization | null;
+  }
+);
+
+export const selectOrganizationChildIds = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.childIds
+);
+
+export const selectOrganizationChildEntities = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.childEntities
+);
+
+export const selectOrganizationChildsAll = createSelector(
+  selectOrganizationChildEntities,
+  (entities) => Object.values(entities)
+);
+
+export const selectOrganizationSelectedChildId = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.selectedChildId
+);
+
+export const selectOrganizationSelectedChild = createSelector(
+  selectOrganizationChildEntities,
+  selectOrganizationSelectedChildId,
+  (entities, selectedChildId) => {
+    return (
+      selectedChildId && selectedChildId in entities
+        ? entities[selectedChildId]
+        : null
+    ) as IOrganization | null;
+  }
+);
+
+export const selectOrganizationSelectedGlobalOrganizationId = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => {
+    if (!state.selectedGlobalOrganizationId && state.ids.length > 0) {
+      return state.ids[0];
+    }
+
+    return state.selectedGlobalOrganizationId;
+  }
+);
+
+export const selectOrganizationSelectedGlobalOrganization = createSelector(
+  selectOrganizationEntities,
+  selectOrganizationSelectedGlobalOrganizationId,
+  (entities, selectedGlobalOrganizationId) => {
+    return (
+      selectedGlobalOrganizationId && selectedGlobalOrganizationId in entities
+        ? entities[selectedGlobalOrganizationId]
+        : null
+    ) as IOrganization | null;
+  }
+);
+
 export const selectActionStatus = createSelector(
   selectOrganization,
   (state: IOrganizationState) => state.actionStatus

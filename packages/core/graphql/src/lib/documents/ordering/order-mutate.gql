@@ -17,3 +17,25 @@ mutation OrderingOrderMutate($input: IIoRestorecommerceOrderOrderList!) {
     }
   }
 }
+
+mutation OrderingOrderDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  ordering {
+    order {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

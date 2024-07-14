@@ -4,7 +4,7 @@ import {
   IIoRestorecommerceUserUserList,
   IIoRestorecommerceResourcebaseReadRequest,
 } from '@console-core/graphql';
-import { IUser } from '@console-core/types';
+import { IRoleAssociation, IUser } from '@console-core/types';
 
 export const userReadRequest = createAction(
   '[IAM] Read request',
@@ -36,8 +36,8 @@ export const userReadOneByIdRequestFail = createAction(
   props<{ error: string }>()
 );
 
-export const setSelectedId = createAction(
-  '[IAM] Set selected id',
+export const userSetSelectedId = createAction(
+  '[IAM] User set selected id',
   props<{ payload: string | null }>()
 );
 
@@ -68,6 +68,25 @@ export const userUpdateSuccess = createAction(
 
 export const userUpdateFail = createAction(
   '[IAM] User update fail',
+  props<{ error: string }>()
+);
+
+export const userSetTempRoleAssociations = createAction(
+  '[IAM] Set temp role associations',
+  props<{ payload: IRoleAssociation[] }>()
+);
+
+export const userChangePasswordRequest = createAction(
+  '[IAM] User change password request',
+  props<{ payload: IIoRestorecommerceUserUserList }>()
+);
+
+export const userChangePasswordSuccess = createAction(
+  '[IAM] User change password success'
+);
+
+export const userChangePasswordFail = createAction(
+  '[IAM] User change password fail',
   props<{ error: string }>()
 );
 

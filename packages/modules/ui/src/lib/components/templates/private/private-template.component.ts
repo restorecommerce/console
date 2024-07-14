@@ -8,14 +8,12 @@ import {
   HostListener,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
 import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import { APP, ROUTER } from '@console-core/config';
-import { AccountFacade } from '@console-core/state';
 
 import { RcDrawerService } from '../../../services';
 
@@ -27,9 +25,7 @@ import { RcDrawerService } from '../../../services';
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   APP = APP;
   ROUTER = ROUTER;
-  readonly vm$ = combineLatest({
-    user: this.accountFacade.user$,
-  });
+
   currentRoute!: string;
   currentRouteTitle!: string;
   smallDevice!: boolean;
@@ -62,8 +58,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     private readonly breakpointObserver: BreakpointObserver,
     private readonly router: Router,
     private readonly drawerService: RcDrawerService,
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly accountFacade: AccountFacade
+    private readonly changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -75,7 +70,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  onSelectItem() {
+  onSelectItem(): void {
     if (this.drawerService.mode === 'over') {
       this.drawerService.toggle(false);
     }
@@ -87,7 +82,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     }
   }
 
-  collapseDrawer() {
+  collapseDrawer(): void {
     this.drawerService.toggle();
   }
 
@@ -102,7 +97,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
       });
   }
 
-  private handleRouterNavigationEndEvents() {
+  private handleRouterNavigationEndEvents(): void {
     this.subscriptions.sink = this.router.events
       .pipe(
         filter(

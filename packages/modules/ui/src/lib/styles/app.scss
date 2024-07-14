@@ -1,13 +1,27 @@
 @use './theme/_console-variables.scss' as *;
 
-/* Scrollbar */
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 2px; /* For horizontal scrollbar */
-  height: 0; /* For vertical scrollbar */
+  /* WebKit Browsers (Chrome, Safari, Edge) */
+  width: 2px; /* Horizontal Scrollbar Width */
+  height: 0; /* Vertical Scrollbar Width (previously 0) */
 
   &-thumb {
+    /* Style the Thumb */
     background-color: $console-gray-scrollbar-thumb;
+    border-radius: 1px; /* Optional: Rounded Corners */
   }
+
+  &-track {
+    /* Style the Track */
+    background-color: $console-white;
+  }
+}
+
+/* Firefox Scrollbar Styling */
+* {
+  scrollbar-width: thin; /* "auto" or "thin"  */
+  scrollbar-color: $console-gray-scrollbar-thumb $console-white;
 }
 
 .app {
@@ -44,13 +58,22 @@ rc-header.application-header {
   }
 
   rc-header-toolbar {
-    button.user {
+    button.organization,
+    button.account {
       height: 43px;
     }
 
     vcl-icon {
       font-size: 1rem;
       padding-bottom: 2px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  rc-header-toolbar {
+    button {
+      font-size: smaller;
     }
   }
 }
@@ -81,9 +104,19 @@ vcl-hint-error {
   padding: 0.2em 0;
 }
 
-#wrapper-popover-user {
-  width: 11rem;
-  color: $wrapper-popover-user-link-color;
+#wrapper-popover-organization {
+  width: 300px;
+
+  .data-list {
+    max-height: 458px;
+    overflow-y: auto;
+    scrollbar-width: 2px;
+  }
+}
+
+#wrapper-popover-account {
+  width: 200px;
+  color: $wrapper-popover-account-link-color;
 
   vcl-icon {
     font-size: 1rem;
@@ -94,9 +127,4 @@ vcl-hint-error {
       padding-left: 0.3rem;
     }
   }
-}
-
-#target-popover-user {
-  position: relative;
-  top: 1.35rem;
 }

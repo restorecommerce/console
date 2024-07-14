@@ -1,7 +1,7 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [title]="vm.selectedOrder?.customerOrderNr || feature.name.singular"
+  [title]="vm.selectedOrder?.customerOrderNr ?? feature.name.singular"
   [id]="vm.selectedOrderId"
   [total]="vm.dataList.length"
   [urlSegment]="vm.urlSegment"

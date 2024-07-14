@@ -21,6 +21,21 @@ export const organizationReadRequestFail = createAction(
   props<{ error: string }>()
 );
 
+export const organizationReadParentsRequest = createAction(
+  '[ORGANIZATION] Read parents request',
+  props<{ payload: IIoRestorecommerceResourcebaseReadRequest }>()
+);
+
+export const organizationReadParentsRequestSuccess = createAction(
+  '[ORGANIZATION] Read parents success',
+  props<{ payload: IOrganization[] }>()
+);
+
+export const organizationReadParentsRequestFail = createAction(
+  '[ORGANIZATION] Read parents fail',
+  props<{ error: string }>()
+);
+
 export const organizationReadOneByIdRequest = createAction(
   '[ORGANIZATION] Read one by id request',
   props<{ payload: { id: string } }>()
@@ -38,6 +53,11 @@ export const organizationReadOneByIdRequestFail = createAction(
 
 export const setSelectedId = createAction(
   '[ORGANIZATION] Set selected id',
+  props<{ payload: string | null }>()
+);
+
+export const setSelectedGlobalOrganizationId = createAction(
+  '[ORGANIZATION] Set selected organization id',
   props<{ payload: string | null }>()
 );
 

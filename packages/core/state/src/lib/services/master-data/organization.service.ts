@@ -7,8 +7,8 @@ import {
   IIoRestorecommerceOrganizationOrganizationList,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
-  MasterDataOrganizationDeleteGQL,
-  MasterDataOrganizationDeleteMutation,
+  MasterDataOrganizationDeleteMutateGQL,
+  MasterDataOrganizationDeleteMutateMutation,
   MasterDataOrganizationMutateGQL,
   MasterDataOrganizationMutateMutation,
   MasterDataOrganizationReadGQL,
@@ -22,7 +22,7 @@ export class OrganizationService {
   constructor(
     private readonly masterDataOrganizationReadGQL: MasterDataOrganizationReadGQL,
     private readonly masterDataOrganizationMutateGQL: MasterDataOrganizationMutateGQL,
-    private readonly masterDataOrganizationDeleteGQL: MasterDataOrganizationDeleteGQL
+    private readonly masterDataOrganizationDeleteMutateGQL: MasterDataOrganizationDeleteMutateGQL
   ) {}
 
   read(
@@ -43,8 +43,8 @@ export class OrganizationService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<MasterDataOrganizationDeleteMutation>> {
-    return this.masterDataOrganizationDeleteGQL.mutate({
+  ): Observable<MutationResult<MasterDataOrganizationDeleteMutateMutation>> {
+    return this.masterDataOrganizationDeleteMutateGQL.mutate({
       input: payload,
     });
   }

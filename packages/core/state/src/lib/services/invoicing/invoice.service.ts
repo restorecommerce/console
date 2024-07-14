@@ -7,8 +7,8 @@ import {
   IIoRestorecommerceInvoiceInvoiceList,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
-  InvoicingInvoiceDeleteGQL,
-  InvoicingInvoiceDeleteMutation,
+  InvoicingInvoiceDeleteMutateGQL,
+  InvoicingInvoiceDeleteMutateMutation,
   InvoicingInvoiceMutateGQL,
   InvoicingInvoiceMutateMutation,
   InvoicingInvoiceReadGQL,
@@ -22,7 +22,7 @@ export class InvoiceService {
   constructor(
     private readonly invoicingInvoiceReadGQL: InvoicingInvoiceReadGQL,
     private readonly invoicingInvoiceMutateGQL: InvoicingInvoiceMutateGQL,
-    private readonly invoicingInvoiceDeleteGQL: InvoicingInvoiceDeleteGQL
+    private readonly invoicingInvoiceDeleteMutateGQL: InvoicingInvoiceDeleteMutateGQL
   ) {}
 
   read(
@@ -43,8 +43,8 @@ export class InvoiceService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<InvoicingInvoiceDeleteMutation>> {
-    return this.invoicingInvoiceDeleteGQL.mutate({
+  ): Observable<MutationResult<InvoicingInvoiceDeleteMutateMutation>> {
+    return this.invoicingInvoiceDeleteMutateGQL.mutate({
       input: payload,
     });
   }

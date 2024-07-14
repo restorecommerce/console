@@ -21,34 +21,6 @@ export const buildAccountInformationSchema = ({
         params: {},
         hints: [],
       },
-      {
-        name: 'attributes',
-        label: 'Roles',
-        type: 'select',
-        disabled: true,
-        defaultValue: [true],
-        params: {
-          placeholder: 'Select role',
-          selectionMode: 'multiple',
-          clearable: false,
-          search: false,
-          options: [
-            {
-              label: 'Super Administrator',
-              value: user.isSuperAdministrator,
-            },
-            {
-              label: 'Administrator',
-              value: user.isAdministrator,
-            },
-            {
-              label: 'User',
-              value: user.isUser,
-            },
-          ],
-        },
-        hints: [],
-      },
     ],
   };
 };

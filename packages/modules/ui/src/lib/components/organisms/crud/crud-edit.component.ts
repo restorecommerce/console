@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 
@@ -13,7 +15,7 @@ import { ModeType } from '@console-core/graphql';
   selector: 'rc-crud-edit',
   template: `
     <div class="row">
-      <div class="flex-12 mb-4">
+      <div class="flex-12">
         <vcl-jss-form
           autocomplete="off"
           ngDefaultControl
@@ -41,12 +43,15 @@ export class RcCrudEditComponent {
   @ViewChild('editForm')
   editForm!: JssFormComponent;
 
-  onAction(_: string): void {
+  @Output() actionEvent = new EventEmitter<string>();
+
+  onAction(action: string): void {
+    this.actionEvent.emit(action);
     this.editForm.form.resetForm(this.editForm.defaultValue);
   }
 
   onSubmit(): void {
-    if (this.editForm.form.invalid || this.editForm.form.pristine) {
+    if (this.editForm.form.invalid) {
       return;
     }
 

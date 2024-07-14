@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 
@@ -13,7 +15,7 @@ import { ModeType } from '@console-core/graphql';
   selector: 'rc-crud-create',
   template: `
     <div class="row">
-      <div class="flex-12 mb-4">
+      <div class="flex-12">
         <vcl-jss-form
           autocomplete="off"
           ngDefaultControl
@@ -38,7 +40,10 @@ export class RcCrudCreateComponent {
   @ViewChild('createForm')
   createForm!: JssFormComponent;
 
-  onAction(_: string): void {
+  @Output() actionEvent = new EventEmitter<string>();
+
+  onAction(action: string): void {
+    this.actionEvent.emit(action);
     this.createForm.form.resetForm(this.createForm.defaultValue);
   }
 

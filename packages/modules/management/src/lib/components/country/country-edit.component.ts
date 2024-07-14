@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
 import {
@@ -12,7 +10,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
-import { buildCountrySchema } from './jss-forms';
+import { JssFormService } from './services';
 
 @Component({
   selector: 'app-module-management-country-edit',
@@ -21,16 +19,16 @@ import { buildCountrySchema } from './jss-forms';
       <div class="mt-2">
         <rc-crud-edit
           [id]="vm.id"
-          [schema]="schema"
+          [schema]="vm.schema"
           [update]="update"
         />
       </div>
     </ng-container>
   `,
+  providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountryEditComponent {
-  schema!: VCLFormFieldSchemaRoot;
+export class CountryEditComponent implements OnDestroy {
   update = this.countryFacade.update;
 
   readonly vm$ = combineLatest({
@@ -49,16 +47,19 @@ export class CountryEditComponent {
           );
         }
       }),
-      filterEmptyAndNullishAndUndefined(),
-      tap((country) => {
-        this.schema = buildCountrySchema({ country });
-      })
+      filterEmptyAndNullishAndUndefined()
     ),
+    schema: this.jssFormService.countrySchema$,
   });
 
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly countryFacade: CountryFacade
+    private readonly countryFacade: CountryFacade,
+    private readonly jssFormService: JssFormService
   ) {}
+
+  ngOnDestroy(): void {
+    this.jssFormService.destroy();
+  }
 }

@@ -9,7 +9,7 @@ export interface IRouterItem {
   link: string;
   title: string;
   getLink: (params?: {
-    id?: number | string;
+    id?: string;
     identifier?: string;
     code?: string;
     slug?: string;
@@ -123,6 +123,7 @@ export interface IRouterConstant {
                 create: IRouterItem;
                 view: IRouterItem;
                 edit: IRouterItem;
+                'change-password': IRouterItem;
               };
             };
             organizations: {

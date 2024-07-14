@@ -7,9 +7,9 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { CountryCreateComponent } from './country-create.component';
 import { CountryEditComponent } from './country-edit.component';
 import { CountryIndexComponent } from './country-index.component';
-import { CountryViewDetailsComponent } from './country-view-details.component';
 import { CountryViewComponent } from './country-view.component';
 import { CountryTemplateComponent } from './template/country-template.component';
+import { CountryDetailsComponent } from './views/country-details.component';
 
 const routes: Routes = [
   {
@@ -64,7 +64,7 @@ const routes: Routes = [
     CountryCreateComponent,
     CountryEditComponent,
     CountryViewComponent,
-    CountryViewDetailsComponent,
+    CountryDetailsComponent,
     CountryTemplateComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],

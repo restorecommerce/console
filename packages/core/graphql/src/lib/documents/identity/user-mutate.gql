@@ -17,3 +17,142 @@ mutation IdentityUserMutate($input: IIoRestorecommerceUserUserList!) {
     }
   }
 }
+
+mutation IdentityUserRegisterMutate(
+  $input: IIoRestorecommerceUserRegisterRequest!
+) {
+  identity {
+    user {
+      Register(input: $input) {
+        details {
+          status {
+            code
+            message
+          }
+          payload {
+            ...UserFragment
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserActivateMutate(
+  $input: IIoRestorecommerceUserActivateRequest!
+) {
+  identity {
+    user {
+      Activate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserRequestEmailChangeMutate(
+  $input: IIoRestorecommerceUserChangeEmailRequest!
+) {
+  identity {
+    user {
+      RequestEmailChange(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserConfirmEmailChangeMutate(
+  $input: IIoRestorecommerceUserConfirmEmailChangeRequest!
+) {
+  identity {
+    user {
+      ConfirmEmailChange(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserRequestPasswordChangeMutate(
+  $input: IIoRestorecommerceUserRequestPasswordChangeRequest!
+) {
+  identity {
+    user {
+      RequestPasswordChange(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserConfirmPasswordChangeMutate(
+  $input: IIoRestorecommerceUserConfirmPasswordChangeRequest!
+) {
+  identity {
+    user {
+      ConfirmPasswordChange(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserChangePasswordMutate(
+  $input: IIoRestorecommerceUserChangePasswordRequest!
+) {
+  identity {
+    user {
+      ChangePassword(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation IdentityUserDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  identity {
+    user {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

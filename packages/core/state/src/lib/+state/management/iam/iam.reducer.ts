@@ -9,6 +9,9 @@ export const adapter: EntityAdapter<IUser> = createEntityAdapter<IUser>();
 
 export const initialState: IIamState = adapter.getInitialState({
   selectedId: null,
+  temp: {
+    roleAssociations: [],
+  },
   actionStatus: EActionStatus.INIT,
   error: null,
 });
@@ -65,7 +68,7 @@ const reducer = createReducer<IIamState>(
     })
   ),
   on(
-    userActions.setSelectedId,
+    userActions.userSetSelectedId,
     (state, { payload }): IIamState => ({
       ...state,
       selectedId: payload,
@@ -83,6 +86,10 @@ const reducer = createReducer<IIamState>(
     (state, { payload }): IIamState =>
       adapter.addOne(payload, {
         ...state,
+        temp: {
+          ...state.temp,
+          roleAssociations: [],
+        },
         actionStatus: EActionStatus.Succeeded,
       })
   ),
@@ -108,12 +115,48 @@ const reducer = createReducer<IIamState>(
         { id: payload.id, changes: payload },
         {
           ...state,
+          temp: {
+            ...state.temp,
+            roleAssociations: [],
+          },
           actionStatus: EActionStatus.Succeeded,
         }
       )
   ),
   on(
     userActions.userUpdateFail,
+    (state, { error }): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
+    userActions.userSetTempRoleAssociations,
+    (state, { payload }): IIamState => ({
+      ...state,
+      temp: {
+        ...state.temp,
+        roleAssociations: payload,
+      },
+    })
+  ),
+  on(
+    userActions.userChangePasswordRequest,
+    (state): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    userActions.userChangePasswordSuccess,
+    (state): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Succeeded,
+    })
+  ),
+  on(
+    userActions.userChangePasswordFail,
     (state, { error }): IIamState => ({
       ...state,
       actionStatus: EActionStatus.Failed,

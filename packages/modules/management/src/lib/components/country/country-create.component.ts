@@ -1,11 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { combineLatest } from 'rxjs';
-
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { CountryFacade } from '@console-core/state';
 
-import { buildCountrySchema } from './jss-forms';
+import { JssFormService } from './services';
 
 @Component({
   selector: 'app-module-management-country-create',
@@ -13,21 +11,29 @@ import { buildCountrySchema } from './jss-forms';
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
         <rc-crud-create
-          [schema]="schema"
+          [schema]="vm.schema"
           [create]="create"
         />
       </div>
     </ng-container>
   `,
+  providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountryCreateComponent {
-  schema: VCLFormFieldSchemaRoot = buildCountrySchema({});
+export class CountryCreateComponent implements OnDestroy {
   create = this.countryFacade.create;
 
   readonly vm$ = combineLatest({
     country: this.countryFacade.selected$,
+    schema: this.jssFormService.countrySchema$,
   });
 
-  constructor(private readonly countryFacade: CountryFacade) {}
+  constructor(
+    private readonly countryFacade: CountryFacade,
+    private readonly jssFormService: JssFormService
+  ) {}
+
+  ngOnDestroy(): void {
+    this.jssFormService.destroy();
+  }
 }

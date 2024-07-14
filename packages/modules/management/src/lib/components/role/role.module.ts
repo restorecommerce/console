@@ -7,9 +7,9 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { RoleCreateComponent } from './role-create.component';
 import { RoleEditComponent } from './role-edit.component';
 import { RoleIndexComponent } from './role-index.component';
-import { RoleViewDetailsComponent } from './role-view-details.component';
 import { RoleViewComponent } from './role-view.component';
 import { RoleTemplateComponent } from './template/role-template.component';
+import { RoleDetailsComponent } from './views/role-details.component';
 
 const routes: Routes = [
   {
@@ -64,7 +64,7 @@ const routes: Routes = [
     RoleCreateComponent,
     RoleEditComponent,
     RoleViewComponent,
-    RoleViewDetailsComponent,
+    RoleDetailsComponent,
     RoleTemplateComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],

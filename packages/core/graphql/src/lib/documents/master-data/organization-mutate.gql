@@ -19,3 +19,20 @@ mutation MasterDataOrganizationMutate(
     }
   }
 }
+
+mutation MasterDataOrganizationDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  master_data {
+    organization {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

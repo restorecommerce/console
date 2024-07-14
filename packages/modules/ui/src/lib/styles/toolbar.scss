@@ -2,12 +2,19 @@
 @use './theme/_console-variables.scss' as *;
 
 /* Toolbar */
-rc-toolbar {
+rc-toolbar,
+.rc-toolbar {
   background-color: $gray-light-6;
   min-height: 38px;
 
   .icon {
     font-size: 1.3rem;
+  }
+
+  .loose-button-group {
+    button {
+      margin: 0 2px;
+    }
   }
 }
 

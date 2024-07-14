@@ -14,9 +14,7 @@ import {
   selector: 'app-module-management-organization-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <app-module-management-organization-view-details
-        [organization]="vm.organization"
-      />
+      <app-module-management-organization-details [vm]="vm" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
