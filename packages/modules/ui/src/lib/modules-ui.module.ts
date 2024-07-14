@@ -27,6 +27,7 @@ import {
   VCLDrawerModule,
   VCLFormControlGroupModule,
   VCLDataListModule,
+  VCLPanelModule,
 } from '@vcl/ng-vcl';
 
 import {
@@ -139,6 +140,7 @@ const modules = [
   VCLDrawerModule,
   VCLFormControlGroupModule,
   VCLDataListModule,
+  VCLPanelModule,
 ];
 
 const atoms = [
