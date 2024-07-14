@@ -51,7 +51,7 @@ export class RcCrudEditComponent {
   }
 
   onSubmit(): void {
-    if (this.editForm.form.invalid || this.editForm.form.pristine) {
+    if (this.editForm.form.invalid) {
       return;
     }
 
