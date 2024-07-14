@@ -7,6 +7,7 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceUserUser,
+  IIoRestorecommerceUserUserList,
   IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
@@ -99,28 +100,39 @@ export class IamEffects {
   userCreateRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(userActions.userCreateRequest),
-      switchMap(({ payload }) =>
-        this.userService.mutate(payload).pipe(
-          tap((result) => {
-            this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.identity?.user?.Mutate?.details
-                ?.operationStatus as TOperationStatus
-            );
-          }),
-          map((result) => {
-            const payload =
-              result?.data?.identity?.user?.Mutate?.details?.items?.pop()
-                ?.payload as IUser;
+      switchMap(({ payload }) => {
+        return this.userService
+          .mutate({
+            ...payload,
+            items: this.getItems(payload),
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.identity?.user?.Mutate?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const user =
+                result?.data?.identity?.user?.Mutate?.details?.items?.pop()
+                  ?.payload as IUser;
 
-            return userActions.userCreateSuccess({
-              payload: this.userService.getUserFormatted(payload),
-            });
-          }),
-          catchError((error: Error) =>
-            of(userActions.userCreateFail({ error: error.message }))
-          )
-        )
-      )
+              if (!user) {
+                return userActions.userCreateFail({
+                  error: 'user not created',
+                });
+              }
+
+              return userActions.userCreateSuccess({
+                payload: this.userService.getUserFormatted(user),
+              });
+            }),
+            catchError((error: Error) =>
+              of(userActions.userCreateFail({ error: error.message }))
+            )
+          );
+      })
     );
   });
 
@@ -150,31 +162,10 @@ export class IamEffects {
     return this.actions$.pipe(
       ofType(userActions.userUpdateRequest),
       switchMap(({ payload }) => {
-        const items = (payload.items || []).map((item) => {
-          return {
-            ...item,
-            roleAssociations: item.roleAssociations?.map((ra) => ({
-              role: ra.role,
-              attributes: [
-                {
-                  id: 'urn:restorecommerce:acs:names:roleScopingEntity',
-                  value: 'urn:restorecommerce:acs:model:user.User',
-                  attributes: [
-                    {
-                      id: 'urn:restorecommerce:acs:names:roleScopingInstance',
-                      value: ra.attributes,
-                    },
-                  ],
-                },
-              ],
-            })),
-          } as IIoRestorecommerceUserUser;
-        });
-
         return this.userService
           .mutate({
             ...payload,
-            items,
+            items: this.getItems(payload),
           })
           .pipe(
             tap((result) => {
@@ -209,6 +200,15 @@ export class IamEffects {
             type: ENotificationTypes.Success,
           });
         })
+      );
+    },
+    { dispatch: false }
+  );
+
+  userSetTempRoleAssociations$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(userActions.userSetTempRoleAssociations)
       );
     },
     { dispatch: false }
@@ -320,4 +320,18 @@ export class IamEffects {
     private readonly userService: UserService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
+
+  private getItems(payload: IIoRestorecommerceUserUserList) {
+    return (payload.items || []).map((item) => {
+      return {
+        ...item,
+        roleAssociations: item.roleAssociations?.map((ra) => {
+          const [role, organization] = (ra as unknown as string).split(
+            '|'
+          ) as unknown as [string, string];
+          return this.userService.createRoleAssociation(role, organization);
+        }),
+      } as IIoRestorecommerceUserUser;
+    });
+  }
 }
