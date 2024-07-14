@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { Dictionary } from '@ngrx/entity';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import {
   map,
@@ -19,8 +20,13 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { IamFacade, RouterFacade, UserService } from '@console-core/state';
-import { ICrudFeature, EUrlSegment, IUser } from '@console-core/types';
+import {
+  IamFacade,
+  RoleFacade,
+  RouterFacade,
+  UserService,
+} from '@console-core/state';
+import { ICrudFeature, EUrlSegment, IUser, IRole } from '@console-core/types';
 
 @Component({
   selector: 'app-module-management-iam-template',
@@ -29,7 +35,9 @@ import { ICrudFeature, EUrlSegment, IUser } from '@console-core/types';
 })
 export class IamTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
+  EUrlSegment = EUrlSegment;
   featureRouter = ROUTER.pages.main.children.management.children.iam.children;
+  roleAssociationsRoles = '';
 
   feature: Readonly<ICrudFeature> = {
     name: {
@@ -43,6 +51,8 @@ export class IamTemplateComponent implements OnInit, OnDestroy {
         this.featureRouter.edit.getLink({ id: id ?? undefined }),
       view: (id: string | null) =>
         this.featureRouter.view.getLink({ id: id ?? undefined }),
+      'change-password': (id: string | null) =>
+        this.featureRouter['change-password'].getLink({ id: id ?? undefined }),
     },
   };
 
@@ -105,9 +115,10 @@ export class IamTemplateComponent implements OnInit, OnDestroy {
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.iamFacade.all$,
+    users: this.iamFacade.all$,
     selectedUserId: this.iamFacade.selectedId$,
     selectedUser: this.iamFacade.selected$,
+    rolesHash: this.roleFacade.entities$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -119,7 +130,8 @@ export class IamTemplateComponent implements OnInit, OnDestroy {
   constructor(
     private readonly iamFacade: IamFacade,
     private readonly routerFacade: RouterFacade,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly roleFacade: RoleFacade
   ) {}
 
   ngOnInit(): void {
@@ -134,8 +146,11 @@ export class IamTemplateComponent implements OnInit, OnDestroy {
     this.triggerSearch.next(value);
   }
 
-  getRoleAssociations(user: IUser): string {
-    return this.userService.getRoleAssociations(user);
+  getRoleAssociationsRoles(user: IUser, rolesHash: Dictionary<IRole>): string {
+    return this.userService
+      .getRoleAssociationsRoles(user, rolesHash)
+      .map((role) => role?.name ?? 'N/A')
+      .join(', ');
   }
 
   trackByFn(_: number, item: IUser) {

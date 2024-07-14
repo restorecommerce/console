@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
+import { IamChangePasswordComponent } from './iam-change-password.component';
 import { IamCreateComponent } from './iam-create.component';
 import { IamEditComponent } from './iam-edit.component';
 import { IamIndexComponent } from './iam-index.component';
-import { IamViewDetailsComponent } from './iam-view-details.component';
 import { IamViewComponent } from './iam-view.component';
 import { IamTemplateComponent } from './template/iam-template.component';
+import { IamChangePasswordFormComponent } from './views/iam-change-password-form.component';
+import { IamDetailsComponent } from './views/iam-details.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,16 @@ const routes: Routes = [
             .title,
       },
       {
+        path: ROUTER.pages.main.children.management.children.iam.children[
+          'change-password'
+        ].path,
+        component: IamChangePasswordComponent,
+        title:
+          ROUTER.pages.main.children.management.children.iam.children[
+            'change-password'
+          ].title,
+      },
+      {
         path: '**',
         redirectTo:
           ROUTER.pages.main.children.management.children.iam.children.index
@@ -62,9 +74,11 @@ const routes: Routes = [
   declarations: [
     IamCreateComponent,
     IamEditComponent,
+    IamChangePasswordComponent,
     IamIndexComponent,
     IamViewComponent,
-    IamViewDetailsComponent,
+    IamDetailsComponent,
+    IamChangePasswordFormComponent,
     IamTemplateComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],

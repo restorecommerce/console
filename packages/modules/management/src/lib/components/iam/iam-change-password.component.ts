@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -6,31 +7,27 @@ import { map, tap } from 'rxjs/operators';
 import { ROUTER } from '@console-core/config';
 import {
   IamFacade,
-  OrganizationFacade,
-  RoleFacade,
   RouterFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
 @Component({
-  selector: 'app-module-management-iam-view',
+  selector: 'app-module-management-iam-change-password',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <app-module-management-iam-details [vm]="vm" />
+      <app-module-management-iam-change-password-form [vm]="vm" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IamViewComponent implements OnInit {
+export class IamChangePasswordComponent {
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
-      map(({ id }) => id ?? ('' as string)),
-      filterEmptyAndNullishAndUndefined(),
+      map(({ id }) => id),
       tap((id) => {
         this.iamFacade.setSelectedId(id);
-        this.iamFacade.readOneById({ id });
       })
-    ) as unknown as string,
+    ),
     user: this.iamFacade.selected$.pipe(
       tap((user) => {
         if (!user) {
@@ -42,20 +39,12 @@ export class IamViewComponent implements OnInit {
       }),
       filterEmptyAndNullishAndUndefined()
     ),
-    organizationsHash: this.organizationFacade.entities$,
-    rolesHash: this.roleFacade.entities$,
   });
 
   constructor(
+    private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly iamFacade: IamFacade,
-    private readonly organizationFacade: OrganizationFacade,
-    private readonly roleFacade: RoleFacade
+    private readonly iamFacade: IamFacade
   ) {}
-
-  ngOnInit(): void {
-    this.roleFacade.read({});
-    this.organizationFacade.read({});
-  }
 }
