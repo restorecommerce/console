@@ -37,8 +37,13 @@ export interface IUser
   firstName: string;
   lastName: string;
   fullName: string;
-  roleAssociations: IoRestorecommerceAuthRoleAssociation[];
+  roleAssociations: IRoleAssociation[];
   meta: IMeta;
+}
+
+export interface IRoleAssociation
+  extends Omit<IoRestorecommerceAuthRoleAssociation, 'id' | '__typename'> {
+  id?: string;
 }
 
 export interface IRoleAssociationScopingInstance {

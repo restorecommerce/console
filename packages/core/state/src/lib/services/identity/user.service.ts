@@ -39,11 +39,11 @@ import {
   IdentityUserDeleteMutateGQL,
   IdentityUserDeleteMutateMutation,
   IoRestorecommerceAttributeAttribute,
-  IoRestorecommerceAuthRoleAssociation,
 } from '@console-core/graphql';
 import {
   IOrganization,
   IRole,
+  IRoleAssociation,
   IRoleAssociationScopingInstance,
   IUser,
 } from '@console-core/types';
@@ -52,13 +52,6 @@ import {
   providedIn: 'root',
 })
 export class UserService {
-  private roleAssociationsFormattedCache: Record<string, string> = {};
-  private roleAssociationsRolesCache: Record<string, IRole[]> = {};
-  private roleAssociationsScopingInstancesCache: Record<
-    string,
-    IRoleAssociationScopingInstance[]
-  > = {};
-
   constructor(
     private readonly identityUserActivateMutateGQL: IdentityUserActivateMutateGQL,
     private readonly identityUserFindGQL: IdentityUserFindGQL,
@@ -160,30 +153,27 @@ export class UserService {
   getUserFormatted(user: IUser): IUser {
     return {
       ...user,
+      email: user?.email ?? 'N/A',
+      firstName: user?.firstName ?? 'N/A',
+      lastName: user?.lastName ?? 'N/A',
       fullName:
-        user.firstName && user.lastName
+        user?.firstName && user?.lastName
           ? `${user.firstName} ${user.lastName}`
           : 'N/A',
       locale: {
-        ...user.locale,
-        name: user.locale?.name ?? user.locale?.id ?? null,
+        ...user?.locale,
+        name: user?.locale?.name ?? user?.locale?.id ?? null,
       },
       timezone: {
-        ...user.timezone,
-        name: user.timezone?.name ?? user.locale?.id ?? null,
+        ...user?.timezone,
+        name: user?.timezone?.name ?? user?.locale?.id ?? null,
       },
-      roles: user.roles ?? [],
-      roleAssociations: user.roleAssociations ?? [],
+      roles: user?.roles ?? [],
+      roleAssociations: user?.roleAssociations ?? [],
     };
   }
 
   getRoleAssociationsRoles(user: IUser, rolesHash: Dictionary<IRole>): IRole[] {
-    const cacheKey = user.id + user.meta.modified + JSON.stringify(rolesHash);
-
-    if (this.roleAssociationsRolesCache[cacheKey]) {
-      return this.roleAssociationsRolesCache[cacheKey] as IRole[];
-    }
-
     const roles: IRole[] = [];
 
     user.roleAssociations?.forEach((roleAssociation) => {
@@ -214,33 +204,19 @@ export class UserService {
     });
 
     const uniqueRoles = [...new Set(roles)];
-
     uniqueRoles.sort((a, b) => a.name.localeCompare(b.name));
-    this.roleAssociationsRolesCache[cacheKey] = uniqueRoles;
     return uniqueRoles;
   }
 
   getRoleAssociationsScopingInstances(
-    user: IUser,
+    roleAssociations: IRoleAssociation[],
     rolesHash: Dictionary<IRole>,
     organizationsHash: Dictionary<IOrganization>
   ): IRoleAssociationScopingInstance[] {
-    const cacheKey =
-      user.id +
-      user.meta.modified +
-      JSON.stringify(rolesHash) +
-      JSON.stringify(organizationsHash);
-
-    if (this.roleAssociationsScopingInstancesCache[cacheKey]) {
-      return this.roleAssociationsScopingInstancesCache[
-        cacheKey
-      ] as IRoleAssociationScopingInstance[];
-    }
-
     const results: IRoleAssociationScopingInstance[] = [];
 
     const recursiveSearch = (
-      roleAssociation: IoRestorecommerceAuthRoleAssociation,
+      roleAssociation: IRoleAssociation,
       data:
         | IoRestorecommerceAttributeAttribute
         | IoRestorecommerceAttributeAttribute[]
@@ -263,14 +239,36 @@ export class UserService {
       }
     };
 
-    user.roleAssociations?.forEach((roleAssociation) => {
+    roleAssociations?.forEach((roleAssociation) => {
       if (roleAssociation.attributes) {
         recursiveSearch(roleAssociation, roleAssociation.attributes);
       }
     });
 
-    this.roleAssociationsScopingInstancesCache[cacheKey] = results;
+    const uniqueRoleAssociationsScopingInstances = [...new Set(results)].filter(
+      (item) => item.role && item.organization
+    );
+    uniqueRoleAssociationsScopingInstances.sort((a, b) =>
+      a.role?.name && b.role?.name ? a.role.name.localeCompare(b.role?.name) : 0
+    );
+    return uniqueRoleAssociationsScopingInstances;
+  }
 
-    return results;
+  createRoleAssociation(role: string, organization: string): IRoleAssociation {
+    return {
+      role: role,
+      attributes: [
+        {
+          id: 'urn:restorecommerce:acs:names:roleScopingEntity',
+          value: 'urn:restorecommerce:acs:model:user.User',
+          attributes: [
+            {
+              id: 'urn:restorecommerce:acs:names:roleScopingInstance',
+              value: organization,
+            },
+          ],
+        },
+      ],
+    };
   }
 }
