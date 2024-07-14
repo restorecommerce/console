@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 
@@ -41,7 +43,10 @@ export class RcCrudEditComponent {
   @ViewChild('editForm')
   editForm!: JssFormComponent;
 
-  onAction(_: string): void {
+  @Output() actionEvent = new EventEmitter<string>();
+
+  onAction(action: string): void {
+    this.actionEvent.emit(action);
     this.editForm.form.resetForm(this.editForm.defaultValue);
   }
 
