@@ -43,7 +43,7 @@ import { JssFormService } from './services';
         <vcl-panel-dialog
           [showCloseButton]="true"
           (close)="tplLayer.close()"
-          style="min-width: 420px;"
+          class="panel-dialog"
         >
           <vcl-panel-title>{{ title }}</vcl-panel-title>
           <div class="row">
