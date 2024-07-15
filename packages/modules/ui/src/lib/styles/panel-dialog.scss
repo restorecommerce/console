@@ -1,0 +1,11 @@
+.panel-dialog {
+  width: 700px;
+
+  @media (max-width: 767px) {
+    width: 600px;
+  }
+
+  @media (max-width: 430px) {
+    width: 400px;
+  }
+}
