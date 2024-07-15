@@ -120,7 +120,7 @@ export class IamEffects {
 
               if (!user) {
                 return userActions.userCreateFail({
-                  error: 'user not created',
+                  error: 'an error occurred',
                 });
               }
 
