@@ -15,7 +15,9 @@
         >
           <vcl-icon icon="mdi:home-outline" />
         </button>
+
         {{ feature.name.plural }}
+
         <button
           vcl-button
           rc-append
@@ -73,6 +75,7 @@
                       ].includes(urlSegment)
                     "
                     vcl-button
+                    rc-prepend
                     [routerLink]="feature.links.view(id)"
                     class="square half-transparent button"
                     title="Go back"
@@ -84,9 +87,11 @@
                     *ngTemplateOutlet="toolbarButtonsStartTemplate"
                   />
                 </div>
+
                 <div class="overflow-ellipsis">
                   {{ title }}
                 </div>
+
                 <div class="loose-button-group">
                   <!-- TODO: Move these buttons to the feature orders module -->
                   <button
@@ -96,6 +101,7 @@
                     "
                     (click)="onCreateInvoice(id)"
                     vcl-button
+                    rc-append
                     class="square half-transparent button"
                     title="Create Invoice"
                   >
@@ -110,6 +116,7 @@
                     "
                     (click)="onCreateFulfillment(id)"
                     vcl-button
+                    rc-append
                     class="square half-transparent button"
                     title="Create Fulfillment"
                   >
@@ -118,6 +125,7 @@
 
                   <button
                     vcl-button
+                    rc-append
                     *ngIf="
                       ![EUrlSegment.Index, EUrlSegment.Create].includes(
                         urlSegment
@@ -137,6 +145,7 @@
 
                   <button
                     vcl-button
+                    rc-append
                     *ngIf="
                       isDelete &&
                       ![EUrlSegment.Index, EUrlSegment.Create].includes(
