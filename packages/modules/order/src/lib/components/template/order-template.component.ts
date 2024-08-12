@@ -105,6 +105,10 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
           '[Log] ~ file: order-template.component.ts:107 ~ OrderTemplateComponent ~ tap ~ console: triggerCreateInvoice --->',
           id
         );
+
+        console.log('*** Action for creating an invoice for this', id);
+
+        this.orderFacade.createOrderInvoice(id);
       })
     );
 

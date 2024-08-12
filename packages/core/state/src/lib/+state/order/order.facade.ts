@@ -37,5 +37,12 @@ export class OrderFacade {
   remove = (payload: { id: string }) =>
     this.store.dispatch(orderActions.orderRemoveRequest({ payload }));
 
+  createOrderInvoice = (payload: string) =>
+    this.store.dispatch(
+      orderActions.orderCreateInvoiceRequest({
+        payload,
+      })
+    );
+
   constructor(private readonly store: Store) {}
 }

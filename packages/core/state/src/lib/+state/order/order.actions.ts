@@ -85,3 +85,8 @@ export const orderRemoveFail = createAction(
   '[ORDER] Order remove fail',
   props<{ error: string }>()
 );
+
+export const orderCreateInvoiceRequest = createAction(
+  '[ORDER] Create an invoice request',
+  props<{ payload: string }>()
+);

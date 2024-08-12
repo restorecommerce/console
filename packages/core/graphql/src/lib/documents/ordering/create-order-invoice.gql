@@ -1,0 +1,19 @@
+mutation OrderingInvoiceCreate(
+  $input: IIoRestorecommerceOrderOrderingInvoiceRequestList!
+) {
+  ordering {
+    order {
+      CreateInvoice(input: $input) {
+        details {
+          items {
+            payload {
+              id
+              invoiceNumber
+              paymentState
+            }
+          }
+        }
+      }
+    }
+  }
+}

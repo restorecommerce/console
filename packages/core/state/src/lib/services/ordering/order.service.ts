@@ -7,6 +7,9 @@ import {
   IIoRestorecommerceOrderOrderList,
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
+  OrderingInvoiceCreateGQL,
+  OrderingInvoiceCreateMutation,
+  IIoRestorecommerceOrderOrderingInvoiceRequestList,
   OrderingOrderDeleteMutateGQL,
   OrderingOrderDeleteMutateMutation,
   OrderingOrderMutateGQL,
@@ -22,7 +25,8 @@ export class OrderService {
   constructor(
     private readonly orderingOrderReadGQL: OrderingOrderReadGQL,
     private readonly orderingOrderMutateGQL: OrderingOrderMutateGQL,
-    private readonly orderingOrderDeleteMutateGQL: OrderingOrderDeleteMutateGQL
+    private readonly orderingOrderDeleteMutateGQL: OrderingOrderDeleteMutateGQL,
+    private readonly orderingInvoiceCreateGQL: OrderingInvoiceCreateGQL
   ) {}
 
   read(
@@ -46,6 +50,26 @@ export class OrderService {
   ): Observable<MutationResult<OrderingOrderDeleteMutateMutation>> {
     return this.orderingOrderDeleteMutateGQL.mutate({
       input: payload,
+    });
+  }
+
+  createOrderInvoice(
+    payload: string
+  ): Observable<MutationResult<OrderingInvoiceCreateMutation>> {
+    const orderInvoiceInput: IIoRestorecommerceOrderOrderingInvoiceRequestList =
+      {};
+    orderInvoiceInput.items = [
+      {
+        sections: [
+          {
+            orderId: payload,
+          },
+        ],
+      },
+    ];
+
+    return this.orderingInvoiceCreateGQL.mutate({
+      input: orderInvoiceInput,
     });
   }
 }
