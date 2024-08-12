@@ -90,3 +90,13 @@ export const orderCreateInvoiceRequest = createAction(
   '[ORDER] Create an invoice request',
   props<{ payload: string }>()
 );
+
+export const orderCreateInvoiceSuccess = createAction(
+  '[ORDER] Create an invoice success',
+  props<{ payload: string }>()
+);
+
+export const orderCreateInvoiceFail = createAction(
+  '[ORDER] Create an invoice fail',
+  props<{ error: string }>()
+);
