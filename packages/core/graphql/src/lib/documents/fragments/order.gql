@@ -39,6 +39,8 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
       id
       street
       buildingNumber
+      locality
+      region
       businessAddress {
         name
       }

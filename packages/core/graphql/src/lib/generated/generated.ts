@@ -6655,6 +6655,8 @@ export type OrderFragmentFragment = {
       id?: string | null;
       street?: string | null;
       buildingNumber?: string | null;
+      locality?: string | null;
+      region?: string | null;
       postcode?: string | null;
       businessAddress?: {
         __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -9098,6 +9100,8 @@ export type OrderingOrderMutateMutation = {
                   id?: string | null;
                   street?: string | null;
                   buildingNumber?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
                   postcode?: string | null;
                   businessAddress?: {
                     __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -9725,6 +9729,8 @@ export type OrderingOrderReadQuery = {
                   id?: string | null;
                   street?: string | null;
                   buildingNumber?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
                   postcode?: string | null;
                   businessAddress?: {
                     __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -10160,6 +10166,8 @@ export const OrderFragmentFragmentDoc = gql`
         id
         street
         buildingNumber
+        locality
+        region
         businessAddress {
           name
         }
