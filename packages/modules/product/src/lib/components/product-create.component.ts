@@ -12,10 +12,11 @@ import { buildProductSchema } from '../jss-forms';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
-        <rc-crud-create
+        <app-module-product-creation-form />
+        <!-- <rc-crud-create
           [schema]="schema"
           [create]="create"
-        />
+        /> -->
       </div>
     </ng-container>
   `,
