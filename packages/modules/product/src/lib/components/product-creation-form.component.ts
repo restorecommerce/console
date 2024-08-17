@@ -116,6 +116,39 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </vcl-select>
         </vcl-form-control-group>
       </div>
+
+      <!-- <div class="row justify-content-end w-100p mt-2">
+        <div class="loose-button-group">
+          <button vcl-button>Add variant</button>
+        </div>
+      </div> -->
+      <div class="divider divider-horizontal row justify-center">
+        <div class="divider-rule"></div>
+        <div class="icogram divider-element">
+          <div class="text">Product variant</div>
+        </div>
+      </div>
+
+      <app-module-product-variant-form />
+
+      <div class="row justify-content-end w-100p mt-2">
+        <div class="loose-button-group">
+          <button
+            vcl-button
+            type="button"
+            class="transparent"
+          >
+            Cancel
+          </button>
+
+          <button
+            vcl-button
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </div>
     </div>
   `,
   selector: 'app-module-product-creation-form',

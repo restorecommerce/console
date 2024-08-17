@@ -7,6 +7,7 @@ import { ProductCreateComponent } from './components/product-create.component';
 import { ProductCreationFormComponent } from './components/product-creation-form.component';
 import { ProductEditComponent } from './components/product-edit.component';
 import { ProductIndexComponent } from './components/product-index.component';
+import { ProductVariantFormComponent } from './components/product-variant-form.component';
 import { ProductViewComponent } from './components/product-view.component';
 import { ProductTemplateComponent } from './components/template/product-template.component';
 import { modulesProductRoutes } from './lib.routes';
@@ -19,6 +20,7 @@ import { modulesProductRoutes } from './lib.routes';
     ProductEditComponent,
     ProductViewComponent,
     ProductCreationFormComponent,
+    ProductVariantFormComponent,
   ],
   imports: [
     ModulesUiModule.forChild(),
