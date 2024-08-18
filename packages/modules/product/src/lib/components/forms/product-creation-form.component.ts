@@ -92,6 +92,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </vcl-select>
         </vcl-form-control-group>
 
+        <!--  TODO Should be dynamic to accomodate additional taxes -->
+        <vcl-form-control-group>
+          <vcl-label>Tax Id</vcl-label>
+          <vcl-input-field>
+            <input vclInput />
+          </vcl-input-field>
+        </vcl-form-control-group>
+
         <vcl-form-control-group>
           <vcl-label>Global trade item number</vcl-label>
           <vcl-input-field>
