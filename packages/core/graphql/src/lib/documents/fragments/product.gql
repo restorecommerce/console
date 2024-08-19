@@ -8,12 +8,12 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
     name
     description
     taxIds
+    gtin
+    manufacturerId
+    originCountryId
+    categoryId
+    prototypeId
     taricCode
-    category {
-      id
-      name
-      description
-    }
     physical {
       variants {
         id

@@ -5499,13 +5499,12 @@ export type CatalogProductMutateMutation = {
                 name?: string | null;
                 description?: string | null;
                 taxIds?: Array<string> | null;
+                gtin?: string | null;
+                manufacturerId?: string | null;
+                originCountryId?: string | null;
+                categoryId?: string | null;
+                prototypeId?: string | null;
                 taricCode?: string | null;
-                category?: {
-                  __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                  id?: string | null;
-                  name?: string | null;
-                  description?: string | null;
-                } | null;
                 physical?: {
                   __typename?: 'IoRestorecommerceProductPhysicalProduct';
                   variants?: Array<{
@@ -5687,13 +5686,12 @@ export type CatalogProductReadQuery = {
                 name?: string | null;
                 description?: string | null;
                 taxIds?: Array<string> | null;
+                gtin?: string | null;
+                manufacturerId?: string | null;
+                originCountryId?: string | null;
+                categoryId?: string | null;
+                prototypeId?: string | null;
                 taricCode?: string | null;
-                category?: {
-                  __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                  id?: string | null;
-                  name?: string | null;
-                  description?: string | null;
-                } | null;
                 physical?: {
                   __typename?: 'IoRestorecommerceProductPhysicalProduct';
                   variants?: Array<{
@@ -6251,13 +6249,12 @@ export type OrderFragmentFragment = {
         name?: string | null;
         description?: string | null;
         taxIds?: Array<string> | null;
+        gtin?: string | null;
+        manufacturerId?: string | null;
+        originCountryId?: string | null;
+        categoryId?: string | null;
+        prototypeId?: string | null;
         taricCode?: string | null;
-        category?: {
-          __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-          id?: string | null;
-          name?: string | null;
-          description?: string | null;
-        } | null;
         physical?: {
           __typename?: 'IoRestorecommerceProductPhysicalProduct';
           variants?: Array<{
@@ -6880,13 +6877,12 @@ export type ProductFragmentFragment = {
     name?: string | null;
     description?: string | null;
     taxIds?: Array<string> | null;
+    gtin?: string | null;
+    manufacturerId?: string | null;
+    originCountryId?: string | null;
+    categoryId?: string | null;
+    prototypeId?: string | null;
     taricCode?: string | null;
-    category?: {
-      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-      id?: string | null;
-      name?: string | null;
-      description?: string | null;
-    } | null;
     physical?: {
       __typename?: 'IoRestorecommerceProductPhysicalProduct';
       variants?: Array<{
@@ -8696,13 +8692,12 @@ export type OrderingOrderMutateMutation = {
                     name?: string | null;
                     description?: string | null;
                     taxIds?: Array<string> | null;
+                    gtin?: string | null;
+                    manufacturerId?: string | null;
+                    originCountryId?: string | null;
+                    categoryId?: string | null;
+                    prototypeId?: string | null;
                     taricCode?: string | null;
-                    category?: {
-                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                    } | null;
                     physical?: {
                       __typename?: 'IoRestorecommerceProductPhysicalProduct';
                       variants?: Array<{
@@ -9325,13 +9320,12 @@ export type OrderingOrderReadQuery = {
                     name?: string | null;
                     description?: string | null;
                     taxIds?: Array<string> | null;
+                    gtin?: string | null;
+                    manufacturerId?: string | null;
+                    originCountryId?: string | null;
+                    categoryId?: string | null;
+                    prototypeId?: string | null;
                     taricCode?: string | null;
-                    category?: {
-                      __typename?: 'IoRestorecommerceProductCategoryProductCategory';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                    } | null;
                     physical?: {
                       __typename?: 'IoRestorecommerceProductPhysicalProduct';
                       variants?: Array<{
@@ -10026,12 +10020,12 @@ export const ProductFragmentFragmentDoc = gql`
       name
       description
       taxIds
+      gtin
+      manufacturerId
+      originCountryId
+      categoryId
+      prototypeId
       taricCode
-      category {
-        id
-        name
-        description
-      }
       physical {
         variants {
           id
