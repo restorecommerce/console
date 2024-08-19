@@ -13,6 +13,7 @@ import { ProductVariantFormComponent } from './components/forms/product-variant-
 import { ProductCreateComponent } from './components/product-create.component';
 import { ProductEditComponent } from './components/product-edit.component';
 import { ProductIndexComponent } from './components/product-index.component';
+import { ProductVariantEditComponent } from './components/product-variant-modal.component';
 import { ProductViewComponent } from './components/product-view.component';
 import { ProductTemplateComponent } from './components/template/product-template.component';
 import { modulesProductRoutes } from './lib.routes';
@@ -31,6 +32,7 @@ import { modulesProductRoutes } from './lib.routes';
     ProductPropertyFormComponent,
     ProductFileFormComponent,
     ProductPackageFormComponent,
+    ProductVariantEditComponent,
   ],
   imports: [
     ModulesUiModule.forChild(),

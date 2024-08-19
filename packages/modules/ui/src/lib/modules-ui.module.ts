@@ -143,6 +143,7 @@ const modules = [
   VCLDataListModule,
   VCLPanelModule,
   VCLCheckboxModule,
+  VCLPanelModule,
 ];
 
 const atoms = [
