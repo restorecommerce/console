@@ -31,7 +31,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
     </vcl-form-control-group>
 
     <vcl-form-control-group>
-      <vcl-checkbox formControlName="terms">Rotatable</vcl-checkbox>
+      <vcl-checkbox>Rotatable</vcl-checkbox>
     </vcl-form-control-group>
   `,
   selector: 'app-module-product-package-form',
