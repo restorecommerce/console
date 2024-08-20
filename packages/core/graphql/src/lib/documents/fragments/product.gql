@@ -15,16 +15,16 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
       variants {
         id
         name
-        images {
-          id
-          index
-          filename
-          caption
-          contentType
-          height
-          width
-          url
-        }
+        # images {
+        #   id
+        #   index
+        #   filename
+        #   caption
+        #   contentType
+        #   height
+        #   width
+        #   url
+        # }
         stockLevel
         parentVariantId
         price {
