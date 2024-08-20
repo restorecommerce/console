@@ -17,7 +17,7 @@ export const buildProductVariantSchema = (
     type: 'form',
     fields: [
       // {
-      //   name: 'product',
+      //   name: 'price',
       //   type: 'object',
       //   fields: [
 
@@ -28,7 +28,7 @@ export const buildProductVariantSchema = (
         label: 'Offerings',
         type: 'select',
         // disabled: true,
-        defaultValue: '',
+        defaultValue: 'physical',
         validators: [Validators.required],
         params: {
           placeholder: 'Select offering',
@@ -63,7 +63,7 @@ export const buildProductVariantSchema = (
         label: 'Name',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: '',
+        defaultValue: 'Blue Type',
         params: {},
         hints: [
           {
@@ -78,7 +78,8 @@ export const buildProductVariantSchema = (
         label: 'Description',
         type: 'input',
         validators: [],
-        defaultValue: '',
+        defaultValue:
+          'A test decription about this type of particular variant!',
         params: {},
       },
       {
@@ -86,8 +87,10 @@ export const buildProductVariantSchema = (
         label: 'Stock level',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: '',
-        params: {},
+        defaultValue: 99,
+        params: {
+          inputType: 'number',
+        },
         hints: [
           {
             type: 'error',
@@ -101,7 +104,7 @@ export const buildProductVariantSchema = (
         label: 'Stock keeping unit',
         type: 'input',
         validators: [],
-        defaultValue: '',
+        defaultValue: 'qwerty1012',
         params: {},
         hints: [
           {
@@ -115,8 +118,7 @@ export const buildProductVariantSchema = (
         name: 'taxIds',
         label: 'Taxes',
         type: 'select',
-        // disabled: true,
-        defaultValue: options?.product?.product.taxIds || [],
+        defaultValue: ['germany-reduced-rate', 'germany-standard-rate'],
         validators: [Validators.required],
         params: {
           placeholder: 'Select taxes',
@@ -168,70 +170,81 @@ export const buildProductVariantSchema = (
       },
       // Price ****
       {
-        name: 'currencyId',
-        label: 'Currency',
-        type: 'select',
-        // disabled: true,
-        defaultValue: '',
-        validators: [Validators.required],
-        params: {
-          placeholder: 'Select currency',
-          selectionMode: 'single',
-          clearable: false,
-          search: false,
-          options: [
-            {
-              label: 'USD',
-              value: 'USD',
+        name: 'price',
+        type: 'object',
+        fields: [
+          {
+            name: 'currencyId',
+            label: 'Currency',
+            type: 'select',
+            // disabled: true,
+            defaultValue: 'USD',
+            validators: [Validators.required],
+            params: {
+              placeholder: 'Select currency',
+              selectionMode: 'single',
+              clearable: false,
+              search: false,
+              options: [
+                {
+                  label: 'USD',
+                  value: 'USD',
+                },
+                {
+                  label: 'EURO',
+                  value: 'EUR',
+                },
+              ],
             },
-            {
-              label: 'EURO',
-              value: 'EUR',
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
+          {
+            name: 'regularPrice',
+            label: 'Regular price',
+            type: 'input',
+            validators: [Validators.required],
+            defaultValue: 10,
+            params: {
+              inputType: 'number',
             },
-          ],
-        },
-        hints: [
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
           {
-            type: 'error',
-            error: 'required',
-            message: 'This field is required.',
+            name: 'salePrice',
+            label: 'Sale price',
+            type: 'input',
+            validators: [Validators.required],
+            defaultValue: 10,
+            params: {
+              inputType: 'number',
+            },
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
+          {
+            type: 'checkbox',
+            defaultValue: false,
+            name: 'sale',
+            label: 'On sales',
           },
         ],
-      },
-      {
-        name: 'regularPrice',
-        label: 'Regular price',
-        type: 'input',
-        validators: [Validators.required],
-        defaultValue: '',
-        params: {},
-        hints: [
-          {
-            type: 'error',
-            error: 'required',
-            message: 'This field is required.',
-          },
-        ],
-      },
-      {
-        name: 'salePrice',
-        label: 'Sale price',
-        type: 'input',
-        validators: [Validators.required],
-        defaultValue: '',
-        params: {},
-        hints: [
-          {
-            type: 'error',
-            error: 'required',
-            message: 'This field is required.',
-          },
-        ],
-      },
-      {
-        type: 'checkbox',
-        name: 'sales',
-        label: 'On sales',
       },
       {
         type: 'buttons',

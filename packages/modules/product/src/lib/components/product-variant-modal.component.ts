@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
-import { ComponentLayerRef } from '@vcl/ng-vcl';
+import { ComponentLayerRef, JssFormComponent } from '@vcl/ng-vcl';
+
+import { IoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
 
 import { buildProductVariantSchema } from '../jss-forms';
 
@@ -26,6 +28,9 @@ import { buildProductVariantSchema } from '../jss-forms';
 export class ProductVariantEditComponent {
   constructor(private layer: ComponentLayerRef) {}
 
+  @ViewChild('variantModalForm')
+  variantModalForm!: JssFormComponent;
+
   schema = buildProductVariantSchema({});
 
   get title() {
@@ -40,6 +45,13 @@ export class ProductVariantEditComponent {
 
   onSubmit() {
     // TODO
+    console.log();
+    const value = this.variantModalForm.form
+      .value as IoRestorecommerceProductPhysicalVariant;
+
+    console.log('value', value);
+
+    // Massage the value to the parent product
   }
 
   onAction(_: string) {
