@@ -1,8 +1,5 @@
 fragment ProductFragment on IoRestorecommerceProductProduct {
   id
-  shop {
-    ...ShopFragment
-  }
   tags
   product {
     name

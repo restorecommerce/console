@@ -17,6 +17,7 @@ import {
   RouterFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
+import { IProduct } from '@console-core/types';
 
 import { ProductVariantEditComponent } from './product-variant-modal.component';
 
@@ -25,7 +26,7 @@ import { ProductVariantEditComponent } from './product-variant-modal.component';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <rc-product-view
-        (addVariant)="onAddVariant()"
+        (addVariant)="onAddVariant(vm.product)"
         [product]="vm.product"
       />
     </ng-container>
@@ -79,11 +80,12 @@ export class ProductViewComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  onAddVariant() {
+  onAddVariant(product: IProduct) {
     this.subscriptions.sink = this.addVariantLayer
       .open({
         data: {
           title: `Add product variant`,
+          product,
         },
       })
       .subscribe((result) => {
