@@ -22,7 +22,10 @@
       class="row data-list-item product-item"
       *ngFor="let variant of variants"
     >
-      <rc-product-variant [variant]="variant" />
+      <rc-product-variant
+        [variant]="variant"
+        (editVariant)="editVariant.emit($event)"
+      />
     </li>
   </ul>
 </div>

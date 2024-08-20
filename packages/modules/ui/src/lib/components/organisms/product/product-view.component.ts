@@ -6,7 +6,10 @@ import {
   Output,
 } from '@angular/core';
 
-import { IoRestorecommerceProductProduct } from '@console-core/graphql';
+import {
+  IIoRestorecommerceProductPhysicalVariant,
+  IoRestorecommerceProductProduct,
+} from '@console-core/graphql';
 
 @Component({
   selector: 'rc-product-view',
@@ -15,6 +18,7 @@ import { IoRestorecommerceProductProduct } from '@console-core/graphql';
     <rc-product-variants
       [variants]="product.product?.physical?.variants || []"
       (addVariant)="addVariant.emit()"
+      (editVariant)="editVariant.emit($event)"
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,4 +26,6 @@ import { IoRestorecommerceProductProduct } from '@console-core/graphql';
 export class RcProductViewComponent {
   @Input({ required: true }) product!: IoRestorecommerceProductProduct;
   @Output() addVariant = new EventEmitter<void>();
+  @Output() editVariant =
+    new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
 }

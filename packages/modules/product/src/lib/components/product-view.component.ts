@@ -12,6 +12,7 @@ import { SubSink } from 'subsink';
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
+import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
 import {
   ProductFacade,
   RouterFacade,
@@ -27,6 +28,7 @@ import { ProductVariantEditComponent } from './product-variant-modal.component';
     <ng-container *ngIf="vm$ | async as vm">
       <rc-product-view
         (addVariant)="onAddVariant(vm.product)"
+        (editVariant)="onEditVariant($event)"
         [product]="vm.product"
       />
     </ng-container>
@@ -88,8 +90,17 @@ export class ProductViewComponent implements OnInit, OnDestroy {
           product,
         },
       })
-      .subscribe((result) => {
-        console.log('Bar component result: ' + result?.value);
-      });
+      .subscribe();
+  }
+
+  onEditVariant(_: IIoRestorecommerceProductPhysicalVariant) {
+    this.subscriptions.sink = this.addVariantLayer
+      .open({
+        data: {
+          title: `Edit product variant`,
+          // product,
+        },
+      })
+      .subscribe();
   }
 }

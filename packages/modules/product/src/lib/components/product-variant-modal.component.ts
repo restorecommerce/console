@@ -69,8 +69,6 @@ export class ProductVariantEditComponent {
       // REMOVE the field 'offerings'
       delete value.offerings;
 
-
-
       let product: IProduct;
 
       if (this.product.product.physical?.variants) {

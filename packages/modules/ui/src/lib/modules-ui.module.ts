@@ -29,6 +29,7 @@ import {
   VCLDataListModule,
   VCLPanelModule,
   VCLCheckboxModule,
+  VCLButtonGroupModule,
 } from '@vcl/ng-vcl';
 
 import {
@@ -144,6 +145,7 @@ const modules = [
   VCLPanelModule,
   VCLCheckboxModule,
   VCLPanelModule,
+  VCLButtonGroupModule,
 ];
 
 const atoms = [

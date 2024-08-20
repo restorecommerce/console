@@ -17,4 +17,7 @@ export class RcProductVariantsComponent {
   @Input({ required: true })
   variants!: IIoRestorecommerceProductPhysicalVariant[];
   @Output() addVariant = new EventEmitter<void>();
+
+  @Output() editVariant =
+    new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
 }
