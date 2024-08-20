@@ -23,7 +23,41 @@ export const buildProductVariantSchema = (
 
       //   ],
       // },
-
+      {
+        name: 'offerings',
+        label: 'Offerings',
+        type: 'select',
+        // disabled: true,
+        defaultValue: '',
+        validators: [Validators.required],
+        params: {
+          placeholder: 'Select offering',
+          selectionMode: 'single',
+          clearable: false,
+          search: false,
+          options: [
+            {
+              label: 'Physical',
+              value: 'physical',
+            },
+            {
+              label: 'Virtual',
+              value: 'virtual',
+            },
+            {
+              label: 'Service',
+              value: 'service',
+            },
+          ],
+        },
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
       {
         name: 'name',
         label: 'Name',
@@ -132,41 +166,73 @@ export const buildProductVariantSchema = (
           },
         ],
       },
-      // {
-      //   name: 'offerings',
-      //   label: 'Offerings',
-      //   type: 'select',
-      //   // disabled: true,
-      //   defaultValue: '',
-      //   validators: [Validators.required],
-      //   params: {
-      //     placeholder: 'Select offering',
-      //     selectionMode: 'single',
-      //     clearable: false,
-      //     search: false,
-      //     options: [
-      //       {
-      //         label: 'Physical',
-      //         value: 'physical',
-      //       },
-      //       {
-      //         label: 'Virtual',
-      //         value: 'virtual',
-      //       },
-      //       {
-      //         label: 'Service',
-      //         value: 'service'
-      //       }
-      //     ],
-      //   },
-      //   hints: [
-      //     {
-      //       type: 'error',
-      //       error: 'required',
-      //       message: 'This field is required.',
-      //     },
-      //   ],
-      // },
+      // Price ****
+      {
+        name: 'currencyId',
+        label: 'Currency',
+        type: 'select',
+        // disabled: true,
+        defaultValue: '',
+        validators: [Validators.required],
+        params: {
+          placeholder: 'Select currency',
+          selectionMode: 'single',
+          clearable: false,
+          search: false,
+          options: [
+            {
+              label: 'USD',
+              value: 'USD',
+            },
+            {
+              label: 'EURO',
+              value: 'EUR',
+            },
+          ],
+        },
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        name: 'regularPrice',
+        label: 'Regular price',
+        type: 'input',
+        validators: [Validators.required],
+        defaultValue: '',
+        params: {},
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        name: 'salePrice',
+        label: 'Sale price',
+        type: 'input',
+        validators: [Validators.required],
+        defaultValue: '',
+        params: {},
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        type: 'checkbox',
+        name: 'sales',
+        label: 'On sales',
+      },
       {
         type: 'buttons',
         buttons: [
