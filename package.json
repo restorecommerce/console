@@ -87,6 +87,7 @@
     "@schematics/angular": "17.1.4",
     "@types/jest": "^29.4.0",
     "@types/node": "18.19.9",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "autoprefixer": "^10.4.0",

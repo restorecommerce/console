@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ComponentLayerRef, JssFormComponent } from '@vcl/ng-vcl';
 
@@ -62,19 +63,46 @@ export class ProductVariantEditComponent {
 
   onSubmit() {
     const value = this.variantModalForm.form.value as IProductVariantFormValue;
+    value.id = uuidv4();
 
     if (value.offerings === 'physical') {
       // REMOVE the field 'offerings'
       delete value.offerings;
-      const product: IProduct = {
-        ...this.product,
-        product: {
-          ...this.product.product,
-          physical: {
-            variants: [{ ...value }],
+
+
+
+      let product: IProduct;
+
+      if (this.product.product.physical?.variants) {
+        product = {
+          ...this.product,
+          product: {
+            ...this.product.product,
+            taxIds: this.product.product.taxIds ?? [],
+            physical: {
+              variants: [
+                ...this.product.product.physical.variants,
+                {
+                  ...value,
+                },
+              ],
+            },
           },
-        },
-      };
+        };
+      } else {
+        product = {
+          ...this.product,
+          product: {
+            ...this.product.product,
+            physical: {
+              variants: [{ ...value }],
+            },
+          },
+        };
+      }
+
+      !this.product.tags && delete product.tags;
+      !this.product.product.taxIds && delete product.product.taxIds;
 
       this.productFacade.update({
         items: [product],

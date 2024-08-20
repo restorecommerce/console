@@ -11,7 +11,7 @@ interface ISchemaOptions {
 export const buildProductSchema = (
   options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
-  console.log("options?.product?.product", options?.product?.product);
+  console.log('options?.product?.product', options?.product?.product);
 
   return {
     type: 'form',
