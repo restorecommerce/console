@@ -2,17 +2,16 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IProduct } from '@console-core/types';
+// import { IProduct } from '@console-core/types';
+import { IoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
 
 interface ISchemaOptions {
-  product?: IProduct;
+  product?: IoRestorecommerceProductPhysicalVariant;
 }
 
 export const buildProductVariantSchema = (
   options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
-  console.log('options?.product?.product', options?.product?.product);
-
   return {
     type: 'form',
     fields: [
@@ -63,7 +62,7 @@ export const buildProductVariantSchema = (
         label: 'Name',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: 'Blue Type',
+        defaultValue: options?.product?.name || '',
         params: {},
         hints: [
           {
@@ -78,8 +77,7 @@ export const buildProductVariantSchema = (
         label: 'Description',
         type: 'input',
         validators: [],
-        defaultValue:
-          'A test decription about this type of particular variant!',
+        defaultValue: options?.product?.description || '',
         params: {},
       },
       {
@@ -87,7 +85,7 @@ export const buildProductVariantSchema = (
         label: 'Stock level',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: 99,
+        defaultValue: options?.product?.stockLevel || '',
         params: {
           inputType: 'number',
         },
@@ -104,7 +102,7 @@ export const buildProductVariantSchema = (
         label: 'Stock keeping unit',
         type: 'input',
         validators: [],
-        defaultValue: 'qwerty1012',
+        defaultValue: options?.product?.stockKeepingUnit || '',
         params: {},
         hints: [
           {
@@ -118,7 +116,7 @@ export const buildProductVariantSchema = (
         name: 'taxIds',
         label: 'Taxes',
         type: 'select',
-        defaultValue: ['germany-reduced-rate', 'germany-standard-rate'],
+        defaultValue: options?.product?.taxIds || [],
         validators: [Validators.required],
         params: {
           placeholder: 'Select taxes',
@@ -178,7 +176,7 @@ export const buildProductVariantSchema = (
             label: 'Currency',
             type: 'select',
             // disabled: true,
-            defaultValue: 'USD',
+            defaultValue: options?.product?.price?.currencyId || '',
             validators: [Validators.required],
             params: {
               placeholder: 'Select currency',
@@ -209,7 +207,7 @@ export const buildProductVariantSchema = (
             label: 'Regular price',
             type: 'input',
             validators: [Validators.required],
-            defaultValue: 10,
+            defaultValue: options?.product?.price?.regularPrice || '',
             params: {
               inputType: 'number',
             },
@@ -219,6 +217,11 @@ export const buildProductVariantSchema = (
                 error: 'required',
                 message: 'This field is required.',
               },
+              {
+                type: 'error',
+                error: 'min',
+                message: '',
+              },
             ],
           },
           {
@@ -226,7 +229,7 @@ export const buildProductVariantSchema = (
             label: 'Sale price',
             type: 'input',
             validators: [Validators.required],
-            defaultValue: 10,
+            defaultValue: options?.product?.price?.salePrice || '',
             params: {
               inputType: 'number',
             },
@@ -240,7 +243,7 @@ export const buildProductVariantSchema = (
           },
           {
             type: 'checkbox',
-            defaultValue: false,
+            defaultValue: options?.product?.price?.sale || false,
             name: 'sale',
             label: 'On sales',
           },

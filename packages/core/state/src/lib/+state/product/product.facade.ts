@@ -73,7 +73,7 @@ export class ProductFacade {
 
   update = (payload: IIoRestorecommerceProductProductList) => {
     const tempPayload = addTemporaryMetaForCatalogSrv(payload);
-    console.log("tempPayload", tempPayload);
+    console.log('tempPayload', tempPayload);
 
     this.store.dispatch(
       productActions.productUpdateRequest({ payload: tempPayload })

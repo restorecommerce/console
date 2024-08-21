@@ -265,41 +265,6 @@ export const buildProductSchema = (
           },
         ],
       },
-      // {
-      //   name: 'offerings',
-      //   label: 'Offerings',
-      //   type: 'select',
-      //   // disabled: true,
-      //   defaultValue: '',
-      //   validators: [Validators.required],
-      //   params: {
-      //     placeholder: 'Select offering',
-      //     selectionMode: 'single',
-      //     clearable: false,
-      //     search: false,
-      //     options: [
-      //       {
-      //         label: 'Physical',
-      //         value: 'physical',
-      //       },
-      //       {
-      //         label: 'Virtual',
-      //         value: 'virtual',
-      //       },
-      //       {
-      //         label: 'Service',
-      //         value: 'service'
-      //       }
-      //     ],
-      //   },
-      //   hints: [
-      //     {
-      //       type: 'error',
-      //       error: 'required',
-      //       message: 'This field is required.',
-      //     },
-      //   ],
-      // },
       {
         type: 'buttons',
         buttons: [

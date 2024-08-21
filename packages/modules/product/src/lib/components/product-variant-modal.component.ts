@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ComponentLayerRef, JssFormComponent } from '@vcl/ng-vcl';
 
 import {
+  IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceProductPhysicalVariant,
   ModeType,
 } from '@console-core/graphql';
@@ -45,7 +46,9 @@ export class ProductVariantEditComponent {
   @ViewChild('variantModalForm')
   variantModalForm!: JssFormComponent;
 
-  schema = buildProductVariantSchema({});
+  schema = buildProductVariantSchema({
+    product: this.variant,
+  });
 
   get title(): string {
     return this.layer.data.title;
@@ -53,6 +56,10 @@ export class ProductVariantEditComponent {
 
   get product(): IProduct {
     return this.layer.data.product;
+  }
+
+  get variant(): IIoRestorecommerceProductPhysicalVariant {
+    return this.layer.data.variant;
   }
 
   close(value?: string) {

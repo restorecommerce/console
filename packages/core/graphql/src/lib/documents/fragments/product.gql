@@ -15,6 +15,7 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
       variants {
         id
         name
+        description
         # images {
         #   id
         #   index
@@ -26,7 +27,9 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
         #   url
         # }
         stockLevel
+        stockKeepingUnit
         parentVariantId
+        taxIds
         price {
           currencyId
           regularPrice

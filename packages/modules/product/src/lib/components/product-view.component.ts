@@ -93,12 +93,13 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onEditVariant(_: IIoRestorecommerceProductPhysicalVariant) {
+  onEditVariant(variant: IIoRestorecommerceProductPhysicalVariant) {
+    console.log('variant:', variant);
     this.subscriptions.sink = this.addVariantLayer
       .open({
         data: {
           title: `Edit product variant`,
-          // product,
+          variant,
         },
       })
       .subscribe();
