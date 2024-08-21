@@ -19,6 +19,7 @@ import {
       [variants]="product.product?.physical?.variants || []"
       (addVariant)="addVariant.emit()"
       (editVariant)="editVariant.emit($event)"
+      (deleteVariant)="deleteVariant.emit($event)"
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,4 +29,5 @@ export class RcProductViewComponent {
   @Output() addVariant = new EventEmitter<void>();
   @Output() editVariant =
     new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
+  @Output() deleteVariant = new EventEmitter<string>();
 }

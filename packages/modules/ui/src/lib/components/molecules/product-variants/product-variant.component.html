@@ -68,6 +68,7 @@
         class="transparent"
         vcl-button
         [value]="2"
+        (click)="deleteVariant.emit(variant.id || ''); popover.close()"
       >
         Delete
       </button>

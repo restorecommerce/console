@@ -23,6 +23,5 @@ export class RcProductVariantComponent {
   @Output() editVariant =
     new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
 
-  @Output() deleteVariant =
-    new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
+  @Output() deleteVariant = new EventEmitter<string>();
 }

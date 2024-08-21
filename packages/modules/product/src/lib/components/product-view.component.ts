@@ -9,10 +9,13 @@ import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
-import { LayerRef, LayerService } from '@vcl/ng-vcl';
+import { AlertService, AlertType, LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
-import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
+import {
+  IIoRestorecommerceProductPhysicalVariant,
+  ModeType,
+} from '@console-core/graphql';
 import {
   ProductFacade,
   RouterFacade,
@@ -29,6 +32,7 @@ import { ProductVariantEditComponent } from './product-variant-modal.component';
       <rc-product-view
         (addVariant)="onAddVariant(vm.product)"
         (editVariant)="onEditVariant($event, vm.product)"
+        (deleteVariant)="onDeleteVariant($event, vm.product)"
         [product]="vm.product"
       />
     </ng-container>
@@ -65,6 +69,7 @@ export class ProductViewComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
     private readonly productFacade: ProductFacade,
+    private readonly alertService: AlertService,
     private layerService: LayerService
   ) {}
 
@@ -106,5 +111,53 @@ export class ProductViewComponent implements OnInit, OnDestroy {
         },
       })
       .subscribe();
+  }
+
+  onDeleteVariant(variantId: string, product: IProduct) {
+    const variants = product.product.physical?.variants;
+
+    if (variants) {
+      const variant = product.product.physical?.variants?.find(
+        (variant) => variant.id === variantId
+      );
+
+      const updatedVariants = variants.filter(
+        (variant) => variant.id !== variantId
+      );
+
+      if (variant) {
+        this.subscriptions.sink = this.alertService
+          .open({
+            text: `Do you really want to delete ${variant.name}?`,
+            type: AlertType.Question,
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonLabel: 'Cancel',
+            cancelButtonClass: 'transparent',
+            confirmButtonLabel: `Delete ${variant.name}`,
+            confirmButtonClass: 'button',
+          })
+          .subscribe((result) => {
+            if (result.action !== 'confirm') {
+              return;
+            }
+
+            const updatedProduct: IProduct = {
+              ...product,
+              product: {
+                ...product.product,
+                physical: {
+                  variants: updatedVariants,
+                },
+              },
+            };
+
+            this.productFacade.update({
+              items: [updatedProduct],
+              mode: ModeType.Update,
+            });
+          });
+      }
+    }
   }
 }

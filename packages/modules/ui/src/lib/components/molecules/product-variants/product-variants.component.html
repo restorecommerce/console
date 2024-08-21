@@ -25,6 +25,7 @@
       <rc-product-variant
         [variant]="variant"
         (editVariant)="editVariant.emit($event)"
+        (deleteVariant)="deleteVariant.emit($event)"
       />
     </li>
   </ul>
