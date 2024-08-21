@@ -5411,7 +5411,6 @@ export type CatalogProductMutateMutation = {
             payload?: {
               __typename?: 'IoRestorecommerceProductProduct';
               id?: string | null;
-              tags?: Array<string> | null;
               product?: {
                 __typename?: 'IoRestorecommerceProductIndividualProduct';
                 name?: string | null;
@@ -5432,7 +5431,6 @@ export type CatalogProductMutateMutation = {
                     description?: string | null;
                     stockLevel?: number | null;
                     stockKeepingUnit?: string | null;
-                    parentVariantId?: string | null;
                     taxIds?: Array<string> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -5508,7 +5506,6 @@ export type CatalogProductReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceProductProduct';
               id?: string | null;
-              tags?: Array<string> | null;
               product?: {
                 __typename?: 'IoRestorecommerceProductIndividualProduct';
                 name?: string | null;
@@ -5529,7 +5526,6 @@ export type CatalogProductReadQuery = {
                     description?: string | null;
                     stockLevel?: number | null;
                     stockKeepingUnit?: string | null;
-                    parentVariantId?: string | null;
                     taxIds?: Array<string> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -5981,7 +5977,6 @@ export type OrderFragmentFragment = {
     product?: {
       __typename?: 'IoRestorecommerceProductProduct';
       id?: string | null;
-      tags?: Array<string> | null;
       product?: {
         __typename?: 'IoRestorecommerceProductIndividualProduct';
         name?: string | null;
@@ -6002,7 +5997,6 @@ export type OrderFragmentFragment = {
             description?: string | null;
             stockLevel?: number | null;
             stockKeepingUnit?: string | null;
-            parentVariantId?: string | null;
             taxIds?: Array<string> | null;
             price?: {
               __typename?: 'IoRestorecommercePricePrice';
@@ -6519,7 +6513,6 @@ export type OrganizationFragmentFragment = {
 export type ProductFragmentFragment = {
   __typename?: 'IoRestorecommerceProductProduct';
   id?: string | null;
-  tags?: Array<string> | null;
   product?: {
     __typename?: 'IoRestorecommerceProductIndividualProduct';
     name?: string | null;
@@ -6540,7 +6533,6 @@ export type ProductFragmentFragment = {
         description?: string | null;
         stockLevel?: number | null;
         stockKeepingUnit?: string | null;
-        parentVariantId?: string | null;
         taxIds?: Array<string> | null;
         price?: {
           __typename?: 'IoRestorecommercePricePrice';
@@ -8244,7 +8236,6 @@ export type OrderingOrderMutateMutation = {
                 product?: {
                   __typename?: 'IoRestorecommerceProductProduct';
                   id?: string | null;
-                  tags?: Array<string> | null;
                   product?: {
                     __typename?: 'IoRestorecommerceProductIndividualProduct';
                     name?: string | null;
@@ -8265,7 +8256,6 @@ export type OrderingOrderMutateMutation = {
                         description?: string | null;
                         stockLevel?: number | null;
                         stockKeepingUnit?: string | null;
-                        parentVariantId?: string | null;
                         taxIds?: Array<string> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -8782,7 +8772,6 @@ export type OrderingOrderReadQuery = {
                 product?: {
                   __typename?: 'IoRestorecommerceProductProduct';
                   id?: string | null;
-                  tags?: Array<string> | null;
                   product?: {
                     __typename?: 'IoRestorecommerceProductIndividualProduct';
                     name?: string | null;
@@ -8803,7 +8792,6 @@ export type OrderingOrderReadQuery = {
                         description?: string | null;
                         stockLevel?: number | null;
                         stockKeepingUnit?: string | null;
-                        parentVariantId?: string | null;
                         taxIds?: Array<string> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -9393,7 +9381,6 @@ export const LocationFragmentFragmentDoc = gql`
 export const ProductFragmentFragmentDoc = gql`
   fragment ProductFragment on IoRestorecommerceProductProduct {
     id
-    tags
     product {
       name
       description
@@ -9411,7 +9398,6 @@ export const ProductFragmentFragmentDoc = gql`
           description
           stockLevel
           stockKeepingUnit
-          parentVariantId
           taxIds
           price {
             currencyId

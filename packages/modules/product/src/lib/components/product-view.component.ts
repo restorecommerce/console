@@ -28,7 +28,7 @@ import { ProductVariantEditComponent } from './product-variant-modal.component';
     <ng-container *ngIf="vm$ | async as vm">
       <rc-product-view
         (addVariant)="onAddVariant(vm.product)"
-        (editVariant)="onEditVariant($event)"
+        (editVariant)="onEditVariant($event, vm.product)"
         [product]="vm.product"
       />
     </ng-container>
@@ -93,12 +93,15 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onEditVariant(variant: IIoRestorecommerceProductPhysicalVariant) {
-    console.log('variant:', variant);
+  onEditVariant(
+    variant: IIoRestorecommerceProductPhysicalVariant,
+    product: IProduct
+  ) {
     this.subscriptions.sink = this.addVariantLayer
       .open({
         data: {
           title: `Edit product variant`,
+          product,
           variant,
         },
       })

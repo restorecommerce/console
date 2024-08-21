@@ -15,13 +15,6 @@ export const buildProductVariantSchema = (
   return {
     type: 'form',
     fields: [
-      // {
-      //   name: 'price',
-      //   type: 'object',
-      //   fields: [
-
-      //   ],
-      // },
       {
         name: 'offerings',
         label: 'Offerings',

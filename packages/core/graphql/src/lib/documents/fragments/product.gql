@@ -1,6 +1,6 @@
 fragment ProductFragment on IoRestorecommerceProductProduct {
   id
-  tags
+  # tags
   product {
     name
     description
@@ -28,7 +28,7 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
         # }
         stockLevel
         stockKeepingUnit
-        parentVariantId
+        # parentVariantId
         taxIds
         price {
           currencyId

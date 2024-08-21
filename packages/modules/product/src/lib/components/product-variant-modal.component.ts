@@ -69,13 +69,57 @@ export class ProductVariantEditComponent {
   }
 
   onSubmit() {
+    // ASSUME A PRODUCT IS PHYSICAL!
     const value = this.variantModalForm.form.value as IProductVariantFormValue;
-    value.id = uuidv4();
 
-    if (value.offerings === 'physical') {
-      // REMOVE the field 'offerings'
-      delete value.offerings;
+    // Fix the backend price issues!
+    const regularPrice = +(value.price?.regularPrice || 0);
+    const salePrice = +(value.price?.salePrice || 0);
 
+    // TODO Convert price!
+    value.stockLevel = +(value.stockLevel || 0);
+    value.price = {
+      ...value.price,
+      regularPrice,
+      salePrice,
+    };
+
+    // REMOVE the field 'offerings'
+    delete value.offerings;
+
+    if (this.variant.id) {
+      // EDIT MODE
+      const updatedVariant: IIoRestorecommerceProductPhysicalVariant = {
+        ...this.variant,
+        ...value,
+      };
+
+      const productWithUpdatedVariant =
+        this.product.product.physical?.variants?.map((variant) => {
+          if (variant.id === updatedVariant.id) {
+            return updatedVariant;
+          } else {
+            return variant;
+          }
+        });
+
+      const product: IProduct = {
+        ...this.product,
+        product: {
+          ...this.product.product,
+          physical: {
+            variants: productWithUpdatedVariant,
+          },
+        },
+      };
+
+      this.productFacade.update({
+        items: [product],
+        mode: ModeType.Update,
+      });
+    } else {
+      // CREATE MODE
+      value.id = uuidv4();
       let product: IProduct;
 
       if (this.product.product.physical?.variants) {
@@ -116,10 +160,9 @@ export class ProductVariantEditComponent {
     }
 
     this.close();
-    // Massage the value to the parent product
   }
 
   onAction(_: string) {
-    // TODO
+    this.close();
   }
 }
