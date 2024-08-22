@@ -219,6 +219,28 @@ export class OrderEffects {
     { dispatch: false }
   );
 
+  orderCreateInvoiceRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(orderActions.orderCreateInvoiceRequest),
+      switchMap(({ payload }) =>
+        this.orderService.createOrderInvoice(payload).pipe(
+          map((result) => {
+            const payload = (
+              result.data?.ordering.order.CreateInvoice?.details?.items || []
+            ).map((item) => item?.payload);
+
+            return orderActions.orderCreateInvoiceSuccess({
+              payload: JSON.stringify(payload),
+            });
+          }),
+          catchError((error: Error) =>
+            of(orderActions.orderCreateInvoiceFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -227,7 +249,8 @@ export class OrderEffects {
           orderActions.orderReadOneByIdRequestFail,
           orderActions.orderCreateFail,
           orderActions.orderUpdateFail,
-          orderActions.orderRemoveFail
+          orderActions.orderRemoveFail,
+          orderActions.orderCreateInvoiceFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

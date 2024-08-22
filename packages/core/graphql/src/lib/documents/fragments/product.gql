@@ -1,35 +1,35 @@
 fragment ProductFragment on IoRestorecommerceProductProduct {
   id
-  shop {
-    ...ShopFragment
-  }
-  tags
+  # tags
   product {
     name
     description
     taxIds
+    gtin
+    manufacturerId
+    originCountryId
+    categoryId
+    prototypeId
     taricCode
-    category {
-      id
-      name
-      description
-    }
     physical {
       variants {
         id
         name
-        images {
-          id
-          index
-          filename
-          caption
-          contentType
-          height
-          width
-          url
-        }
+        description
+        # images {
+        #   id
+        #   index
+        #   filename
+        #   caption
+        #   contentType
+        #   height
+        #   width
+        #   url
+        # }
         stockLevel
-        parentVariantId
+        stockKeepingUnit
+        # parentVariantId
+        taxIds
         price {
           currencyId
           regularPrice

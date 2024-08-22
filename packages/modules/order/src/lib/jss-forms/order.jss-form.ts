@@ -43,9 +43,7 @@ export const buildOrderSchema = (
         type: 'select',
         // disabled: true,
         // defaultValue: [IoRestorecommerceOrderOrderState.Submitted],
-        ...(options.order
-          ? { defaultValue: IoRestorecommerceOrderOrderState.Submitted }
-          : {}),
+        ...(options.order ? { defaultValue: options.order.orderState } : {}),
         validators: [Validators.required],
         params: {
           placeholder: 'Select order state',

@@ -32,10 +32,18 @@ export class OrderFacade {
     this.store.dispatch(orderActions.setSelectedId({ payload }));
   create = (payload: IIoRestorecommerceOrderOrderList) =>
     this.store.dispatch(orderActions.orderCreateRequest({ payload }));
-  update = (payload: IIoRestorecommerceOrderOrderList) =>
+  update = (payload: IIoRestorecommerceOrderOrderList) => {
     this.store.dispatch(orderActions.orderUpdateRequest({ payload }));
+  };
   remove = (payload: { id: string }) =>
     this.store.dispatch(orderActions.orderRemoveRequest({ payload }));
+
+  createOrderInvoice = (payload: string) =>
+    this.store.dispatch(
+      orderActions.orderCreateInvoiceRequest({
+        payload,
+      })
+    );
 
   constructor(private readonly store: Store) {}
 }

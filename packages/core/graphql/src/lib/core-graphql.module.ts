@@ -60,7 +60,15 @@ export class CoreGraphQLModule {
 
             return {
               link: auth.concat(httpLink.create({ uri: config.api })),
-              cache: new InMemoryCache(),
+              cache: new InMemoryCache({
+                addTypename: false,
+                typePolicies: {
+                  IoRestorecommercePropertyProperty: {
+                    // Disabled as the id fields are not actually unique identifiers and cache serves the same object
+                    keyFields: false,
+                  },
+                },
+              }),
               defaultOptions,
             };
           },

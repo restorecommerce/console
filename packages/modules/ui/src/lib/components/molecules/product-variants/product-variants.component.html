@@ -1,13 +1,32 @@
 <div class="data-list m-0 p-0">
-  <div class="my-2 rc-lv-l-heading">
-    Product Variants [{{ variants.length }}]
+  <div class="row justify-content-between align-items-center">
+    <div class="my-2 rc-lv-l-heading">
+      Product Variants [{{ variants.length }}]
+    </div>
+
+    <button
+      vcl-button
+      square
+      class="emphasized-transparent"
+      title="Add variant"
+      (click)="addVariant.emit()"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-plus"
+      />
+    </button>
   </div>
   <ul class="data-list-body no-border">
     <li
       class="row data-list-item product-item"
       *ngFor="let variant of variants"
     >
-      <rc-product-variant [variant]="variant" />
+      <rc-product-variant
+        [variant]="variant"
+        (editVariant)="editVariant.emit($event)"
+        (deleteVariant)="deleteVariant.emit($event)"
+      />
     </li>
   </ul>
 </div>

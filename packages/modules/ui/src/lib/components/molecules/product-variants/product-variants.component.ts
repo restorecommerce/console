@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
 
@@ -10,4 +16,10 @@ import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql'
 export class RcProductVariantsComponent {
   @Input({ required: true })
   variants!: IIoRestorecommerceProductPhysicalVariant[];
+  @Output() addVariant = new EventEmitter<void>();
+
+  @Output() editVariant =
+    new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
+
+  @Output() deleteVariant = new EventEmitter<string>();
 }
