@@ -5969,11 +5969,15 @@ export type OrderFragmentFragment = {
   id?: string | null;
   customerOrderNr?: string | null;
   notificationEmail?: string | null;
+  shopId?: string | null;
   orderState?: IoRestorecommerceOrderOrderState | null;
   items?: Array<{
     __typename?: 'IoRestorecommerceOrderItem';
     id?: string | null;
     quantity?: number | null;
+    productId?: string | null;
+    variantId?: string | null;
+    parentItemId?: string | null;
     product?: {
       __typename?: 'IoRestorecommerceProductProduct';
       id?: string | null;
@@ -6364,6 +6368,47 @@ export type OrderFragmentFragment = {
   } | null;
   shippingAddress?: {
     __typename?: 'IoRestorecommerceAddressShippingAddress';
+    comments?: string | null;
+    contact?: {
+      __typename?: 'IoRestorecommerceAddressContact';
+      name?: string | null;
+      email?: string | null;
+      phone?: string | null;
+    } | null;
+    address?: {
+      __typename?: 'IoRestorecommerceAddressAddress';
+      id?: string | null;
+      street?: string | null;
+      buildingNumber?: string | null;
+      locality?: string | null;
+      region?: string | null;
+      postcode?: string | null;
+      businessAddress?: {
+        __typename?: 'IoRestorecommerceAddressBusinessAddress';
+        name?: string | null;
+      } | null;
+      addressAddition?: {
+        __typename?: 'IoRestorecommerceAddressAddressAddition';
+        field1?: string | null;
+        field2?: string | null;
+      } | null;
+      country?: {
+        __typename?: 'IoRestorecommerceCountryCountry';
+        id?: string | null;
+        name?: string | null;
+        countryCode?: string | null;
+      } | null;
+      residentialAddress?: {
+        __typename?: 'IoRestorecommerceAddressResidentialAddress';
+        title?: string | null;
+        givenName?: string | null;
+        midName?: string | null;
+        familyName?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  billingAddress?: {
+    __typename?: 'IoRestorecommerceAddressBillingAddress';
     comments?: string | null;
     contact?: {
       __typename?: 'IoRestorecommerceAddressContact';
@@ -8228,11 +8273,15 @@ export type OrderingOrderMutateMutation = {
               id?: string | null;
               customerOrderNr?: string | null;
               notificationEmail?: string | null;
+              shopId?: string | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
               items?: Array<{
                 __typename?: 'IoRestorecommerceOrderItem';
                 id?: string | null;
                 quantity?: number | null;
+                productId?: string | null;
+                variantId?: string | null;
+                parentItemId?: string | null;
                 product?: {
                   __typename?: 'IoRestorecommerceProductProduct';
                   id?: string | null;
@@ -8662,6 +8711,47 @@ export type OrderingOrderMutateMutation = {
                   } | null;
                 } | null;
               } | null;
+              billingAddress?: {
+                __typename?: 'IoRestorecommerceAddressBillingAddress';
+                comments?: string | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  street?: string | null;
+                  buildingNumber?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  postcode?: string | null;
+                  businessAddress?: {
+                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                    name?: string | null;
+                  } | null;
+                  addressAddition?: {
+                    __typename?: 'IoRestorecommerceAddressAddressAddition';
+                    field1?: string | null;
+                    field2?: string | null;
+                  } | null;
+                  country?: {
+                    __typename?: 'IoRestorecommerceCountryCountry';
+                    id?: string | null;
+                    name?: string | null;
+                    countryCode?: string | null;
+                  } | null;
+                  residentialAddress?: {
+                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                    title?: string | null;
+                    givenName?: string | null;
+                    midName?: string | null;
+                    familyName?: string | null;
+                  } | null;
+                } | null;
+              } | null;
               totalAmounts?: Array<{
                 __typename?: 'IoRestorecommerceAmountAmount';
                 gross?: number | null;
@@ -8764,11 +8854,15 @@ export type OrderingOrderReadQuery = {
               id?: string | null;
               customerOrderNr?: string | null;
               notificationEmail?: string | null;
+              shopId?: string | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
               items?: Array<{
                 __typename?: 'IoRestorecommerceOrderItem';
                 id?: string | null;
                 quantity?: number | null;
+                productId?: string | null;
+                variantId?: string | null;
+                parentItemId?: string | null;
                 product?: {
                   __typename?: 'IoRestorecommerceProductProduct';
                   id?: string | null;
@@ -9159,6 +9253,47 @@ export type OrderingOrderReadQuery = {
               } | null;
               shippingAddress?: {
                 __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  street?: string | null;
+                  buildingNumber?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  postcode?: string | null;
+                  businessAddress?: {
+                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
+                    name?: string | null;
+                  } | null;
+                  addressAddition?: {
+                    __typename?: 'IoRestorecommerceAddressAddressAddition';
+                    field1?: string | null;
+                    field2?: string | null;
+                  } | null;
+                  country?: {
+                    __typename?: 'IoRestorecommerceCountryCountry';
+                    id?: string | null;
+                    name?: string | null;
+                    countryCode?: string | null;
+                  } | null;
+                  residentialAddress?: {
+                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
+                    title?: string | null;
+                    givenName?: string | null;
+                    midName?: string | null;
+                    familyName?: string | null;
+                  } | null;
+                } | null;
+              } | null;
+              billingAddress?: {
+                __typename?: 'IoRestorecommerceAddressBillingAddress';
                 comments?: string | null;
                 contact?: {
                   __typename?: 'IoRestorecommerceAddressContact';
@@ -9558,10 +9693,14 @@ export const OrderFragmentFragmentDoc = gql`
     id
     customerOrderNr
     notificationEmail
+    shopId
     orderState
     items {
       id
       quantity
+      productId
+      variantId
+      parentItemId
       product {
         ...ProductFragment
       }
@@ -9585,6 +9724,40 @@ export const OrderFragmentFragmentDoc = gql`
       ...UserFragment
     }
     shippingAddress {
+      comments
+      contact {
+        name
+        email
+        phone
+      }
+      address {
+        id
+        street
+        buildingNumber
+        locality
+        region
+        businessAddress {
+          name
+        }
+        addressAddition {
+          field1
+          field2
+        }
+        country {
+          id
+          name
+          countryCode
+        }
+        postcode
+        residentialAddress {
+          title
+          givenName
+          midName
+          familyName
+        }
+      }
+    }
+    billingAddress {
       comments
       contact {
         name

@@ -2,10 +2,14 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
   id
   customerOrderNr
   notificationEmail
+  shopId
   orderState
   items {
     id
     quantity
+    productId
+    variantId
+    parentItemId
     product {
       ...ProductFragment
     }
@@ -29,6 +33,40 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
     ...UserFragment
   }
   shippingAddress {
+    comments
+    contact {
+      name
+      email
+      phone
+    }
+    address {
+      id
+      street
+      buildingNumber
+      locality
+      region
+      businessAddress {
+        name
+      }
+      addressAddition {
+        field1
+        field2
+      }
+      country {
+        id
+        name
+        countryCode
+      }
+      postcode
+      residentialAddress {
+        title
+        givenName
+        midName
+        familyName
+      }
+    }
+  }
+  billingAddress {
     comments
     contact {
       name
