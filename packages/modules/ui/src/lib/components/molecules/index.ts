@@ -5,5 +5,5 @@ export * from './product-details/product-details.component';
 export * from './product-variants/product-variant.component';
 export * from './product-variants/product-variants.component';
 export * from './product-variants/product-images.component';
-export * from './shipping-address/shipping-address.component';
+export * from './order-address/order-address.component';
 export * from './shop-info/shop-info.component';

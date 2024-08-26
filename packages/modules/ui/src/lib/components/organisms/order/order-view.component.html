@@ -12,8 +12,16 @@
   </div>
 
   <div class="order-shipping-address pt-3">
-    <rc-shipping-address
-      [shippingAddress]="order.shippingAddress || undefined"
+    <rc-order-address
+      title="Billing address"
+      [rcOrderAddress]="order.billingAddress || undefined"
+    />
+  </div>
+
+  <div class="order-shipping-address pt-3">
+    <rc-order-address
+      title="Shipping address"
+      [rcOrderAddress]="order.shippingAddress || undefined"
     />
   </div>
 

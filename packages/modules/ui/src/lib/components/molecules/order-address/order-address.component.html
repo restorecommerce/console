@@ -1,15 +1,15 @@
 <div class="data-list m-0 p-0">
-  <div class="my-2 rc-lv-l-heading">Shipping address</div>
+  <div class="my-2 rc-lv-l-heading">{{ title }}</div>
   <ul class="data-list-body no-border">
     <li class="row data-list-item justify-between">
       <div class="flex text">Business name:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            shippingAddress?.address?.businessAddress?.name;
+            rcOrderAddress?.address?.businessAddress?.name;
             else naTemplate
           "
-          >{{ shippingAddress?.address?.businessAddress?.name }}</ng-container
+          >{{ rcOrderAddress?.address?.businessAddress?.name }}</ng-container
         >
       </div>
     </li>
@@ -18,15 +18,15 @@
       <div class="flex text">Full name:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.residentialAddress; else naTemplate"
+          *ngIf="rcOrderAddress?.address?.residentialAddress; else naTemplate"
           >{{
-            shippingAddress?.address?.residentialAddress?.title +
+            rcOrderAddress?.address?.residentialAddress?.title +
               ' ' +
-              shippingAddress?.address?.residentialAddress?.givenName +
+              rcOrderAddress?.address?.residentialAddress?.givenName +
               ' ' +
-              shippingAddress?.address?.residentialAddress?.midName +
+              rcOrderAddress?.address?.residentialAddress?.midName +
               ' ' +
-              shippingAddress?.address?.residentialAddress?.familyName
+              rcOrderAddress?.address?.residentialAddress?.familyName
           }}</ng-container
         >
       </div>
@@ -35,8 +35,8 @@
     <li class="row data-list-item justify-between">
       <div class="flex text">Comments:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="shippingAddress?.comments; else naTemplate">{{
-          shippingAddress?.comments
+        <ng-container *ngIf="rcOrderAddress?.comments; else naTemplate">{{
+          rcOrderAddress?.comments
         }}</ng-container>
       </div>
     </li>
@@ -44,9 +44,9 @@
     <li class="row data-list-item justify-between">
       <div class="flex text">Email:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="shippingAddress?.contact?.email; else naTemplate">
-          <a href="mailto:{{ shippingAddress?.contact?.email }}">{{
-            shippingAddress?.contact?.email
+        <ng-container *ngIf="rcOrderAddress?.contact?.email; else naTemplate">
+          <a href="mailto:{{ rcOrderAddress?.contact?.email }}">{{
+            rcOrderAddress?.contact?.email
           }}</a>
         </ng-container>
       </div>
@@ -55,9 +55,9 @@
     <li class="row data-list-item justify-between">
       <div class="flex text">Phone:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="shippingAddress?.contact?.phone; else naTemplate">
-          <a href="tel:{{ shippingAddress?.contact?.phone }}">{{
-            shippingAddress?.contact?.phone
+        <ng-container *ngIf="rcOrderAddress?.contact?.phone; else naTemplate">
+          <a href="tel:{{ rcOrderAddress?.contact?.phone }}">{{
+            rcOrderAddress?.contact?.phone
           }}</a>
         </ng-container>
       </div>
@@ -68,11 +68,11 @@
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            shippingAddress?.address?.packStation?.provider;
+            rcOrderAddress?.address?.packStation?.provider;
             else naTemplate
           "
         >
-          {{ shippingAddress?.address?.packStation?.provider }}
+          {{ rcOrderAddress?.address?.packStation?.provider }}
         </ng-container>
       </div>
     </li>
@@ -82,11 +82,11 @@
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            shippingAddress?.address?.packStation?.stationNumber;
+            rcOrderAddress?.address?.packStation?.stationNumber;
             else naTemplate
           "
         >
-          {{ shippingAddress?.address?.packStation?.stationNumber }}
+          {{ rcOrderAddress?.address?.packStation?.stationNumber }}
         </ng-container>
       </div>
     </li>
@@ -96,11 +96,11 @@
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            shippingAddress?.address?.packStation?.postNumber;
+            rcOrderAddress?.address?.packStation?.postNumber;
             else naTemplate
           "
         >
-          {{ shippingAddress?.address?.packStation?.postNumber }}
+          {{ rcOrderAddress?.address?.packStation?.postNumber }}
         </ng-container>
       </div>
     </li>
@@ -110,10 +110,10 @@
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            shippingAddress?.address?.addressAddition?.field1;
+            rcOrderAddress?.address?.addressAddition?.field1;
             else naTemplate
           "
-          >{{ shippingAddress?.address?.addressAddition?.field1 }}</ng-container
+          >{{ rcOrderAddress?.address?.addressAddition?.field1 }}</ng-container
         >
       </div>
     </li>
@@ -123,10 +123,10 @@
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            shippingAddress?.address?.addressAddition?.field2;
+            rcOrderAddress?.address?.addressAddition?.field2;
             else naTemplate
           "
-          >{{ shippingAddress?.address?.addressAddition?.field2 }}</ng-container
+          >{{ rcOrderAddress?.address?.addressAddition?.field2 }}</ng-container
         >
       </div>
     </li>
@@ -135,8 +135,8 @@
       <div class="flex text">Street:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.street; else naTemplate"
-          >{{ shippingAddress?.address?.street }}</ng-container
+          *ngIf="rcOrderAddress?.address?.street; else naTemplate"
+          >{{ rcOrderAddress?.address?.street }}</ng-container
         >
       </div>
     </li>
@@ -145,9 +145,9 @@
       <div class="flex text">Building number:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.buildingNumber; else naTemplate"
+          *ngIf="rcOrderAddress?.address?.buildingNumber; else naTemplate"
         >
-          {{ shippingAddress?.address?.buildingNumber }}
+          {{ rcOrderAddress?.address?.buildingNumber }}
         </ng-container>
       </div>
     </li>
@@ -156,8 +156,8 @@
       <div class="flex text">Postcode:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.postcode; else naTemplate"
-          >{{ shippingAddress?.address?.postcode }}</ng-container
+          *ngIf="rcOrderAddress?.address?.postcode; else naTemplate"
+          >{{ rcOrderAddress?.address?.postcode }}</ng-container
         >
       </div>
     </li>
@@ -166,8 +166,8 @@
       <div class="flex text">Region:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.region; else naTemplate"
-          >{{ shippingAddress?.address?.region }}</ng-container
+          *ngIf="rcOrderAddress?.address?.region; else naTemplate"
+          >{{ rcOrderAddress?.address?.region }}</ng-container
         >
       </div>
     </li>
@@ -176,8 +176,8 @@
       <div class="flex text">Locality:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.locality; else naTemplate"
-          >{{ shippingAddress?.address?.locality }}</ng-container
+          *ngIf="rcOrderAddress?.address?.locality; else naTemplate"
+          >{{ rcOrderAddress?.address?.locality }}</ng-container
         >
       </div>
     </li>
@@ -186,8 +186,8 @@
       <div class="flex text">Country:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
-          *ngIf="shippingAddress?.address?.country; else naTemplate"
-          >{{ shippingAddress?.address?.country }}</ng-container
+          *ngIf="rcOrderAddress?.address?.country; else naTemplate"
+          >{{ rcOrderAddress?.address?.country }}</ng-container
         >
       </div>
     </li>
