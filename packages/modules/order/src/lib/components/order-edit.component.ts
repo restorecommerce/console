@@ -282,7 +282,6 @@ export class OrderEditComponent {
   }
 
   onSave() {
-    console.log();
     this.update({
       items: [
         {

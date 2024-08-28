@@ -2,7 +2,10 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IoRestorecommerceOrderOrderState } from '@console-core/graphql';
+import {
+  IoRestorecommerceCustomerCustomerType,
+  IoRestorecommerceOrderOrderState,
+} from '@console-core/graphql';
 import { IOrder } from '@console-core/types';
 
 interface ISchemaOptions {
@@ -80,6 +83,73 @@ export const buildOrderSchema = (
             message: 'This field is required.',
           },
         ],
+      },
+      {
+        name: 'customerType',
+        label: 'Customer type',
+        type: 'select',
+        validators: [Validators.required],
+        params: {
+          placeholder: 'Select customer type',
+          options: [
+            {
+              label: 'Private',
+              value: IoRestorecommerceCustomerCustomerType.Private,
+            },
+            {
+              label: 'Commercial',
+              value: IoRestorecommerceCustomerCustomerType.Commercial,
+            },
+            {
+              label: 'Public',
+              value: IoRestorecommerceCustomerCustomerType.PublicSector,
+            },
+          ],
+        },
+      },
+      {
+        name: 'paymentMethodId',
+        label: 'Payment method',
+        type: 'select',
+        validators: [Validators.required],
+        params: {
+          placeholder: 'Select payment method',
+          options: [
+            {
+              label: 'Paypal',
+              value: 'paypal',
+            },
+            {
+              label: 'SWIFT / SEPA Bank Transfer',
+              value: 'swift_sepa_bank_transfer',
+            },
+          ],
+        },
+      },
+      {
+        name: 'customerVatId',
+        label: 'Customer VAT id',
+        type: 'input',
+      },
+      {
+        name: 'userId',
+        label: 'User id',
+        type: 'input',
+      },
+      {
+        name: 'customerId',
+        label: 'Customer Id',
+        type: 'input',
+      },
+      {
+        name: 'customerOrderNr',
+        label: 'Customer order number',
+        type: 'input',
+      },
+      {
+        name: 'customerRemark',
+        label: 'Customer remark',
+        type: 'input',
       },
       {
         type: 'buttons',
