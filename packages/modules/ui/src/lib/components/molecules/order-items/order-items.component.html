@@ -1,5 +1,19 @@
 <div class="data-list m-0 p-0">
-  <div class="my-2 rc-lv-l-heading">Items [{{ items.length }}]</div>
+  <div class="row justify-content-between align-items-center">
+    <div class="my-2 rc-lv-l-heading">Items [{{ items.length }}]</div>
+    <button
+      vcl-button
+      square
+      class="emphasized-transparent"
+      (click)="openAddOrderItemComponent()"
+      title="Add order item"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-plus"
+      />
+    </button>
+  </div>
 
   <div
     class="order-item"

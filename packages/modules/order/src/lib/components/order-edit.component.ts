@@ -275,10 +275,9 @@ export class OrderEditComponent {
     }
 
     textarea.setCustomValidity(error ? 'Invalid JSON: ' + error : '');
-
     textarea.reportValidity();
+
     this.jsonError = !!error;
-    console.log(this.orderJSON);
   }
 
   onSave() {
