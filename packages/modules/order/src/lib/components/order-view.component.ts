@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { ROUTER } from '@console-core/config';
 import {
   OrderFacade,
+  ProductFacade,
   RouterFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
@@ -14,7 +15,10 @@ import {
   selector: 'app-module-order-view',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <rc-order-view [order]="vm.order" />
+      <rc-order-view
+        [order]="vm.order"
+        [products]="vm.products"
+      />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,11 +44,13 @@ export class OrderViewComponent {
       }),
       filterEmptyAndNullishAndUndefined()
     ),
+    products: this.productFacade.all$,
   });
 
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
+    private readonly productFacade: ProductFacade,
     private readonly orderFacade: OrderFacade
   ) {}
 }

@@ -2,14 +2,14 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IOrder } from '@console-core/types';
+import { IProduct } from '@console-core/types';
 
 interface ISchemaOptions {
-  order?: IOrder;
+  products: IProduct[];
 }
 
 export const buildOrderItemSchema = (
-  _: ISchemaOptions
+  options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
@@ -21,20 +21,11 @@ export const buildOrderItemSchema = (
         validators: [Validators.required],
         params: {
           placeholder: 'Select an items',
-          options: [
-            {
-              label: 'Item 1',
-              value: 'item #1',
-            },
-            {
-              label: 'Item 2',
-              value: 'item #2',
-            },
-            {
-              label: 'Item 3',
-              value: 'item #3',
-            },
-          ],
+          search: true,
+          options: options.products.map((product) => ({
+            value: product.id,
+            label: product.product.name,
+          })),
         },
       },
       {

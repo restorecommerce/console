@@ -9,6 +9,7 @@ import {
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { IoRestorecommerceOrderItem } from '@console-core/graphql';
+import { IProduct } from '@console-core/types';
 
 import { RcOrderItemFormComponent } from './order-item-form.component';
 import { buildOrderItemSchema } from './order-item.schema';
@@ -21,6 +22,9 @@ import { buildOrderItemSchema } from './order-item.schema';
 export class RcOrderItemsComponent implements OnInit, OnDestroy {
   @Input({ required: true })
   items: IoRestorecommerceOrderItem[] = [];
+
+  @Input({ required: true })
+  products: IProduct[] = [];
 
   addItemLayer!: LayerRef;
 
@@ -41,7 +45,9 @@ export class RcOrderItemsComponent implements OnInit, OnDestroy {
     this.addItemLayer
       .open({
         data: {
-          schema: buildOrderItemSchema({}),
+          schema: buildOrderItemSchema({
+            products: this.products,
+          }),
         },
       })
       .subscribe((result) => {

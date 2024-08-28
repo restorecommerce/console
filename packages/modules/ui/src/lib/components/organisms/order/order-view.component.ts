@@ -9,7 +9,7 @@ import {
   IoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceUserUser,
 } from '@console-core/graphql';
-import { IOrder } from '@console-core/types';
+import { IOrder, IProduct } from '@console-core/types';
 
 @Component({
   selector: 'rc-order-view',
@@ -18,6 +18,7 @@ import { IOrder } from '@console-core/types';
 })
 export class RcOrderViewComponent implements OnInit {
   @Input({ required: true }) order!: IOrder;
+  @Input({ required: true }) products!: IProduct[];
 
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;

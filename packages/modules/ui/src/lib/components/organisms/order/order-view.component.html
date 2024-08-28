@@ -8,7 +8,10 @@
   </div>
 
   <div class="order-items">
-    <rc-order-items [items]="order.items || []" />
+    <rc-order-items
+      [products]="products"
+      [items]="order.items || []"
+    />
   </div>
 
   <div class="order-shipping-address pt-3">
