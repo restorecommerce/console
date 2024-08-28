@@ -101,11 +101,11 @@ export const transformOrderToInput = (
         //   postNumber: null,
         // },
       },
-      // contact: {
-      //   name: null,
-      //   email: null,
-      //   phone: null,
-      // },
+      contact: {
+        name: null,
+        email: null,
+        phone: null,
+      },
       // comments: null,
     },
     billingAddress: {
@@ -141,11 +141,11 @@ export const transformOrderToInput = (
         //   postNumber: null,
         // },
       },
-      // contact: {
-      //   name: null,
-      //   email: null,
-      //   phone: null,
-      // },
+      contact: {
+        name: null,
+        email: null,
+        phone: null,
+      },
       // comments: null,
     },
     totalAmounts: [...totalAmounts],
