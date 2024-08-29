@@ -17,6 +17,7 @@ import {
   RouterFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
+import { IOrder, IProduct } from '@console-core/types';
 
 import { OrderItemFormComponent } from '../modals/order-item/order-item-form.component';
 
@@ -26,7 +27,7 @@ import { OrderItemFormComponent } from '../modals/order-item/order-item-form.com
     <ng-container *ngIf="vm$ | async as vm">
       <rc-order-view
         [order]="vm.order"
-        (openAddItemModal)="onAddOrder()"
+        (openAddItemModal)="onAddOrder(vm.order, vm.products)"
       />
     </ng-container>
   `,
@@ -77,11 +78,12 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     this.addItemLayer?.destroy();
   }
 
-  onAddOrder() {
+  onAddOrder(order: IOrder, products: IProduct[]) {
     this.addItemLayer
       .open({
         data: {
-          products: [], //this.products,
+          order,
+          products,
         },
       })
       .subscribe((result) => {

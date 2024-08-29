@@ -9,8 +9,15 @@ import { SubSink } from 'subsink';
 
 import { ComponentLayerRef } from '@vcl/ng-vcl';
 
-import { IoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
-import { IProduct } from '@console-core/types';
+import {
+  IIoRestorecommerceOrderOrder,
+  IoRestorecommerceProductPhysicalVariant,
+  ModeType,
+} from '@console-core/graphql';
+import { OrderFacade } from '@console-core/state';
+import { IOrder, IProduct } from '@console-core/types';
+
+import { transformOrderToInput } from '../../utils';
 
 @Component({
   selector: 'app-order-item-form',
@@ -33,7 +40,10 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
     }),
   });
 
-  constructor(private layer: ComponentLayerRef) {}
+  constructor(
+    private layer: ComponentLayerRef,
+    private readonly orderFacade: OrderFacade
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -71,13 +81,38 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  get order(): IOrder {
+    return this.layer.data.order;
+  }
+
   get products(): IProduct[] {
     return this.layer.data.products;
   }
 
   onSubmit(): void {
     if (this.formGroup.valid) {
-      console.log(this.formGroup.value);
+      const currentOrderInput = transformOrderToInput(this.order);
+      const updatedOrderInput: IIoRestorecommerceOrderOrder = {
+        ...currentOrderInput,
+        items: [
+          ...(currentOrderInput.items || []),
+          {
+            ...this.formGroup.value,
+            quantity: +(this.formGroup.value.quantity || 0),
+            unitPrice: {
+              salePrice: +(this.formGroup.value.unitPrice?.salePrice || 0),
+              regularPrice: +(
+                this.formGroup.value.unitPrice?.regularPrice || 0
+              ),
+            },
+          },
+        ],
+      };
+
+      this.orderFacade.update({
+        items: [updatedOrderInput],
+        mode: ModeType.Update,
+      });
     }
   }
 
