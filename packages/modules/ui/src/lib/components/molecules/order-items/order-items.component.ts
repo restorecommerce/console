@@ -12,7 +12,6 @@ import { IoRestorecommerceOrderItem } from '@console-core/graphql';
 import { IProduct } from '@console-core/types';
 
 import { RcOrderItemFormComponent } from './order-item-form.component';
-import { buildOrderItemSchema } from './order-item.schema';
 
 @Component({
   selector: 'rc-order-items',
@@ -45,9 +44,7 @@ export class RcOrderItemsComponent implements OnInit, OnDestroy {
     this.addItemLayer
       .open({
         data: {
-          schema: buildOrderItemSchema({
-            products: this.products,
-          }),
+          products: this.products,
         },
       })
       .subscribe((result) => {

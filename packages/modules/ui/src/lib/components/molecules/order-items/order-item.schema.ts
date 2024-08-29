@@ -1,6 +1,6 @@
 import { Validators } from '@angular/forms';
 
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+import { conditional, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { IProduct } from '@console-core/types';
 
@@ -20,13 +20,29 @@ export const buildOrderItemSchema = (
         type: 'select',
         validators: [Validators.required],
         params: {
-          placeholder: 'Select an items',
+          placeholder: 'Select an item',
           search: true,
           options: options.products.map((product) => ({
             value: product.id,
             label: product.product.name,
           })),
         },
+      },
+      {
+        name: 'variantId',
+        label: 'Item variants',
+        type: 'select',
+        validators: [Validators.required],
+        params: {
+          placeholder: 'Select a variant',
+          // search: true,
+          options: (() => {
+            const x = conditional(['productId'], (enabled) => !!enabled.value);
+            console.log('xxx', x);
+            return [{ value: 'ex', label: 'ddd' }];
+          })(),
+        },
+        visible: conditional(['productId'], (enabled) => !!enabled.value),
       },
       {
         type: 'buttons',
