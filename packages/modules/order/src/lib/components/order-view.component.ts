@@ -19,6 +19,8 @@ import {
 } from '@console-core/state';
 import { IOrder, IProduct } from '@console-core/types';
 
+import { buildOrderAddressSchema } from '../jss-forms';
+import { JSSFormModalComponent } from '../modals/jss-form-modal.component';
 import { OrderItemFormComponent } from '../modals/order-item/order-item-form.component';
 
 @Component({
@@ -28,6 +30,7 @@ import { OrderItemFormComponent } from '../modals/order-item/order-item-form.com
       <rc-order-view
         [order]="vm.order"
         (openAddItemModal)="onAddOrder(vm.order, vm.products)"
+        (openAddressModal)="onOpenAddress(vm.order)"
       />
     </ng-container>
   `,
@@ -58,6 +61,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
   });
 
   addItemLayer!: LayerRef;
+  addressLayer!: LayerRef;
 
   constructor(
     private readonly router: Router,
@@ -72,10 +76,16 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       closeOnBackdropClick: false,
       closeOnEscape: false,
     });
+
+    this.addressLayer = this.layerService.create(JSSFormModalComponent, {
+      closeOnBackdropClick: false,
+      closeOnEscape: false,
+    });
   }
 
   ngOnDestroy() {
     this.addItemLayer?.destroy();
+    this.addressLayer?.destroy();
   }
 
   onAddOrder(order: IOrder, products: IProduct[]) {
@@ -84,6 +94,20 @@ export class OrderViewComponent implements OnInit, OnDestroy {
         data: {
           order,
           products,
+        },
+      })
+      .subscribe((result) => {
+        console.log('Result: ' + result?.value);
+      });
+  }
+
+  onOpenAddress(order: IOrder) {
+    this.addressLayer
+      .open({
+        data: {
+          order,
+          title: 'Address',
+          schema: buildOrderAddressSchema({}),
         },
       })
       .subscribe((result) => {

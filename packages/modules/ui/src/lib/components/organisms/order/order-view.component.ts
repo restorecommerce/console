@@ -22,6 +22,7 @@ export class RcOrderViewComponent implements OnInit {
   @Input({ required: true }) order!: IOrder;
 
   @Output() openAddItemModal = new EventEmitter<void>();
+  @Output() openAddressModal = new EventEmitter<string>();
 
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;

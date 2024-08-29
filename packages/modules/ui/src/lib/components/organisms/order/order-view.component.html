@@ -16,15 +16,19 @@
 
   <div class="order-shipping-address pt-3">
     <rc-order-address
-      title="Billing address"
-      [rcOrderAddress]="order.billingAddress || undefined"
+      title="Shipping address"
+      [rcOrderAddress]="order.shippingAddress || undefined"
+      addressType="shippingAddress"
+      (openAddressModal)="openAddressModal.emit($event)"
     />
   </div>
 
   <div class="order-shipping-address pt-3">
     <rc-order-address
-      title="Shipping address"
-      [rcOrderAddress]="order.shippingAddress || undefined"
+      title="Billing address"
+      [rcOrderAddress]="order.billingAddress || undefined"
+      addressType="billingAddress"
+      (openAddressModal)="openAddressModal.emit()"
     />
   </div>
 
