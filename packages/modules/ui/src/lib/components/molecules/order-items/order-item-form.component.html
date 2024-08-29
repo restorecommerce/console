@@ -4,17 +4,17 @@
 >
   <vcl-panel-title>Add item</vcl-panel-title>
 
-  <form action="">
+  <form
+    [formGroup]="formGroup"
+    action=""
+  >
     <vcl-form-control-group>
       <vcl-label>Select a product</vcl-label>
       <vcl-select [search]="true">
         <ng-container empty>
           <div class="p-1">No Product found!</div>
         </ng-container>
-        <vcl-select-list
-          [value]="selectedProduct"
-          (valueChange)="onSelectProduct($event)"
-        >
+        <vcl-select-list formControlName="productId">
           @for (product of products; track product.id) {
           <vcl-select-list-item [value]="product.id">{{
             product.product.name
@@ -31,7 +31,7 @@
           <div class="p-1">No Variant found!</div>
         </ng-container>
         <vcl-select-list
-          [(value)]="selectedVariant"
+          formControlName="variantId"
           [disabled]="false"
         >
           @for (variant of variants; track variant.id) {
@@ -46,15 +46,18 @@
     <vcl-form-control-group>
       <vcl-label>Quantity</vcl-label>
       <vcl-input-field>
-        <input vclInput />
+        <input
+          formControlName="quantity"
+          vclInput
+        />
       </vcl-input-field>
     </vcl-form-control-group>
 
-    <div>
+    <div formGroupName="unitPrice">
       <vcl-form-control-group>
         <vcl-label>Select currency</vcl-label>
         <vcl-select>
-          <vcl-select-list>
+          <vcl-select-list formControlName="currencyId">
             <vcl-select-list-item value="France"> France </vcl-select-list-item>
             <vcl-select-list-item value="Germany">
               Germany
@@ -67,16 +70,22 @@
       <vcl-form-control-group>
         <vcl-label>Regular price</vcl-label>
         <vcl-input-field>
-          <input vclInput />
+          <input
+            formControlName="regularPrice"
+            vclInput
+          />
         </vcl-input-field>
       </vcl-form-control-group>
 
-      <vcl-checkbox>Sale</vcl-checkbox>
+      <vcl-checkbox formControlName="sale">Sale</vcl-checkbox>
 
       <vcl-form-control-group>
         <vcl-label>Sale price</vcl-label>
         <vcl-input-field>
-          <input vclInput />
+          <input
+            formControlName="salePrice"
+            vclInput
+          />
         </vcl-input-field>
       </vcl-form-control-group>
     </div>
