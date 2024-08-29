@@ -13,11 +13,11 @@ import { IoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
 import { IProduct } from '@console-core/types';
 
 @Component({
-  selector: 'rc-order-item-form',
+  selector: 'app-order-item-form',
   templateUrl: './order-item-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcOrderItemFormComponent implements OnInit, OnDestroy {
+export class OrderItemFormComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
   variants: IoRestorecommerceProductPhysicalVariant[] = [];
 
@@ -75,12 +75,10 @@ export class RcOrderItemFormComponent implements OnInit, OnDestroy {
     return this.layer.data.products;
   }
 
-  onAction(_: string): void {
-    // TODO
-  }
-
   onSubmit(): void {
-    // TODO
+    if (this.formGroup.valid) {
+      console.log(this.formGroup.value);
+    }
   }
 
   close(value?: string) {

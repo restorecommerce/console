@@ -9,6 +9,7 @@ import { OrderIndexComponent } from './components/order-index.component';
 import { OrderViewComponent } from './components/order-view.component';
 import { OrderTemplateComponent } from './components/template/order-template.component';
 import { modulesOrderRoutes } from './lib.routes';
+import { OrderItemFormComponent } from './modals/order-item/order-item-form.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { modulesOrderRoutes } from './lib.routes';
     OrderCreateComponent,
     OrderEditComponent,
     OrderViewComponent,
+    OrderItemFormComponent,
   ],
   imports: [
     ModulesUiModule.forChild(),

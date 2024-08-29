@@ -9,8 +9,8 @@
 
   <div class="order-items">
     <rc-order-items
-      [products]="products"
       [items]="order.items || []"
+      (openAddItemModal)="openAddItemModal.emit()"
     />
   </div>
 

@@ -5,8 +5,9 @@
   <vcl-panel-title>Add item</vcl-panel-title>
 
   <form
+    vclForm
     [formGroup]="formGroup"
-    action=""
+    (submit)="onSubmit()"
   >
     <vcl-form-control-group>
       <vcl-label>Select a product</vcl-label>
@@ -88,6 +89,23 @@
           />
         </vcl-input-field>
       </vcl-form-control-group>
+    </div>
+
+    <div class="loose-button-group">
+      <button
+        vcl-button
+        type="submit"
+        [disabled]="this.formGroup.invalid"
+        class="emphasized"
+      >
+        Submit
+      </button>
+      <button
+        vcl-button
+        type="button"
+      >
+        Reset
+      </button>
     </div>
   </form>
 </vcl-panel-dialog>

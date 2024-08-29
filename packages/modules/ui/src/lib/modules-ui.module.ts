@@ -49,7 +49,6 @@ import {
   RcProductVariantComponent,
   RcProductVariantsComponent,
   RcProductImagesComponent,
-  RcOrderItemFormComponent,
 } from './components/molecules';
 import {
   RcAppComponent,
@@ -167,7 +166,6 @@ const molecules = [
   RcProductVariantComponent,
   RcProductVariantsComponent,
   RcProductImagesComponent,
-  RcOrderItemFormComponent,
 ];
 
 const organisms = [

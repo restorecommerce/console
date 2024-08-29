@@ -6,5 +6,4 @@ export * from './product-variants/product-variant.component';
 export * from './product-variants/product-variants.component';
 export * from './product-variants/product-images.component';
 export * from './order-address/order-address.component';
-export * from './order-items/order-item-form.component';
 export * from './shop-info/shop-info.component';
