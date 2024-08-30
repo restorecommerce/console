@@ -1,10 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
-import { ComponentLayerRef, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+import {
+  ComponentLayerRef,
+  JssFormComponent,
+  VCLFormFieldSchemaRoot,
+} from '@vcl/ng-vcl';
 
-// import { IIoRestorecommerceOrderOrder, ModeType } from '@console-core/graphql';
+import { IIoRestorecommerceOrderOrder, ModeType } from '@console-core/graphql';
 import { OrderFacade } from '@console-core/state';
 import { IOrder } from '@console-core/types';
+
+import { transformOrderToInput } from '../utils';
 
 // import { transformOrderToInput } from '../../utils';
 
@@ -30,6 +36,9 @@ import { IOrder } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JSSFormModalComponent {
+  @ViewChild('form')
+  form!: JssFormComponent;
+
   constructor(
     private layer: ComponentLayerRef,
     private readonly orderFacade: OrderFacade
@@ -48,7 +57,22 @@ export class JSSFormModalComponent {
   }
 
   onSubmit(): void {
-    // TODO
+    if (this.form.form.valid) {
+      const currentOrderInput = transformOrderToInput(this.order);
+      const updatedOrderInput: IIoRestorecommerceOrderOrder = {
+        ...currentOrderInput,
+        shippingAddress: {
+          address: {
+            ...this.form.form.value,
+          },
+        },
+      };
+
+      this.orderFacade.update({
+        items: [updatedOrderInput],
+        mode: ModeType.Update,
+      });
+    }
   }
 
   onAction(_: string): void {

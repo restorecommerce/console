@@ -17,7 +17,7 @@ export const buildOrderAddressSchema = (
         label: 'Building number',
         type: 'input',
         // validators: [Validators.required],
-        // defaultValue: options?.product?.name || '',
+        defaultValue: '4',
         params: {},
         hints: [
           {
@@ -32,7 +32,7 @@ export const buildOrderAddressSchema = (
         label: 'Street',
         type: 'input',
         // validators: [Validators.required],
-        // defaultValue: options?.product?.name || '',
+        defaultValue: 'Ossietzkystraße',
         params: {},
         hints: [
           {
@@ -47,7 +47,7 @@ export const buildOrderAddressSchema = (
         label: 'Locality',
         type: 'input',
         // validators: [Validators.required],
-        // defaultValue: options?.product?.name || '',
+        defaultValue: 'Stuttgart',
         params: {},
         hints: [
           {
@@ -62,7 +62,7 @@ export const buildOrderAddressSchema = (
         label: 'Region',
         type: 'input',
         // validators: [Validators.required],
-        // defaultValue: options?.product?.name || '',
+        defaultValue: 'Stuttgart',
         params: {},
         hints: [
           {
@@ -77,7 +77,7 @@ export const buildOrderAddressSchema = (
         label: 'Postcode',
         type: 'input',
         // validators: [Validators.required],
-        // defaultValue: options?.product?.name || '',
+        defaultValue: '70174',
         params: {},
         hints: [
           {
@@ -91,7 +91,7 @@ export const buildOrderAddressSchema = (
         name: 'countryId',
         label: 'Country',
         type: 'select',
-        // defaultValue: options?.product?.taxIds || [],
+        defaultValue: 'germany',
         // validators: [Validators.required],
         params: {
           placeholder: 'Country',

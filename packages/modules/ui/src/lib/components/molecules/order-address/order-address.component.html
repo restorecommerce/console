@@ -1,47 +1,29 @@
 <div class="data-list m-0 p-0">
   <div class="row justify-content-between align-items-center">
     <div class="my-2 rc-lv-l-heading">{{ title }}</div>
-
-    @if (rcOrderAddress) {
     <button
       vcl-button
       square
       class="emphasized-transparent"
       title="Edit Address"
+      (click)="openAddressModal.emit(addressType)"
     >
       <vcl-icon
         class="scale155p"
         icon="mdi mdi-pencil-outline"
       />
     </button>
-    } @else {
-    <button
-      vcl-button
-      square
-      class="emphasized-transparent"
-      title="Add Address"
-      (click)="openAddressModal.emit(addressType)"
-    >
-      <vcl-icon
-        class="scale155p"
-        icon="mdi mdi-plus"
-      />
-    </button>
-    }
   </div>
-  <ul
-    class="data-list-body no-border"
-    *ngIf="rcOrderAddress"
-  >
+  <ul class="data-list-body no-border">
     <li class="row data-list-item justify-between">
       <div class="flex text">Business name:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container
           *ngIf="
-            rcOrderAddress.address?.businessAddress?.name;
+            rcOrderAddress?.address?.businessAddress?.name;
             else naTemplate
           "
-          >{{ rcOrderAddress.address?.businessAddress?.name }}</ng-container
+          >{{ rcOrderAddress?.address?.businessAddress?.name }}</ng-container
         >
       </div>
     </li>
