@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="flex-10">
+    <h4>{{ item.product?.product?.name }}</h4>
+  </div>
+
+  <div #target>
+    <button
+      vcl-button
+      square
+      class="emphasized-transparent"
+      title="Options"
+      (click)="popover.open()"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-dots-vertical"
+      />
+    </button>
+  </div>
+</div>
+
+<div class="my-1 secondary-text-color">[Qty: {{ item.quantity }}]</div>
+
+<div>
+  {{ item.productId }}
+</div>
+<div>'No variant': {{ item.variantId }}</div>
+
+<img
+  [alt]="item.product?.product?.physical?.variants?.[0]?.name"
+  [src]="item.product?.product?.physical?.variants?.[0]?.images?.[0]?.url"
+  sizes="(max-width: 123px) 123px, 123px"
+  width="123"
+  loading="lazy"
+  ngOptimizedImage
+  priority="auto"
+/>
+<p class="mt-2">
+  <strong>Price:</strong> {{ item.unitPrice?.currency || 'EUR' }}
+  {{ item.unitPrice?.regularPrice }}
+</p>
+
+<ng-template
+  vclPopover
+  #popover="vclPopover"
+  [closeOnOffClick]="true"
+  [target]="target"
+  [positions]="[
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top'
+    }
+  ]"
+>
+  <div>
+    <vcl-button-group class="vertical">
+      <button
+        vcl-button
+        class="transparent"
+      >
+        <!-- (click)="editVariant.emit(variant); popover.close()" -->
+        Edit
+      </button>
+      <button
+        class="transparent"
+        vcl-button
+        [value]="2"
+      >
+        Delete
+      </button>
+    </vcl-button-group>
+  </div>
+</ng-template>

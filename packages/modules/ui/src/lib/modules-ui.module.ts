@@ -50,6 +50,7 @@ import {
   RcProductVariantsComponent,
   RcProductImagesComponent,
 } from './components/molecules';
+import { RcOrderItemComponent } from './components/molecules/order-items/order-item.component';
 import {
   RcAppComponent,
   RcSignUpComponent,
@@ -166,6 +167,7 @@ const molecules = [
   RcProductVariantComponent,
   RcProductVariantsComponent,
   RcProductImagesComponent,
+  RcOrderItemComponent,
 ];
 
 const organisms = [
