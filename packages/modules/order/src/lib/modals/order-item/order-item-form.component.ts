@@ -11,6 +11,7 @@ import { ComponentLayerRef } from '@vcl/ng-vcl';
 
 import {
   IIoRestorecommerceOrderOrder,
+  IoRestorecommerceOrderItem,
   IoRestorecommerceProductPhysicalVariant,
   ModeType,
 } from '@console-core/graphql';
@@ -29,14 +30,16 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
   variants: IoRestorecommerceProductPhysicalVariant[] = [];
 
   formGroup = new FormGroup({
-    productId: new FormControl(''),
-    variantId: new FormControl(''),
-    quantity: new FormControl(0),
+    productId: new FormControl(this.orderItem.productId || ''),
+    variantId: new FormControl(this.orderItem.variantId || ''),
+    quantity: new FormControl(this.orderItem.quantity || 0),
     unitPrice: new FormGroup({
-      sale: new FormControl(true),
-      currencyId: new FormControl(''),
-      salePrice: new FormControl(0),
-      regularPrice: new FormControl(0),
+      sale: new FormControl(this.orderItem.unitPrice?.sale || false),
+      currencyId: new FormControl(this.orderItem.unitPrice?.currencyId || ''),
+      salePrice: new FormControl(this.orderItem.unitPrice?.salePrice || 0),
+      regularPrice: new FormControl(
+        this.orderItem.unitPrice?.regularPrice || 0
+      ),
     }),
   });
 
@@ -87,6 +90,10 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
 
   get products(): IProduct[] {
     return this.layer.data.products;
+  }
+
+  get orderItem(): IoRestorecommerceOrderItem {
+    return this.layer.data.orderItem;
   }
 
   onSubmit(): void {

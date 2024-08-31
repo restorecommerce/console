@@ -32,7 +32,9 @@ import { OrderItemFormComponent } from '../modals/order-item/order-item-form.com
         [order]="vm.order"
         (openAddItemModal)="onAddOrder(vm.order, vm.products)"
         (openAddressModal)="onOpenAddress(vm.order)"
-        (openEditOrderItemModal)="onOpenEditOrderItem($event)"
+        (openEditOrderItemModal)="
+          onOpenEditOrderItem(vm.order, vm.products, $event)
+        "
       />
     </ng-container>
   `,
@@ -94,8 +96,10 @@ export class OrderViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // TODO use subsink
     this.addItemLayer?.destroy();
     this.addressLayer?.destroy();
+    this.editItemLayer?.destroy();
   }
 
   onAddOrder(order: IOrder, products: IProduct[]) {
@@ -125,13 +129,18 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       });
   }
 
-  onOpenEditOrderItem(orderItem: IoRestorecommerceOrderItem) {
+  onOpenEditOrderItem(
+    order: IOrder,
+    products: IProduct[],
+    orderItem: IoRestorecommerceOrderItem
+  ) {
     console.log(orderItem);
     this.editItemLayer
       .open({
         data: {
-          // order,
-          // products,
+          orderItem,
+          order,
+          products,
         },
       })
       .subscribe((result) => {
