@@ -15,7 +15,10 @@
         <ng-container empty>
           <div class="p-1">No Product found!</div>
         </ng-container>
-        <vcl-select-list formControlName="productId">
+        <vcl-select-list
+          [disabled]="!!orderItem"
+          formControlName="productId"
+        >
           @for (product of products; track product.id) {
           <vcl-select-list-item [value]="product.id">{{
             product.product.name

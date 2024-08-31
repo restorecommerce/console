@@ -10,6 +10,7 @@ import { SubSink } from 'subsink';
 import { ComponentLayerRef } from '@vcl/ng-vcl';
 
 import {
+  IIoRestorecommerceOrderItem,
   IIoRestorecommerceOrderOrder,
   IoRestorecommerceOrderItem,
   IoRestorecommerceProductPhysicalVariant,
@@ -30,15 +31,15 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
   variants: IoRestorecommerceProductPhysicalVariant[] = [];
 
   formGroup = new FormGroup({
-    productId: new FormControl(this.orderItem.productId || ''),
-    variantId: new FormControl(this.orderItem.variantId || ''),
-    quantity: new FormControl(this.orderItem.quantity || 0),
+    productId: new FormControl(this.orderItem?.productId || ''),
+    variantId: new FormControl(this.orderItem?.variantId || ''),
+    quantity: new FormControl(this.orderItem?.quantity || 0),
     unitPrice: new FormGroup({
-      sale: new FormControl(this.orderItem.unitPrice?.sale || false),
-      currencyId: new FormControl(this.orderItem.unitPrice?.currencyId || ''),
-      salePrice: new FormControl(this.orderItem.unitPrice?.salePrice || 0),
+      sale: new FormControl(this.orderItem?.unitPrice?.sale || false),
+      currencyId: new FormControl(this.orderItem?.unitPrice?.currencyId || ''),
+      salePrice: new FormControl(this.orderItem?.unitPrice?.salePrice || 0),
       regularPrice: new FormControl(
-        this.orderItem.unitPrice?.regularPrice || 0
+        this.orderItem?.unitPrice?.regularPrice || 0
       ),
     }),
   });
@@ -92,34 +93,80 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
     return this.layer.data.products;
   }
 
-  get orderItem(): IoRestorecommerceOrderItem {
+  get orderItem(): IoRestorecommerceOrderItem | undefined {
     return this.layer.data.orderItem;
   }
 
   onSubmit(): void {
     if (this.formGroup.valid) {
       const currentOrderInput = transformOrderToInput(this.order);
-      const updatedOrderInput: IIoRestorecommerceOrderOrder = {
-        ...currentOrderInput,
-        items: [
-          ...(currentOrderInput.items || []),
-          {
-            ...this.formGroup.value,
+
+      if (this.orderItem) {
+        // Edit mode for an order!
+        const currentOrderItem = currentOrderInput.items?.find(
+          (item) =>
+            item.productId === this.orderItem?.productId &&
+            item.variantId === this.orderItem?.variantId
+        );
+
+        if (currentOrderItem) {
+          const updatedOrderItem: IIoRestorecommerceOrderItem = {
+            ...currentOrderItem,
             quantity: +(this.formGroup.value.quantity || 0),
             unitPrice: {
+              sale: Boolean(this.formGroup.value.unitPrice?.sale),
               salePrice: +(this.formGroup.value.unitPrice?.salePrice || 0),
               regularPrice: +(
                 this.formGroup.value.unitPrice?.regularPrice || 0
               ),
             },
-          },
-        ],
-      };
+          };
 
-      this.orderFacade.update({
-        items: [updatedOrderInput],
-        mode: ModeType.Update,
-      });
+          const updatedOrderItems = currentOrderInput.items?.map((item) => {
+            if (
+              item.productId === this.orderItem?.productId &&
+              item.variantId === this.orderItem?.variantId
+            ) {
+              return updatedOrderItem;
+            }
+
+            return item;
+          });
+
+          const updatedOrderInput: IIoRestorecommerceOrderOrder = {
+            ...currentOrderInput,
+            items: updatedOrderItems,
+          };
+
+          this.orderFacade.update({
+            items: [updatedOrderInput],
+            mode: ModeType.Update,
+          });
+        }
+      } else {
+        const updatedOrderInput: IIoRestorecommerceOrderOrder = {
+          ...currentOrderInput,
+          items: [
+            ...(currentOrderInput.items || []),
+            {
+              ...this.formGroup.value,
+              quantity: +(this.formGroup.value.quantity || 0),
+              unitPrice: {
+                sale: Boolean(this.formGroup.value.unitPrice?.sale),
+                salePrice: +(this.formGroup.value.unitPrice?.salePrice || 0),
+                regularPrice: +(
+                  this.formGroup.value.unitPrice?.regularPrice || 0
+                ),
+              },
+            },
+          ],
+        };
+
+        this.orderFacade.update({
+          items: [updatedOrderInput],
+          mode: ModeType.Update,
+        });
+      }
     }
   }
 

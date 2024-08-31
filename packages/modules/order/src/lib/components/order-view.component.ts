@@ -134,7 +134,6 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     products: IProduct[],
     orderItem: IoRestorecommerceOrderItem
   ) {
-    console.log(orderItem);
     this.editItemLayer
       .open({
         data: {
