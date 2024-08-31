@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   Output,
 } from '@angular/core';
@@ -12,10 +13,20 @@ import { IoRestorecommerceOrderItem } from '@console-core/graphql';
   selector: 'rc-order-item',
   templateUrl: './order-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
 })
 export class RcOrderItemComponent {
+  @HostBinding('class') classNames = 'order-item';
+
   @Input({ required: true })
   item!: IoRestorecommerceOrderItem;
 
-  @Output() openEditItemModal = new EventEmitter<void>();
+  @Output() openEditOrderItemModal =
+    new EventEmitter<IoRestorecommerceOrderItem>();
 }

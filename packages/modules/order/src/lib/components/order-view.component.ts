@@ -11,6 +11,7 @@ import { map, tap } from 'rxjs/operators';
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
+import { IoRestorecommerceOrderItem } from '@console-core/graphql';
 import {
   OrderFacade,
   ProductFacade,
@@ -31,6 +32,7 @@ import { OrderItemFormComponent } from '../modals/order-item/order-item-form.com
         [order]="vm.order"
         (openAddItemModal)="onAddOrder(vm.order, vm.products)"
         (openAddressModal)="onOpenAddress(vm.order)"
+        (openEditOrderItemModal)="onOpenEditOrderItem($event)"
       />
     </ng-container>
   `,
@@ -60,8 +62,11 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     products: this.productFacade.all$,
   });
 
+  // TODO REFACTOR the openAddItemModal to openAddOrderItemModal.
+
   addItemLayer!: LayerRef;
   addressLayer!: LayerRef;
+  editItemLayer!: LayerRef;
 
   constructor(
     private readonly router: Router,
@@ -78,6 +83,11 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     });
 
     this.addressLayer = this.layerService.create(JSSFormModalComponent, {
+      closeOnBackdropClick: false,
+      closeOnEscape: false,
+    });
+
+    this.editItemLayer = this.layerService.create(OrderItemFormComponent, {
       closeOnBackdropClick: false,
       closeOnEscape: false,
     });
@@ -108,6 +118,20 @@ export class OrderViewComponent implements OnInit, OnDestroy {
           order,
           title: 'Address',
           schema: buildOrderAddressSchema({}),
+        },
+      })
+      .subscribe((result) => {
+        console.log('Result: ' + result?.value);
+      });
+  }
+
+  onOpenEditOrderItem(orderItem: IoRestorecommerceOrderItem) {
+    console.log(orderItem);
+    this.editItemLayer
+      .open({
+        data: {
+          // order,
+          // products,
         },
       })
       .subscribe((result) => {

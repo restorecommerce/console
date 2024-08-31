@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import {
+  IoRestorecommerceOrderItem,
   IoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceUserUser,
 } from '@console-core/graphql';
@@ -23,6 +24,8 @@ export class RcOrderViewComponent implements OnInit {
 
   @Output() openAddItemModal = new EventEmitter<void>();
   @Output() openAddressModal = new EventEmitter<string>();
+  @Output() openEditOrderItemModal =
+    new EventEmitter<IoRestorecommerceOrderItem>();
 
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;
