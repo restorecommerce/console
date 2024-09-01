@@ -116,6 +116,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     this.addItemLayer
       .open({
         data: {
+          title: 'Add item',
           order,
           products,
         },
@@ -147,6 +148,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     this.editItemLayer
       .open({
         data: {
+          title: 'Edit item',
           orderItem,
           order,
           products,

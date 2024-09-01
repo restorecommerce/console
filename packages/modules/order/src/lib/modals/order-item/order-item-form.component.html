@@ -2,7 +2,7 @@
   [showCloseButton]="true"
   (close)="close()"
 >
-  <vcl-panel-title>Add item</vcl-panel-title>
+  <vcl-panel-title>{{ title }}</vcl-panel-title>
 
   <form
     vclForm
@@ -35,8 +35,8 @@
           <div class="p-1">No Variant found!</div>
         </ng-container>
         <vcl-select-list
+          [disabled]="!!orderItem"
           formControlName="variantId"
-          [disabled]="false"
         >
           @for (variant of variants; track variant.id) {
           <vcl-select-list-item [value]="variant.id">{{

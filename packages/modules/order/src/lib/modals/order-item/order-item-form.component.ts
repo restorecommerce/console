@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { startWith } from 'rxjs';
 import { SubSink } from 'subsink';
 
 import { ComponentLayerRef } from '@vcl/ng-vcl';
@@ -53,19 +54,25 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.formGroup
         .get('productId')
-        ?.valueChanges.subscribe((selectedProductId) => {
+        ?.valueChanges.pipe(startWith(this.orderItem?.productId))
+        .subscribe((selectedProductId) => {
           this.variants =
             this.products.find((p) => p.id === selectedProductId)?.product
               .physical?.variants || [];
 
-          this.formGroup.get('variantId')?.reset();
+          //  Always reset for a form that's on create mode.
+          if (!this.orderItem) {
+            this.formGroup.get('variantId')?.reset();
+          }
         })
     );
 
     this.subscriptions.add(
       this.formGroup
         .get('variantId')
-        ?.valueChanges.subscribe((selectedVariantId) => {
+        ?.valueChanges.pipe(startWith(this.orderItem?.variantId))
+        .subscribe((selectedVariantId) => {
+          console.log('selectedVariantId', selectedVariantId);
           const selectedVariant = this.variants.find(
             (item) => item.id === selectedVariantId
           );
@@ -83,6 +90,10 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  get title(): string {
+    return this.layer.data.title;
   }
 
   get order(): IOrder {
