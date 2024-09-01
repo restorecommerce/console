@@ -12,6 +12,7 @@
       [items]="order.items || []"
       (openAddItemModal)="openAddItemModal.emit()"
       (openEditOrderItemModal)="openEditOrderItemModal.emit($event)"
+      (openDeleteOrderItemModal)="openDeleteOrderItemModal.emit($event)"
     />
   </div>
 

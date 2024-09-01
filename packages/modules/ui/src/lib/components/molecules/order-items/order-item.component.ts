@@ -29,4 +29,7 @@ export class RcOrderItemComponent {
 
   @Output() openEditOrderItemModal =
     new EventEmitter<IoRestorecommerceOrderItem>();
+
+  @Output() openDeleteOrderItemModal =
+    new EventEmitter<IoRestorecommerceOrderItem>();
 }
