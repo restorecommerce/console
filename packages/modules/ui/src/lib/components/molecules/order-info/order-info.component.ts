@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 
 import {
@@ -18,6 +20,8 @@ import {
 export class RcOrderInfoComponent implements OnInit {
   @Input({ required: true })
   order!: IoRestorecommerceOrderOrder;
+
+  @Output() openEditOrderInfoModal = new EventEmitter<void>();
 
   customer?: IoRestorecommerceUserUser;
 

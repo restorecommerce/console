@@ -25,7 +25,7 @@ import {
 } from '@console-core/state';
 import { EAddressType, IOrder, IProduct } from '@console-core/types';
 
-import { buildOrderAddressSchema } from '../jss-forms';
+import { buildOrderAddressSchema, buildOrderSchema } from '../jss-forms';
 import { JSSFormModalComponent } from '../modals/jss-form-modal.component';
 import { OrderItemFormComponent } from '../modals/order-item/order-item-form.component';
 import { transformOrderToInput } from '../utils';
@@ -36,6 +36,7 @@ import { transformOrderToInput } from '../utils';
     <ng-container *ngIf="vm$ | async as vm">
       <rc-order-view
         [order]="vm.order"
+        (openEditOrderInfoModal)="onOpenOrderDetailModal()"
         (openAddItemModal)="onAddOrder(vm.order, vm.products)"
         (openAddressModal)="onOpenAddress(vm.order, $event)"
         (openEditOrderItemModal)="
@@ -74,6 +75,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
 
   // TODO REFACTOR the openAddItemModal to openAddOrderItemModal.
 
+  orderDetailLayer!: LayerRef;
   addItemLayer!: LayerRef;
   addressLayer!: LayerRef;
   editItemLayer!: LayerRef;
@@ -88,6 +90,11 @@ export class OrderViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.orderDetailLayer = this.layerService.create(JSSFormModalComponent, {
+      closeOnBackdropClick: false,
+      closeOnEscape: false,
+    });
+
     this.addItemLayer = this.layerService.create(OrderItemFormComponent, {
       closeOnBackdropClick: false,
       closeOnEscape: false,
@@ -110,6 +117,18 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     this.addItemLayer?.destroy();
     this.addressLayer?.destroy();
     this.editItemLayer?.destroy();
+    this.orderDetailLayer?.destroy();
+  }
+
+  onOpenOrderDetailModal() {
+    this.orderDetailLayer
+      .open({
+        data: {
+          title: 'Order',
+          schema: buildOrderSchema({}),
+        },
+      })
+      .subscribe();
   }
 
   onAddOrder(order: IOrder, products: IProduct[]) {
@@ -142,9 +161,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
           }),
         },
       })
-      .subscribe((result) => {
-        console.log('Result: ' + result?.value);
-      });
+      .subscribe();
   }
 
   onOpenEditOrderItem(

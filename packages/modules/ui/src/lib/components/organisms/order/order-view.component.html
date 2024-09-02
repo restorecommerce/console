@@ -4,7 +4,10 @@
   </div>
 
   <div class="order-info">
-    <rc-order-info [order]="order" />
+    <rc-order-info
+      [order]="order"
+      (openEditOrderInfoModal)="openEditOrderInfoModal.emit()"
+    />
   </div>
 
   <div class="order-items">

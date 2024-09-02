@@ -31,6 +31,8 @@ export class RcOrderViewComponent implements OnInit {
   @Output() openDeleteOrderItemModal =
     new EventEmitter<IoRestorecommerceOrderItem>();
 
+  @Output() openEditOrderInfoModal = new EventEmitter<void>();
+
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;
 
