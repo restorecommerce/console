@@ -1,6 +1,6 @@
 <div class="order-details">
   <div class="order-shop">
-    <!-- <rc-shop-info [shop]="order.shop" /> -->
+    <rc-shop-info [shop]="order.shop || {}" />
   </div>
 
   <div class="order-info">
@@ -25,14 +25,14 @@
     />
   </div>
 
-  <!-- <div class="order-shipping-address pt-3">
+  <div class="order-shipping-address pt-3">
     <rc-order-address
       title="Billing address"
       [rcOrderAddress]="order.billingAddress || undefined"
       addressType="billingAddress"
       (openAddressModal)="openAddressModal.emit()"
     />
-  </div> -->
+  </div>
 
   <div class="order-totals">
     <rc-order-totals [totalAmounts]="order.totalAmounts || []" />
