@@ -72,17 +72,19 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
         .get('variantId')
         ?.valueChanges.pipe(startWith(this.orderItem?.variantId))
         .subscribe((selectedVariantId) => {
-          console.log('selectedVariantId', selectedVariantId);
-          const selectedVariant = this.variants.find(
-            (item) => item.id === selectedVariantId
-          );
-          if (selectedVariant) {
-            this.formGroup.get('unitPrice')?.patchValue({
-              regularPrice: selectedVariant.price?.regularPrice || 0,
-              salePrice: selectedVariant.price?.salePrice || 0,
-              sale: selectedVariant.price?.sale || false,
-              currencyId: selectedVariant.price?.currencyId || '',
-            });
+          if (!this.orderItem) {
+            // Prepopulation for creation!
+            const selectedVariant = this.variants.find(
+              (item) => item.id === selectedVariantId
+            );
+            if (selectedVariant) {
+              this.formGroup.get('unitPrice')?.patchValue({
+                regularPrice: selectedVariant.price?.regularPrice || 0,
+                salePrice: selectedVariant.price?.salePrice || 0,
+                sale: selectedVariant.price?.sale || false,
+                currencyId: selectedVariant.price?.currencyId || '',
+              });
+            }
           }
         })
     );
