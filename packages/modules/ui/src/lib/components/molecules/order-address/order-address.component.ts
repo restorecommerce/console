@@ -10,6 +10,7 @@ import {
   IoRestorecommerceAddressBillingAddress,
   IoRestorecommerceAddressShippingAddress,
 } from '@console-core/graphql';
+import { EAddressType } from '@console-core/types';
 
 @Component({
   selector: 'rc-order-address',
@@ -18,12 +19,12 @@ import {
 })
 export class RcOrderAddressComponent {
   @Input({ required: true }) title!: string;
-  @Input({ required: true }) addressType!: string;
+  @Input({ required: true }) addressType!: EAddressType;
 
   @Input({ required: true })
   rcOrderAddress?:
     | IoRestorecommerceAddressShippingAddress
     | IoRestorecommerceAddressBillingAddress;
 
-  @Output() openAddressModal = new EventEmitter<string>();
+  @Output() openAddressModal = new EventEmitter<EAddressType>();
 }

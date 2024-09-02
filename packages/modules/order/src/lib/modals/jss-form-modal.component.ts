@@ -61,11 +61,7 @@ export class JSSFormModalComponent {
       const currentOrderInput = transformOrderToInput(this.order);
       const updatedOrderInput: IIoRestorecommerceOrderOrder = {
         ...currentOrderInput,
-        shippingAddress: {
-          address: {
-            ...this.form.form.value,
-          },
-        },
+        ...this.form.form.value,
       };
 
       this.orderFacade.update({

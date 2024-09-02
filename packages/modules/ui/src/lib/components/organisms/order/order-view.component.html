@@ -19,8 +19,8 @@
   <div class="order-shipping-address pt-3">
     <rc-order-address
       title="Shipping address"
+      [addressType]="addressType.shippingAddress"
       [rcOrderAddress]="order.shippingAddress || undefined"
-      addressType="shippingAddress"
       (openAddressModal)="openAddressModal.emit($event)"
     />
   </div>
@@ -28,9 +28,9 @@
   <div class="order-shipping-address pt-3">
     <rc-order-address
       title="Billing address"
+      [addressType]="addressType.billingAddress"
       [rcOrderAddress]="order.billingAddress || undefined"
-      addressType="billingAddress"
-      (openAddressModal)="openAddressModal.emit()"
+      (openAddressModal)="openAddressModal.emit($event)"
     />
   </div>
 

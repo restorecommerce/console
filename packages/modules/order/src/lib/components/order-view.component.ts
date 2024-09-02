@@ -23,7 +23,7 @@ import {
   RouterFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
-import { IOrder, IProduct } from '@console-core/types';
+import { EAddressType, IOrder, IProduct } from '@console-core/types';
 
 import { buildOrderAddressSchema } from '../jss-forms';
 import { JSSFormModalComponent } from '../modals/jss-form-modal.component';
@@ -37,7 +37,7 @@ import { transformOrderToInput } from '../utils';
       <rc-order-view
         [order]="vm.order"
         (openAddItemModal)="onAddOrder(vm.order, vm.products)"
-        (openAddressModal)="onOpenAddress(vm.order)"
+        (openAddressModal)="onOpenAddress(vm.order, $event)"
         (openEditOrderItemModal)="
           onOpenEditOrderItem(vm.order, vm.products, $event)
         "
@@ -126,13 +126,20 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       });
   }
 
-  onOpenAddress(order: IOrder) {
+  onOpenAddress(order: IOrder, addressType: EAddressType) {
     this.addressLayer
       .open({
         data: {
           order,
-          title: 'Address',
-          schema: buildOrderAddressSchema({}),
+          title:
+            addressType === EAddressType.billingAddress
+              ? 'Billing address'
+              : addressType === EAddressType.shippingAddress
+              ? 'Shipping address'
+              : 'Address',
+          schema: buildOrderAddressSchema({
+            addressType: addressType,
+          }),
         },
       })
       .subscribe((result) => {

@@ -12,7 +12,7 @@ import {
   IoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceUserUser,
 } from '@console-core/graphql';
-import { IOrder } from '@console-core/types';
+import { EAddressType, IOrder } from '@console-core/types';
 
 @Component({
   selector: 'rc-order-view',
@@ -22,8 +22,10 @@ import { IOrder } from '@console-core/types';
 export class RcOrderViewComponent implements OnInit {
   @Input({ required: true }) order!: IOrder;
 
+  addressType = EAddressType;
+
   @Output() openAddItemModal = new EventEmitter<void>();
-  @Output() openAddressModal = new EventEmitter<string>();
+  @Output() openAddressModal = new EventEmitter<EAddressType>();
   @Output() openEditOrderItemModal =
     new EventEmitter<IoRestorecommerceOrderItem>();
   @Output() openDeleteOrderItemModal =
