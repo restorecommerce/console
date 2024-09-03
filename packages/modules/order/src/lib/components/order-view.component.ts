@@ -37,7 +37,7 @@ import { transformOrderToInput } from '../utils';
       <rc-order-view
         [order]="vm.order"
         (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
-        (openAddItemModal)="onAddOrder(vm.order, vm.products)"
+        (openAddItemModal)="openAddOrderItemModal(vm.order, vm.products)"
         (openAddressModal)="onOpenAddress(vm.order, $event)"
         (openEditOrderItemModal)="
           onOpenEditOrderItem(vm.order, vm.products, $event)
@@ -72,8 +72,6 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     ),
     products: this.productFacade.all$,
   });
-
-  // TODO REFACTOR the openAddItemModal to openAddOrderItemModal.
 
   orderDetailLayer!: LayerRef;
   addItemLayer!: LayerRef;
@@ -113,7 +111,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-    // TODO use subsink
+
     this.addItemLayer?.destroy();
     this.addressLayer?.destroy();
     this.editItemLayer?.destroy();
@@ -134,7 +132,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onAddOrder(order: IOrder, products: IProduct[]) {
+  openAddOrderItemModal(order: IOrder, products: IProduct[]) {
     this.addItemLayer
       .open({
         data: {
