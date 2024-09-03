@@ -36,7 +36,7 @@ import { transformOrderToInput } from '../utils';
     <ng-container *ngIf="vm$ | async as vm">
       <rc-order-view
         [order]="vm.order"
-        (openEditOrderInfoModal)="onOpenOrderDetailModal()"
+        (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
         (openAddItemModal)="onAddOrder(vm.order, vm.products)"
         (openAddressModal)="onOpenAddress(vm.order, $event)"
         (openEditOrderItemModal)="
@@ -120,12 +120,14 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     this.orderDetailLayer?.destroy();
   }
 
-  onOpenOrderDetailModal() {
+  onOpenOrderDetailModal(order: IOrder) {
     this.orderDetailLayer
       .open({
         data: {
           title: 'Order',
-          schema: buildOrderSchema({}),
+          schema: buildOrderSchema({
+            order,
+          }),
         },
       })
       .subscribe();
@@ -140,9 +142,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
           products,
         },
       })
-      .subscribe((result) => {
-        console.log('Result: ' + result?.value);
-      });
+      .subscribe();
   }
 
   onOpenAddress(order: IOrder, addressType: EAddressType) {
@@ -178,9 +178,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
           products,
         },
       })
-      .subscribe((result) => {
-        console.log('Result: ' + result?.value);
-      });
+      .subscribe();
   }
 
   onDeleteOrderItem(

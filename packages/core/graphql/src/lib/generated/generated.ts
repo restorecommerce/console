@@ -5967,10 +5967,11 @@ export type MetaFragmentFragment = {
 export type OrderFragmentFragment = {
   __typename?: 'IoRestorecommerceOrderOrder';
   id?: string | null;
-  customerOrderNr?: string | null;
   notificationEmail?: string | null;
   shopId?: string | null;
   orderState?: IoRestorecommerceOrderOrderState | null;
+  customerType?: IoRestorecommerceCustomerCustomerType | null;
+  customerOrderNr?: string | null;
   items?: Array<{
     __typename?: 'IoRestorecommerceOrderItem';
     id?: string | null;
@@ -8271,10 +8272,11 @@ export type OrderingOrderMutateMutation = {
             payload?: {
               __typename?: 'IoRestorecommerceOrderOrder';
               id?: string | null;
-              customerOrderNr?: string | null;
               notificationEmail?: string | null;
               shopId?: string | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
+              customerType?: IoRestorecommerceCustomerCustomerType | null;
+              customerOrderNr?: string | null;
               items?: Array<{
                 __typename?: 'IoRestorecommerceOrderItem';
                 id?: string | null;
@@ -8852,10 +8854,11 @@ export type OrderingOrderReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceOrderOrder';
               id?: string | null;
-              customerOrderNr?: string | null;
               notificationEmail?: string | null;
               shopId?: string | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
+              customerType?: IoRestorecommerceCustomerCustomerType | null;
+              customerOrderNr?: string | null;
               items?: Array<{
                 __typename?: 'IoRestorecommerceOrderItem';
                 id?: string | null;
@@ -9691,10 +9694,11 @@ export const CustomerFragmentFragmentDoc = gql`
 export const OrderFragmentFragmentDoc = gql`
   fragment OrderFragment on IoRestorecommerceOrderOrder {
     id
-    customerOrderNr
     notificationEmail
     shopId
     orderState
+    customerType
+    customerOrderNr
     items {
       id
       quantity

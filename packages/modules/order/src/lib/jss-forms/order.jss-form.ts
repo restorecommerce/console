@@ -22,9 +22,7 @@ export const buildOrderSchema = (
         name: 'notificationEmail',
         label: 'Notification email',
         type: 'input',
-        ...(options.order
-          ? { defaultValue: options.order.notificationEmail }
-          : {}),
+        defaultValue: options.order?.notificationEmail,
         validators: [Validators.required, Validators.email],
         params: {},
         hints: [
@@ -44,9 +42,7 @@ export const buildOrderSchema = (
         name: 'orderState',
         label: 'Order state',
         type: 'select',
-        // disabled: true,
-        // defaultValue: [IoRestorecommerceOrderOrderState.Submitted],
-        ...(options.order ? { defaultValue: options.order.orderState } : {}),
+        defaultValue: options.order?.orderState,
         validators: [Validators.required],
         params: {
           placeholder: 'Select order state',
@@ -88,6 +84,7 @@ export const buildOrderSchema = (
         name: 'customerType',
         label: 'Customer type',
         type: 'select',
+        defaultValue: options.order?.customerType,
         validators: [Validators.required],
         params: {
           placeholder: 'Select customer type',
@@ -111,6 +108,7 @@ export const buildOrderSchema = (
         name: 'paymentMethodId',
         label: 'Payment method',
         type: 'select',
+        defaultValue: options.order?.paymentMethodId,
         validators: [Validators.required],
         params: {
           placeholder: 'Select payment method',
@@ -149,6 +147,7 @@ export const buildOrderSchema = (
       {
         name: 'customerRemark',
         label: 'Customer remark',
+        defaultValue: options.order?.customerRemark,
         type: 'input',
       },
       {
