@@ -125,6 +125,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       .open({
         data: {
           title: 'Order',
+          order,
           schema: buildOrderSchema({
             order,
           }),

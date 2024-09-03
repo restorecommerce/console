@@ -109,7 +109,7 @@ export const buildOrderSchema = (
         label: 'Payment method',
         type: 'select',
         defaultValue: options.order?.paymentMethodId,
-        validators: [Validators.required],
+        // validators: [Validators.required],
         params: {
           placeholder: 'Select payment method',
           options: [
