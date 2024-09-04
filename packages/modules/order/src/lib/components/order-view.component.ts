@@ -18,12 +18,13 @@ import {
   ModeType,
 } from '@console-core/graphql';
 import {
+  CountryFacade,
   OrderFacade,
   ProductFacade,
   RouterFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
-import { EAddressType, IOrder, IProduct } from '@console-core/types';
+import { EAddressType, ICountry, IOrder, IProduct } from '@console-core/types';
 
 import { buildOrderAddressSchema, buildOrderSchema } from '../jss-forms';
 import { JSSFormModalComponent } from '../modals/jss-form-modal.component';
@@ -38,7 +39,7 @@ import { transformOrderToInput } from '../utils';
         [order]="vm.order"
         (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
         (openAddItemModal)="openAddOrderItemModal(vm.order, vm.products)"
-        (openAddressModal)="onOpenAddress(vm.order, $event)"
+        (openAddressModal)="onOpenAddress(vm.order, $event, vm.countries)"
         (openEditOrderItemModal)="
           onOpenEditOrderItem(vm.order, vm.products, $event)
         "
@@ -71,6 +72,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       filterEmptyAndNullishAndUndefined()
     ),
     products: this.productFacade.all$,
+    countries: this.countriesFacade.all$,
   });
 
   orderDetailLayer!: LayerRef;
@@ -83,6 +85,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     private readonly routerFacade: RouterFacade,
     private readonly productFacade: ProductFacade,
     private readonly orderFacade: OrderFacade,
+    private readonly countriesFacade: CountryFacade,
     private layerService: LayerService,
     private readonly alertService: AlertService
   ) {}
@@ -144,7 +147,11 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onOpenAddress(order: IOrder, addressType: EAddressType) {
+  onOpenAddress(
+    order: IOrder,
+    addressType: EAddressType,
+    countryList: ICountry[]
+  ) {
     this.addressLayer
       .open({
         data: {
@@ -158,6 +165,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
           schema: buildOrderAddressSchema({
             addressType,
             order,
+            countryList,
           }),
         },
       })

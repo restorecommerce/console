@@ -2,11 +2,12 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { EAddressType, IOrder } from '@console-core/types';
+import { EAddressType, ICountry, IOrder } from '@console-core/types';
 
 interface ISchemaOptions {
   addressType: EAddressType;
   order: IOrder;
+  countryList: ICountry[];
 }
 
 export const buildOrderAddressSchema = (
@@ -108,20 +109,10 @@ export const buildOrderAddressSchema = (
                 validators: [Validators.required],
                 params: {
                   placeholder: 'Country',
-                  options: [
-                    {
-                      label: 'Germany',
-                      value: 'germany',
-                    },
-                    {
-                      label: 'Switzerland',
-                      value: 'switzerland',
-                    },
-                    {
-                      label: 'France',
-                      value: 'france',
-                    },
-                  ],
+                  options: options.countryList.map((country) => ({
+                    label: country.name,
+                    value: country.id,
+                  })),
                 },
                 hints: [
                   {
