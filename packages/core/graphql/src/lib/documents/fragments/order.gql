@@ -53,6 +53,7 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
         field1
         field2
       }
+      countryId
       country {
         id
         name
@@ -87,6 +88,7 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
         field1
         field2
       }
+      countryId
       country {
         id
         name

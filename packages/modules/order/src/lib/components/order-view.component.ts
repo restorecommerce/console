@@ -156,7 +156,8 @@ export class OrderViewComponent implements OnInit, OnDestroy {
               ? 'Shipping address'
               : 'Address',
           schema: buildOrderAddressSchema({
-            addressType: addressType,
+            addressType,
+            order,
           }),
         },
       })

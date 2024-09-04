@@ -6383,6 +6383,7 @@ export type OrderFragmentFragment = {
       buildingNumber?: string | null;
       locality?: string | null;
       region?: string | null;
+      countryId?: string | null;
       postcode?: string | null;
       businessAddress?: {
         __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -6424,6 +6425,7 @@ export type OrderFragmentFragment = {
       buildingNumber?: string | null;
       locality?: string | null;
       region?: string | null;
+      countryId?: string | null;
       postcode?: string | null;
       businessAddress?: {
         __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -8688,6 +8690,7 @@ export type OrderingOrderMutateMutation = {
                   buildingNumber?: string | null;
                   locality?: string | null;
                   region?: string | null;
+                  countryId?: string | null;
                   postcode?: string | null;
                   businessAddress?: {
                     __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -8729,6 +8732,7 @@ export type OrderingOrderMutateMutation = {
                   buildingNumber?: string | null;
                   locality?: string | null;
                   region?: string | null;
+                  countryId?: string | null;
                   postcode?: string | null;
                   businessAddress?: {
                     __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -9270,6 +9274,7 @@ export type OrderingOrderReadQuery = {
                   buildingNumber?: string | null;
                   locality?: string | null;
                   region?: string | null;
+                  countryId?: string | null;
                   postcode?: string | null;
                   businessAddress?: {
                     __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -9311,6 +9316,7 @@ export type OrderingOrderReadQuery = {
                   buildingNumber?: string | null;
                   locality?: string | null;
                   region?: string | null;
+                  countryId?: string | null;
                   postcode?: string | null;
                   businessAddress?: {
                     __typename?: 'IoRestorecommerceAddressBusinessAddress';
@@ -9747,6 +9753,7 @@ export const OrderFragmentFragmentDoc = gql`
           field1
           field2
         }
+        countryId
         country {
           id
           name
@@ -9781,6 +9788,7 @@ export const OrderFragmentFragmentDoc = gql`
           field1
           field2
         }
+        countryId
         country {
           id
           name

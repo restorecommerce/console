@@ -1,16 +1,19 @@
-// import { Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { EAddressType } from '@console-core/types';
+import { EAddressType, IOrder } from '@console-core/types';
 
 interface ISchemaOptions {
   addressType: EAddressType;
+  order: IOrder;
 }
 
 export const buildOrderAddressSchema = (
   options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
+  const addressWrapper = options.order[options.addressType];
+
   return {
     type: 'form',
     fields: [
@@ -26,8 +29,8 @@ export const buildOrderAddressSchema = (
                 name: 'buildingNumber',
                 label: 'Building number',
                 type: 'input',
-                // validators: [Validators.required],
-                defaultValue: '4',
+                validators: [Validators.required],
+                defaultValue: addressWrapper?.address?.buildingNumber || '',
                 params: {},
                 hints: [
                   {
@@ -41,8 +44,8 @@ export const buildOrderAddressSchema = (
                 name: 'street',
                 label: 'Street',
                 type: 'input',
-                // validators: [Validators.required],
-                defaultValue: 'Ossietzkystraße',
+                validators: [Validators.required],
+                defaultValue: addressWrapper?.address?.street || '',
                 params: {},
                 hints: [
                   {
@@ -56,8 +59,8 @@ export const buildOrderAddressSchema = (
                 name: 'locality',
                 label: 'Locality',
                 type: 'input',
-                // validators: [Validators.required],
-                defaultValue: 'Stuttgart',
+                validators: [Validators.required],
+                defaultValue: addressWrapper?.address?.locality || '',
                 params: {},
                 hints: [
                   {
@@ -71,8 +74,8 @@ export const buildOrderAddressSchema = (
                 name: 'region',
                 label: 'Region',
                 type: 'input',
-                // validators: [Validators.required],
-                defaultValue: 'Stuttgart',
+                validators: [Validators.required],
+                defaultValue: addressWrapper?.address?.region || '',
                 params: {},
                 hints: [
                   {
@@ -86,8 +89,8 @@ export const buildOrderAddressSchema = (
                 name: 'postcode',
                 label: 'Postcode',
                 type: 'input',
-                // validators: [Validators.required],
-                defaultValue: '70174',
+                validators: [Validators.required],
+                defaultValue: addressWrapper?.address?.postcode || '',
                 params: {},
                 hints: [
                   {
@@ -101,8 +104,8 @@ export const buildOrderAddressSchema = (
                 name: 'countryId',
                 label: 'Country',
                 type: 'select',
-                defaultValue: 'germany',
-                // validators: [Validators.required],
+                defaultValue: addressWrapper?.address?.countryId || '',
+                validators: [Validators.required],
                 params: {
                   placeholder: 'Country',
                   options: [
@@ -128,54 +131,57 @@ export const buildOrderAddressSchema = (
                   },
                 ],
               },
-              {
-                name: 'packStation',
-                type: 'object',
-                fields: [
-                  {
-                    name: 'provider',
-                    label: 'Provider',
-                    type: 'input',
-                    defaultValue: '',
-                    params: {},
-                    hints: [
-                      {
-                        type: 'error',
-                        error: 'required',
-                        message: 'This field is required.',
-                      },
-                    ],
-                  },
-                  {
-                    name: 'stationNumber',
-                    label: 'Station number',
-                    type: 'input',
-                    defaultValue: '',
-                    params: {},
-                    hints: [
-                      {
-                        type: 'error',
-                        error: 'required',
-                        message: 'This field is required.',
-                      },
-                    ],
-                  },
-                  {
-                    name: 'postNumber',
-                    label: 'Post number',
-                    type: 'input',
-                    defaultValue: '',
-                    params: {},
-                    hints: [
-                      {
-                        type: 'error',
-                        error: 'required',
-                        message: 'This field is required.',
-                      },
-                    ],
-                  },
-                ],
-              },
+              // {
+              //   name: 'packStation',
+              //   type: 'object',
+              //   fields: [
+              //     {
+              //       name: 'provider',
+              //       label: 'Provider',
+              //       type: 'input',
+              //       defaultValue:
+              //         addressWrapper?.address?.packStation?.provider || '',
+              //       params: {},
+              //       hints: [
+              //         {
+              //           type: 'error',
+              //           error: 'required',
+              //           message: 'This field is required.',
+              //         },
+              //       ],
+              //     },
+              //     {
+              //       name: 'stationNumber',
+              //       label: 'Station number',
+              //       type: 'input',
+              //       defaultValue:
+              //         addressWrapper?.address?.packStation?.stationNumber || '',
+              //       params: {},
+              //       hints: [
+              //         {
+              //           type: 'error',
+              //           error: 'required',
+              //           message: 'This field is required.',
+              //         },
+              //       ],
+              //     },
+              //     {
+              //       name: 'postNumber',
+              //       label: 'Post number',
+              //       type: 'input',
+              //       defaultValue:
+              //         addressWrapper?.address?.packStation?.postNumber || '',
+              //       params: {},
+              //       hints: [
+              //         {
+              //           type: 'error',
+              //           error: 'required',
+              //           message: 'This field is required.',
+              //         },
+              //       ],
+              //     },
+              //   ],
+              // },
             ],
           },
           {
@@ -186,7 +192,7 @@ export const buildOrderAddressSchema = (
                 name: 'name',
                 label: 'Name',
                 type: 'input',
-                defaultValue: '',
+                defaultValue: addressWrapper?.contact?.name || '',
                 params: {},
                 hints: [
                   {
@@ -200,7 +206,7 @@ export const buildOrderAddressSchema = (
                 name: 'email',
                 label: 'Email',
                 type: 'input',
-                defaultValue: '',
+                defaultValue: addressWrapper?.contact?.email || '',
                 params: {},
                 hints: [
                   {
@@ -214,7 +220,7 @@ export const buildOrderAddressSchema = (
                 name: 'phone',
                 label: 'Phone number',
                 type: 'input',
-                defaultValue: '',
+                defaultValue: addressWrapper?.contact?.phone || '',
                 params: {},
                 hints: [
                   {
@@ -227,10 +233,10 @@ export const buildOrderAddressSchema = (
             ],
           },
           {
-            name: 'comment',
+            name: 'comments',
             label: 'Comment',
             type: 'textarea',
-            defaultValue: '',
+            defaultValue: addressWrapper?.comments || '',
             params: {},
             hints: [
               {
