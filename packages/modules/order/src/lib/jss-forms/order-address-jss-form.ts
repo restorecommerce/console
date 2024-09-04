@@ -128,6 +128,116 @@ export const buildOrderAddressSchema = (
                   },
                 ],
               },
+              {
+                name: 'packStation',
+                type: 'object',
+                fields: [
+                  {
+                    name: 'provider',
+                    label: 'Provider',
+                    type: 'input',
+                    defaultValue: '',
+                    params: {},
+                    hints: [
+                      {
+                        type: 'error',
+                        error: 'required',
+                        message: 'This field is required.',
+                      },
+                    ],
+                  },
+                  {
+                    name: 'stationNumber',
+                    label: 'Station number',
+                    type: 'input',
+                    defaultValue: '',
+                    params: {},
+                    hints: [
+                      {
+                        type: 'error',
+                        error: 'required',
+                        message: 'This field is required.',
+                      },
+                    ],
+                  },
+                  {
+                    name: 'postNumber',
+                    label: 'Post number',
+                    type: 'input',
+                    defaultValue: '',
+                    params: {},
+                    hints: [
+                      {
+                        type: 'error',
+                        error: 'required',
+                        message: 'This field is required.',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'contact',
+            type: 'object',
+            fields: [
+              {
+                name: 'name',
+                label: 'Name',
+                type: 'input',
+                defaultValue: '',
+                params: {},
+                hints: [
+                  {
+                    type: 'error',
+                    error: 'required',
+                    message: 'This field is required.',
+                  },
+                ],
+              },
+              {
+                name: 'email',
+                label: 'Email',
+                type: 'input',
+                defaultValue: '',
+                params: {},
+                hints: [
+                  {
+                    type: 'error',
+                    error: 'required',
+                    message: 'This field is required.',
+                  },
+                ],
+              },
+              {
+                name: 'phone',
+                label: 'Phone number',
+                type: 'input',
+                defaultValue: '',
+                params: {},
+                hints: [
+                  {
+                    type: 'error',
+                    error: 'required',
+                    message: 'This field is required.',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'comment',
+            label: 'Comment',
+            type: 'textarea',
+            defaultValue: '',
+            params: {},
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
             ],
           },
         ],
