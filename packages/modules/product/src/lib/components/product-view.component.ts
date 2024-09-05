@@ -85,6 +85,7 @@ export class ProductViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+    this.addVariantLayer?.destroy();
   }
 
   onAddVariant(product: IProduct) {

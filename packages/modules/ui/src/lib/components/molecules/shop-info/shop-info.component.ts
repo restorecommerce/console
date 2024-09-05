@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { IoRestorecommerceShopShop } from '@console-core/graphql';
 
@@ -10,4 +16,6 @@ import { IoRestorecommerceShopShop } from '@console-core/graphql';
 export class RcShopInfoComponent {
   @Input({ required: true })
   shop!: IoRestorecommerceShopShop;
+
+  @Output() openEditShopModal = new EventEmitter<void>();
 }
