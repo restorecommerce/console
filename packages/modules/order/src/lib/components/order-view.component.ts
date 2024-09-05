@@ -44,6 +44,7 @@ import { transformOrderToInput } from '../utils';
           onOpenEditOrderItem(vm.order, vm.products, $event)
         "
         (openDeleteOrderItemModal)="onDeleteOrderItem(vm.order, $event)"
+        (openEditShopModal)="onOpenEditShopModal()"
       />
     </ng-container>
   `,
@@ -227,5 +228,9 @@ export class OrderViewComponent implements OnInit, OnDestroy {
           mode: ModeType.Update,
         });
       });
+  }
+
+  onOpenEditShopModal() {
+    // console.log("On open edit shop modal!");
   }
 }

@@ -71,8 +71,10 @@ export class JSSFormModalComponent {
     }
   }
 
-  onAction(_: string): void {
-    // TODO
+  onAction(actionType: string): void {
+    if (actionType === 'cancel') {
+      this.close();
+    }
   }
 
   close(value?: string) {

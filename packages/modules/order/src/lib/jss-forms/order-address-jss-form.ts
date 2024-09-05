@@ -245,7 +245,7 @@ export const buildOrderAddressSchema = (
           {
             type: 'button',
             label: 'Cancel',
-            action: 'reset',
+            action: 'cancel',
             class: 'transparent',
           },
           {

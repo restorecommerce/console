@@ -1,6 +1,9 @@
 <div class="order-details">
   <div class="order-shop">
-    <rc-shop-info [shop]="order.shop || {}" />
+    <rc-shop-info
+      [shop]="order.shop || {}"
+      (openEditShopModal)="openEditShopModal.emit()"
+    />
   </div>
 
   <div class="order-info">

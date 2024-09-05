@@ -156,7 +156,7 @@ export const buildOrderSchema = (
           {
             type: 'button',
             label: 'Cancel',
-            action: 'reset',
+            action: 'cancel',
             class: 'transparent',
           },
           {
