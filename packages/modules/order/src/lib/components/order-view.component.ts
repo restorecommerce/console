@@ -26,7 +26,11 @@ import {
 } from '@console-core/state';
 import { EAddressType, ICountry, IOrder, IProduct } from '@console-core/types';
 
-import { buildOrderAddressSchema, buildOrderSchema } from '../jss-forms';
+import {
+  buildOrderAddressSchema,
+  buildOrderSchema,
+  buildOrderShopSchema,
+} from '../jss-forms';
 import { JSSFormModalComponent } from '../modals/jss-form-modal.component';
 import { OrderItemFormComponent } from '../modals/order-item/order-item-form.component';
 import { transformOrderToInput } from '../utils';
@@ -44,7 +48,7 @@ import { transformOrderToInput } from '../utils';
           onOpenEditOrderItem(vm.order, vm.products, $event)
         "
         (openDeleteOrderItemModal)="onDeleteOrderItem(vm.order, $event)"
-        (openEditShopModal)="onOpenEditShopModal()"
+        (openEditShopModal)="onOpenEditShopModal(vm.order)"
       />
     </ng-container>
   `,
@@ -78,8 +82,9 @@ export class OrderViewComponent implements OnInit, OnDestroy {
 
   orderDetailLayer!: LayerRef;
   addItemLayer!: LayerRef;
-  addressLayer!: LayerRef;
+  editAddressLayer!: LayerRef;
   editItemLayer!: LayerRef;
+  editShopLayer!: LayerRef;
 
   constructor(
     private readonly router: Router,
@@ -102,7 +107,12 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       closeOnEscape: false,
     });
 
-    this.addressLayer = this.layerService.create(JSSFormModalComponent, {
+    this.editAddressLayer = this.layerService.create(JSSFormModalComponent, {
+      closeOnBackdropClick: false,
+      closeOnEscape: false,
+    });
+
+    this.editShopLayer = this.layerService.create(JSSFormModalComponent, {
       closeOnBackdropClick: false,
       closeOnEscape: false,
     });
@@ -117,9 +127,10 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
 
     this.addItemLayer?.destroy();
-    this.addressLayer?.destroy();
+    this.editAddressLayer?.destroy();
     this.editItemLayer?.destroy();
     this.orderDetailLayer?.destroy();
+    this.editShopLayer?.destroy();
   }
 
   onOpenOrderDetailModal(order: IOrder) {
@@ -153,7 +164,7 @@ export class OrderViewComponent implements OnInit, OnDestroy {
     addressType: EAddressType,
     countryList: ICountry[]
   ) {
-    this.addressLayer
+    this.editAddressLayer
       .open({
         data: {
           order,
@@ -230,7 +241,17 @@ export class OrderViewComponent implements OnInit, OnDestroy {
       });
   }
 
-  onOpenEditShopModal() {
-    // console.log("On open edit shop modal!");
+  onOpenEditShopModal(order: IOrder) {
+    this.editShopLayer
+      .open({
+        data: {
+          order,
+          title: 'Edit shop',
+          schema: buildOrderShopSchema({
+            order,
+          }),
+        },
+      })
+      .subscribe();
   }
 }
