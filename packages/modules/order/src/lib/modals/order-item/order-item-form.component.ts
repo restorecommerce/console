@@ -37,7 +37,9 @@ export class OrderItemFormComponent implements OnInit, OnDestroy {
     quantity: new FormControl(this.orderItem?.quantity || 0),
     unitPrice: new FormGroup({
       sale: new FormControl(this.orderItem?.unitPrice?.sale || false),
-      currencyId: new FormControl(this.orderItem?.unitPrice?.currencyId || ''),
+      currencyId: new FormControl(
+        this.orderItem?.unitPrice?.currencyId || 'eur'
+      ),
       salePrice: new FormControl(this.orderItem?.unitPrice?.salePrice || 0),
       regularPrice: new FormControl(
         this.orderItem?.unitPrice?.regularPrice || 0
