@@ -1,11 +1,6 @@
 <rc-app>
   <rc-header>
     <rc-toggle-drawer />
-    <rc-banner
-      [logoUrl]="APP.logoUrl"
-      [logoLink]="ROUTER.pages.main.children.home.link"
-    >
-    </rc-banner>
 
     <rc-header-navigation *ngIf="!smallDevice">
       <rc-header-navigation-item
@@ -243,7 +238,7 @@
     </ng-container>
     <!-- /Account -->
 
-    <div class="side-menu-bottom-container">
+    <!-- <div class="side-menu-bottom-container">
       <rc-copyright />
       <a
         title="Collapse sidebar"
@@ -252,7 +247,7 @@
       >
         <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
       </a>
-    </div>
+    </div> -->
   </rc-drawer-navigation>
 
   <div class="container">

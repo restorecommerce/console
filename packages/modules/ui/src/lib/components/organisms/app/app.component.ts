@@ -2,6 +2,8 @@ import { Component, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { APP, ROUTER } from '@console-core/config';
+
 import { RcDrawerService } from '../../../services';
 
 @Component({
@@ -9,9 +11,9 @@ import { RcDrawerService } from '../../../services';
   templateUrl: './app.component.html',
 })
 export class RcAppComponent {
-  mode$: Observable<'side' | 'over'> = this.drawerService.mode$.pipe(
-    map((mode) => (mode === 'side' ? 'side' : 'over'))
-  );
+  APP = APP;
+  ROUTER = ROUTER;
+
   opened$: Observable<boolean> = this.drawerService.opened$.pipe(
     map((opened) => Boolean(opened))
   );

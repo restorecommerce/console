@@ -1,20 +1,21 @@
-<ng-content select="rc-header" />
 <vcl-drawer-container class="flex">
-  <ng-container
-    *ngIf="{
-      mode: mode$ | async,
-      opened: opened$ | async
-    } as vm"
+  <vcl-drawer
+    mode="side"
+    [opened]="(opened$ | async) || false"
+    (openedChange)="drawerService.opened = $event"
   >
-    <vcl-drawer
-      *ngIf="vm.mode && vm.opened !== null"
-      [mode]="vm.mode"
-      [opened]="vm.opened"
-      (openedChange)="drawerService.opened = $event"
-    >
-      <ng-content select="rc-drawer-navigation" />
-    </vcl-drawer>
-  </ng-container>
+    <div class="h-100p col">
+      <rc-banner
+        [logoUrl]="APP.logoUrl"
+        [logoLink]="ROUTER.pages.main.children.home.link"
+      >
+      </rc-banner>
+      <div class="flex pt-2">
+        <ng-content select="rc-drawer-navigation" />
+      </div>
+    </div>
+  </vcl-drawer>
+  <ng-content select="rc-header" />
   <main
     rcGridCell
     class="flex rc-main"
