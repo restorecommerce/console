@@ -6,11 +6,12 @@
   >
     <div class="h-100p col">
       <rc-banner
+        class="p-2"
         [logoUrl]="APP.logoUrl"
         [logoLink]="ROUTER.pages.main.children.home.link"
       >
       </rc-banner>
-      <div class="flex pt-2">
+      <div class="flex">
         <ng-content select="rc-drawer-navigation" />
       </div>
     </div>

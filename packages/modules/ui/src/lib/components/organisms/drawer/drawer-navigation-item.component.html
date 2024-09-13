@@ -3,18 +3,22 @@
   class="navigation-item-label"
   role="menuitem"
 >
-  <vcl-icogram>
-    <vcl-icon
-      vclPrepend
-      [icon]="icon"
-    />
-    <ng-content />
-    <vcl-icon
-      vclAppend
-      class="rc-drawer-navigation-submenu-arrow"
-      [icon]="hasNestedNavItems ? 'mdi mdi-menu-right' : undefined"
-    />
-  </vcl-icogram>
+  <div class="w-100p h-100p row">
+    <div class="offset-2 flex row justify-content-center align-items-center">
+      <vcl-icon
+        vclPrepend
+        [icon]="icon"
+      />
+    </div>
+
+    <div class="flex-2">
+      <vcl-icon
+        vclAppend
+        class="rc-drawer-navigation-submenu-arrow"
+        [icon]="hasNestedNavItems ? 'mdi mdi-menu-right' : undefined"
+      />
+    </div>
+  </div>
 </a>
 
 <ng-template

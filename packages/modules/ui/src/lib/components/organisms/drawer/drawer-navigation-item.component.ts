@@ -29,6 +29,13 @@ import { RcDrawerNavigationComponent } from './drawer-navigation.component';
 
 @Component({
   selector: 'rc-drawer-navigation-item',
+  styles: [
+    `
+      .navigation-item-label > div.row {
+        font-size: 2.5rem;
+      }
+    `,
+  ],
   templateUrl: 'drawer-navigation-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
