@@ -33,12 +33,14 @@ import { transformOrderToInput } from '../utils';
           [update]="update"
         /> -->
         <form>
-          <textarea
+          <!-- <textarea
             #rawTextarea
             name="json"
             (input)="onInput()"
             [value]="orderJSON || getOrderSource(vm.order)"
-          ></textarea>
+          ></textarea> -->
+
+          <rc-json-editor />
 
           <div class="py-2 row justify-content-end">
             <div class="loose-button-group">
