@@ -34,3 +34,4 @@ export * from './product/product-view.component';
 export * from './searchbar/searchbar.component';
 export * from './toolbar/toolbar.component';
 export * from './toggle-drawer.component';
+export * from './json-editor/json-editor.component';
