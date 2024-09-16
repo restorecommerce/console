@@ -1,24 +1,19 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  OnDestroy,
+} from '@angular/core';
 import ace from 'ace-builds';
 
 @Component({
   selector: 'rc-json-editor',
   templateUrl: './json-editor.component.html',
-  styles: [
-    `
-      :host {
-        display: block;
-        width: 100%;
-      }
-
-      #container {
-        width: 100%;
-        min-height: 3em;
-      }
-    `,
-  ],
 })
 export class JSONEditorComponent implements AfterViewInit, OnDestroy {
+  @HostBinding('class') classNames = 'col w-100p';
+
   editor!: ace.Ace.Editor;
 
   constructor(private elRef: ElementRef) {}
@@ -28,11 +23,12 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
       this.elRef.nativeElement.querySelector('div#container');
     this.editor = ace.edit(containerElement, {
       useWorker: false,
-      value: '{ "name": "bello", "age": 30 }',
+      printMargin: false,
     });
 
+    // Seems we have to import it manually in both cases...
     this.editor.setTheme('ace/theme/monokai');
-    this.editor.session.setMode('ace/mode/javascript');
+    this.editor.session.setMode('ace/mode/json');
   }
 
   ngOnDestroy(): void {

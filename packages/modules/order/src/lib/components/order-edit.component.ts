@@ -40,7 +40,7 @@ import { transformOrderToInput } from '../utils';
             [value]="orderJSON || getOrderSource(vm.order)"
           ></textarea> -->
 
-          <rc-json-editor />
+          <rc-json-editor class="flex" />
 
           <div class="py-2 row justify-content-end">
             <div class="loose-button-group">
