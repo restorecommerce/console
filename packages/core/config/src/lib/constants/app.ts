@@ -15,8 +15,7 @@ const supported: ILanguage[] = [
 
 export const APP: Readonly<IAppConstant> = {
   name,
-  logoUrl:
-    'https://raw.githubusercontent.com/restorecommerce/branding/master/Logo/restore_commerce_logo.png',
+  logoUrl: '/assets/images/restore_commerce_logo_full.png',
   languages: {
     default: {
       ...supported[0],
