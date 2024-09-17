@@ -1,6 +1,6 @@
 <rc-app>
   <rc-header>
-    <rc-toggle-drawer />
+    <rc-toggle-drawer *ngIf="menuClosed$ | async" />
 
     <rc-header-navigation *ngIf="!smallDevice">
       <rc-header-navigation-item

@@ -31,6 +31,8 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   smallDevice!: boolean;
   isResizing = false;
 
+  menuClosed$ = this.drawerService.opened$.pipe(map((opened) => !opened));
+
   private resizeTimeout!: number;
   private readonly subscriptions = new SubSink();
 
