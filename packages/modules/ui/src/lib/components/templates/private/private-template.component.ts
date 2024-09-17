@@ -84,10 +84,6 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     }
   }
 
-  collapseDrawer(): void {
-    this.drawerService.toggle();
-  }
-
   private handleBreakpointObserver(): void {
     this.subscriptions.sink = this.breakpointObserver
       .observe([VCLBreakpoints.xs, VCLBreakpoints.sm])

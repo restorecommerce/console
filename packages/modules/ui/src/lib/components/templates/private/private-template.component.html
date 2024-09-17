@@ -2,38 +2,6 @@
   <rc-header>
     <rc-toggle-drawer *ngIf="menuClosed$ | async" />
 
-    <rc-header-navigation *ngIf="!smallDevice">
-      <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.main.children.orders.link"
-        [selected]="currentRoute === ROUTER.pages.main.children.orders.link"
-      >
-        <div class="icogram">
-          <div
-            class="icon mdi mdi-receipt-outline"
-            aria-hidden="true"
-            role="img"
-          ></div>
-          <span class="text">Orders</span>
-        </div>
-      </rc-header-navigation-item>
-      <rc-header-navigation-item
-        [routerLink]="ROUTER.pages.main.children.management.children.index.link"
-        [selected]="
-          currentRoute ===
-          ROUTER.pages.main.children.management.children.index.link
-        "
-      >
-        <div class="icogram">
-          <div
-            class="icon mdi mdi-hexagon-outline"
-            aria-hidden="true"
-            role="img"
-          ></div>
-          <span class="text">Management</span>
-        </div>
-      </rc-header-navigation-item>
-    </rc-header-navigation>
-
     <div class="flex"></div>
     <rc-header-toolbar />
   </rc-header>
@@ -238,15 +206,25 @@
     </ng-container>
     <!-- /Account -->
 
+    <!-- Main Route... -->
     <div class="side-menu-bottom-container">
-      <rc-copyright />
-      <a
-        title="Collapse sidebar"
-        class="toggle-sidebar-button"
-        (click)="collapseDrawer()"
+      <rc-drawer-navigation-item
+        *ngIf="
+          currentRoute ===
+          ROUTER.pages.main.children.management.children.index.link
+        "
+        icon="mdi:receipt-outline"
+        [routerLink]="ROUTER.pages.main.children.orders.link"
+        >Home</rc-drawer-navigation-item
       >
-        <vcl-icon icon="mdi mdi-chevron-double-left"></vcl-icon>
-      </a>
+
+      <rc-drawer-navigation-item
+        *ngIf="currentRoute === ROUTER.pages.main.children.orders.link"
+        icon="icon mdi mdi-hexagon-outline"
+        [routerLink]="ROUTER.pages.main.children.management.children.index.link"
+        >Management</rc-drawer-navigation-item
+      >
+      <rc-copyright />
     </div>
   </rc-drawer-navigation>
 
