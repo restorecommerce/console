@@ -32,7 +32,7 @@ import { RcDrawerNavigationComponent } from './drawer-navigation.component';
   styles: [
     `
       .navigation-item-label > div.row {
-        font-size: 2.5rem;
+        font-size: 1rem;
       }
     `,
   ],

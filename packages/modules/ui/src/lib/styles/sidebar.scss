@@ -85,5 +85,7 @@ rc-header.application-header .logo {
 .cdk-overlay-pane {
   & > .rc-drawer-navigation {
     background-color: transparent;
+    width: 15em;
+    font-size: 1rem;
   }
 }

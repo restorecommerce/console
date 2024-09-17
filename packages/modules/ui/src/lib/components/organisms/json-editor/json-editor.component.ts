@@ -18,6 +18,7 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
   @HostBinding('class') classNames = 'col w-100p';
 
   editor!: ace.Ace.Editor;
+  // TODO Make this private and provide an external data accessor value
 
   @Input() value = '';
 

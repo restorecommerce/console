@@ -4,11 +4,12 @@
   role="menuitem"
 >
   <div class="w-100p h-100p row">
-    <div class="offset-2 flex row justify-content-center align-items-center">
+    <div class="flex row align-items-center">
       <vcl-icon
         vclPrepend
         [icon]="icon"
-      />
+      ></vcl-icon>
+      <div class="pl-2"><ng-content></ng-content></div>
     </div>
 
     <div class="flex-2">
