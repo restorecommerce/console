@@ -7,6 +7,8 @@ import {
   OnDestroy,
 } from '@angular/core';
 import ace from 'ace-builds';
+import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/theme-monokai';
 
 @Component({
   selector: 'rc-json-editor',
@@ -30,7 +32,6 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
       value: this.value,
     });
 
-    // Seems we have to import it manually in both cases...
     this.editor.setTheme('ace/theme/monokai');
     this.editor.session.setMode('ace/mode/json');
   }
@@ -39,11 +40,4 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
     this.editor.destroy();
     this.editor.container.remove();
   }
-
-  // editor.session.on('change', function (delta) {
-  //   /*
-  //    delta { start: number, end: number, line: array of changes, action: string }
-  //   */
-  //   console.log(editor.getValue());
-  // });
 }
