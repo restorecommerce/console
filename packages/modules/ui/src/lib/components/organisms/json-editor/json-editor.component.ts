@@ -7,8 +7,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import ace from 'ace-builds';
+// TODO use minified.
 import 'ace-builds/src-noconflict/mode-json';
-import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/theme-github_light_default';
 
 @Component({
   selector: 'rc-json-editor',
@@ -33,7 +34,7 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
       value: this.value,
     });
 
-    this.editor.setTheme('ace/theme/monokai');
+    this.editor.setTheme('ace/theme/github_light_default');
     this.editor.session.setMode('ace/mode/json');
   }
 
