@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,6 +19,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 import { IOrder } from '@console-core/types';
+import { JSONEditorComponent } from '@console-modules/ui';
 
 import { buildOrderSchema } from '../jss-forms';
 import { transformOrderToInput } from '../utils';
@@ -26,21 +28,18 @@ import { transformOrderToInput } from '../utils';
   selector: 'app-module-order-edit',
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <div class="mt-2 h-100p">
+      <div class="mt-2 flex col">
         <!-- <rc-crud-edit
           [id]="vm.id"
           [schema]="schema"
           [update]="update"
         /> -->
-        <form>
-          <!-- <textarea
-            #rawTextarea
-            name="json"
-            (input)="onInput()"
-            [value]="orderJSON || getOrderSource(vm.order)"
-          ></textarea> -->
-
-          <rc-json-editor class="flex" />
+        <form class="col flex">
+          <rc-json-editor
+            #jsonEditor
+            [value]="getOrderSource(vm.order)"
+            class="flex"
+          />
 
           <div class="py-2 row justify-content-end">
             <div class="loose-button-group">
@@ -63,28 +62,11 @@ import { transformOrderToInput } from '../utils';
       </div>
     </ng-container>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        height: 100%;
-      }
-
-      form {
-        display: flex;
-        height: 100%;
-        flex-direction: column;
-      }
-
-      textarea {
-        width: 100%;
-        flex: 1;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderEditComponent {
+  @HostBinding('class') classNames = 'col w-100p h-100p';
+
   schema!: VCLFormFieldSchemaRoot;
   update = this.orderFacade.update;
 
@@ -94,6 +76,9 @@ export class OrderEditComponent {
 
   @ViewChild('rawTextarea')
   rawTextarea!: ElementRef;
+
+  @ViewChild('jsonEditor')
+  jsonEditor!: JSONEditorComponent;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
@@ -118,9 +103,12 @@ export class OrderEditComponent {
     ),
   });
 
-  getOrderSource(order: IOrder) {
+  getOrderSource(order: IOrder): string {
     const orderInput = transformOrderToInput(order);
-    console.log(order);
+    // console.log(order);
+    // The above log always shows up whenever we hover on the cancel and save button.
+    // Investigate this by first removing the vcl-button directive to see if this is the
+    // issue.
     return JSON.stringify(orderInput, null, 4);
   }
 
@@ -130,32 +118,11 @@ export class OrderEditComponent {
     private readonly orderFacade: OrderFacade
   ) {}
 
-  onInput() {
-    const textarea = this.rawTextarea.nativeElement as HTMLTextAreaElement;
-    this.orderJSON = textarea.value;
-
-    this.modified = true;
-
-    let error = '';
-
-    try {
-      JSON.stringify(JSON.parse(this.orderJSON));
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      error = e.message;
-    }
-
-    textarea.setCustomValidity(error ? 'Invalid JSON: ' + error : '');
-    textarea.reportValidity();
-
-    this.jsonError = !!error;
-  }
-
   onSave() {
     this.update({
       items: [
         {
-          ...JSON.parse(this.orderJSON),
+          ...JSON.parse(this.jsonEditor.editor.getValue()),
         },
       ],
       mode: ModeType.Update,

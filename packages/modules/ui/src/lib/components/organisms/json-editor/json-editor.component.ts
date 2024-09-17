@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  Input,
   OnDestroy,
 } from '@angular/core';
 import ace from 'ace-builds';
@@ -16,6 +17,8 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
 
   editor!: ace.Ace.Editor;
 
+  @Input() value = '';
+
   constructor(private elRef: ElementRef) {}
 
   ngAfterViewInit(): void {
@@ -24,6 +27,7 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
     this.editor = ace.edit(containerElement, {
       useWorker: false,
       printMargin: false,
+      value: this.value,
     });
 
     // Seems we have to import it manually in both cases...
