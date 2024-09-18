@@ -206,24 +206,25 @@
     </ng-container>
     <!-- /Account -->
 
-    <!-- Main Route... -->
+    <!-- Home and Management... -->
     <div class="side-menu-bottom-container">
+      @if (currentRoute ===
+      ROUTER.pages.main.children.management.children.index.link ) {
       <rc-drawer-navigation-item
-        *ngIf="
-          currentRoute ===
-          ROUTER.pages.main.children.management.children.index.link
-        "
         icon="mdi:receipt-outline"
         [routerLink]="ROUTER.pages.main.children.orders.link"
         >Home</rc-drawer-navigation-item
       >
-
+      } @else if (currentRoute === ROUTER.pages.main.children.orders.link ||
+      currentRoute === ROUTER.pages.main.children.products.link || currentRoute
+      === ROUTER.pages.main.children.invoices.link || currentRoute ===
+      ROUTER.pages.main.children.fulfillments.link) {
       <rc-drawer-navigation-item
-        *ngIf="currentRoute === ROUTER.pages.main.children.orders.link"
         icon="icon mdi mdi-hexagon-outline"
         [routerLink]="ROUTER.pages.main.children.management.children.index.link"
         >Management</rc-drawer-navigation-item
       >
+      }
       <rc-copyright />
     </div>
   </rc-drawer-navigation>
