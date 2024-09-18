@@ -1,3 +1,9 @@
-<a (click)="drawerService.toggle()">
+<button
+  vcl-button
+  square
+  class="transparent"
+  [title]="(opened$ | async) ? 'Hide sidebar' : 'Show sidebar'"
+  (click)="drawerService.toggle()"
+>
   <vcl-icon icon="mdi mdi-page-layout-sidebar-left" />
-</a>
+</button>
