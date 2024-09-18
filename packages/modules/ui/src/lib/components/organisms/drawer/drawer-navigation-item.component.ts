@@ -31,6 +31,10 @@ import { RcDrawerNavigationComponent } from './drawer-navigation.component';
   selector: 'rc-drawer-navigation-item',
   styles: [
     `
+      .icon {
+        font-size: 1.5rem;
+      }
+
       .navigation-item-label > div.row {
         font-size: 1rem;
       }

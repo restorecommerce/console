@@ -4,6 +4,13 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   selector: 'rc-header',
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [
+    `
+      :host {
+        padding: 0 0.6rem;
+      }
+    `,
+  ],
 })
 export class RcHeaderComponent {
   @HostBinding('class.application-header')
