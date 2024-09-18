@@ -1,7 +1,7 @@
 <rc-app>
   <rc-header>
     <rc-toggle-drawer *ngIf="menuClosed$ | async" />
-
+    <rc-page-header />
     <div class="flex"></div>
     <rc-header-toolbar />
   </rc-header>
@@ -230,11 +230,11 @@
   </rc-drawer-navigation>
 
   <div class="container">
-    <div class="row grid-gutterx-2">
+    <!-- <div class="row grid-gutterx-2">
       <div class="flex">
         <rc-page-header />
       </div>
-    </div>
+    </div> -->
 
     <ng-content />
   </div>

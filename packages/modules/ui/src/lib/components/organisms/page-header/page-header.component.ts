@@ -24,43 +24,45 @@ import { IBreadcrumb } from '@console-core/types';
       "
     >
       <nav class="breadcrumb-nav">
-        <div class="row">
-          <div class="flex pt-2">
-            <ol>
-              <li>
+        <ol>
+          <li>
+            <a
+              [routerLink]="['/']"
+              class="breadcrumb-nav-item-label"
+              >Home</a
+            >
+            <vcl-icon
+              class="breadcrumb-nav-divider"
+              icon="vcl:arrow-right"
+            />
+          </li>
+          <ng-container
+            *ngFor="
+              let breadcrumb of breadcrumbs;
+              let last = last;
+              trackBy: trackByFn
+            "
+          >
+            <li [ngClass]="{ selected: last }">
+              <ng-container *ngIf="!last">
                 <a
-                  [routerLink]="['/']"
+                  [routerLink]="breadcrumb.url"
                   class="breadcrumb-nav-item-label"
-                  >Home</a
+                  >{{ breadcrumb.label }}</a
                 >
-                <vcl-icon icon="vcl:arrow-right" />
-              </li>
-              <ng-container
-                *ngFor="
-                  let breadcrumb of breadcrumbs;
-                  let last = last;
-                  trackBy: trackByFn
-                "
-              >
-                <li [ngClass]="{ selected: last }">
-                  <ng-container *ngIf="!last">
-                    <a
-                      [routerLink]="breadcrumb.url"
-                      class="breadcrumb-nav-item-label"
-                      >{{ breadcrumb.label }}</a
-                    >
-                    <vcl-icon icon="vcl:arrow-right" />
-                  </ng-container>
-                  <ng-container *ngIf="last">
-                    <div class="breadcrumb-nav-item-label">
-                      {{ breadcrumb.label }}
-                    </div>
-                  </ng-container>
-                </li>
+                <vcl-icon
+                  class="breadcrumb-nav-divider"
+                  icon="vcl:arrow-right"
+                />
               </ng-container>
-            </ol>
-          </div>
-        </div>
+              <ng-container *ngIf="last">
+                <span class="breadcrumb-nav-item-label">
+                  {{ breadcrumb.label }}
+                </span>
+              </ng-container>
+            </li>
+          </ng-container>
+        </ol>
       </nav>
     </ng-container>
   `,
