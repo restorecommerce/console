@@ -10,6 +10,19 @@
     (selectItem)="onSelectItem()"
     class="scrollable h-100p col"
   >
+    <div class="navigation-item">
+      <div class="row justify-content-between align-items-center">
+        <rc-banner
+          class="p-2"
+          [logoUrl]="APP.logoUrl"
+          [logoLink]="ROUTER.pages.main.children.home.link"
+        >
+        </rc-banner>
+
+        <rc-toggle-drawer *ngIf="opened$ | async" />
+      </div>
+    </div>
+
     <vcl-select *ngIf="smallDevice">
       <vcl-select-list
         [value]="currentRoute"
@@ -25,7 +38,6 @@
         </vcl-select-list-item>
       </vcl-select-list>
     </vcl-select>
-
     <!-- Home -->
     <ng-container *ngIf="menuMainLinks.includes(currentRoute)">
       <rc-drawer-navigation-item
