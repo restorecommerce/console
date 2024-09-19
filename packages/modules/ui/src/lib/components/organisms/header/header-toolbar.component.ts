@@ -1,3 +1,4 @@
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,6 +17,15 @@ import { AccountFacade, OrganizationFacade } from '@console-core/state';
 })
 export class RcHeaderToolbarComponent implements OnInit {
   ROUTER = ROUTER;
+
+  rightOrientedPositions: ConnectedPosition[] = [
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+    },
+  ];
 
   @HostBinding('class.row')
   _hostClasses = true;

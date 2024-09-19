@@ -1,41 +1,51 @@
 <ng-container *ngIf="vm$ | async as vm">
   <div>
-    <button
-      vcl-button
-      [selectable]="true"
-      (click)="
-        templatePopoverOrganization.toggle();
-        onClickGlobalOrganizationSelector()
-      "
-      class="half-transparent organization"
+    <span
+      #popoverOrganizationTarget
+      class="inline-block"
     >
-      <vcl-icogram>
-        <vcl-icon icon="mdi:home-outline" />
-        {{ vm.globalOrganization?.name }}
-        <vcl-icon icon="mdi:chevron-down" />
-      </vcl-icogram>
-    </button>
+      <button
+        vcl-button
+        [selectable]="true"
+        (click)="
+          templatePopoverOrganization.toggle();
+          onClickGlobalOrganizationSelector()
+        "
+        class="half-transparent organization"
+      >
+        <vcl-icogram>
+          <vcl-icon icon="mdi:home-outline" />
+          {{ vm.globalOrganization?.name }}
+          <vcl-icon icon="mdi:chevron-down" />
+        </vcl-icogram>
+      </button>
+    </span>
 
-    <button
-      vcl-button
-      [selectable]="true"
-      (click)="templatePopoverAccount.toggle()"
-      class="half-transparent account"
+    <span
+      #popoverAccountTarget
+      class="inline-block"
     >
-      <vcl-icogram>
-        <vcl-icon icon="mdi:account-outline" />
-        {{ vm.user?.fullName }}
-        <vcl-icon icon="mdi:chevron-down" />
-      </vcl-icogram>
-    </button>
+      <button
+        vcl-button
+        [selectable]="true"
+        (click)="templatePopoverAccount.toggle()"
+        class="half-transparent account"
+      >
+        <vcl-icogram>
+          <vcl-icon icon="mdi:account-outline" />
+          {{ vm.user?.fullName }}
+          <vcl-icon icon="mdi:chevron-down" />
+        </vcl-icogram>
+      </button>
+    </span>
   </div>
 
-  <div #popoverOrganizationTarget></div>
   <ng-template
     vclPopover
     #templatePopoverOrganization="vclPopover"
     [target]="popoverOrganizationTarget"
     [closeOnOffClick]="true"
+    [positions]="rightOrientedPositions"
   >
     <div
       id="wrapper-popover-organization"
@@ -69,12 +79,12 @@
     </div>
   </ng-template>
 
-  <div #popoverAccountTarget></div>
   <ng-template
     vclPopover
     #templatePopoverAccount="vclPopover"
     [target]="popoverAccountTarget"
     [closeOnOffClick]="true"
+    [positions]="rightOrientedPositions"
   >
     <div
       id="wrapper-popover-account"
