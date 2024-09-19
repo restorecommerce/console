@@ -5,6 +5,7 @@ import {
   HostBinding,
   OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
 import { ROUTER } from '@console-core/config';
@@ -37,6 +38,7 @@ export class RcHeaderToolbarComponent implements OnInit {
   });
 
   constructor(
+    private readonly router: Router,
     private readonly accountFacade: AccountFacade,
     private readonly organizationFacade: OrganizationFacade
   ) {}
@@ -59,5 +61,25 @@ export class RcHeaderToolbarComponent implements OnInit {
   onSearchOrganizations(str: string): void {
     // TODO: Implement search
     console.log('Search', str);
+  }
+
+  onAccountItemSelected(value: string) {
+    switch (value) {
+      case 'profile':
+        this.router.navigate([
+          ROUTER.pages.main.children.account.children.profile.link,
+        ]);
+        break;
+      case 'preferences':
+        this.router.navigate([
+          ROUTER.pages.main.children.account.children.preferences.link,
+        ]);
+        break;
+      case 'sign-out':
+        this.router.navigate([
+          ROUTER.pages.main.children.auth.children.signOut.link,
+        ]);
+        break;
+    }
   }
 }

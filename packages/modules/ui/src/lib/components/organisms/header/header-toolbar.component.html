@@ -47,36 +47,19 @@
     [closeOnOffClick]="true"
     [positions]="rightOrientedPositions"
   >
-    <div
-      id="wrapper-popover-organization"
-      class="data-list item-selectability item-hover-highlight m-0 p-0"
+    <vcl-select-list
+      (valueChange)="
+        onSelectGlobalOrganization($event, vm.globalOrganization?.id ?? '');
+        templatePopoverOrganization.close()
+      "
     >
-      <rc-searchbar
-        [value]="''"
-        (search)="onSearchOrganizations($event)"
-        class="m-0 p-0"
-      />
-      <div class="data-list m-0 p-0">
-        <rc-data-list>
-          <rc-data-list-item
-            *ngFor="let o of vm.organizations"
-            [ngClass]="{ selected: o?.id === vm.globalOrganization?.id }"
-            role="option"
-          >
-            <rc-data-list-label
-              [innerHTML]="o?.name"
-              (click)="
-                onSelectGlobalOrganization(
-                  o?.id ?? '',
-                  vm.globalOrganization?.id ?? ''
-                );
-                templatePopoverOrganization.close()
-              "
-            />
-          </rc-data-list-item>
-        </rc-data-list>
-      </div>
-    </div>
+      <vcl-select-list-item
+        [value]="o?.id"
+        *ngFor="let o of vm.organizations"
+      >
+        {{ o?.name }}
+      </vcl-select-list-item>
+    </vcl-select-list>
   </ng-template>
 
   <ng-template
@@ -86,54 +69,32 @@
     [closeOnOffClick]="true"
     [positions]="rightOrientedPositions"
   >
-    <div
-      id="wrapper-popover-account"
-      class="data-list item-selectability item-hover-highlight m-0 p-0"
+    <vcl-select-list
+      (valueChange)="
+        onAccountItemSelected($event); templatePopoverAccount.close()
+      "
     >
-      <ul
-        class="data-list-body no-border"
-        role="listbox"
-        aria-multiselectable="false"
-        (click)="templatePopoverAccount.close()"
-      >
-        <li
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.profile.link
-          "
-          class="data-list-item row justify-between center"
-        >
-          <div class="flex">
-            <vcl-icogram>
-              <vcl-icon icon="mdi:account-cog-outline" />
-            </vcl-icogram>
-            <span class="text">Profile</span>
-          </div>
-        </li>
-        <li
-          [routerLink]="
-            ROUTER.pages.main.children.account.children.preferences.link
-          "
-          class="data-list-item row justify-between center"
-        >
-          <div class="flex">
-            <vcl-icogram>
-              <vcl-icon icon="mdi:cog-outline" />
-            </vcl-icogram>
-            <span class="text">Preferences</span>
-          </div>
-        </li>
-        <li
-          [routerLink]="ROUTER.pages.main.children.auth.children.signOut.link"
-          class="data-list-item row justify-between center"
-        >
-          <div class="flex">
-            <vcl-icogram>
-              <vcl-icon icon="mdi:logout" />
-            </vcl-icogram>
-            <span class="text red">Sign Out</span>
-          </div>
-        </li>
-      </ul>
-    </div>
+      <vcl-select-list-item value="profile">
+        <vcl-icon
+          vclPrepend
+          icon="mdi:account-cog-outline"
+        ></vcl-icon>
+        Profile
+      </vcl-select-list-item>
+      <vcl-select-list-item value="preferences">
+        <vcl-icon
+          vclPrepend
+          icon="mdi:cog-outline"
+        ></vcl-icon>
+        Preferences
+      </vcl-select-list-item>
+      <vcl-select-list-item value="sign-out">
+        <vcl-icon
+          vclPrepend
+          icon="mdi:logout"
+        ></vcl-icon>
+        Sign Out
+      </vcl-select-list-item>
+    </vcl-select-list>
   </ng-template>
 </ng-container>
