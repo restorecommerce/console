@@ -122,7 +122,7 @@ export class OrderEditComponent {
     this.update({
       items: [
         {
-          ...JSON.parse(this.jsonEditor.editor.getValue()),
+          ...JSON.parse(this.jsonEditor.getValue()),
         },
       ],
       mode: ModeType.Update,

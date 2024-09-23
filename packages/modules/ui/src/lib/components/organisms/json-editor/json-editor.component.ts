@@ -7,7 +7,6 @@ import {
   OnDestroy,
 } from '@angular/core';
 import ace from 'ace-builds';
-// TODO use minified.
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-github_light_default';
 
@@ -18,12 +17,15 @@ import 'ace-builds/src-noconflict/theme-github_light_default';
 export class JSONEditorComponent implements AfterViewInit, OnDestroy {
   @HostBinding('class') classNames = 'col w-100p';
 
-  editor!: ace.Ace.Editor;
-  // TODO Make this private and provide an external data accessor value
+  private editor!: ace.Ace.Editor;
 
   @Input() value = '';
 
   constructor(private elRef: ElementRef) {}
+
+  getValue() {
+    return this.editor.getValue();
+  }
 
   ngAfterViewInit(): void {
     const containerElement: HTMLDivElement =
