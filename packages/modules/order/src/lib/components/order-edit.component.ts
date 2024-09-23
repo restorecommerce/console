@@ -34,7 +34,7 @@ import { transformOrderToInput } from '../utils';
           [schema]="schema"
           [update]="update"
         /> -->
-        <form class="col flex">
+        <div class="col flex">
           <rc-json-editor
             #jsonEditor
             [value]="getOrderSource(vm.order)"
@@ -43,14 +43,9 @@ import { transformOrderToInput } from '../utils';
 
           <div class="py-2 row justify-content-end">
             <div class="loose-button-group">
+              <button class="button transparent">Cancel</button>
               <button
-                vcl-button
-                class="transparent"
-              >
-                Cancel
-              </button>
-              <button
-                vcl-button
+                class="button"
                 (click)="onSave()"
                 [disabled]="jsonError"
               >
@@ -58,7 +53,7 @@ import { transformOrderToInput } from '../utils';
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </ng-container>
   `,
@@ -105,7 +100,7 @@ export class OrderEditComponent {
 
   getOrderSource(order: IOrder): string {
     const orderInput = transformOrderToInput(order);
-    // console.log(order);
+    console.log('sHOW ANYTHIME WE HOVER...');
     // The above log always shows up whenever we hover on the cancel and save button.
     // Investigate this by first removing the vcl-button directive to see if this is the
     // issue.
