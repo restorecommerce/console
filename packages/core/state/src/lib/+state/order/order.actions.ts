@@ -100,3 +100,8 @@ export const orderCreateInvoiceFail = createAction(
   '[ORDER] Create an invoice fail',
   props<{ error: string }>()
 );
+
+export const createFulfilment = createAction(
+  '[ORDER] Create fulfilment',
+  props<{ payload: string }>()
+);

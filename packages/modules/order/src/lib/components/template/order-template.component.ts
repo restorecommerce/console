@@ -124,6 +124,12 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
           '[Log] ~ file: order-template.component.ts:118 ~ OrderTemplateComponent ~ tap ~ console: triggerCreateFulfillment --->',
           id
         );
+
+        this.orderFacade.createFulfilment(id);
+
+        // From the Id, we need the Order.
+        // From this Order, create a Fulfiment Creation Input.
+        // Finally, dispatch, the create fulfilment action.
       })
     );
 

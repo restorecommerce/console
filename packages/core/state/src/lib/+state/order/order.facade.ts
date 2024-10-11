@@ -45,5 +45,12 @@ export class OrderFacade {
       })
     );
 
+  createFulfilment = (payload: string) =>
+    this.store.dispatch(
+      orderActions.createFulfilment({
+        payload,
+      })
+    );
+
   constructor(private readonly store: Store) {}
 }
