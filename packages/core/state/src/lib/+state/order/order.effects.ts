@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
+  IIoRestorecommerceStatusStatus,
+  IIoRestorecommerceFulfillmentFulfillmentList,
+  IoRestorecommerceFulfillmentFulfillmentState,
   IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseFilterValueType,
+  ModeType,
 } from '@console-core/graphql';
 import {
   ENotificationTypes,
@@ -17,9 +21,56 @@ import {
 
 import { ErrorHandlingService, OrderService } from '../../services';
 import { AppFacade } from '../app';
+import * as fulfillmentActions from '../fulfillment/fulfillment.actions';
 
 import * as orderActions from './order.actions';
+import { OrderFacade } from './order.facade';
 
+export const mapOrderToFulfilment = (
+  _: IOrder
+): IIoRestorecommerceFulfillmentFulfillmentList => {
+  const orderToFulfillment: IIoRestorecommerceFulfillmentFulfillmentList = {
+    items: [
+      {
+        id: '',
+        customerId: '',
+        shopId: '',
+        userId: '',
+        fulfillmentState:
+          IoRestorecommerceFulfillmentFulfillmentState.Submitted,
+        labels: [
+          {
+            parcelId: '',
+            url: '',
+            pdf: '',
+            png: '',
+            shipmentNumber: '',
+            status: '' as IIoRestorecommerceStatusStatus,
+            state: IoRestorecommerceFulfillmentFulfillmentState.Submitted,
+          },
+        ],
+        packaging: {
+          invoiceNumber: '',
+          exportType: '',
+          exportDescription: '',
+          notify: '',
+          parcels: [],
+          sender: {},
+          recipient: {},
+        },
+        references: [
+          {
+            instanceId: '',
+            instanceType: '',
+          },
+        ],
+      },
+    ],
+    mode: ModeType.Create,
+  };
+
+  return orderToFulfillment;
+};
 @Injectable()
 export class OrderEffects {
   orderReadRequest$ = createEffect(() => {
@@ -241,6 +292,25 @@ export class OrderEffects {
     );
   });
 
+  createFulfilmentForSelectedOrder$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(orderActions.createFulfilment),
+      concatLatestFrom(() => this.orderFacade.selected$),
+      exhaustMap(([, selectedOrder]) => {
+        if (!selectedOrder) {
+          return throwError(() => new Error('No selected Order'));
+        }
+
+        const fulfilmentInput = mapOrderToFulfilment(selectedOrder);
+        return of(
+          fulfillmentActions.fulfillmentCreateRequest({
+            payload: fulfilmentInput,
+          })
+        );
+      })
+    );
+  });
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -268,6 +338,7 @@ export class OrderEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly orderService: OrderService,
+    private readonly orderFacade: OrderFacade,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

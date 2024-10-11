@@ -120,10 +120,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
         if (id === null) {
           return;
         }
-        console.log(
-          '[Log] ~ file: order-template.component.ts:118 ~ OrderTemplateComponent ~ tap ~ console: triggerCreateFulfillment --->',
-          id
-        );
 
         this.orderFacade.createFulfilment(id);
 
