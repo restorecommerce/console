@@ -3,4 +3,12 @@ fragment MetaFragment on IoRestorecommerceMetaMeta {
   modified
   createdBy
   modifiedBy
+  owners {
+    id
+    value
+    attributes {
+      id
+      value
+    }
+  }
 }

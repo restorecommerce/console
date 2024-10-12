@@ -5448,6 +5448,16 @@ export type CatalogProductMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -5543,6 +5553,16 @@ export type CatalogProductReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -5600,6 +5620,16 @@ export type AddressFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5629,6 +5659,16 @@ export type ContactPointFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5645,6 +5685,16 @@ export type CountryFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5704,6 +5754,16 @@ export type CustomerFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       }> | null;
       paymentMethods?: Array<{
@@ -5718,6 +5778,16 @@ export type CustomerFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     } | null;
   } | null;
@@ -5774,6 +5844,16 @@ export type CustomerFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       }> | null;
       paymentMethods?: Array<{
@@ -5788,6 +5868,16 @@ export type CustomerFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     } | null;
   } | null;
@@ -5826,6 +5916,16 @@ export type CustomerFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     } | null;
     contactPoints?: Array<{
@@ -5854,6 +5954,16 @@ export type CustomerFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     }> | null;
   } | null;
@@ -5863,6 +5973,16 @@ export type CustomerFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5878,6 +5998,16 @@ export type FulfillmentFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5893,6 +6023,16 @@ export type InvoiceFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5907,6 +6047,16 @@ export type LocaleFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5953,6 +6103,16 @@ export type LocationFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -5962,6 +6122,16 @@ export type MetaFragmentFragment = {
   modified?: unknown | null;
   createdBy?: string | null;
   modifiedBy?: string | null;
+  owners?: Array<{
+    __typename?: 'IoRestorecommerceAttributeAttribute';
+    id?: string | null;
+    value?: string | null;
+    attributes?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+    }> | null;
+  }> | null;
 };
 
 export type OrderFragmentFragment = {
@@ -5969,6 +6139,8 @@ export type OrderFragmentFragment = {
   id?: string | null;
   notificationEmail?: string | null;
   shopId?: string | null;
+  userId?: string | null;
+  customerId?: string | null;
   orderState?: IoRestorecommerceOrderOrderState | null;
   customerType?: IoRestorecommerceCustomerCustomerType | null;
   customerOrderNr?: string | null;
@@ -6019,6 +6191,16 @@ export type OrderFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     } | null;
     unitPrice?: {
@@ -6091,6 +6273,16 @@ export type OrderFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       }> | null;
       paymentMethods?: Array<{
@@ -6105,6 +6297,16 @@ export type OrderFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     } | null;
     meta?: {
@@ -6113,6 +6315,16 @@ export type OrderFragmentFragment = {
       modified?: unknown | null;
       createdBy?: string | null;
       modifiedBy?: string | null;
+      owners?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+        attributes?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      }> | null;
     } | null;
   } | null;
   customer?: {
@@ -6171,6 +6383,16 @@ export type OrderFragmentFragment = {
             modified?: unknown | null;
             createdBy?: string | null;
             modifiedBy?: string | null;
+            owners?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+              attributes?: Array<{
+                __typename?: 'IoRestorecommerceAttributeAttribute';
+                id?: string | null;
+                value?: string | null;
+              }> | null;
+            }> | null;
           } | null;
         }> | null;
         paymentMethods?: Array<{
@@ -6185,6 +6407,16 @@ export type OrderFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       } | null;
     } | null;
@@ -6241,6 +6473,16 @@ export type OrderFragmentFragment = {
             modified?: unknown | null;
             createdBy?: string | null;
             modifiedBy?: string | null;
+            owners?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+              attributes?: Array<{
+                __typename?: 'IoRestorecommerceAttributeAttribute';
+                id?: string | null;
+                value?: string | null;
+              }> | null;
+            }> | null;
           } | null;
         }> | null;
         paymentMethods?: Array<{
@@ -6255,6 +6497,16 @@ export type OrderFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       } | null;
     } | null;
@@ -6293,6 +6545,16 @@ export type OrderFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       } | null;
       contactPoints?: Array<{
@@ -6321,6 +6583,16 @@ export type OrderFragmentFragment = {
           modified?: unknown | null;
           createdBy?: string | null;
           modifiedBy?: string | null;
+          owners?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+            attributes?: Array<{
+              __typename?: 'IoRestorecommerceAttributeAttribute';
+              id?: string | null;
+              value?: string | null;
+            }> | null;
+          }> | null;
         } | null;
       }> | null;
     } | null;
@@ -6330,6 +6602,16 @@ export type OrderFragmentFragment = {
       modified?: unknown | null;
       createdBy?: string | null;
       modifiedBy?: string | null;
+      owners?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+        attributes?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      }> | null;
     } | null;
   } | null;
   user?: {
@@ -6365,6 +6647,16 @@ export type OrderFragmentFragment = {
       modified?: unknown | null;
       createdBy?: string | null;
       modifiedBy?: string | null;
+      owners?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+        attributes?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      }> | null;
     } | null;
   } | null;
   shippingAddress?: {
@@ -6487,6 +6779,16 @@ export type OrderFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6541,6 +6843,16 @@ export type OrganizationFragmentFragment = {
       modified?: unknown | null;
       createdBy?: string | null;
       modifiedBy?: string | null;
+      owners?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+        attributes?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      }> | null;
     } | null;
   }> | null;
   paymentMethods?: Array<{
@@ -6555,6 +6867,16 @@ export type OrganizationFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6598,6 +6920,16 @@ export type ProductFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6613,6 +6945,16 @@ export type RoleFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6674,6 +7016,16 @@ export type ShopFragmentFragment = {
         modified?: unknown | null;
         createdBy?: string | null;
         modifiedBy?: string | null;
+        owners?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+          attributes?: Array<{
+            __typename?: 'IoRestorecommerceAttributeAttribute';
+            id?: string | null;
+            value?: string | null;
+          }> | null;
+        }> | null;
       } | null;
     }> | null;
     paymentMethods?: Array<{
@@ -6688,6 +7040,16 @@ export type ShopFragmentFragment = {
       modified?: unknown | null;
       createdBy?: string | null;
       modifiedBy?: string | null;
+      owners?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+        attributes?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      }> | null;
     } | null;
   } | null;
   meta?: {
@@ -6696,6 +7058,16 @@ export type ShopFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6710,6 +7082,16 @@ export type TimezoneFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6754,6 +7136,16 @@ export type UserRoleFragmentFragment = {
       modified?: unknown | null;
       createdBy?: string | null;
       modifiedBy?: string | null;
+      owners?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+        attributes?: Array<{
+          __typename?: 'IoRestorecommerceAttributeAttribute';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      }> | null;
     } | null;
   }> | null;
   roleAssociations?: Array<{
@@ -6776,6 +7168,16 @@ export type UserRoleFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6812,6 +7214,16 @@ export type UserFragmentFragment = {
     modified?: unknown | null;
     createdBy?: string | null;
     modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
   } | null;
 };
 
@@ -6848,6 +7260,16 @@ export type FulfillmentFulfillmentMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -6915,6 +7337,16 @@ export type FulfillmentFulfillmentReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -6957,6 +7389,16 @@ export type IdentityRoleMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7024,6 +7466,16 @@ export type IdentityRoleReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7085,6 +7537,16 @@ export type IdentityUserFindByTokenQuery = {
               modified?: unknown | null;
               createdBy?: string | null;
               modifiedBy?: string | null;
+              owners?: Array<{
+                __typename?: 'IoRestorecommerceAttributeAttribute';
+                id?: string | null;
+                value?: string | null;
+                attributes?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                }> | null;
+              }> | null;
             } | null;
           } | null;
         } | null;
@@ -7147,6 +7609,16 @@ export type IdentityUserFindQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7210,6 +7682,16 @@ export type IdentityUserMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7271,6 +7753,16 @@ export type IdentityUserRegisterMutateMutation = {
               modified?: unknown | null;
               createdBy?: string | null;
               modifiedBy?: string | null;
+              owners?: Array<{
+                __typename?: 'IoRestorecommerceAttributeAttribute';
+                id?: string | null;
+                value?: string | null;
+                attributes?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                }> | null;
+              }> | null;
             } | null;
           } | null;
         } | null;
@@ -7516,6 +8008,16 @@ export type IdentityUserReadQuery = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               }> | null;
               roleAssociations?: Array<{
@@ -7538,6 +8040,16 @@ export type IdentityUserReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7580,6 +8092,16 @@ export type InvoicingInvoiceMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7647,6 +8169,16 @@ export type InvoicingInvoiceReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7725,6 +8257,16 @@ export type MasterDataAddressReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7768,6 +8310,16 @@ export type MasterDataCountryMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7842,6 +8394,16 @@ export type MasterDataCountryReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7883,6 +8445,16 @@ export type MasterDataLocaleReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -7956,6 +8528,16 @@ export type MasterDataLocationReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -8037,6 +8619,16 @@ export type MasterDataOrganizationMutateMutation = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               }> | null;
               paymentMethods?: Array<{
@@ -8051,6 +8643,16 @@ export type MasterDataOrganizationMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -8157,6 +8759,16 @@ export type MasterDataOrganizationReadQuery = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               }> | null;
               paymentMethods?: Array<{
@@ -8171,6 +8783,16 @@ export type MasterDataOrganizationReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -8212,6 +8834,16 @@ export type MasterDataTimezoneReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -8276,6 +8908,8 @@ export type OrderingOrderMutateMutation = {
               id?: string | null;
               notificationEmail?: string | null;
               shopId?: string | null;
+              userId?: string | null;
+              customerId?: string | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
               customerType?: IoRestorecommerceCustomerCustomerType | null;
               customerOrderNr?: string | null;
@@ -8326,6 +8960,16 @@ export type OrderingOrderMutateMutation = {
                     modified?: unknown | null;
                     createdBy?: string | null;
                     modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
                   } | null;
                 } | null;
                 unitPrice?: {
@@ -8398,6 +9042,16 @@ export type OrderingOrderMutateMutation = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   }> | null;
                   paymentMethods?: Array<{
@@ -8412,6 +9066,16 @@ export type OrderingOrderMutateMutation = {
                     modified?: unknown | null;
                     createdBy?: string | null;
                     modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
                   } | null;
                 } | null;
                 meta?: {
@@ -8420,6 +9084,16 @@ export type OrderingOrderMutateMutation = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               } | null;
               customer?: {
@@ -8478,6 +9152,16 @@ export type OrderingOrderMutateMutation = {
                         modified?: unknown | null;
                         createdBy?: string | null;
                         modifiedBy?: string | null;
+                        owners?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                          attributes?: Array<{
+                            __typename?: 'IoRestorecommerceAttributeAttribute';
+                            id?: string | null;
+                            value?: string | null;
+                          }> | null;
+                        }> | null;
                       } | null;
                     }> | null;
                     paymentMethods?: Array<{
@@ -8492,6 +9176,16 @@ export type OrderingOrderMutateMutation = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   } | null;
                 } | null;
@@ -8548,6 +9242,16 @@ export type OrderingOrderMutateMutation = {
                         modified?: unknown | null;
                         createdBy?: string | null;
                         modifiedBy?: string | null;
+                        owners?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                          attributes?: Array<{
+                            __typename?: 'IoRestorecommerceAttributeAttribute';
+                            id?: string | null;
+                            value?: string | null;
+                          }> | null;
+                        }> | null;
                       } | null;
                     }> | null;
                     paymentMethods?: Array<{
@@ -8562,6 +9266,16 @@ export type OrderingOrderMutateMutation = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   } | null;
                 } | null;
@@ -8600,6 +9314,16 @@ export type OrderingOrderMutateMutation = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   } | null;
                   contactPoints?: Array<{
@@ -8628,6 +9352,16 @@ export type OrderingOrderMutateMutation = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   }> | null;
                 } | null;
@@ -8637,6 +9371,16 @@ export type OrderingOrderMutateMutation = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               } | null;
               user?: {
@@ -8672,6 +9416,16 @@ export type OrderingOrderMutateMutation = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               } | null;
               shippingAddress?: {
@@ -8794,6 +9548,16 @@ export type OrderingOrderMutateMutation = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -8860,6 +9624,8 @@ export type OrderingOrderReadQuery = {
               id?: string | null;
               notificationEmail?: string | null;
               shopId?: string | null;
+              userId?: string | null;
+              customerId?: string | null;
               orderState?: IoRestorecommerceOrderOrderState | null;
               customerType?: IoRestorecommerceCustomerCustomerType | null;
               customerOrderNr?: string | null;
@@ -8910,6 +9676,16 @@ export type OrderingOrderReadQuery = {
                     modified?: unknown | null;
                     createdBy?: string | null;
                     modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
                   } | null;
                 } | null;
                 unitPrice?: {
@@ -8982,6 +9758,16 @@ export type OrderingOrderReadQuery = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   }> | null;
                   paymentMethods?: Array<{
@@ -8996,6 +9782,16 @@ export type OrderingOrderReadQuery = {
                     modified?: unknown | null;
                     createdBy?: string | null;
                     modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
                   } | null;
                 } | null;
                 meta?: {
@@ -9004,6 +9800,16 @@ export type OrderingOrderReadQuery = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               } | null;
               customer?: {
@@ -9062,6 +9868,16 @@ export type OrderingOrderReadQuery = {
                         modified?: unknown | null;
                         createdBy?: string | null;
                         modifiedBy?: string | null;
+                        owners?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                          attributes?: Array<{
+                            __typename?: 'IoRestorecommerceAttributeAttribute';
+                            id?: string | null;
+                            value?: string | null;
+                          }> | null;
+                        }> | null;
                       } | null;
                     }> | null;
                     paymentMethods?: Array<{
@@ -9076,6 +9892,16 @@ export type OrderingOrderReadQuery = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   } | null;
                 } | null;
@@ -9132,6 +9958,16 @@ export type OrderingOrderReadQuery = {
                         modified?: unknown | null;
                         createdBy?: string | null;
                         modifiedBy?: string | null;
+                        owners?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                          attributes?: Array<{
+                            __typename?: 'IoRestorecommerceAttributeAttribute';
+                            id?: string | null;
+                            value?: string | null;
+                          }> | null;
+                        }> | null;
                       } | null;
                     }> | null;
                     paymentMethods?: Array<{
@@ -9146,6 +9982,16 @@ export type OrderingOrderReadQuery = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   } | null;
                 } | null;
@@ -9184,6 +10030,16 @@ export type OrderingOrderReadQuery = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   } | null;
                   contactPoints?: Array<{
@@ -9212,6 +10068,16 @@ export type OrderingOrderReadQuery = {
                       modified?: unknown | null;
                       createdBy?: string | null;
                       modifiedBy?: string | null;
+                      owners?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                        attributes?: Array<{
+                          __typename?: 'IoRestorecommerceAttributeAttribute';
+                          id?: string | null;
+                          value?: string | null;
+                        }> | null;
+                      }> | null;
                     } | null;
                   }> | null;
                 } | null;
@@ -9221,6 +10087,16 @@ export type OrderingOrderReadQuery = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               } | null;
               user?: {
@@ -9256,6 +10132,16 @@ export type OrderingOrderReadQuery = {
                   modified?: unknown | null;
                   createdBy?: string | null;
                   modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
                 } | null;
               } | null;
               shippingAddress?: {
@@ -9378,6 +10264,16 @@ export type OrderingOrderReadQuery = {
                 modified?: unknown | null;
                 createdBy?: string | null;
                 modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
               } | null;
             } | null;
           }> | null;
@@ -9393,6 +10289,14 @@ export const MetaFragmentFragmentDoc = gql`
     modified
     createdBy
     modifiedBy
+    owners {
+      id
+      value
+      attributes {
+        id
+        value
+      }
+    }
   }
 `;
 export const AddressFragmentFragmentDoc = gql`
@@ -9702,6 +10606,8 @@ export const OrderFragmentFragmentDoc = gql`
     id
     notificationEmail
     shopId
+    userId
+    customerId
     orderState
     customerType
     customerOrderNr

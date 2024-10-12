@@ -6,7 +6,6 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
-  IIoRestorecommerceStatusStatus,
   IIoRestorecommerceFulfillmentFulfillmentList,
   IoRestorecommerceFulfillmentFulfillmentState,
   IoRestorecommerceResourcebaseFilterOperation,
@@ -27,43 +26,98 @@ import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';
 
 export const mapOrderToFulfilment = (
-  _: IOrder
+  order: IOrder
 ): IIoRestorecommerceFulfillmentFulfillmentList => {
+  const parcelItems = order.items?.map((item) => {
+    return {
+      productId: item.productId,
+      variantId: item.variantId,
+      package: item.product?.product?.physical?.variants?.find(
+        (variant) => variant.id === item.variantId
+      )?.package,
+      quantity: item.quantity,
+    };
+  });
+
   const orderToFulfillment: IIoRestorecommerceFulfillmentFulfillmentList = {
     items: [
       {
-        id: '',
-        customerId: '',
-        shopId: '',
-        userId: '',
+        // id: '',
+        customerId: order.customerId,
+        shopId: order.shopId,
+        userId: order.userId,
         fulfillmentState:
           IoRestorecommerceFulfillmentFulfillmentState.Submitted,
-        labels: [
-          {
-            parcelId: '',
-            url: '',
-            pdf: '',
-            png: '',
-            shipmentNumber: '',
-            status: '' as IIoRestorecommerceStatusStatus,
-            state: IoRestorecommerceFulfillmentFulfillmentState.Submitted,
-          },
-        ],
+        labels: [],
         packaging: {
           invoiceNumber: '',
           exportType: '',
           exportDescription: '',
-          notify: '',
-          parcels: [],
-          sender: {},
-          recipient: {},
+          notify: order.notificationEmail,
+          parcels: [
+            {
+              id: '1',
+              productId: 'n-fuse-shop000-fp-dhl-domestic',
+              variantId: 'n-fuse-shop000-fp-dhl-domestic_max_weight_1kg',
+              items: parcelItems,
+              price: {
+                salePrice: 4.85,
+                regularPrice: 4.85,
+                sale: false,
+              },
+              amount: undefined,
+              package: {
+                sizeInCm: {
+                  height: 5.0,
+                  length: 5.0,
+                  width: 5.0,
+                },
+                weightInKg: 1.0,
+              },
+            },
+          ],
+          // sender: {
+          //   address: {
+          //     id: 'sender_address',
+          //     postcode: '28757',
+          //     countryId: 'germany',
+          //     locality: 'Bremen',
+          //     street: 'Vegesacker Heerstr',
+          //     region: 'Bremen',
+          //     buildingNumber: '1',
+          //     businessAddress: {
+          //       name: 'Restorecommerce GmbH',
+          //     },
+          //   },
+          //   contact: {
+          //     name: 'bello babakolo',
+          //     email: 'fleetbeekay@gmail.com ',
+          //     phone: '+2347038405297',
+          //   },
+          // },
+          recipient: {
+            address: {
+              buildingNumber: order.shippingAddress?.address?.buildingNumber,
+              street: order.shippingAddress?.address?.street,
+              locality: order.shippingAddress?.address?.locality,
+              region: order.shippingAddress?.address?.region,
+              postcode: order.shippingAddress?.address?.postcode,
+              countryId: order.shippingAddress?.address?.countryId,
+            },
+            contact: {
+              name: order.shippingAddress?.contact?.name,
+              email: order.shippingAddress?.contact?.email,
+              phone: order.shippingAddress?.contact?.phone,
+            },
+          },
         },
         references: [
           {
-            instanceId: '',
-            instanceType: '',
+            instanceId: 'urn:restorecommerce:io:order:Order',
+            instanceType: order.id,
           },
         ],
+        meta: order.meta,
       },
     ],
     mode: ModeType.Create,

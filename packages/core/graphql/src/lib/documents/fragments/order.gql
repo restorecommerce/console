@@ -2,6 +2,8 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
   id
   notificationEmail
   shopId
+  userId
+  customerId
   orderState
   customerType
   customerOrderNr
