@@ -13,6 +13,8 @@ import {
   FulfillmentFulfillmentMutateMutation,
   FulfillmentFulfillmentReadGQL,
   FulfillmentFulfillmentReadQuery,
+  FulfillmentFulfillmentSubmitGQL,
+  FulfillmentFulfillmentSubmitMutation,
 } from '@console-core/graphql';
 
 @Injectable({
@@ -22,6 +24,7 @@ export class FulfillmentService {
   constructor(
     private readonly invoicingFulfillmentReadGQL: FulfillmentFulfillmentReadGQL,
     private readonly invoicingFulfillmentMutateGQL: FulfillmentFulfillmentMutateGQL,
+    private readonly fulfillmentSubmitGQL: FulfillmentFulfillmentSubmitGQL,
     private readonly invoicingFulfillmentDeleteMutateGQL: FulfillmentFulfillmentDeleteMutateGQL
   ) {}
 
@@ -37,6 +40,14 @@ export class FulfillmentService {
     payload: IIoRestorecommerceFulfillmentFulfillmentList
   ): Observable<MutationResult<FulfillmentFulfillmentMutateMutation>> {
     return this.invoicingFulfillmentMutateGQL.mutate({
+      input: payload,
+    });
+  }
+
+  submit(
+    payload: IIoRestorecommerceFulfillmentFulfillmentList
+  ): Observable<MutationResult<FulfillmentFulfillmentSubmitMutation>> {
+    return this.fulfillmentSubmitGQL.mutate({
       input: payload,
     });
   }

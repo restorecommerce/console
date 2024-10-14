@@ -41,6 +41,21 @@ export const fulfillmentCreateFail = createAction(
   props<{ error: string }>()
 );
 
+export const fulfillmentSubmitRequest = createAction(
+  '[FULFILLMENT] Submit request',
+  props<{ payload: IIoRestorecommerceResourcebaseReadRequest }>()
+);
+
+export const fulfillmentSubmitSuccess = createAction(
+  '[FULFILLMENT] Fulfillment Submit success',
+  props<{ payload: IFulfillment }>()
+);
+
+export const fulfillmentSubmitFail = createAction(
+  '[FULFILLMENT] Fulfillment Submit fail',
+  props<{ error: string }>()
+);
+
 export const fulfillmentUpdateRequest = createAction(
   '[FULFILLMENT] Fulfillment update request',
   props<{ payload: IIoRestorecommerceFulfillmentFulfillmentList }>()
