@@ -122,10 +122,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
         }
 
         this.orderFacade.createFulfilment(id);
-
-        // From the Id, we need the Order.
-        // From this Order, create a Fulfiment Creation Input.
-        // Finally, dispatch, the create fulfilment action.
       })
     );
 

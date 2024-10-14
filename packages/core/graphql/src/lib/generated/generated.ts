@@ -7356,6 +7356,58 @@ export type FulfillmentFulfillmentReadQuery = {
   };
 };
 
+export type FulfillmentFulfillmentSubmitMutationVariables = Exact<{
+  input: IIoRestorecommerceFulfillmentFulfillmentList;
+}>;
+
+export type FulfillmentFulfillmentSubmitMutation = {
+  __typename?: 'Mutation';
+  fulfillment: {
+    __typename?: 'FulfillmentMutation';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentMutation';
+      Submit?: {
+        __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+              id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type IdentityRoleMutateMutationVariables = Exact<{
   input: IIoRestorecommerceRoleRoleList;
 }>;
@@ -11021,6 +11073,44 @@ export class FulfillmentFulfillmentReadGQL extends Apollo.Query<
   FulfillmentFulfillmentReadQueryVariables
 > {
   override document = FulfillmentFulfillmentReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FulfillmentFulfillmentSubmitDocument = gql`
+  mutation FulfillmentFulfillmentSubmit(
+    $input: IIoRestorecommerceFulfillmentFulfillmentList!
+  ) {
+    fulfillment {
+      fulfillment {
+        Submit(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...FulfillmentFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${FulfillmentFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FulfillmentFulfillmentSubmitGQL extends Apollo.Mutation<
+  FulfillmentFulfillmentSubmitMutation,
+  FulfillmentFulfillmentSubmitMutationVariables
+> {
+  override document = FulfillmentFulfillmentSubmitDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
