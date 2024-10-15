@@ -42,12 +42,10 @@ export const mapOrderToFulfilment = (
   const orderToFulfillment: IIoRestorecommerceFulfillmentFulfillmentList = {
     items: [
       {
-        // id: '',
         customerId: order.customerId,
         shopId: order.shopId,
         userId: order.userId,
-        fulfillmentState:
-          IoRestorecommerceFulfillmentFulfillmentState.Submitted,
+        fulfillmentState: IoRestorecommerceFulfillmentFulfillmentState.Pending,
         labels: [],
         packaging: {
           invoiceNumber: '',
@@ -56,45 +54,11 @@ export const mapOrderToFulfilment = (
           notify: order.notificationEmail,
           parcels: [
             {
-              id: '1',
               productId: 'n-fuse-shop000-fp-dhl-domestic',
               variantId: 'n-fuse-shop000-fp-dhl-domestic_max_weight_1kg',
               items: parcelItems,
-              price: {
-                salePrice: 4.85,
-                regularPrice: 4.85,
-                sale: false,
-              },
-              amount: undefined,
-              package: {
-                sizeInCm: {
-                  height: 5.0,
-                  length: 5.0,
-                  width: 5.0,
-                },
-                weightInKg: 1.0,
-              },
             },
           ],
-          // sender: {
-          //   address: {
-          //     id: 'sender_address',
-          //     postcode: '28757',
-          //     countryId: 'germany',
-          //     locality: 'Bremen',
-          //     street: 'Vegesacker Heerstr',
-          //     region: 'Bremen',
-          //     buildingNumber: '1',
-          //     businessAddress: {
-          //       name: 'Restorecommerce GmbH',
-          //     },
-          //   },
-          //   contact: {
-          //     name: 'bello babakolo',
-          //     email: 'fleetbeekay@gmail.com ',
-          //     phone: '+2347038405297',
-          //   },
-          // },
           recipient: {
             address: {
               buildingNumber: order.shippingAddress?.address?.buildingNumber,
