@@ -1,0 +1,36 @@
+mutation CreateOrderFulfillment(
+  $input: IIoRestorecommerceOrderFulfillmentRequestList!
+) {
+  ordering {
+    order {
+      CreateFulfillment(input: $input) {
+        details {
+          items {
+            payload {
+              id
+              fulfillmentState
+              labels {
+                parcelId
+                pdf
+                png
+                shipmentNumber
+                status {
+                  code
+                  message
+                }
+              }
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

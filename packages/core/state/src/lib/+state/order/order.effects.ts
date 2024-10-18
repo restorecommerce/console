@@ -6,11 +6,9 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
-  IIoRestorecommerceFulfillmentFulfillmentList,
-  IoRestorecommerceFulfillmentFulfillmentState,
   IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseFilterValueType,
-  ModeType,
+  IoRestorecommerceAddressShippingAddress,
 } from '@console-core/graphql';
 import {
   ENotificationTypes,
@@ -20,75 +18,10 @@ import {
 
 import { ErrorHandlingService, OrderService } from '../../services';
 import { AppFacade } from '../app';
-import * as fulfillmentActions from '../fulfillment/fulfillment.actions';
 
 import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';
 
-export const mapOrderToFulfilment = (
-  order: IOrder
-): IIoRestorecommerceFulfillmentFulfillmentList => {
-  const parcelItems = order.items?.map((item) => {
-    return {
-      productId: item.productId,
-      variantId: item.variantId,
-      package: item.product?.product?.physical?.variants?.find(
-        (variant) => variant.id === item.variantId
-      )?.package,
-      quantity: item.quantity,
-    };
-  });
-
-  const orderToFulfillment: IIoRestorecommerceFulfillmentFulfillmentList = {
-    items: [
-      {
-        customerId: order.customerId,
-        shopId: order.shopId,
-        userId: order.userId,
-        fulfillmentState: IoRestorecommerceFulfillmentFulfillmentState.Pending,
-        labels: [],
-        packaging: {
-          invoiceNumber: '',
-          exportType: '',
-          exportDescription: '',
-          notify: order.notificationEmail,
-          parcels: [
-            {
-              productId: 'n-fuse-shop000-fp-dhl-domestic',
-              variantId: 'n-fuse-shop000-fp-dhl-domestic_max_weight_1kg',
-              items: parcelItems,
-            },
-          ],
-          recipient: {
-            address: {
-              buildingNumber: order.shippingAddress?.address?.buildingNumber,
-              street: order.shippingAddress?.address?.street,
-              locality: order.shippingAddress?.address?.locality,
-              region: order.shippingAddress?.address?.region,
-              postcode: order.shippingAddress?.address?.postcode,
-              countryId: order.shippingAddress?.address?.countryId,
-            },
-            contact: {
-              name: order.shippingAddress?.contact?.name,
-              email: order.shippingAddress?.contact?.email,
-              phone: order.shippingAddress?.contact?.phone,
-            },
-          },
-        },
-        references: [
-          {
-            instanceId: 'urn:restorecommerce:io:order:Order',
-            instanceType: order.id,
-          },
-        ],
-        meta: order.meta,
-      },
-    ],
-    mode: ModeType.Create,
-  };
-
-  return orderToFulfillment;
-};
 @Injectable()
 export class OrderEffects {
   orderReadRequest$ = createEffect(() => {
@@ -318,13 +251,20 @@ export class OrderEffects {
         if (!selectedOrder) {
           return throwError(() => new Error('No selected Order'));
         }
-
-        const fulfilmentInput = mapOrderToFulfilment(selectedOrder);
-        return of(
-          fulfillmentActions.fulfillmentCreateRequest({
-            payload: fulfilmentInput,
+        return this.orderService
+          .createFulfilment({
+            id: selectedOrder.id,
+            senderAddress:
+              selectedOrder.shippingAddress as IoRestorecommerceAddressShippingAddress,
           })
-        );
+          .pipe(
+            map((response) => {
+              const fulfilmentItems =
+                response.data?.ordering.order.CreateFulfillment?.details?.items;
+
+              return { type: 'DUMMY', payload: fulfilmentItems };
+            })
+          );
       })
     );
   });

@@ -8905,6 +8905,56 @@ export type MasterDataTimezoneReadQuery = {
   };
 };
 
+export type CreateOrderFulfillmentMutationVariables = Exact<{
+  input: IIoRestorecommerceOrderFulfillmentRequestList;
+}>;
+
+export type CreateOrderFulfillmentMutation = {
+  __typename?: 'Mutation';
+  ordering: {
+    __typename?: 'OrderingMutation';
+    order: {
+      __typename?: 'OrderingOrderMutation';
+      CreateFulfillment?: {
+        __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+              id?: string | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              labels?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentLabel';
+                parcelId?: string | null;
+                pdf?: string | null;
+                png?: string | null;
+                shipmentNumber?: string | null;
+                status?: {
+                  __typename?: 'IoRestorecommerceStatusStatus';
+                  code?: number | null;
+                  message?: string | null;
+                } | null;
+              }> | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type OrderingInvoiceCreateMutationVariables = Exact<{
   input: IIoRestorecommerceOrderOrderingInvoiceRequestList;
 }>;
@@ -12100,6 +12150,58 @@ export class MasterDataTimezoneReadGQL extends Apollo.Query<
   MasterDataTimezoneReadQueryVariables
 > {
   override document = MasterDataTimezoneReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CreateOrderFulfillmentDocument = gql`
+  mutation CreateOrderFulfillment(
+    $input: IIoRestorecommerceOrderFulfillmentRequestList!
+  ) {
+    ordering {
+      order {
+        CreateFulfillment(input: $input) {
+          details {
+            items {
+              payload {
+                id
+                fulfillmentState
+                labels {
+                  parcelId
+                  pdf
+                  png
+                  shipmentNumber
+                  status {
+                    code
+                    message
+                  }
+                }
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateOrderFulfillmentGQL extends Apollo.Mutation<
+  CreateOrderFulfillmentMutation,
+  CreateOrderFulfillmentMutationVariables
+> {
+  override document = CreateOrderFulfillmentDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

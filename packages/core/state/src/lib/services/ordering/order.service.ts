@@ -16,6 +16,9 @@ import {
   OrderingOrderMutateMutation,
   OrderingOrderReadGQL,
   OrderingOrderReadQuery,
+  CreateOrderFulfillmentGQL,
+  CreateOrderFulfillmentMutation,
+  IIoRestorecommerceAddressShippingAddress,
 } from '@console-core/graphql';
 
 @Injectable({
@@ -26,7 +29,8 @@ export class OrderService {
     private readonly orderingOrderReadGQL: OrderingOrderReadGQL,
     private readonly orderingOrderMutateGQL: OrderingOrderMutateGQL,
     private readonly orderingOrderDeleteMutateGQL: OrderingOrderDeleteMutateGQL,
-    private readonly orderingInvoiceCreateGQL: OrderingInvoiceCreateGQL
+    private readonly orderingInvoiceCreateGQL: OrderingInvoiceCreateGQL,
+    private readonly orderingFulfilmentGQL: CreateOrderFulfillmentGQL
   ) {}
 
   read(
@@ -71,6 +75,32 @@ export class OrderService {
 
     return this.orderingInvoiceCreateGQL.mutate({
       input: orderInvoiceInput,
+    });
+  }
+
+  createFulfilment(payload: {
+    id: string;
+    senderAddress: IIoRestorecommerceAddressShippingAddress;
+  }): Observable<MutationResult<CreateOrderFulfillmentMutation>> {
+    return this.orderingFulfilmentGQL.mutate({
+      input: {
+        items: [
+          {
+            orderId: payload.id,
+            // selectedItems: [],
+            senderAddress: {
+              address: {
+                buildingNumber: payload.senderAddress.address?.buildingNumber,
+                street: payload.senderAddress.address?.buildingNumber,
+                locality: payload.senderAddress.address?.locality,
+                region: payload.senderAddress.address?.region,
+                postcode: payload.senderAddress.address?.postcode,
+                countryId: payload.senderAddress.address?.countryId,
+              },
+            },
+          },
+        ],
+      },
     });
   }
 }
