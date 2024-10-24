@@ -4,12 +4,7 @@ import { IFulfillment } from '@console-core/types';
 
 @Component({
   selector: 'app-module-fulfillment-view-details',
-  template: `
-    <pre>
-      {{ fulfillment | json }}
-    </pre
-    >
-  `,
+  templateUrl: './fulfillment-view-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FulfillmentViewDetailsComponent {

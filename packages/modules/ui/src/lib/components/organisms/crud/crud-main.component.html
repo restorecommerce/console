@@ -124,6 +124,20 @@
                   </button>
 
                   <button
+                    *ngIf="
+                      isTriggerSubmitFulfillment &&
+                      [EUrlSegment.View].includes(urlSegment)
+                    "
+                    (click)="onCreateFulfillment(id)"
+                    vcl-button
+                    rc-append
+                    class="square half-transparent button"
+                    title="Submit Fulfillment"
+                  >
+                    <vcl-icon icon="mdi:truck-plus-outline" />
+                  </button>
+
+                  <button
                     vcl-button
                     rc-append
                     *ngIf="

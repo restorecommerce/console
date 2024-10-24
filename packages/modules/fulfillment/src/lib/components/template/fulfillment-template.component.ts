@@ -56,6 +56,19 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
     limit: PAGINATION.limit,
   };
 
+  readonly triggerSubmitFulfillment = new BehaviorSubject<string | null>(null);
+  readonly triggerSubmitFulfillment$ = this.triggerSubmitFulfillment
+    .asObservable()
+    .pipe(
+      tap((id) => {
+        if (id === null) {
+          return;
+        }
+
+        // this.orderFacade.createFulfilment(id);
+      })
+    );
+
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()

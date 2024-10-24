@@ -29,6 +29,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input({ required: true }) triggerRemove!: BehaviorSubject<string | null>;
   @Input() triggerCreateInvoice?: BehaviorSubject<string | null>;
   @Input() triggerCreateFulfillment?: BehaviorSubject<string | null>;
+  @Input() triggerSubmitFulfillment?: BehaviorSubject<string | null>;
   @Input() title = '';
   @Input() isRead = true;
   @Input() isCreate = true;
@@ -38,6 +39,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
 
   isTriggerCreateInvoice = false;
   isTriggerCreateFulfillment = false;
+  isTriggerSubmitFulfillment = false;
 
   readonly EUrlSegment = EUrlSegment;
 
@@ -78,6 +80,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isTriggerCreateInvoice = !!this.triggerCreateInvoice;
     this.isTriggerCreateFulfillment = !!this.triggerCreateFulfillment;
+    this.isTriggerSubmitFulfillment = !!this.triggerSubmitFulfillment;
   }
 
   ngOnDestroy(): void {
@@ -98,6 +101,10 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
 
   onCreateFulfillment(id: string | null): void {
     this.triggerCreateFulfillment?.next(id);
+  }
+
+  onSubmitFulfillment(id: string | null): void {
+    this.triggerSubmitFulfillment?.next(id);
   }
 
   onRemove(id: string | null): void {
