@@ -65,7 +65,7 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
           return;
         }
 
-        // this.orderFacade.createFulfilment(id);
+        // TODO this.fulfillmentFacade.submitFulfilment(id);
       })
     );
 

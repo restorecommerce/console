@@ -3,6 +3,53 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
   customerId
   shopId
   userId
+  packaging {
+    exportType
+    notify
+    invoiceNumber
+    exportDescription
+    parcels {
+      id
+      productId
+      items {
+        productId
+        variantId
+        quantity
+      }
+      package {
+        rotatable
+        sizeInCm {
+          height
+          width
+          length
+        }
+      }
+    }
+    sender {
+      address {
+        id
+        postcode
+      }
+      contact {
+        name
+        email
+        phone
+      }
+      comments
+    }
+    recipient {
+      address {
+        id
+        postcode
+        countryId
+      }
+    }
+    notify
+    invoiceNumber
+    exportDescription
+    exportType
+  }
+  fulfillmentState
   meta {
     ...MetaFragment
   }
