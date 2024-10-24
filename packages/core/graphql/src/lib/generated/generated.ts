@@ -5992,6 +5992,59 @@ export type FulfillmentFragmentFragment = {
   customerId?: string | null;
   shopId?: string | null;
   userId?: string | null;
+  fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+  packaging?: {
+    __typename?: 'IoRestorecommerceFulfillmentPackaging';
+    exportType?: string | null;
+    notify?: string | null;
+    invoiceNumber?: string | null;
+    exportDescription?: string | null;
+    parcels?: Array<{
+      __typename?: 'IoRestorecommerceFulfillmentParcel';
+      id?: string | null;
+      productId?: string | null;
+      items?: Array<{
+        __typename?: 'IoRestorecommerceFulfillmentItem';
+        productId?: string | null;
+        variantId?: string | null;
+        quantity?: number | null;
+      }> | null;
+      package?: {
+        __typename?: 'IoRestorecommerceProductPackage';
+        rotatable?: boolean | null;
+        sizeInCm?: {
+          __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+          height?: number | null;
+          width?: number | null;
+          length?: number | null;
+        } | null;
+      } | null;
+    }> | null;
+    sender?: {
+      __typename?: 'IoRestorecommerceAddressShippingAddress';
+      comments?: string | null;
+      address?: {
+        __typename?: 'IoRestorecommerceAddressAddress';
+        id?: string | null;
+        postcode?: string | null;
+      } | null;
+      contact?: {
+        __typename?: 'IoRestorecommerceAddressContact';
+        name?: string | null;
+        email?: string | null;
+        phone?: string | null;
+      } | null;
+    } | null;
+    recipient?: {
+      __typename?: 'IoRestorecommerceAddressShippingAddress';
+      address?: {
+        __typename?: 'IoRestorecommerceAddressAddress';
+        id?: string | null;
+        postcode?: string | null;
+        countryId?: string | null;
+      } | null;
+    } | null;
+  } | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -7254,6 +7307,59 @@ export type FulfillmentFulfillmentMutateMutation = {
               customerId?: string | null;
               shopId?: string | null;
               userId?: string | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              packaging?: {
+                __typename?: 'IoRestorecommerceFulfillmentPackaging';
+                exportType?: string | null;
+                notify?: string | null;
+                invoiceNumber?: string | null;
+                exportDescription?: string | null;
+                parcels?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentParcel';
+                  id?: string | null;
+                  productId?: string | null;
+                  items?: Array<{
+                    __typename?: 'IoRestorecommerceFulfillmentItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                    quantity?: number | null;
+                  }> | null;
+                  package?: {
+                    __typename?: 'IoRestorecommerceProductPackage';
+                    rotatable?: boolean | null;
+                    sizeInCm?: {
+                      __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                      height?: number | null;
+                      width?: number | null;
+                      length?: number | null;
+                    } | null;
+                  } | null;
+                }> | null;
+                sender?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  comments?: string | null;
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                  } | null;
+                  contact?: {
+                    __typename?: 'IoRestorecommerceAddressContact';
+                    name?: string | null;
+                    email?: string | null;
+                    phone?: string | null;
+                  } | null;
+                } | null;
+                recipient?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                    countryId?: string | null;
+                  } | null;
+                } | null;
+              } | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -7331,6 +7437,59 @@ export type FulfillmentFulfillmentReadQuery = {
               customerId?: string | null;
               shopId?: string | null;
               userId?: string | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              packaging?: {
+                __typename?: 'IoRestorecommerceFulfillmentPackaging';
+                exportType?: string | null;
+                notify?: string | null;
+                invoiceNumber?: string | null;
+                exportDescription?: string | null;
+                parcels?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentParcel';
+                  id?: string | null;
+                  productId?: string | null;
+                  items?: Array<{
+                    __typename?: 'IoRestorecommerceFulfillmentItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                    quantity?: number | null;
+                  }> | null;
+                  package?: {
+                    __typename?: 'IoRestorecommerceProductPackage';
+                    rotatable?: boolean | null;
+                    sizeInCm?: {
+                      __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                      height?: number | null;
+                      width?: number | null;
+                      length?: number | null;
+                    } | null;
+                  } | null;
+                }> | null;
+                sender?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  comments?: string | null;
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                  } | null;
+                  contact?: {
+                    __typename?: 'IoRestorecommerceAddressContact';
+                    name?: string | null;
+                    email?: string | null;
+                    phone?: string | null;
+                  } | null;
+                } | null;
+                recipient?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                    countryId?: string | null;
+                  } | null;
+                } | null;
+              } | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -7383,6 +7542,59 @@ export type FulfillmentFulfillmentSubmitMutation = {
               customerId?: string | null;
               shopId?: string | null;
               userId?: string | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              packaging?: {
+                __typename?: 'IoRestorecommerceFulfillmentPackaging';
+                exportType?: string | null;
+                notify?: string | null;
+                invoiceNumber?: string | null;
+                exportDescription?: string | null;
+                parcels?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentParcel';
+                  id?: string | null;
+                  productId?: string | null;
+                  items?: Array<{
+                    __typename?: 'IoRestorecommerceFulfillmentItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                    quantity?: number | null;
+                  }> | null;
+                  package?: {
+                    __typename?: 'IoRestorecommerceProductPackage';
+                    rotatable?: boolean | null;
+                    sizeInCm?: {
+                      __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                      height?: number | null;
+                      width?: number | null;
+                      length?: number | null;
+                    } | null;
+                  } | null;
+                }> | null;
+                sender?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  comments?: string | null;
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                  } | null;
+                  contact?: {
+                    __typename?: 'IoRestorecommerceAddressContact';
+                    name?: string | null;
+                    email?: string | null;
+                    phone?: string | null;
+                  } | null;
+                } | null;
+                recipient?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                    countryId?: string | null;
+                  } | null;
+                } | null;
+              } | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -10462,6 +10674,53 @@ export const FulfillmentFragmentFragmentDoc = gql`
     customerId
     shopId
     userId
+    packaging {
+      exportType
+      notify
+      invoiceNumber
+      exportDescription
+      parcels {
+        id
+        productId
+        items {
+          productId
+          variantId
+          quantity
+        }
+        package {
+          rotatable
+          sizeInCm {
+            height
+            width
+            length
+          }
+        }
+      }
+      sender {
+        address {
+          id
+          postcode
+        }
+        contact {
+          name
+          email
+          phone
+        }
+        comments
+      }
+      recipient {
+        address {
+          id
+          postcode
+          countryId
+        }
+      }
+      notify
+      invoiceNumber
+      exportDescription
+      exportType
+    }
+    fulfillmentState
     meta {
       ...MetaFragment
     }
