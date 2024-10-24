@@ -6003,11 +6003,22 @@ export type FulfillmentFragmentFragment = {
       __typename?: 'IoRestorecommerceFulfillmentParcel';
       id?: string | null;
       productId?: string | null;
+      variantId?: string | null;
       items?: Array<{
         __typename?: 'IoRestorecommerceFulfillmentItem';
         productId?: string | null;
         variantId?: string | null;
         quantity?: number | null;
+        package?: {
+          __typename?: 'IoRestorecommerceProductPackage';
+          rotatable?: boolean | null;
+          sizeInCm?: {
+            __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+            height?: number | null;
+            width?: number | null;
+            length?: number | null;
+          } | null;
+        } | null;
       }> | null;
       package?: {
         __typename?: 'IoRestorecommerceProductPackage';
@@ -7318,11 +7329,22 @@ export type FulfillmentFulfillmentMutateMutation = {
                   __typename?: 'IoRestorecommerceFulfillmentParcel';
                   id?: string | null;
                   productId?: string | null;
+                  variantId?: string | null;
                   items?: Array<{
                     __typename?: 'IoRestorecommerceFulfillmentItem';
                     productId?: string | null;
                     variantId?: string | null;
                     quantity?: number | null;
+                    package?: {
+                      __typename?: 'IoRestorecommerceProductPackage';
+                      rotatable?: boolean | null;
+                      sizeInCm?: {
+                        __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                        height?: number | null;
+                        width?: number | null;
+                        length?: number | null;
+                      } | null;
+                    } | null;
                   }> | null;
                   package?: {
                     __typename?: 'IoRestorecommerceProductPackage';
@@ -7448,11 +7470,22 @@ export type FulfillmentFulfillmentReadQuery = {
                   __typename?: 'IoRestorecommerceFulfillmentParcel';
                   id?: string | null;
                   productId?: string | null;
+                  variantId?: string | null;
                   items?: Array<{
                     __typename?: 'IoRestorecommerceFulfillmentItem';
                     productId?: string | null;
                     variantId?: string | null;
                     quantity?: number | null;
+                    package?: {
+                      __typename?: 'IoRestorecommerceProductPackage';
+                      rotatable?: boolean | null;
+                      sizeInCm?: {
+                        __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                        height?: number | null;
+                        width?: number | null;
+                        length?: number | null;
+                      } | null;
+                    } | null;
                   }> | null;
                   package?: {
                     __typename?: 'IoRestorecommerceProductPackage';
@@ -7553,11 +7586,22 @@ export type FulfillmentFulfillmentSubmitMutation = {
                   __typename?: 'IoRestorecommerceFulfillmentParcel';
                   id?: string | null;
                   productId?: string | null;
+                  variantId?: string | null;
                   items?: Array<{
                     __typename?: 'IoRestorecommerceFulfillmentItem';
                     productId?: string | null;
                     variantId?: string | null;
                     quantity?: number | null;
+                    package?: {
+                      __typename?: 'IoRestorecommerceProductPackage';
+                      rotatable?: boolean | null;
+                      sizeInCm?: {
+                        __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                        height?: number | null;
+                        width?: number | null;
+                        length?: number | null;
+                      } | null;
+                    } | null;
                   }> | null;
                   package?: {
                     __typename?: 'IoRestorecommerceProductPackage';
@@ -10682,10 +10726,19 @@ export const FulfillmentFragmentFragmentDoc = gql`
       parcels {
         id
         productId
+        variantId
         items {
           productId
           variantId
           quantity
+          package {
+            rotatable
+            sizeInCm {
+              height
+              width
+              length
+            }
+          }
         }
         package {
           rotatable

@@ -11,10 +11,19 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
     parcels {
       id
       productId
+      variantId
       items {
         productId
         variantId
         quantity
+        package {
+          rotatable
+          sizeInCm {
+            height
+            width
+            length
+          }
+        }
       }
       package {
         rotatable

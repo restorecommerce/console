@@ -1,3 +1,95 @@
-<pre>
-  {{ fulfillment | json }}
-</pre>
+<vcl-data-list
+  mode="none"
+  [noBorder]="true"
+>
+  <vcl-data-list-header>
+    <span class="my-2 rc-lv-l-heading">FULFILMENT DETAILS</span>
+  </vcl-data-list-header>
+
+  <vcl-data-list-item>
+    <div class="row justify-content-between align-items-center">
+      <span>Fulfilment courier</span>
+      <span>{{ 'xxxxxxxxxxxx' }}</span>
+    </div>
+  </vcl-data-list-item>
+
+  <vcl-data-list-item>
+    <div class="row justify-content-between align-items-center">
+      <span>Fulfilment product</span>
+      <span>{{ fulfillment.packaging?.parcels?.[0]?.productId }}</span>
+    </div>
+  </vcl-data-list-item>
+
+  <vcl-data-list-item>
+    <div class="row justify-content-between align-items-center">
+      <span>Fulfilment variant</span>
+      <span>{{ fulfillment.packaging?.parcels?.[0]?.variantId }}</span>
+    </div>
+  </vcl-data-list-item>
+
+  <vcl-data-list-item>
+    <div class="row justify-content-between align-items-center">
+      <span>Fulfilment state</span>
+      <span>{{ fulfillment.fulfillmentState }}</span>
+    </div>
+  </vcl-data-list-item>
+</vcl-data-list>
+
+<vcl-data-list
+  mode="none"
+  [noBorder]="true"
+>
+  <vcl-data-list-header>
+    <span class="my-2 rc-lv-l-heading">Parcel items</span>
+  </vcl-data-list-header>
+
+  <ng-container
+    *ngFor="let parcelItem of fulfillment.packaging?.parcels?.[0]?.items"
+  >
+    <vcl-data-list-item class="mb-2">
+      <div>
+        <!-- Wrapped in a div so as to allow for more props when
+         we expand upon the item. -->
+        <div class="row justify-content-between align-items-center">
+          <span>Product id</span>
+          <span>{{ parcelItem.productId }}</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Product variant id</span>
+          <span>{{ parcelItem.variantId }}</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Quantity</span>
+          <span>{{ parcelItem.quantity }}</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Weight</span>
+          <span>{{ parcelItem.package?.weightInKg }} Kg</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Length</span>
+          <span>{{ parcelItem.package?.sizeInCm?.length }} Cm</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Width</span>
+          <span>{{ parcelItem.package?.sizeInCm?.width }} Cm</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Height</span>
+          <span>{{ parcelItem.package?.sizeInCm?.height }} Cm</span>
+        </div>
+
+        <div class="row justify-content-between align-items-center">
+          <span>Rotatable</span>
+          <span>{{ parcelItem.package?.rotatable }}</span>
+        </div>
+      </div>
+    </vcl-data-list-item>
+  </ng-container>
+</vcl-data-list>
