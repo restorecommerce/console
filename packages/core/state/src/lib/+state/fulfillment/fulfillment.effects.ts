@@ -206,25 +206,34 @@ export class FulfillmentEffects {
     return this.actions$.pipe(
       ofType(fulfillmentActions.fulfillmentSubmitRequest),
       switchMap(({ payload }) =>
-        this.fulfillmentService.submit(payload).pipe(
-          tap((result) => {
-            this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.fulfillment?.fulfillment?.Submit?.details
-                ?.operationStatus as TOperationStatus
-            );
-          }),
-          map((result) => {
-            const payload =
-              result?.data?.fulfillment?.fulfillment?.Submit?.details?.items?.pop()
-                ?.payload as IFulfillment;
-            return fulfillmentActions.fulfillmentSubmitSuccess({ payload });
-          }),
-          catchError((error: Error) =>
-            of(
-              fulfillmentActions.fulfillmentSubmitFail({ error: error.message })
+        this.fulfillmentService
+          .submit({
+            items: [payload],
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.fulfillment?.fulfillment?.Submit?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload =
+                result?.data?.fulfillment?.fulfillment?.Submit?.details?.items?.pop()
+                  ?.payload as IFulfillment;
+
+              console.log('Payload:', payload);
+
+              return fulfillmentActions.fulfillmentSubmitSuccess({ payload });
+            }),
+            catchError((error: Error) =>
+              of(
+                fulfillmentActions.fulfillmentSubmitFail({
+                  error: error.message,
+                })
+              )
             )
           )
-        )
       )
     );
   });

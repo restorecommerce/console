@@ -43,7 +43,7 @@ export const fulfillmentCreateFail = createAction(
 
 export const fulfillmentSubmitRequest = createAction(
   '[FULFILLMENT] Submit request',
-  props<{ payload: IIoRestorecommerceResourcebaseReadRequest }>()
+  props<{ payload: { id: string } }>()
 );
 
 export const fulfillmentSubmitSuccess = createAction(

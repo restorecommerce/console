@@ -5993,6 +5993,20 @@ export type FulfillmentFragmentFragment = {
   shopId?: string | null;
   userId?: string | null;
   fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+  labels?: Array<{
+    __typename?: 'IoRestorecommerceFulfillmentLabel';
+    pdf?: string | null;
+    png?: string | null;
+    shipmentNumber?: string | null;
+    state?: IoRestorecommerceFulfillmentFulfillmentState | null;
+    parcelId?: string | null;
+    url?: string | null;
+    status?: {
+      __typename?: 'IoRestorecommerceStatusStatus';
+      code?: number | null;
+      message?: string | null;
+    } | null;
+  }> | null;
   packaging?: {
     __typename?: 'IoRestorecommerceFulfillmentPackaging';
     exportType?: string | null;
@@ -7319,6 +7333,20 @@ export type FulfillmentFulfillmentMutateMutation = {
               shopId?: string | null;
               userId?: string | null;
               fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              labels?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentLabel';
+                pdf?: string | null;
+                png?: string | null;
+                shipmentNumber?: string | null;
+                state?: IoRestorecommerceFulfillmentFulfillmentState | null;
+                parcelId?: string | null;
+                url?: string | null;
+                status?: {
+                  __typename?: 'IoRestorecommerceStatusStatus';
+                  code?: number | null;
+                  message?: string | null;
+                } | null;
+              }> | null;
               packaging?: {
                 __typename?: 'IoRestorecommerceFulfillmentPackaging';
                 exportType?: string | null;
@@ -7460,6 +7488,20 @@ export type FulfillmentFulfillmentReadQuery = {
               shopId?: string | null;
               userId?: string | null;
               fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              labels?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentLabel';
+                pdf?: string | null;
+                png?: string | null;
+                shipmentNumber?: string | null;
+                state?: IoRestorecommerceFulfillmentFulfillmentState | null;
+                parcelId?: string | null;
+                url?: string | null;
+                status?: {
+                  __typename?: 'IoRestorecommerceStatusStatus';
+                  code?: number | null;
+                  message?: string | null;
+                } | null;
+              }> | null;
               packaging?: {
                 __typename?: 'IoRestorecommerceFulfillmentPackaging';
                 exportType?: string | null;
@@ -7576,6 +7618,20 @@ export type FulfillmentFulfillmentSubmitMutation = {
               shopId?: string | null;
               userId?: string | null;
               fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              labels?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentLabel';
+                pdf?: string | null;
+                png?: string | null;
+                shipmentNumber?: string | null;
+                state?: IoRestorecommerceFulfillmentFulfillmentState | null;
+                parcelId?: string | null;
+                url?: string | null;
+                status?: {
+                  __typename?: 'IoRestorecommerceStatusStatus';
+                  code?: number | null;
+                  message?: string | null;
+                } | null;
+              }> | null;
               packaging?: {
                 __typename?: 'IoRestorecommerceFulfillmentPackaging';
                 exportType?: string | null;
@@ -10718,6 +10774,18 @@ export const FulfillmentFragmentFragmentDoc = gql`
     customerId
     shopId
     userId
+    labels {
+      pdf
+      png
+      shipmentNumber
+      state
+      parcelId
+      url
+      status {
+        code
+        message
+      }
+    }
     packaging {
       exportType
       notify

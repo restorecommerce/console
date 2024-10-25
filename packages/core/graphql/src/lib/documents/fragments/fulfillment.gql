@@ -3,6 +3,18 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
   customerId
   shopId
   userId
+  labels {
+    pdf
+    png
+    shipmentNumber
+    state
+    parcelId
+    url
+    status {
+      code
+      message
+    }
+  }
   packaging {
     exportType
     notify

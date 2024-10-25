@@ -65,7 +65,7 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
           return;
         }
 
-        // TODO this.fulfillmentFacade.submitFulfilment(id);
+        this.fulfillmentFacade.submit({ id });
       })
     );
 
@@ -126,6 +126,7 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
     triggerRemove: this.triggerRemove$,
+    triggerSubmitFulfillment: this.triggerSubmitFulfillment$,
   });
 
   private readonly subscriptions = new SubSink();

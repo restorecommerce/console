@@ -50,6 +50,10 @@ export class FulfillmentFacade {
     );
 
   // TODO Submit a fulfilment.
+  submit = (payload: { id: string }) =>
+    this.store.dispatch(
+      fulfillmentActions.fulfillmentSubmitRequest({ payload })
+    );
 
   constructor(private readonly store: Store) {}
 }
