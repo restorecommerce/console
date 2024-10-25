@@ -65,7 +65,42 @@
     <span class="my-2 rc-lv-l-heading">Labels</span>
   </vcl-data-list-header>
 
-  <div>No label available. You need to submit this fulfillment</div>
+  <vcl-data-list
+    mode="none"
+    [noBorder]="true"
+  >
+    <ng-container
+      *ngIf="fulfillment.fulfillmentState !== 'PENDING'; else noLabel"
+    ></ng-container>
+    <vcl-data-list-item *ngFor="let label of fulfillment.labels">
+      <div class="row justify-content-between align-items-center">
+        <span>Parcel Id</span>
+        <span>{{ label.parcelId }}</span>
+      </div>
+
+      <div class="row justify-content-between align-items-center">
+        <span>Shipping number</span>
+        <span>{{ label.shipmentNumber }}</span>
+      </div>
+
+      <div class="row justify-content-between align-items-center">
+        <span>
+          <a
+            [href]="label.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            >URL</a
+          >
+        </span>
+      </div>
+    </vcl-data-list-item>
+  </vcl-data-list>
+
+  <ng-template #noLabel>
+    <div>
+      No label available. You need to submit this fulfillment
+    </div></ng-template
+  >
 </vcl-data-list>
 
 <vcl-data-list
