@@ -238,6 +238,21 @@ export class FulfillmentEffects {
     );
   });
 
+  fulfillmentSubmitedSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(fulfillmentActions.fulfillmentSubmitSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'fulfillment submitted',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   constructor(
     private readonly router: Router,
     private readonly actions$: Actions,

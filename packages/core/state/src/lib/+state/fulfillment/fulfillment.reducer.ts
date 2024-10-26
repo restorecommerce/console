@@ -92,6 +92,17 @@ const reducer = createReducer<IFulfillmentState>(
       )
   ),
   on(
+    fulfillmentActions.fulfillmentSubmitSuccess,
+    (state, { payload }): IFulfillmentState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
     fulfillmentActions.fulfillmentUpdateFail,
     (state, { error }): IFulfillmentState => ({
       ...state,
