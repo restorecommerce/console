@@ -9,28 +9,32 @@
   <vcl-data-list-item>
     <div class="row justify-content-between align-items-center">
       <span>Fulfilment courier</span>
-      <span>{{ 'xxxxxxxxxxxx' }}</span>
+      <span>{{ '' }}</span>
     </div>
-  </vcl-data-list-item>
 
-  <vcl-data-list-item>
     <div class="row justify-content-between align-items-center">
       <span>Fulfilment product</span>
       <span>{{ fulfillment.packaging?.parcels?.[0]?.productId }}</span>
     </div>
-  </vcl-data-list-item>
 
-  <vcl-data-list-item>
     <div class="row justify-content-between align-items-center">
       <span>Fulfilment variant</span>
       <span>{{ fulfillment.packaging?.parcels?.[0]?.variantId }}</span>
     </div>
-  </vcl-data-list-item>
 
-  <vcl-data-list-item>
-    <div class="row justify-content-between align-items-center">
-      <span>Fulfilment state</span>
-      <span>{{ fulfillment.fulfillmentState }}</span>
+    <div class="row justify-content-betweeen align-items-center">
+      <div class="flex text">Fulfilment state:</div>
+      <div class="flex text align-right rc-lv-label">
+        <span
+          [ngClass]="
+            'badge-' +
+            (fulfillment.fulfillmentState || '').replace('_', '-').toLowerCase()
+          "
+          class="m-0 badge"
+        >
+          {{ (fulfillment.fulfillmentState || '').replace('_', ' ') }}
+        </span>
+      </div>
     </div>
   </vcl-data-list-item>
 </vcl-data-list>
