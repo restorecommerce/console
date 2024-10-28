@@ -1,81 +1,74 @@
 @use '@vcl/vcl/theme' as *;
 @use './theme/_console-variables.scss' as *;
 
-.data-list {
-  .data-list-item {
-    // min-height: unset !important;
-    margin-bottom: 1em;
-  }
+.infinite-scroll-viewport {
+  height: calc(100vh - 193px);
+  overflow-y: scroll;
 }
 
-// .infinite-scroll-viewport {
-//   height: calc(100vh - 193px);
-//   overflow-y: scroll;
-// }
+.data-list.rc-data-list {
+  -webkit-tap-highlight-color: transparent;
 
-// .data-list.rc-data-list {
-//   -webkit-tap-highlight-color: transparent;
+  & .data-list-header {
+    padding: 0;
+  }
 
-//   & .data-list-header {
-//     padding: 0;
-//   }
+  & .data-list-body {
+    overflow: hidden;
 
-//   & .data-list-body {
-//     overflow: hidden;
+    &:hover {
+      overflow-y: auto;
+      overflow-y: overlay;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+  }
 
-//     &:hover {
-//       overflow-y: auto;
-//       overflow-y: overlay;
-//       -ms-overflow-style: -ms-autohiding-scrollbar;
-//     }
-//   }
+  & .data-list-item {
+    padding: 0.7rem 0.5rem;
+    box-sizing: border-box;
 
-//   & .data-list-item {
-//     padding: 0.7rem 0.5rem;
-//     box-sizing: border-box;
+    & > * {
+      margin-bottom: 0.1rem;
 
-//     & > * {
-//       margin-bottom: 0.1rem;
+      & > .data-list-order,
+      & > .data-list-label,
+      & > .data-list-sublabel,
+      & > .data-list-key-value {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
 
-//       & > .data-list-order,
-//       & > .data-list-label,
-//       & > .data-list-sublabel,
-//       & > .data-list-key-value {
-//         max-width: 100%;
-//         overflow: hidden;
-//         text-overflow: ellipsis;
-//         white-space: nowrap;
-//       }
-//     }
+    .data-list-sublabel,
+    .data-list-key-value {
+      color: $text-secondary-color;
+      font-size: 0.9em;
+    }
 
-//     .data-list-sublabel,
-//     .data-list-key-value {
-//       color: $text-secondary-color;
-//       font-size: 0.9em;
-//     }
+    .created {
+      align-items: right;
+      color: $text-secondary-color;
+      font-size: 0.8em;
+      margin-top: 3px;
+    }
 
-//     .created {
-//       align-items: right;
-//       color: $text-secondary-color;
-//       font-size: 0.8em;
-//       margin-top: 3px;
-//     }
+    &.selected {
+      .data-list-sublabel,
+      .data-list-key-value {
+        color: $gray-light-5;
+      }
 
-//     &.selected {
-//       .data-list-sublabel,
-//       .data-list-key-value {
-//         color: $gray-light-5;
-//       }
+      .data-list-order {
+        .created {
+          color: $gray-light-5;
+        }
+      }
 
-//       .data-list-order {
-//         .created {
-//           color: $gray-light-5;
-//         }
-//       }
-
-//       .secondary-text-color {
-//         color: $gray-light-5;
-//       }
-//     }
-//   }
-// }
+      .secondary-text-color {
+        color: $gray-light-5;
+      }
+    }
+  }
+}

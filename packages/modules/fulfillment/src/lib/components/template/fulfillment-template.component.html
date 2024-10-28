@@ -33,8 +33,13 @@
           role="option"
         >
           <rc-data-list-key-value
-            [key]="'Fulfillment ID'"
-            [value]="item.id"
+            [key]="'Date'"
+            [value]="(item.meta.created | date : 'mediumDate') + ''"
+          />
+
+          <rc-data-list-key-value
+            [key]="'Status'"
+            [value]="item.fulfillmentState + ''"
           />
         </rc-data-list-item>
       </rc-data-list>
