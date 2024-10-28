@@ -33,6 +33,7 @@ export class RcDataListOrderComponent implements OnInit {
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;
   shop?: IoRestorecommerceShopShop;
+  numberOfItems!: number;
 
   ngOnInit(): void {
     this.product =
@@ -41,5 +42,6 @@ export class RcDataListOrderComponent implements OnInit {
     this.customer = this.order.customer?.private?.user || this.order.user;
 
     this.shop = this.order.shop;
+    this.numberOfItems = this.order.items?.length || 0;
   }
 }

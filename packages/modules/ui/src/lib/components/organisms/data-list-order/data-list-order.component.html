@@ -9,6 +9,8 @@
       ngOptimizedImage
       priority="auto"
     />
+
+    <div>{{ numberOfItems }} {{ numberOfItems > 1 ? 'Items' : 'Item' }}</div>
   </div>
   <div class="flex">
     <div class="row">
@@ -16,7 +18,7 @@
         <p class="m-0 pl-2">
           {{ customer?.firstName }} {{ customer?.lastName }}
         </p>
-        <p class="m-0 pl-2 mt-1">{{ shop?.name }}</p>
+        <!-- <p class="m-0 pl-2 mt-1">{{ shop?.name }}</p> -->
       </div>
       <div class="align-right secondary-text-color">
         <p
