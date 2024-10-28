@@ -262,6 +262,9 @@ export class OrderEffects {
               const fulfilmentItems =
                 response.data?.ordering.order.CreateFulfillment?.details?.items;
 
+              // TODO Returns a dummy for now.
+              // But will be used in future to create a fulfilment when
+              // An order has not fulfilment created for it.
               return { type: 'DUMMY', payload: fulfilmentItems };
             })
           );
