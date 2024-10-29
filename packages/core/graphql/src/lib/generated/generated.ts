@@ -6070,6 +6070,11 @@ export type FulfillmentFragmentFragment = {
       } | null;
     } | null;
   } | null;
+  references?: Array<{
+    __typename?: 'IoRestorecommerceReferenceReference';
+    instanceType?: string | null;
+    instanceId?: string | null;
+  }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -7410,6 +7415,11 @@ export type FulfillmentFulfillmentMutateMutation = {
                   } | null;
                 } | null;
               } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceType?: string | null;
+                instanceId?: string | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -7565,6 +7575,11 @@ export type FulfillmentFulfillmentReadQuery = {
                   } | null;
                 } | null;
               } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceType?: string | null;
+                instanceId?: string | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -7695,6 +7710,11 @@ export type FulfillmentFulfillmentSubmitMutation = {
                   } | null;
                 } | null;
               } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceType?: string | null;
+                instanceId?: string | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -10840,6 +10860,10 @@ export const FulfillmentFragmentFragmentDoc = gql`
       invoiceNumber
       exportDescription
       exportType
+    }
+    references {
+      instanceType
+      instanceId
     }
     fulfillmentState
     meta {

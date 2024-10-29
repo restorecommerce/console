@@ -70,6 +70,10 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
     exportDescription
     exportType
   }
+  references {
+    instanceType
+    instanceId
+  }
   fulfillmentState
   meta {
     ...MetaFragment

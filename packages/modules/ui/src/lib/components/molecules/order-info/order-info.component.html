@@ -16,7 +16,7 @@
   </div>
   <ul class="data-list-body no-border">
     <li class="row data-list-item justify-between">
-      <div class="flex text">Order number:</div>
+      <div class="flex text">Customer order number:</div>
       <div class="flex text align-right rc-lv-label">
         <ng-container *ngIf="order.customerOrderNr; else naTemplate">{{
           order.customerOrderNr
@@ -24,11 +24,14 @@
       </div>
     </li>
 
+    <!-- TODO is this a commercial or private or governmental customer??
+    A giant view of some sort.
+    -->
     <li class="row data-list-item justify-between">
       <div class="flex text">Customer:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="customer; else naTemplate">{{
-          customer.firstName + ' ' + customer.lastName
+        <ng-container *ngIf="order.customerId; else naTemplate">{{
+          order.customerId
         }}</ng-container>
       </div>
     </li>
