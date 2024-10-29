@@ -1,0 +1,18 @@
+<div class="row justify-content-between">
+  <div>
+    <p>
+      {{ fulfillment.meta.created | date : 'mediumDate' }}
+    </p>
+  </div>
+  <div>
+    <p
+      [ngClass]="
+        'badge-' +
+        fulfillment.fulfillmentState?.replace('_', '-')?.toLowerCase()
+      "
+      class="m-0 badge"
+    >
+      {{ fulfillment.fulfillmentState?.replace('_', ' ') }}
+    </p>
+  </div>
+</div>

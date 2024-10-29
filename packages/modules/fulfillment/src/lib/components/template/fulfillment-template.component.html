@@ -32,16 +32,7 @@
           [routerLink]="feature.links.view(item.id)"
           role="option"
         >
-          <!-- TODO There should should be a pipe to make this string transformation. -->
-          <rc-data-list-key-value
-            [key]="'Date'"
-            [value]="(item.meta.created | date : 'mediumDate') + ''"
-          />
-
-          <rc-data-list-key-value
-            [key]="'Status'"
-            [value]="item.fulfillmentState + ''"
-          />
+          <rc-data-list-fulfilment [fulfillment]="item" />
         </rc-data-list-item>
       </rc-data-list>
     </ng-container>

@@ -90,6 +90,7 @@ import {
   RcOrderViewComponent,
   RcProductViewComponent,
   JSONEditorComponent,
+  RcDataListFulfilmentComponent,
 } from './components/organisms';
 import {
   RcPageConfirmPasswordComponent,
@@ -210,6 +211,7 @@ const organisms = [
   RcOrderViewComponent,
   RcProductViewComponent,
   JSONEditorComponent,
+  RcDataListFulfilmentComponent,
 ];
 
 const pages = [
