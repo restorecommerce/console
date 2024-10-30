@@ -29,8 +29,12 @@
   priority="auto"
 />
 <p class="mt-2">
-  <strong>Price:</strong> {{ item.unitPrice?.currency || 'EUR' }}
-  {{ item.unitPrice?.regularPrice }}
+  <strong>Price:</strong>
+  {{
+    item.unitPrice?.regularPrice
+      | currency
+        : (item.unitPrice?.currencyId ? item.unitPrice?.currencyId + '' : 'EUR')
+  }}
 </p>
 
 <ng-template

@@ -6288,6 +6288,7 @@ export type OrderFragmentFragment = {
     } | null;
     unitPrice?: {
       __typename?: 'IoRestorecommercePricePrice';
+      currencyId?: string | null;
       regularPrice?: number | null;
       sale?: boolean | null;
       salePrice?: number | null;
@@ -9408,6 +9409,7 @@ export type OrderingOrderMutateMutation = {
                 } | null;
                 unitPrice?: {
                   __typename?: 'IoRestorecommercePricePrice';
+                  currencyId?: string | null;
                   regularPrice?: number | null;
                   sale?: boolean | null;
                   salePrice?: number | null;
@@ -10124,6 +10126,7 @@ export type OrderingOrderReadQuery = {
                 } | null;
                 unitPrice?: {
                   __typename?: 'IoRestorecommercePricePrice';
+                  currencyId?: string | null;
                   regularPrice?: number | null;
                   sale?: boolean | null;
                   salePrice?: number | null;
@@ -11127,6 +11130,7 @@ export const OrderFragmentFragmentDoc = gql`
         ...ProductFragment
       }
       unitPrice {
+        currencyId
         currency {
           name
           symbol

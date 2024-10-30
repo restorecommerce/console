@@ -17,6 +17,7 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
       ...ProductFragment
     }
     unitPrice {
+      currencyId
       currency {
         name
         symbol
