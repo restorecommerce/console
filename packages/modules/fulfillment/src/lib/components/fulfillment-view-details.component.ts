@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { ROUTER } from '@console-core/config';
 import { IFulfillment } from '@console-core/types';
 
 @Component({
@@ -9,4 +10,6 @@ import { IFulfillment } from '@console-core/types';
 })
 export class FulfillmentViewDetailsComponent {
   @Input({ required: true }) fulfillment!: IFulfillment;
+
+  orderRouter = ROUTER.pages.main.children.orders.children;
 }
