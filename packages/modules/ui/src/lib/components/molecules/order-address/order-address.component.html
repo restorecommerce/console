@@ -141,7 +141,7 @@
               ' ' +
               rcOrderAddress?.address?.residentialAddress?.givenName +
               ' ' +
-              rcOrderAddress?.address?.residentialAddress?.midName +
+              (rcOrderAddress?.address?.residentialAddress?.midName || '') +
               ' ' +
               rcOrderAddress?.address?.residentialAddress?.familyName
           }}</ng-container
