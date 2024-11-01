@@ -12,4 +12,5 @@ export class FulfillmentViewDetailsComponent {
   @Input({ required: true }) fulfillment!: IFulfillment;
 
   orderRouter = ROUTER.pages.main.children.orders.children;
+  productRouter = ROUTER.pages.main.children.products.children;
 }
