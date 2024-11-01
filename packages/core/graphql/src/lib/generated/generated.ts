@@ -6026,6 +6026,7 @@ export type FulfillmentFragmentFragment = {
         package?: {
           __typename?: 'IoRestorecommerceProductPackage';
           rotatable?: boolean | null;
+          weightInKg?: number | null;
           sizeInCm?: {
             __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
             height?: number | null;
@@ -6037,6 +6038,7 @@ export type FulfillmentFragmentFragment = {
       package?: {
         __typename?: 'IoRestorecommerceProductPackage';
         rotatable?: boolean | null;
+        weightInKg?: number | null;
         sizeInCm?: {
           __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
           height?: number | null;
@@ -7372,6 +7374,7 @@ export type FulfillmentFulfillmentMutateMutation = {
                     package?: {
                       __typename?: 'IoRestorecommerceProductPackage';
                       rotatable?: boolean | null;
+                      weightInKg?: number | null;
                       sizeInCm?: {
                         __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
                         height?: number | null;
@@ -7383,6 +7386,7 @@ export type FulfillmentFulfillmentMutateMutation = {
                   package?: {
                     __typename?: 'IoRestorecommerceProductPackage';
                     rotatable?: boolean | null;
+                    weightInKg?: number | null;
                     sizeInCm?: {
                       __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
                       height?: number | null;
@@ -7532,6 +7536,7 @@ export type FulfillmentFulfillmentReadQuery = {
                     package?: {
                       __typename?: 'IoRestorecommerceProductPackage';
                       rotatable?: boolean | null;
+                      weightInKg?: number | null;
                       sizeInCm?: {
                         __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
                         height?: number | null;
@@ -7543,6 +7548,7 @@ export type FulfillmentFulfillmentReadQuery = {
                   package?: {
                     __typename?: 'IoRestorecommerceProductPackage';
                     rotatable?: boolean | null;
+                    weightInKg?: number | null;
                     sizeInCm?: {
                       __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
                       height?: number | null;
@@ -7667,6 +7673,7 @@ export type FulfillmentFulfillmentSubmitMutation = {
                     package?: {
                       __typename?: 'IoRestorecommerceProductPackage';
                       rotatable?: boolean | null;
+                      weightInKg?: number | null;
                       sizeInCm?: {
                         __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
                         height?: number | null;
@@ -7678,6 +7685,7 @@ export type FulfillmentFulfillmentSubmitMutation = {
                   package?: {
                     __typename?: 'IoRestorecommerceProductPackage';
                     rotatable?: boolean | null;
+                    weightInKg?: number | null;
                     sizeInCm?: {
                       __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
                       height?: number | null;
@@ -10829,6 +10837,7 @@ export const FulfillmentFragmentFragmentDoc = gql`
               width
               length
             }
+            weightInKg
           }
         }
         package {
@@ -10838,6 +10847,7 @@ export const FulfillmentFragmentFragmentDoc = gql`
             width
             length
           }
+          weightInKg
         }
       }
       sender {

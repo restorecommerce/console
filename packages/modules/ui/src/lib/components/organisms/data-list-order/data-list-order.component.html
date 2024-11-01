@@ -10,7 +10,12 @@
       priority="auto"
     />
 
-    <div>{{ numberOfItems }} {{ numberOfItems > 1 ? 'Items' : 'Item' }}</div>
+    <div>
+      <vcl-badge>
+        {{ numberOfItems }}
+        {{ numberOfItems > 1 ? 'Items' : 'Item' }}</vcl-badge
+      >
+    </div>
   </div>
   <div class="flex">
     <div class="row">

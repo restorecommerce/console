@@ -30,6 +30,7 @@ import {
   VCLPanelModule,
   VCLCheckboxModule,
   VCLButtonGroupModule,
+  VCLBadgeModule,
 } from '@vcl/ng-vcl';
 
 import {
@@ -149,6 +150,7 @@ const modules = [
   VCLCheckboxModule,
   VCLPanelModule,
   VCLButtonGroupModule,
+  VCLBadgeModule,
 ];
 
 const atoms = [

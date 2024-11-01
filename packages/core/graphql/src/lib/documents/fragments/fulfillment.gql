@@ -35,6 +35,7 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
             width
             length
           }
+          weightInKg
         }
       }
       package {
@@ -44,6 +45,7 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
           width
           length
         }
+        weightInKg
       }
     }
     sender {
