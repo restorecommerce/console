@@ -7,6 +7,12 @@
   </vcl-data-list-header>
 
   @for (item of items; track item.id) {
-  <vcl-data-list-item [value]="item.id">{{ 'Item name' }}</vcl-data-list-item>
+  <vcl-data-list-item [value]="item.id">
+    <ng-container
+      *ngIf="itemTemplate"
+      [ngTemplateOutlet]="itemTemplate"
+      [ngTemplateOutletContext]="{ item }"
+    ></ng-container>
+  </vcl-data-list-item>
   }
 </vcl-data-list>

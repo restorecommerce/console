@@ -13,8 +13,6 @@ import { IFulfillment } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListFulfilmentComponent {
-  @HostBinding('class.data-list-fulfilment')
-  _hostClasses = true;
-
+  @HostBinding('class') klass = 'col';
   @Input({ required: true }) fulfillment!: IFulfillment;
 }
