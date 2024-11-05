@@ -9,6 +9,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
+/// TODO Remove this bullshit. Replace with ng-vcl.
 @Component({
   selector: 'rc-data-list-item',
   template: `<ng-content />`,

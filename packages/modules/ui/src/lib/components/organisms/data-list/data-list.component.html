@@ -1,9 +1,12 @@
-<header class="data-list-header">
-  <ng-content select="rc-header" />
-</header>
-<div
-  #scroller
-  class="data-list-body no-border"
+<vcl-data-list
+  [noBorder]="true"
+  class="h-100p"
 >
-  <ng-content />
-</div>
+  <vcl-data-list-header>
+    <ng-content select="rc-header" />
+  </vcl-data-list-header>
+
+  @for (item of items; track item.id) {
+  <vcl-data-list-item [value]="item.id">{{ 'Item name' }}</vcl-data-list-item>
+  }
+</vcl-data-list>

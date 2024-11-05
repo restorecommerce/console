@@ -24,7 +24,7 @@
 
   <ng-container rc-crud-data-list>
     <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
-      <rc-data-list class="mb-4 pb-2">
+      <rc-data-list [items]="vm.dataList">
         <rc-data-list-item
           *ngFor="let item of vm.dataList; trackBy: trackByFn"
           (click)="triggerSelectId.next(vm.selectedFulfillmentId)"

@@ -49,7 +49,6 @@ export class FulfillmentFacade {
       fulfillmentActions.fulfillmentRemoveRequest({ payload })
     );
 
-  // TODO Submit a fulfilment.
   submit = (payload: { id: string }) =>
     this.store.dispatch(
       fulfillmentActions.fulfillmentSubmitRequest({ payload })

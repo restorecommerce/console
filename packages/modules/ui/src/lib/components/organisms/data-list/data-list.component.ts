@@ -1,24 +1,18 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'rc-data-list',
   templateUrl: 'data-list.component.html',
-  styles: [
-    `
-      .vclDataListHeader:empty {
-        display: none;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcDataListComponent {
-  @HostBinding('class.data-list')
-  @HostBinding('class.rc-data-list')
-  @HostBinding('class.item-selectability')
-  @HostBinding('class.item-hover-highlight')
-  @HostBinding('class.no-border')
-  @HostBinding('class.scrollable')
-  @HostBinding('class.y')
-  _hostClasses = true;
+export class RcDataListComponent<T extends { id: string }> {
+  @HostBinding('class')
+  _hostClasses = 'col h-100p';
+
+  @Input() items: T[] = [];
 }
