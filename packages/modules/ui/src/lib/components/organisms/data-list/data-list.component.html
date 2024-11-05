@@ -1,6 +1,7 @@
 <vcl-data-list
   [noBorder]="true"
   class="h-100p"
+  (valueChange)="onChange($event)"
 >
   <vcl-data-list-header>
     <ng-content select="rc-header" />

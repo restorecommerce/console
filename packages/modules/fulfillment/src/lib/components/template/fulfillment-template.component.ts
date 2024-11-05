@@ -151,4 +151,8 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
   trackByFn(_: number, item: IFulfillment) {
     return item.id;
   }
+
+  onFulfilmentSelected(value: string) {
+    this.triggerSelectId.next(value);
+  }
 }
