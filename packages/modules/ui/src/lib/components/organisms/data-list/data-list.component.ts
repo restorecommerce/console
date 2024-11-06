@@ -14,6 +14,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcDataListComponent<T extends { id: string }> {
+  @Input() items: T[] = [];
+  @Input() itemTemplate!: TemplateRef<{ item: T }>;
+  @Input() selected: string | null | undefined;
+
   @Output() itemSelected = new EventEmitter<string>();
 
   @HostBinding('class')
@@ -22,10 +26,8 @@ export class RcDataListComponent<T extends { id: string }> {
   // Selected item to be highlighted on the vcl-list...
   //
 
-  @Input() items: T[] = [];
-  @Input() itemTemplate!: TemplateRef<{ item: T }>;
-
-  onChange(value: string) {
+  onDataListChange(value: string) {
+    console.log('**Something must have emmited here!');
     this.itemSelected.next(value);
   }
 }

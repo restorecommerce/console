@@ -1,7 +1,8 @@
 <vcl-data-list
+  [value]="selected"
   [noBorder]="true"
   class="h-100p"
-  (valueChange)="onChange($event)"
+  (valueChange)="onDataListChange($event)"
 >
   <vcl-data-list-header>
     <ng-content select="rc-header" />

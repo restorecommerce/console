@@ -27,6 +27,7 @@
       <rc-data-list
         [itemTemplate]="itemTemplate"
         [items]="vm.dataList"
+        [selected]="vm.selectedFulfillmentId"
         (itemSelected)="onFulfilmentSelected($event)"
       />
     </ng-container>
