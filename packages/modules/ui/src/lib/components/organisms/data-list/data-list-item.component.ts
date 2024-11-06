@@ -9,18 +9,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
-/// TODO Remove this bullshit. Replace with ng-vcl.
-@Component({
-  selector: 'rc-data-list-item',
-  template: `<ng-content />`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class RcDataListItemComponent {
-  @HostBinding('class.data-list-item')
-  @HostBinding('class.col')
-  _hostClasses = true;
-}
-
 @Component({
   selector: 'rc-data-list-label',
   template: `<ng-content />`,
