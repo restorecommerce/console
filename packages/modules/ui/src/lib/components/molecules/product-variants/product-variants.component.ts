@@ -22,4 +22,12 @@ export class RcProductVariantsComponent {
     new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
 
   @Output() deleteVariant = new EventEmitter<string>();
+
+  get variantsWithoutBaseVariant() {
+    return this.variants.slice(1);
+  }
+
+  get actualVariantLength() {
+    return this.variants.length - 1;
+  }
 }
