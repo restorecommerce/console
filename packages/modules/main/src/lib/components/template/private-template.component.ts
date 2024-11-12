@@ -8,7 +8,7 @@ import { SubSink } from 'subsink';
 
 import { NotifierService } from '@vcl/ng-vcl';
 
-import { AppFacade } from '@console-core/state';
+import { AppFacade, AuthnFacade } from '@console-core/state';
 
 import { Notifier } from '../../utils';
 
@@ -31,14 +31,26 @@ export class PrivateTemplateComponent
 
   constructor(
     private readonly notifier: NotifierService,
-    private readonly appFacade: AppFacade
+    private readonly appFacade: AppFacade,
+    private readonly authFacade: AuthnFacade
   ) {
     super(notifier);
     this.handleNotifications(this.notifications$);
   }
 
   ngOnInit(): void {
-    this.subscriptions.sink = this.notifications$.subscribe();
+    this.subscriptions.add(this.notifications$.subscribe());
+    this.subscriptions.add(
+      this.authFacade.expiresIn$.subscribe((expiresIn) => {
+        // console.log("Expires in", expiresIn);
+        const expires = new Date(expiresIn as string);
+        const now = new Date();
+
+        if (now.getTime() > expires.getTime()) {
+          this.authFacade.signOut();
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
