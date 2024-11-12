@@ -31,12 +31,24 @@
       *ngIf="variant.price?.sale"
       class="sale"
     >
-      <strong>Sale:</strong> {{ variant.price?.currencyId || 'EUR' }}
-      {{ variant.price?.salePrice }}
+      <strong>Sale:</strong>
+      {{
+        variant.price?.salePrice
+          | currency
+            : (variant.price?.currencyId
+                ? variant.price?.currencyId + ''
+                : 'EUR')
+      }}
     </p>
     <p>
-      <strong>Price:</strong> {{ variant.price?.currencyId || 'EUR' }}
-      {{ variant.price?.regularPrice }}
+      <strong>Price:</strong>
+      {{
+        variant.price?.regularPrice
+          | currency
+            : (variant.price?.currencyId
+                ? variant.price?.currencyId + ''
+                : 'EUR')
+      }}
     </p>
   </div>
 </div>
