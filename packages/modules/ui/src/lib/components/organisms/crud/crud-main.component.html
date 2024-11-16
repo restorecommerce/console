@@ -93,49 +93,8 @@
                 </div>
 
                 <div class="loose-button-group">
-                  <!-- TODO: Move these buttons to the feature orders module -->
-                  <button
-                    *ngIf="
-                      isTriggerCreateInvoice &&
-                      [EUrlSegment.View].includes(urlSegment)
-                    "
-                    (click)="onCreateInvoice(id)"
-                    vcl-button
-                    rc-append
-                    class="square half-transparent button"
-                    title="Create Invoice"
-                  >
-                    <vcl-icon icon="mdi:invoice-plus-outline" />
-                  </button>
-
-                  <!-- TODO: Move these buttons to the feature orders module -->
-                  <!-- <button
-                    *ngIf="
-                      isTriggerCreateFulfillment &&
-                      [EUrlSegment.View].includes(urlSegment)
-                    "
-                    (click)="onCreateFulfillment(id)"
-                    vcl-button
-                    rc-append
-                    class="square half-transparent button"
-                    title="Create Fulfillment"
-                  >
-                    <vcl-icon icon="mdi:send-outline" />
-                  </button> -->
-
-                  <button
-                    *ngIf="
-                      isTriggerSubmitFulfillment &&
-                      [EUrlSegment.View].includes(urlSegment)
-                    "
-                    (click)="onSubmitFulfillment(id)"
-                    vcl-button
-                    rc-append
-                    class="square half-transparent button"
-                    title="Submit Fulfillment"
-                  >
-                    <vcl-icon icon="mdi:send-outline" />
-                  </button>
+                  <!-- Actions -->
+                  <ng-container *ngTemplateOutlet="crudActions" />
 
                   <button
                     vcl-button
@@ -236,5 +195,9 @@
 
   <ng-template #metaTemplate>
     <ng-content select="[rc-crud-meta]" />
+  </ng-template>
+
+  <ng-template #crudActions>
+    <ng-content select="[rc-crud-actions]" />
   </ng-template>
 </ng-container>
