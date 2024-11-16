@@ -170,4 +170,13 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
   trackByFn(_: number, item: IOrder) {
     return item.id;
   }
+
+  onCreateInvoice(id: string | null): void {
+    console.log('Creating Invoice....');
+    this.triggerCreateInvoice?.next(id);
+  }
+
+  onCreateFulfillment(_: string | null): void {
+    // this.triggerCreateFulfillment?.next(id);
+  }
 }

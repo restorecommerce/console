@@ -155,4 +155,8 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
   onFulfilmentSelected(value: string) {
     this.triggerSelectId.next(value);
   }
+
+  onSubmitFulfillment(id: string | null): void {
+    this.triggerSubmitFulfillment?.next(id);
+  }
 }

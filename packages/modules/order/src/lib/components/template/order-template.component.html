@@ -36,6 +36,7 @@
 
   <ng-container rc-crud-actions>
     <button
+      (click)="onCreateInvoice(vm.selectedOrderId)"
       vcl-button
       rc-append
       class="square half-transparent button"
@@ -45,6 +46,7 @@
     </button>
 
     <button
+      (click)="onCreateFulfillment(vm.selectedOrderId)"
       vcl-button
       rc-append
       class="square half-transparent button"

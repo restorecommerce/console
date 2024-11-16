@@ -95,18 +95,6 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
     this.triggerSelectId.next(id);
   }
 
-  onCreateInvoice(id: string | null): void {
-    this.triggerCreateInvoice?.next(id);
-  }
-
-  onCreateFulfillment(id: string | null): void {
-    this.triggerCreateFulfillment?.next(id);
-  }
-
-  onSubmitFulfillment(id: string | null): void {
-    this.triggerSubmitFulfillment?.next(id);
-  }
-
   onRemove(id: string | null): void {
     this.subscriptions.sink = this.alertService
       .open({
