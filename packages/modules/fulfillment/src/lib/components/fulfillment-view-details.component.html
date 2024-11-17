@@ -188,16 +188,41 @@
     <span class="my-2 rc-lv-l-heading">Total items size</span>
   </vcl-data-list-header>
 
-  <div>...</div>
-</vcl-data-list>
+  <div>
+    <div class="row justify-content-between align-items-center">
+      <span>Length</span>
+      <span
+        >{{
+      (fulfillment.packaging?.parcels?.[0]?.items || []) |
+      parcelTotalSize : 'length' }}
+        Cm</span
+      >
+    </div>
 
-<vcl-data-list
-  mode="none"
-  [noBorder]="true"
->
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">Total items weight</span>
-  </vcl-data-list-header>
+    <div class="row justify-content-between align-items-center">
+      <span>Width</span>
+      <span
+        >{{ (fulfillment.packaging?.parcels?.[0]?.items || []) |
+      parcelTotalSize : 'width' }}
+        Cm</span
+      >
+    </div>
 
-  <div>...</div>
+    <div class="row justify-content-between align-items-center">
+      <span>Height</span>
+      <span
+        >{{ (fulfillment.packaging?.parcels?.[0]?.items || []) |
+      parcelTotalSize : 'height' }}
+        Cm</span
+      >
+    </div>
+
+    <div class="row justify-content-between align-items-center">
+      <span>Weight</span>
+      <span
+        >{{ (fulfillment.packaging?.parcels?.[0]?.items || []) | parcelTotalWeight }}
+        Kg</span
+      >
+    </div>
+  </div>
 </vcl-data-list>
