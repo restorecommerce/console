@@ -3,7 +3,7 @@ fragment ShopFragment on IoRestorecommerceShopShop {
   shopNumber
   name
   description
-  domain
+  domains
   organization {
     ...OrganizationFragment
   }
