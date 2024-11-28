@@ -12,6 +12,30 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
     prototypeId
     taricCode
     physical {
+      templates {
+        id
+        name
+        description
+        # images {
+        #   id
+        #   index
+        #   filename
+        #   caption
+        #   contentType
+        #   height
+        #   width
+        #   url
+        # }
+        stockLevel
+        stockKeepingUnit
+        taxIds
+        price {
+          currencyId
+          regularPrice
+          sale
+          salePrice
+        }
+      }
       variants {
         id
         name
@@ -28,7 +52,7 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
         # }
         stockLevel
         stockKeepingUnit
-        # parentVariantId
+        parentVariantId
         taxIds
         price {
           currencyId

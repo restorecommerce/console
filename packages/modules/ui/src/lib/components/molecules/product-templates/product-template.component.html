@@ -1,0 +1,53 @@
+<div class="row align-items-center justify-content-between">
+  <h4>
+    {{ template.name || template.id }}
+  </h4>
+  <div #target>
+    <button
+      vcl-button
+      square
+      class="emphasized-transparent"
+      title="Options"
+      (click)="popover.open()"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-dots-vertical"
+      />
+    </button>
+  </div>
+</div>
+<ng-template
+  vclPopover
+  #popover="vclPopover"
+  [closeOnOffClick]="true"
+  [target]="target"
+  [positions]="[
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top'
+    }
+  ]"
+>
+  <div>
+    <vcl-button-group class="vertical">
+      <button
+        vcl-button
+        class="transparent"
+        (click)="editTemplate.emit(template); popover.close()"
+      >
+        Edit
+      </button>
+      <button
+        class="transparent"
+        vcl-button
+        [value]="2"
+        (click)="deleteTemplate.emit(template.id || ''); popover.close()"
+      >
+        Delete
+      </button>
+    </vcl-button-group>
+  </div>
+</ng-template>

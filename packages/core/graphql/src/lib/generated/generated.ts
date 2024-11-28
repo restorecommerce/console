@@ -5715,6 +5715,22 @@ export type CatalogProductMutateMutation = {
                 taricCode?: string | null;
                 physical?: {
                   __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                  templates?: Array<{
+                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    stockLevel?: number | null;
+                    stockKeepingUnit?: string | null;
+                    taxIds?: Array<string> | null;
+                    price?: {
+                      __typename?: 'IoRestorecommercePricePrice';
+                      currencyId?: string | null;
+                      regularPrice?: number | null;
+                      sale?: boolean | null;
+                      salePrice?: number | null;
+                    } | null;
+                  }> | null;
                   variants?: Array<{
                     __typename?: 'IoRestorecommerceProductPhysicalVariant';
                     id?: string | null;
@@ -5722,6 +5738,7 @@ export type CatalogProductMutateMutation = {
                     description?: string | null;
                     stockLevel?: number | null;
                     stockKeepingUnit?: string | null;
+                    parentVariantId?: string | null;
                     taxIds?: Array<string> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -5820,6 +5837,22 @@ export type CatalogProductReadQuery = {
                 taricCode?: string | null;
                 physical?: {
                   __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                  templates?: Array<{
+                    __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                    id?: string | null;
+                    name?: string | null;
+                    description?: string | null;
+                    stockLevel?: number | null;
+                    stockKeepingUnit?: string | null;
+                    taxIds?: Array<string> | null;
+                    price?: {
+                      __typename?: 'IoRestorecommercePricePrice';
+                      currencyId?: string | null;
+                      regularPrice?: number | null;
+                      sale?: boolean | null;
+                      salePrice?: number | null;
+                    } | null;
+                  }> | null;
                   variants?: Array<{
                     __typename?: 'IoRestorecommerceProductPhysicalVariant';
                     id?: string | null;
@@ -5827,6 +5860,7 @@ export type CatalogProductReadQuery = {
                     description?: string | null;
                     stockLevel?: number | null;
                     stockKeepingUnit?: string | null;
+                    parentVariantId?: string | null;
                     taxIds?: Array<string> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -6543,6 +6577,22 @@ export type OrderFragmentFragment = {
         taricCode?: string | null;
         physical?: {
           __typename?: 'IoRestorecommerceProductPhysicalProduct';
+          templates?: Array<{
+            __typename?: 'IoRestorecommerceProductPhysicalVariant';
+            id?: string | null;
+            name?: string | null;
+            description?: string | null;
+            stockLevel?: number | null;
+            stockKeepingUnit?: string | null;
+            taxIds?: Array<string> | null;
+            price?: {
+              __typename?: 'IoRestorecommercePricePrice';
+              currencyId?: string | null;
+              regularPrice?: number | null;
+              sale?: boolean | null;
+              salePrice?: number | null;
+            } | null;
+          }> | null;
           variants?: Array<{
             __typename?: 'IoRestorecommerceProductPhysicalVariant';
             id?: string | null;
@@ -6550,6 +6600,7 @@ export type OrderFragmentFragment = {
             description?: string | null;
             stockLevel?: number | null;
             stockKeepingUnit?: string | null;
+            parentVariantId?: string | null;
             taxIds?: Array<string> | null;
             price?: {
               __typename?: 'IoRestorecommercePricePrice';
@@ -7273,6 +7324,22 @@ export type ProductFragmentFragment = {
     taricCode?: string | null;
     physical?: {
       __typename?: 'IoRestorecommerceProductPhysicalProduct';
+      templates?: Array<{
+        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+        id?: string | null;
+        name?: string | null;
+        description?: string | null;
+        stockLevel?: number | null;
+        stockKeepingUnit?: string | null;
+        taxIds?: Array<string> | null;
+        price?: {
+          __typename?: 'IoRestorecommercePricePrice';
+          currencyId?: string | null;
+          regularPrice?: number | null;
+          sale?: boolean | null;
+          salePrice?: number | null;
+        } | null;
+      }> | null;
       variants?: Array<{
         __typename?: 'IoRestorecommerceProductPhysicalVariant';
         id?: string | null;
@@ -7280,6 +7347,7 @@ export type ProductFragmentFragment = {
         description?: string | null;
         stockLevel?: number | null;
         stockKeepingUnit?: string | null;
+        parentVariantId?: string | null;
         taxIds?: Array<string> | null;
         price?: {
           __typename?: 'IoRestorecommercePricePrice';
@@ -9670,6 +9738,22 @@ export type OrderingOrderMutateMutation = {
                     taricCode?: string | null;
                     physical?: {
                       __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                      templates?: Array<{
+                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        stockLevel?: number | null;
+                        stockKeepingUnit?: string | null;
+                        taxIds?: Array<string> | null;
+                        price?: {
+                          __typename?: 'IoRestorecommercePricePrice';
+                          currencyId?: string | null;
+                          regularPrice?: number | null;
+                          sale?: boolean | null;
+                          salePrice?: number | null;
+                        } | null;
+                      }> | null;
                       variants?: Array<{
                         __typename?: 'IoRestorecommerceProductPhysicalVariant';
                         id?: string | null;
@@ -9677,6 +9761,7 @@ export type OrderingOrderMutateMutation = {
                         description?: string | null;
                         stockLevel?: number | null;
                         stockKeepingUnit?: string | null;
+                        parentVariantId?: string | null;
                         taxIds?: Array<string> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -10387,6 +10472,22 @@ export type OrderingOrderReadQuery = {
                     taricCode?: string | null;
                     physical?: {
                       __typename?: 'IoRestorecommerceProductPhysicalProduct';
+                      templates?: Array<{
+                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
+                        id?: string | null;
+                        name?: string | null;
+                        description?: string | null;
+                        stockLevel?: number | null;
+                        stockKeepingUnit?: string | null;
+                        taxIds?: Array<string> | null;
+                        price?: {
+                          __typename?: 'IoRestorecommercePricePrice';
+                          currencyId?: string | null;
+                          regularPrice?: number | null;
+                          sale?: boolean | null;
+                          salePrice?: number | null;
+                        } | null;
+                      }> | null;
                       variants?: Array<{
                         __typename?: 'IoRestorecommerceProductPhysicalVariant';
                         id?: string | null;
@@ -10394,6 +10495,7 @@ export type OrderingOrderReadQuery = {
                         description?: string | null;
                         stockLevel?: number | null;
                         stockKeepingUnit?: string | null;
+                        parentVariantId?: string | null;
                         taxIds?: Array<string> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -11250,12 +11352,27 @@ export const ProductFragmentFragmentDoc = gql`
       prototypeId
       taricCode
       physical {
+        templates {
+          id
+          name
+          description
+          stockLevel
+          stockKeepingUnit
+          taxIds
+          price {
+            currencyId
+            regularPrice
+            sale
+            salePrice
+          }
+        }
         variants {
           id
           name
           description
           stockLevel
           stockKeepingUnit
+          parentVariantId
           taxIds
           price {
             currencyId
