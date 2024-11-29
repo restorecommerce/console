@@ -50,5 +50,7 @@
       ],
       "cache": true
     }
-  }
+  },
+  "useInferencePlugins": false,
+  "useLegacyCache": true
 }

@@ -185,13 +185,18 @@
         "@ngrx/prefer-selector-in-select": "warn",
         "@ngrx/prefix-selectors-with-select": "warn",
         "@ngrx/select-style": "warn",
-        "@ngrx/use-consistent-global-store-name": "warn"
+        "@ngrx/use-consistent-global-store-name": "warn",
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
       }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
