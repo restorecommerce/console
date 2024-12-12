@@ -102,10 +102,7 @@ export class JssFormService {
               organizations,
               roleAssociationsScopingInstances:
                 this.userService.getRoleAssociationsScopingInstances(
-                  [
-                    ...(user?.roleAssociations ?? []),
-                    ...tempRoleAssociations,
-                  ] ?? [],
+                  [...(user?.roleAssociations || []), ...tempRoleAssociations],
                   rolesHash,
                   organizationsHash
                 ),
