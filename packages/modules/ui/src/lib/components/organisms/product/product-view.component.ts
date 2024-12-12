@@ -29,6 +29,7 @@ import {
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcProductViewComponent {
   @Input({ required: true }) product!: IoRestorecommerceProductProduct;

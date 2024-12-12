@@ -26,6 +26,7 @@ import { ICrudFeature, EUrlSegment, IFulfillment } from '@console-core/types';
   selector: 'app-module-fulfillment-template',
   templateUrl: './fulfillment-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

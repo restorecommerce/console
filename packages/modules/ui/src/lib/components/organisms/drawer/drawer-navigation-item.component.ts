@@ -42,6 +42,7 @@ import { RcDrawerNavigationComponent } from './drawer-navigation.component';
   ],
   templateUrl: 'drawer-navigation-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDrawerNavigationItemComponent
   implements OnInit, OnDestroy, NavigationItem

@@ -45,6 +45,7 @@ import { IRole } from '@console-core/types';
 
     <ng-template #naTemplate>N/A</ng-template>
   `,
+  standalone: false,
 })
 export class RoleDetailsComponent {
   @Input({ required: true }) vm!: {

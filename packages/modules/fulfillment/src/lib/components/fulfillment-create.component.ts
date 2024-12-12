@@ -20,6 +20,7 @@ import { buildFulfillmentSchema } from '../jss-forms';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FulfillmentCreateComponent {
   schema: VCLFormFieldSchemaRoot = buildFulfillmentSchema({});

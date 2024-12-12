@@ -8,5 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     </rc-page-home>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class HomeTemplateComponent {}

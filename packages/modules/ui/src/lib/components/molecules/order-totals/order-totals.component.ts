@@ -6,6 +6,7 @@ import { IoRestorecommerceAmountAmount } from '@console-core/graphql';
   selector: 'rc-order-totals',
   templateUrl: './order-totals.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcOrderTotalsComponent {
   @Input({ required: true })

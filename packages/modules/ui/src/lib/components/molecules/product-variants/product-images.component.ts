@@ -13,6 +13,7 @@ import { IIoRestorecommerceImageImage } from '@console-core/graphql';
   selector: 'rc-product-images',
   templateUrl: 'product-images.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcProductImagesComponent implements OnInit, OnDestroy {
   @Input({ required: true })

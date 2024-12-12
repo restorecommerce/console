@@ -11,6 +11,7 @@ import { IProduct } from '@console-core/types';
   selector: 'rc-data-list-product',
   templateUrl: 'data-list-product.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListProductComponent {
   @HostBinding('class.data-list-product')

@@ -20,6 +20,7 @@ import { IoRestorecommerceOrderItem } from '@console-core/graphql';
       }
     `,
   ],
+  standalone: false,
 })
 export class RcOrderItemComponent {
   @HostBinding('class') classNames = 'order-item';

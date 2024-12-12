@@ -20,6 +20,7 @@ import {
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class IamViewComponent implements OnInit {
   readonly vm$ = combineLatest({

@@ -13,6 +13,7 @@ dayjs.extend(relativeTime);
   selector: 'rc-data-list-label',
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListLabelComponent {
   @HostBinding('class.data-list-label')
@@ -23,6 +24,7 @@ export class RcDataListLabelComponent {
   selector: 'rc-data-list-sublabel',
   template: ` <ng-content /> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListSublabelComponent {
   @HostBinding('class.data-list-sublabel')
@@ -36,6 +38,7 @@ export class RcDataListSublabelComponent {
     <span class="secondary-v"> {{ value }}</span>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListKeyValueComponent {
   @HostBinding('class.data-list-key-value')
@@ -52,6 +55,7 @@ export class RcDataListKeyValueComponent {
     <span class="secondary-v"> [{{ value }}]</span>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListKeyValueWithBracketsComponent {
   @HostBinding('class.data-list-key-value')

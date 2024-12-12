@@ -7,6 +7,7 @@ import { IFulfillment } from '@console-core/types';
   selector: 'app-module-fulfillment-view-details',
   templateUrl: './fulfillment-view-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FulfillmentViewDetailsComponent {
   @Input({ required: true }) fulfillment!: IFulfillment;

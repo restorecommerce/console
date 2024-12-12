@@ -15,6 +15,7 @@ import { IUser } from '@console-core/types';
   selector: 'rc-account-account-deletion',
   templateUrl: './account-deletion.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcAccountDeletionComponent implements OnDestroy {
   @Input({ required: true })

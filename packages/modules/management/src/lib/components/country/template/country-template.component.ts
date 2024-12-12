@@ -26,6 +26,7 @@ import { ICrudFeature, EUrlSegment, ICountry } from '@console-core/types';
   selector: 'app-module-management-country-template',
   templateUrl: './country-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CountryTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

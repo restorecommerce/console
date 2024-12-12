@@ -68,6 +68,7 @@ import { AccountFacade } from '@console-core/state';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AccountComponent implements OnInit {
   ROUTER = ROUTER;

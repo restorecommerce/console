@@ -9,6 +9,7 @@ import { IUser } from '@console-core/types';
 @Component({
   selector: 'rc-account-confirm-email',
   templateUrl: 'account-confirm-email.component.html',
+  standalone: false,
 })
 export class RcAccountConfirmEmailComponent {
   @Input({ required: true })

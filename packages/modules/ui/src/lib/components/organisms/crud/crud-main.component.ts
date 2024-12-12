@@ -18,6 +18,7 @@ import { EUrlSegment, ICrudFeature } from '@console-core/types';
   selector: 'rc-crud-main',
   templateUrl: './crud-main.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input({ required: true }) feature!: ICrudFeature;

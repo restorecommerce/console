@@ -6,6 +6,7 @@ import { ROUTER } from '@console-core/config';
   selector: 'rc-page-authn-sign-in',
   templateUrl: 'page-sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcPageSignInComponent {
   ROUTER = ROUTER;

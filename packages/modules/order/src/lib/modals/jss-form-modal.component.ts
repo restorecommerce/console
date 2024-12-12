@@ -34,6 +34,7 @@ import { transformOrderToInput } from '../utils';
     </vcl-panel-dialog>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class JSSFormModalComponent {
   @ViewChild('form')

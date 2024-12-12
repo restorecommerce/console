@@ -11,6 +11,7 @@ import { AuthnFacade, RouterFacade } from '@console-core/state';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ActivationComponent {
   readonly handleActivation$ = this.routerFacade.params$.pipe(

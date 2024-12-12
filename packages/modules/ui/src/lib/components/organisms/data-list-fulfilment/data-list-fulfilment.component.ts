@@ -11,6 +11,7 @@ import { IFulfillment } from '@console-core/types';
   selector: 'rc-data-list-fulfilment',
   templateUrl: './data-list-fulfilment.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListFulfilmentComponent {
   @HostBinding('class') klass = 'col';

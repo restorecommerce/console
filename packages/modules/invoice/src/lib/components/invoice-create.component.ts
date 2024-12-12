@@ -20,6 +20,7 @@ import { buildInvoiceSchema } from '../jss-forms';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class InvoiceCreateComponent {
   schema: VCLFormFieldSchemaRoot = buildInvoiceSchema({});

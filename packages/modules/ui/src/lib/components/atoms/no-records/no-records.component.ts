@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcNoRecordsComponent {
   @Input() message = 'No records found!';

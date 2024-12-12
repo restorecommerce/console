@@ -12,6 +12,7 @@ import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql'
   selector: 'rc-product-templates',
   templateUrl: './product-templates.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcProductTemplatesComponent {
   @Input({ required: true })

@@ -26,6 +26,7 @@ import { ICrudFeature, EUrlSegment, IRole } from '@console-core/types';
   selector: 'app-module-management-role-template',
   templateUrl: './role-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RoleTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

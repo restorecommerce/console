@@ -15,6 +15,7 @@ import { NavigationStateService } from './drawer-navigation-state.service';
   templateUrl: 'drawer-navigation.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [NavigationStateService],
+  standalone: false,
 })
 export class RcDrawerNavigationComponent {
   constructor(

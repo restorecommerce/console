@@ -15,6 +15,7 @@ import { AccountFacade, OrganizationFacade } from '@console-core/state';
   selector: 'rc-header-toolbar',
   templateUrl: './header-toolbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcHeaderToolbarComponent implements OnInit {
   ROUTER = ROUTER;

@@ -67,6 +67,7 @@ import { IBreadcrumb } from '@console-core/types';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   title = '';

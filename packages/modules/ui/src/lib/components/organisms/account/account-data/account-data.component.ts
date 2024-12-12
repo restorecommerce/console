@@ -14,6 +14,7 @@ import { ENotificationTypes, IUser } from '@console-core/types';
   selector: 'rc-account-account-data',
   templateUrl: './account-data.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcAccountDataComponent {
   @Input({ required: true })

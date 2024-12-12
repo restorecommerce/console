@@ -23,8 +23,8 @@ import {
 } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
-import { ProductVariantEditComponent } from './product-variant-modal.component';
 import { ProductTemplateEditComponent } from './product-template-modal.component';
+import { ProductVariantEditComponent } from './product-variant-modal.component';
 
 @Component({
   selector: 'app-module-product-view',
@@ -42,6 +42,7 @@ import { ProductTemplateEditComponent } from './product-template-modal.component
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductViewComponent implements OnInit, OnDestroy {
   addVariantLayer!: LayerRef;
@@ -187,9 +188,10 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onEditTemplate(
-    variantId: IIoRestorecommerceProductPhysicalVariant,
-    product: IProduct
-  ) {}
-  onDeleteTemplate(variantId: string, product: IProduct) {}
+  onEditTemplate(__: IIoRestorecommerceProductPhysicalVariant, _: IProduct) {
+    // TODO
+  }
+  onDeleteTemplate(_variantId: string, _product: IProduct) {
+    // TODO
+  }
 }

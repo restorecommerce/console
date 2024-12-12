@@ -28,6 +28,7 @@ import { buildProductSchema } from '../jss-forms';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductEditComponent {
   schema!: VCLFormFieldSchemaRoot;

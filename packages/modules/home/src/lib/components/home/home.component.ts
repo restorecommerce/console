@@ -7,6 +7,7 @@ import { ROUTER } from '@console-core/config';
   selector: 'app-module-home-index',
   template: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class HomeComponent implements OnInit {
   constructor(private readonly router: Router) {}

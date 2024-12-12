@@ -10,6 +10,7 @@ import {
   templateUrl: './header-navigation-item.component.html',
   exportAs: 'rcHeaderNavigationItem',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcHeaderNavigationItemComponent {
   @HostBinding('class.navigation-item')

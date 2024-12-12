@@ -7,6 +7,7 @@ import { AuthnFacade } from '@console-core/state';
 @Component({
   selector: 'rc-authn-sign-in',
   templateUrl: 'sign-in.component.html',
+  standalone: false,
 })
 export class RcSignInComponent {
   ROUTER = ROUTER;

@@ -20,6 +20,7 @@ import { Notifier } from '../../utils';
     </rc-private-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PrivateTemplateComponent
   extends Notifier

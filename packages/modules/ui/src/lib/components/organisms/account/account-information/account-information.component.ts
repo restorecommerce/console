@@ -11,6 +11,7 @@ import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
   selector: 'rc-account-account-information',
   templateUrl: './account-information.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcAccountInformationComponent {
   @Input({ required: true })

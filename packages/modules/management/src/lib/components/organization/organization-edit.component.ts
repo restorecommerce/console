@@ -27,6 +27,7 @@ import { JssFormService } from './services';
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrganizationEditComponent implements OnDestroy {
   update = this.organizationFacade.update;

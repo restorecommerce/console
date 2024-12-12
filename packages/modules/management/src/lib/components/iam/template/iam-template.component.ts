@@ -32,6 +32,7 @@ import { ICrudFeature, EUrlSegment, IUser, IRole } from '@console-core/types';
   selector: 'app-module-management-iam-template',
   templateUrl: './iam-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class IamTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

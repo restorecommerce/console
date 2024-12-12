@@ -26,6 +26,7 @@ import { ICrudFeature, EUrlSegment, IInvoice } from '@console-core/types';
   selector: 'app-module-invoice-template',
   templateUrl: './invoice-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class InvoiceTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

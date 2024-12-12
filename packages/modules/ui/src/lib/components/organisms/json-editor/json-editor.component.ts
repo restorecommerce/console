@@ -13,6 +13,7 @@ import 'ace-builds/src-noconflict/theme-github_light_default';
 @Component({
   selector: 'rc-json-editor',
   templateUrl: './json-editor.component.html',
+  standalone: false,
 })
 export class JSONEditorComponent implements AfterViewInit, OnDestroy {
   @HostBinding('class') classNames = 'col w-100p';

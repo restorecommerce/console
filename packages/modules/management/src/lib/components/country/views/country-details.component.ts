@@ -35,6 +35,7 @@ import { ICountry } from '@console-core/types';
       </ul>
     </div>
   `,
+  standalone: false,
 })
 export class CountryDetailsComponent {
   @Input({ required: true }) vm!: {

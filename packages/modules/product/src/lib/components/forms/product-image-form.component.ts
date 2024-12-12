@@ -60,6 +60,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   `,
   selector: 'app-module-product-image-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductImageFormComponent {
   @HostBinding('class') className = 'w-100p';

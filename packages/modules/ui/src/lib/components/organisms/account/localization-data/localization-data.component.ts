@@ -15,6 +15,7 @@ import { IUser } from '@console-core/types';
   selector: 'rc-account-localization-data',
   templateUrl: './localization-data.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcLocalizationDataComponent {
   @Input({ required: true })

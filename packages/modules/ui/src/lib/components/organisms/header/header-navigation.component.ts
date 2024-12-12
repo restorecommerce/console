@@ -5,6 +5,7 @@ import { Component, HostBinding, ChangeDetectionStrategy } from '@angular/core';
   exportAs: 'rcHeaderNavigation',
   templateUrl: './header-navigation.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcHeaderNavigationComponent {
   @HostBinding('class.navigation')

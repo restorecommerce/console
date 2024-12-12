@@ -11,6 +11,7 @@ import { APP } from '@console-core/config';
   selector: 'rc-banner',
   templateUrl: 'banner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcBannerComponent {
   APP = APP;

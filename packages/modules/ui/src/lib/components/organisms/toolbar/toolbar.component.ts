@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   selector: 'rc-toolbar',
   templateUrl: 'toolbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcToolbarComponent {
   @HostBinding('class.row')

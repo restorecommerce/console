@@ -11,6 +11,7 @@ import { ROUTER } from '@console-core/config';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ManagementComponent implements OnInit {
   constructor(private readonly router: Router) {}

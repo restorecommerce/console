@@ -7,6 +7,7 @@ import { IMeta } from '@console-core/types';
   selector: 'rc-meta',
   templateUrl: 'meta.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcMetaComponent {
   @Input({ required: true })

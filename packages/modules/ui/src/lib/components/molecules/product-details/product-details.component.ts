@@ -6,6 +6,7 @@ import { IoRestorecommerceProductIndividualProduct } from '@console-core/graphql
   selector: 'rc-product-details',
   templateUrl: './product-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcProductDetailsComponent {
   @Input({ required: true })

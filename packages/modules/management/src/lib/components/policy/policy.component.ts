@@ -16,6 +16,7 @@ import { map } from 'rxjs/operators';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PolicyComponent {
   id$ = this.route.params.pipe(map((params) => params['id']));

@@ -18,6 +18,7 @@ import { EAddressType, IOrder } from '@console-core/types';
   selector: 'rc-order-view',
   templateUrl: './order-view.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcOrderViewComponent implements OnInit {
   @Input({ required: true }) order!: IOrder;

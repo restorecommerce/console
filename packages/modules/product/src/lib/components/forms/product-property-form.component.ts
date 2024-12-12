@@ -25,6 +25,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   `,
   selector: 'app-module-product-props-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductPropertyFormComponent {
   @HostBinding('class') className = 'w-100p';

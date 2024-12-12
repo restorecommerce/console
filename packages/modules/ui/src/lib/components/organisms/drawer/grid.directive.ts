@@ -3,6 +3,7 @@ import { HostBinding, Directive } from '@angular/core';
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'rc-grid-cell-sidebar',
+  standalone: false,
 })
 export class RcGridCellSidebarDirective {
   @HostBinding('class.layout-grid-cell')

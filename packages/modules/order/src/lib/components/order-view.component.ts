@@ -53,6 +53,7 @@ import { transformOrderToInput } from '../utils';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderViewComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();

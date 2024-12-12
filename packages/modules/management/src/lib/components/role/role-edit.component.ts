@@ -27,6 +27,7 @@ import { JssFormService } from './services';
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RoleEditComponent implements OnDestroy {
   update = this.roleFacade.update;

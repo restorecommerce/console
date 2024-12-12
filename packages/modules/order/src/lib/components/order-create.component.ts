@@ -20,6 +20,7 @@ import { buildOrderSchema } from '../jss-forms';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderCreateComponent {
   schema: VCLFormFieldSchemaRoot = buildOrderSchema({});

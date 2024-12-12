@@ -19,6 +19,7 @@ import { buildConfirmEmailSchema } from '../../jss-forms';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ConfirmEmailComponent {
   confirmEmailFormSchema!: VCLFormFieldSchemaRoot;

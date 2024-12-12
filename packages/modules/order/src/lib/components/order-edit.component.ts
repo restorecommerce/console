@@ -58,6 +58,7 @@ import { transformOrderToInput } from '../utils';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderEditComponent {
   @HostBinding('class') classNames = 'col w-100p h-100p';

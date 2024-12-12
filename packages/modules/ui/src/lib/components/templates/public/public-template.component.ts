@@ -23,6 +23,7 @@ import { APP, ROUTER } from '@console-core/config';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcPublicTemplateComponent {
   APP = APP;

@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
       }
     `,
   ],
+  standalone: false,
 })
 export class RcHeaderComponent {
   @HostBinding('class.application-header')

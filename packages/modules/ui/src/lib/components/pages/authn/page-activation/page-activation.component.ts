@@ -10,6 +10,7 @@ import { AuthnFacade } from '@console-core/state';
   selector: 'rc-page-authn-activation',
   templateUrl: 'page-activation.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcPageActivationComponent {
   readonly vm$ = combineLatest({

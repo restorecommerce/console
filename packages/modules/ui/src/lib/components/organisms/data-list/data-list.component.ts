@@ -12,6 +12,7 @@ import {
   selector: 'rc-data-list',
   templateUrl: 'data-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListComponent<T extends { id: string }> {
   @Input() items: T[] = [];

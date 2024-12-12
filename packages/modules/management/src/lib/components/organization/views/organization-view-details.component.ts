@@ -67,6 +67,7 @@ import { IOrganization } from '@console-core/types';
     <ng-template #naTemplate>N/A</ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrganizationDetailsComponent implements OnInit, OnChanges {
   @Input({ required: true }) vm!: {

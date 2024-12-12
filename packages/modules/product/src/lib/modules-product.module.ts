@@ -10,11 +10,11 @@ import { ProductPropertyFormComponent } from './components/forms/product-propert
 import { ProductCreateComponent } from './components/product-create.component';
 import { ProductEditComponent } from './components/product-edit.component';
 import { ProductIndexComponent } from './components/product-index.component';
+import { ProductTemplateEditComponent } from './components/product-template-modal.component';
 import { ProductVariantEditComponent } from './components/product-variant-modal.component';
 import { ProductViewComponent } from './components/product-view.component';
 import { ProductTemplateComponent } from './components/template/product-template.component';
 import { modulesProductRoutes } from './lib.routes';
-import { ProductTemplateEditComponent } from './components/product-template-modal.component';
 
 @NgModule({
   declarations: [

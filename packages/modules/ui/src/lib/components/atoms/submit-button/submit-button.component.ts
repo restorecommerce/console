@@ -53,6 +53,7 @@ import { ROUTER } from '@console-core/config';
       }
     `,
   ],
+  standalone: false,
 })
 export class RcSubmitButtonComponent {
   ROUTER = ROUTER;

@@ -15,6 +15,7 @@ import { IUser } from '@console-core/types';
   selector: 'rc-account-personal-data',
   templateUrl: './personal-data.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcPersonalDataComponent {
   @Input({ required: true })

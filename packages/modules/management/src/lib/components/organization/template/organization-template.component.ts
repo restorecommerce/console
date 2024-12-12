@@ -26,6 +26,7 @@ import { ICrudFeature, EUrlSegment, IOrganization } from '@console-core/types';
   selector: 'app-module-management-organization-template',
   templateUrl: './organization-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrganizationTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

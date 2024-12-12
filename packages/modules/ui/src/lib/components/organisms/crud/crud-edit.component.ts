@@ -28,6 +28,7 @@ import { ModeType } from '@console-core/graphql';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcCrudEditComponent {
   @Input({ required: true })

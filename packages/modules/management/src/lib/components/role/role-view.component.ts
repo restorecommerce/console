@@ -18,6 +18,7 @@ import {
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RoleViewComponent implements OnInit {
   readonly vm$ = combineLatest({

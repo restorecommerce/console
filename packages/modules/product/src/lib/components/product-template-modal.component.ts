@@ -36,6 +36,7 @@ interface IProductVariantFormValue
     </vcl-jss-form>
   </vcl-panel-dialog>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductTemplateEditComponent {
   constructor(

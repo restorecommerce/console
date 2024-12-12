@@ -7,6 +7,7 @@ import { AuthnFacade } from '@console-core/state';
 @Component({
   selector: 'rc-authn-password-recovery',
   templateUrl: 'password-recovery.component.html',
+  standalone: false,
 })
 export class RcPasswordRecoveryComponent {
   ROUTER = ROUTER;

@@ -27,6 +27,7 @@ import { buildLocalizationDataSchema } from '../../jss-forms';
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PreferencesComponent implements OnInit {
   localizationFormSchema!: VCLFormFieldSchemaRoot;

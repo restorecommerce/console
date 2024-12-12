@@ -16,6 +16,7 @@ import {
   selector: 'rc-order-info',
   templateUrl: './order-info.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcOrderInfoComponent implements OnInit {
   @Input({ required: true })

@@ -138,6 +138,7 @@ import {
 
     <ng-template #naTemplate>N/A</ng-template>
   `,
+  standalone: false,
 })
 export class IamDetailsComponent implements OnInit, OnChanges {
   @Input({ required: true }) vm!: {

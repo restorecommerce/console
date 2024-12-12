@@ -5,6 +5,7 @@ import { IoRestorecommerceFulfillmentItem } from '@console-core/graphql';
 @Pipe({
   name: 'parcelTotalWeight',
   pure: true,
+  standalone: false,
 })
 export class ParcelsTotalWeightPipe implements PipeTransform {
   transform(parcels: IoRestorecommerceFulfillmentItem[]): number {

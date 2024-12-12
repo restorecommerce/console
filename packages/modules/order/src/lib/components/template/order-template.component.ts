@@ -26,6 +26,7 @@ import { ICrudFeature, EUrlSegment, IOrder } from '@console-core/types';
   selector: 'app-module-order-template',
   templateUrl: './order-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

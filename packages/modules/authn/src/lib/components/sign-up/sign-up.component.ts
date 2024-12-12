@@ -4,5 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-authn-sign-up',
   template: ` <rc-page-authn-sign-up /> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SignUpComponent {}

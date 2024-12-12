@@ -13,6 +13,7 @@ import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql'
   selector: 'rc-product-variant',
   templateUrl: './product-variant.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcProductVariantComponent {
   @HostBinding('class') className = 'w-100p';

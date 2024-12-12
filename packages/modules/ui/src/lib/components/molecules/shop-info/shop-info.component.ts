@@ -12,6 +12,7 @@ import { IoRestorecommerceShopShop } from '@console-core/graphql';
   selector: 'rc-shop-info',
   templateUrl: 'shop-info.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcShopInfoComponent {
   @Input({ required: true })

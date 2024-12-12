@@ -4,5 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-authn-template',
   template: ` <router-outlet /> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AuthnTemplateComponent {}

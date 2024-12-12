@@ -26,6 +26,7 @@ import { transformOrderToInput } from '../../utils';
   selector: 'app-order-item-form',
   templateUrl: './order-item-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderItemFormComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();

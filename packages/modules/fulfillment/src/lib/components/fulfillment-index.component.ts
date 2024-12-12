@@ -17,6 +17,7 @@ import {
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FulfillmentIndexComponent {
   readonly vm$ = combineLatest({

@@ -16,6 +16,7 @@ import { map } from 'rxjs/operators';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AddressComponent {
   id$ = this.route.params.pipe(map((params) => params['id']));

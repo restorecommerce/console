@@ -10,6 +10,7 @@ import { RcValidationService } from '../../../../services';
 @Component({
   selector: 'rc-authn-confirm-password',
   templateUrl: 'confirm-password.component.html',
+  standalone: false,
 })
 export class RcConfirmPasswordComponent {
   ROUTER = ROUTER;

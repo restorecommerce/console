@@ -36,6 +36,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   `,
   selector: 'app-module-product-package-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductPackageFormComponent {
   @HostBinding('class') className = 'w-100p';

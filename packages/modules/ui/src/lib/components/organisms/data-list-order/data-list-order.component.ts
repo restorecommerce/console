@@ -21,6 +21,7 @@ dayjs.extend(relativeTime);
   selector: 'rc-data-list-order',
   templateUrl: './data-list-order.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcDataListOrderComponent implements OnInit {
   @HostBinding('class.data-list-order')

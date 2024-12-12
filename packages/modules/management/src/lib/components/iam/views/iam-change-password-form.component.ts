@@ -97,6 +97,7 @@ import { IUser } from '@console-core/types';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class IamChangePasswordFormComponent {
   @Input({ required: true }) vm!: {

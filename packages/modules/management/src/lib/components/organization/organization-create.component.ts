@@ -19,6 +19,7 @@ import { JssFormService } from './services';
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrganizationCreateComponent implements OnDestroy {
   create = this.organizationFacade.create;

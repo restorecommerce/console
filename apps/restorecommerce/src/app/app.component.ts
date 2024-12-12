@@ -16,6 +16,7 @@ import { combineLatest } from 'rxjs';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent {
   readonly vm$ = combineLatest({

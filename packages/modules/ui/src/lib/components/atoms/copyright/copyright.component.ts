@@ -7,6 +7,7 @@ import { APP, ROUTER } from '@console-core/config';
   templateUrl: './copyright.component.html',
   styleUrls: ['./copyright.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcCopyrightComponent {
   APP = APP;

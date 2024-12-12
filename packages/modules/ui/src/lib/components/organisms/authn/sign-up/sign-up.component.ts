@@ -9,6 +9,7 @@ import { RcValidationService } from '../../../../services';
 @Component({
   selector: 'rc-authn-sign-up',
   templateUrl: 'sign-up.component.html',
+  standalone: false,
 })
 export class RcSignUpComponent {
   ROUTER = ROUTER;

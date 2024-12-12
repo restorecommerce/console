@@ -28,6 +28,7 @@ import { ICrudFeature, EUrlSegment, IProduct } from '@console-core/types';
   selector: 'app-module-product-template',
   templateUrl: './product-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;

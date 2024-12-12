@@ -11,6 +11,7 @@ import {
   selector: 'rc-searchbar',
   templateUrl: 'searchbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcSearchbarComponent {
   @HostBinding('class.rc-searchbar')

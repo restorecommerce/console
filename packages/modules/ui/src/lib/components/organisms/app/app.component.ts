@@ -9,6 +9,7 @@ import { RcDrawerService } from '../../../services';
 @Component({
   selector: 'rc-app',
   templateUrl: './app.component.html',
+  standalone: false,
 })
 export class RcAppComponent {
   APP = APP;

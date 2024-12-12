@@ -21,6 +21,7 @@ import { RcDrawerService } from '../../../services';
   selector: 'rc-private-template',
   templateUrl: './private-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
   APP = APP;

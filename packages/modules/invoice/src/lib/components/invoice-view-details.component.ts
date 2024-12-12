@@ -11,6 +11,7 @@ import { IInvoice } from '@console-core/types';
     >
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class InvoiceViewDetailsComponent {
   @Input({ required: true }) invoice!: IInvoice;

@@ -12,6 +12,7 @@ import { IoRestorecommerceOrderItem } from '@console-core/graphql';
   selector: 'rc-order-items',
   templateUrl: './order-items.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcOrderItemsComponent {
   @Input({ required: true })

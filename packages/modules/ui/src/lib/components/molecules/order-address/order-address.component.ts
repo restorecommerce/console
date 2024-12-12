@@ -16,6 +16,7 @@ import { EAddressType } from '@console-core/types';
   selector: 'rc-order-address',
   templateUrl: './order-address.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RcOrderAddressComponent {
   @Input({ required: true }) title!: string;
