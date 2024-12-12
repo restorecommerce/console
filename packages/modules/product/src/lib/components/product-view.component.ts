@@ -188,8 +188,19 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onEditTemplate(__: IIoRestorecommerceProductPhysicalVariant, _: IProduct) {
-    // TODO
+  onEditTemplate(
+    template: IIoRestorecommerceProductPhysicalVariant,
+    product: IProduct
+  ) {
+    this.subscriptions.sink = this.addTemplateLayer
+      .open({
+        data: {
+          title: `Edit product base template`,
+          product,
+          template,
+        },
+      })
+      .subscribe();
   }
 
   onDeleteTemplate(templateId: string, product: IProduct) {
