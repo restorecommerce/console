@@ -24,6 +24,7 @@ import {
 import { IProduct } from '@console-core/types';
 
 import { ProductVariantEditComponent } from './product-variant-modal.component';
+import { ProductTemplateEditComponent } from './product-template-modal.component';
 
 @Component({
   selector: 'app-module-product-view',
@@ -33,6 +34,9 @@ import { ProductVariantEditComponent } from './product-variant-modal.component';
         (addVariant)="onAddVariant(vm.product)"
         (editVariant)="onEditVariant($event, vm.product)"
         (deleteVariant)="onDeleteVariant($event, vm.product)"
+        (addTemplate)="onAddTemplate(vm.product)"
+        (editTemplate)="onEditTemplate($event, vm.product)"
+        (deleteTemplate)="onDeleteTemplate($event, vm.product)"
         [product]="vm.product"
       />
     </ng-container>
@@ -41,6 +45,8 @@ import { ProductVariantEditComponent } from './product-variant-modal.component';
 })
 export class ProductViewComponent implements OnInit, OnDestroy {
   addVariantLayer!: LayerRef;
+  addTemplateLayer!: LayerRef;
+
   private readonly subscriptions = new SubSink();
 
   readonly vm$ = combineLatest({
@@ -76,6 +82,14 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.addVariantLayer = this.layerService.create(
       ProductVariantEditComponent,
+      {
+        closeOnBackdropClick: false,
+        closeOnEscape: false,
+      }
+    );
+
+    this.addTemplateLayer = this.layerService.create(
+      ProductTemplateEditComponent,
       {
         closeOnBackdropClick: false,
         closeOnEscape: false,
@@ -161,4 +175,21 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  onAddTemplate(product: IProduct) {
+    this.subscriptions.sink = this.addTemplateLayer
+      .open({
+        data: {
+          title: `Add product base template`,
+          product,
+        },
+      })
+      .subscribe();
+  }
+
+  onEditTemplate(
+    variantId: IIoRestorecommerceProductPhysicalVariant,
+    product: IProduct
+  ) {}
+  onDeleteTemplate(variantId: string, product: IProduct) {}
 }

@@ -14,6 +14,7 @@ import { ProductVariantEditComponent } from './components/product-variant-modal.
 import { ProductViewComponent } from './components/product-view.component';
 import { ProductTemplateComponent } from './components/template/product-template.component';
 import { modulesProductRoutes } from './lib.routes';
+import { ProductTemplateEditComponent } from './components/product-template-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { modulesProductRoutes } from './lib.routes';
     ProductFileFormComponent,
     ProductPackageFormComponent,
     ProductVariantEditComponent,
+    ProductTemplateEditComponent,
   ],
   imports: [
     ModulesUiModule.forChild(),
