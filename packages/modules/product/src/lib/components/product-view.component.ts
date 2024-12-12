@@ -191,7 +191,52 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   onEditTemplate(__: IIoRestorecommerceProductPhysicalVariant, _: IProduct) {
     // TODO
   }
-  onDeleteTemplate(_variantId: string, _product: IProduct) {
-    // TODO
+
+  onDeleteTemplate(templateId: string, product: IProduct) {
+    const templates = product.product.physical?.templates;
+
+    if (templates) {
+      const template = product.product.physical?.templates?.find(
+        (template) => template.id === templateId
+      );
+
+      const updatedTemplates = templates.filter(
+        (template) => template.id !== templateId
+      );
+
+      if (template) {
+        this.subscriptions.sink = this.alertService
+          .open({
+            text: `Do you really want to delete ${template.name}?`,
+            type: AlertType.Question,
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonLabel: 'Cancel',
+            cancelButtonClass: 'transparent',
+            confirmButtonLabel: `Delete ${template.name}`,
+            confirmButtonClass: 'button',
+          })
+          .subscribe((result) => {
+            if (result.action !== 'confirm') {
+              return;
+            }
+
+            const updatedProduct: IProduct = {
+              ...product,
+              product: {
+                ...product.product,
+                physical: {
+                  templates: updatedTemplates,
+                },
+              },
+            };
+
+            this.productFacade.update({
+              items: [updatedProduct],
+              mode: ModeType.Update,
+            });
+          });
+      }
+    }
   }
 }

@@ -88,7 +88,7 @@ export class ProductTemplateEditComponent {
     // REMOVE the field 'offerings'
     delete value.offerings;
 
-    if (this.template.id) {
+    if (this.template?.id) {
       // EDIT MODE
       const updatedVariant: IIoRestorecommerceProductPhysicalVariant = {
         ...this.template,
