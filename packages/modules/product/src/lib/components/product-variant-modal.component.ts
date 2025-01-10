@@ -49,6 +49,7 @@ export class ProductVariantEditComponent {
 
   schema = buildProductVariantSchema({
     product: this.variant,
+    templates: this.product.product.physical?.templates || [],
   });
 
   get title(): string {

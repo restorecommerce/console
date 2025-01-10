@@ -7,6 +7,7 @@ import { IoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
 
 interface ISchemaOptions {
   product?: IoRestorecommerceProductPhysicalVariant;
+  templates?: IoRestorecommerceProductPhysicalVariant[];
 }
 
 export const buildProductVariantSchema = (
@@ -28,10 +29,10 @@ export const buildProductVariantSchema = (
           clearable: false,
           search: false,
           options: [
-            {
-              label: 'Template A',
-              value: 'template A',
-            },
+            ...(options.templates || []).map((template) => ({
+              label: template.name || template.id || '',
+              value: template.id,
+            })),
           ],
         },
         hints: [
