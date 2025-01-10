@@ -16,6 +16,33 @@ export const buildProductVariantSchema = (
     type: 'form',
     fields: [
       {
+        name: 'template',
+        label: 'Base template',
+        type: 'select',
+        // disabled: true,
+        defaultValue: '',
+        validators: [],
+        params: {
+          placeholder: 'Select base template',
+          selectionMode: 'single',
+          clearable: false,
+          search: false,
+          options: [
+            {
+              label: 'Template A',
+              value: 'template A',
+            },
+          ],
+        },
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
         name: 'offerings',
         label: 'Offerings',
         type: 'select',
