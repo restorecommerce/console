@@ -11,88 +11,46 @@
     (submit)="onSubmit()"
     vclForm
   >
-    <ng-template
-      [vclLayer]="{ width: '25em' }"
-      #help="vclLayer"
-      let-header="header"
-      let-text="text"
-    >
-      <vcl-panel-dialog>
-        <vcl-panel-title>{{ header }}</vcl-panel-title>
-        {{ text }}
-        <button
-          vcl-button
-          vclPanelFooterButton
-          class="transparent outline"
-          (click)="help.close()"
-        >
-          OK
-        </button>
-      </vcl-panel-dialog>
-    </ng-template>
-
     <vcl-form-control-group>
       <vcl-label>Base template</vcl-label>
       <vcl-select placeholder="Select base template">
-        <vcl-select-list
-          formControlName="parentVariantId"
-          selectionMode="multiple"
-        >
-          <vcl-select-list-item [value]="'snakeeater'">
-            Snake Eater
+        <vcl-select-list formControlName="parentVariantId">
+          @for (tmp of templates; track $index) {
+          <vcl-select-list-item [value]="tmp.value">
+            {{ tmp.label }}
           </vcl-select-list-item>
-          <vcl-select-list-item [value]="'swiftlearner'">
-            Swift Learner
-          </vcl-select-list-item>
+          }
         </vcl-select-list>
       </vcl-select>
-      <vcl-hint-error error="perks">You must select two perks</vcl-hint-error>
     </vcl-form-control-group>
 
     <vcl-form-control-group>
       <vcl-label>Offering</vcl-label>
       <vcl-select placeholder="Select base template">
         <vcl-select-list formControlName="offerings">
-          <vcl-select-list-item [value]="'snakeeater'">
-            Snake Eater
+          <vcl-select-list-item [value]="'physical'">
+            Physical
           </vcl-select-list-item>
-          <vcl-select-list-item [value]="'swiftlearner'">
-            Swift Learner
+
+          <vcl-select-list-item [value]="'virtual'">
+            Virtual
+          </vcl-select-list-item>
+
+          <vcl-select-list-item [value]="'service'">
+            Service
           </vcl-select-list-item>
         </vcl-select-list>
       </vcl-select>
-      <vcl-hint-error error="perks">You must select two perks</vcl-hint-error>
     </vcl-form-control-group>
 
     <vcl-form-control-group>
       <vcl-label>Name</vcl-label>
-      <div class="help-wrapper">
-        <vcl-input-field>
-          <input
-            vclInput
-            formControlName="name"
-          />
-        </vcl-input-field>
-        <button
-          vcl-button
-          square
-          class="transparent"
-          (click)="
-          help.open({
-            data: {
-              header: 'Name',
-              text: 'The name of the hero. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi ad excepturi molestiae esse unde repellendus ex accusantium officia placeat voluptatem commodi et, laboriosam laudantium, cum, ratione debitis inventore? Esse, eaque!',
-            },
-          })
-        "
-          type="button"
-        >
-          <vcl-icon
-            class="scale130p"
-            icon="vcl:info"
-          ></vcl-icon>
-        </button>
-      </div>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="name"
+        />
+      </vcl-input-field>
       <vcl-hint-error error="required">Name is required</vcl-hint-error>
       <vcl-hint-error error="minlength"
         >Name must have a length of at least 2 characters</vcl-hint-error
@@ -144,21 +102,13 @@
           formControlName="taxIds"
           selectionMode="multiple"
         >
-          <vcl-select-list-item [value]="'snakeeater'">
-            Snake Eater
+          @for (item of taxes; track $index) {
+          <vcl-select-list-item [value]="item.value">
+            {{ item.label }}
           </vcl-select-list-item>
-          <vcl-select-list-item [value]="'swiftlearner'">
-            Swift Learner
-          </vcl-select-list-item>
-          <vcl-select-list-item [value]="'toughness'">
-            Toughness
-          </vcl-select-list-item>
-          <vcl-select-list-item [value]="'explorer'">
-            Explorer
-          </vcl-select-list-item>
+          }
         </vcl-select-list>
       </vcl-select>
-      <vcl-hint-error error="perks">You must select two perks</vcl-hint-error>
     </vcl-form-control-group>
 
     <fieldset formGroupName="price">
@@ -166,18 +116,11 @@
         <vcl-label>Currency</vcl-label>
         <vcl-select placeholder="Select currency">
           <vcl-select-list formControlName="currencyId">
-            <vcl-select-list-item [value]="'snakeeater'">
-              Snake Eater
+            @for (item of currencies; track $index) {
+            <vcl-select-list-item [value]="item.value">
+              {{ item.label }}
             </vcl-select-list-item>
-            <vcl-select-list-item [value]="'swiftlearner'">
-              Swift Learner
-            </vcl-select-list-item>
-            <vcl-select-list-item [value]="'toughness'">
-              Toughness
-            </vcl-select-list-item>
-            <vcl-select-list-item [value]="'explorer'">
-              Explorer
-            </vcl-select-list-item>
+            }
           </vcl-select-list>
         </vcl-select>
       </vcl-form-control-group>

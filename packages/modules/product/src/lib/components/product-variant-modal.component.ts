@@ -63,6 +63,61 @@ export class ProductVariantEditComponent implements OnInit {
     return this.layer.data.variant;
   }
 
+  templates = (this.product.product.physical?.templates || []).map(
+    (template) => ({
+      label: template.name || template.id || '',
+      value: template.id,
+    })
+  );
+
+  // TODO Get available taxes from the store.
+  taxes = [
+    {
+      label: 'Germany reduced rate',
+      value: 'germany-reduced-rate',
+    },
+    {
+      label: 'Germany standard rate',
+      value: 'germany-standard-rate',
+    },
+    {
+      label: 'Switzerland heavily reduced rate',
+      value: 'switzerland-heavily-reduced-rate',
+    },
+    {
+      label: 'Switzerland reduced rate',
+      value: 'switzerland-reduced-rate',
+    },
+    {
+      label: 'Switzerland standard rate',
+      value: 'switzerland-standard-rate',
+    },
+    {
+      label: 'Belgium heavily reduced rate',
+      value: 'belgium-heavily-reduced-rate',
+    },
+    {
+      label: 'Belgium standard rate',
+      value: 'belgium-standard-rate',
+    },
+    {
+      label: 'France standard rate',
+      value: 'france-standard-rate',
+    },
+  ];
+
+  // TODO Get available currency from the store.
+  currencies = [
+    {
+      label: 'USD',
+      value: 'USD',
+    },
+    {
+      label: 'EURO',
+      value: 'EUR',
+    },
+  ];
+
   close(value?: string) {
     this.layer.close({
       value,

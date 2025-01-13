@@ -28,6 +28,7 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
         # }
         stockLevel
         stockKeepingUnit
+        parentVariantId
         taxIds
         price {
           currencyId
