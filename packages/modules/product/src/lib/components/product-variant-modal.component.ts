@@ -36,6 +36,18 @@ export class ProductVariantEditComponent implements OnInit {
 
   productVariantForm!: FormGroup;
 
+  get title(): string {
+    return this.layer.data.title;
+  }
+
+  get product(): IProduct {
+    return this.layer.data.product;
+  }
+
+  get variant(): IIoRestorecommerceProductPhysicalVariant {
+    return this.layer.data.variant;
+  }
+
   constructor(
     private fb: FormBuilder,
     private layer: ComponentLayerRef,
@@ -49,18 +61,22 @@ export class ProductVariantEditComponent implements OnInit {
       },
       this.fb
     );
-  }
 
-  get title(): string {
-    return this.layer.data.title;
-  }
+    this.productVariantForm
+      .get('parentVariantId')
+      ?.valueChanges.subscribe((value) => {
+        const templates = this.layer.data.product.product.physical
+          ?.templates as IoRestorecommerceProductPhysicalVariant[];
 
-  get product(): IProduct {
-    return this.layer.data.product;
-  }
+        const template = templates.find((tmp) => tmp.id === value);
 
-  get variant(): IIoRestorecommerceProductPhysicalVariant {
-    return this.layer.data.variant;
+        this.productVariantForm = buildProductVariantReactiveForm(
+          {
+            product: { ...template, parentVariantId: value },
+          },
+          this.fb
+        );
+      });
   }
 
   templates = (this.product.product.physical?.templates || []).map(
