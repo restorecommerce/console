@@ -17,11 +17,10 @@ export const buildProductVariantSchema = (
     type: 'form',
     fields: [
       {
-        name: 'template',
+        name: 'parentVariantId',
         label: 'Base template',
         type: 'select',
-        // disabled: true,
-        defaultValue: '',
+        defaultValue: options.product?.parentVariantId,
         validators: [],
         params: {
           placeholder: 'Select base template',

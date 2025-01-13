@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ComponentLayerRef, JssFormComponent } from '@vcl/ng-vcl';
@@ -11,7 +17,7 @@ import {
 import { ProductFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
-import { buildProductVariantSchema } from '../jss-forms';
+import { buildProductVariantReactiveForm } from '../jss-forms/product-variant-form';
 
 interface IProductVariantFormValue
   extends IoRestorecommerceProductPhysicalVariant {
@@ -20,37 +26,30 @@ interface IProductVariantFormValue
 
 @Component({
   selector: 'app-module-product-variant-modal',
-  template: ` <vcl-panel-dialog
-    [showCloseButton]="true"
-    (close)="close()"
-  >
-    <vcl-panel-title>{{ title }}</vcl-panel-title>
-
-    <vcl-jss-form
-      autocomplete="off"
-      #variantModalForm="vclJssForm"
-      [schema]="schema"
-      (formSubmit)="onSubmit()"
-      (formAction)="onAction($event)"
-    >
-    </vcl-jss-form>
-  </vcl-panel-dialog>`,
+  templateUrl: './product-variant-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ProductVariantEditComponent {
+export class ProductVariantEditComponent implements OnInit {
+  @ViewChild('variantModalForm')
+  variantModalForm!: JssFormComponent;
+
+  productVariantForm!: FormGroup;
+
   constructor(
+    private fb: FormBuilder,
     private layer: ComponentLayerRef,
     private readonly productFacade: ProductFacade
   ) {}
 
-  @ViewChild('variantModalForm')
-  variantModalForm!: JssFormComponent;
-
-  schema = buildProductVariantSchema({
-    product: this.variant,
-    templates: this.product.product.physical?.templates || [],
-  });
+  ngOnInit(): void {
+    this.productVariantForm = buildProductVariantReactiveForm(
+      {
+        product: this.variant,
+      },
+      this.fb
+    );
+  }
 
   get title(): string {
     return this.layer.data.title;
