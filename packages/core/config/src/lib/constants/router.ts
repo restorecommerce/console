@@ -726,6 +726,82 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 },
               },
             },
+            taxes: {
+              path: 'taxes',
+              link: '/management/taxes',
+              title: 'Taxes',
+              getLink: () => ['', 'management', 'taxes'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/management/taxes/index',
+                  getLink: () => ['', 'management', 'taxes', 'index'],
+                  title: 'Access Control',
+                },
+                create: {
+                  path: 'create',
+                  link: '/management/taxes/create',
+                  title: 'Create',
+                  getLink: () => ['', 'management', 'taxes', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/countries/:id/view',
+                  title: 'Tax',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'taxes', params.id, 'view']
+                      : ['', 'management', 'taxes'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/taxes/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'taxes', params.id, 'edit']
+                      : ['', 'management', 'taxes'],
+                },
+              },
+            },
+            currencies: {
+              path: 'currencies',
+              link: '/management/currencies',
+              title: 'Currencies',
+              getLink: () => ['', 'management', 'currencies'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/management/currencies/index',
+                  getLink: () => ['', 'management', 'currencies', 'index'],
+                  title: 'Currencies',
+                },
+                create: {
+                  path: 'create',
+                  link: '/management/currencies/create',
+                  title: 'Create',
+                  getLink: () => ['', 'management', 'currencies', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/currencies/:id/view',
+                  title: 'Currency',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'currencies', params.id, 'view']
+                      : ['', 'management', 'currencies'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/currencies/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'currencies', params.id, 'edit']
+                      : ['', 'management', 'currencies'],
+                },
+              },
+            },
           },
         },
       },

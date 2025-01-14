@@ -251,6 +251,30 @@ export interface IRouterConstant {
                 };
               };
             };
+            taxes: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
+            currencies: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
           };
         };
       };

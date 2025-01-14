@@ -186,6 +186,24 @@
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item
+        icon="mdi:cash-multiple"
+        [routerLink]="
+          ROUTER.pages.main.children.management.children.currencies.link
+        "
+        [routerLinkActive]="['selected']"
+      >
+        Currencies
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
+        icon="mdi:cash-minus"
+        [routerLink]="ROUTER.pages.main.children.management.children.taxes.link"
+        [routerLinkActive]="['selected']"
+      >
+        Taxes
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
         icon="mdi:pound"
         [routerLink]="
           ROUTER.pages.main.children.management.children.commands.link
