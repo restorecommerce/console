@@ -1,0 +1,66 @@
+<rc-crud-main
+  *ngIf="vm$ | async as vm"
+  [feature]="feature"
+  [title]="vm.selectedCountry?.name ?? feature.name.singular"
+  [id]="vm.selectedCountryId"
+  [total]="vm.dataList.length"
+  [urlSegment]="vm.urlSegment"
+  [triggerRead]="triggerRead"
+  [triggerSelectId]="triggerSelectId"
+  [triggerRemove]="triggerRemove"
+>
+  <ng-container rc-crud-search>
+    <div
+      *ngIf="vm.dataList.length > 0"
+      class="flex"
+    >
+      <rc-searchbar
+        [value]="triggerSearch.value"
+        (search)="onSearch($event)"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container rc-crud-data-list>
+    <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
+      <rc-data-list
+        [itemTemplate]="itemTemplate"
+        [items]="vm.dataList"
+        [selected]="vm.selectedCountryId"
+        (itemSelected)="triggerSelectId.next($event)"
+      />
+    </ng-container>
+  </ng-container>
+
+  <ng-container rc-crud-router-outlet>
+    <router-outlet />
+  </ng-container>
+
+  <ng-container rc-crud-meta>
+    <rc-meta
+      *ngIf="vm.selectedCountryId"
+      [id]="vm.selectedCountryId"
+      [meta]="vm.selectedCountry?.meta"
+    />
+  </ng-container>
+</rc-crud-main>
+
+<ng-template #templateNoRecords>
+  <div class="pt-4">
+    <rc-no-records message="No countries loaded" />
+  </div>
+</ng-template>
+
+<ng-template
+  #itemTemplate
+  let-item="item"
+>
+  <div class="row justify-content-between">
+    <rc-data-list-label
+      [innerHTML]="item.name | highlight : triggerSearch.value"
+    />
+    <rc-data-list-sublabel
+      [innerHTML]="item.geographicalName | highlight : triggerSearch.value"
+    />
+  </div>
+</ng-template>

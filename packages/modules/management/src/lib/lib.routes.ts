@@ -67,6 +67,24 @@ export const modulesManagementRoutes: Route[] = [
             .index.title,
       },
       {
+        path: ROUTER.pages.main.children.management.children.taxes.path,
+        loadChildren: () =>
+          import('./components/tax/tax.module').then((m) => m.TaxModule),
+        title:
+          ROUTER.pages.main.children.management.children.taxes.children.index
+            .title,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.currencies.path,
+        loadChildren: () =>
+          import('./components/currency/currency.module').then(
+            (m) => m.CurrencyModule
+          ),
+        title:
+          ROUTER.pages.main.children.management.children.currencies.children
+            .index.title,
+      },
+      {
         path: ROUTER.pages.main.children.management.children.countries.path,
         loadChildren: () =>
           import('./components/country/country.module').then(
