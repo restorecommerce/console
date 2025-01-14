@@ -70,12 +70,19 @@ export class ProductVariantEditComponent implements OnInit {
 
         const template = templates.find((tmp) => tmp.id === value);
 
-        this.productVariantForm = buildProductVariantReactiveForm(
-          {
-            product: { ...template, parentVariantId: value },
+        this.productVariantForm.patchValue({
+          name: template?.name,
+          description: template?.description,
+          stockLevel: template?.stockLevel,
+          stockKeepingUnit: template?.stockKeepingUnit,
+          taxIds: template?.taxIds,
+          price: {
+            currencyId: template?.price?.currencyId,
+            regularPrice: template?.price?.regularPrice,
+            salePrice: template?.price?.salePrice,
+            sale: template?.price?.sale,
           },
-          this.fb
-        );
+        });
       });
   }
 
