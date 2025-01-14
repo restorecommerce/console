@@ -1,28 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { v4 as uuidv4 } from 'uuid';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
-import { ComponentLayerRef, JssFormComponent } from '@vcl/ng-vcl';
+import { ComponentLayerRef } from '@vcl/ng-vcl';
 
 import {
-  IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceProductPhysicalVariant,
   ModeType,
 } from '@console-core/graphql';
 import { ProductFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
-import { buildProductVariantReactiveForm } from '../jss-forms/product-variant-form';
-
-interface IProductVariantFormValue
-  extends IoRestorecommerceProductPhysicalVariant {
-  offerings?: 'physical' | 'virtual' | 'service';
-}
+import { ProductVariantService } from '../services/product-variant-upsert.service';
 
 @Component({
   selector: 'app-module-product-variant-modal',
@@ -30,116 +18,14 @@ interface IProductVariantFormValue
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ProductVariantEditComponent implements OnInit {
-  @ViewChild('variantModalForm')
-  variantModalForm!: JssFormComponent;
-
+export class ProductVariantEditComponent {
   productVariantForm!: FormGroup;
 
-  get title(): string {
-    return this.layer.data.title;
-  }
-
-  get product(): IProduct {
-    return this.layer.data.product;
-  }
-
-  get variant(): IIoRestorecommerceProductPhysicalVariant {
-    return this.layer.data.variant;
-  }
-
   constructor(
-    private fb: FormBuilder,
-    private layer: ComponentLayerRef,
-    private readonly productFacade: ProductFacade
+    public layer: ComponentLayerRef,
+    private readonly productFacade: ProductFacade,
+    private readonly productVariantService: ProductVariantService
   ) {}
-
-  ngOnInit(): void {
-    this.productVariantForm = buildProductVariantReactiveForm(
-      {
-        product: this.variant,
-      },
-      this.fb
-    );
-
-    this.productVariantForm
-      .get('parentVariantId')
-      ?.valueChanges.subscribe((value) => {
-        const templates = this.layer.data.product.product.physical
-          ?.templates as IoRestorecommerceProductPhysicalVariant[];
-
-        const template = templates.find((tmp) => tmp.id === value);
-
-        this.productVariantForm.patchValue({
-          name: template?.name,
-          description: template?.description,
-          stockLevel: template?.stockLevel,
-          stockKeepingUnit: template?.stockKeepingUnit,
-          taxIds: template?.taxIds,
-          price: {
-            currencyId: template?.price?.currencyId,
-            regularPrice: template?.price?.regularPrice,
-            salePrice: template?.price?.salePrice,
-            sale: template?.price?.sale,
-          },
-        });
-      });
-  }
-
-  templates = (this.product.product.physical?.templates || []).map(
-    (template) => ({
-      label: template.name || template.id || '',
-      value: template.id,
-    })
-  );
-
-  // TODO Get available taxes from the store.
-  taxes = [
-    {
-      label: 'Germany reduced rate',
-      value: 'germany-reduced-rate',
-    },
-    {
-      label: 'Germany standard rate',
-      value: 'germany-standard-rate',
-    },
-    {
-      label: 'Switzerland heavily reduced rate',
-      value: 'switzerland-heavily-reduced-rate',
-    },
-    {
-      label: 'Switzerland reduced rate',
-      value: 'switzerland-reduced-rate',
-    },
-    {
-      label: 'Switzerland standard rate',
-      value: 'switzerland-standard-rate',
-    },
-    {
-      label: 'Belgium heavily reduced rate',
-      value: 'belgium-heavily-reduced-rate',
-    },
-    {
-      label: 'Belgium standard rate',
-      value: 'belgium-standard-rate',
-    },
-    {
-      label: 'France standard rate',
-      value: 'france-standard-rate',
-    },
-  ];
-
-  // TODO Get available currency from the store.
-  currencies = [
-    {
-      label: 'USD',
-      value: 'USD',
-    },
-    {
-      label: 'EURO',
-      value: 'EUR',
-    },
-  ];
 
   close(value?: string) {
     this.layer.close({
@@ -147,95 +33,17 @@ export class ProductVariantEditComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    // ASSUME A PRODUCT IS PHYSICAL!
-    const value = this.variantModalForm.form.value as IProductVariantFormValue;
+  onSubmit(value: IoRestorecommerceProductPhysicalVariant) {
+    const product = this.productVariantService.prepareProduct(
+      value,
+      this.layer.data.product as IProduct,
+      'variant'
+    );
 
-    // Fix the backend price issues!
-    const regularPrice = +(value.price?.regularPrice || 0);
-    const salePrice = +(value.price?.salePrice || 0);
-
-    // TODO Convert price!
-    value.stockLevel = +(value.stockLevel || 0);
-    value.price = {
-      ...value.price,
-      regularPrice,
-      salePrice,
-    };
-
-    // REMOVE the field 'offerings'
-    delete value.offerings;
-
-    if (this.variant.id) {
-      // EDIT MODE
-      const updatedVariant: IIoRestorecommerceProductPhysicalVariant = {
-        ...this.variant,
-        ...value,
-      };
-
-      const productWithUpdatedVariant =
-        this.product.product.physical?.variants?.map((variant) => {
-          if (variant.id === updatedVariant.id) {
-            return updatedVariant;
-          } else {
-            return variant;
-          }
-        });
-
-      const product: IProduct = {
-        ...this.product,
-        product: {
-          ...this.product.product,
-          physical: {
-            variants: productWithUpdatedVariant,
-          },
-        },
-      };
-
-      this.productFacade.update({
-        items: [product],
-        mode: ModeType.Update,
-      });
+    if (this.layer.data.variant) {
+      this.productFacade.update({ items: [product], mode: ModeType.Update });
     } else {
-      // CREATE MODE
-      value.id = uuidv4();
-      let product: IProduct;
-
-      if (this.product.product.physical?.variants) {
-        product = {
-          ...this.product,
-          product: {
-            ...this.product.product,
-            taxIds: this.product.product.taxIds ?? [],
-            physical: {
-              variants: [
-                ...this.product.product.physical.variants,
-                {
-                  ...value,
-                },
-              ],
-            },
-          },
-        };
-      } else {
-        product = {
-          ...this.product,
-          product: {
-            ...this.product.product,
-            physical: {
-              variants: [{ ...value }],
-            },
-          },
-        };
-      }
-
-      !this.product.tags && delete product.tags;
-      !this.product.product.taxIds && delete product.product.taxIds;
-
-      this.productFacade.update({
-        items: [product],
-        mode: ModeType.Update,
-      });
+      this.productFacade.update({ items: [product], mode: ModeType.Create });
     }
 
     this.close();

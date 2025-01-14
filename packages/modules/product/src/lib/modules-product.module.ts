@@ -7,6 +7,7 @@ import { ProductFileFormComponent } from './components/forms/product-files-form.
 import { ProductImageFormComponent } from './components/forms/product-image-form.component';
 import { ProductPackageFormComponent } from './components/forms/product-package-form.component';
 import { ProductPropertyFormComponent } from './components/forms/product-property-form.component';
+import { ProductVariantFormComponent } from './components/forms/product-variant-fprm/product-variant-form.component';
 import { ProductCreateComponent } from './components/product-create.component';
 import { ProductEditComponent } from './components/product-edit.component';
 import { ProductIndexComponent } from './components/product-index.component';
@@ -29,6 +30,7 @@ import { modulesProductRoutes } from './lib.routes';
     ProductPackageFormComponent,
     ProductVariantEditComponent,
     ProductTemplateEditComponent,
+    ProductVariantFormComponent,
   ],
   imports: [
     ModulesUiModule.forChild(),

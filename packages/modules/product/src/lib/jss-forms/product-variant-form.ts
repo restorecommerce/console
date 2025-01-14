@@ -14,8 +14,6 @@ export const buildProductVariantReactiveForm = (
   return fb.group({
     parentVariantId: [options.product?.parentVariantId || '', []],
 
-    offerings: ['physical', [Validators.required]],
-
     name: [options?.product?.name || '', [Validators.required]],
 
     description: [options?.product?.description || ''],

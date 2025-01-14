@@ -1,0 +1,147 @@
+<form
+  novalidate
+  [formGroup]="productVariantForm"
+  #variantForm="ngForm"
+  (submit)="onSubmit(variantForm.value)"
+  vclForm
+>
+  <vcl-form-control-group>
+    <vcl-label>Base template</vcl-label>
+    <vcl-select placeholder="Select base template">
+      <vcl-select-list formControlName="parentVariantId">
+        @for (tmp of templates; track $index) {
+        <vcl-select-list-item [value]="tmp.id">
+          {{ tmp.name || tmp.id }}
+        </vcl-select-list-item>
+        }
+      </vcl-select-list>
+    </vcl-select>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Name</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        formControlName="name"
+      />
+    </vcl-input-field>
+    <vcl-hint-error error="required">Name is required</vcl-hint-error>
+    <vcl-hint-error error="minlength"
+      >Name must have a length of at least 2 characters</vcl-hint-error
+    >
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Description</vcl-label>
+    <vcl-input-field class="auto-height">
+      <textarea
+        vclInput
+        formControlName="description"
+        placeholder="Description of the hero"
+        [autogrow]="true"
+        [minRows]="3"
+        [maxRows]="10"
+      ></textarea>
+    </vcl-input-field>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Stock level</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        formControlName="stockLevel"
+      />
+    </vcl-input-field>
+    <vcl-hint-error error="required">Stock level is required</vcl-hint-error>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>SKU</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        formControlName="stockKeepingUnit"
+      />
+    </vcl-input-field>
+    <vcl-hint-error error="required"
+      >Stock keeping unit is required</vcl-hint-error
+    >
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Taxes</vcl-label>
+    <vcl-select placeholder="Select taxes">
+      <vcl-select-list
+        formControlName="taxIds"
+        selectionMode="multiple"
+      >
+        @for (item of taxes; track $index) {
+        <vcl-select-list-item [value]="item.value">
+          {{ item.label }}
+        </vcl-select-list-item>
+        }
+      </vcl-select-list>
+    </vcl-select>
+  </vcl-form-control-group>
+
+  <fieldset formGroupName="price">
+    <vcl-form-control-group>
+      <vcl-label>Currency</vcl-label>
+      <vcl-select placeholder="Select currency">
+        <vcl-select-list formControlName="currencyId">
+          @for (item of currencies; track $index) {
+          <vcl-select-list-item [value]="item.value">
+            {{ item.label }}
+          </vcl-select-list-item>
+          }
+        </vcl-select-list>
+      </vcl-select>
+    </vcl-form-control-group>
+
+    <vcl-form-control-group>
+      <vcl-label>Regular price</vcl-label>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="regularPrice"
+        />
+      </vcl-input-field>
+      <vcl-hint-error error="required"
+        >Regular price is required</vcl-hint-error
+      >
+    </vcl-form-control-group>
+
+    <vcl-form-control-group>
+      <vcl-checkbox formControlName="sale">On sales</vcl-checkbox>
+    </vcl-form-control-group>
+
+    <!-- TODO: Condiional: if sales is true. -->
+    <vcl-form-control-group>
+      <vcl-label>Sale price</vcl-label>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="salePrice"
+        />
+      </vcl-input-field>
+    </vcl-form-control-group>
+  </fieldset>
+
+  <div class="loose-button-group mt-3">
+    <button
+      vcl-button
+      type="submit"
+      class="emphasized"
+    >
+      Submit
+    </button>
+    <button
+      vcl-button
+      type="button"
+    >
+      Reset
+    </button>
+  </div>
+</form>
