@@ -28,7 +28,6 @@ export class RcDataListComponent<T extends { id: string }> {
   //
 
   onDataListChange(value: string) {
-    console.log('**Something must have emmited here!');
     this.itemSelected.next(value);
   }
 }

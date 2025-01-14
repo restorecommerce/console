@@ -222,8 +222,6 @@ export class FulfillmentEffects {
                 result?.data?.fulfillment?.fulfillment?.Submit?.details?.items?.pop()
                   ?.payload as IFulfillment;
 
-              console.log('Payload:', payload);
-
               return fulfillmentActions.fulfillmentSubmitSuccess({ payload });
             }),
             catchError((error: Error) =>

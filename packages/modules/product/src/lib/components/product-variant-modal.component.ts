@@ -40,11 +40,7 @@ export class ProductVariantEditComponent {
       'variant'
     );
 
-    if (this.layer.data.variant) {
-      this.productFacade.update({ items: [product], mode: ModeType.Update });
-    } else {
-      this.productFacade.update({ items: [product], mode: ModeType.Create });
-    }
+    this.productFacade.update({ items: [product], mode: ModeType.Update });
 
     this.close();
   }

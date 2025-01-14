@@ -43,7 +43,6 @@ export class PrivateTemplateComponent
     this.subscriptions.add(this.notifications$.subscribe());
     this.subscriptions.add(
       this.authFacade.expiresIn$.subscribe((expiresIn) => {
-        // console.log("Expires in", expiresIn);
         const expires = new Date(expiresIn as string);
         const now = new Date();
 

@@ -111,9 +111,6 @@ export class AuthnEffects {
       ofType(authnActions.signInRequest),
       switchMap(({ payload }) => {
         return this.authnService.signIn(payload).pipe(
-          tap((result) => {
-            console.log('Result for signin:', result);
-          }),
           map(
             ({
               access_token: token = null,

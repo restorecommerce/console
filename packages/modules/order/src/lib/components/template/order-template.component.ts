@@ -102,12 +102,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
         if (id === null) {
           return;
         }
-        console.log(
-          '[Log] ~ file: order-template.component.ts:107 ~ OrderTemplateComponent ~ tap ~ console: triggerCreateInvoice --->',
-          id
-        );
-
-        console.log('*** Action for creating an invoice for this', id);
 
         this.orderFacade.createOrderInvoice(id);
       })
@@ -173,7 +167,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
   }
 
   onCreateInvoice(id: string | null): void {
-    console.log('Creating Invoice....');
     this.triggerCreateInvoice?.next(id);
   }
 

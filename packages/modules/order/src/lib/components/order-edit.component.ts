@@ -101,7 +101,6 @@ export class OrderEditComponent {
 
   getOrderSource(order: IOrder): string {
     const orderInput = transformOrderToInput(order);
-    console.log('sHOW ANYTHIME WE HOVER...');
     // The above log always shows up whenever we hover on the cancel and save button.
     // Investigate this by first removing the vcl-button directive to see if this is the
     // issue.

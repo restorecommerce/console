@@ -37,11 +37,7 @@ export class ProductTemplateEditComponent {
       'template'
     );
 
-    if (this.layer.data.template) {
-      this.productFacade.update({ items: [product], mode: ModeType.Update });
-    } else {
-      this.productFacade.update({ items: [product], mode: ModeType.Create });
-    }
+    this.productFacade.update({ items: [product], mode: ModeType.Update });
 
     this.close();
   }
