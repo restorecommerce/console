@@ -2,6 +2,7 @@ export * from './account.state';
 export * from './app.state';
 export * from './authn.state';
 export * from './country.state';
+export * from './currency.state';
 export * from './fulfillment.state';
 export * from './iam.state';
 export * from './invoice.state';

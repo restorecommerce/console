@@ -1,0 +1,17 @@
+query MasterDataCurrencyRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    currency {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...CurrencyFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

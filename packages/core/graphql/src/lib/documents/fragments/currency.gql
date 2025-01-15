@@ -1,0 +1,9 @@
+fragment CurrencyFragment on IoRestorecommerceCurrencyCurrency {
+  id
+  name
+  precision
+  symbol
+  meta {
+    ...MetaFragment
+  }
+}

@@ -1,0 +1,43 @@
+mutation MasterDataCurrencyMutate(
+  $input: IIoRestorecommerceCurrencyCurrencyList!
+) {
+  master_data {
+    currency {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...CurrencyFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation MasterDataCurrencyDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  master_data {
+    currency {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
