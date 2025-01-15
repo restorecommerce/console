@@ -5722,6 +5722,7 @@ export type CatalogProductMutateMutation = {
                     description?: string | null;
                     stockLevel?: number | null;
                     stockKeepingUnit?: string | null;
+                    parentVariantId?: string | null;
                     taxIds?: Array<string> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -5844,6 +5845,7 @@ export type CatalogProductReadQuery = {
                     description?: string | null;
                     stockLevel?: number | null;
                     stockKeepingUnit?: string | null;
+                    parentVariantId?: string | null;
                     taxIds?: Array<string> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -6004,6 +6006,31 @@ export type CountryFragmentFragment = {
   countryCode?: string | null;
   geographicalName?: string | null;
   economicAreas?: Array<string> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
+  } | null;
+};
+
+export type CurrencyFragmentFragment = {
+  __typename?: 'IoRestorecommerceCurrencyCurrency';
+  id?: string | null;
+  name?: string | null;
+  precision?: number | null;
+  symbol?: string | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -6584,6 +6611,7 @@ export type OrderFragmentFragment = {
             description?: string | null;
             stockLevel?: number | null;
             stockKeepingUnit?: string | null;
+            parentVariantId?: string | null;
             taxIds?: Array<string> | null;
             price?: {
               __typename?: 'IoRestorecommercePricePrice';
@@ -7331,6 +7359,7 @@ export type ProductFragmentFragment = {
         description?: string | null;
         stockLevel?: number | null;
         stockKeepingUnit?: string | null;
+        parentVariantId?: string | null;
         taxIds?: Array<string> | null;
         price?: {
           __typename?: 'IoRestorecommercePricePrice';
@@ -9165,6 +9194,141 @@ export type MasterDataCountryReadQuery = {
   };
 };
 
+export type MasterDataCurrencyMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceCurrencyCurrencyList;
+}>;
+
+export type MasterDataCurrencyMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    currency: {
+      __typename?: 'ResourceCurrencyMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceCurrencyCurrencyListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceCurrencyCurrencyListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceCurrencyCurrencyResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceCurrencyCurrency';
+              id?: string | null;
+              name?: string | null;
+              precision?: number | null;
+              symbol?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataCurrencyDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type MasterDataCurrencyDeleteMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    currency: {
+      __typename?: 'ResourceCurrencyMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            id?: string | null;
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataCurrencyReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataCurrencyReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    currency: {
+      __typename?: 'ResourceCurrencyQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceCurrencyCurrencyListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceCurrencyCurrencyListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceCurrencyCurrencyResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceCurrencyCurrency';
+              id?: string | null;
+              name?: string | null;
+              precision?: number | null;
+              symbol?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type MasterDataLocaleReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -9745,6 +9909,7 @@ export type OrderingOrderMutateMutation = {
                         description?: string | null;
                         stockLevel?: number | null;
                         stockKeepingUnit?: string | null;
+                        parentVariantId?: string | null;
                         taxIds?: Array<string> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -10479,6 +10644,7 @@ export type OrderingOrderReadQuery = {
                         description?: string | null;
                         stockLevel?: number | null;
                         stockKeepingUnit?: string | null;
+                        parentVariantId?: string | null;
                         taxIds?: Array<string> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -11192,6 +11358,18 @@ export const CountryFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const CurrencyFragmentFragmentDoc = gql`
+  fragment CurrencyFragment on IoRestorecommerceCurrencyCurrency {
+    id
+    name
+    precision
+    symbol
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const FulfillmentFragmentFragmentDoc = gql`
   fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
     id
@@ -11358,6 +11536,7 @@ export const ProductFragmentFragmentDoc = gql`
           description
           stockLevel
           stockKeepingUnit
+          parentVariantId
           taxIds
           price {
             currencyId
@@ -12754,6 +12933,119 @@ export class MasterDataCountryReadGQL extends Apollo.Query<
   MasterDataCountryReadQueryVariables
 > {
   override document = MasterDataCountryReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCurrencyMutateDocument = gql`
+  mutation MasterDataCurrencyMutate(
+    $input: IIoRestorecommerceCurrencyCurrencyList!
+  ) {
+    master_data {
+      currency {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...CurrencyFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${CurrencyFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCurrencyMutateGQL extends Apollo.Mutation<
+  MasterDataCurrencyMutateMutation,
+  MasterDataCurrencyMutateMutationVariables
+> {
+  override document = MasterDataCurrencyMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCurrencyDeleteMutateDocument = gql`
+  mutation MasterDataCurrencyDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      currency {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCurrencyDeleteMutateGQL extends Apollo.Mutation<
+  MasterDataCurrencyDeleteMutateMutation,
+  MasterDataCurrencyDeleteMutateMutationVariables
+> {
+  override document = MasterDataCurrencyDeleteMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCurrencyReadDocument = gql`
+  query MasterDataCurrencyRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    master_data {
+      currency {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                ...CurrencyFragment
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+  ${CurrencyFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCurrencyReadGQL extends Apollo.Query<
+  MasterDataCurrencyReadQuery,
+  MasterDataCurrencyReadQueryVariables
+> {
+  override document = MasterDataCurrencyReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

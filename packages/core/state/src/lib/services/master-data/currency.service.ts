@@ -44,7 +44,7 @@ export class CurrencyService {
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
   ): Observable<MutationResult<MasterDataCurrencyDeleteMutateMutation>> {
-    return this.masterDataCurrencyMutateGQL.mutate({
+    return this.masterDataCurrencyDeleteMutateGQL.mutate({
       input: payload,
     });
   }

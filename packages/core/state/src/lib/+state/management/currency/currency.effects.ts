@@ -29,13 +29,13 @@ export class CurrencyEffects {
         this.currencyService.read(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.master_data?.country?.Read?.details
+              result?.data?.master_data?.currency?.Read?.details
                 ?.operationStatus as TOperationStatus
             );
           }),
           map((result) => {
             const payload = (
-              result?.data?.master_data?.country?.Read?.details?.items || []
+              result?.data?.master_data?.currency?.Read?.details?.items || []
             )?.map((item) => item?.payload) as ICurrency[];
             return currencyActions.currencyReadRequestSuccess({ payload });
           }),
@@ -72,13 +72,13 @@ export class CurrencyEffects {
           .pipe(
             tap((result) => {
               this.errorHandlingService.checkStatusAndThrow(
-                result?.data?.master_data?.country?.Read?.details
+                result?.data?.master_data?.currency?.Read?.details
                   ?.operationStatus as TOperationStatus
               );
             }),
             map((result) => {
               const payload =
-                result?.data?.master_data?.country?.Read?.details?.items?.pop()
+                result?.data?.master_data?.currency?.Read?.details?.items?.pop()
                   ?.payload as ICurrency;
               return currencyActions.currencyReadOneByIdRequestSuccess({
                 payload,
@@ -103,13 +103,13 @@ export class CurrencyEffects {
         this.currencyService.mutate(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.master_data?.country?.Mutate?.details
+              result?.data?.master_data?.currency?.Mutate?.details
                 ?.operationStatus as TOperationStatus
             );
           }),
           map((result) => {
             const payload =
-              result?.data?.master_data?.country?.Mutate?.details?.items?.pop()
+              result?.data?.master_data?.currency?.Mutate?.details?.items?.pop()
                 ?.payload as ICurrency;
             return currencyActions.currencyCreateSuccess({ payload });
           }),
@@ -127,7 +127,7 @@ export class CurrencyEffects {
         ofType(currencyActions.currencyCreateSuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'country created',
+            content: 'currency created',
             type: ENotificationTypes.Success,
           });
         }),
@@ -150,13 +150,13 @@ export class CurrencyEffects {
         this.currencyService.mutate(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.master_data?.country?.Mutate?.details
+              result?.data?.master_data?.currency?.Mutate?.details
                 ?.operationStatus as TOperationStatus
             );
           }),
           map((result) => {
             const payload =
-              result?.data?.master_data?.country?.Mutate?.details?.items?.pop()
+              result?.data?.master_data?.currency?.Mutate?.details?.items?.pop()
                 ?.payload as ICurrency;
             return currencyActions.currencyUpdateSuccess({ payload });
           }),
@@ -191,7 +191,7 @@ export class CurrencyEffects {
         return this.currencyService.remove({ ids: [id] }).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.master_data?.country?.Delete?.details
+              result?.data?.master_data?.currency?.Delete?.details
                 ?.operationStatus as TOperationStatus
             );
           }),
