@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
-  IIoRestorecommerceCountryCountryList,
+  IIoRestorecommerceCurrencyCurrencyList,
   IIoRestorecommerceResourcebaseReadRequest,
 } from '@console-core/graphql';
 
@@ -12,17 +12,17 @@ import * as currencySelectors from './currency.selectors';
 @Injectable()
 export class CurrencyFacade {
   // Selectors
-  readonly ids$ = this.store.select(currencySelectors.selectCountryIds);
+  readonly ids$ = this.store.select(currencySelectors.selectCurrencyIds);
   readonly entities$ = this.store.select(
-    currencySelectors.selectCountryEntities
+    currencySelectors.selectCurrencyEntities
   );
-  readonly all$ = this.store.select(currencySelectors.selectCountryAll);
-  readonly total$ = this.store.select(currencySelectors.selectCountryTotal);
+  readonly all$ = this.store.select(currencySelectors.selectCurrencyAll);
+  readonly total$ = this.store.select(currencySelectors.selectCurrencyTotal);
   readonly selectedId$ = this.store.select(
-    currencySelectors.selectCountrySelectedId
+    currencySelectors.selectCurrencySelectedId
   );
   readonly selected$ = this.store.select(
-    currencySelectors.selectCountrySelected
+    currencySelectors.selectCurrencySelected
   );
   readonly actionStatus$ = this.store.select(
     currencySelectors.selectActionStatus
@@ -33,12 +33,14 @@ export class CurrencyFacade {
   read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(currencyActions.currencyReadRequest({ payload }));
   readOneById = (payload: { id: string }) =>
-    this.store.dispatch(currencyActions.currencyReadOneByIdRequest({ payload }));
+    this.store.dispatch(
+      currencyActions.currencyReadOneByIdRequest({ payload })
+    );
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(currencyActions.setSelectedId({ payload }));
-  create = (payload: IIoRestorecommerceCountryCountryList) =>
+  create = (payload: IIoRestorecommerceCurrencyCurrencyList) =>
     this.store.dispatch(currencyActions.currencyCreateRequest({ payload }));
-  update = (payload: IIoRestorecommerceCountryCountryList) =>
+  update = (payload: IIoRestorecommerceCurrencyCurrencyList) =>
     this.store.dispatch(currencyActions.currencyUpdateRequest({ payload }));
   remove = (payload: { id: string }) =>
     this.store.dispatch(currencyActions.currencyRemoveRequest({ payload }));

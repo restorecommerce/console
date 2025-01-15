@@ -1,49 +1,49 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { STORE } from '@console-core/config';
-import { ICountry, ICountryState } from '@console-core/types';
+import { ICurrency, ICurrencyState } from '@console-core/types';
 
 import { adapter } from './currency.reducer';
 
-export const selectCountry = createFeatureSelector<ICountryState>(
-  STORE.states.countryState
+export const selectCurrency = createFeatureSelector<ICurrencyState>(
+  STORE.states.currencyState
 );
 
 const { selectIds, selectEntities, selectAll, selectTotal } =
   adapter.getSelectors();
 
-export const selectCountryIds = createSelector(selectCountry, selectIds);
+export const selectCurrencyIds = createSelector(selectCurrency, selectIds);
 
-export const selectCountryEntities = createSelector(
-  selectCountry,
+export const selectCurrencyEntities = createSelector(
+  selectCurrency,
   selectEntities
 );
 
-export const selectCountryAll = createSelector(selectCountry, selectAll);
+export const selectCurrencyAll = createSelector(selectCurrency, selectAll);
 
-export const selectCountryTotal = createSelector(selectCountry, selectTotal);
+export const selectCurrencyTotal = createSelector(selectCurrency, selectTotal);
 
-export const selectCountrySelectedId = createSelector(
-  selectCountry,
-  (state: ICountryState) => state.selectedId
+export const selectCurrencySelectedId = createSelector(
+  selectCurrency,
+  (state: ICurrencyState) => state.selectedId
 );
 
-export const selectCountrySelected = createSelector(
-  selectCountryEntities,
-  selectCountrySelectedId,
+export const selectCurrencySelected = createSelector(
+  selectCurrencyEntities,
+  selectCurrencySelectedId,
   (entities, selectedId) => {
     return (
       selectedId && selectedId in entities ? entities[selectedId] : null
-    ) as ICountry | null;
+    ) as ICurrency | null;
   }
 );
 
 export const selectActionStatus = createSelector(
-  selectCountry,
-  (state: ICountryState) => state.actionStatus
+  selectCurrency,
+  (state: ICurrencyState) => state.actionStatus
 );
 
 export const selectError = createSelector(
-  selectCountry,
-  (state: ICountryState) => state.error
+  selectCurrency,
+  (state: ICurrencyState) => state.error
 );

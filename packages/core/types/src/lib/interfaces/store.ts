@@ -4,6 +4,7 @@ export interface IStoreConstant {
     readonly appState: 'appStateV1';
     readonly authnState: 'authnStateV1';
     readonly countryState: 'countryStateV1';
+    readonly currencyState: 'currencyStateV1';
     readonly fulfillmentState: 'fulfillmentStateV1';
     readonly iamState: 'iamStateV1';
     readonly invoiceState: 'invoiceStateV1';

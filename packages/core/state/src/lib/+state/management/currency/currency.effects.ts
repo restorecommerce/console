@@ -133,7 +133,7 @@ export class CurrencyEffects {
         }),
         tap(({ payload }) => {
           this.router.navigate(
-            ROUTER.pages.main.children.management.children.countries.children.edit.getLink(
+            ROUTER.pages.main.children.management.children.currencies.children.edit.getLink(
               { id: payload.id }
             )
           );
@@ -174,7 +174,7 @@ export class CurrencyEffects {
         ofType(currencyActions.currencyUpdateSuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'country updated',
+            content: 'currency updated',
             type: ENotificationTypes.Success,
           });
         })
@@ -214,7 +214,7 @@ export class CurrencyEffects {
         ofType(currencyActions.currencyRemoveSuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'country deleted',
+            content: 'currency deleted',
             type: ENotificationTypes.Success,
           });
         })

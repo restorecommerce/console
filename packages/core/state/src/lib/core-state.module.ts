@@ -17,6 +17,8 @@ import {
   authnReducer,
   CountryEffects,
   CountryFacade,
+  CurrencyEffects,
+  CurrencyFacade,
   countryReducer,
   FulfillmentEffects,
   FulfillmentFacade,
@@ -46,6 +48,7 @@ import {
   TimezoneEffects,
   TimezoneFacade,
   timezoneReducer,
+  currencyReducer,
 } from './+state';
 
 const facades = [
@@ -53,6 +56,7 @@ const facades = [
   AppFacade,
   AuthnFacade,
   CountryFacade,
+  CurrencyFacade,
   FulfillmentFacade,
   InvoiceFacade,
   IamFacade,
@@ -75,6 +79,8 @@ const facades = [
     EffectsModule.forFeature([AuthnEffects]),
     StoreModule.forFeature(STORE.states.countryState, countryReducer),
     EffectsModule.forFeature([CountryEffects]),
+    StoreModule.forFeature(STORE.states.currencyState, currencyReducer),
+    EffectsModule.forFeature([CurrencyEffects]),
     StoreModule.forFeature(STORE.states.fulfillmentState, fulfillmentReducer),
     EffectsModule.forFeature([FulfillmentEffects]),
     StoreModule.forFeature(STORE.states.invoiceState, invoiceReducer),

@@ -19,7 +19,7 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { CountryFacade, RouterFacade } from '@console-core/state';
+import { CurrencyFacade, RouterFacade } from '@console-core/state';
 import { ICrudFeature, EUrlSegment, ICountry } from '@console-core/types';
 
 @Component({
@@ -31,12 +31,12 @@ import { ICrudFeature, EUrlSegment, ICountry } from '@console-core/types';
 export class CurrencyTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter =
-    ROUTER.pages.main.children.management.children.countries.children;
+    ROUTER.pages.main.children.management.children.currencies.children;
 
   feature: Readonly<ICrudFeature> = {
     name: {
-      plural: 'Countries',
-      singular: 'Country',
+      plural: 'Currencies',
+      singular: 'Currency',
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
@@ -60,7 +60,7 @@ export class CurrencyTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.countryFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.currencyFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -76,14 +76,14 @@ export class CurrencyTemplateComponent implements OnInit, OnDestroy {
           fields: ['name', 'geographical_name', 'country_code'],
         },
       };
-      this.countryFacade.read(this.queryVariables);
+      this.currencyFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.countryFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.currencyFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -91,7 +91,7 @@ export class CurrencyTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.countryFacade.remove({ id });
+      this.currencyFacade.remove({ id });
     })
   );
 
@@ -100,16 +100,16 @@ export class CurrencyTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.countryFacade.setSelectedId(null);
+        this.currencyFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.countryFacade.all$,
-    selectedCountryId: this.countryFacade.selectedId$,
-    selectedCountry: this.countryFacade.selected$,
+    dataList: this.currencyFacade.all$,
+    selectedCountryId: this.currencyFacade.selectedId$,
+    selectedCountry: this.currencyFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -119,7 +119,7 @@ export class CurrencyTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly countryFacade: CountryFacade,
+    private readonly currencyFacade: CurrencyFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 
