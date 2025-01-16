@@ -11,19 +11,19 @@ fragment UserRoleFragment on IoRestorecommerceUserUserRole {
   defaultScope
   lastAccess
   localeId
-  locale {
-    id
-    name
-    value
-    description
-  }
+  # locale {
+  #   id
+  #   name
+  #   value
+  #   description
+  # }
   timezoneId
-  timezone {
-    id
-    name
-    value
-    description
-  }
+  # timezone {
+  #   id
+  #   name
+  #   value
+  #   description
+  # }
   roles {
     ...RoleFragment
   }

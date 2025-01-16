@@ -23,21 +23,25 @@
 
   <ng-container rc-crud-data-list>
     <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
-      <rc-data-list class="mb-4 pb-2">
-        <rc-data-list-item
-          *ngFor="let item of vm.dataList; trackBy: trackByFn"
-          (click)="triggerSelectId.next(vm.selectedOrganizationId)"
-          [ngClass]="{ selected: item.id === vm.selectedOrganizationId }"
-          [routerLink]="feature.links.view(item.id)"
-          role="option"
-        >
-          <rc-data-list-label
-            [innerHTML]="item.name | highlight : triggerSearch.value"
-          />
-        </rc-data-list-item>
-      </rc-data-list>
+      <rc-data-list
+        [itemTemplate]="itemTemplate"
+        [items]="vm.dataList"
+        [selected]="vm.selectedOrganizationId"
+        (itemSelected)="triggerSelectId.next($event)"
+      />
     </ng-container>
   </ng-container>
+
+  <ng-template
+    #itemTemplate
+    let-item="item"
+  >
+    <div class="row justify-content-between px-2">
+      <rc-data-list-label
+        [innerHTML]="item.name | highlight : triggerSearch.value"
+      />
+    </div>
+  </ng-template>
 
   <ng-container rc-crud-router-outlet>
     <router-outlet />

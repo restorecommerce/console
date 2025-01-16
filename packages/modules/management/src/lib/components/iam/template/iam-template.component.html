@@ -23,26 +23,30 @@
 
   <ng-container rc-crud-data-list>
     <ng-container *ngIf="vm.users.length > 0; else templateNoRecords">
-      <rc-data-list class="mb-4 pb-2">
-        <rc-data-list-item
-          *ngFor="let u of vm.users; trackBy: trackByFn"
-          (click)="triggerSelectId.next(vm.selectedUserId)"
-          [ngClass]="{ selected: u.id === vm.selectedUserId }"
-          [routerLink]="feature.links.view(u.id)"
-          role="option"
-        >
-          <rc-data-list-label
-            [innerHTML]="u.fullName || 'N/A' | highlight : triggerSearch.value"
-          />
-
-          <rc-data-list-key-value-with-brackets
-            [key]="'Roles'"
-            [value]="getRoleAssociationsRoles(u, vm.rolesHash)"
-          />
-        </rc-data-list-item>
-      </rc-data-list>
+      <rc-data-list
+        [itemTemplate]="itemTemplate"
+        [items]="vm.users"
+        [selected]="vm.selectedUserId"
+        (itemSelected)="triggerSelectId.next($event)"
+      />
     </ng-container>
   </ng-container>
+
+  <ng-template
+    #itemTemplate
+    let-item="item"
+  >
+    <div class="row justify-content-between px-2">
+      <rc-data-list-label
+        [innerHTML]="item.fullName || 'N/A' | highlight : triggerSearch.value"
+      />
+
+      <rc-data-list-key-value-with-brackets
+        [key]="'Roles'"
+        [value]="getRoleAssociationsRoles(item, vm.rolesHash)"
+      />
+    </div>
+  </ng-template>
 
   <ng-container rc-toolbar-end-buttons>
     <button

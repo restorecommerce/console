@@ -7610,20 +7610,6 @@ export type UserRoleFragmentFragment = {
   lastAccess?: unknown | null;
   localeId?: string | null;
   timezoneId?: string | null;
-  locale?: {
-    __typename?: 'IoRestorecommerceLocaleLocale';
-    id?: string | null;
-    name?: string | null;
-    value?: string | null;
-    description?: string | null;
-  } | null;
-  timezone?: {
-    __typename?: 'IoRestorecommerceTimezoneTimezone';
-    id?: string | null;
-    name?: string | null;
-    value?: string | null;
-    description?: string | null;
-  } | null;
   roles?: Array<{
     __typename?: 'IoRestorecommerceRoleRole';
     id?: string | null;
@@ -8789,20 +8775,6 @@ export type IdentityUserReadQuery = {
               lastAccess?: unknown | null;
               localeId?: string | null;
               timezoneId?: string | null;
-              locale?: {
-                __typename?: 'IoRestorecommerceLocaleLocale';
-                id?: string | null;
-                name?: string | null;
-                value?: string | null;
-                description?: string | null;
-              } | null;
-              timezone?: {
-                __typename?: 'IoRestorecommerceTimezoneTimezone';
-                id?: string | null;
-                name?: string | null;
-                value?: string | null;
-                description?: string | null;
-              } | null;
               roles?: Array<{
                 __typename?: 'IoRestorecommerceRoleRole';
                 id?: string | null;
@@ -12063,19 +12035,7 @@ export const UserRoleFragmentFragmentDoc = gql`
     defaultScope
     lastAccess
     localeId
-    locale {
-      id
-      name
-      value
-      description
-    }
     timezoneId
-    timezone {
-      id
-      name
-      value
-      description
-    }
     roles {
       ...RoleFragment
     }
