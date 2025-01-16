@@ -18,6 +18,7 @@ export const STORE: Readonly<IStoreConstant> = {
     productState: 'productStateV1',
     roleState: 'roleStateV1',
     routerState: 'routerStateV1',
+    taxState: 'taxStateV1',
     timezoneState: 'timezoneStateV1',
   },
   config: {

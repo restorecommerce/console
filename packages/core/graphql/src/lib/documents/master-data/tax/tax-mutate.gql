@@ -1,0 +1,41 @@
+mutation MasterDataTaxMutate($input: IIoRestorecommerceTaxTaxList!) {
+  master_data {
+    tax {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...TaxFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation MasterDataTaxDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  master_data {
+    tax {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

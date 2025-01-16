@@ -10,4 +10,5 @@ export * from './shop';
 export * from './timezone';
 export * from './product';
 export * from './role';
+export * from './tax';
 export * from './user';

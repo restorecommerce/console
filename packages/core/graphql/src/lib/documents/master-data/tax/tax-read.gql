@@ -1,0 +1,19 @@
+query MasterDataTaxRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  master_data {
+    tax {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...TaxFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

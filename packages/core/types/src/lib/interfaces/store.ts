@@ -14,6 +14,7 @@ export interface IStoreConstant {
     readonly productState: 'productStateV1';
     readonly roleState: 'roleStateV1';
     readonly routerState: 'routerStateV1';
+    readonly taxState: 'taxStateV1';
     readonly timezoneState: 'timezoneStateV1';
   };
   readonly config: {

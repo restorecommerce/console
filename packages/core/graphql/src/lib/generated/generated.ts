@@ -7545,6 +7545,32 @@ export type ShopFragmentFragment = {
   } | null;
 };
 
+export type TaxFragmentFragment = {
+  __typename?: 'IoRestorecommerceTaxTax';
+  id?: string | null;
+  name?: string | null;
+  rate?: number | null;
+  typeId?: string | null;
+  variant?: string | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
+  } | null;
+};
+
 export type TimezoneFragmentFragment = {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   id?: string | null;
@@ -9718,6 +9744,143 @@ export type MasterDataOrganizationReadQuery = {
   };
 };
 
+export type MasterDataTaxMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceTaxTaxList;
+}>;
+
+export type MasterDataTaxMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    tax: {
+      __typename?: 'ResourceTaxMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceTaxTaxListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceTaxTaxListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceTaxTaxResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceTaxTax';
+              id?: string | null;
+              name?: string | null;
+              rate?: number | null;
+              typeId?: string | null;
+              variant?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataTaxDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type MasterDataTaxDeleteMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    tax: {
+      __typename?: 'ResourceTaxMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            id?: string | null;
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataTaxReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataTaxReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    tax: {
+      __typename?: 'ResourceTaxQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceTaxTaxListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceTaxTaxListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceTaxTaxResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceTaxTax';
+              id?: string | null;
+              name?: string | null;
+              rate?: number | null;
+              typeId?: string | null;
+              variant?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type MasterDataTimezoneReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -11850,6 +12013,19 @@ export const OrderFragmentFragmentDoc = gql`
   ${UserFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const TaxFragmentFragmentDoc = gql`
+  fragment TaxFragment on IoRestorecommerceTaxTax {
+    id
+    name
+    rate
+    typeId
+    variant
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const TimezoneFragmentFragmentDoc = gql`
   fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
@@ -13230,6 +13406,115 @@ export class MasterDataOrganizationReadGQL extends Apollo.Query<
   MasterDataOrganizationReadQueryVariables
 > {
   override document = MasterDataOrganizationReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataTaxMutateDocument = gql`
+  mutation MasterDataTaxMutate($input: IIoRestorecommerceTaxTaxList!) {
+    master_data {
+      tax {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...TaxFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${TaxFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataTaxMutateGQL extends Apollo.Mutation<
+  MasterDataTaxMutateMutation,
+  MasterDataTaxMutateMutationVariables
+> {
+  override document = MasterDataTaxMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataTaxDeleteMutateDocument = gql`
+  mutation MasterDataTaxDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      tax {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataTaxDeleteMutateGQL extends Apollo.Mutation<
+  MasterDataTaxDeleteMutateMutation,
+  MasterDataTaxDeleteMutateMutationVariables
+> {
+  override document = MasterDataTaxDeleteMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataTaxReadDocument = gql`
+  query MasterDataTaxRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    master_data {
+      tax {
+        Read(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...TaxFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${TaxFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataTaxReadGQL extends Apollo.Query<
+  MasterDataTaxReadQuery,
+  MasterDataTaxReadQueryVariables
+> {
+  override document = MasterDataTaxReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

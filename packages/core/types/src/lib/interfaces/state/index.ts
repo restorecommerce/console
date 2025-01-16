@@ -13,4 +13,5 @@ export * from './product.state';
 export * from './role.state';
 export * from './router.state';
 export * from './store.state';
+export * from './tax.state';
 export * from './timezone.state';

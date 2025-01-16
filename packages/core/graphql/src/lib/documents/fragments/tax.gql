@@ -1,0 +1,10 @@
+fragment TaxFragment on IoRestorecommerceTaxTax {
+  id
+  name
+  rate
+  typeId
+  variant
+  meta {
+    ...MetaFragment
+  }
+}
