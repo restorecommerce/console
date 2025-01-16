@@ -186,6 +186,57 @@ export class JssFormService {
           ],
         },
         {
+          type: 'password-input',
+          name: 'password',
+          label: 'Password',
+          params: {
+            placeholder: 'Enter password',
+          },
+          validators: [
+            Validators.required,
+            Validators.pattern(
+              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+            ),
+          ],
+          hints: [
+            {
+              type: 'error',
+              error: 'required',
+              message: 'Password is required',
+            },
+            {
+              type: 'error',
+              error: 'pattern',
+              message: 'Password must...',
+            },
+            {
+              type: 'error',
+              error: 'pattern',
+              message: '- At least 8 characters in length',
+            },
+            {
+              type: 'error',
+              error: 'pattern',
+              message: '- Contain a lowercase letters',
+            },
+            {
+              type: 'error',
+              error: 'pattern',
+              message: '- Contain a uppercase letters',
+            },
+            {
+              type: 'error',
+              error: 'pattern',
+              message: '- Contain a number',
+            },
+            {
+              type: 'error',
+              error: 'pattern',
+              message: '- Contain a special character',
+            },
+          ],
+        },
+        {
           name: 'email',
           label: 'Email',
           type: 'input',
