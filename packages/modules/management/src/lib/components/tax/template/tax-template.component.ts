@@ -19,24 +19,23 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { CountryFacade, RouterFacade } from '@console-core/state';
-import { ICrudFeature, EUrlSegment, ICountry } from '@console-core/types';
+import { RouterFacade, TaxFacade } from '@console-core/state';
+import { ICrudFeature, EUrlSegment } from '@console-core/types';
 
 @Component({
-  selector: 'app-module-management-country-template',
+  selector: 'app-module-management-tax-template',
   templateUrl: './tax-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
 export class TaxTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
-  featureRouter =
-    ROUTER.pages.main.children.management.children.countries.children;
+  featureRouter = ROUTER.pages.main.children.management.children.taxes.children;
 
   feature: Readonly<ICrudFeature> = {
     name: {
-      plural: 'Countries',
-      singular: 'Country',
+      plural: 'Taxes',
+      singular: 'Tax',
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
@@ -60,7 +59,7 @@ export class TaxTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.countryFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.taxFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -73,17 +72,17 @@ export class TaxTemplateComponent implements OnInit, OnDestroy {
         search: {
           caseSensitive: false,
           search: value,
-          fields: ['name', 'geographical_name', 'country_code'],
+          fields: ['name'],
         },
       };
-      this.countryFacade.read(this.queryVariables);
+      this.taxFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.countryFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.taxFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -91,7 +90,7 @@ export class TaxTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.countryFacade.remove({ id });
+      this.taxFacade.remove({ id });
     })
   );
 
@@ -100,16 +99,16 @@ export class TaxTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.countryFacade.setSelectedId(null);
+        this.taxFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.countryFacade.all$,
-    selectedCountryId: this.countryFacade.selectedId$,
-    selectedCountry: this.countryFacade.selected$,
+    dataList: this.taxFacade.all$,
+    selectedTaxId: this.taxFacade.selectedId$,
+    selectedTax: this.taxFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -119,7 +118,7 @@ export class TaxTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly countryFacade: CountryFacade,
+    private readonly taxFacade: TaxFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 
@@ -133,9 +132,5 @@ export class TaxTemplateComponent implements OnInit, OnDestroy {
 
   onSearch(value: string): void {
     this.triggerSearch.next(value);
-  }
-
-  trackByFn(_: number, item: ICountry) {
-    return item.id;
   }
 }

@@ -1,8 +1,8 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [title]="vm.selectedCountry?.name ?? feature.name.singular"
-  [id]="vm.selectedCountryId"
+  [title]="vm.selectedTax?.name ?? feature.name.singular"
+  [id]="vm.selectedTaxId"
   [total]="vm.dataList.length"
   [urlSegment]="vm.urlSegment"
   [triggerRead]="triggerRead"
@@ -26,7 +26,7 @@
       <rc-data-list
         [itemTemplate]="itemTemplate"
         [items]="vm.dataList"
-        [selected]="vm.selectedCountryId"
+        [selected]="vm.selectedTaxId"
         (itemSelected)="triggerSelectId.next($event)"
       />
     </ng-container>
@@ -38,9 +38,9 @@
 
   <ng-container rc-crud-meta>
     <rc-meta
-      *ngIf="vm.selectedCountryId"
-      [id]="vm.selectedCountryId"
-      [meta]="vm.selectedCountry?.meta"
+      *ngIf="vm.selectedTaxId"
+      [id]="vm.selectedTaxId"
+      [meta]="vm.selectedTax?.meta"
     />
   </ng-container>
 </rc-crud-main>
@@ -57,10 +57,10 @@
 >
   <div class="row justify-content-between">
     <rc-data-list-label
-      [innerHTML]="item.name | highlight : triggerSearch.value"
+      [innerHTML]="item.id | highlight : triggerSearch.value"
     />
     <rc-data-list-sublabel
-      [innerHTML]="item.geographicalName | highlight : triggerSearch.value"
+      [innerHTML]="item.id | highlight : triggerSearch.value"
     />
   </div>
 </ng-template>
