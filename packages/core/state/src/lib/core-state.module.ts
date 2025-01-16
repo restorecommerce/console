@@ -49,6 +49,9 @@ import {
   TimezoneFacade,
   timezoneReducer,
   currencyReducer,
+  TaxFacade,
+  taxReducer,
+  TaxEffects,
 } from './+state';
 
 const facades = [
@@ -66,6 +69,7 @@ const facades = [
   OrderFacade,
   ProductFacade,
   RouterFacade,
+  TaxFacade,
   TimezoneFacade,
 ];
 
@@ -98,6 +102,8 @@ const facades = [
     StoreModule.forFeature(STORE.states.productState, productReducer),
     EffectsModule.forFeature([ProductEffects]),
     StoreModule.forFeature(STORE.states.timezoneState, timezoneReducer),
+    StoreModule.forFeature(STORE.states.taxState, taxReducer),
+    EffectsModule.forFeature([TaxEffects]),
     EffectsModule.forFeature([TimezoneEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
   ],
