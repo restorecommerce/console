@@ -1,13 +1,14 @@
 fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
   id
   parentId
-  parent {
-    id
-    name
-    email
-    website
-    vatId
-  }
+  # TODO Down stream error due to this query.
+  # parent {
+  #   id
+  #   name
+  #   email
+  #   website
+  #   vatId
+  # }
   name
   email
   website

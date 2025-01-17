@@ -6063,14 +6063,6 @@ export type CustomerFragmentFragment = {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
-      parent?: {
-        __typename?: 'IoRestorecommerceOrganizationOrganization';
-        id?: string | null;
-        name?: string | null;
-        email?: string | null;
-        website?: string | null;
-        vatId?: string | null;
-      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -6153,14 +6145,6 @@ export type CustomerFragmentFragment = {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
-      parent?: {
-        __typename?: 'IoRestorecommerceOrganizationOrganization';
-        id?: string | null;
-        name?: string | null;
-        email?: string | null;
-        website?: string | null;
-        vatId?: string | null;
-      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -6686,14 +6670,6 @@ export type OrderFragmentFragment = {
       email?: string | null;
       website?: string | null;
       vatId?: string | null;
-      parent?: {
-        __typename?: 'IoRestorecommerceOrganizationOrganization';
-        id?: string | null;
-        name?: string | null;
-        email?: string | null;
-        website?: string | null;
-        vatId?: string | null;
-      } | null;
       logo?: {
         __typename?: 'IoRestorecommerceImageImage';
         id?: string | null;
@@ -6796,14 +6772,6 @@ export type OrderFragmentFragment = {
         email?: string | null;
         website?: string | null;
         vatId?: string | null;
-        parent?: {
-          __typename?: 'IoRestorecommerceOrganizationOrganization';
-          id?: string | null;
-          name?: string | null;
-          email?: string | null;
-          website?: string | null;
-          vatId?: string | null;
-        } | null;
         logo?: {
           __typename?: 'IoRestorecommerceImageImage';
           id?: string | null;
@@ -6886,14 +6854,6 @@ export type OrderFragmentFragment = {
         email?: string | null;
         website?: string | null;
         vatId?: string | null;
-        parent?: {
-          __typename?: 'IoRestorecommerceOrganizationOrganization';
-          id?: string | null;
-          name?: string | null;
-          email?: string | null;
-          website?: string | null;
-          vatId?: string | null;
-        } | null;
         logo?: {
           __typename?: 'IoRestorecommerceImageImage';
           id?: string | null;
@@ -7256,14 +7216,6 @@ export type OrganizationFragmentFragment = {
   email?: string | null;
   website?: string | null;
   vatId?: string | null;
-  parent?: {
-    __typename?: 'IoRestorecommerceOrganizationOrganization';
-    id?: string | null;
-    name?: string | null;
-    email?: string | null;
-    website?: string | null;
-    vatId?: string | null;
-  } | null;
   logo?: {
     __typename?: 'IoRestorecommerceImageImage';
     id?: string | null;
@@ -7447,14 +7399,6 @@ export type ShopFragmentFragment = {
     email?: string | null;
     website?: string | null;
     vatId?: string | null;
-    parent?: {
-      __typename?: 'IoRestorecommerceOrganizationOrganization';
-      id?: string | null;
-      name?: string | null;
-      email?: string | null;
-      website?: string | null;
-      vatId?: string | null;
-    } | null;
     logo?: {
       __typename?: 'IoRestorecommerceImageImage';
       id?: string | null;
@@ -9490,14 +9434,6 @@ export type MasterDataOrganizationMutateMutation = {
               email?: string | null;
               website?: string | null;
               vatId?: string | null;
-              parent?: {
-                __typename?: 'IoRestorecommerceOrganizationOrganization';
-                id?: string | null;
-                name?: string | null;
-                email?: string | null;
-                website?: string | null;
-                vatId?: string | null;
-              } | null;
               logo?: {
                 __typename?: 'IoRestorecommerceImageImage';
                 id?: string | null;
@@ -9630,14 +9566,6 @@ export type MasterDataOrganizationReadQuery = {
               email?: string | null;
               website?: string | null;
               vatId?: string | null;
-              parent?: {
-                __typename?: 'IoRestorecommerceOrganizationOrganization';
-                id?: string | null;
-                name?: string | null;
-                email?: string | null;
-                website?: string | null;
-                vatId?: string | null;
-              } | null;
               logo?: {
                 __typename?: 'IoRestorecommerceImageImage';
                 id?: string | null;
@@ -10119,14 +10047,6 @@ export type OrderingOrderMutateMutation = {
                   email?: string | null;
                   website?: string | null;
                   vatId?: string | null;
-                  parent?: {
-                    __typename?: 'IoRestorecommerceOrganizationOrganization';
-                    id?: string | null;
-                    name?: string | null;
-                    email?: string | null;
-                    website?: string | null;
-                    vatId?: string | null;
-                  } | null;
                   logo?: {
                     __typename?: 'IoRestorecommerceImageImage';
                     id?: string | null;
@@ -10229,14 +10149,6 @@ export type OrderingOrderMutateMutation = {
                     email?: string | null;
                     website?: string | null;
                     vatId?: string | null;
-                    parent?: {
-                      __typename?: 'IoRestorecommerceOrganizationOrganization';
-                      id?: string | null;
-                      name?: string | null;
-                      email?: string | null;
-                      website?: string | null;
-                      vatId?: string | null;
-                    } | null;
                     logo?: {
                       __typename?: 'IoRestorecommerceImageImage';
                       id?: string | null;
@@ -10319,14 +10231,6 @@ export type OrderingOrderMutateMutation = {
                     email?: string | null;
                     website?: string | null;
                     vatId?: string | null;
-                    parent?: {
-                      __typename?: 'IoRestorecommerceOrganizationOrganization';
-                      id?: string | null;
-                      name?: string | null;
-                      email?: string | null;
-                      website?: string | null;
-                      vatId?: string | null;
-                    } | null;
                     logo?: {
                       __typename?: 'IoRestorecommerceImageImage';
                       id?: string | null;
@@ -10854,14 +10758,6 @@ export type OrderingOrderReadQuery = {
                   email?: string | null;
                   website?: string | null;
                   vatId?: string | null;
-                  parent?: {
-                    __typename?: 'IoRestorecommerceOrganizationOrganization';
-                    id?: string | null;
-                    name?: string | null;
-                    email?: string | null;
-                    website?: string | null;
-                    vatId?: string | null;
-                  } | null;
                   logo?: {
                     __typename?: 'IoRestorecommerceImageImage';
                     id?: string | null;
@@ -10964,14 +10860,6 @@ export type OrderingOrderReadQuery = {
                     email?: string | null;
                     website?: string | null;
                     vatId?: string | null;
-                    parent?: {
-                      __typename?: 'IoRestorecommerceOrganizationOrganization';
-                      id?: string | null;
-                      name?: string | null;
-                      email?: string | null;
-                      website?: string | null;
-                      vatId?: string | null;
-                    } | null;
                     logo?: {
                       __typename?: 'IoRestorecommerceImageImage';
                       id?: string | null;
@@ -11054,14 +10942,6 @@ export type OrderingOrderReadQuery = {
                     email?: string | null;
                     website?: string | null;
                     vatId?: string | null;
-                    parent?: {
-                      __typename?: 'IoRestorecommerceOrganizationOrganization';
-                      id?: string | null;
-                      name?: string | null;
-                      email?: string | null;
-                      website?: string | null;
-                      vatId?: string | null;
-                    } | null;
                     logo?: {
                       __typename?: 'IoRestorecommerceImageImage';
                       id?: string | null;
@@ -11731,13 +11611,6 @@ export const OrganizationFragmentFragmentDoc = gql`
   fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
     id
     parentId
-    parent {
-      id
-      name
-      email
-      website
-      vatId
-    }
     name
     email
     website

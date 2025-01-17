@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+import { conditional, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import {
   IamFacade,
@@ -186,57 +186,6 @@ export class JssFormService {
           ],
         },
         {
-          type: 'password-input',
-          name: 'password',
-          label: 'Password',
-          params: {
-            placeholder: 'Enter password',
-          },
-          validators: [
-            Validators.required,
-            Validators.pattern(
-              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-            ),
-          ],
-          hints: [
-            {
-              type: 'error',
-              error: 'required',
-              message: 'Password is required',
-            },
-            {
-              type: 'error',
-              error: 'pattern',
-              message: 'Password must...',
-            },
-            {
-              type: 'error',
-              error: 'pattern',
-              message: '- At least 8 characters in length',
-            },
-            {
-              type: 'error',
-              error: 'pattern',
-              message: '- Contain a lowercase letters',
-            },
-            {
-              type: 'error',
-              error: 'pattern',
-              message: '- Contain a uppercase letters',
-            },
-            {
-              type: 'error',
-              error: 'pattern',
-              message: '- Contain a number',
-            },
-            {
-              type: 'error',
-              error: 'pattern',
-              message: '- Contain a special character',
-            },
-          ],
-        },
-        {
           name: 'email',
           label: 'Email',
           type: 'input',
@@ -265,6 +214,78 @@ export class JssFormService {
           params: {},
           hints: [],
         },
+
+        ...(!user
+          ? [
+              {
+                name: 'invite',
+                label: 'Invite user',
+                type: 'checkbox',
+                defaultValue: false,
+                validators: [],
+                params: {},
+              },
+              {
+                type: 'password-input',
+                name: 'password',
+                label: 'Password',
+                params: {
+                  placeholder: 'Enter password',
+                },
+                validators: [
+                  Validators.required,
+                  Validators.pattern(
+                    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+                  ),
+                ],
+                hints: [
+                  {
+                    type: 'error',
+                    error: 'required',
+                    message: 'Password is required',
+                  },
+                  {
+                    type: 'error',
+                    error: 'pattern',
+                    message: 'Password must...',
+                  },
+                  {
+                    type: 'error',
+                    error: 'pattern',
+                    message: '- At least 8 characters in length',
+                  },
+                  {
+                    type: 'error',
+                    error: 'pattern',
+                    message: '- Contain a lowercase letters',
+                  },
+                  {
+                    type: 'error',
+                    error: 'pattern',
+                    message: '- Contain a uppercase letters',
+                  },
+                  {
+                    type: 'error',
+                    error: 'pattern',
+                    message: '- Contain a number',
+                  },
+                  {
+                    type: 'error',
+                    error: 'pattern',
+                    message: '- Contain a special character',
+                  },
+                ],
+                visible: conditional(['invite'], (enabled) => {
+                  return !!enabled && !enabled.value;
+                }),
+                disabled: conditional(
+                  ['invite'],
+                  (control) => !!control && control.value
+                ),
+              },
+            ]
+          : []),
+
         {
           name: 'localeId',
           label: 'Locale',

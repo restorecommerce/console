@@ -9,6 +9,7 @@ import { IamCreateComponent } from './iam-create.component';
 import { IamEditComponent } from './iam-edit.component';
 import { IamIndexComponent } from './iam-index.component';
 import { IamViewComponent } from './iam-view.component';
+import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { IamTemplateComponent } from './template/iam-template.component';
 import { IamChangePasswordFormComponent } from './views/iam-change-password-form.component';
 import { IamDetailsComponent } from './views/iam-details.component';
@@ -80,6 +81,7 @@ const routes: Routes = [
     IamDetailsComponent,
     IamChangePasswordFormComponent,
     IamTemplateComponent,
+    IamRoleAssociationModalComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })

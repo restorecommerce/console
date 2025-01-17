@@ -1,18 +1,23 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
-  TemplateRef,
+  OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { combineLatest } from 'rxjs';
 
-import { JssFormComponent, LayerRef, LayerService } from '@vcl/ng-vcl';
+import {
+  JssFormComponent,
+  LayerRef,
+  LayerService,
+  VCLFormFieldSchemaRoot,
+} from '@vcl/ng-vcl';
 
 import { IamFacade, UserService } from '@console-core/state';
 
+import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { JssFormService } from './services';
 
 @Component({
@@ -23,48 +28,23 @@ import { JssFormService } from './services';
         <rc-crud-create
           [schema]="vm.userSchema"
           [create]="create"
-          (actionEvent)="handleActionEvent($event)"
         />
-      </div>
 
-      <ng-template
-        #tplLayerRef
-        let-title="title"
-      >
-        <vcl-panel-dialog
-          [showCloseButton]="true"
-          (close)="tplLayer.close()"
-          class="panel-dialog"
-        >
-          <vcl-panel-title>{{ title }}</vcl-panel-title>
-          <div class="row">
-            <div class="flex-12">
-              <vcl-jss-form
-                autocomplete="off"
-                ngDefaultControl
-                #roleAssociationsForm="vclJssForm"
-                [schema]="vm.roleAssociationsSchema"
-                (formAction)="onAction($event)"
-                (formSubmit)="onSubmit()"
-              />
-            </div>
-          </div>
-        </vcl-panel-dialog>
-      </ng-template>
+        <button (click)="handleActionEvent(vm.roleAssociationsSchema)">
+          Add Role X2
+        </button>
+      </div>
     </ng-container>
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class IamCreateComponent implements AfterViewInit, OnDestroy {
+export class IamCreateComponent implements OnInit, OnDestroy {
   @ViewChild('roleAssociationsForm')
   roleAssociationsForm!: JssFormComponent;
 
-  @ViewChild('tplLayerRef')
-  tplLayerRef!: TemplateRef<HTMLElement>;
-
-  tplLayer!: LayerRef;
+  roleAssociationLayer!: LayerRef;
 
   create = this.iamFacade.create;
 
@@ -81,10 +61,13 @@ export class IamCreateComponent implements AfterViewInit, OnDestroy {
     private readonly jssFormService: JssFormService
   ) {}
 
-  ngAfterViewInit(): void {
-    this.tplLayer = this.layerService.createTemplateLayer(
-      this.tplLayerRef,
-      this.viewContainerRef
+  ngOnInit(): void {
+    this.roleAssociationLayer = this.layerService.create(
+      IamRoleAssociationModalComponent,
+      {
+        closeOnBackdropClick: false,
+        closeOnEscape: false,
+      }
     );
   }
 
@@ -93,35 +76,20 @@ export class IamCreateComponent implements AfterViewInit, OnDestroy {
     this.iamFacade.setTempRoleAssociations([]);
   }
 
-  handleActionEvent(action: string): void {
-    if (action === 'addRoleAssociations') {
-      this.tplLayer.open({ data: { title: 'Assign Roles' } });
-    }
-  }
-
-  onAction(action: string): void {
-    if ('close' === action) {
-      this.tplLayer.close();
-    }
-  }
-
-  onSubmit(): void {
-    if (
-      this.roleAssociationsForm.form?.invalid ||
-      this.roleAssociationsForm.form?.pristine
-    ) {
-      return;
-    }
-
-    this.tplLayer.close();
-
-    const roleAssociations =
-      this.roleAssociationsForm.form?.value.roleAssociationsArray.map(
-        (ra: { role: string; organization: string }) => ({
+  handleActionEvent(roleAssociationsSchema: VCLFormFieldSchemaRoot): void {
+    this.roleAssociationLayer
+      .open({
+        data: {
+          title: 'Assign Roles',
+          roleAssociationsSchema,
+        },
+      })
+      .subscribe((result: { role: string; organization: string }[]) => {
+        const roleAssociations = result.map((ra) => ({
           ...this.userService.createRoleAssociation(ra.role, ra.organization),
-        })
-      );
+        }));
 
-    this.iamFacade.setTempRoleAssociations(roleAssociations);
+        this.iamFacade.setTempRoleAssociations(roleAssociations);
+      });
   }
 }
