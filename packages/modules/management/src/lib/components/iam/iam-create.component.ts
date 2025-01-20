@@ -4,7 +4,6 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-  ViewContainerRef,
 } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 
@@ -32,11 +31,6 @@ import { JssFormService } from './services';
           id="s"
           (addRole)="handleActionEvent(vm.roleAssociationsSchema)"
         />
-
-        <!-- [create]="create" -->
-        <!-- <button (click)="handleActionEvent(vm.roleAssociationsSchema)">
-          Add Role X2
-        </button> -->
       </div>
     </ng-container>
   `,
@@ -74,7 +68,6 @@ export class IamCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly layerService: LayerService,
-    private readonly viewContainerRef: ViewContainerRef,
     private readonly iamFacade: IamFacade,
     private readonly userService: UserService,
     private readonly jssFormService: JssFormService

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
@@ -51,7 +51,42 @@ export class JssFormService {
     organizations: this.organizationFacade.all$,
     organizationsHash: this.organizationFacade.entities$,
     tempRoleAssociations: this.iamFacade.tempRoleAssociations$,
-  });
+  }).pipe(
+    map((data): IUserSchemaOptions => {
+      const roleAssociationsScopingInstances =
+        this.userService.getRoleAssociationsScopingInstances(
+          [
+            ...(data.user?.roleAssociations || []),
+            ...data.tempRoleAssociations,
+          ],
+          data.rolesHash,
+          data.organizationsHash
+        );
+
+      const uniqueRoleAssociationsScopingInstancesObj =
+        roleAssociationsScopingInstances.reduce((acc, item) => {
+          const key = `${item.role?.id}|${item.organization?.id}`;
+          if (!acc[key]) {
+            acc[key] = item;
+          }
+          return acc;
+        }, {} as Record<string, IRoleAssociationScopingInstance>);
+
+      const uniqueRoleAssociationsScopingInstances = Object.values(
+        uniqueRoleAssociationsScopingInstancesObj
+      );
+
+      return {
+        locales: data.locales,
+        organizations: data.organizations,
+        roles: data.roles,
+        timezones: data.timezones,
+        user: data.user,
+        roleAssociationsScopingInstances:
+          uniqueRoleAssociationsScopingInstances,
+      };
+    })
+  );
 
   userForm$ = new BehaviorSubject<FormGroup>(
     this.createUserForm({
@@ -83,16 +118,7 @@ export class JssFormService {
   ) {
     this.init();
 
-    combineLatest({
-      user: this.iamFacade.selected$,
-      locales: this.localeFacade.all$,
-      timezones: this.timezoneFacade.all$,
-      roles: this.roleFacade.all$,
-      rolesHash: this.roleFacade.entities$,
-      organizations: this.organizationFacade.all$,
-      organizationsHash: this.organizationFacade.entities$,
-      tempRoleAssociations: this.iamFacade.tempRoleAssociations$,
-    })
+    this.formOptions$
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         ({
@@ -100,10 +126,8 @@ export class JssFormService {
           locales,
           timezones,
           roles,
-          rolesHash,
+          roleAssociationsScopingInstances,
           organizations,
-          organizationsHash,
-          tempRoleAssociations,
         }) => {
           this.userForm$.next(
             this.createUserForm({
@@ -112,12 +136,7 @@ export class JssFormService {
               timezones,
               roles,
               organizations,
-              roleAssociationsScopingInstances:
-                this.userService.getRoleAssociationsScopingInstances(
-                  [...(user?.roleAssociations || []), ...tempRoleAssociations],
-                  rolesHash,
-                  organizationsHash
-                ),
+              roleAssociationsScopingInstances,
             })
           );
           this.roleAssociationsSchema$.next(
@@ -148,18 +167,6 @@ export class JssFormService {
     user,
     roleAssociationsScopingInstances,
   }: IUserSchemaOptions): FormGroup {
-    const uniqueRoleAssociationsScopingInstancesObj =
-      roleAssociationsScopingInstances.reduce((acc, item) => {
-        const key = `${item.role?.id}|${item.organization?.id}`;
-        if (!acc[key]) {
-          acc[key] = item;
-        }
-        return acc;
-      }, {} as Record<string, IRoleAssociationScopingInstance>);
-    const uniqueRoleAssociationsScopingInstances = Object.values(
-      uniqueRoleAssociationsScopingInstancesObj
-    );
-
     const form = this.fb.group({
       firstName: [user?.firstName, [Validators.required]],
       lastName: [user?.lastName || '', [Validators.required]],
@@ -183,7 +190,7 @@ export class JssFormService {
       localeId: [user?.localeId || '', [Validators.required]],
       timezoneId: [user?.timezoneId || '', [Validators.required]],
       roleAssociations: [
-        uniqueRoleAssociationsScopingInstances.map(
+        roleAssociationsScopingInstances.map(
           (rai) => `${rai.role?.id}|${rai.organization?.id}`
         ),
         [],

@@ -103,7 +103,8 @@ export class IamEditComponent implements OnDestroy, AfterViewInit {
           user: options.user,
           locales: options.locales,
           timezones: options.timezones,
-          uniqueRoleAssociationsScopingInstances: [],
+          uniqueRoleAssociationsScopingInstances:
+            options.roleAssociationsScopingInstances,
         };
       })
     ),
