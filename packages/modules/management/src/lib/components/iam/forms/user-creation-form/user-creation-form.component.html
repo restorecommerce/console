@@ -1,0 +1,148 @@
+<form
+  novalidate
+  [formGroup]="schema"
+  #form="ngForm"
+  vclForm
+>
+  <vcl-form-control-group>
+    <vcl-label>First Name</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        formControlName="firstName"
+        placeholder="First name"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Last Name</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        formControlName="lastName"
+        placeholder="Last name"
+      />
+    </vcl-input-field>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Username</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        formControlName="name"
+        placeholder="Username"
+      />
+    </vcl-input-field>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Email</vcl-label>
+    <vcl-input-field>
+      <vcl-icon icon="vcl:email"></vcl-icon>
+      <input
+        vclInput
+        formControlName="email"
+        placeholder="Email address"
+      />
+    </vcl-input-field>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+    <vcl-hint-error error="email">Invalid email address.</vcl-hint-error>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-checkbox formControlName="active">Active</vcl-checkbox>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-checkbox formControlName="invite"
+      >Send the user an email invitation</vcl-checkbox
+    >
+  </vcl-form-control-group>
+
+  <vcl-form-control-group *ngIf="!schema.get('invite')?.value">
+    <vcl-label>Password</vcl-label>
+    <vcl-password-input>
+      <input
+        vclInput
+        formControlName="password"
+        placeholder="Enter password"
+      />
+    </vcl-password-input>
+    <vcl-hint-error error="required">Password is required.</vcl-hint-error>
+    <vcl-hint-error error="pattern">Password must...</vcl-hint-error>
+  </vcl-form-control-group>
+
+  <!-- Locale -->
+  <!-- <vcl-form-control-group>
+    <vcl-label>Locale</vcl-label>
+    <vcl-select formControlName="localeId">
+      <vcl-select-list>
+        <vcl-select-list-item
+          *ngFor="let locale of locales"
+          [value]="locale.id"
+        >
+          {{ locale.value }}
+          <vcl-sub-label>{{ locale.description }}</vcl-sub-label>
+        </vcl-select-list-item>
+      </vcl-select-list>
+    </vcl-select>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  </vcl-form-control-group> -->
+
+  <!-- Timezone -->
+  <!-- <vcl-form-control-group>
+    <vcl-label>Timezone</vcl-label>
+    <vcl-select formControlName="timezoneId">
+      <vcl-select-list>
+        <vcl-select-list-item
+          *ngFor="let timezone of timezones"
+          [value]="timezone.id"
+        >
+          {{ timezone.value }}
+          <vcl-sub-label>{{ timezone.description }}</vcl-sub-label>
+        </vcl-select-list-item>
+      </vcl-select-list>
+    </vcl-select>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  </vcl-form-control-group> -->
+
+  <!-- Roles -->
+  <!-- <vcl-form-control-group
+    *ngIf="uniqueRoleAssociationsScopingInstances?.length"
+  >
+    <vcl-label>Roles</vcl-label>
+    <vcl-select-list
+      formControlName="roleAssociations"
+      selectionMode="multiple"
+    >
+      <vcl-select-list-item
+        *ngFor="let rai of uniqueRoleAssociationsScopingInstances"
+        [value]="rai.role?.id + '|' + rai.organization?.id"
+      >
+        {{ rai.role?.name || 'N/A' }} [{{ rai.organization?.name || 'N/A' }}]
+        <vcl-sub-label>{{ rai.role?.description || 'N/A' }}</vcl-sub-label>
+      </vcl-select-list-item>
+    </vcl-select-list>
+  </vcl-form-control-group> -->
+
+  <!-- Buttons -->
+  <div class="loose-button-group">
+    <button
+      vcl-button
+      type="submit"
+      class="emphasized"
+    >
+      Save
+    </button>
+    <button
+      vcl-button
+      type="button"
+      class="transparent"
+    >
+      Cancel
+    </button>
+  </div>
+</form>

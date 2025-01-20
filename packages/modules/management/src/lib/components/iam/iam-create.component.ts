@@ -6,7 +6,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { combineLatest } from 'rxjs';
+import { map } from 'rxjs';
 
 import {
   JssFormComponent,
@@ -25,14 +25,12 @@ import { JssFormService } from './services';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
-        <rc-crud-create
-          [schema]="vm.userSchema"
-          [create]="create"
-        />
+        <app-user-creation-form [schema]="vm.userCreationForm" />
 
-        <button (click)="handleActionEvent(vm.roleAssociationsSchema)">
+        <!-- [create]="create" -->
+        <!-- <button (click)="handleActionEvent(vm.roleAssociationsSchema)">
           Add Role X2
-        </button>
+        </button> -->
       </div>
     </ng-container>
   `,
@@ -46,12 +44,22 @@ export class IamCreateComponent implements OnInit, OnDestroy {
 
   roleAssociationLayer!: LayerRef;
 
+  // userForm = this.jssFormService.createUserForm()
   create = this.iamFacade.create;
 
-  readonly vm$ = combineLatest({
-    userSchema: this.jssFormService.userSchema$,
-    roleAssociationsSchema: this.jssFormService.roleAssociationsSchema$,
-  });
+  readonly vm$ = this.iamFacade.selected$.pipe(
+    map((_) => ({
+      userCreationForm: this.jssFormService.createUserForm({
+        user: null,
+        uniqueRoleAssociationsScopingInstances: [],
+      }),
+    }))
+  );
+
+  // readonly vm$ = combineLatest({
+  //   userSchema: this.jssFormService.userSchema$,
+  //   roleAssociationsSchema: this.jssFormService.roleAssociationsSchema$,
+  // });
 
   constructor(
     private readonly layerService: LayerService,

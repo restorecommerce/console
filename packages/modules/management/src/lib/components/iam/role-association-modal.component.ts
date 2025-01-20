@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
-import { ComponentLayerRef, JssFormComponent } from '@vcl/ng-vcl';
+import {
+  ComponentLayerRef,
+  JssFormComponent,
+  VCLFormFieldSchemaRoot,
+} from '@vcl/ng-vcl';
 
 import { JssFormService } from './services';
 
@@ -35,7 +39,12 @@ export class IamRoleAssociationModalComponent {
   @ViewChild('roleAssociationsForm')
   roleAssociationsForm!: JssFormComponent;
 
-  constructor(public layer: ComponentLayerRef) {}
+  constructor(
+    public layer: ComponentLayerRef<{
+      title: string;
+      roleAssociationsSchema: VCLFormFieldSchemaRoot;
+    }>
+  ) {}
 
   onAction(action: string): void {
     if ('close' === action) {
@@ -50,8 +59,6 @@ export class IamRoleAssociationModalComponent {
     ) {
       return;
     }
-
-    this.close();
 
     const roleAssociations: { role: string; organization: string }[] =
       this.roleAssociationsForm.form?.value.roleAssociationsArray;

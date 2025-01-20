@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -62,6 +62,7 @@ export class JssFormService {
   private destroy$ = new Subject<void>();
 
   constructor(
+    private fb: FormBuilder,
     private readonly iamFacade: IamFacade,
     private readonly localeFacade: LocaleFacade,
     private readonly timezoneFacade: TimezoneFacade,
@@ -130,6 +131,53 @@ export class JssFormService {
     this.roleAssociationsSchema$.complete();
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  createUserForm(options: {
+    user: IUser | null;
+    uniqueRoleAssociationsScopingInstances: IRoleAssociationScopingInstance[];
+  }): FormGroup {
+    const form = this.fb.group({
+      firstName: [options.user?.firstName || '', []],
+      lastName: [options.user?.lastName || '', []],
+      name: [options.user?.name || '', [Validators.required]],
+      email: [
+        options.user?.email || '',
+        [Validators.required, Validators.email],
+      ],
+      active: [options.user?.active ?? true, []],
+      invite: [false, []],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+          ),
+        ],
+      ],
+      localeId: [options.user?.localeId || '', [Validators.required]],
+      timezoneId: [options.user?.timezoneId || '', [Validators.required]],
+      roleAssociations: [
+        options.uniqueRoleAssociationsScopingInstances.map(
+          (rai) => `${rai.role?.id}|${rai.organization?.id}`
+        ),
+        [],
+      ],
+    });
+
+    // Conditional logic for enabling/disabling the password field
+    const inviteControl = form.get('invite');
+    const passwordControl = form.get('password');
+    inviteControl?.valueChanges.subscribe((value) => {
+      if (value) {
+        passwordControl?.disable();
+      } else {
+        passwordControl?.enable();
+      }
+    });
+
+    return form;
   }
 
   private buildUserSchema({
@@ -219,7 +267,7 @@ export class JssFormService {
           ? [
               {
                 name: 'invite',
-                label: 'Invite user',
+                label: 'Send the user and e-mail invitation',
                 type: 'checkbox',
                 defaultValue: false,
                 validators: [],
