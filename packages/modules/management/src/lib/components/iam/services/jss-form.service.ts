@@ -42,6 +42,17 @@ interface IRoleAssociationsSchemaOptions {
 export class JssFormService {
   user: IUser | null = null;
 
+  formOptions$ = combineLatest({
+    user: this.iamFacade.selected$,
+    locales: this.localeFacade.all$,
+    timezones: this.timezoneFacade.all$,
+    roles: this.roleFacade.all$,
+    rolesHash: this.roleFacade.entities$,
+    organizations: this.organizationFacade.all$,
+    organizationsHash: this.organizationFacade.entities$,
+    tempRoleAssociations: this.iamFacade.tempRoleAssociations$,
+  });
+
   userSchema$ = new BehaviorSubject<VCLFormFieldSchemaRoot>(
     this.buildUserSchema({
       user: null,

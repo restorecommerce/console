@@ -76,12 +76,12 @@
   </vcl-form-control-group>
 
   <!-- Locale -->
-  <!-- <vcl-form-control-group>
+  <vcl-form-control-group>
     <vcl-label>Locale</vcl-label>
     <vcl-select formControlName="localeId">
       <vcl-select-list>
         <vcl-select-list-item
-          *ngFor="let locale of locales"
+          *ngFor="let locale of options.locales"
           [value]="locale.id"
         >
           {{ locale.value }}
@@ -90,15 +90,15 @@
       </vcl-select-list>
     </vcl-select>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group> -->
+  </vcl-form-control-group>
 
   <!-- Timezone -->
-  <!-- <vcl-form-control-group>
+  <vcl-form-control-group>
     <vcl-label>Timezone</vcl-label>
     <vcl-select formControlName="timezoneId">
       <vcl-select-list>
         <vcl-select-list-item
-          *ngFor="let timezone of timezones"
+          *ngFor="let timezone of options.timezones"
           [value]="timezone.id"
         >
           {{ timezone.value }}
@@ -107,11 +107,11 @@
       </vcl-select-list>
     </vcl-select>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group> -->
+  </vcl-form-control-group>
 
   <!-- Roles -->
-  <!-- <vcl-form-control-group
-    *ngIf="uniqueRoleAssociationsScopingInstances?.length"
+  <vcl-form-control-group
+    *ngIf="options.uniqueRoleAssociationsScopingInstances?.length"
   >
     <vcl-label>Roles</vcl-label>
     <vcl-select-list
@@ -119,14 +119,25 @@
       selectionMode="multiple"
     >
       <vcl-select-list-item
-        *ngFor="let rai of uniqueRoleAssociationsScopingInstances"
+        *ngFor="let rai of options.uniqueRoleAssociationsScopingInstances"
         [value]="rai.role?.id + '|' + rai.organization?.id"
       >
         {{ rai.role?.name || 'N/A' }} [{{ rai.organization?.name || 'N/A' }}]
         <vcl-sub-label>{{ rai.role?.description || 'N/A' }}</vcl-sub-label>
       </vcl-select-list-item>
     </vcl-select-list>
-  </vcl-form-control-group> -->
+  </vcl-form-control-group>
+
+  <div class="row justify-end">
+    <button
+      vcl-button
+      class="transparent"
+      type="button"
+      (click)="addRoleAssociations()"
+    >
+      Assign Roles
+    </button>
+  </div>
 
   <!-- Buttons -->
   <div class="loose-button-group">

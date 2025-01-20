@@ -6,7 +6,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { map } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 
 import {
   JssFormComponent,
@@ -16,6 +16,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { IamFacade, UserService } from '@console-core/state';
+import { IRoleAssociationScopingInstance } from '@console-core/types';
 
 import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { JssFormService } from './services';
@@ -25,7 +26,10 @@ import { JssFormService } from './services';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
-        <app-user-creation-form [schema]="vm.userCreationForm" />
+        <app-user-creation-form
+          [schema]="vm.userCreationForm"
+          [options]="vm.options"
+        />
 
         <!-- [create]="create" -->
         <!-- <button (click)="handleActionEvent(vm.roleAssociationsSchema)">
@@ -44,22 +48,49 @@ export class IamCreateComponent implements OnInit, OnDestroy {
 
   roleAssociationLayer!: LayerRef;
 
-  // userForm = this.jssFormService.createUserForm()
   create = this.iamFacade.create;
 
-  readonly vm$ = this.iamFacade.selected$.pipe(
-    map((_) => ({
-      userCreationForm: this.jssFormService.createUserForm({
-        user: null,
-        uniqueRoleAssociationsScopingInstances: [],
-      }),
-    }))
-  );
+  readonly vm$ = combineLatest([
+    this.iamFacade.selected$,
+    this.jssFormService.formOptions$,
+  ]).pipe(
+    map(([_, options]) => {
+      const roleAssociationsScopingInstances =
+        this.userService.getRoleAssociationsScopingInstances(
+          [
+            ...(options.user?.roleAssociations || []),
+            ...options.tempRoleAssociations,
+          ],
+          options.rolesHash,
+          options.organizationsHash
+        );
 
-  // readonly vm$ = combineLatest({
-  //   userSchema: this.jssFormService.userSchema$,
-  //   roleAssociationsSchema: this.jssFormService.roleAssociationsSchema$,
-  // });
+      const uniqueRoleAssociationsScopingInstancesObj =
+        roleAssociationsScopingInstances.reduce((acc, item) => {
+          const key = `${item.role?.id}|${item.organization?.id}`;
+          if (!acc[key]) {
+            acc[key] = item;
+          }
+          return acc;
+        }, {} as Record<string, IRoleAssociationScopingInstance>);
+
+      const uniqueRoleAssociationsScopingInstances = Object.values(
+        uniqueRoleAssociationsScopingInstancesObj
+      );
+
+      return {
+        userCreationForm: this.jssFormService.createUserForm({
+          user: null,
+          uniqueRoleAssociationsScopingInstances,
+        }),
+        options: {
+          locales: options.locales,
+          timezones: options.timezones,
+          uniqueRoleAssociationsScopingInstances,
+        },
+      };
+    })
+  );
 
   constructor(
     private readonly layerService: LayerService,
