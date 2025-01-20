@@ -174,7 +174,7 @@ export class JssFormService {
       email: [user?.email || '', [Validators.required, Validators.email]],
       active: [user?.active ?? true, []],
       invite: [false, []],
-      ...(user
+      ...(!user
         ? {
             password: [
               '',

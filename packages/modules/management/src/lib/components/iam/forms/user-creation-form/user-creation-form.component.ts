@@ -36,8 +36,8 @@ export class UserCreationFormComponent {
     uniqueRoleAssociationsScopingInstances: [],
   };
 
-  @Input({ required: true })
-  id!: string | null | undefined;
+  @Input()
+  id: string | null | undefined = null;
 
   @Input({ required: true })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,7 +53,7 @@ export class UserCreationFormComponent {
   }
 
   onReset(): void {
-    // this.editForm.form.resetForm(this.schema);
+    // TODO this.editForm.form.resetForm(this.schema);
   }
 
   onSubmit(): void {
@@ -68,7 +68,7 @@ export class UserCreationFormComponent {
           ...this.form.form.value,
         },
       ],
-      mode: ModeType.Update,
+      mode: this.id ? ModeType.Update : ModeType.Create,
     });
   }
 }

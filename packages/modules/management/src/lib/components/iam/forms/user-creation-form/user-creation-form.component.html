@@ -2,6 +2,7 @@
   *ngIf="schema"
   novalidate
   [formGroup]="schema"
+  #form="ngForm"
   (ngSubmit)="onSubmit()"
   vclForm
 >

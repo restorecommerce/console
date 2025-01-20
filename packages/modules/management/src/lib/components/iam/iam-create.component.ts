@@ -28,7 +28,6 @@ import { JssFormService } from './services';
           [schema]="vm.userCreationForm"
           [options]="vm.options"
           [update]="create"
-          id="s"
           (addRole)="handleActionEvent(vm.roleAssociationsSchema)"
         />
       </div>
@@ -59,7 +58,8 @@ export class IamCreateComponent implements OnInit, OnDestroy {
           user: options.user,
           locales: options.locales,
           timezones: options.timezones,
-          uniqueRoleAssociationsScopingInstances: [],
+          uniqueRoleAssociationsScopingInstances:
+            options.roleAssociationsScopingInstances,
         },
         roleAssociationsSchema,
       };
@@ -96,12 +96,26 @@ export class IamCreateComponent implements OnInit, OnDestroy {
           roleAssociationsSchema,
         },
       })
-      .subscribe((result: { role: string; organization: string }[]) => {
-        const roleAssociations = result.map((ra) => ({
-          ...this.userService.createRoleAssociation(ra.role, ra.organization),
-        }));
+      .subscribe(
+        (result: {
+          value: {
+            role: 'administrator-r-id';
+            organization: 'nfuse-root-organization';
+          }[];
+        }) => {
+          if (result) {
+            const roleAssociations = result.value.map((ra) => ({
+              ...this.userService.createRoleAssociation(
+                ra.role,
+                ra.organization
+              ),
+            }));
 
-        this.iamFacade.setTempRoleAssociations(roleAssociations);
-      });
+            console.log('roleAssociations', roleAssociations);
+
+            this.iamFacade.setTempRoleAssociations(roleAssociations);
+          }
+        }
+      );
   }
 }
