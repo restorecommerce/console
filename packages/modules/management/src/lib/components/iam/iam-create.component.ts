@@ -16,7 +16,6 @@ import {
 } from '@vcl/ng-vcl';
 
 import { IamFacade, UserService } from '@console-core/state';
-import { IRoleAssociationScopingInstance } from '@console-core/types';
 
 import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { JssFormService } from './services';
@@ -29,6 +28,9 @@ import { JssFormService } from './services';
         <app-user-creation-form
           [schema]="vm.userCreationForm"
           [options]="vm.options"
+          [update]="create"
+          id="s"
+          (addRole)="handleActionEvent(vm.roleAssociationsSchema)"
         />
 
         <!-- [create]="create" -->
@@ -52,42 +54,20 @@ export class IamCreateComponent implements OnInit, OnDestroy {
 
   readonly vm$ = combineLatest([
     this.iamFacade.selected$,
+    this.jssFormService.userForm$,
     this.jssFormService.formOptions$,
+    this.jssFormService.roleAssociationsSchema$,
   ]).pipe(
-    map(([_, options]) => {
-      const roleAssociationsScopingInstances =
-        this.userService.getRoleAssociationsScopingInstances(
-          [
-            ...(options.user?.roleAssociations || []),
-            ...options.tempRoleAssociations,
-          ],
-          options.rolesHash,
-          options.organizationsHash
-        );
-
-      const uniqueRoleAssociationsScopingInstancesObj =
-        roleAssociationsScopingInstances.reduce((acc, item) => {
-          const key = `${item.role?.id}|${item.organization?.id}`;
-          if (!acc[key]) {
-            acc[key] = item;
-          }
-          return acc;
-        }, {} as Record<string, IRoleAssociationScopingInstance>);
-
-      const uniqueRoleAssociationsScopingInstances = Object.values(
-        uniqueRoleAssociationsScopingInstancesObj
-      );
-
+    map(([_, form, options, roleAssociationsSchema]) => {
       return {
-        userCreationForm: this.jssFormService.createUserForm({
-          user: null,
-          uniqueRoleAssociationsScopingInstances,
-        }),
+        userCreationForm: form,
         options: {
+          user: options.user,
           locales: options.locales,
           timezones: options.timezones,
-          uniqueRoleAssociationsScopingInstances,
+          uniqueRoleAssociationsScopingInstances: [],
         },
+        roleAssociationsSchema,
       };
     })
   );

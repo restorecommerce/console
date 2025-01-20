@@ -152,6 +152,7 @@ const modules = [
   VCLPanelModule,
   VCLButtonGroupModule,
   VCLBadgeModule,
+  VCLFormControlGroupModule,
 ];
 
 const atoms = [

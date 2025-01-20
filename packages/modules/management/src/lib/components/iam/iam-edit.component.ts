@@ -28,11 +28,12 @@ import { JssFormService } from './services';
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <div class="mt-2">
-        <rc-crud-edit
-          [id]="vm.id"
-          [schema]="vm.userSchema"
+        <app-user-creation-form
+          [schema]="vm.schema"
+          [options]="vm.options"
           [update]="update"
-          (actionEvent)="handleActionEvent($event)"
+          [id]="vm.id"
+          (addRole)="handleActionEvent()"
         />
       </div>
 
@@ -95,7 +96,17 @@ export class IamEditComponent implements OnDestroy, AfterViewInit {
       }),
       filterEmptyAndNullishAndUndefined()
     ),
-    userSchema: this.jssFormService.userSchema$,
+    schema: this.jssFormService.userForm$,
+    options: this.jssFormService.formOptions$.pipe(
+      map((options) => {
+        return {
+          user: options.user,
+          locales: options.locales,
+          timezones: options.timezones,
+          uniqueRoleAssociationsScopingInstances: [],
+        };
+      })
+    ),
     roleAssociationsSchema: this.jssFormService.roleAssociationsSchema$,
   });
 
@@ -121,10 +132,8 @@ export class IamEditComponent implements OnDestroy, AfterViewInit {
     this.iamFacade.setTempRoleAssociations([]);
   }
 
-  handleActionEvent(action: string): void {
-    if (action === 'addRoleAssociations') {
-      this.tplLayer.open({ data: { title: 'Assign Roles' } });
-    }
+  handleActionEvent(): void {
+    this.tplLayer.open({ data: { title: 'Assign Roles' } });
   }
 
   onAction(action: string): void {

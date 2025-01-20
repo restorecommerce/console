@@ -1,7 +1,8 @@
 <form
+  *ngIf="schema"
   novalidate
   [formGroup]="schema"
-  #form="ngForm"
+  (ngSubmit)="onSubmit()"
   vclForm
 >
   <vcl-form-control-group>
@@ -62,7 +63,7 @@
     >
   </vcl-form-control-group>
 
-  <vcl-form-control-group *ngIf="!schema.get('invite')?.value">
+  <vcl-form-control-group *ngIf="!schema.get('invite')?.value && !options.user">
     <vcl-label>Password</vcl-label>
     <vcl-password-input>
       <input
@@ -72,16 +73,15 @@
       />
     </vcl-password-input>
     <vcl-hint-error error="required">Password is required.</vcl-hint-error>
-    <vcl-hint-error error="pattern">Password must...</vcl-hint-error>
   </vcl-form-control-group>
 
   <!-- Locale -->
   <vcl-form-control-group>
     <vcl-label>Locale</vcl-label>
-    <vcl-select formControlName="localeId">
-      <vcl-select-list>
+    <vcl-select>
+      <vcl-select-list formControlName="localeId">
         <vcl-select-list-item
-          *ngFor="let locale of options.locales"
+          *ngFor="let locale of options?.locales"
           [value]="locale.id"
         >
           {{ locale.value }}
@@ -95,8 +95,8 @@
   <!-- Timezone -->
   <vcl-form-control-group>
     <vcl-label>Timezone</vcl-label>
-    <vcl-select formControlName="timezoneId">
-      <vcl-select-list>
+    <vcl-select>
+      <vcl-select-list formControlName="timezoneId">
         <vcl-select-list-item
           *ngFor="let timezone of options.timezones"
           [value]="timezone.id"

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { conditional, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import {
   IamFacade,
@@ -53,8 +53,8 @@ export class JssFormService {
     tempRoleAssociations: this.iamFacade.tempRoleAssociations$,
   });
 
-  userSchema$ = new BehaviorSubject<VCLFormFieldSchemaRoot>(
-    this.buildUserSchema({
+  userForm$ = new BehaviorSubject<FormGroup>(
+    this.createUserForm({
       user: null,
       locales: [],
       timezones: [],
@@ -105,8 +105,8 @@ export class JssFormService {
           organizationsHash,
           tempRoleAssociations,
         }) => {
-          this.userSchema$.next(
-            this.buildUserSchema({
+          this.userForm$.next(
+            this.createUserForm({
               user,
               locales,
               timezones,
@@ -138,65 +138,16 @@ export class JssFormService {
   }
 
   destroy() {
-    this.userSchema$.complete();
+    this.userForm$.complete();
     this.roleAssociationsSchema$.complete();
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  createUserForm(options: {
-    user: IUser | null;
-    uniqueRoleAssociationsScopingInstances: IRoleAssociationScopingInstance[];
-  }): FormGroup {
-    const form = this.fb.group({
-      firstName: [options.user?.firstName || '', []],
-      lastName: [options.user?.lastName || '', []],
-      name: [options.user?.name || '', [Validators.required]],
-      email: [
-        options.user?.email || '',
-        [Validators.required, Validators.email],
-      ],
-      active: [options.user?.active ?? true, []],
-      invite: [false, []],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-          ),
-        ],
-      ],
-      localeId: [options.user?.localeId || '', [Validators.required]],
-      timezoneId: [options.user?.timezoneId || '', [Validators.required]],
-      roleAssociations: [
-        options.uniqueRoleAssociationsScopingInstances.map(
-          (rai) => `${rai.role?.id}|${rai.organization?.id}`
-        ),
-        [],
-      ],
-    });
-
-    // Conditional logic for enabling/disabling the password field
-    const inviteControl = form.get('invite');
-    const passwordControl = form.get('password');
-    inviteControl?.valueChanges.subscribe((value) => {
-      if (value) {
-        passwordControl?.disable();
-      } else {
-        passwordControl?.enable();
-      }
-    });
-
-    return form;
-  }
-
-  private buildUserSchema({
+  createUserForm({
     user,
-    locales,
-    timezones,
     roleAssociationsScopingInstances,
-  }: IUserSchemaOptions): VCLFormFieldSchemaRoot {
+  }: IUserSchemaOptions): FormGroup {
     const uniqueRoleAssociationsScopingInstancesObj =
       roleAssociationsScopingInstances.reduce((acc, item) => {
         const key = `${item.role?.id}|${item.organization?.id}`;
@@ -208,240 +159,48 @@ export class JssFormService {
     const uniqueRoleAssociationsScopingInstances = Object.values(
       uniqueRoleAssociationsScopingInstancesObj
     );
-    return {
-      type: 'form',
-      fields: [
-        {
-          name: 'firstName',
-          label: 'First name',
-          type: 'input',
-          ...(user ? { defaultValue: user.firstName } : {}),
-          validators: [],
-          params: {},
-          hints: [],
-        },
-        {
-          name: 'lastName',
-          label: 'Last name',
-          type: 'input',
-          ...(user ? { defaultValue: user.lastName } : {}),
-          validators: [],
-          params: {},
-          hints: [],
-        },
-        {
-          name: 'name',
-          label: 'Username',
-          type: 'input',
-          ...(user ? { defaultValue: user.name } : {}),
-          validators: [Validators.required],
-          params: {},
-          hints: [
-            {
-              type: 'error',
-              error: 'required',
-              message: 'This field is required.',
-            },
-          ],
-        },
-        {
-          name: 'email',
-          label: 'Email',
-          type: 'input',
-          ...(user ? { defaultValue: user.email } : {}),
-          validators: [Validators.required, Validators.email],
-          params: {},
-          hints: [
-            {
-              type: 'error',
-              error: 'required',
-              message: 'This field is required.',
-            },
-            {
-              type: 'error',
-              error: 'email',
-              message: 'This field should be a valid email address.',
-            },
-          ],
-        },
-        {
-          name: 'active',
-          label: 'Active',
-          type: 'checkbox',
-          ...(user ? { defaultValue: user.active } : { defaultValue: true }),
-          validators: [],
-          params: {},
-          hints: [],
-        },
 
-        ...(!user
-          ? [
-              {
-                name: 'invite',
-                label: 'Send the user and e-mail invitation',
-                type: 'checkbox',
-                defaultValue: false,
-                validators: [],
-                params: {},
-              },
-              {
-                type: 'password-input',
-                name: 'password',
-                label: 'Password',
-                params: {
-                  placeholder: 'Enter password',
-                },
-                validators: [
-                  Validators.required,
-                  Validators.pattern(
-                    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-                  ),
-                ],
-                hints: [
-                  {
-                    type: 'error',
-                    error: 'required',
-                    message: 'Password is required',
-                  },
-                  {
-                    type: 'error',
-                    error: 'pattern',
-                    message: 'Password must...',
-                  },
-                  {
-                    type: 'error',
-                    error: 'pattern',
-                    message: '- At least 8 characters in length',
-                  },
-                  {
-                    type: 'error',
-                    error: 'pattern',
-                    message: '- Contain a lowercase letters',
-                  },
-                  {
-                    type: 'error',
-                    error: 'pattern',
-                    message: '- Contain a uppercase letters',
-                  },
-                  {
-                    type: 'error',
-                    error: 'pattern',
-                    message: '- Contain a number',
-                  },
-                  {
-                    type: 'error',
-                    error: 'pattern',
-                    message: '- Contain a special character',
-                  },
-                ],
-                visible: conditional(['invite'], (enabled) => {
-                  return !!enabled && !enabled.value;
-                }),
-                disabled: conditional(
-                  ['invite'],
-                  (control) => !!control && control.value
+    const form = this.fb.group({
+      firstName: [user?.firstName, [Validators.required]],
+      lastName: [user?.lastName || '', [Validators.required]],
+      name: [user?.name || '', [Validators.required]],
+      email: [user?.email || '', [Validators.required, Validators.email]],
+      active: [user?.active ?? true, []],
+      invite: [false, []],
+      ...(user
+        ? {
+            password: [
+              '',
+              [
+                Validators.required,
+                Validators.pattern(
+                  '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
                 ),
-              },
-            ]
-          : []),
+              ],
+            ],
+          }
+        : {}),
+      localeId: [user?.localeId || '', [Validators.required]],
+      timezoneId: [user?.timezoneId || '', [Validators.required]],
+      roleAssociations: [
+        uniqueRoleAssociationsScopingInstances.map(
+          (rai) => `${rai.role?.id}|${rai.organization?.id}`
+        ),
+        [],
+      ],
+    });
 
-        {
-          name: 'localeId',
-          label: 'Locale',
-          type: 'select',
-          ...(user ? { defaultValue: user.localeId } : {}),
-          validators: [Validators.required],
-          params: {
-            options: locales.map((locale) => ({
-              label: locale.value,
-              sublabel: locale.description,
-              value: locale.id,
-            })),
-          },
-          hints: [
-            {
-              type: 'error',
-              error: 'required',
-              message: 'This field is required.',
-            },
-          ],
-        },
-        {
-          name: 'timezoneId',
-          label: 'Timezone',
-          type: 'select',
-          ...(user ? { defaultValue: user.timezoneId } : {}),
-          validators: [Validators.required],
-          params: {
-            options: timezones.map((timezone) => ({
-              label: timezone.value,
-              sublabel: timezone.description,
-              value: timezone.id,
-            })),
-          },
-          hints: [
-            {
-              type: 'error',
-              error: 'required',
-              message: 'This field is required.',
-            },
-          ],
-        },
-        ...(uniqueRoleAssociationsScopingInstances.length > 0
-          ? [
-              {
-                type: 'select-list',
-                name: 'roleAssociations',
-                label: 'Roles',
-                defaultValue: uniqueRoleAssociationsScopingInstances.map(
-                  (rai) => `${rai.role?.id}|${rai.organization?.id}`
-                ),
-                params: {
-                  placeholder: 'Select role',
-                  selectionMode: 'multiple',
-                  clearable: true,
-                  search: false,
-                  options: uniqueRoleAssociationsScopingInstances.map(
-                    (rai) => ({
-                      label: `${rai.role?.name ?? 'N/A'} [${
-                        rai.organization?.name ?? 'N/A'
-                      }]`,
-                      sublabel: rai.role?.description ?? 'N/A',
-                      value: `${rai.role?.id}|${rai.organization?.id}`,
-                    })
-                  ),
-                },
-              },
-            ]
-          : []),
-        {
-          type: 'buttons',
-          buttons: [
-            {
-              type: 'button',
-              label: 'Assign Roles',
-              action: 'addRoleAssociations',
-              class: 'transparent',
-            },
-          ],
-        },
-        {
-          type: 'buttons',
-          buttons: [
-            {
-              type: 'button',
-              label: 'Cancel',
-              action: 'reset',
-              class: 'transparent',
-            },
-            {
-              type: 'submit',
-              label: 'Save',
-            },
-          ],
-        },
-      ] as VCLFormFieldSchemaRoot['fields'],
-    };
+    const inviteControl = form.get('invite');
+    const passwordControl = form.get('password');
+    inviteControl?.valueChanges.subscribe((value) => {
+      if (value) {
+        passwordControl?.disable();
+      } else {
+        passwordControl?.enable();
+      }
+    });
+
+    return form;
   }
 
   private buildRoleAssociationsSchema({
