@@ -135,7 +135,20 @@ import {
         </li>
       </ul>
 
-      <h4>Tokens ({{ vm.user.tokens?.length }})</h4>
+      <div
+        (click)="showTokens = !showTokens"
+        class="row align-items-center token-toggler my-2 user-select-none"
+      >
+        <vcl-icon
+          [icon]="showTokens ? 'vcl:arrow-down' : 'vcl:arrow-right'"
+          alt="toggle token display"
+          class="scale155p"
+        ></vcl-icon>
+
+        <span class="scale110p">Tokens ({{ vm.user.tokens?.length }})</span>
+      </div>
+
+      @if (showTokens) {
       <vcl-data-list
         mode="none"
         [noBorder]="true"
@@ -148,6 +161,7 @@ import {
         </vcl-data-list-item>
         }
       </vcl-data-list>
+      }
     </div>
 
     <ng-template #naTemplate>N/A</ng-template>
@@ -163,6 +177,13 @@ import {
       </div>
     </ng-template>
   `,
+  styles: [
+    `
+      .token-toggler {
+        cursor: pointer;
+      }
+    `,
+  ],
   standalone: false,
 })
 export class IamDetailsComponent implements OnInit, OnChanges {
@@ -174,6 +195,8 @@ export class IamDetailsComponent implements OnInit, OnChanges {
   };
 
   roleScopingInstances: IRoleAssociationScopingInstance[] = [];
+
+  showTokens = false;
 
   constructor(private readonly userService: UserService) {}
 
