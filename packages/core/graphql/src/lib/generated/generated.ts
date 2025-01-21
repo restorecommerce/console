@@ -2649,6 +2649,7 @@ export type IoRestorecommerceCredentialCredentialResponse = {
 
 export type IoRestorecommerceCurrencyCurrency = {
   __typename?: 'IoRestorecommerceCurrencyCurrency';
+  countries?: Maybe<Array<IoRestorecommerceCountryCountry>>;
   countryIds?: Maybe<Array<Scalars['String']>>;
   customExchangeRates?: Maybe<Array<IoRestorecommerceCurrencyExchangeRate>>;
   id?: Maybe<Scalars['String']>;
@@ -4651,9 +4652,7 @@ export type OrderingOrderMutation = {
   CreateFulfillment?: Maybe<ProtoIoRestorecommerceFulfillmentFulfillmentListResponse>;
   CreateInvoice?: Maybe<ProtoIoRestorecommerceInvoiceInvoiceListResponse>;
   Delete?: Maybe<ProtoIoRestorecommerceResourcebaseDeleteResponse>;
-  EvaluateFulfillment?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
   Mutate?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
-  QueryFulfillmentSolution?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentSolutionListResponse>;
   Submit?: Maybe<ProtoIoRestorecommerceOrderOrderSubmitListResponse>;
   TriggerFulfillment?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
   TriggerInvoice?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
@@ -4676,16 +4675,8 @@ export type OrderingOrderMutationDeleteArgs = {
   input: IIoRestorecommerceResourcebaseDeleteRequest;
 };
 
-export type OrderingOrderMutationEvaluateFulfillmentArgs = {
-  input: IIoRestorecommerceOrderOrderList;
-};
-
 export type OrderingOrderMutationMutateArgs = {
   input: IIoRestorecommerceOrderOrderList;
-};
-
-export type OrderingOrderMutationQueryFulfillmentSolutionArgs = {
-  input: IIoRestorecommerceOrderFulfillmentRequestList;
 };
 
 export type OrderingOrderMutationSubmitArgs = {
@@ -4707,11 +4698,21 @@ export type OrderingOrderMutationWithdrawArgs = {
 export type OrderingOrderQuery = {
   __typename?: 'OrderingOrderQuery';
   Evaluate?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
+  EvaluateFulfillment?: Maybe<ProtoIoRestorecommerceStatusStatusListResponse>;
+  QueryFulfillmentSolution?: Maybe<ProtoIoRestorecommerceFulfillmentProductFulfillmentSolutionListResponse>;
   Read?: Maybe<ProtoIoRestorecommerceOrderOrderListResponse>;
 };
 
 export type OrderingOrderQueryEvaluateArgs = {
   input: IIoRestorecommerceOrderOrderList;
+};
+
+export type OrderingOrderQueryEvaluateFulfillmentArgs = {
+  input: IIoRestorecommerceOrderOrderList;
+};
+
+export type OrderingOrderQueryQueryFulfillmentSolutionArgs = {
+  input: IIoRestorecommerceOrderFulfillmentRequestList;
 };
 
 export type OrderingOrderQueryReadArgs = {
@@ -7554,6 +7555,17 @@ export type UserRoleFragmentFragment = {
   lastAccess?: unknown | null;
   localeId?: string | null;
   timezoneId?: string | null;
+  tokens?: Array<{
+    __typename?: 'IoRestorecommerceAuthTokens';
+    name?: string | null;
+    token?: string | null;
+    lastLogin?: unknown | null;
+    expiresIn?: unknown | null;
+    clientId?: string | null;
+    interactive?: boolean | null;
+    type?: string | null;
+    scopes?: Array<string> | null;
+  }> | null;
   roles?: Array<{
     __typename?: 'IoRestorecommerceRoleRole';
     id?: string | null;
@@ -8719,6 +8731,17 @@ export type IdentityUserReadQuery = {
               lastAccess?: unknown | null;
               localeId?: string | null;
               timezoneId?: string | null;
+              tokens?: Array<{
+                __typename?: 'IoRestorecommerceAuthTokens';
+                name?: string | null;
+                token?: string | null;
+                lastLogin?: unknown | null;
+                expiresIn?: unknown | null;
+                clientId?: string | null;
+                interactive?: boolean | null;
+                type?: string | null;
+                scopes?: Array<string> | null;
+              }> | null;
               roles?: Array<{
                 __typename?: 'IoRestorecommerceRoleRole';
                 id?: string | null;
@@ -11908,6 +11931,16 @@ export const UserRoleFragmentFragmentDoc = gql`
     defaultScope
     lastAccess
     localeId
+    tokens {
+      name
+      token
+      lastLogin
+      expiresIn
+      clientId
+      interactive
+      type
+      scopes
+    }
     timezoneId
     roles {
       ...RoleFragment

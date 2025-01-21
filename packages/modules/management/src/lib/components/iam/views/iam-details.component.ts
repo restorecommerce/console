@@ -134,9 +134,34 @@ import {
           </div>
         </li>
       </ul>
+
+      <h4>Tokens ({{ vm.user.tokens?.length }})</h4>
+      <vcl-data-list
+        mode="none"
+        [noBorder]="true"
+      >
+        @for (item of vm.user.tokens; track $index) {
+        <vcl-data-list-item>
+          <ng-container
+            *ngTemplateOutlet="tokenItemTemplate; context: { $implicit: item }"
+          ></ng-container>
+        </vcl-data-list-item>
+        }
+      </vcl-data-list>
     </div>
 
     <ng-template #naTemplate>N/A</ng-template>
+
+    <ng-template
+      #tokenItemTemplate
+      let-item
+      let-index="index"
+    >
+      <div class="row justify-between align-items">
+        <span>{{ item.name || '-' }}</span>
+        <span>{{ item.token }}</span>
+      </div>
+    </ng-template>
   `,
   standalone: false,
 })

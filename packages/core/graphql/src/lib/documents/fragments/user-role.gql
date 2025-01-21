@@ -11,6 +11,16 @@ fragment UserRoleFragment on IoRestorecommerceUserUserRole {
   defaultScope
   lastAccess
   localeId
+  tokens {
+    name
+    token
+    lastLogin
+    expiresIn
+    clientId
+    interactive
+    type
+    scopes
+  }
   # locale {
   #   id
   #   name
