@@ -71,7 +71,9 @@
     <rc-meta
       *ngIf="vm.selectedUserId"
       [id]="vm.selectedUserId"
-      [meta]="vm.selectedUser?.meta"
+      [meta]="
+        vm.selectedUser!.meta | appendLastLogin : vm.selectedUser?.tokens || []
+      "
     />
   </ng-container>
 </rc-crud-main>

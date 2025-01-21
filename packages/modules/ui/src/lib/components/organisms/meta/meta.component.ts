@@ -14,7 +14,7 @@ export class RcMetaComponent {
   id: string | null = null;
 
   @Input({ required: true })
-  meta?: IMeta | null = null;
+  meta?: Partial<IMeta & { lastLogin: string }> | null = null;
 
   DATE = DATE;
 }
