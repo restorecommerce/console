@@ -36,15 +36,15 @@
     #itemTemplate
     let-item="item"
   >
-    <div class="row justify-content-between px-2">
-      <rc-data-list-label
-        [innerHTML]="item.fullName || 'N/A' | highlight : triggerSearch.value"
-      />
-
-      <rc-data-list-key-value-with-brackets
-        [key]="'Roles'"
-        [value]="getRoleAssociationsRoles(item, vm.rolesHash)"
-      />
+    <div class="p-2">
+      <div class="row justify-content-between">
+        <rc-data-list-label
+          [innerHTML]="item.fullName || 'N/A' | highlight : triggerSearch.value"
+        />
+      </div>
+      <div class="row justify-content-between secondary-text-color">
+        <rc-data-list-sublabel> {{ item.email }} </rc-data-list-sublabel>
+      </div>
     </div>
   </ng-template>
 

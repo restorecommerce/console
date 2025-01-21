@@ -111,8 +111,6 @@ export class IamCreateComponent implements OnInit, OnDestroy {
               ),
             }));
 
-            console.log('roleAssociations', roleAssociations);
-
             this.iamFacade.setTempRoleAssociations(roleAssociations);
           }
         }
