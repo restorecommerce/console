@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { Dictionary } from '@ngrx/entity';
 
+import { DATE } from '@console-core/config';
 import { UserService } from '@console-core/state';
 import {
   IOrganization,
@@ -153,6 +154,14 @@ import {
         mode="none"
         [noBorder]="true"
       >
+        <vcl-data-list-header>
+          <div class="row justify-between align-items scale120p">
+            <span class="flex-3 px-1">Name</span>
+            <span class="flex-3 px-1">Token</span>
+            <span class="flex-3 px-1 align-right">Last login</span>
+            <span class="flex-3 px-1 align-right">Expires in</span>
+          </div>
+        </vcl-data-list-header>
         @for (item of vm.user.tokens; track $index) {
         <vcl-data-list-item>
           <ng-container
@@ -172,8 +181,21 @@ import {
       let-index="index"
     >
       <div class="row justify-between align-items">
-        <span>{{ item.name || '-' }}</span>
-        <span>{{ item.token }}</span>
+        <span
+          class="flex-3 overflow-auto x-on-hover pl-1 pr-2 overflow-ellipsis"
+          >{{ item.name || '-' }}</span
+        >
+        <div
+          class="flex-3 overflow-auto x-on-hover pl-1 pr-2 overflow-ellipsis"
+        >
+          {{ item.token }}
+        </div>
+        <span class="flex-3 px-1 align-right">{{
+          (item.lastLogin | date : DATE.format.dateTime) || '-'
+        }}</span>
+        <span class="flex-3 px-1 align-right">{{
+          (item.expiresIn | date : DATE.format.dateTime) || '-'
+        }}</span>
       </div>
     </ng-template>
   `,
@@ -197,6 +219,8 @@ export class IamDetailsComponent implements OnInit, OnChanges {
   roleScopingInstances: IRoleAssociationScopingInstance[] = [];
 
   showTokens = false;
+
+  DATE = DATE;
 
   constructor(private readonly userService: UserService) {}
 
