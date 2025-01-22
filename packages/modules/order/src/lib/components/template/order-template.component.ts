@@ -173,4 +173,9 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
   onCreateFulfillment(_: string | null): void {
     // this.triggerCreateFulfillment?.next(id);
   }
+
+  onItemSelected(itemId: string) {
+    this.triggerSelectId.next(itemId);
+    this.routerFacade.navigate(this.feature.links.view(itemId));
+  }
 }

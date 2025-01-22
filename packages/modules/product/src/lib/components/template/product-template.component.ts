@@ -168,6 +168,11 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
     }
   }
 
+  onItemSelected(itemId: string) {
+    this.triggerSelectId.next(itemId);
+    this.routerFacade.navigate(this.feature.links.view(itemId));
+  }
+
   trackByFn(_: number, item: IProduct) {
     return item.id;
   }
