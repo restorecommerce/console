@@ -27,7 +27,7 @@
         [itemTemplate]="itemTemplate"
         [items]="vm.users"
         [selected]="vm.selectedUserId"
-        (itemSelected)="triggerSelectId.next($event)"
+        (itemSelected)="onItemSelected($event)"
       />
     </ng-container>
   </ng-container>

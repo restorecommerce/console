@@ -154,6 +154,11 @@ export class IamTemplateComponent implements OnInit, OnDestroy {
       .join(', ');
   }
 
+  onItemSelected(itemId: string) {
+    this.triggerSelectId.next(itemId);
+    this.routerFacade.navigate(this.feature.links.view(itemId));
+  }
+
   trackByFn(_: number, item: IUser) {
     return item.id;
   }
