@@ -134,43 +134,40 @@ import {
             </ng-container>
           </div>
         </li>
-      </ul>
 
-      <div
-        (click)="showTokens = !showTokens"
-        class="row align-items-center token-toggler my-2 user-select-none"
-      >
-        <vcl-icon
-          [icon]="showTokens ? 'vcl:arrow-down' : 'vcl:arrow-right'"
-          alt="toggle token display"
-          class="scale155p"
-        ></vcl-icon>
+        <li>
+          <div
+            (click)="showTokens = !showTokens"
+            class="row align-items-center token-toggler my-2 user-select-none"
+          >
+            <vcl-icon
+              [icon]="showTokens ? 'vcl:arrow-down' : 'vcl:arrow-right'"
+              alt="toggle token display"
+              class="scale155p"
+            ></vcl-icon>
 
-        <span class="scale110p">Tokens ({{ vm.user.tokens?.length }})</span>
-      </div>
-
-      @if (showTokens) {
-      <vcl-data-list
-        mode="none"
-        [noBorder]="true"
-      >
-        <vcl-data-list-header>
-          <div class="row justify-between align-items scale120p">
-            <span class="flex-3 px-1">Name</span>
-            <span class="flex-3 px-1">Token</span>
-            <span class="flex-3 px-1 align-right">Last login</span>
-            <span class="flex-3 px-1 align-right">Expires in</span>
+            <span class="scale110p">Tokens ({{ vm.user.tokens?.length }})</span>
           </div>
-        </vcl-data-list-header>
-        @for (item of vm.user.tokens; track $index) {
-        <vcl-data-list-item>
-          <ng-container
-            *ngTemplateOutlet="tokenItemTemplate; context: { $implicit: item }"
-          ></ng-container>
-        </vcl-data-list-item>
-        }
-      </vcl-data-list>
-      }
+
+          @if (showTokens) {
+          <vcl-data-list
+            mode="none"
+            [noBorder]="true"
+          >
+            @for (item of vm.user.tokens; track $index) {
+            <vcl-data-list-item>
+              <ng-container
+                *ngTemplateOutlet="
+                  tokenItemTemplate;
+                  context: { $implicit: item }
+                "
+              ></ng-container>
+            </vcl-data-list-item>
+            }
+          </vcl-data-list>
+          }
+        </li>
+      </ul>
     </div>
 
     <ng-template #naTemplate>N/A</ng-template>
@@ -180,22 +177,27 @@ import {
       let-item
       let-index="index"
     >
-      <div class="row justify-between align-items">
-        <span
-          class="flex-3 overflow-auto x-on-hover pl-1 pr-2 overflow-ellipsis"
-          >{{ item.name || '-' }}</span
-        >
-        <div
-          class="flex-3 overflow-auto x-on-hover pl-1 pr-2 overflow-ellipsis"
-        >
-          {{ item.token }}
+      <div class="mb-2">
+        <div class="row justify-between align-items py-1">
+          <span class="flex text">Name:</span>
+          <span>{{ item.name || '-' }}</span>
         </div>
-        <span class="flex-3 px-1 align-right">{{
-          (item.lastLogin | date : DATE.format.dateTime) || '-'
-        }}</span>
-        <span class="flex-3 px-1 align-right">{{
-          (item.expiresIn | date : DATE.format.dateTime) || '-'
-        }}</span>
+        <div class="row justify-between align-items py-1">
+          <span class="flex text">Token:</span>
+          <span> {{ item.token }}</span>
+        </div>
+        <div class="row justify-between align-items py-1">
+          <span class="flex text">Last login:</span>
+          <span>{{
+            (item.lastLogin | date : DATE.format.dateTime) || '-'
+          }}</span>
+        </div>
+        <div class="row justify-between align-items py-1">
+          <span class="flex text">Expires in:</span>
+          <span>{{
+            (item.expiresIn | date : DATE.format.dateTime) || '-'
+          }}</span>
+        </div>
       </div>
     </ng-template>
   `,
