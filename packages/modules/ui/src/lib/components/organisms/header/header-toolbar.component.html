@@ -1,42 +1,25 @@
 @if (vm$ | async; as vm) {
 <div>
-  <div
+  <span
     #popoverOrganizationTarget
     class="inline-block"
   >
-    <div
-      class="row align-items-center"
+    <button
+      vcl-button
+      [selectable]="true"
       (click)="
         templatePopoverOrganization.toggle();
         onClickGlobalOrganizationSelector()
       "
+      class="half-transparent organization"
     >
-      <button
-        vcl-button
-        class="half-transparent organization"
-        (click)="resetGlobalSelectOrganization($event)"
-      >
-        <vcl-icon icon="vcl:home"></vcl-icon>
-      </button>
-      <button
-        vcl-button
-        class="half-transparent organization"
-        (click)="lastSelectedGlobalOrganization($event)"
-      >
-        <vcl-icon icon="vcl:arrow-left"></vcl-icon>
-      </button>
-      <div class="row">
+      <vcl-icogram>
+        <vcl-icon icon="mdi:home-outline" />
         {{ vm.globalOrganization?.name }}
-      </div>
-
-      <button
-        vcl-button
-        class="half-transparent organization"
-      >
-        <vcl-icon icon="vcl:arrow-down"></vcl-icon>
-      </button>
-    </div>
-  </div>
+        <vcl-icon icon="mdi:chevron-down" />
+      </vcl-icogram>
+    </button>
+  </span>
 
   <span
     #popoverAccountTarget
@@ -65,19 +48,50 @@
   [positions]="rightOrientedPositions"
 >
   <!-- This are children -->
-  <vcl-select-list
-    (valueChange)="
-      onSelectGlobalOrganization($event, vm.globalOrganization?.id ?? '');
-      templatePopoverOrganization.close()
-    "
-  >
-    <vcl-select-list-item
-      [value]="o?.id"
-      *ngFor="let o of vm.organizations"
+  <div>
+    <div class="row justify-content-between align-items-center">
+      <div class="flex p-2">
+        @if (vm.globalOrganization?.parentId) {
+        <button
+          vcl-button
+          class="half-transparent organization"
+          (click)="resetGlobalSelectOrganization($event)"
+        >
+          <vcl-icon icon="vcl:home"></vcl-icon>
+        </button>
+
+        <button
+          vcl-button
+          class="half-transparent organization"
+          (click)="lastSelectedGlobalOrganization($event)"
+        >
+          <vcl-icon icon="vcl:arrow-left"></vcl-icon>
+        </button>
+        }
+      </div>
+      <div class="overflow-ellipsis flex p-2">
+        {{ vm.globalOrganization?.name }}
+      </div>
+
+      <div class="flex"></div>
+    </div>
+
+    <vcl-data-list
+      [noBorder]="true"
+      [value]="vm.globalOrganization?.id"
+      class="m-0"
+      (valueChange)="
+        onSelectGlobalOrganization($event, vm.globalOrganization?.id ?? '');
+        templatePopoverOrganization.close()
+      "
     >
-      {{ o?.name }}
-    </vcl-select-list-item>
-  </vcl-select-list>
+      @for (organization of vm.organizations; track $index) {
+      <vcl-data-list-item [value]="organization.id">
+        <div class="p-2">{{ organization?.name }}</div>
+      </vcl-data-list-item>
+      }
+    </vcl-data-list>
+  </div>
 </ng-template>
 
 <ng-template
