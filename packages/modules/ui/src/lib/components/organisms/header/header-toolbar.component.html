@@ -1,26 +1,42 @@
 @if (vm$ | async; as vm) {
 <div>
-  <span
+  <div
     #popoverOrganizationTarget
     class="inline-block"
   >
-    <button
-      vcl-button
-      [selectable]="true"
+    <div
+      class="row align-items-center"
       (click)="
         templatePopoverOrganization.toggle();
         onClickGlobalOrganizationSelector()
       "
-      class="half-transparent organization"
     >
-      <!-- This is the parent: starting with the topmost parent -->
-      <vcl-icogram>
-        <vcl-icon icon="mdi:home-outline" />
+      <button
+        vcl-button
+        class="half-transparent organization"
+        (click)="resetGlobalSelectOrganization($event)"
+      >
+        <vcl-icon icon="vcl:home"></vcl-icon>
+      </button>
+      <button
+        vcl-button
+        class="half-transparent organization"
+        (click)="lastSelectedGlobalOrganization($event)"
+      >
+        <vcl-icon icon="vcl:arrow-left"></vcl-icon>
+      </button>
+      <div class="row">
         {{ vm.globalOrganization?.name }}
-        <vcl-icon icon="mdi:chevron-down" />
-      </vcl-icogram>
-    </button>
-  </span>
+      </div>
+
+      <button
+        vcl-button
+        class="half-transparent organization"
+      >
+        <vcl-icon icon="vcl:arrow-down"></vcl-icon>
+      </button>
+    </div>
+  </div>
 
   <span
     #popoverAccountTarget

@@ -89,6 +89,17 @@ export class OrganizationFacade {
     this.store.dispatch(
       organizationActions.setSelectedGlobalOrganizationId({ payload })
     );
+
+  resetSelectedGlobalOrganization = () =>
+    this.store.dispatch(
+      organizationActions.selectedGlobalOrganizationHistory()
+    );
+
+  lastSelectedGlobalOrganization = () =>
+    this.store.dispatch(
+      organizationActions.setPreviousSelectedGlobalOrganizationHistory()
+    );
+
   create = (payload: IIoRestorecommerceOrganizationOrganizationList) =>
     this.store.dispatch(
       organizationActions.organizationCreateRequest({ payload })

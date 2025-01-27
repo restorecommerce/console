@@ -119,7 +119,30 @@ const reducer = createReducer<IOrganizationState>(
     organizationActions.setSelectedGlobalOrganizationId,
     (state, { payload }): IOrganizationState => ({
       ...state,
-      selectedGlobalOrganizationId: payload,
+      selectedGlobalOrganizationHistory: Array.from(
+        new Set([
+          ...state.selectedGlobalOrganizationHistory,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          payload!,
+        ])
+      ),
+    })
+  ),
+  on(
+    organizationActions.selectedGlobalOrganizationHistory,
+    (state): IOrganizationState => ({
+      ...state,
+      selectedGlobalOrganizationHistory:
+        initialState.selectedGlobalOrganizationHistory,
+    })
+  ),
+
+  on(
+    organizationActions.setPreviousSelectedGlobalOrganizationHistory,
+    (state): IOrganizationState => ({
+      ...state,
+      selectedGlobalOrganizationHistory:
+        state.selectedGlobalOrganizationHistory.slice(0, -1),
     })
   ),
   on(

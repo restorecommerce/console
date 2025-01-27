@@ -114,11 +114,9 @@ export const selectOrganizationSelectedChild = createSelector(
 export const selectOrganizationSelectedGlobalOrganizationId = createSelector(
   selectOrganization,
   (state: IOrganizationState) => {
-    if (!state.selectedGlobalOrganizationId && state.ids.length > 0) {
-      return state.ids[0];
-    }
-
-    return state.selectedGlobalOrganizationId;
+    return state.selectedGlobalOrganizationHistory[
+      state.selectedGlobalOrganizationHistory.length - 1
+    ];
   }
 );
 

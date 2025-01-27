@@ -45,7 +45,17 @@ export class RcHeaderToolbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.organizationFacade.readParents({});
+    this.organizationFacade.read({});
+  }
+
+  resetGlobalSelectOrganization(event: Event) {
+    this.organizationFacade.resetSelectedGlobalOrganization();
+    event.stopPropagation();
+  }
+
+  lastSelectedGlobalOrganization(event: Event) {
+    this.organizationFacade.lastSelectedGlobalOrganization();
+    event.stopPropagation();
   }
 
   onClickGlobalOrganizationSelector(): void {
