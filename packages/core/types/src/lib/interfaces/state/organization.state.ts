@@ -9,6 +9,7 @@ export interface IOrganizationState
     IBaseStore {
   selectedId: string | null;
   selectedGlobalOrganizationId: string | null;
+  selectedGlobalOrganizationHistory: string[];
   selectedParentId: string | null;
   parentIds: string[];
   parentEntities: Dictionary<IOrganization>;

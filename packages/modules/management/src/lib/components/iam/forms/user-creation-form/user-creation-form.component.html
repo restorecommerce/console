@@ -64,7 +64,8 @@
     >
   </vcl-form-control-group>
 
-  <vcl-form-control-group *ngIf="!schema.get('invite')?.value && !options.user">
+  @if (!schema.get('invite')?.value && !options.user) {
+  <vcl-form-control-group>
     <vcl-label>Password</vcl-label>
     <vcl-password-input>
       <input
@@ -75,6 +76,7 @@
     </vcl-password-input>
     <vcl-hint-error error="required">Password is required.</vcl-hint-error>
   </vcl-form-control-group>
+  }
 
   <!-- Locale -->
   <vcl-form-control-group>

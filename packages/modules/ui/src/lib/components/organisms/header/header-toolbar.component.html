@@ -1,100 +1,102 @@
-<ng-container *ngIf="vm$ | async as vm">
-  <div>
-    <span
-      #popoverOrganizationTarget
-      class="inline-block"
-    >
-      <button
-        vcl-button
-        [selectable]="true"
-        (click)="
-          templatePopoverOrganization.toggle();
-          onClickGlobalOrganizationSelector()
-        "
-        class="half-transparent organization"
-      >
-        <vcl-icogram>
-          <vcl-icon icon="mdi:home-outline" />
-          {{ vm.globalOrganization?.name }}
-          <vcl-icon icon="mdi:chevron-down" />
-        </vcl-icogram>
-      </button>
-    </span>
-
-    <span
-      #popoverAccountTarget
-      class="inline-block"
-    >
-      <button
-        vcl-button
-        [selectable]="true"
-        (click)="templatePopoverAccount.toggle()"
-        class="half-transparent account"
-      >
-        <vcl-icogram>
-          <vcl-icon icon="mdi:account-outline" />
-          {{ vm.user?.fullName }}
-          <vcl-icon icon="mdi:chevron-down" />
-        </vcl-icogram>
-      </button>
-    </span>
-  </div>
-
-  <ng-template
-    vclPopover
-    #templatePopoverOrganization="vclPopover"
-    [target]="popoverOrganizationTarget"
-    [closeOnOffClick]="true"
-    [positions]="rightOrientedPositions"
+@if (vm$ | async; as vm) {
+<div>
+  <span
+    #popoverOrganizationTarget
+    class="inline-block"
   >
-    <vcl-select-list
-      (valueChange)="
-        onSelectGlobalOrganization($event, vm.globalOrganization?.id ?? '');
-        templatePopoverOrganization.close()
+    <button
+      vcl-button
+      [selectable]="true"
+      (click)="
+        templatePopoverOrganization.toggle();
+        onClickGlobalOrganizationSelector()
       "
+      class="half-transparent organization"
     >
-      <vcl-select-list-item
-        [value]="o?.id"
-        *ngFor="let o of vm.organizations"
-      >
-        {{ o?.name }}
-      </vcl-select-list-item>
-    </vcl-select-list>
-  </ng-template>
+      <!-- This is the parent: starting with the topmost parent -->
+      <vcl-icogram>
+        <vcl-icon icon="mdi:home-outline" />
+        {{ vm.globalOrganization?.name }}
+        <vcl-icon icon="mdi:chevron-down" />
+      </vcl-icogram>
+    </button>
+  </span>
 
-  <ng-template
-    vclPopover
-    #templatePopoverAccount="vclPopover"
-    [target]="popoverAccountTarget"
-    [closeOnOffClick]="true"
-    [positions]="rightOrientedPositions"
+  <span
+    #popoverAccountTarget
+    class="inline-block"
   >
-    <vcl-select-list
-      (valueChange)="
-        onAccountItemSelected($event); templatePopoverAccount.close()
-      "
+    <button
+      vcl-button
+      [selectable]="true"
+      (click)="templatePopoverAccount.toggle()"
+      class="half-transparent account"
     >
-      <vcl-select-list-item value="profile">
-        <vcl-icon
-          vclPrepend
-          icon="mdi:account-cog-outline"
-        ></vcl-icon>
-        Profile
-      </vcl-select-list-item>
-      <vcl-select-list-item value="preferences">
-        <vcl-icon
-          vclPrepend
-          icon="mdi:cog-outline"
-        ></vcl-icon>
-        Preferences
-      </vcl-select-list-item>
-      <vcl-select-list-item value="sign-out">
-        <vcl-icon
-          vclPrepend
-          icon="mdi:logout"
-        ></vcl-icon>
-        Sign Out
-      </vcl-select-list-item>
-    </vcl-select-list>
-  </ng-template>
-</ng-container>
+      <vcl-icogram>
+        <vcl-icon icon="mdi:account-outline" />
+        {{ vm.user?.fullName }}
+        <vcl-icon icon="mdi:chevron-down" />
+      </vcl-icogram>
+    </button>
+  </span>
+</div>
+
+<ng-template
+  vclPopover
+  #templatePopoverOrganization="vclPopover"
+  [target]="popoverOrganizationTarget"
+  [closeOnOffClick]="true"
+  [positions]="rightOrientedPositions"
+>
+  <!-- This are children -->
+  <vcl-select-list
+    (valueChange)="
+      onSelectGlobalOrganization($event, vm.globalOrganization?.id ?? '');
+      templatePopoverOrganization.close()
+    "
+  >
+    <vcl-select-list-item
+      [value]="o?.id"
+      *ngFor="let o of vm.organizations"
+    >
+      {{ o?.name }}
+    </vcl-select-list-item>
+  </vcl-select-list>
+</ng-template>
+
+<ng-template
+  vclPopover
+  #templatePopoverAccount="vclPopover"
+  [target]="popoverAccountTarget"
+  [closeOnOffClick]="true"
+  [positions]="rightOrientedPositions"
+>
+  <vcl-select-list
+    (valueChange)="
+      onAccountItemSelected($event); templatePopoverAccount.close()
+    "
+  >
+    <vcl-select-list-item value="profile">
+      <vcl-icon
+        vclPrepend
+        icon="mdi:account-cog-outline"
+      ></vcl-icon>
+      Profile
+    </vcl-select-list-item>
+    <vcl-select-list-item value="preferences">
+      <vcl-icon
+        vclPrepend
+        icon="mdi:cog-outline"
+      ></vcl-icon>
+      Preferences
+    </vcl-select-list-item>
+    <vcl-select-list-item value="sign-out">
+      <vcl-icon
+        vclPrepend
+        icon="mdi:logout"
+      ></vcl-icon>
+      Sign Out
+    </vcl-select-list-item>
+  </vcl-select-list>
+</ng-template>
+}

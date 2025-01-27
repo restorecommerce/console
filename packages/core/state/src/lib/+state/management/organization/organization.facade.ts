@@ -60,6 +60,11 @@ export class OrganizationFacade {
   readonly globalOrganization$ = this.store.select(
     organizationSelectors.selectOrganizationSelectedGlobalOrganization
   );
+
+  readonly globalChildrenOrganizations$ = this.store.select(
+    organizationSelectors.selectGlobalChildrenOrganizations
+  );
+
   readonly actionStatus$ = this.store.select(
     organizationSelectors.selectActionStatus
   );

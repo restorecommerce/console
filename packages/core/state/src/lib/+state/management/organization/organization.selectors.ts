@@ -143,3 +143,15 @@ export const selectError = createSelector(
   selectOrganization,
   (state: IOrganizationState) => state.error
 );
+
+export const selectGlobalChildrenOrganizations = createSelector(
+  selectOrganizationAll,
+  selectOrganizationSelectedGlobalOrganizationId,
+  (organizations, currentParentId) => {
+    const filteredOrganization = organizations.filter(
+      (org) => org.parentId === currentParentId
+    ) as IOrganization[];
+
+    return filteredOrganization;
+  }
+);

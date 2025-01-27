@@ -34,7 +34,7 @@ export class RcHeaderToolbarComponent implements OnInit {
 
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
-    organizations: this.organizationFacade.parentsAll$,
+    organizations: this.organizationFacade.globalChildrenOrganizations$,
     globalOrganization: this.organizationFacade.globalOrganization$,
   });
 

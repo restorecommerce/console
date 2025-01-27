@@ -15,6 +15,7 @@ export const adapter: EntityAdapter<IOrganization> =
 export const initialState: IOrganizationState = adapter.getInitialState({
   selectedId: null,
   selectedGlobalOrganizationId: null,
+  selectedGlobalOrganizationHistory: ['system'],
   selectedParentId: null,
   parentIds: [],
   parentEntities: {},
