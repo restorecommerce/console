@@ -4,10 +4,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
-import { ROUTER } from '@console-core/config';
+import { PAGINATION, ROUTER } from '@console-core/config';
 import {
+  IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseFilterValueType,
+  IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import {
   ENotificationTypes,
@@ -20,41 +22,95 @@ import { AppFacade } from '../app';
 
 import * as productActions from './product.actions';
 import { productReadOneByIdRequest } from './product.actions';
+import { concatLatestFrom } from '@ngrx/operators';
+import { OrganizationFacade } from '@console-core/state';
+
+import * as organizationActions from '../management/organization/organization.actions';
+
+const page = {
+  limit: PAGINATION.limit,
+  offset: 0,
+  total: 0,
+};
+
+const queryVariables: IIoRestorecommerceResourcebaseReadRequest = {
+  sorts: [
+    {
+      field: 'meta.created',
+      order: IoRestorecommerceResourcebaseSortSortOrder.Ascending,
+    },
+  ],
+  limit: page.limit,
+  offset: page.offset,
+};
 
 @Injectable()
 export class ProductEffects {
   productReadRequest$ = createEffect(() => {
     let isLoadMore = false;
     return this.actions$.pipe(
-      ofType(productActions.productReadRequest),
-      exhaustMap(({ payload }) =>
-        this.productService.read(payload).pipe(
-          tap((result) => {
-            if (payload.offset) {
-              isLoadMore = payload.offset > 0;
-            }
-            this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.catalog?.product?.Read?.details
-                ?.operationStatus as TOperationStatus
-            );
-          }),
-          map((result) => {
-            const items = (
-              result?.data?.catalog?.product?.Read?.details?.items || []
-            )?.map((item) => item?.payload) as IProduct[];
-            const payload = {
-              items: items,
-              isLoadMore,
-            };
-            return productActions.productReadRequestSuccess({
-              payload,
-            });
-          }),
-          catchError((error: Error) =>
-            of(productActions.productReadRequestFail({ error: error.message }))
-          )
-        )
-      )
+      ofType(
+        productActions.productReadRequest,
+        organizationActions.setSelectedGlobalOrganizationId,
+        organizationActions.selectedGlobalOrganizationHistory,
+        organizationActions.setPreviousSelectedGlobalOrganizationHistory,
+        organizationActions.cancelSelection
+      ),
+      concatLatestFrom(() => [
+        this.organizationFacade.globalOrganizationLeafId$,
+        this.organizationFacade.globalOrganizationId$,
+      ]),
+      exhaustMap(([action, organizationLeaf, organization]) => {
+        const productActionPayload =
+          action.type === productActions.productReadRequest.type
+            ? action.payload
+            : queryVariables;
+
+        return this.productService
+          .read({
+            ...productActionPayload,
+            // TODO: Override more filters.
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'meta.owners[*].attributes[**].value',
+                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                    value: organizationLeaf || organization,
+                  },
+                ],
+              },
+            ],
+          })
+          .pipe(
+            tap((result) => {
+              if (productActionPayload.offset) {
+                isLoadMore = productActionPayload.offset > 0;
+              }
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.catalog?.product?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const items = (
+                result?.data?.catalog?.product?.Read?.details?.items || []
+              )?.map((item) => item?.payload) as IProduct[];
+              const payload = {
+                items: items,
+                isLoadMore,
+              };
+              return productActions.productReadRequestSuccess({
+                payload,
+              });
+            }),
+            catchError((error: Error) =>
+              of(
+                productActions.productReadRequestFail({ error: error.message })
+              )
+            )
+          );
+      })
     );
   });
 
@@ -251,6 +307,7 @@ export class ProductEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
+    private readonly organizationFacade: OrganizationFacade,
     private readonly productService: ProductService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}

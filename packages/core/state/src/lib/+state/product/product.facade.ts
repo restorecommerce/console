@@ -15,7 +15,7 @@ const addTemporaryMetaForCatalogSrv = (
 ) => {
   const item = (payload.items ?? [])[0];
 
-  // Hack to this bloody catalog-srv.
+  //TODO Change this ASAP. Hack to this bloody catalog-srv.
   if (item) {
     item.meta = {
       owners: [
