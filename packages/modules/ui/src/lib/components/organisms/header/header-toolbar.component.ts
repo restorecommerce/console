@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, merge } from 'rxjs';
 
 import { ROUTER } from '@console-core/config';
 import { AccountFacade, OrganizationFacade } from '@console-core/state';
@@ -35,8 +35,11 @@ export class RcHeaderToolbarComponent implements OnInit {
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
     organizations: this.organizationFacade.globalChildrenOrganizations$,
-    selectedLeaf: this.organizationFacade.globalOrganizationLeaf$,
-    globalOrganization: this.organizationFacade.globalOrganization$,
+    globalOrganization: merge(
+      this.organizationFacade.globalOrganizationLeaf$,
+      this.organizationFacade.globalOrganization$
+    ),
+    selectedParent: this.organizationFacade.globalOrganization$,
   });
 
   constructor(
@@ -61,6 +64,10 @@ export class RcHeaderToolbarComponent implements OnInit {
 
   onSelectGlobalOrganization(id: string): void {
     this.organizationFacade.setSelectedGlobalOrganizationId(id);
+  }
+
+  cancelSelection(): void {
+    this.organizationFacade.cancelSelection();
   }
 
   onSearchOrganizations(str: string): void {

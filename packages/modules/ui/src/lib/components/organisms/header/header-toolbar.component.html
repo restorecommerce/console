@@ -12,7 +12,7 @@
     >
       <vcl-icogram>
         <vcl-icon icon="mdi:home-outline" />
-        {{ vm.globalOrganization?.name }}
+        {{ vm.globalOrganization?.name || vm.selectedParent?.name }}
         <vcl-icon icon="mdi:chevron-down" />
       </vcl-icogram>
     </button>
@@ -44,7 +44,6 @@
   [closeOnOffClick]="true"
   [positions]="rightOrientedPositions"
 >
-  <!-- This are children -->
   <div>
     <div class="row justify-content-between align-items-center">
       <div class="flex p-2">
@@ -70,12 +69,22 @@
         {{ vm.globalOrganization?.name }}
       </div>
 
-      <div class="flex"></div>
+      <div class="flex row justify-content-end">
+        @if (vm.globalOrganization?.isLeaf) {
+        <button
+          vcl-button
+          class="half-transparent organization"
+          (click)="cancelSelection()"
+        >
+          <vcl-icon icon="vcl:close"></vcl-icon>
+        </button>
+        }
+      </div>
     </div>
 
     <vcl-data-list
       [noBorder]="true"
-      [value]="vm.selectedLeaf"
+      [value]="vm.globalOrganization?.id"
       class="m-0"
       (valueChange)="
         onSelectGlobalOrganization($event); templatePopoverOrganization.close()

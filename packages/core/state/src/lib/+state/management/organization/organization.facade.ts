@@ -65,6 +65,10 @@ export class OrganizationFacade {
     organizationSelectors.selectGlobalChildrenOrganizations
   );
 
+  readonly globalOrganizationLeafId$ = this.store.select(
+    organizationSelectors.selectGlobalOrganizationLeafId
+  );
+
   readonly globalOrganizationLeaf$ = this.store.select(
     organizationSelectors.selectGlobalOrganizationLeaf
   );
@@ -103,6 +107,9 @@ export class OrganizationFacade {
     this.store.dispatch(
       organizationActions.setPreviousSelectedGlobalOrganizationHistory()
     );
+
+  cancelSelection = () =>
+    this.store.dispatch(organizationActions.cancelSelection());
 
   create = (payload: IIoRestorecommerceOrganizationOrganizationList) =>
     this.store.dispatch(

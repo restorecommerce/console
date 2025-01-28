@@ -164,7 +164,20 @@ export const selectGlobalChildrenOrganizations = createSelector(
   }
 );
 
-export const selectGlobalOrganizationLeaf = createSelector(
+export const selectGlobalOrganizationLeafId = createSelector(
   selectOrganization,
   (state: IOrganizationState) => state.setSelectedGlobalLeaf
+);
+
+export const selectGlobalOrganizationLeaf = createSelector(
+  selectOrganizationEntities,
+  selectGlobalOrganizationLeafId,
+  (entities, selectGlobalOrganizationLeafId) => {
+    return (
+      selectGlobalOrganizationLeafId &&
+      selectGlobalOrganizationLeafId in entities
+        ? entities[selectGlobalOrganizationLeafId]
+        : null
+    ) as IOrganization | null;
+  }
 );

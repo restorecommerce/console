@@ -161,6 +161,15 @@ const reducer = createReducer<IOrganizationState>(
     })
   ),
   on(
+    organizationActions.cancelSelection,
+    (state): IOrganizationState => ({
+      ...state,
+      setSelectedGlobalLeaf: null,
+      selectedGlobalOrganizationHistory:
+        state.selectedGlobalOrganizationHistory.slice(),
+    })
+  ),
+  on(
     organizationActions.organizationCreateRequest,
     (state): IOrganizationState => ({
       ...state,
