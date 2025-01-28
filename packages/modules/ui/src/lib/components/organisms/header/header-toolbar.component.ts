@@ -35,6 +35,7 @@ export class RcHeaderToolbarComponent implements OnInit {
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
     organizations: this.organizationFacade.globalChildrenOrganizations$,
+    selectedLeaf: this.organizationFacade.globalOrganizationLeaf$,
     globalOrganization: this.organizationFacade.globalOrganization$,
   });
 
@@ -58,14 +59,7 @@ export class RcHeaderToolbarComponent implements OnInit {
     event.stopPropagation();
   }
 
-  onClickGlobalOrganizationSelector(): void {
-    this.organizationFacade.readParents({});
-  }
-
-  onSelectGlobalOrganization(id: string, currentId: string): void {
-    if (id === currentId) {
-      return;
-    }
+  onSelectGlobalOrganization(id: string): void {
     this.organizationFacade.setSelectedGlobalOrganizationId(id);
   }
 

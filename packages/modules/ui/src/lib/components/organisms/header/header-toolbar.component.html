@@ -7,10 +7,7 @@
     <button
       vcl-button
       [selectable]="true"
-      (click)="
-        templatePopoverOrganization.toggle();
-        onClickGlobalOrganizationSelector()
-      "
+      (click)="templatePopoverOrganization.toggle()"
       class="half-transparent organization"
     >
       <vcl-icogram>
@@ -78,11 +75,10 @@
 
     <vcl-data-list
       [noBorder]="true"
-      [value]="vm.globalOrganization?.id"
+      [value]="vm.selectedLeaf"
       class="m-0"
       (valueChange)="
-        onSelectGlobalOrganization($event, vm.globalOrganization?.id ?? '');
-        templatePopoverOrganization.close()
+        onSelectGlobalOrganization($event); templatePopoverOrganization.close()
       "
     >
       @for (organization of vm.organizations; track $index) {

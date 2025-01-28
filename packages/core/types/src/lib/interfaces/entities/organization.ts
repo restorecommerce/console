@@ -12,4 +12,5 @@ export interface IOrganization
   email: string;
   website: string;
   meta: IMeta;
+  isLeaf: boolean;
 }

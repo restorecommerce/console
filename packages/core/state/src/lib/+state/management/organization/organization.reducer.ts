@@ -22,6 +22,7 @@ export const initialState: IOrganizationState = adapter.getInitialState({
   selectedChildId: null,
   childIds: [],
   childEntities: {},
+  setSelectedGlobalLeaf: null,
   actionStatus: EActionStatus.INIT,
   error: null,
 });
@@ -117,16 +118,29 @@ const reducer = createReducer<IOrganizationState>(
   ),
   on(
     organizationActions.setSelectedGlobalOrganizationId,
-    (state, { payload }): IOrganizationState => ({
-      ...state,
-      selectedGlobalOrganizationHistory: Array.from(
-        new Set([
-          ...state.selectedGlobalOrganizationHistory,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          payload!,
-        ])
-      ),
-    })
+    (state, { payload }): IOrganizationState => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const organization = state.entities[payload!];
+
+      if (organization?.isLeaf) {
+        return {
+          ...state,
+          setSelectedGlobalLeaf: payload,
+        };
+      } else {
+        return {
+          ...state,
+          setSelectedGlobalLeaf: null,
+          selectedGlobalOrganizationHistory: Array.from(
+            new Set([
+              ...state.selectedGlobalOrganizationHistory,
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              payload!,
+            ])
+          ),
+        };
+      }
+    }
   ),
   on(
     organizationActions.selectedGlobalOrganizationHistory,
@@ -141,6 +155,7 @@ const reducer = createReducer<IOrganizationState>(
     organizationActions.setPreviousSelectedGlobalOrganizationHistory,
     (state): IOrganizationState => ({
       ...state,
+      setSelectedGlobalLeaf: null,
       selectedGlobalOrganizationHistory:
         state.selectedGlobalOrganizationHistory.slice(0, -1),
     })

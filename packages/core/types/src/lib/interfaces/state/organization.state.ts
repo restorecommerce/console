@@ -16,4 +16,5 @@ export interface IOrganizationState
   selectedChildId: string | null;
   childIds: string[];
   childEntities: Dictionary<IOrganization>;
+  setSelectedGlobalLeaf: string | null;
 }

@@ -34,10 +34,17 @@ export class OrganizationEffects {
             );
           }),
           map((result) => {
-            const payload = (
+            const responseData =
               result?.data?.master_data?.organization?.Read?.details?.items ||
-              []
-            )?.map((item) => item?.payload) as IOrganization[];
+              [];
+
+            const payload = responseData.map((item) => ({
+              ...item?.payload,
+              isLeaf: !responseData.some(
+                (child) => child.payload?.parentId === item.payload?.id
+              ),
+            })) as IOrganization[];
+
             return organizationActions.organizationReadRequestSuccess({
               payload,
             });
@@ -82,11 +89,18 @@ export class OrganizationEffects {
             );
           }),
           map((result) => {
-            const payload = (
+            const responseData =
               result?.data?.master_data?.organization?.Read?.details?.items ||
-              []
-            )?.map((item) => item?.payload) as IOrganization[];
-            return organizationActions.organizationReadParentsRequestSuccess({
+              [];
+
+            const payload = responseData.map((item) => ({
+              ...item?.payload,
+              isLeaf: !responseData.some(
+                (child) => child.payload?.parentId === item.payload?.id
+              ),
+            })) as IOrganization[];
+
+            return organizationActions.organizationReadRequestSuccess({
               payload,
             });
           }),

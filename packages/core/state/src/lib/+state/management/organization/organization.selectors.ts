@@ -160,25 +160,11 @@ export const selectGlobalChildrenOrganizations = createSelector(
       (org) => org.parentId === data.currentParentId
     ) as IOrganization[];
 
-    if (filteredOrganization.length === 0) {
-      // This is most likely a Leaf organization
-      const currentIndex = data.globalOrganizationHistory.findIndex(
-        (his) => his === data.currentParentId
-      );
-
-      console.log(
-        'data.globalOrganizationHistory[currentIndex - 1]',
-        data.globalOrganizationHistory[currentIndex - 1]
-      );
-
-      if (currentIndex > 0) {
-        return data.organizations.filter(
-          (org) =>
-            org.parentId === data.globalOrganizationHistory[currentIndex - 1]
-        ) as IOrganization[];
-      }
-    }
-
     return filteredOrganization;
   }
+);
+
+export const selectGlobalOrganizationLeaf = createSelector(
+  selectOrganization,
+  (state: IOrganizationState) => state.setSelectedGlobalLeaf
 );
