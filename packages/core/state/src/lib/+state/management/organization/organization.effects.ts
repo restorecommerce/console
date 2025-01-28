@@ -19,6 +19,8 @@ import { OrganizationService, ErrorHandlingService } from '../../../services';
 import { AppFacade } from '../../app';
 
 import * as organizationActions from './organization.actions';
+import { concatLatestFrom } from '@ngrx/operators';
+import { OrganizationFacade } from './organization.facade';
 
 @Injectable()
 export class OrganizationEffects {
@@ -302,6 +304,31 @@ export class OrganizationEffects {
     { dispatch: false }
   );
 
+  handleOrganizationChangedNotification$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(
+          organizationActions.setSelectedGlobalOrganizationId,
+          organizationActions.selectedGlobalOrganizationHistory,
+          organizationActions.setPreviousSelectedGlobalOrganizationHistory,
+          organizationActions.cancelSelection
+        ),
+        concatLatestFrom(() => [
+          this.organizationFacade.globalOrganizationLeaf$,
+          this.organizationFacade.globalOrganization$,
+        ]),
+        tap(([, leafOrganization, parentOrganization]) => {
+          const organization = leafOrganization || parentOrganization;
+          this.appFacade.addNotification({
+            content: `Organization changed to ${organization?.name}`,
+            type: ENotificationTypes.Info,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -329,6 +356,7 @@ export class OrganizationEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly organizationService: OrganizationService,
+    private readonly organizationFacade: OrganizationFacade,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }
