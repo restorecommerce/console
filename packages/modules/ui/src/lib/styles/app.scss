@@ -66,11 +66,6 @@ rc-header.application-header {
     button.account {
       height: 43px;
     }
-
-    vcl-icon {
-      font-size: 1rem;
-      padding-bottom: 2px;
-    }
   }
 }
 
@@ -121,14 +116,4 @@ vcl-hint-error {
 #wrapper-popover-account {
   width: 200px;
   color: $wrapper-popover-account-link-color;
-
-  vcl-icon {
-    font-size: 1rem;
-  }
-
-  div {
-    .text {
-      padding-left: 0.3rem;
-    }
-  }
 }

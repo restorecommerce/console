@@ -8,13 +8,21 @@
       vcl-button
       [selectable]="true"
       (click)="templatePopoverOrganization.toggle()"
-      class="half-transparent organization"
+      class="half-transparent"
     >
-      <vcl-icogram>
-        <vcl-icon icon="mdi:home-outline" />
-        {{ vm.globalOrganization?.name || vm.selectedParent?.name }}
-        <vcl-icon icon="mdi:chevron-down" />
-      </vcl-icogram>
+      <vcl-icon
+        vclPrepend
+        icon="mdi:home-outline"
+        class="scale155p"
+      ></vcl-icon>
+
+      {{ vm.globalOrganization?.name || vm.selectedParent?.name }}
+
+      <vcl-icon
+        vclAppend
+        class="scale155p"
+        icon="mdi:chevron-down"
+      ></vcl-icon>
     </button>
   </span>
 
@@ -53,7 +61,7 @@
         class="half-transparent organization"
         (click)="resetGlobalSelectOrganization($event)"
       >
-        <vcl-icon icon="vcl:home"></vcl-icon>
+        <vcl-icon icon="vcl:chevron-up"></vcl-icon>
       </button>
 
       } @if (vm.globalOrganization?.parentId || vm.selectedParent?.parentId) {
@@ -68,9 +76,9 @@
       </button>
       }
 
-      <span class="pr-2 overflow-ellipsis">{{
+      <!-- <span class="pr-2 overflow-ellipsis">{{
         vm.globalOrganization?.name || vm.selectedParent?.name
-      }}</span>
+      }}</span> -->
 
       @if (vm.globalOrganization?.parentId) {
       <button
@@ -85,6 +93,8 @@
       }
     </rc-toolbar>
 
+    <rc-searchbar />
+
     <vcl-data-list
       [noBorder]="true"
       [value]="vm.globalOrganization?.id"
@@ -93,7 +103,11 @@
         onSelectGlobalOrganization($event); templatePopoverOrganization.close()
       "
     >
-      @for (organization of vm.organizations; track $index) {
+      @if (vm.selectedParent) {
+      <vcl-data-list-item [value]="vm.selectedParent.id">
+        <div class="p-2">{{ vm.selectedParent.name }}</div>
+      </vcl-data-list-item>
+      } @for (organization of vm.organizations; track $index) {
       <vcl-data-list-item [value]="organization.id">
         <div class="p-2">{{ organization?.name }}</div>
       </vcl-data-list-item>
