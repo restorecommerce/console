@@ -74,13 +74,7 @@
       >
         <vcl-icon icon="vcl:arrow-left"></vcl-icon>
       </button>
-      }
-
-      <!-- <span class="pr-2 overflow-ellipsis">{{
-        vm.globalOrganization?.name || vm.selectedParent?.name
-      }}</span> -->
-
-      @if (vm.globalOrganization?.parentId) {
+      } @if (vm.globalOrganization?.parentId) {
       <button
         rc-append
         vcl-button

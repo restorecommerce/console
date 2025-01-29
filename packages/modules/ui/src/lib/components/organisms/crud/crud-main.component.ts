@@ -37,6 +37,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() isEdit = true;
   @Input() isDelete = true;
   @Input() isMeta = true;
+  @Input() isNested = false;
 
   isTriggerCreateInvoice = false;
   isTriggerCreateFulfillment = false;
