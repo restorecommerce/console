@@ -14,7 +14,7 @@ export interface FuseOptionsType {
 @Injectable({
   providedIn: 'root',
 })
-export class SearchService<T> {
+export class FuseSearchService<T> {
   private fuseOptions = {
     shouldSort: true,
     threshold: 0.3,
