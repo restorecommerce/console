@@ -13,14 +13,14 @@
       <vcl-icon
         vclPrepend
         icon="mdi:home-outline"
-        class="scale155p"
+        class="scale155xp"
       ></vcl-icon>
 
       {{ vm.globalOrganization?.name || vm.selectedParent?.name }}
 
       <vcl-icon
         vclAppend
-        class="scale155p"
+        class="scale155xp"
         icon="mdi:chevron-down"
       ></vcl-icon>
     </button>
@@ -101,7 +101,8 @@
       <vcl-data-list-item [value]="vm.selectedParent.id">
         <div class="p-2">{{ vm.selectedParent.name }}</div>
       </vcl-data-list-item>
-      } @for (organization of vm.organizations; track $index) {
+      <!-- | fuzzysearch: term  -->
+      } @for (organization of (vm.organizations); track $index) {
       <vcl-data-list-item [value]="organization.id">
         <div class="p-2">{{ organization?.name }}</div>
       </vcl-data-list-item>
