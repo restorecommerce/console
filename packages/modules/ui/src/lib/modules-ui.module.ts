@@ -33,6 +33,8 @@ import {
   VCLBadgeModule,
 } from '@vcl/ng-vcl';
 
+import { ModulesSharedModule } from '@console-modules/shared';
+
 import {
   RcBusyIndicatorComponent,
   RcCopyrightComponent,
@@ -153,6 +155,7 @@ const modules = [
   VCLButtonGroupModule,
   VCLBadgeModule,
   VCLFormControlGroupModule,
+  ModulesSharedModule,
 ];
 
 const atoms = [

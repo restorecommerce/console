@@ -4,7 +4,8 @@ import { FuseSearchService } from '../services';
 
 @Pipe({
   name: 'fuseSearch',
-  pure: false,
+  pure: true,
+  standalone: false,
 })
 export class FuseSearchPipe<T> implements PipeTransform {
   constructor(private searchService: FuseSearchService<T>) {}

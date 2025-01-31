@@ -32,6 +32,8 @@ export class RcHeaderToolbarComponent implements OnInit {
   @HostBinding('class.row')
   _hostClasses = true;
 
+  searchTerm = '';
+
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
     organizations: this.organizationFacade.globalChildrenOrganizations$,

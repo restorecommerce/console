@@ -1,4 +1,9 @@
 import { NgModule } from '@angular/core';
 
-@NgModule({})
+import { FuseSearchPipe } from './pipes';
+
+@NgModule({
+  declarations: [FuseSearchPipe],
+  exports: [FuseSearchPipe],
+})
 export class ModulesSharedModule {}
