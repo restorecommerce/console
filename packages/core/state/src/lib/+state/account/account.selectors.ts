@@ -12,6 +12,8 @@ export const selectUser = createSelector(
   (state: IAccountState) => state.user
 );
 
+export const selectUserId = createSelector(selectUser, (user) => user?.id);
+
 export const selectActionStatus = createSelector(
   selectAccount,
   (state: IAccountState) => state.actionStatus

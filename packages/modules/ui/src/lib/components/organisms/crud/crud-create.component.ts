@@ -3,13 +3,16 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { combineLatest } from 'rxjs';
 
 import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ModeType } from '@console-core/graphql';
+import { AccountFacade, OrganizationFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-crud-create',
@@ -30,9 +33,12 @@ import { ModeType } from '@console-core/graphql';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcCrudCreateComponent {
+export class RcCrudCreateComponent implements OnInit {
   @Input({ required: true })
   schema!: VCLFormFieldSchemaRoot;
+
+  currentOrganizationId!: string;
+  userId!: string;
 
   @Input({ required: true })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,6 +48,28 @@ export class RcCrudCreateComponent {
   createForm!: JssFormComponent;
 
   @Output() actionEvent = new EventEmitter<string>();
+
+  constructor(
+    private accountFacade: AccountFacade,
+    private organizationFacade: OrganizationFacade
+  ) {}
+
+  ngOnInit(): void {
+    combineLatest([
+      this.organizationFacade.globalOrganizationLeafId$,
+      this.organizationFacade.globalOrganizationId$,
+    ]).subscribe(([leafOrganizationId, organizationId]) => {
+      this.currentOrganizationId = leafOrganizationId
+        ? leafOrganizationId
+        : organizationId;
+    });
+
+    this.accountFacade.userId$.subscribe((userId) => {
+      if (userId) {
+        this.userId = userId;
+      }
+    });
+  }
 
   onAction(action: string): void {
     this.actionEvent.emit(action);
@@ -54,7 +82,36 @@ export class RcCrudCreateComponent {
     }
 
     this.create({
-      items: [this.createForm.form.value],
+      items: [
+        {
+          ...this.createForm.form.value,
+          meta: {
+            owners: [
+              {
+                id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
+                value:
+                  'urn:restorecommerce:acs:model:organization.Organization',
+                attributes: [
+                  {
+                    id: 'urn:restorecommerce:acs:names:ownerInstance',
+                    value: this.currentOrganizationId,
+                  },
+                ],
+              },
+              {
+                id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
+                value: 'urn:restorecommerce:acs:model:user.User',
+                attributes: [
+                  {
+                    id: 'urn:restorecommerce:acs:names:ownerInstance',
+                    value: this.userId,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
       mode: ModeType.Create,
     });
   }

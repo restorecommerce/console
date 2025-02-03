@@ -18,6 +18,7 @@ import * as accountSelectors from './account.selectors';
 export class AccountFacade {
   // Selectors
   user$ = this.store.select(accountSelectors.selectUser);
+  userId$ = this.store.select(accountSelectors.selectUserId);
   actionStatus$ = this.store.select(accountSelectors.selectActionStatus);
   error$ = this.store.select(accountSelectors.selectError);
 

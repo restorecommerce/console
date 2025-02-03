@@ -11,7 +11,6 @@ interface ISchemaOptions {
 export const buildProductSchema = (
   options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
-
   return {
     type: 'form',
     fields: [

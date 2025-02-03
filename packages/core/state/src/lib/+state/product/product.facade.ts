@@ -9,33 +9,6 @@ import {
 import * as productActions from './product.actions';
 import * as productSelectors from './product.selectors';
 
-const addTemporaryMetaForCatalogSrv = (
-  // Hack for catalog srv. Can't wait for it to be fixed!
-  payload: IIoRestorecommerceProductProductList
-) => {
-  const item = (payload.items ?? [])[0];
-
-  //TODO Change this ASAP. Hack to this bloody catalog-srv.
-  if (item) {
-    item.meta = {
-      owners: [
-        {
-          id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
-          value: 'urn:restorecommerce:acs:model:organization.Organization',
-          attributes: [
-            {
-              id: 'urn:restorecommerce:acs:names:ownerInstance',
-              value: 'nfuse-shop-000-organization',
-            },
-          ],
-        },
-      ],
-    };
-  }
-
-  return payload;
-};
-
 @Injectable()
 export class ProductFacade {
   // Selectors
@@ -65,17 +38,11 @@ export class ProductFacade {
     this.store.dispatch(productActions.setSelectedId({ payload }));
 
   create = (payload: IIoRestorecommerceProductProductList) => {
-    const tempPayload = addTemporaryMetaForCatalogSrv(payload);
-    this.store.dispatch(
-      productActions.productCreateRequest({ payload: tempPayload })
-    );
+    this.store.dispatch(productActions.productCreateRequest({ payload }));
   };
 
   update = (payload: IIoRestorecommerceProductProductList) => {
-    const tempPayload = addTemporaryMetaForCatalogSrv(payload);
-    this.store.dispatch(
-      productActions.productUpdateRequest({ payload: tempPayload })
-    );
+    this.store.dispatch(productActions.productUpdateRequest({ payload }));
   };
 
   remove = (payload: { id: string }) =>
