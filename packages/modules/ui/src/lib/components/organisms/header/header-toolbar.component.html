@@ -98,13 +98,19 @@
       "
     >
       @if (vm.selectedParent) {
-      <vcl-data-list-item [value]="vm.selectedParent.id">
+      <vcl-data-list-item
+        class="row center"
+        [value]="vm.selectedParent.id"
+      >
         <div class="p-2">{{ vm.selectedParent.name }}</div>
       </vcl-data-list-item>
       <!-- | fuzzysearch: term  -->
       } @for (organization of (vm.organizations | fuseSearch: searchTerm :
       ['name', 'description']); track $index) {
-      <vcl-data-list-item [value]="organization.id">
+      <vcl-data-list-item
+        class="row center"
+        [value]="organization.id"
+      >
         <div class="p-2">{{ organization?.name }}</div>
       </vcl-data-list-item>
       }
