@@ -91,7 +91,7 @@
 
     <vcl-data-list
       [noBorder]="true"
-      [value]="vm.globalOrganization?.id"
+      [value]="vm.globalOrganization?.id || vm.selectedParent?.id"
       class="m-0"
       (valueChange)="
         onSelectGlobalOrganization($event); templatePopoverOrganization.close()
