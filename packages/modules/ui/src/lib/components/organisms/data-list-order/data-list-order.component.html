@@ -1,7 +1,7 @@
 <div class="row px-2 py-2">
   <div>
     <img
-      [alt]="product?.name"
+      [alt]="product?.name || 'Product Image'"
       [src]="product?.images?.[0]?.url"
       sizes="(max-width: 60px) 60px, 60px"
       width="60"
