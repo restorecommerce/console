@@ -16,7 +16,7 @@
         class="scale155xp"
       ></vcl-icon>
 
-      {{ vm.globalOrganization?.name || vm.selectedParent?.name }}
+      {{ vm.leafOrganization?.name || vm.selectedParent?.name }}
 
       <vcl-icon
         vclAppend
@@ -54,7 +54,7 @@
 >
   <div>
     <rc-toolbar>
-      @if (vm.globalOrganization?.parentId || vm.selectedParent?.parentId) {
+      @if (vm.leafOrganization?.parentId || vm.selectedParent?.parentId) {
       <button
         rc-prepend
         vcl-button
@@ -64,7 +64,7 @@
         <vcl-icon icon="vcl:chevron-up"></vcl-icon>
       </button>
 
-      } @if (vm.globalOrganization?.parentId || vm.selectedParent?.parentId) {
+      } @if (vm.leafOrganization?.parentId || vm.selectedParent?.parentId) {
       <button
         rc-prepend
         vcl-button
@@ -74,7 +74,7 @@
       >
         <vcl-icon icon="vcl:arrow-left"></vcl-icon>
       </button>
-      } @if (vm.globalOrganization?.parentId) {
+      } @if (vm.leafOrganization?.parentId) {
       <button
         rc-append
         vcl-button
@@ -91,7 +91,7 @@
 
     <vcl-data-list
       [noBorder]="true"
-      [value]="vm.globalOrganization?.id || vm.selectedParent?.id"
+      [value]="vm.leafOrganization?.id || vm.selectedParent?.id"
       class="m-0"
       (valueChange)="
         onSelectGlobalOrganization($event); templatePopoverOrganization.close()
@@ -104,7 +104,6 @@
       >
         <div class="p-2">{{ vm.selectedParent.name }}</div>
       </vcl-data-list-item>
-      <!-- | fuzzysearch: term  -->
       } @for (organization of (vm.organizations | fuseSearch: searchTerm :
       ['name', 'description']); track $index) {
       <vcl-data-list-item
