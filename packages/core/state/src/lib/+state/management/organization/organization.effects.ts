@@ -21,41 +21,9 @@ import { AppFacade } from '../../app';
 import * as organizationActions from './organization.actions';
 import { concatLatestFrom } from '@ngrx/operators';
 import { OrganizationFacade } from './organization.facade';
-import { RouterFacade } from '@console-core/state';
 
 @Injectable()
 export class OrganizationEffects {
-  // updateOrgUrl$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(
-  //         organizationActions.setSelectedGlobalOrganizationId,
-  //         organizationActions.selectedGlobalOrganizationHistory,
-  //         organizationActions.setPreviousSelectedGlobalOrganizationHistory,
-  //         organizationActions.cancelSelection
-  //       ),
-  //       concatLatestFrom(() => [
-  //         this.organizationFacade.globalOrganizationLeafId$,
-  //         this.organizationFacade.globalOrganizationId$,
-  //         this.routerFacade.url$,
-  //         this.routerFacade.params$,
-  //       ]),
-  //       switchMap(
-  //         ([, organizationLeaf, organization, currentRoute, params]) => {
-  //           const newUrl = currentRoute.replace(
-  //             params.org,
-  //             organizationLeaf || organization
-  //           );
-
-  //           this.routerFacade.navigateByUrl(newUrl);
-
-  //           return [];
-  //         }
-  //       )
-  //     ),
-  //   { dispatch: false }
-  // );
-
   organizationReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(organizationActions.organizationReadRequest),
@@ -387,7 +355,6 @@ export class OrganizationEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly routerFacade: RouterFacade,
     private readonly organizationService: OrganizationService,
     private readonly organizationFacade: OrganizationFacade,
     private readonly errorHandlingService: ErrorHandlingService

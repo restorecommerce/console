@@ -19,30 +19,54 @@ import { CountryService, ErrorHandlingService } from '../../../services';
 import { AppFacade } from '../../app';
 
 import * as countryActions from './country.actions';
+import {
+  OrganizationFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
 
 @Injectable()
 export class CountryEffects {
   countryReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(countryActions.countryReadRequest),
-      exhaustMap(({ payload }) =>
-        this.countryService.read(payload).pipe(
-          tap((result) => {
-            this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.master_data?.country?.Read?.details
-                ?.operationStatus as TOperationStatus
-            );
-          }),
-          map((result) => {
-            const payload = (
-              result?.data?.master_data?.country?.Read?.details?.items || []
-            )?.map((item) => item?.payload) as ICountry[];
-            return countryActions.countryReadRequestSuccess({ payload });
-          }),
-          catchError((error: Error) =>
-            of(countryActions.countryReadRequestFail({ error: error.message }))
+      withLatestOrganizationData(
+        this.organizationFacade,
+        countryActions.countryReadRequest.type
+      ),
+      exhaustMap(([action, organizationLeaf, organization]) =>
+        this.countryService
+          .read({
+            // ...productActionPayload,
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'meta.owners[*].attributes[**].value',
+                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                    value: organizationLeaf || organization,
+                  },
+                ],
+              },
+            ],
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.master_data?.country?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload = (
+                result?.data?.master_data?.country?.Read?.details?.items || []
+              )?.map((item) => item?.payload) as ICountry[];
+              return countryActions.countryReadRequestSuccess({ payload });
+            }),
+            catchError((error: Error) =>
+              of(
+                countryActions.countryReadRequestFail({ error: error.message })
+              )
+            )
           )
-        )
       )
     );
   });
@@ -247,6 +271,7 @@ export class CountryEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly countryService: CountryService,
+    private readonly organizationFacade: OrganizationFacade,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

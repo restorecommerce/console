@@ -95,8 +95,6 @@ export class ProductEffects {
                 result?.data?.catalog?.product?.Read?.details?.items || []
               )?.map((item) => item?.payload) as IProduct[];
 
-              console.log('items', items);
-
               return productActions.productReadRequestSuccess({
                 payload: { items, isLoadMore },
               });
