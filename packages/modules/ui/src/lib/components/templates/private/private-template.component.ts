@@ -114,6 +114,7 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((currentRoute: string) => {
+        console.log('***currentRouter:', currentRoute);
         this.currentRoute = currentRoute;
         this.changeDetectorRef.markForCheck();
         this.changeDetectorRef.detectChanges();

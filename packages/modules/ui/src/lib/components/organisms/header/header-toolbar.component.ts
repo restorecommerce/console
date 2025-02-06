@@ -69,11 +69,6 @@ export class RcHeaderToolbarComponent implements OnInit {
     this.organizationFacade.cancelSelection();
   }
 
-  onSearchOrganizations(str: string): void {
-    // TODO: Implement search
-    console.log('Search', str);
-  }
-
   onAccountItemSelected(value: string) {
     switch (value) {
       case 'profile':
