@@ -22,31 +22,54 @@ import { AppFacade } from '../app';
 
 import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';
+import {
+  OrganizationFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
 
 @Injectable()
 export class OrderEffects {
   orderReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(orderActions.orderReadRequest),
-      exhaustMap(({ payload }) =>
-        this.orderService.read(payload).pipe(
-          tap((result) => {
-            this.errorHandlingService.checkStatusAndThrow(
-              result?.data?.ordering?.order?.Read?.details
-                ?.operationStatus as TOperationStatus
-            );
-          }),
-          map((result) => {
-            const payload = (
-              result?.data?.ordering?.order?.Read?.details?.items || []
-            )?.map((item) => item?.payload) as IOrder[];
-            return orderActions.orderReadRequestSuccess({ payload });
-          }),
-          catchError((error: Error) =>
-            of(orderActions.orderReadRequestFail({ error: error.message }))
-          )
-        )
-      )
+      withLatestOrganizationData(
+        this.organizationFacade,
+        orderActions.orderReadRequest.type
+      ),
+      exhaustMap(([action, organizationLeaf, organization]) => {
+        return this.orderService
+          .read({
+            // Sort object from the product payload or the default goes here!
+            // ...productActionPayload,
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'meta.owners[*].attributes[**].value',
+                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                    value: organizationLeaf || organization,
+                  },
+                ],
+              },
+            ],
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.ordering?.order?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload = (
+                result?.data?.ordering?.order?.Read?.details?.items || []
+              )?.map((item) => item?.payload) as IOrder[];
+              return orderActions.orderReadRequestSuccess({ payload });
+            }),
+            catchError((error: Error) =>
+              of(orderActions.orderReadRequestFail({ error: error.message }))
+            )
+          );
+      })
     );
   });
 
@@ -299,6 +322,7 @@ export class OrderEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
+    private readonly organizationFacade: OrganizationFacade,
     private readonly orderService: OrderService,
     private readonly orderFacade: OrderFacade,
     private readonly errorHandlingService: ErrorHandlingService

@@ -23,7 +23,10 @@ import { AppFacade } from '../app';
 import * as productActions from './product.actions';
 import { productReadOneByIdRequest } from './product.actions';
 import { concatLatestFrom } from '@ngrx/operators';
-import { OrganizationFacade } from '@console-core/state';
+import {
+  OrganizationFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
 
 import * as organizationActions from '../management/organization/organization.actions';
 
@@ -49,27 +52,22 @@ export class ProductEffects {
   productReadRequest$ = createEffect(() => {
     let isLoadMore = false;
     return this.actions$.pipe(
-      ofType(
-        productActions.productReadRequest,
-        organizationActions.setSelectedGlobalOrganizationId,
-        organizationActions.selectedGlobalOrganizationHistory,
-        organizationActions.setPreviousSelectedGlobalOrganizationHistory,
-        organizationActions.cancelSelection
+      withLatestOrganizationData(
+        this.organizationFacade,
+        productActions.productReadRequest.type // Pass only the effect-specific action
       ),
-      concatLatestFrom(() => [
-        this.organizationFacade.globalOrganizationLeafId$,
-        this.organizationFacade.globalOrganizationId$,
-      ]),
       exhaustMap(([action, organizationLeaf, organization]) => {
-        const productActionPayload =
-          action.type === productActions.productReadRequest.type
-            ? action.payload
-            : queryVariables;
+        // Action dispatched could be of many things...
+        // OrganizationSwitching, Organization back, or loadProducts
+        const productAction = action as ReturnType<
+          typeof productActions.productReadRequest
+        >;
+
+        const productActionPayload = productAction.payload || queryVariables;
 
         return this.productService
           .read({
-            ...productActionPayload,
-            // TODO: Override more filters.
+            // ...productActionPayload,
             filters: [
               {
                 filters: [
@@ -96,12 +94,11 @@ export class ProductEffects {
               const items = (
                 result?.data?.catalog?.product?.Read?.details?.items || []
               )?.map((item) => item?.payload) as IProduct[];
-              const payload = {
-                items: items,
-                isLoadMore,
-              };
+
+              console.log('items', items);
+
               return productActions.productReadRequestSuccess({
-                payload,
+                payload: { items, isLoadMore },
               });
             }),
             catchError((error: Error) =>
