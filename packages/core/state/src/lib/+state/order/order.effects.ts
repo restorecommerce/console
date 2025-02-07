@@ -35,7 +35,7 @@ export class OrderEffects {
         this.organizationFacade,
         orderActions.orderReadRequest.type
       ),
-      exhaustMap(([action, organizationLeaf, organization]) => {
+      exhaustMap(([action, organization]) => {
         return this.orderService
           .read({
             // Sort object from the product payload or the default goes here!
@@ -46,7 +46,7 @@ export class OrderEffects {
                   {
                     field: 'meta.owners[*].attributes[**].value',
                     operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organizationLeaf || organization,
+                    value: organization,
                   },
                 ],
               },

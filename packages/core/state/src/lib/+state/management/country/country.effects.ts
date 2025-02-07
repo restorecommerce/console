@@ -32,7 +32,7 @@ export class CountryEffects {
         this.organizationFacade,
         countryActions.countryReadRequest.type
       ),
-      exhaustMap(([action, organizationLeaf, organization]) =>
+      exhaustMap(([action, organization]) =>
         this.countryService
           .read({
             // ...productActionPayload,
@@ -42,7 +42,7 @@ export class CountryEffects {
                   {
                     field: 'meta.owners[*].attributes[**].value',
                     operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organizationLeaf || organization,
+                    value: organization,
                   },
                 ],
               },

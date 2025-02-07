@@ -56,7 +56,7 @@ export class ProductEffects {
         this.organizationFacade,
         productActions.productReadRequest.type // Pass only the effect-specific action
       ),
-      exhaustMap(([action, organizationLeaf, organization]) => {
+      exhaustMap(([action, organization]) => {
         // Action dispatched could be of many things...
         // OrganizationSwitching, Organization back, or loadProducts
         const productAction = action as ReturnType<
@@ -74,7 +74,7 @@ export class ProductEffects {
                   {
                     field: 'meta.owners[*].attributes[**].value',
                     operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organizationLeaf || organization,
+                    value: organization,
                   },
                 ],
               },

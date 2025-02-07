@@ -1,7 +1,7 @@
 import { ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Action } from '@ngrx/store';
-import { Observable, OperatorFunction } from 'rxjs';
+import { map, Observable, OperatorFunction } from 'rxjs';
 
 import * as organizationActions from '../+state/management/organization/organization.actions';
 import { OrganizationFacade } from '../+state/management/organization/organization.facade';
@@ -14,7 +14,7 @@ export type OrganizationDataTuple = [
 export function withLatestOrganizationData<T extends Action>(
   organizationFacade: OrganizationFacade,
   ...additionalActionTypes: string[]
-): OperatorFunction<T, [T, ...OrganizationDataTuple]> {
+): OperatorFunction<T, [T, string]> {
   return (source$: Observable<T>) =>
     source$.pipe(
       ofType<T>(
@@ -27,6 +27,10 @@ export function withLatestOrganizationData<T extends Action>(
       concatLatestFrom(() => [
         organizationFacade.globalOrganizationLeafId$,
         organizationFacade.globalOrganizationId$,
-      ])
-    ) as Observable<[T, ...OrganizationDataTuple]>;
+      ]),
+      map(([action, organizationLeaf, organization]) => {
+        const selectedOrganization = organizationLeaf || organization;
+        return [action, selectedOrganization] as [T, string];
+      })
+    );
 }
