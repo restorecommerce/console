@@ -47,8 +47,8 @@ export class JssFormService {
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
     roles: this.roleFacade.all$,
-    usersHash: this.iamFacade.entities$,
     rolesHash: this.roleFacade.entities$,
+    usersHash: this.iamFacade.entities$,
     organizations: this.organizationFacade.all$,
     organizationsHash: this.organizationFacade.entities$,
     tempRoleAssociations: this.iamFacade.tempRoleAssociations$,
@@ -65,18 +65,8 @@ export class JssFormService {
           data.usersHash
         );
 
-      const uniqueRoleAssociationsScopingInstancesObj =
-        roleAssociationsScopingInstances.reduce((acc, item) => {
-          const key = `${item.role?.id}|${item.organization?.id}`;
-          if (!acc[key]) {
-            acc[key] = item;
-          }
-          return acc;
-        }, {} as Record<string, IRoleAssociationScopingInstance>);
-
-      const uniqueRoleAssociationsScopingInstances = Object.values(
-        uniqueRoleAssociationsScopingInstancesObj
-      );
+      const uniqueRoleAssociationsScopingInstances =
+        roleAssociationsScopingInstances;
 
       return {
         locales: data.locales,
@@ -155,7 +145,7 @@ export class JssFormService {
     this.localeFacade.read({});
     this.timezoneFacade.read({});
     this.roleFacade.read({});
-    this.organizationFacade.readParents({});
+    this.organizationFacade.read({});
   }
 
   destroy() {
@@ -192,9 +182,7 @@ export class JssFormService {
       localeId: [user?.localeId || '', [Validators.required]],
       timezoneId: [user?.timezoneId || '', [Validators.required]],
       roleAssociations: [
-        roleAssociationsScopingInstances.map(
-          (rai) => `${rai.role?.id}|${rai.organization?.id}`
-        ),
+        roleAssociationsScopingInstances.map((rai) => `${rai.role?.id}`),
         [],
       ],
     });

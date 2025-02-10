@@ -48,6 +48,5 @@ export interface IRoleAssociation
 
 export interface IRoleAssociationScopingInstance {
   role: IRole | null;
-  organization: IOrganization | null;
-  user: IUser | null;
+  scopingInstances: (IOrganization | IUser)[] | null;
 }

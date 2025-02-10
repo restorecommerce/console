@@ -116,15 +116,20 @@
 
   @if (options.uniqueRoleAssociationsScopingInstances.length) {
   <vcl-form-control-group>
-    <vcl-label>Roles</vcl-label>
+    <vcl-label
+      >Roles ({{
+        options.uniqueRoleAssociationsScopingInstances.length
+      }})</vcl-label
+    >
     <vcl-select-list
       formControlName="roleAssociations"
       selectionMode="multiple"
     >
       @for (rai of options.uniqueRoleAssociationsScopingInstances; track $index)
       {
-      <vcl-select-list-item [value]="rai.role?.id + '|' + rai.organization?.id">
-        {{ rai.role?.name || 'N/A' }} [{{ rai.organization?.name || 'N/A' }}]
+
+      <vcl-select-list-item [value]="rai.role?.id">
+        {{ rai.role?.name || 'N/A' }} [{{ rai | listScopingInstanceNames }}]
         <vcl-sub-label>{{ rai.role?.description || 'N/A' }}</vcl-sub-label>
       </vcl-select-list-item>
       }

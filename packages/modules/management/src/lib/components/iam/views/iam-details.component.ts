@@ -129,7 +129,7 @@ import {
               <ng-container *ngFor="let rai of roleScopingInstances">
                 <p class="m-0">
                   {{ rai.role?.name ?? 'N/A' }} [{{
-                    rai.organization?.name ?? rai.user?.name
+                    rai | listScopingInstanceNames
                   }}]
                 </p></ng-container
               >
