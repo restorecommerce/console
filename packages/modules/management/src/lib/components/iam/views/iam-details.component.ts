@@ -218,6 +218,7 @@ export class IamDetailsComponent implements OnInit, OnChanges {
     user: IUser;
     organizationsHash: Dictionary<IOrganization>;
     rolesHash: Dictionary<IRole>;
+    userHash: Dictionary<IUser>;
   };
 
   roleScopingInstances: IRoleAssociationScopingInstance[] = [];
@@ -243,7 +244,8 @@ export class IamDetailsComponent implements OnInit, OnChanges {
       this.userService.getRoleAssociationsScopingInstances(
         this.vm.user.roleAssociations,
         this.vm.rolesHash,
-        this.vm.organizationsHash
+        this.vm.organizationsHash,
+        this.vm.userHash
       );
   }
 }

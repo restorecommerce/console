@@ -45,6 +45,7 @@ export class IamViewComponent implements OnInit {
     ),
     organizationsHash: this.organizationFacade.entities$,
     rolesHash: this.roleFacade.entities$,
+    userHash: this.iamFacade.entities$,
   });
 
   constructor(

@@ -211,47 +211,46 @@ export class UserService {
   getRoleAssociationsScopingInstances(
     roleAssociations: IRoleAssociation[],
     rolesHash: Dictionary<IRole>,
-    organizationsHash: Dictionary<IOrganization>
+    organizationsHash: Dictionary<IOrganization>,
+    usersHash: Dictionary<IUser>
   ): IRoleAssociationScopingInstance[] {
-    const results: IRoleAssociationScopingInstance[] = [];
+    return roleAssociations.map((ra) => {
+      const scopingEntity = ra.attributes?.find(
+        (attr) => attr.id === 'urn:restorecommerce:acs:names:roleScopingEntity'
+      ) as IoRestorecommerceAttributeAttribute;
 
-    const recursiveSearch = (
-      roleAssociation: IRoleAssociation,
-      data:
-        | IoRestorecommerceAttributeAttribute
-        | IoRestorecommerceAttributeAttribute[]
-    ): void => {
-      if (Array.isArray(data)) {
-        data.forEach((item) => {
-          recursiveSearch(roleAssociation, item);
-        });
+      const scopingEntityAttributes =
+        scopingEntity.attributes as IoRestorecommerceAttributeAttribute[];
+
+      const enitityInstanceAttribute = scopingEntityAttributes.find(
+        (attr) =>
+          attr.id === 'urn:restorecommerce:acs:names:roleScopingInstance'
+      ) as IoRestorecommerceAttributeAttribute;
+
+      const enitityInstanceAttributeValue =
+        enitityInstanceAttribute.value as string;
+
+      let user = null;
+      let organization = null;
+
+      if (scopingEntity.value === 'urn:restorecommerce:acs:model:user.User') {
+        user = usersHash[enitityInstanceAttributeValue];
       } else if (
-        roleAssociation.role &&
-        data.id === 'urn:restorecommerce:acs:names:roleScopingInstance' &&
-        data.value
+        scopingEntity.value ===
+        'urn:restorecommerce:acs:model:organization.Organization'
       ) {
-        results.push({
-          role: rolesHash[roleAssociation.role] ?? null,
-          organization: organizationsHash[data.value] ?? null,
-        });
-      } else if (data.attributes) {
-        recursiveSearch(roleAssociation, data.attributes);
+        organization = organizationsHash[enitityInstanceAttributeValue];
       }
-    };
 
-    roleAssociations?.forEach((roleAssociation) => {
-      if (roleAssociation.attributes) {
-        recursiveSearch(roleAssociation, roleAssociation.attributes);
-      }
+      const roleId = ra.role as string;
+      const role = rolesHash[roleId] as IRole;
+
+      return {
+        role,
+        organization,
+        user,
+      } as IRoleAssociationScopingInstance;
     });
-
-    const uniqueRoleAssociationsScopingInstances = [...new Set(results)].filter(
-      (item) => item.role && item.organization
-    );
-    uniqueRoleAssociationsScopingInstances.sort((a, b) =>
-      a.role?.name && b.role?.name ? a.role.name.localeCompare(b.role?.name) : 0
-    );
-    return uniqueRoleAssociationsScopingInstances;
   }
 
   createRoleAssociation(role: string, organization: string): IRoleAssociation {

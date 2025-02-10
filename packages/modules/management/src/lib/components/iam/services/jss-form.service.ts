@@ -47,6 +47,7 @@ export class JssFormService {
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
     roles: this.roleFacade.all$,
+    usersHash: this.iamFacade.entities$,
     rolesHash: this.roleFacade.entities$,
     organizations: this.organizationFacade.all$,
     organizationsHash: this.organizationFacade.entities$,
@@ -60,7 +61,8 @@ export class JssFormService {
             ...data.tempRoleAssociations,
           ],
           data.rolesHash,
-          data.organizationsHash
+          data.organizationsHash,
+          data.usersHash
         );
 
       const uniqueRoleAssociationsScopingInstancesObj =
