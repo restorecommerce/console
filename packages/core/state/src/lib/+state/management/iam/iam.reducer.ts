@@ -137,7 +137,7 @@ const reducer = createReducer<IIamState>(
       ...state,
       temp: {
         ...state.temp,
-        roleAssociations: payload,
+        roleAssociations: [...state.temp.roleAssociations, ...payload],
       },
     })
   ),

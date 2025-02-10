@@ -276,7 +276,7 @@ export class UserService {
       attributes: [
         {
           id: 'urn:restorecommerce:acs:names:roleScopingEntity',
-          value: 'urn:restorecommerce:acs:model:user.User',
+          value: 'urn:restorecommerce:acs:model:organization.Organization',
           attributes: [
             {
               id: 'urn:restorecommerce:acs:names:roleScopingInstance',

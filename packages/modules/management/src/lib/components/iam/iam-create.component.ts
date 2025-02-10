@@ -104,6 +104,7 @@ export class IamCreateComponent implements OnInit, OnDestroy {
           }[];
         }) => {
           if (result) {
+            console.log('****result', result);
             const roleAssociations = result.value.map((ra) => ({
               ...this.userService.createRoleAssociation(
                 ra.role,
