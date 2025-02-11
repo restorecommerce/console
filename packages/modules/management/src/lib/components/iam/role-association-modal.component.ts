@@ -27,6 +27,7 @@ import { JssFormService } from './services';
             (formAction)="onAction($event)"
             (formSubmit)="onSubmit()"
           />
+          <app-role-association-form />
         </div>
       </div>
     </vcl-panel-dialog>

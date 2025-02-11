@@ -2,60 +2,103 @@
   novalidate
   vclForm
 >
-  <vcl-form-control-group>
-    <vcl-label>Role</vcl-label>
-    <vcl-select>
-      <vcl-select-list formControlName="timezoneId">
-        <vcl-select-list-item>
-          Role 1
-          <vcl-sub-label>About role 1</vcl-sub-label>
-        </vcl-select-list-item>
-      </vcl-select-list>
-    </vcl-select>
-    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group>
+  <fieldset>
+    <legend>
+      Add role
+      <vcl-icon
+        class="vcl-jss-form-add"
+        icon="vcl:add"
+      ></vcl-icon>
+    </legend>
 
-  <!-- roleScopingInstanceType -->
-  <vcl-form-control-group>
-    <vcl-label>Role scoping instance type</vcl-label>
-    <vcl-select>
-      <vcl-select-list formControlName="timezoneId">
-        <vcl-select-list-item>
-          Role 1
-          <vcl-sub-label>About role 1</vcl-sub-label>
-        </vcl-select-list-item>
-      </vcl-select-list>
-    </vcl-select>
-    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group>
+    <fieldset>
+      <legend>
+        Role 1
+        <vcl-icon
+          class="vcl-jss-form-remove"
+          icon="vcl:remove"
+        ></vcl-icon>
+      </legend>
 
-  <!-- Organization -->
-  <vcl-form-control-group>
-    <vcl-label>Organization</vcl-label>
-    <vcl-select>
-      <vcl-select-list formControlName="timezoneId">
-        <vcl-select-list-item>
-          Role 1
-          <vcl-sub-label>About role 1</vcl-sub-label>
-        </vcl-select-list-item>
-      </vcl-select-list>
-    </vcl-select>
-    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group>
+      <vcl-form-control-group>
+        <vcl-label>Role</vcl-label>
+        <vcl-select
+          [clearable]="true"
+          placeholder="Select role"
+          [search]="true"
+        >
+          <vcl-select-list>
+            <vcl-select-list-item>
+              Role 1
+              <vcl-sub-label>About role 1</vcl-sub-label>
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+        <vcl-hint-error error="required"
+          >This field is required.</vcl-hint-error
+        >
+      </vcl-form-control-group>
 
-  <!-- User -->
-  <vcl-form-control-group>
-    <vcl-label>User</vcl-label>
-    <vcl-select>
-      <vcl-select-list formControlName="timezoneId">
-        <vcl-select-list-item>
-          Role 1
-          <vcl-sub-label>About role 1</vcl-sub-label>
-        </vcl-select-list-item>
-      </vcl-select-list>
-    </vcl-select>
-    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-  </vcl-form-control-group>
+      <!-- roleScopingInstanceType -->
+      <vcl-form-control-group>
+        <vcl-label>Role scoping instance type</vcl-label>
+        <vcl-select
+          [clearable]="true"
+          placeholder="Select scoping instance"
+        >
+          <vcl-select-list>
+            <vcl-select-list-item>
+              Role 1
+              <vcl-sub-label>About role 1</vcl-sub-label>
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+        <vcl-hint-error error="required"
+          >This field is required.</vcl-hint-error
+        >
+      </vcl-form-control-group>
+
+      <!-- Organization -->
+      <vcl-form-control-group>
+        <vcl-label>Organization</vcl-label>
+        <vcl-select
+          [clearable]="true"
+          placeholder="Select Organization"
+          [search]="true"
+        >
+          <vcl-select-list>
+            <vcl-select-list-item>
+              Role 1
+              <vcl-sub-label>About role 1</vcl-sub-label>
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+        <vcl-hint-error error="required"
+          >This field is required.</vcl-hint-error
+        >
+      </vcl-form-control-group>
+
+      <!-- User -->
+      <vcl-form-control-group>
+        <vcl-label>User</vcl-label>
+        <vcl-select
+          [clearable]="true"
+          placeholder="Select User"
+          [search]="true"
+        >
+          <vcl-select-list>
+            <vcl-select-list-item>
+              Role 1
+              <vcl-sub-label>About role 1</vcl-sub-label>
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+        <vcl-hint-error error="required"
+          >This field is required.</vcl-hint-error
+        >
+      </vcl-form-control-group>
+    </fieldset>
+  </fieldset>
 
   <!-- Buttons -->
   <div class="loose-button-group">

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+import { conditional, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import {
   IamFacade,
@@ -305,6 +305,17 @@ export class JssFormService {
                     message: 'This field is required.',
                   },
                 ],
+                visible: conditional(
+                  [
+                    'roleAssociationsArray',
+                    'roleAssociationsObject',
+                    'roleScopingInstanceType',
+                  ],
+                  (field) => {
+                    console.log('*****field', field);
+                    return !!field && field.value === 'scheduledInterval';
+                  }
+                ),
               },
               {
                 name: 'user',
