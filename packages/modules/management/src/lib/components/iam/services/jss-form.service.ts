@@ -25,6 +25,7 @@ import {
 interface IUserSchemaOptions {
   user: IUser | null;
   locales: ILocale[];
+  users: IUser[];
   timezones: ITimezone[];
   roles: IRole[];
   organizations: IOrganization[];
@@ -34,6 +35,7 @@ interface IUserSchemaOptions {
 interface IRoleAssociationsSchemaOptions {
   roles: IRole[];
   organizations: IOrganization[];
+  users: IUser[];
 }
 
 @Injectable({
@@ -46,6 +48,7 @@ export class JssFormService {
     user: this.iamFacade.selected$,
     locales: this.localeFacade.all$,
     timezones: this.timezoneFacade.all$,
+    users: this.iamFacade.all$,
     roles: this.roleFacade.all$,
     rolesHash: this.roleFacade.entities$,
     usersHash: this.iamFacade.entities$,
@@ -72,6 +75,7 @@ export class JssFormService {
         locales: data.locales,
         organizations: data.organizations,
         roles: data.roles,
+        users: data.users,
         timezones: data.timezones,
         user: data.user,
         roleAssociationsScopingInstances:
@@ -86,6 +90,7 @@ export class JssFormService {
       locales: [],
       timezones: [],
       roles: [],
+      users: [],
       organizations: [],
       roleAssociationsScopingInstances: [],
     })
@@ -94,6 +99,7 @@ export class JssFormService {
     this.buildRoleAssociationsSchema({
       roles: [],
       organizations: [],
+      users: [],
     })
   );
 
@@ -118,6 +124,7 @@ export class JssFormService {
           locales,
           timezones,
           roles,
+          users,
           roleAssociationsScopingInstances,
           organizations,
         }) => {
@@ -126,6 +133,7 @@ export class JssFormService {
               user,
               locales,
               timezones,
+              users,
               roles,
               organizations,
               roleAssociationsScopingInstances,
@@ -135,6 +143,7 @@ export class JssFormService {
             this.buildRoleAssociationsSchema({
               roles,
               organizations,
+              users,
             })
           );
         }
@@ -203,6 +212,7 @@ export class JssFormService {
   private buildRoleAssociationsSchema({
     roles,
     organizations,
+    users,
   }: IRoleAssociationsSchemaOptions): VCLFormFieldSchemaRoot {
     return {
       type: 'form',
@@ -243,6 +253,37 @@ export class JssFormService {
                 ],
               },
               {
+                name: 'roleScopingInstanceType',
+                label: 'Role scoping instance type',
+                type: 'select',
+                validators: [Validators.required],
+                params: {
+                  placeholder: 'Select role',
+                  selectionMode: 'single',
+                  clearable: true,
+                  search: true,
+                  options: [
+                    {
+                      label:
+                        'urn:restorecommerce:acs:model:organization.Organization',
+                      value:
+                        'urn:restorecommerce:acs:model:organization.Organization',
+                    },
+                    {
+                      label: 'urn:restorecommerce:acs:model:user.User',
+                      value: 'urn:restorecommerce:acs:model:user.User',
+                    },
+                  ],
+                },
+                hints: [
+                  {
+                    type: 'error',
+                    error: 'required',
+                    message: 'This field is required.',
+                  },
+                ],
+              },
+              {
                 name: 'organization',
                 label: 'Organization',
                 type: 'select',
@@ -255,6 +296,29 @@ export class JssFormService {
                   options: organizations.map((o) => ({
                     label: o.name,
                     value: o.id,
+                  })),
+                },
+                hints: [
+                  {
+                    type: 'error',
+                    error: 'required',
+                    message: 'This field is required.',
+                  },
+                ],
+              },
+              {
+                name: 'user',
+                label: 'User',
+                type: 'select',
+                validators: [Validators.required],
+                params: {
+                  placeholder: 'Select user',
+                  selectionMode: 'single',
+                  clearable: true,
+                  search: true,
+                  options: users.map((user) => ({
+                    label: user.name,
+                    value: user.id,
                   })),
                 },
                 hints: [

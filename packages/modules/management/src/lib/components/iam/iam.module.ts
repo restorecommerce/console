@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
+import { RoleAssociationFormComponent } from './forms/role-association-form/role-association-form.component';
 import { UserCreationFormComponent } from './forms/user-creation-form/user-creation-form.component';
 import { IamChangePasswordComponent } from './iam-change-password.component';
 import { IamCreateComponent } from './iam-create.component';
@@ -87,7 +88,8 @@ const routes: Routes = [
     IamRoleAssociationModalComponent,
     UserCreationFormComponent,
     AppendLastLoginPipe,
-    ListScopingInstanceNamesPipe
+    ListScopingInstanceNamesPipe,
+    RoleAssociationFormComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
