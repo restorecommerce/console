@@ -19,14 +19,14 @@ import { JssFormService } from './services';
       <vcl-panel-title>{{ layer.data.title }}</vcl-panel-title>
       <div class="row">
         <div class="flex-12">
-          <vcl-jss-form
+          <!-- <vcl-jss-form
             autocomplete="off"
             ngDefaultControl
             #roleAssociationsForm="vclJssForm"
             [schema]="layer.data.roleAssociationsSchema"
             (formAction)="onAction($event)"
             (formSubmit)="onSubmit()"
-          />
+          /> -->
           <app-role-association-form />
         </div>
       </div>

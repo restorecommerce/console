@@ -1,120 +1,131 @@
 <form
   novalidate
   vclForm
+  [formGroup]="form"
 >
   <fieldset>
     <legend>
       Add role
       <vcl-icon
-        class="vcl-jss-form-add"
+        class="role-add"
         icon="vcl:add"
+        (click)="addUser()"
       ></vcl-icon>
     </legend>
 
-    <fieldset>
-      <legend>
-        Role 1
-        <vcl-icon
-          class="vcl-jss-form-remove"
-          icon="vcl:remove"
-        ></vcl-icon>
-      </legend>
+    <div formArrayName="associations">
+      @for (item of associations.controls; track item; let idx = $index) {
+      <fieldset
+        [formGroupName]="idx"
+        class="mb-3"
+      >
+        <legend>
+          Role {{ idx + 1 }}
+          <vcl-icon
+            class="role-remove"
+            icon="vcl:remove"
+            (click)="removeUser(idx)"
+          ></vcl-icon>
+        </legend>
 
-      <vcl-form-control-group>
-        <vcl-label>Role</vcl-label>
-        <vcl-select
-          [clearable]="true"
-          placeholder="Select role"
-          [search]="true"
-        >
-          <vcl-select-list>
-            <vcl-select-list-item>
-              Role 1
-              <vcl-sub-label>About role 1</vcl-sub-label>
-            </vcl-select-list-item>
-          </vcl-select-list>
-        </vcl-select>
-        <vcl-hint-error error="required"
-          >This field is required.</vcl-hint-error
-        >
-      </vcl-form-control-group>
+        <vcl-form-control-group>
+          <vcl-label>Role</vcl-label>
+          <vcl-select
+            [clearable]="true"
+            placeholder="Select role"
+            [search]="true"
+          >
+            <vcl-select-list formControlName="role">
+              <vcl-select-list-item>
+                Role 1
+                <vcl-sub-label>About role 1</vcl-sub-label>
+              </vcl-select-list-item>
+            </vcl-select-list>
+          </vcl-select>
+          <vcl-hint-error error="required"
+            >This field is required.</vcl-hint-error
+          >
+        </vcl-form-control-group>
 
-      <!-- roleScopingInstanceType -->
-      <vcl-form-control-group>
-        <vcl-label>Role scoping instance type</vcl-label>
-        <vcl-select
-          [clearable]="true"
-          placeholder="Select scoping instance"
-        >
-          <vcl-select-list>
-            <vcl-select-list-item>
-              Role 1
-              <vcl-sub-label>About role 1</vcl-sub-label>
-            </vcl-select-list-item>
-          </vcl-select-list>
-        </vcl-select>
-        <vcl-hint-error error="required"
-          >This field is required.</vcl-hint-error
-        >
-      </vcl-form-control-group>
+        <vcl-form-control-group>
+          <vcl-label>Instance type</vcl-label>
+          <vcl-select
+            [clearable]="true"
+            placeholder="Select scoping instance"
+          >
+            <vcl-select-list formControlName="instanceType">
+              <vcl-select-list-item>
+                Role 1
+                <vcl-sub-label>About role 1</vcl-sub-label>
+              </vcl-select-list-item>
+            </vcl-select-list>
+          </vcl-select>
+          <vcl-hint-error error="required"
+            >This field is required.</vcl-hint-error
+          >
+        </vcl-form-control-group>
 
-      <!-- Organization -->
-      <vcl-form-control-group>
-        <vcl-label>Organization</vcl-label>
-        <vcl-select
-          [clearable]="true"
-          placeholder="Select Organization"
-          [search]="true"
-        >
-          <vcl-select-list>
-            <vcl-select-list-item>
-              Role 1
-              <vcl-sub-label>About role 1</vcl-sub-label>
-            </vcl-select-list-item>
-          </vcl-select-list>
-        </vcl-select>
-        <vcl-hint-error error="required"
-          >This field is required.</vcl-hint-error
-        >
-      </vcl-form-control-group>
+        <!-- Organization -->
+        <vcl-form-control-group>
+          <vcl-label>Organization</vcl-label>
+          <vcl-select
+            [clearable]="true"
+            placeholder="Select Organization"
+            [search]="true"
+          >
+            <vcl-select-list formArrayName="instanceId">
+              <vcl-select-list-item>
+                Role 1
+                <vcl-sub-label>About role 1</vcl-sub-label>
+              </vcl-select-list-item>
+            </vcl-select-list>
+          </vcl-select>
+          <vcl-hint-error error="required"
+            >This field is required.</vcl-hint-error
+          >
+        </vcl-form-control-group>
 
-      <!-- User -->
-      <vcl-form-control-group>
-        <vcl-label>User</vcl-label>
-        <vcl-select
-          [clearable]="true"
-          placeholder="Select User"
-          [search]="true"
-        >
-          <vcl-select-list>
-            <vcl-select-list-item>
-              Role 1
-              <vcl-sub-label>About role 1</vcl-sub-label>
-            </vcl-select-list-item>
-          </vcl-select-list>
-        </vcl-select>
-        <vcl-hint-error error="required"
-          >This field is required.</vcl-hint-error
-        >
-      </vcl-form-control-group>
-    </fieldset>
+        <!-- User -->
+        <vcl-form-control-group>
+          <vcl-label>User</vcl-label>
+          <vcl-select
+            [clearable]="true"
+            placeholder="Select User"
+            [search]="true"
+          >
+            <vcl-select-list formArrayName="instanceId">
+              <vcl-select-list-item>
+                Role 1
+                <vcl-sub-label>About role 1</vcl-sub-label>
+              </vcl-select-list-item>
+            </vcl-select-list>
+          </vcl-select>
+          <vcl-hint-error error="required"
+            >This field is required.</vcl-hint-error
+          >
+        </vcl-form-control-group>
+      </fieldset>
+      }
+    </div>
+
+    @if (associations.controls.length === 0) { No role associations }
   </fieldset>
 
   <!-- Buttons -->
-  <div class="loose-button-group">
-    <button
-      vcl-button
-      type="submit"
-      class="emphasized"
-    >
-      Save
-    </button>
+  <div class="loose-button-group row justify-end mt-4">
     <button
       vcl-button
       type="button"
       class="transparent"
     >
       Cancel
+    </button>
+
+    <button
+      vcl-button
+      type="submit"
+    >
+      Save
     </button>
   </div>
 </form>
