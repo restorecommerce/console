@@ -27,7 +27,9 @@ import { JssFormService } from './services';
             (formAction)="onAction($event)"
             (formSubmit)="onSubmit()"
           /> -->
-          <app-role-association-form />
+          <app-role-association-form
+            (roleAssociationSubmit)="onSubmit($event)"
+          />
         </div>
       </div>
     </vcl-panel-dialog>
@@ -53,21 +55,17 @@ export class IamRoleAssociationModalComponent {
     }
   }
 
-  onSubmit(): void {
-    if (
-      this.roleAssociationsForm.form?.invalid ||
-      this.roleAssociationsForm.form?.pristine
-    ) {
-      return;
-    }
-
-    const roleAssociations: { role: string; organization: string }[] =
-      this.roleAssociationsForm.form?.value.roleAssociationsArray;
-
+  onSubmit(
+    roleAssociations: {
+      role: string;
+      instanceType: string;
+      instanceId: string;
+    }[]
+  ): void {
     this.close(roleAssociations);
   }
 
-  close(value?: { role: string; organization: string }[]) {
+  close(value?: { role: string; instanceType: string; instanceId: string }[]) {
     this.layer.close({
       value,
     });

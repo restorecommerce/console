@@ -1,6 +1,7 @@
 <form
   novalidate
   vclForm
+  (submit)="onSubmit()"
   [formGroup]="form"
 >
   <fieldset>
@@ -87,7 +88,7 @@
             placeholder="Select Organization"
             [search]="true"
           >
-            <vcl-select-list formArrayName="instanceId">
+            <vcl-select-list formControlName="instanceId">
               @for (organization of organizations$ | async; track
               organization.id) {
               <vcl-select-list-item [value]="organization.id">
@@ -102,7 +103,6 @@
         </vcl-form-control-group>
         } @if (association.get('instanceType')?.value ===
         'urn:restorecommerce:acs:model:user.User') {
-        <!-- User -->
         <vcl-form-control-group>
           <vcl-label>User</vcl-label>
           <vcl-select
@@ -110,7 +110,7 @@
             placeholder="Select User"
             [search]="true"
           >
-            <vcl-select-list formArrayName="instanceId">
+            <vcl-select-list formControlName="instanceId">
               @for (user of users$ | async; track user.id) {
               <vcl-select-list-item [value]="user.id">
                 {{ user.name }}

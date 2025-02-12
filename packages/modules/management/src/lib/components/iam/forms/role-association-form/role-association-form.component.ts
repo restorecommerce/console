@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
@@ -31,6 +36,10 @@ import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
 })
 export class RoleAssociationFormComponent {
   form!: FormGroup;
+
+  @Output() roleAssociationSubmit = new EventEmitter<
+    { role: string; instanceType: string; instanceId: string }[]
+  >();
 
   readonly roles$ = this.roleFacade.all$;
   readonly organizations$ = this.organizationFacade.all$;
@@ -67,9 +76,16 @@ export class RoleAssociationFormComponent {
     this.associations.removeAt(index);
   }
 
+  // TODO Fix (DRY) out these role assocaitions types...
   onSubmit(): void {
     if (this.form.valid) {
-      console.log('Form Data:', this.form.value);
+      this.roleAssociationSubmit.emit(
+        this.form.value.associations as {
+          role: string;
+          instanceType: string;
+          instanceId: string;
+        }[]
+      );
     }
   }
 }
