@@ -10,7 +10,9 @@ import { IRoleAssociationScopingInstance } from '@console-core/types';
 export class ListScopingInstanceNamesPipe implements PipeTransform {
   transform(rolesScopingInstances: IRoleAssociationScopingInstance): string {
     return (
-      rolesScopingInstances.scopingInstances?.map((inst) => inst.name) || []
+      rolesScopingInstances.scopingInstances?.map(
+        (inst) => inst.instance.name
+      ) || []
     ).join(', ');
   }
 }

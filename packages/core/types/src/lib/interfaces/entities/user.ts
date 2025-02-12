@@ -5,8 +5,8 @@ import {
 } from '@console-core/graphql';
 
 import { IMeta } from './meta';
-import { IOrganization } from './organization';
 import { IRole } from './role';
+import { TScopingInstances } from '../../types';
 
 export interface IUser
   extends Omit<
@@ -48,5 +48,5 @@ export interface IRoleAssociation
 
 export interface IRoleAssociationScopingInstance {
   role: IRole | null;
-  scopingInstances: (IOrganization | IUser)[] | null;
+  scopingInstances: TScopingInstances;
 }

@@ -3,11 +3,10 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 
-import { JssFormComponent, LayerRef, LayerService } from '@vcl/ng-vcl';
+import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { IamFacade, UserService } from '@console-core/state';
 
@@ -33,9 +32,6 @@ import { JssFormService } from './services';
   standalone: false,
 })
 export class IamCreateComponent implements OnInit, OnDestroy {
-  @ViewChild('roleAssociationsForm')
-  roleAssociationsForm!: JssFormComponent;
-
   roleAssociationLayer!: LayerRef;
 
   create = this.iamFacade.create;

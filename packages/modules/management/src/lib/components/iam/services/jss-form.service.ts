@@ -191,8 +191,11 @@ export class JssFormService {
       localeId: [user?.localeId || '', [Validators.required]],
       timezoneId: [user?.timezoneId || '', [Validators.required]],
       roleAssociations: [
-        roleAssociationsScopingInstances.map((rai) => `${rai.role?.id}`),
-        [],
+        ...roleAssociationsScopingInstances.flatMap((rai) =>
+          rai.scopingInstances?.map(
+            (inst) => `${rai.role?.id}|${inst.instanceType}|${inst.instance.id}`
+          )
+        ),
       ],
     });
 

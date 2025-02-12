@@ -13,6 +13,7 @@ import { IamIndexComponent } from './iam-index.component';
 import { IamViewComponent } from './iam-view.component';
 import { AppendLastLoginPipe } from './pipes/append-last-login.pipe';
 import { ListScopingInstanceNamesPipe } from './pipes/list-scopinginstance-names.pipe';
+import { ResolveRoleAssociationKeyPipe } from './pipes/resolve-roleassociation.pipe';
 import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { IamTemplateComponent } from './template/iam-template.component';
 import { IamChangePasswordFormComponent } from './views/iam-change-password-form.component';
@@ -89,6 +90,7 @@ const routes: Routes = [
     UserCreationFormComponent,
     AppendLastLoginPipe,
     ListScopingInstanceNamesPipe,
+    ResolveRoleAssociationKeyPipe,
     RoleAssociationFormComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
