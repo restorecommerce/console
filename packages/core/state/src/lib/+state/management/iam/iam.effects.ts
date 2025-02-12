@@ -326,10 +326,14 @@ export class IamEffects {
       return {
         ...item,
         roleAssociations: item.roleAssociations?.map((ra) => {
-          const [role, organization] = (ra as unknown as string).split(
-            '|'
-          ) as unknown as [string, string];
-          return this.userService.createRoleAssociation(role, organization);
+          const [role, instanceType, instanceId] = (
+            ra as unknown as string
+          ).split('|') as unknown as [string, string, string];
+          return this.userService.createRoleAssociation(
+            role,
+            instanceType,
+            instanceId
+          );
         }),
       } as IIoRestorecommerceUserUser;
     });

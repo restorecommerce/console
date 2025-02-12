@@ -270,17 +270,21 @@ export class UserService {
     });
   }
 
-  createRoleAssociation(role: string, organization: string): IRoleAssociation {
+  createRoleAssociation(
+    role: string,
+    instanceType: string,
+    instanceId: string
+  ): IRoleAssociation {
     return {
       role: role,
       attributes: [
         {
           id: 'urn:restorecommerce:acs:names:roleScopingEntity',
-          value: 'urn:restorecommerce:acs:model:organization.Organization',
+          value: instanceType,
           attributes: [
             {
               id: 'urn:restorecommerce:acs:names:roleScopingInstance',
-              value: organization,
+              value: instanceId,
             },
           ],
         },

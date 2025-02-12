@@ -7,12 +7,7 @@ import {
 } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 
-import {
-  JssFormComponent,
-  LayerRef,
-  LayerService,
-  VCLFormFieldSchemaRoot,
-} from '@vcl/ng-vcl';
+import { JssFormComponent, LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { IamFacade, UserService } from '@console-core/state';
 
@@ -28,7 +23,7 @@ import { JssFormService } from './services';
           [schema]="vm.userCreationForm"
           [options]="vm.options"
           [update]="create"
-          (addRole)="handleActionEvent(vm.roleAssociationsSchema)"
+          (addRole)="handleActionEvent()"
         />
       </div>
     </ng-container>
@@ -88,26 +83,27 @@ export class IamCreateComponent implements OnInit, OnDestroy {
     this.iamFacade.setTempRoleAssociations([]);
   }
 
-  handleActionEvent(roleAssociationsSchema: VCLFormFieldSchemaRoot): void {
+  handleActionEvent(): void {
     this.roleAssociationLayer
       .open({
         data: {
           title: 'Assign Roles',
-          roleAssociationsSchema,
         },
       })
       .subscribe(
         (result: {
           value: {
             role: 'administrator-r-id';
-            organization: 'nfuse-root-organization';
+            instanceType: 'urn:restorecommerce:acs:model:organization.Organization';
+            instanceId: 'nfuse-root-organization';
           }[];
         }) => {
           if (result) {
             const roleAssociations = result.value.map((ra) => ({
               ...this.userService.createRoleAssociation(
                 ra.role,
-                ra.organization
+                ra.instanceType,
+                ra.instanceId
               ),
             }));
 

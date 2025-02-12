@@ -155,8 +155,12 @@ export class IamEditComponent implements OnDestroy, AfterViewInit {
 
     const roleAssociations =
       this.roleAssociationsForm.form?.value.roleAssociationsArray.map(
-        (ra: { role: string; organization: string }) => ({
-          ...this.userService.createRoleAssociation(ra.role, ra.organization),
+        (ra: { role: string; instanceType: string; instanceId: string }) => ({
+          ...this.userService.createRoleAssociation(
+            ra.role,
+            ra.instanceType,
+            ra.instanceId
+          ),
         })
       );
 
