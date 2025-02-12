@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
+
 @Component({
   selector: 'app-role-association-form',
   templateUrl: './role-association-form.component.html',
@@ -30,7 +32,16 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RoleAssociationFormComponent {
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  readonly roles$ = this.roleFacade.all$;
+  readonly organizations$ = this.organizationFacade.all$;
+  readonly users$ = this.iamFacade.all$;
+
+  constructor(
+    private fb: FormBuilder,
+    private readonly iamFacade: IamFacade,
+    private readonly roleFacade: RoleFacade,
+    private readonly organizationFacade: OrganizationFacade
+  ) {
     this.form = this.fb.group({
       associations: this.fb.array([this.createUser()]),
     });

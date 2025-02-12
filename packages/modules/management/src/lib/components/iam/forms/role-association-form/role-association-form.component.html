@@ -14,7 +14,8 @@
     </legend>
 
     <div formArrayName="associations">
-      @for (item of associations.controls; track item; let idx = $index) {
+      @for (association of associations.controls; track $index; let idx =
+      $index) {
       <fieldset
         [formGroupName]="idx"
         class="mb-3"
@@ -36,10 +37,12 @@
             [search]="true"
           >
             <vcl-select-list formControlName="role">
-              <vcl-select-list-item>
-                Role 1
-                <vcl-sub-label>About role 1</vcl-sub-label>
+              @for (role of roles$ | async; track role.id) {
+              <vcl-select-list-item [value]="role.id">
+                {{ role.name }}
+                <vcl-sub-label>{{ role.description }}</vcl-sub-label>
               </vcl-select-list-item>
+              }
             </vcl-select-list>
           </vcl-select>
           <vcl-hint-error error="required"
@@ -54,9 +57,18 @@
             placeholder="Select scoping instance"
           >
             <vcl-select-list formControlName="instanceType">
-              <vcl-select-list-item>
-                Role 1
-                <vcl-sub-label>About role 1</vcl-sub-label>
+              <vcl-select-list-item
+                [value]="
+                  'urn:restorecommerce:acs:model:organization.Organization'
+                "
+              >
+                urn:restorecommerce:acs:model:organization.Organization
+              </vcl-select-list-item>
+
+              <vcl-select-list-item
+                [value]="'urn:restorecommerce:acs:model:user.User'"
+              >
+                urn:restorecommerce:acs:model:user.User
               </vcl-select-list-item>
             </vcl-select-list>
           </vcl-select>
@@ -65,6 +77,8 @@
           >
         </vcl-form-control-group>
 
+        @if (association.get('instanceType')?.value ===
+        'urn:restorecommerce:acs:model:organization.Organization') {
         <!-- Organization -->
         <vcl-form-control-group>
           <vcl-label>Organization</vcl-label>
@@ -74,17 +88,20 @@
             [search]="true"
           >
             <vcl-select-list formArrayName="instanceId">
-              <vcl-select-list-item>
-                Role 1
-                <vcl-sub-label>About role 1</vcl-sub-label>
+              @for (organization of organizations$ | async; track
+              organization.id) {
+              <vcl-select-list-item [value]="organization.id">
+                {{ organization.name }}
               </vcl-select-list-item>
+              }
             </vcl-select-list>
           </vcl-select>
           <vcl-hint-error error="required"
             >This field is required.</vcl-hint-error
           >
         </vcl-form-control-group>
-
+        } @if (association.get('instanceType')?.value ===
+        'urn:restorecommerce:acs:model:user.User') {
         <!-- User -->
         <vcl-form-control-group>
           <vcl-label>User</vcl-label>
@@ -94,21 +111,22 @@
             [search]="true"
           >
             <vcl-select-list formArrayName="instanceId">
-              <vcl-select-list-item>
-                Role 1
-                <vcl-sub-label>About role 1</vcl-sub-label>
+              @for (user of users$ | async; track user.id) {
+              <vcl-select-list-item [value]="user.id">
+                {{ user.name }}
+                <vcl-sub-label>{{ user.email }}</vcl-sub-label>
               </vcl-select-list-item>
+              }
             </vcl-select-list>
           </vcl-select>
           <vcl-hint-error error="required"
             >This field is required.</vcl-hint-error
           >
         </vcl-form-control-group>
+        }
       </fieldset>
-      }
+      } @empty { No role associations }
     </div>
-
-    @if (associations.controls.length === 0) { No role associations }
   </fieldset>
 
   <!-- Buttons -->
