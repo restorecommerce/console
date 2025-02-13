@@ -7,13 +7,14 @@
         <ng-container *ngIf="id; else naTemplate">{{ id }}</ng-container>
       </div>
     </li>
-    <!--  -->
-    <li class="row data-list-item justify-between">
+    <!-- Only show for user managment -->
+    <li
+      *ngIf="meta?.lastLogin"
+      class="row data-list-item justify-between"
+    >
       <div class="flex text">Last login:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="meta?.lastLogin; else naTemplate">{{
-          meta?.lastLogin | date : DATE.format.dateTimeWithSeconds
-        }}</ng-container>
+        {{ meta?.lastLogin | date : DATE.format.dateTimeWithSeconds }}
       </div>
     </li>
     <li class="row data-list-item justify-between">
