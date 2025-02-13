@@ -72,7 +72,7 @@
       *ngIf="vm.selectedUserId"
       [id]="vm.selectedUserId"
       [meta]="
-        vm.selectedUser!.meta | appendLastLogin : vm.selectedUser?.tokens || []
+        vm.selectedUser!.meta | appendLastLogin : vm.selectedUser?.lastAccess!
       "
     />
   </ng-container>

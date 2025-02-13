@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 import { DATE } from '@console-core/config';
 import { IMeta } from '@console-core/types';
@@ -9,7 +14,7 @@ import { IMeta } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcMetaComponent {
+export class RcMetaComponent implements OnInit {
   @Input({ required: true })
   id: string | null = null;
 
@@ -17,4 +22,8 @@ export class RcMetaComponent {
   meta?: Partial<IMeta & { lastLogin: string }> | null = null;
 
   DATE = DATE;
+
+  ngOnInit(): void {
+    console.log('***meta', this.meta);
+  }
 }

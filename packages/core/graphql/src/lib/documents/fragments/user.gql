@@ -7,6 +7,7 @@ fragment UserFragment on IoRestorecommerceUserUser {
   name
   firstName
   lastName
+  lastAccess
   defaultScope
   localeId
   timezoneId

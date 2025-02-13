@@ -6230,6 +6230,7 @@ export type CustomerFragmentFragment = {
       name?: string | null;
       firstName?: string | null;
       lastName?: string | null;
+      lastAccess?: unknown | null;
       defaultScope?: string | null;
       localeId?: string | null;
       timezoneId?: string | null;
@@ -6939,6 +6940,7 @@ export type OrderFragmentFragment = {
         name?: string | null;
         firstName?: string | null;
         lastName?: string | null;
+        lastAccess?: unknown | null;
         defaultScope?: string | null;
         localeId?: string | null;
         timezoneId?: string | null;
@@ -7041,6 +7043,7 @@ export type OrderFragmentFragment = {
     name?: string | null;
     firstName?: string | null;
     lastName?: string | null;
+    lastAccess?: unknown | null;
     defaultScope?: string | null;
     localeId?: string | null;
     timezoneId?: string | null;
@@ -7633,6 +7636,7 @@ export type UserFragmentFragment = {
   name?: string | null;
   firstName?: string | null;
   lastName?: string | null;
+  lastAccess?: unknown | null;
   defaultScope?: string | null;
   localeId?: string | null;
   timezoneId?: string | null;
@@ -8263,6 +8267,7 @@ export type IdentityUserFindByTokenQuery = {
             name?: string | null;
             firstName?: string | null;
             lastName?: string | null;
+            lastAccess?: unknown | null;
             defaultScope?: string | null;
             localeId?: string | null;
             timezoneId?: string | null;
@@ -8335,6 +8340,7 @@ export type IdentityUserFindQuery = {
               name?: string | null;
               firstName?: string | null;
               lastName?: string | null;
+              lastAccess?: unknown | null;
               defaultScope?: string | null;
               localeId?: string | null;
               timezoneId?: string | null;
@@ -8408,6 +8414,7 @@ export type IdentityUserMutateMutation = {
               name?: string | null;
               firstName?: string | null;
               lastName?: string | null;
+              lastAccess?: unknown | null;
               defaultScope?: string | null;
               localeId?: string | null;
               timezoneId?: string | null;
@@ -8479,6 +8486,7 @@ export type IdentityUserRegisterMutateMutation = {
             name?: string | null;
             firstName?: string | null;
             lastName?: string | null;
+            lastAccess?: unknown | null;
             defaultScope?: string | null;
             localeId?: string | null;
             timezoneId?: string | null;
@@ -10338,6 +10346,7 @@ export type OrderingOrderMutateMutation = {
                     name?: string | null;
                     firstName?: string | null;
                     lastName?: string | null;
+                    lastAccess?: unknown | null;
                     defaultScope?: string | null;
                     localeId?: string | null;
                     timezoneId?: string | null;
@@ -10440,6 +10449,7 @@ export type OrderingOrderMutateMutation = {
                 name?: string | null;
                 firstName?: string | null;
                 lastName?: string | null;
+                lastAccess?: unknown | null;
                 defaultScope?: string | null;
                 localeId?: string | null;
                 timezoneId?: string | null;
@@ -11049,6 +11059,7 @@ export type OrderingOrderReadQuery = {
                     name?: string | null;
                     firstName?: string | null;
                     lastName?: string | null;
+                    lastAccess?: unknown | null;
                     defaultScope?: string | null;
                     localeId?: string | null;
                     timezoneId?: string | null;
@@ -11151,6 +11162,7 @@ export type OrderingOrderReadQuery = {
                 name?: string | null;
                 firstName?: string | null;
                 lastName?: string | null;
+                lastAccess?: unknown | null;
                 defaultScope?: string | null;
                 localeId?: string | null;
                 timezoneId?: string | null;
@@ -11688,6 +11700,7 @@ export const UserFragmentFragmentDoc = gql`
     name
     firstName
     lastName
+    lastAccess
     defaultScope
     localeId
     timezoneId

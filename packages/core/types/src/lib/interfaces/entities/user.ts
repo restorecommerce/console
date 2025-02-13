@@ -16,6 +16,7 @@ export interface IUser
       | 'name'
       | 'firstName'
       | 'lastName'
+      | 'lastAccess'
       | 'roleAssociations'
       | 'meta'
       | '__typename'
@@ -37,6 +38,7 @@ export interface IUser
   firstName: string;
   lastName: string;
   fullName: string;
+  lastAccess: string;
   roleAssociations: IRoleAssociation[];
   meta: IMeta;
 }
