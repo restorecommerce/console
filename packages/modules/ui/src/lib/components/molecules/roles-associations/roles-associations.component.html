@@ -1,0 +1,30 @@
+<div class="data-list m-0 p-0">
+  <div class="row justify-content-between align-items-center">
+    <div class="my-2 rc-lv-l-heading">Roles [{{ roles.length }}]</div>
+
+    <button
+      vcl-button
+      square
+      class="emphasized-transparent"
+      title="Add role"
+      (click)="addRole.emit()"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-plus"
+      />
+    </button>
+  </div>
+  <ul class="data-list-body no-border">
+    <li
+      class="row data-list-item product-item"
+      *ngFor="let role of roles"
+    >
+      <rc-role-association />
+
+      <!-- [role]="role"
+      (editRole)="editRole.emit($event)"
+      (deleteRole)="deleteRole.emit($event)" -->
+    </li>
+  </ul>
+</div>
