@@ -236,6 +236,34 @@ export class IamEffects {
     );
   });
 
+  userAddRoleAssociationRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(userActions.userAddRoleAssociationRequest),
+      switchMap(({ payload }) => {
+        return this.userService.mutate(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.identity?.user?.Mutate?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.identity?.user?.Mutate?.details?.items?.pop()
+                ?.payload as IUser;
+
+            return userActions.userAddRoleAssociationSuccess({
+              payload: this.userService.getUserFormatted(payload),
+            });
+          }),
+          catchError((error: Error) =>
+            of(userActions.userAddRoleAssociationFail({ error: error.message }))
+          )
+        );
+      })
+    );
+  });
+
   userChangePasswordSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(

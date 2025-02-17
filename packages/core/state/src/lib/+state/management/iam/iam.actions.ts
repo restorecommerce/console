@@ -90,6 +90,21 @@ export const userChangePasswordFail = createAction(
   props<{ error: string }>()
 );
 
+export const userAddRoleAssociationRequest = createAction(
+  '[IAM] User add role association request',
+  props<{ payload: IIoRestorecommerceUserUserList }>()
+);
+
+export const userAddRoleAssociationSuccess = createAction(
+  '[IAM] User add role association success',
+  props<{ payload: IUser }>()
+);
+
+export const userAddRoleAssociationFail = createAction(
+  '[IAM] User add role association fail',
+  props<{ error: string }>()
+);
+
 export const userRemoveRequest = createAction(
   '[IAM] User remove request',
   props<{ payload: { id: string } }>()

@@ -113,7 +113,10 @@ import {
         </li>
 
         <!-- User roles components. -->
-        <rc-user-role-associations [roles]="roleScopingInstances" />
+        <rc-user-role-associations
+          [id]="vm.user.id"
+          [roles]="roleScopingInstances"
+        />
 
         <li>
           <div

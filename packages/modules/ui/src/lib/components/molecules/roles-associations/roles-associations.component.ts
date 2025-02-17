@@ -10,7 +10,11 @@ import { IamRoleAssociationModalComponent } from 'packages/modules/management/sr
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
-import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
+import {
+  IIoRestorecommerceProductPhysicalVariant,
+  ModeType,
+} from '@console-core/graphql';
+import { IamFacade, UserService } from '@console-core/state';
 import { IRoleAssociationScopingInstance } from '@console-core/types';
 
 @Component({
@@ -20,6 +24,8 @@ import { IRoleAssociationScopingInstance } from '@console-core/types';
   standalone: false,
 })
 export class RcRolesAssociationsComponent implements OnInit {
+  @Input({ required: true }) id!: string;
+
   @Input({ required: true })
   roles!: IRoleAssociationScopingInstance[];
 
@@ -30,7 +36,11 @@ export class RcRolesAssociationsComponent implements OnInit {
 
   @Output() deleteRole = new EventEmitter<string>();
 
-  constructor(private readonly layerService: LayerService) {}
+  constructor(
+    private readonly layerService: LayerService,
+    private readonly userService: UserService,
+    private readonly iamFacade: IamFacade
+  ) {}
 
   ngOnInit(): void {
     this.roleAssociationLayer = this.layerService.create(
@@ -58,14 +68,32 @@ export class RcRolesAssociationsComponent implements OnInit {
           }[];
         }) => {
           if (result) {
-            // const roleAssociations = result.value.map((ra) => ({
+            // TODO Flaten the role association first!, then do the mapping....
+            // const currentRoleAssociations = this.roles.map((ra) => ({
             //   ...this.userService.createRoleAssociation(
             //     ra.role,
-            //     ra.instanceType,
+            //     ra,
             //     ra.instanceId
             //   ),
             // }));
-            // this.iamFacade.setTempRoleAssociations(roleAssociations);
+
+            const newRoleAssociations = result.value.map((ra) => ({
+              ...this.userService.createRoleAssociation(
+                ra.role,
+                ra.instanceType,
+                ra.instanceId
+              ),
+            }));
+
+            this.iamFacade.addRoleAssociation({
+              items: [
+                {
+                  id: this.id,
+                  roleAssociations: [...newRoleAssociations],
+                },
+              ],
+              mode: ModeType.Update,
+            });
           }
         }
       );

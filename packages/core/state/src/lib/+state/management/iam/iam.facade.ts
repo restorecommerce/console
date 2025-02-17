@@ -41,6 +41,10 @@ export class IamFacade {
     this.store.dispatch(userActions.userSetTempRoleAssociations({ payload }));
   changePassword = (payload: IIoRestorecommerceUserUserList) =>
     this.store.dispatch(userActions.userChangePasswordRequest({ payload }));
+
+  addRoleAssociation = (payload: IIoRestorecommerceUserUserList) =>
+    this.store.dispatch(userActions.userAddRoleAssociationRequest({ payload }));
+
   remove = (payload: { id: string }) =>
     this.store.dispatch(userActions.userRemoveRequest({ payload }));
 

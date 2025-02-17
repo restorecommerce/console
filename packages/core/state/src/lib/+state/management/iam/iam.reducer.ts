@@ -142,6 +142,32 @@ const reducer = createReducer<IIamState>(
     })
   ),
   on(
+    userActions.userAddRoleAssociationRequest,
+    (state): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    userActions.userAddRoleAssociationSuccess,
+    (state, { payload }): IIamState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    userActions.userAddRoleAssociationFail,
+    (state, { error }): IIamState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
     userActions.userChangePasswordRequest,
     (state): IIamState => ({
       ...state,
