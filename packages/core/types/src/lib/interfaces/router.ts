@@ -126,6 +126,18 @@ export interface IRouterConstant {
                 'change-password': IRouterItem;
               };
             };
+            shops: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
             organizations: {
               path: string;
               link: string;

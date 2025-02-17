@@ -136,6 +136,13 @@
       </rc-drawer-navigation-item>
 
       <rc-drawer-navigation-item
+        icon="mdi:store"
+        [routerLink]="ROUTER.pages.main.children.management.children.shops.link"
+        [routerLinkActive]="['selected']"
+        >Shops
+      </rc-drawer-navigation-item>
+
+      <rc-drawer-navigation-item
         icon="mdi:home-map-marker"
         [routerLink]="
           ROUTER.pages.main.children.management.children.addresses.link

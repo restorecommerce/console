@@ -347,6 +347,44 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 },
               },
             },
+            shops: {
+              path: 'shops',
+              link: '/management/shops',
+              title: 'Shops',
+              getLink: () => ['', 'management', 'shops'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/management/shops/index',
+                  getLink: () => ['', 'management', 'shops', 'index'],
+                  title: 'Shops',
+                },
+                create: {
+                  path: 'create',
+                  link: '/management/shops/create',
+                  title: 'Create',
+                  getLink: () => ['', 'management', 'shops', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/management/shops/:id/view',
+                  title: 'Shop',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'shops', params.id, 'view']
+                      : ['', 'management', 'shops'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/management/shops/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'management', 'shops', params.id, 'edit']
+                      : ['', 'management', 'shops'],
+                },
+              },
+            },
             organizations: {
               path: 'organizations',
               link: '/management/organizations',
