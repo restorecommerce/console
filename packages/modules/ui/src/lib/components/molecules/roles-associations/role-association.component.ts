@@ -27,10 +27,7 @@ export class RcRoleAssociationComponent {
   @Input({ required: true })
   role!: IRoleAssociationScopingInstance;
 
-  @Output() addRole = new EventEmitter<void>();
+  @Output() editRole = new EventEmitter<IRoleAssociationScopingInstance>();
 
-  // @Output() editRole =
-  //   new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
-
-  @Output() deleteRole = new EventEmitter<string>();
+  @Output() deleteRole = new EventEmitter<IRoleAssociationScopingInstance>();
 }

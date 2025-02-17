@@ -7,7 +7,7 @@
       square
       class="emphasized-transparent"
       title="Add role"
-      (click)="addRole.emit()"
+      (click)="onAddRole()"
     >
       <vcl-icon
         class="scale155p"
@@ -22,7 +22,7 @@
     >
       <rc-user-role-association [role]="role" />
 
-      <!-- [role]="role"
+      <!--
       (editRole)="editRole.emit($event)"
       (deleteRole)="deleteRole.emit($event)" -->
     </li>
