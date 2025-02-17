@@ -56,12 +56,12 @@
     "apollo-angular": "^5.0.0",
     "caniuse-lite": "^1.0.30001605",
     "dayjs": "^1.11.9",
+    "fuse.js": "^6.6.2",
     "ngrx-store-localstorage": "^16.0.0",
     "ngrx-store-logger": "^0.2.4",
     "rxjs": "~7.8.0",
     "subsink": "^1.0.2",
     "tslib": "^2.3.0",
-    "fuse.js": "^6.6.2",
     "zone.js": "0.15.0"
   },
   "devDependencies": {
@@ -89,6 +89,7 @@
     "@nx/web": "20.2.2",
     "@schematics/angular": "19.0.4",
     "@types/jest": "29.5.14",
+    "@types/lodash": "^4.17.15",
     "@types/node": "18.19.9",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "7.18.0",

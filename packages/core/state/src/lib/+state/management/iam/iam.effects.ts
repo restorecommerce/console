@@ -264,6 +264,21 @@ export class IamEffects {
     );
   });
 
+  userAddRoleAssociationSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(userActions.userAddRoleAssociationSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'password changed',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   userChangePasswordSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(

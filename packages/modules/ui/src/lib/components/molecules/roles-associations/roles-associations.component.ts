@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import _ from 'lodash';
 import { IamRoleAssociationModalComponent } from 'packages/modules/management/src/lib/components/iam/role-association-modal.component';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
@@ -68,14 +69,23 @@ export class RcRolesAssociationsComponent implements OnInit {
           }[];
         }) => {
           if (result) {
-            // TODO Flaten the role association first!, then do the mapping....
-            // const currentRoleAssociations = this.roles.map((ra) => ({
-            //   ...this.userService.createRoleAssociation(
-            //     ra.role,
-            //     ra,
-            //     ra.instanceId
-            //   ),
-            // }));
+            const flattendRoleAssociationValues = this.roles.flatMap((rai) =>
+              rai.scopingInstances?.map((inst) => ({
+                role: rai.role?.id || '',
+                instanceType: inst.instanceType || '',
+                instanceId: inst.instance.id || '',
+              }))
+            );
+
+            const currentRoleAssociations = flattendRoleAssociationValues.map(
+              (ra) => ({
+                ...this.userService.createRoleAssociation(
+                  ra?.role || '',
+                  ra?.instanceType || '',
+                  ra?.instanceId || ''
+                ),
+              })
+            );
 
             const newRoleAssociations = result.value.map((ra) => ({
               ...this.userService.createRoleAssociation(
@@ -85,11 +95,16 @@ export class RcRolesAssociationsComponent implements OnInit {
               ),
             }));
 
+            const roleAssociations = _.uniqWith(
+              [...currentRoleAssociations, ...newRoleAssociations],
+              _.isEqual
+            );
+
             this.iamFacade.addRoleAssociation({
               items: [
                 {
                   id: this.id,
-                  roleAssociations: [...newRoleAssociations],
+                  roleAssociations,
                 },
               ],
               mode: ModeType.Update,
