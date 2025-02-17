@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-import { conditional, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
-
 import {
   IamFacade,
   LocaleFacade,
@@ -30,12 +28,6 @@ interface IUserSchemaOptions {
   roles: IRole[];
   organizations: IOrganization[];
   roleAssociationsScopingInstances: IRoleAssociationScopingInstance[];
-}
-
-interface IRoleAssociationsSchemaOptions {
-  roles: IRole[];
-  organizations: IOrganization[];
-  users: IUser[];
 }
 
 @Injectable({
@@ -185,157 +177,5 @@ export class JssFormService {
     });
 
     return form;
-  }
-
-  private buildRoleAssociationsSchema({
-    roles,
-    organizations,
-    users,
-  }: IRoleAssociationsSchemaOptions): VCLFormFieldSchemaRoot {
-    return {
-      type: 'form',
-      fields: [
-        {
-          name: 'roleAssociationsArray',
-          label: 'Add Role',
-          type: 'array',
-          fieldLabel: (index) => `Role ${index + 1}`,
-          initialFields: 1,
-          noFieldsLabel: 'No role associations',
-          field: {
-            name: 'roleAssociationsObject',
-            type: 'object',
-            fields: [
-              {
-                name: 'role',
-                label: 'Role',
-                type: 'select',
-                validators: [Validators.required],
-                params: {
-                  placeholder: 'Select role',
-                  selectionMode: 'single',
-                  clearable: true,
-                  search: true,
-                  options: roles.map((r) => ({
-                    label: r.name,
-                    sublabel: r.description,
-                    value: r.id,
-                  })),
-                },
-                hints: [
-                  {
-                    type: 'error',
-                    error: 'required',
-                    message: 'This field is required.',
-                  },
-                ],
-              },
-              {
-                name: 'roleScopingInstanceType',
-                label: 'Role scoping instance type',
-                type: 'select',
-                validators: [Validators.required],
-                params: {
-                  placeholder: 'Select role',
-                  selectionMode: 'single',
-                  clearable: true,
-                  search: true,
-                  options: [
-                    {
-                      label:
-                        'urn:restorecommerce:acs:model:organization.Organization',
-                      value:
-                        'urn:restorecommerce:acs:model:organization.Organization',
-                    },
-                    {
-                      label: 'urn:restorecommerce:acs:model:user.User',
-                      value: 'urn:restorecommerce:acs:model:user.User',
-                    },
-                  ],
-                },
-                hints: [
-                  {
-                    type: 'error',
-                    error: 'required',
-                    message: 'This field is required.',
-                  },
-                ],
-              },
-              {
-                name: 'organization',
-                label: 'Organization',
-                type: 'select',
-                validators: [Validators.required],
-                params: {
-                  placeholder: 'Select organization',
-                  selectionMode: 'single',
-                  clearable: true,
-                  search: true,
-                  options: organizations.map((o) => ({
-                    label: o.name,
-                    value: o.id,
-                  })),
-                },
-                hints: [
-                  {
-                    type: 'error',
-                    error: 'required',
-                    message: 'This field is required.',
-                  },
-                ],
-                visible: conditional(
-                  [
-                    'roleAssociationsArray',
-                    'roleAssociationsObject',
-                    'roleScopingInstanceType',
-                  ],
-                  (field) => {
-                    return !!field && field.value === 'scheduledInterval';
-                  }
-                ),
-              },
-              {
-                name: 'user',
-                label: 'User',
-                type: 'select',
-                validators: [Validators.required],
-                params: {
-                  placeholder: 'Select user',
-                  selectionMode: 'single',
-                  clearable: true,
-                  search: true,
-                  options: users.map((user) => ({
-                    label: user.name,
-                    value: user.id,
-                  })),
-                },
-                hints: [
-                  {
-                    type: 'error',
-                    error: 'required',
-                    message: 'This field is required.',
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          type: 'buttons',
-          buttons: [
-            {
-              type: 'button',
-              label: 'Cancel',
-              action: 'close',
-              class: 'transparent',
-            },
-            {
-              type: 'submit',
-              label: 'Save',
-            },
-          ],
-        },
-      ],
-    };
   }
 }
