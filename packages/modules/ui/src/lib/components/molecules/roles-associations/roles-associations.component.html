@@ -20,11 +20,14 @@
       class="row data-list-item product-item"
       *ngFor="let role of roles"
     >
-      <rc-user-role-association [role]="role" />
+      <rc-user-role-association
+        [role]="role"
+        (deleteRole)="onDeleteRole($event)"
+      />
 
       <!--
       (editRole)="editRole.emit($event)"
-      (deleteRole)="deleteRole.emit($event)" -->
+       -->
     </li>
   </ul>
 </div>

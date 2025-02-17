@@ -270,7 +270,7 @@ export class IamEffects {
         ofType(userActions.userAddRoleAssociationSuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'password changed',
+            content: 'user role modified',
             type: ENotificationTypes.Success,
           });
         })
