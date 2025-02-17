@@ -6,6 +6,8 @@ import {
   VCLFormFieldSchemaRoot,
 } from '@vcl/ng-vcl';
 
+import { IRoleAssociationScopingInstance } from '@console-core/types';
+
 import { JssFormService } from './services';
 
 @Component({
@@ -19,15 +21,8 @@ import { JssFormService } from './services';
       <vcl-panel-title>{{ layer.data.title }}</vcl-panel-title>
       <div class="row">
         <div class="flex-12">
-          <!-- <vcl-jss-form
-            autocomplete="off"
-            ngDefaultControl
-            #roleAssociationsForm="vclJssForm"
-            [schema]="layer.data.roleAssociationsSchema"
-            (formAction)="onAction($event)"
-            (formSubmit)="onSubmit()"
-          /> -->
           <app-role-association-form
+            [role]="layer.data.role"
             (roleAssociationSubmit)="onSubmit($event)"
           />
         </div>
@@ -45,6 +40,7 @@ export class IamRoleAssociationModalComponent {
   constructor(
     public layer: ComponentLayerRef<{
       title: string;
+      role: IRoleAssociationScopingInstance;
       roleAssociationsSchema: VCLFormFieldSchemaRoot;
     }>
   ) {}

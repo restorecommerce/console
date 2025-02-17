@@ -2,11 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
+import { IRoleAssociationScopingInstance } from '@console-core/types';
 
 @Component({
   selector: 'app-role-association-form',
@@ -34,8 +37,10 @@ import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
   ],
   standalone: false,
 })
-export class RoleAssociationFormComponent {
+export class RoleAssociationFormComponent implements OnInit {
   form!: FormGroup;
+
+  @Input() role: IRoleAssociationScopingInstance | undefined;
 
   @Output() roleAssociationSubmit = new EventEmitter<
     { role: string; instanceType: string; instanceId: string }[]
@@ -50,26 +55,66 @@ export class RoleAssociationFormComponent {
     private readonly iamFacade: IamFacade,
     private readonly roleFacade: RoleFacade,
     private readonly organizationFacade: OrganizationFacade
-  ) {
-    this.form = this.fb.group({
-      associations: this.fb.array([this.createUser()]),
-    });
+  ) {}
+
+  ngOnInit(): void {
+    if (this.role) {
+      const flattendRoleAssociationValues = [this.role]
+        .flatMap((rai) =>
+          rai.scopingInstances?.map((inst) => ({
+            role: rai.role?.id || '',
+            instanceType: inst.instanceType || '',
+            instanceId: inst.instance.id || '',
+          }))
+        )
+        .map((ra) =>
+          this.createUser({
+            role: ra?.role || '',
+            instanceType: ra?.instanceType || '',
+            instanceId: ra?.instanceId || '',
+          })
+        );
+
+      this.form = this.fb.group({
+        associations: this.fb.array(flattendRoleAssociationValues),
+      });
+    } else {
+      this.form = this.fb.group({
+        associations: this.fb.array([
+          this.createUser({
+            role: '',
+            instanceType: '',
+            instanceId: '',
+          }),
+        ]),
+      });
+    }
   }
 
   get associations(): FormArray {
     return this.form.get('associations') as FormArray;
   }
 
-  createUser(): FormGroup {
+  createUser(roleData: {
+    role: string;
+    instanceType: string;
+    instanceId: string;
+  }): FormGroup {
     return this.fb.group({
-      role: ['', Validators.required],
-      instanceType: ['', [Validators.required]],
-      instanceId: ['', [Validators.required]],
+      role: [roleData.role || '', Validators.required],
+      instanceType: [roleData.instanceType || '', [Validators.required]],
+      instanceId: [roleData.instanceId || '', [Validators.required]],
     });
   }
 
   addUser(): void {
-    this.associations.push(this.createUser());
+    this.associations.push(
+      this.createUser({
+        role: '',
+        instanceType: '',
+        instanceId: '',
+      })
+    );
   }
 
   removeUser(index: number): void {

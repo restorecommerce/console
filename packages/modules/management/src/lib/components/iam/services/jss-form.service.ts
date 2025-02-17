@@ -315,7 +315,6 @@ export class JssFormService {
                     'roleScopingInstanceType',
                   ],
                   (field) => {
-                    console.log('*****field', field);
                     return !!field && field.value === 'scheduledInterval';
                   }
                 ),

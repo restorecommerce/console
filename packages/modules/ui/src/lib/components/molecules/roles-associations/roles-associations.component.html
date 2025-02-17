@@ -23,11 +23,8 @@
       <rc-user-role-association
         [role]="role"
         (deleteRole)="onDeleteRole($event)"
+        (editRole)="onEditRole($event)"
       />
-
-      <!--
-      (editRole)="editRole.emit($event)"
-       -->
     </li>
   </ul>
 </div>

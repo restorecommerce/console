@@ -59,23 +59,21 @@ export class RcRolesAssociationsComponent implements OnInit {
           }[];
         }) => {
           if (result) {
-            const flattendRoleAssociationValues = this.roles.flatMap((rai) =>
-              rai.scopingInstances?.map((inst) => ({
-                role: rai.role?.id || '',
-                instanceType: inst.instanceType || '',
-                instanceId: inst.instance.id || '',
-              }))
-            );
-
-            const currentRoleAssociations = flattendRoleAssociationValues.map(
-              (ra) => ({
+            const currentRoleAssociations = this.roles
+              .flatMap((rai) =>
+                rai.scopingInstances?.map((inst) => ({
+                  role: rai.role?.id || '',
+                  instanceType: inst.instanceType || '',
+                  instanceId: inst.instance.id || '',
+                }))
+              )
+              .map((ra) => ({
                 ...this.userService.createRoleAssociation(
                   ra?.role || '',
                   ra?.instanceType || '',
                   ra?.instanceId || ''
                 ),
-              })
-            );
+              }));
 
             const newRoleAssociations = result.value.map((ra) => ({
               ...this.userService.createRoleAssociation(
@@ -104,22 +102,111 @@ export class RcRolesAssociationsComponent implements OnInit {
       );
   }
 
-  onDeleteRole(role: IRoleAssociationScopingInstance) {
-    const flattendRoleAssociationValues = this.roles.flatMap((rai) =>
-      rai.scopingInstances?.map((inst) => ({
-        role: rai.role?.id || '',
-        instanceType: inst.instanceType || '',
-        instanceId: inst.instance.id || '',
-      }))
-    );
+  onEditRole(role: IRoleAssociationScopingInstance) {
+    this.roleAssociationLayer
+      .open({
+        data: {
+          title: 'Assign Roles',
+          role,
+        },
+      })
+      .subscribe(
+        (result: {
+          value: {
+            role: 'administrator-r-id';
+            instanceType: 'urn:restorecommerce:acs:model:organization.Organization';
+            instanceId: 'nfuse-root-organization';
+          }[];
+        }) => {
+          if (result) {
+            // Let's assume a 1 to 1 relationship between role, and entity.
+            const currentRoleAssociations = this.roles
+              .flatMap((rai) =>
+                rai.scopingInstances?.map((inst) => ({
+                  role: rai.role?.id || '',
+                  instanceType: inst.instanceType || '',
+                  instanceId: inst.instance.id || '',
+                }))
+              )
+              .map((ra) => ({
+                ...this.userService.createRoleAssociation(
+                  ra?.role || '',
+                  ra?.instanceType || '',
+                  ra?.instanceId || ''
+                ),
+              }));
 
-    const currentRoleAssociations = flattendRoleAssociationValues.map((ra) => ({
-      ...this.userService.createRoleAssociation(
-        ra?.role || '',
-        ra?.instanceType || '',
-        ra?.instanceId || ''
-      ),
-    }));
+            const flattendRole = [role]
+              .flatMap((rai) =>
+                rai.scopingInstances?.map((inst) => ({
+                  role: rai.role?.id || '',
+                  instanceType: inst.instanceType || '',
+                  instanceId: inst.instance.id || '',
+                }))
+              )
+              .map((ra) => ({
+                ...this.userService.createRoleAssociation(
+                  ra?.role || '',
+                  ra?.instanceType || '',
+                  ra?.instanceId || ''
+                ),
+              }));
+
+            const newRoleAssociations = result.value.map((ra) => ({
+              ...this.userService.createRoleAssociation(
+                ra.role,
+                ra.instanceType,
+                ra.instanceId
+              ),
+            }));
+
+            const editedRoleIndex = _.findIndex(
+              currentRoleAssociations,
+              (obj) => _.isEqual(obj, flattendRole[0])
+            );
+
+            if (editedRoleIndex > -1) {
+              const updatedRoleAssociations = currentRoleAssociations.map(
+                (ra, index) =>
+                  index === editedRoleIndex ? newRoleAssociations[0] : ra
+              );
+
+              const roleAssociations = _.uniqWith(
+                updatedRoleAssociations,
+                _.isEqual
+              );
+
+              this.iamFacade.addRoleAssociation({
+                items: [
+                  {
+                    id: this.id,
+                    roleAssociations,
+                  },
+                ],
+                mode: ModeType.Update,
+              });
+            }
+          }
+        }
+      );
+  }
+
+  onDeleteRole(role: IRoleAssociationScopingInstance) {
+    const currentRoleAssociations = this.roles
+      .flatMap((rai) =>
+        rai.scopingInstances?.map((inst) => ({
+          role: rai.role?.id || '',
+          instanceType: inst.instanceType || '',
+          instanceId: inst.instance.id || '',
+        }))
+      )
+      .map((ra) => ({
+        ...this.userService.createRoleAssociation(
+          ra?.role || '',
+          ra?.instanceType || '',
+          ra?.instanceId || ''
+        ),
+      }));
 
     const flattendRoleToDelete = [role]
       .flatMap((rai) =>

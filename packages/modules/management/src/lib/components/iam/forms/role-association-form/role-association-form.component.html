@@ -6,12 +6,14 @@
 >
   <fieldset>
     <legend>
-      Add role
+      {{ role ? 'Edit role' : 'Add role' }}
+      @if (!role) {
       <vcl-icon
         class="role-add"
         icon="vcl:add"
         (click)="addUser()"
       ></vcl-icon>
+      }
     </legend>
 
     <div formArrayName="associations">
@@ -22,12 +24,14 @@
         class="mb-3"
       >
         <legend>
-          Role {{ idx + 1 }}
+          Role {{ role ? '' : idx + 1 }}
+          @if(!role) {
           <vcl-icon
             class="role-remove"
             icon="vcl:remove"
             (click)="removeUser(idx)"
           ></vcl-icon>
+          }
         </legend>
 
         <vcl-form-control-group>
