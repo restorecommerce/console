@@ -112,30 +112,8 @@ import {
           </div>
         </li>
 
-        <li
-          *ngIf="vm.rolesHash; else naTemplate"
-          class="row data-list-item justify-between"
-        >
-          <div class="flex text pb-2">
-            Roles ({{ vm.user.roleAssociations.length }}):
-          </div>
-          <div class="flex text align-right rc-lv-label">
-            <ng-container
-              *ngIf="
-                vm.user.roleAssociations.length && roleScopingInstances.length;
-                else naTemplate
-              "
-            >
-              <ng-container *ngFor="let rai of roleScopingInstances">
-                <p class="m-0">
-                  {{ rai.role?.name ?? 'N/A' }} [{{
-                    rai | listScopingInstanceNames
-                  }}]
-                </p></ng-container
-              >
-            </ng-container>
-          </div>
-        </li>
+        <!-- User roles components. -->
+        <rc-user-role-associations [roles]="roleScopingInstances" />
 
         <li>
           <div

@@ -20,7 +20,7 @@
       class="row data-list-item product-item"
       *ngFor="let role of roles"
     >
-      <rc-role-association />
+      <rc-user-role-association [role]="role" />
 
       <!-- [role]="role"
       (editRole)="editRole.emit($event)"

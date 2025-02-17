@@ -7,16 +7,18 @@ import {
 } from '@angular/core';
 
 import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
+import { IRoleAssociationScopingInstance } from '@console-core/types';
 
 @Component({
-  selector: 'rc-user-role-association',
+  selector: 'rc-user-role-associations',
   templateUrl: './roles-associations.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
 export class RcRolesAssociationsComponent {
   @Input({ required: true })
-  roles!: IIoRestorecommerceProductPhysicalVariant[];
+  roles!: IRoleAssociationScopingInstance[];
+
   @Output() addRole = new EventEmitter<void>();
 
   @Output() editRole =
