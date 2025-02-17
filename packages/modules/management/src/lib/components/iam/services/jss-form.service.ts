@@ -95,13 +95,6 @@ export class JssFormService {
       roleAssociationsScopingInstances: [],
     })
   );
-  roleAssociationsSchema$ = new BehaviorSubject<VCLFormFieldSchemaRoot>(
-    this.buildRoleAssociationsSchema({
-      roles: [],
-      organizations: [],
-      users: [],
-    })
-  );
 
   private destroy$ = new Subject<void>();
 
@@ -139,13 +132,6 @@ export class JssFormService {
               roleAssociationsScopingInstances,
             })
           );
-          this.roleAssociationsSchema$.next(
-            this.buildRoleAssociationsSchema({
-              roles,
-              organizations,
-              users,
-            })
-          );
         }
       );
   }
@@ -159,15 +145,11 @@ export class JssFormService {
 
   destroy() {
     this.userForm$.complete();
-    this.roleAssociationsSchema$.complete();
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  createUserForm({
-    user,
-    roleAssociationsScopingInstances,
-  }: IUserSchemaOptions): FormGroup {
+  createUserForm({ user }: IUserSchemaOptions): FormGroup {
     const form = this.fb.group({
       firstName: [user?.firstName, [Validators.required]],
       lastName: [user?.lastName || '', [Validators.required]],
@@ -190,13 +172,6 @@ export class JssFormService {
         : {}),
       localeId: [user?.localeId || '', [Validators.required]],
       timezoneId: [user?.timezoneId || '', [Validators.required]],
-      roleAssociations: [
-        ...roleAssociationsScopingInstances.flatMap((rai) =>
-          rai.scopingInstances?.map(
-            (inst) => `${rai.role?.id}|${inst.instanceType}|${inst.instance.id}`
-          )
-        ),
-      ],
     });
 
     const inviteControl = form.get('invite');

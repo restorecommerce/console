@@ -9,12 +9,7 @@ import {
 import { FormGroup, NgForm } from '@angular/forms';
 
 import { ModeType } from '@console-core/graphql';
-import {
-  ILocale,
-  IRoleAssociationScopingInstance,
-  ITimezone,
-  IUser,
-} from '@console-core/types';
+import { ILocale, ITimezone, IUser } from '@console-core/types';
 
 @Component({
   selector: 'app-user-creation-form',
@@ -28,12 +23,10 @@ export class UserCreationFormComponent {
     user: IUser | null;
     locales: ILocale[];
     timezones: ITimezone[];
-    uniqueRoleAssociationsScopingInstances: IRoleAssociationScopingInstance[];
   } = {
     user: null,
     locales: [],
     timezones: [],
-    uniqueRoleAssociationsScopingInstances: [],
   };
 
   @Input()
@@ -47,10 +40,6 @@ export class UserCreationFormComponent {
 
   @ViewChild('form')
   form!: NgForm;
-
-  addRoleAssociations() {
-    this.addRole.next();
-  }
 
   onReset(): void {
     // TODO this.editForm.form.resetForm(this.schema);

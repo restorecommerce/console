@@ -1,23 +1,12 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-
-import { JssFormComponent, LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
 import {
   IamFacade,
   RouterFacade,
-  UserService,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 
@@ -33,49 +22,15 @@ import { JssFormService } from './services';
           [options]="vm.options"
           [update]="update"
           [id]="vm.id"
-          (addRole)="handleActionEvent()"
         />
       </div>
-
-      <ng-template
-        #tplLayerRef
-        let-title="title"
-      >
-        <vcl-panel-dialog
-          [showCloseButton]="true"
-          (close)="tplLayer.close()"
-          class="panel-dialog"
-        >
-          <vcl-panel-title>{{ title }}</vcl-panel-title>
-          <div class="row">
-            <div class="flex-12">
-              <vcl-jss-form
-                autocomplete="off"
-                ngDefaultControl
-                #roleAssociationsForm="vclJssForm"
-                [schema]="vm.roleAssociationsSchema"
-                (formAction)="onAction($event)"
-                (formSubmit)="onSubmit()"
-              />
-            </div>
-          </div>
-        </vcl-panel-dialog>
-      </ng-template>
     </ng-container>
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class IamEditComponent implements OnDestroy, AfterViewInit {
-  @ViewChild('roleAssociationsForm')
-  roleAssociationsForm!: JssFormComponent;
-
-  @ViewChild('tplLayerRef')
-  tplLayerRef!: TemplateRef<HTMLElement>;
-
-  tplLayer!: LayerRef;
-
+export class IamEditComponent implements OnDestroy {
   update = this.iamFacade.update;
 
   readonly vm$ = combineLatest({
@@ -103,67 +58,19 @@ export class IamEditComponent implements OnDestroy, AfterViewInit {
           user: options.user,
           locales: options.locales,
           timezones: options.timezones,
-          uniqueRoleAssociationsScopingInstances:
-            options.roleAssociationsScopingInstances,
         };
       })
     ),
-    roleAssociationsSchema: this.jssFormService.roleAssociationsSchema$,
   });
 
   constructor(
     private readonly router: Router,
-    private readonly layerService: LayerService,
-    private readonly viewContainerRef: ViewContainerRef,
     private readonly routerFacade: RouterFacade,
     private readonly iamFacade: IamFacade,
-    private readonly userService: UserService,
     private readonly jssFormService: JssFormService
   ) {}
 
-  ngAfterViewInit(): void {
-    this.tplLayer = this.layerService.createTemplateLayer(
-      this.tplLayerRef,
-      this.viewContainerRef
-    );
-  }
-
   ngOnDestroy(): void {
     this.jssFormService.destroy();
-    this.iamFacade.setTempRoleAssociations([]);
-  }
-
-  handleActionEvent(): void {
-    this.tplLayer.open({ data: { title: 'Assign Roles' } });
-  }
-
-  onAction(action: string): void {
-    if ('close' === action) {
-      this.tplLayer.close();
-    }
-  }
-
-  onSubmit(): void {
-    if (
-      this.roleAssociationsForm?.form.invalid ||
-      this.roleAssociationsForm?.form.pristine
-    ) {
-      return;
-    }
-
-    this.tplLayer.close();
-
-    const roleAssociations =
-      this.roleAssociationsForm.form?.value.roleAssociationsArray.map(
-        (ra: { role: string; instanceType: string; instanceId: string }) => ({
-          ...this.userService.createRoleAssociation(
-            ra.role,
-            ra.instanceType,
-            ra.instanceId
-          ),
-        })
-      );
-
-    this.iamFacade.setTempRoleAssociations(roleAssociations);
   }
 }

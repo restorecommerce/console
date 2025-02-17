@@ -112,43 +112,6 @@
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
   </vcl-form-control-group>
 
-  <!-- Roles -->
-  @if (options.uniqueRoleAssociationsScopingInstances.length) {
-  <vcl-form-control-group>
-    <vcl-label
-      >Roles ({{
-        options.uniqueRoleAssociationsScopingInstances.length
-      }})</vcl-label
-    >
-    <vcl-select-list
-      formControlName="roleAssociations"
-      selectionMode="multiple"
-    >
-      @for (rai of options.uniqueRoleAssociationsScopingInstances; track
-      rai.role?.id) { @for (instance of rai.scopingInstances; track
-      instance.instance.id) {
-      <vcl-select-list-item
-        [value]="rai.role?.id ?? '' | resolveRoleAssociationKey : instance"
-      >
-        {{ rai.role?.name || 'N/A' }} [{{ rai | listScopingInstanceNames }}]
-        <vcl-sub-label>{{ rai.role?.description || 'N/A' }}</vcl-sub-label>
-      </vcl-select-list-item>
-      } }
-    </vcl-select-list>
-  </vcl-form-control-group>
-  }
-
-  <div class="row justify-end">
-    <button
-      vcl-button
-      class="transparent"
-      type="button"
-      (click)="addRoleAssociations()"
-    >
-      Assign Roles
-    </button>
-  </div>
-
   <!-- Buttons -->
   <div class="loose-button-group">
     <button
