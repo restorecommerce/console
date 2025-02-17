@@ -47,6 +47,14 @@ export const modulesManagementRoutes: Route[] = [
             .index.title,
       },
       {
+        path: ROUTER.pages.main.children.management.children.shops.path,
+        loadChildren: () =>
+          import('./components/shop/shop.module').then((m) => m.ShopModule),
+        title:
+          ROUTER.pages.main.children.management.children.shops.children.index
+            .title,
+      },
+      {
         path: ROUTER.pages.main.children.management.children.addresses.path,
         loadChildren: () =>
           import('./components/address/address.module').then(
