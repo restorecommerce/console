@@ -1,0 +1,19 @@
+query MasterDataShopRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  master_data {
+    shop {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...ShopFragment
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

@@ -20,6 +20,7 @@ export const STORE: Readonly<IStoreConstant> = {
     routerState: 'routerStateV1',
     taxState: 'taxStateV1',
     timezoneState: 'timezoneStateV1',
+    shopState: 'shopStateV1',
   },
   config: {
     app: {

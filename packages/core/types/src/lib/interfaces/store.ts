@@ -16,6 +16,7 @@ export interface IStoreConstant {
     readonly routerState: 'routerStateV1';
     readonly taxState: 'taxStateV1';
     readonly timezoneState: 'timezoneStateV1';
+    readonly shopState: 'shopStateV1';
   };
   readonly config: {
     readonly app: {

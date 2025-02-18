@@ -9675,6 +9675,138 @@ export type MasterDataOrganizationReadQuery = {
   };
 };
 
+export type MasterDataShopReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type MasterDataShopReadQuery = {
+  __typename?: 'Query';
+  master_data: {
+    __typename?: 'ResourceQuery';
+    shop: {
+      __typename?: 'ResourceShopQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceShopShopListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceShopShopListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceShopShopResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceShopShop';
+              id?: string | null;
+              shopNumber?: string | null;
+              name?: string | null;
+              description?: string | null;
+              domains?: Array<string> | null;
+              organization?: {
+                __typename?: 'IoRestorecommerceOrganizationOrganization';
+                id?: string | null;
+                parentId?: string | null;
+                name?: string | null;
+                email?: string | null;
+                website?: string | null;
+                vatId?: string | null;
+                logo?: {
+                  __typename?: 'IoRestorecommerceImageImage';
+                  id?: string | null;
+                  index?: number | null;
+                  filename?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url?: string | null;
+                } | null;
+                contactPoints?: Array<{
+                  __typename?: 'IoRestorecommerceContactPointContactPoint';
+                  id?: string | null;
+                  name?: string | null;
+                  description?: string | null;
+                  email?: string | null;
+                  telephone?: string | null;
+                  website?: string | null;
+                  timezone?: {
+                    __typename?: 'IoRestorecommerceTimezoneTimezone';
+                    id?: string | null;
+                    value?: string | null;
+                    description?: string | null;
+                  } | null;
+                  locale?: {
+                    __typename?: 'IoRestorecommerceLocaleLocale';
+                    id?: string | null;
+                    value?: string | null;
+                    description?: string | null;
+                  } | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
+                  } | null;
+                }> | null;
+                paymentMethods?: Array<{
+                  __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                  id?: string | null;
+                  transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                  paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                }> | null;
+                meta?: {
+                  __typename?: 'IoRestorecommerceMetaMeta';
+                  created?: unknown | null;
+                  modified?: unknown | null;
+                  createdBy?: string | null;
+                  modifiedBy?: string | null;
+                  owners?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  }> | null;
+                } | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type MasterDataTaxMutateMutationVariables = Exact<{
   input: IIoRestorecommerceTaxTaxList;
 }>;
@@ -13285,6 +13417,42 @@ export class MasterDataOrganizationReadGQL extends Apollo.Query<
   MasterDataOrganizationReadQueryVariables
 > {
   override document = MasterDataOrganizationReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataShopReadDocument = gql`
+  query MasterDataShopRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    master_data {
+      shop {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                ...ShopFragment
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ShopFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataShopReadGQL extends Apollo.Query<
+  MasterDataShopReadQuery,
+  MasterDataShopReadQueryVariables
+> {
+  override document = MasterDataShopReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
