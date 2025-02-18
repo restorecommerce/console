@@ -4,3 +4,4 @@ export * from './locale.service';
 export * from './organization.service';
 export * from './tax.service';
 export * from './timezone.service';
+export * from './shop.service';

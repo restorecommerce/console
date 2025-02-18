@@ -6,3 +6,4 @@ export * from './locale';
 export * from './organization';
 export * from './timezone';
 export * from './tax';
+export * from './shop';

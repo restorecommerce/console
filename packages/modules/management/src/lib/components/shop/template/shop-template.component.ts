@@ -20,7 +20,7 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { OrganizationFacade, RouterFacade } from '@console-core/state';
+import { RouterFacade, ShopFacade } from '@console-core/state';
 import { EUrlSegment, ICrudFeature } from '@console-core/types';
 
 @Component({
@@ -31,13 +31,12 @@ import { EUrlSegment, ICrudFeature } from '@console-core/types';
 })
 export class ShopTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
-  featureRouter =
-    ROUTER.pages.main.children.management.children.organizations.children;
+  featureRouter = ROUTER.pages.main.children.management.children.shops.children;
 
   feature: Readonly<ICrudFeature> = {
     name: {
-      plural: 'Organizations',
-      singular: 'Organization',
+      plural: 'Shops',
+      singular: 'Shop',
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
@@ -61,7 +60,7 @@ export class ShopTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.organizationFacade.readParents({})));
+    .pipe(tap(() => this.shopFacade.read({})));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -77,14 +76,14 @@ export class ShopTemplateComponent implements OnInit, OnDestroy {
           fields: ['name', 'email', 'website'],
         },
       };
-      this.organizationFacade.readParents(this.queryVariables);
+      this.shopFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.organizationFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.shopFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -92,7 +91,7 @@ export class ShopTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.organizationFacade.remove({ id });
+      this.shopFacade.remove({ id });
     })
   );
 
@@ -101,16 +100,16 @@ export class ShopTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.organizationFacade.setSelectedId(null);
+        this.shopFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.organizationFacade.all$,
-    selectedOrganizationId: this.organizationFacade.selectedId$,
-    selectedOrganization: this.organizationFacade.selected$,
+    dataList: this.shopFacade.all$,
+    selectedShopId: this.shopFacade.selectedId$,
+    selectedShop: this.shopFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -120,7 +119,7 @@ export class ShopTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly organizationFacade: OrganizationFacade,
+    private readonly shopFacade: ShopFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 

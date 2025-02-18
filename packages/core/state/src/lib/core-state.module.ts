@@ -52,6 +52,9 @@ import {
   TaxFacade,
   taxReducer,
   TaxEffects,
+  ShopFacade,
+  shopReducer,
+  ShopEffects,
 } from './+state';
 
 const facades = [
@@ -71,6 +74,7 @@ const facades = [
   RouterFacade,
   TaxFacade,
   TimezoneFacade,
+  ShopFacade,
 ];
 
 @NgModule({
@@ -105,6 +109,8 @@ const facades = [
     StoreModule.forFeature(STORE.states.taxState, taxReducer),
     EffectsModule.forFeature([TaxEffects]),
     EffectsModule.forFeature([TimezoneEffects]),
+    StoreModule.forFeature(STORE.states.shopState, shopReducer),
+    EffectsModule.forFeature([ShopEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
   ],
   providers: [...facades],
