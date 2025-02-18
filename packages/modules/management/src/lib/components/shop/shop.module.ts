@@ -32,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ShopIndexComponent],
+  declarations: [ShopTemplateComponent, ShopIndexComponent],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
 export class ShopModule {}

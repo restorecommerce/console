@@ -1,0 +1,72 @@
+<rc-crud-main
+  *ngIf="vm$ | async as vm"
+  [feature]="feature"
+  [title]="vm.selectedFulfillment?.id ?? feature.name.singular"
+  [id]="vm.selectedFulfillmentId"
+  [total]="vm.dataList.length"
+  [urlSegment]="vm.urlSegment"
+  [triggerRead]="triggerRead"
+  [triggerSelectId]="triggerSelectId"
+  [triggerRemove]="triggerRemove"
+  [triggerSubmitFulfillment]="triggerSubmitFulfillment"
+>
+  <ng-container rc-crud-search>
+    <div
+      *ngIf="vm.dataList.length > 0"
+      class="flex"
+    >
+      <rc-searchbar
+        [value]="triggerSearch.value"
+        (search)="onSearch($event)"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container rc-crud-data-list>
+    <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
+      <rc-data-list
+        [itemTemplate]="itemTemplate"
+        [items]="vm.dataList"
+        [selected]="vm.selectedFulfillmentId"
+        (itemSelected)="onFulfilmentSelected($event)"
+      />
+    </ng-container>
+  </ng-container>
+
+  <ng-container rc-crud-actions>
+    <button
+      (click)="onSubmitFulfillment(vm.selectedFulfillmentId)"
+      vcl-button
+      rc-append
+      class="square half-transparent button"
+      title="Submit Fulfillment"
+    >
+      <vcl-icon icon="mdi:send-outline" />
+    </button>
+  </ng-container>
+
+  <ng-container rc-crud-router-outlet>
+    <router-outlet />
+  </ng-container>
+
+  <ng-container rc-crud-meta>
+    <rc-meta
+      *ngIf="vm.selectedFulfillmentId"
+      [id]="vm.selectedFulfillmentId"
+      [meta]="vm.selectedFulfillment?.meta"
+    />
+  </ng-container>
+</rc-crud-main>
+
+<ng-template #templateNoRecords>
+  <div class="pt-4">
+    <rc-no-records message="No fulfillments loaded" />
+  </div>
+</ng-template>
+
+<ng-template
+  #itemTemplate
+  let-item="item"
+>
+  <rc-data-list-fulfilment [fulfillment]="item" />
+</ng-template>
