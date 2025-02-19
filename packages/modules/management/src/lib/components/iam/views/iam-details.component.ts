@@ -160,7 +160,7 @@ import {
       let-item
       let-index="index"
     >
-      <div class="mb-2">
+      <div class="mb-3 px-3 token-template">
         <div class="row justify-between align-items py-1">
           <span class="flex text">Name:</span>
           <span>{{ item.name || '-' }}</span>
@@ -172,13 +172,13 @@ import {
         <div class="row justify-between align-items py-1">
           <span class="flex text">Last login:</span>
           <span>{{
-            (item.lastLogin | date : DATE.format.dateTime) || '-'
+            (item.lastLogin | date : DATE.format.dateTime) || 'N/A'
           }}</span>
         </div>
         <div class="row justify-between align-items py-1">
           <span class="flex text">Expires in:</span>
           <span>{{
-            (item.expiresIn | date : DATE.format.dateTime) || '-'
+            (item.expiresIn | date : DATE.format.dateTime) || 'N/A'
           }}</span>
         </div>
       </div>
@@ -186,6 +186,10 @@ import {
   `,
   styles: [
     `
+      .token-template {
+        border: 1px solid #e8e8e8;
+      }
+
       .token-toggler {
         cursor: pointer;
       }

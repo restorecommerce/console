@@ -46,7 +46,7 @@
 
 <ng-template #templateNoRecords>
   <div class="pt-4">
-    <rc-no-records message="No fulfillments loaded" />
+    <rc-no-records message="No shops loaded" />
   </div>
 </ng-template>
 
@@ -54,7 +54,7 @@
   #itemTemplate
   let-item="item"
 >
-  <div>
+  <div class="p-2 row align-items-center">
     {{ item.name }}
   </div>
 </ng-template>
