@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 
 import { DATE } from '@console-core/config';
 import { IMeta } from '@console-core/types';
@@ -10,6 +15,8 @@ import { IMeta } from '@console-core/types';
   standalone: false,
 })
 export class RcMetaComponent {
+  @HostBinding('class') klasses = 'w-100p';
+
   @Input({ required: true })
   id: string | null = null;
 

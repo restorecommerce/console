@@ -163,7 +163,7 @@ import {
       <div class="mb-3 px-3 token-template">
         <div class="row justify-between align-items py-1">
           <span class="flex text">Name:</span>
-          <span>{{ item.name || '-' }}</span>
+          <span>{{ item.name || 'N/A' }}</span>
         </div>
         <div class="row justify-between align-items py-1">
           <span class="flex text">Token:</span>

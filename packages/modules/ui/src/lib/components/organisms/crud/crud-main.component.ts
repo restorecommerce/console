@@ -43,6 +43,8 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   isTriggerCreateFulfillment = false;
   isTriggerSubmitFulfillment = false;
 
+  showMeta = false;
+
   readonly EUrlSegment = EUrlSegment;
 
   readonly vm$ = combineLatest({

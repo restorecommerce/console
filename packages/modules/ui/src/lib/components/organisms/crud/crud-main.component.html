@@ -54,7 +54,7 @@
     <ng-container *ngIf="![EUrlSegment.Index].includes(urlSegment)">
       <div class="lex-8-lg flex-8-md flex-12">
         <div class="row grid-gutterx-2">
-          <div class="flex-8-lg flex-12-md flex-12-sm flex-12">
+          <div class="flex-12">
             <ng-container *ngIf="title !== 'null'">
               <div
                 [ngClass]="{ 'mt-2': vm.isXsOrSm }"
@@ -137,34 +137,34 @@
               <div class="row h-100p">
                 <div class="flex p-2 mb-4 h-100p scrollable y">
                   <ng-content select="[rc-crud-router-outlet]" />
-                </div>
-              </div>
 
-              <div
-                *ngIf="isMeta && id && !vm.isLgOrXl"
-                class="row"
-              >
-                <div class="flex">
-                  <rc-toolbar> Meta </rc-toolbar>
-                  <div class="row mb-4 pb-2">
-                    <div class="flex p-2">
-                      <ng-container *ngTemplateOutlet="metaTemplate" />
+                  <div
+                    *ngIf="isMeta && id"
+                    class="row"
+                  >
+                    <div class="flex">
+                      <div
+                        (click)="showMeta = !showMeta"
+                        class="row align-items-center token-toggler my-2 user-select-none"
+                      >
+                        <vcl-icon
+                          [icon]="
+                            showMeta ? 'vcl:arrow-down' : 'vcl:arrow-right'
+                          "
+                          alt="toggle token display"
+                          class="scale155p"
+                        ></vcl-icon>
+
+                        <span class="scale110p">Meta Data</span>
+                      </div>
+
+                      @if (showMeta) {
+                      <div class="mb-4 p-2">
+                        <ng-container *ngTemplateOutlet="metaTemplate" />
+                      </div>
+                      }
                     </div>
                   </div>
-                </div>
-              </div>
-            </rc-scrollable-container>
-          </div>
-
-          <div
-            *ngIf="isMeta && id && vm.isLgOrXl"
-            class="flex-4-lg flex-12-md flex-12-sm flex-12"
-          >
-            <rc-toolbar> Meta </rc-toolbar>
-            <rc-scrollable-container height="172px">
-              <div class="row mb-4 pb-2">
-                <div class="flex p-2">
-                  <ng-container *ngTemplateOutlet="metaTemplate" />
                 </div>
               </div>
             </rc-scrollable-container>
