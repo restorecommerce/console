@@ -8,6 +8,7 @@ export * from './order';
 export * from './organization';
 export * from './shop';
 export * from './timezone';
+export * from './policy';
 export * from './product';
 export * from './role';
 export * from './tax';
