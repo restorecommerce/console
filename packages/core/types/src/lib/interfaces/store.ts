@@ -11,6 +11,7 @@ export interface IStoreConstant {
     readonly localeState: 'localeStateV1';
     readonly orderState: 'orderStateV1';
     readonly organizationState: 'organizationStateV3';
+    readonly policyState: 'policyStateV1';
     readonly productState: 'productStateV1';
     readonly roleState: 'roleStateV1';
     readonly routerState: 'routerStateV1';

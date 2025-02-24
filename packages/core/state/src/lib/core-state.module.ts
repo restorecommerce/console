@@ -55,7 +55,9 @@ import {
   ShopFacade,
   shopReducer,
   ShopEffects,
+  policyReducer,
 } from './+state';
+import { PolicyEffects } from './+state/management/access-control/policy/policy.effects';
 
 const facades = [
   AccountFacade,
@@ -103,6 +105,8 @@ const facades = [
     EffectsModule.forFeature([LocaleEffects]),
     StoreModule.forFeature(STORE.states.orderState, orderReducer),
     EffectsModule.forFeature([OrderEffects]),
+    StoreModule.forFeature(STORE.states.policyState, policyReducer),
+    EffectsModule.forFeature([PolicyEffects]),
     StoreModule.forFeature(STORE.states.productState, productReducer),
     EffectsModule.forFeature([ProductEffects]),
     StoreModule.forFeature(STORE.states.timezoneState, timezoneReducer),
