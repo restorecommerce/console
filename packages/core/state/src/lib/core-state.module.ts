@@ -56,8 +56,9 @@ import {
   shopReducer,
   ShopEffects,
   policyReducer,
+  PolicyEffects,
+  PolicyFacade,
 } from './+state';
-import { PolicyEffects } from './+state/management/access-control/policy/policy.effects';
 
 const facades = [
   AccountFacade,
@@ -77,6 +78,7 @@ const facades = [
   TaxFacade,
   TimezoneFacade,
   ShopFacade,
+  PolicyFacade,
 ];
 
 @NgModule({
