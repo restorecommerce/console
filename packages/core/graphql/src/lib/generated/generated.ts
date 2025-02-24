@@ -5679,6 +5679,45 @@ export type SubscriptionOutput = {
   id?: Maybe<Scalars['String']>;
 };
 
+export type PolicyReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type PolicyReadQuery = {
+  __typename?: 'Query';
+  access_control: {
+    __typename?: 'AccessControlQuery';
+    policy: {
+      __typename?: 'AccessControlPolicyQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommercePolicyPolicyListResponse';
+        details?: {
+          __typename?: 'IoRestorecommercePolicyPolicyListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommercePolicyPolicyResponse';
+            payload?: {
+              __typename?: 'IoRestorecommercePolicyPolicy';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type CatalogProductMutateMutationVariables = Exact<{
   input: IIoRestorecommerceProductProductList;
 }>;
@@ -12108,6 +12147,47 @@ export const UserRoleFragmentFragmentDoc = gql`
   ${RoleFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const PolicyReadDocument = gql`
+  query PolicyRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    access_control {
+      policy {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                id
+                name
+                description
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PolicyReadGQL extends Apollo.Query<
+  PolicyReadQuery,
+  PolicyReadQueryVariables
+> {
+  override document = PolicyReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const CatalogProductMutateDocument = gql`
   mutation CatalogProductMutate($input: IIoRestorecommerceProductProductList!) {
     catalog {

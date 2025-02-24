@@ -1,0 +1,25 @@
+query PolicyRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  access_control {
+    policy {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              id
+              name
+              description
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
