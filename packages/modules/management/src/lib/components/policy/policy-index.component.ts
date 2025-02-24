@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-module-management-access-control-policy',
+  selector: 'app-module-management-access-control-policy-index',
   template: `
     <div>
       <ng-container *ngIf="id$ | async as id; else templateNoId">
@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class PolicyComponent {
+export class PolicyIndexComponent {
   id$ = this.route.params.pipe(map((params) => params['id']));
 
   constructor(private readonly route: ActivatedRoute) {}

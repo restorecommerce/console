@@ -4,23 +4,34 @@ import { RouterModule, Routes } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
-import { PolicyComponent } from './policy.component';
+import { PolicyIndexComponent } from './policy-index.component';
+import { PolicyTemplateComponent } from './template/policy-template.component';
 
 const routes: Routes = [
   {
-    path: ROUTER.pages.main.children.management.children.accessControl.children
-      .polices.children.index.path,
-    component: PolicyComponent,
-  },
-  {
-    path: ROUTER.pages.main.children.management.children.accessControl.children
-      .polices.children.polices.path,
-    component: PolicyComponent,
+    path: '',
+    component: PolicyTemplateComponent,
+    children: [
+      {
+        path: ROUTER.pages.main.children.management.children.accessControl
+          .children.polices.children.index.path,
+        component: PolicyIndexComponent,
+        title:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .roles.children.index.title,
+      },
+      {
+        path: '**',
+        redirectTo:
+          ROUTER.pages.main.children.management.children.accessControl.children
+            .polices.children.index.path,
+      },
+    ],
   },
 ];
 
 @NgModule({
-  declarations: [PolicyComponent],
+  declarations: [PolicyIndexComponent, PolicyTemplateComponent],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
 export class PolicyModule {}
