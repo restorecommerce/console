@@ -12,11 +12,10 @@ import {
 @Component({
   selector: 'app-module-management-shop-view',
   template: `
-    <h3>Shop view</h3>
-    <ng-container *ngIf="vm$ | async as vm">
-      <!-- <app-module-management-shop-details [vm]="vm" /> -->
-      {{ vm.shop | json }}
-    </ng-container>
+    @if(vm$ | async; as vm) {
+    <!-- <app-module-management-shop-details [vm]="vm" /> -->
+    {{ vm.shop | json }}
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
