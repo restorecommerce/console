@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   TemplateRef,
@@ -20,12 +19,6 @@ export class RcDataListComponent<T extends { id: string }> {
   @Input() selected: string | null | undefined;
 
   @Output() itemSelected = new EventEmitter<string>();
-
-  @HostBinding('class')
-  _hostClasses = 'col h-100p';
-
-  // Selected item to be highlighted on the vcl-list...
-  //
 
   onDataListChange(value: string) {
     this.itemSelected.next(value);
