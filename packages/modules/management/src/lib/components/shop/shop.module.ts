@@ -5,6 +5,7 @@ import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
 import { ShopIndexComponent } from './shop-index.component';
+import { ShopViewComponent } from './shop-view.component';
 import { ShopTemplateComponent } from './template/shop-template.component';
 
 const routes: Routes = [
@@ -20,7 +21,14 @@ const routes: Routes = [
           ROUTER.pages.main.children.management.children.shops.children.index
             .title,
       },
-
+      {
+        path: ROUTER.pages.main.children.management.children.shops.children.view
+          .path,
+        component: ShopViewComponent,
+        title:
+          ROUTER.pages.main.children.management.children.organizations.children
+            .view.title,
+      },
       {
         path: '**',
         redirectTo:
@@ -32,7 +40,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ShopTemplateComponent, ShopIndexComponent],
+  declarations: [ShopTemplateComponent, ShopIndexComponent, ShopViewComponent],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
 export class ShopModule {}

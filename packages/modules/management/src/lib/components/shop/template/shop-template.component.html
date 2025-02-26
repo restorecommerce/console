@@ -22,13 +22,19 @@
   </ng-container>
 
   <ng-container rc-crud-data-list>
-    <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
-      <rc-data-list
-        [itemTemplate]="itemTemplate"
-        [items]="vm.dataList"
-        [selected]="vm.selectedShopId"
-      />
-    </ng-container>
+    @if (vm.dataList.length > 0) {
+
+    <rc-data-list
+      [itemTemplate]="itemTemplate"
+      [items]="vm.dataList"
+      [selected]="vm.selectedShopId"
+      (itemSelected)="triggerSelectId.next($event)"
+    />
+    } @else {
+    <div class="pt-4">
+      <rc-no-records message="No shops loaded" />
+    </div>
+    }
   </ng-container>
 
   <ng-container rc-crud-router-outlet>
@@ -43,12 +49,6 @@
     />
   </ng-container>
 </rc-crud-main>
-
-<ng-template #templateNoRecords>
-  <div class="pt-4">
-    <rc-no-records message="No shops loaded" />
-  </div>
-</ng-template>
 
 <ng-template
   #itemTemplate
