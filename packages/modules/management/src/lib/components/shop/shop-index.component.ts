@@ -24,12 +24,6 @@ export class ShopIndexComponent {
       tap((data) => console.log(`data: ${data}`)),
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
-        console.log('view route:');
-        console.log(
-          ROUTER.pages.main.children.management.children.shops.children.view.getLink(
-            { id }
-          )
-        );
         this.router.navigate(
           ROUTER.pages.main.children.management.children.shops.children.view.getLink(
             { id }

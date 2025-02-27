@@ -14,6 +14,7 @@ import { IFulfillment } from '@console-core/types';
   standalone: false,
 })
 export class RcDataListFulfilmentComponent {
-  @HostBinding('class') klass = 'col';
+  @HostBinding('class') klass =
+    'flex row justify-content-between align-items-center';
   @Input({ required: true }) fulfillment!: IFulfillment;
 }
