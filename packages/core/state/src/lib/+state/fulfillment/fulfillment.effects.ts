@@ -16,6 +16,7 @@ import { AppFacade } from '../app';
 
 import * as fulfillmentActions from './fulfillment.actions';
 import {
+  FulfillmentFacade,
   OrganizationFacade,
   withLatestOrganizationData,
 } from '@console-core/state';
@@ -232,11 +233,20 @@ export class FulfillmentEffects {
       concatLatestFrom(() => [
         this.organizationFacade.globalOrganizationLeafId$,
         this.organizationFacade.globalOrganizationId$,
+        this.fulfilmentFacade.entities$,
       ]),
-      switchMap(([{ payload }, leafOrg, organization]) =>
+      switchMap(([{ payload }, leafOrg, organization, entities]) =>
         this.fulfillmentService
           .submit({
-            items: [payload],
+            items: [
+              {
+                ...entities[payload.id],
+                // id: payload.id,
+                // meta: {
+                //   owners: [...(entities[payload.id]?.meta.owners || [])],
+                // },
+              },
+            ],
             scope: leafOrg || organization,
           })
           .pipe(
@@ -285,6 +295,7 @@ export class FulfillmentEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly organizationFacade: OrganizationFacade,
+    private readonly fulfilmentFacade: FulfillmentFacade,
     private readonly fulfillmentService: FulfillmentService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
