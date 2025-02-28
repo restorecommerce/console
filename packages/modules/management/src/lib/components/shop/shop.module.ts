@@ -7,6 +7,7 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { ShopIndexComponent } from './shop-index.component';
 import { ShopViewComponent } from './shop-view.component';
 import { ShopTemplateComponent } from './template/shop-template.component';
+import { ShopViewDetailComponent } from './view/shop-view-details.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ShopTemplateComponent, ShopIndexComponent, ShopViewComponent],
+  declarations: [
+    ShopTemplateComponent,
+    ShopIndexComponent,
+    ShopViewComponent,
+    ShopViewDetailComponent,
+  ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
 export class ShopModule {}

@@ -13,8 +13,7 @@ import {
   selector: 'app-module-management-shop-view',
   template: `
     @if(vm$ | async; as vm) {
-    <!-- <app-module-management-shop-details [vm]="vm" /> -->
-    {{ vm.shop | json }}
+    <app-module-management-shop-view-details [vm]="vm" />
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

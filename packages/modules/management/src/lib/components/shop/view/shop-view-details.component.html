@@ -1,0 +1,54 @@
+<vcl-data-list
+  mode="none"
+  [noBorder]="true"
+>
+  <vcl-data-list-header>
+    <h4>Data</h4>
+  </vcl-data-list-header>
+  <vcl-data-list-item class="col">
+    <ng-container
+      *ngTemplateOutlet="
+        shopPropItemTemplate;
+        context: { prop: 'Shop number', value: vm.shop.shopNumber }
+      "
+    ></ng-container>
+  </vcl-data-list-item>
+
+  <vcl-data-list-item class="col">
+    <ng-container
+      *ngTemplateOutlet="
+        shopPropItemTemplate;
+        context: { prop: 'Name', value: vm.shop.name }
+      "
+    ></ng-container>
+  </vcl-data-list-item>
+
+  <vcl-data-list-item class="col">
+    <ng-container
+      *ngTemplateOutlet="
+        shopPropItemTemplate;
+        context: { prop: 'Description', value: vm.shop.description || 'N/A' }
+      "
+    ></ng-container>
+  </vcl-data-list-item>
+
+  <vcl-data-list-item class="col">
+    <ng-container
+      *ngTemplateOutlet="
+        shopPropItemTemplate;
+        context: { prop: 'Domain', value: vm.shop.domains?.join(', ') }
+      "
+    ></ng-container>
+  </vcl-data-list-item>
+</vcl-data-list>
+
+<ng-template
+  #shopPropItemTemplate
+  let-prop="prop"
+  let-value="value"
+>
+  <div class="flex row justify-content-between align-items-center">
+    <span>{{ prop }}</span>
+    <span>{{ value }}</span>
+  </div>
+</ng-template>

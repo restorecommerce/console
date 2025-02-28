@@ -240,11 +240,10 @@ export class FulfillmentEffects {
           .submit({
             items: [
               {
-                ...entities[payload.id],
-                // id: payload.id,
-                // meta: {
-                //   owners: [...(entities[payload.id]?.meta.owners || [])],
-                // },
+                id: payload.id,
+                meta: {
+                  owners: [...(entities[payload.id]?.meta.owners || [])],
+                },
               },
             ],
             scope: leafOrg || organization,
