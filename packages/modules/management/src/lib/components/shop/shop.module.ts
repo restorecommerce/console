@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
+import { ShopCreateComponent } from './shop-create.component';
 import { ShopIndexComponent } from './shop-index.component';
 import { ShopViewComponent } from './shop-view.component';
 import { ShopTemplateComponent } from './template/shop-template.component';
@@ -27,8 +28,16 @@ const routes: Routes = [
           .path,
         component: ShopViewComponent,
         title:
-          ROUTER.pages.main.children.management.children.organizations.children
-            .view.title,
+          ROUTER.pages.main.children.management.children.shops.children.view
+            .title,
+      },
+      {
+        path: ROUTER.pages.main.children.management.children.shops.children
+          .create.path,
+        component: ShopCreateComponent,
+        title:
+          ROUTER.pages.main.children.management.children.shops.children.create
+            .title,
       },
       {
         path: '**',
@@ -45,6 +54,7 @@ const routes: Routes = [
     ShopTemplateComponent,
     ShopIndexComponent,
     ShopViewComponent,
+    ShopCreateComponent,
     ShopViewDetailComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
