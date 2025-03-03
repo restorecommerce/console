@@ -16,4 +16,8 @@ export class ShopViewDetailComponent {
     id: string;
     shop: IShop;
   };
+
+  onAddDomain() {
+    // TODO Add domain
+  }
 }
