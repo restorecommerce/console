@@ -9,6 +9,7 @@ import { ShopEditComponent } from './shop-edit.component';
 import { ShopIndexComponent } from './shop-index.component';
 import { ShopViewComponent } from './shop-view.component';
 import { ShopTemplateComponent } from './template/shop-template.component';
+import { ShopDomainModalComponent } from './view/shop-domain-modal.component';
 import { ShopViewDetailComponent } from './view/shop-view-details.component';
 
 const routes: Routes = [
@@ -66,6 +67,7 @@ const routes: Routes = [
     ShopCreateComponent,
     ShopViewDetailComponent,
     ShopEditComponent,
+    ShopDomainModalComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })

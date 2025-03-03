@@ -83,20 +83,7 @@ export class JssFormService {
           label: 'Description',
           type: 'input',
           ...(shop ? { defaultValue: shop.description } : {}),
-          validators: [Validators.required, Validators.email],
           params: {},
-          hints: [
-            {
-              type: 'error',
-              error: 'required',
-              message: 'This field is required.',
-            },
-            {
-              type: 'error',
-              error: 'email',
-              message: 'This field should be a valid email address.',
-            },
-          ],
         },
         {
           type: 'buttons',

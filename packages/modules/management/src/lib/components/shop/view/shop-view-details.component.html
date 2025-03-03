@@ -45,7 +45,7 @@
         square
         class="emphasized-transparent"
         title="Add domain"
-        (click)="onAddDomain()"
+        (click)="onAddDomain(vm.shop)"
       >
         <vcl-icon
           class="scale155p"
@@ -53,50 +53,19 @@
         />
       </button>
     </vcl-data-list-header>
-    @for (domain of vm.shop.domains; track $index) {
+    @for (domain of vm.shop.domains; track $index; let idx = $index) {
     <vcl-data-list-item class="row align-items-center">
       <ng-container
         *ngTemplateOutlet="
           shopDomainItemTemplate;
-          context: { domain: domain, }
+          context: { domain: domain, domainIndex: idx }
         "
       ></ng-container>
     </vcl-data-list-item>
     }
   </vcl-data-list>
   }
-
-  <!-- <div class="data-list m-0 p-0">
-    <div class="row justify-content-between align-items-center">
-      <div class="my-2 rc-lv-l-heading">Roles [{{ roles.length }}]</div>
-
-
-    </div>
-    <ul class="data-list-body no-border">
-      <li
-        class="row data-list-item product-item"
-        *ngFor="let role of roles"
-      >
-        <rc-user-role-association
-          [role]="role"
-          (deleteRole)="onDeleteRole($event)"
-          (editRole)="onEditRole($event)"
-        />
-      </li>
-    </ul>
-  </div> -->
 </vcl-data-list>
-
-<ng-template
-  #shopPropItemTemplate
-  let-prop="prop"
-  let-value="value"
->
-  <div class="flex row justify-content-between align-items-center">
-    <span>{{ prop }}</span>
-    <span>{{ value }}</span>
-  </div>
-</ng-template>
 
 <ng-template
   #shopPropItemTemplate
@@ -112,6 +81,7 @@
 <ng-template
   #shopDomainItemTemplate
   let-domain="domain"
+  let-domainIndex="domainIndex"
 >
   <div class="flex row align-items-center justify-content-between">
     <span>{{ domain }}</span>
@@ -145,22 +115,13 @@
       }
     ]"
   >
-    <div>
-      <vcl-button-group class="vertical">
-        <button
-          vcl-button
-          class="transparent"
-        >
-          Edit
-        </button>
-        <button
-          class="transparent"
-          vcl-button
-          [value]="2"
-        >
-          Delete
-        </button>
-      </vcl-button-group>
-    </div>
+    <vcl-select-list>
+      <vcl-select-list-item
+        (click)="onEditDomain(vm.shop, domain, domainIndex); popover.close()"
+      >
+        Edit
+      </vcl-select-list-item>
+      <vcl-select-list-item value=""> Delete </vcl-select-list-item>
+    </vcl-select-list>
   </ng-template>
 </ng-template>

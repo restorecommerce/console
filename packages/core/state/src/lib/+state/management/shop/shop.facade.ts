@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
-  IIoRestorecommerceCountryCountryList,
+  IIoRestorecommerceShopShopList,
   IIoRestorecommerceResourcebaseReadRequest,
 } from '@console-core/graphql';
 
@@ -28,9 +28,9 @@ export class ShopFacade {
     this.store.dispatch(shopActions.shopReadOneByIdRequest({ payload }));
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(shopActions.setSelectedId({ payload }));
-  create = (payload: IIoRestorecommerceCountryCountryList) =>
+  create = (payload: IIoRestorecommerceShopShopList) =>
     this.store.dispatch(shopActions.shopCreateRequest({ payload }));
-  update = (payload: IIoRestorecommerceCountryCountryList) =>
+  update = (payload: IIoRestorecommerceShopShopList) =>
     this.store.dispatch(shopActions.shopUpdateRequest({ payload }));
   remove = (payload: { id: string }) =>
     this.store.dispatch(shopActions.shopRemoveRequest({ payload }));

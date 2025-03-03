@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import {
-  IIoRestorecommerceCountryCountryList,
+  IIoRestorecommerceShopShopList,
   IIoRestorecommerceResourcebaseReadRequest,
 } from '@console-core/graphql';
 import { IShop } from '@console-core/types';
@@ -43,7 +43,7 @@ export const setSelectedId = createAction(
 
 export const shopCreateRequest = createAction(
   '[SHOP] Shop create request',
-  props<{ payload: IIoRestorecommerceCountryCountryList }>()
+  props<{ payload: IIoRestorecommerceShopShopList }>()
 );
 
 export const shopCreateSuccess = createAction(
@@ -58,7 +58,7 @@ export const shopCreateFail = createAction(
 
 export const shopUpdateRequest = createAction(
   '[SHOP] Shop update request',
-  props<{ payload: IIoRestorecommerceCountryCountryList }>()
+  props<{ payload: IIoRestorecommerceShopShopList }>()
 );
 
 export const shopUpdateSuccess = createAction(
