@@ -115,13 +115,15 @@
       }
     ]"
   >
-    <vcl-select-list>
+    <vcl-select-list value="">
       <vcl-select-list-item
         (click)="onEditDomain(vm.shop, domain, domainIndex); popover.close()"
       >
         Edit
       </vcl-select-list-item>
-      <vcl-select-list-item value=""> Delete </vcl-select-list-item>
+      <vcl-select-list-item (click)="onDeleteDomain(vm.shop, domainIndex)">
+        Delete
+      </vcl-select-list-item>
     </vcl-select-list>
   </ng-template>
 </ng-template>
