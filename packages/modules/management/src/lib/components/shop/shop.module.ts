@@ -5,6 +5,7 @@ import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
 import { ShopCreateComponent } from './shop-create.component';
+import { ShopEditComponent } from './shop-edit.component';
 import { ShopIndexComponent } from './shop-index.component';
 import { ShopViewComponent } from './shop-view.component';
 import { ShopTemplateComponent } from './template/shop-template.component';
@@ -40,6 +41,14 @@ const routes: Routes = [
             .title,
       },
       {
+        path: ROUTER.pages.main.children.management.children.shops.children.edit
+          .path,
+        component: ShopEditComponent,
+        title:
+          ROUTER.pages.main.children.management.children.shops.children.edit
+            .title,
+      },
+      {
         path: '**',
         redirectTo:
           ROUTER.pages.main.children.management.children.shops.children.index
@@ -56,6 +65,7 @@ const routes: Routes = [
     ShopViewComponent,
     ShopCreateComponent,
     ShopViewDetailComponent,
+    ShopEditComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
