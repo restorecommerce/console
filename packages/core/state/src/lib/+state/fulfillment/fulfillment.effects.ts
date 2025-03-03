@@ -233,19 +233,11 @@ export class FulfillmentEffects {
       concatLatestFrom(() => [
         this.organizationFacade.globalOrganizationLeafId$,
         this.organizationFacade.globalOrganizationId$,
-        this.fulfilmentFacade.entities$,
       ]),
-      switchMap(([{ payload }, leafOrg, organization, entities]) =>
+      switchMap(([{ payload }, leafOrg, organization]) =>
         this.fulfillmentService
           .submit({
-            items: [
-              {
-                id: payload.id,
-                meta: {
-                  owners: [...(entities[payload.id]?.meta.owners || [])],
-                },
-              },
-            ],
+            items: [payload],
             scope: leafOrg || organization,
           })
           .pipe(
