@@ -7736,6 +7736,9 @@ export type FulfillmentFulfillmentMutateMutation = {
             payload?: {
               __typename?: 'IoRestorecommerceFulfillmentFulfillment';
               id?: string | null;
+              customerId?: string | null;
+              shopId?: string | null;
+              userId?: string | null;
               fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
               labels?: Array<{
                 __typename?: 'IoRestorecommerceFulfillmentLabel';
@@ -7750,6 +7753,76 @@ export type FulfillmentFulfillmentMutateMutation = {
                   code?: number | null;
                   message?: string | null;
                 } | null;
+              }> | null;
+              packaging?: {
+                __typename?: 'IoRestorecommerceFulfillmentPackaging';
+                exportType?: string | null;
+                notify?: string | null;
+                invoiceNumber?: string | null;
+                exportDescription?: string | null;
+                parcels?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentParcel';
+                  id?: string | null;
+                  productId?: string | null;
+                  variantId?: string | null;
+                  items?: Array<{
+                    __typename?: 'IoRestorecommerceFulfillmentItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                    quantity?: number | null;
+                    package?: {
+                      __typename?: 'IoRestorecommerceProductPackage';
+                      rotatable?: boolean | null;
+                      weightInKg?: number | null;
+                      sizeInCm?: {
+                        __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                        height?: number | null;
+                        width?: number | null;
+                        length?: number | null;
+                      } | null;
+                    } | null;
+                  }> | null;
+                  package?: {
+                    __typename?: 'IoRestorecommerceProductPackage';
+                    rotatable?: boolean | null;
+                    weightInKg?: number | null;
+                    sizeInCm?: {
+                      __typename?: 'IoRestorecommerceGeometryBoundingBox3D';
+                      height?: number | null;
+                      width?: number | null;
+                      length?: number | null;
+                    } | null;
+                  } | null;
+                }> | null;
+                sender?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  comments?: string | null;
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                  } | null;
+                  contact?: {
+                    __typename?: 'IoRestorecommerceAddressContact';
+                    name?: string | null;
+                    email?: string | null;
+                    phone?: string | null;
+                  } | null;
+                } | null;
+                recipient?: {
+                  __typename?: 'IoRestorecommerceAddressShippingAddress';
+                  address?: {
+                    __typename?: 'IoRestorecommerceAddressAddress';
+                    id?: string | null;
+                    postcode?: string | null;
+                    countryId?: string | null;
+                  } | null;
+                } | null;
+              } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceType?: string | null;
+                instanceId?: string | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -12233,23 +12306,7 @@ export const FulfillmentFulfillmentMutateDocument = gql`
             }
             items {
               payload {
-                id
-                labels {
-                  pdf
-                  png
-                  shipmentNumber
-                  state
-                  parcelId
-                  url
-                  status {
-                    code
-                    message
-                  }
-                }
-                fulfillmentState
-                meta {
-                  ...MetaFragment
-                }
+                ...FulfillmentFragment
               }
             }
           }
@@ -12257,7 +12314,7 @@ export const FulfillmentFulfillmentMutateDocument = gql`
       }
     }
   }
-  ${MetaFragmentFragmentDoc}
+  ${FulfillmentFragmentFragmentDoc}
 `;
 
 @Injectable({
