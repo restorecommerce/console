@@ -44,6 +44,7 @@ export class FulfillmentViewDetailsComponent implements OnInit {
     this.labelModalLayer = this.layerService.create(
       FulfilmentLabelModalComponent,
       {
+        panelClass: ['h-90p', 'py-2'],
         closeOnBackdropClick: false,
         closeOnEscape: false,
       }

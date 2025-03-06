@@ -11,68 +11,70 @@
     [noBorder]="true"
   >
     @for (item of this.layer.data.parcel.items; track item.parcelId) {
-    <vcl-data-list mode="none">
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Product id</span>
-          <a
-            [routerLink]="
-              productRouter.view.getLink({ id: item.productId || '' })
-            "
-            >{{ item.productId }}</a
-          >
-        </div>
-      </vcl-data-list-item>
+    <div class="p-2 mb-2 border-e8">
+      <vcl-data-list mode="none">
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Product id</span>
+            <a
+              [routerLink]="
+                productRouter.view.getLink({ id: item.productId || '' })
+              "
+              >{{ item.productId }}</a
+            >
+          </div>
+        </vcl-data-list-item>
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Product variant id</span>
-          <span>{{ item.variantId }}</span>
-        </div>
-      </vcl-data-list-item>
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Product variant id</span>
+            <span>{{ item.variantId }}</span>
+          </div>
+        </vcl-data-list-item>
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Quantity</span>
-          <span>{{ item.quantity }}</span>
-        </div>
-      </vcl-data-list-item>
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Quantity</span>
+            <span>{{ item.quantity }}</span>
+          </div>
+        </vcl-data-list-item>
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Weight</span>
-          <span>{{ item.package?.weightInKg }} Kg</span>
-        </div>
-      </vcl-data-list-item>
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Weight</span>
+            <span>{{ item.package?.weightInKg }} Kg</span>
+          </div>
+        </vcl-data-list-item>
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Length</span>
-          <span>{{ item.package?.sizeInCm?.length }} Cm</span>
-        </div></vcl-data-list-item
-      >
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Length</span>
+            <span>{{ item.package?.sizeInCm?.length }} Cm</span>
+          </div></vcl-data-list-item
+        >
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Width</span>
-          <span>{{ item.package?.sizeInCm?.width }} Cm</span>
-        </div></vcl-data-list-item
-      >
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Width</span>
+            <span>{{ item.package?.sizeInCm?.width }} Cm</span>
+          </div></vcl-data-list-item
+        >
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Height</span>
-          <span>{{ item.package?.sizeInCm?.height }} Cm</span>
-        </div></vcl-data-list-item
-      >
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Height</span>
+            <span>{{ item.package?.sizeInCm?.height }} Cm</span>
+          </div></vcl-data-list-item
+        >
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-items-center">
-          <span>Rotatable</span>
-          <span>{{ item.package?.rotatable }}</span>
-        </div></vcl-data-list-item
-      >
-    </vcl-data-list>
+        <vcl-data-list-item>
+          <div class="flex row justify-content-between align-items-center">
+            <span>Rotatable</span>
+            <span>{{ item.package?.rotatable }}</span>
+          </div></vcl-data-list-item
+        >
+      </vcl-data-list>
+    </div>
     }
   </vcl-data-list>
 </vcl-panel-dialog>

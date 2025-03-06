@@ -9,6 +9,10 @@ import { ROUTER } from '@console-core/config';
   templateUrl: './fulfillment-label-modal.component.html',
   styles: [
     `
+      .border-e8 {
+        border: 1px solid #e8e8e8;
+      }
+
       vcl-data-list-item {
         display: flex;
         flex-direction: column;
