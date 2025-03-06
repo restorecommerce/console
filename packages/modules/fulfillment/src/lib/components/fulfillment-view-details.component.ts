@@ -9,6 +9,7 @@ import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
 import {
+  IoRestorecommerceFulfillmentFulfillmentState,
   IoRestorecommerceFulfillmentParcel,
   Maybe,
 } from '@console-core/graphql';
@@ -34,6 +35,8 @@ export class FulfillmentViewDetailsComponent implements OnInit {
   @Input({ required: true }) fulfillment!: IFulfillment;
 
   labelModalLayer!: LayerRef;
+
+  FulfillmentFulfillmentState = IoRestorecommerceFulfillmentFulfillmentState;
 
   orderRouter = ROUTER.pages.main.children.orders.children;
   productRouter = ROUTER.pages.main.children.products.children;

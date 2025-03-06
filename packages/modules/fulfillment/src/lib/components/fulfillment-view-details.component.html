@@ -2,36 +2,36 @@
   mode="none"
   [noBorder]="true"
 >
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">FULFILMENT DETAILS</span>
+  <vcl-data-list-header class="mb-3">
+    <span class="rc-lv-l-heading">FULFILMENT DETAILS</span>
   </vcl-data-list-header>
 
   <vcl-data-list-item>
-    <!-- Removed since this is not contained in the parcel data. -->
-    <!-- <div class="row justify-content-between align-items-center">
-      <span>Fulfilment courier</span>
-      <span>{{ '' }}</span>
-    </div> -->
-
-    <div class="row justify-content-between align-items-center">
+    <div class="flex row justify-content-between align-items-center">
       <span>Fulfilment order</span>
       <a
         [routerLink]="orderRouter.view.getLink({ id: fulfillment.references?.[0]?.instanceId || '' })"
         >{{ fulfillment.references?.[0]?.instanceId }}</a
       >
     </div>
+  </vcl-data-list-item>
 
-    <div class="row justify-content-between align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-between align-items-center">
       <span>Fulfilment product</span>
       <span>{{ fulfillment.packaging?.parcels?.[0]?.productId }}</span>
-    </div>
+    </div></vcl-data-list-item
+  >
 
-    <div class="row justify-content-between align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-between align-items-center">
       <span>Fulfilment variant</span>
       <span>{{ fulfillment.packaging?.parcels?.[0]?.variantId }}</span>
-    </div>
+    </div></vcl-data-list-item
+  >
 
-    <div class="row justify-content-betweeen align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-betweeen align-items-center">
       <div class="flex text">Fulfilment state:</div>
       <div class="flex text align-right rc-lv-label">
         <span
@@ -52,58 +52,38 @@
   mode="none"
   [noBorder]="true"
 >
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">Customer Info</span>
-  </vcl-data-list-header>
-
-  <div>...</div>
-</vcl-data-list>
-
-<vcl-data-list
-  mode="none"
-  [noBorder]="true"
->
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">Payments and Invoice</span>
-  </vcl-data-list-header>
-
-  <div>...</div>
-</vcl-data-list>
-
-<vcl-data-list
-  mode="none"
-  [noBorder]="true"
->
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">Labels</span>
+  <vcl-data-list-header class="mb-3">
+    <span class="rc-lv-l-heading">Labels</span>
   </vcl-data-list-header>
 
   <vcl-data-list
     mode="none"
     [noBorder]="true"
   >
-    <ng-container
-      *ngIf="fulfillment.fulfillmentState !== 'PENDING'; else noLabel"
-    ></ng-container>
-    <vcl-data-list-item *ngFor="let label of fulfillment.labels">
-      <div class="row justify-content-between align-items-center">
+    @for (item of fulfillment.labels; track item.parcelId) {
+    <vcl-data-list-item>
+      <div class="flex row justify-content-between align-items-center">
         <span>Parcel Id</span>
         <span
           class="clickable-label"
-          (click)="onClickLabel(label.parcelId)"
-          >{{ label.parcelId }}</span
+          (click)="onClickLabel(item.parcelId)"
+          >{{ item.parcelId }}</span
         >
       </div>
+    </vcl-data-list-item>
 
-      <div class="row justify-content-between align-items-center">
+    <vcl-data-list-item>
+      <div class="flex row justify-content-between align-items-center">
         <span>Shipping number</span>
-        <span>{{ label.shipmentNumber }}</span>
+        <span>{{ item.shipmentNumber }}</span>
       </div>
+    </vcl-data-list-item>
 
-      <div class="row justify-content-between align-items-center">
+    <vcl-data-list-item>
+      <div class="flex row justify-content-between align-items-center">
         <span>
           <a
-            [href]="label.url"
+            [href]="item.url"
             target="_blank"
             rel="noopener noreferrer"
             >Download</a
@@ -111,25 +91,25 @@
         </span>
       </div>
     </vcl-data-list-item>
+    } @if (fulfillment.fulfillmentState === FulfillmentFulfillmentState.Pending)
+    {
+    <vcl-data-list-item>
+      <div>No label available. You need to submit this fulfillment</div>
+    </vcl-data-list-item>
+    }
   </vcl-data-list>
-
-  <ng-template #noLabel>
-    <div>
-      No label available. You need to submit this fulfillment
-    </div></ng-template
-  >
 </vcl-data-list>
 
 <vcl-data-list
   mode="none"
   [noBorder]="true"
 >
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">Total items size</span>
+  <vcl-data-list-header class="mb-3">
+    <span class="rc-lv-l-heading">Total items size</span>
   </vcl-data-list-header>
 
-  <div>
-    <div class="row justify-content-between align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-between align-items-center">
       <span>Length</span>
       <span
         >{{
@@ -138,8 +118,10 @@
         Cm</span
       >
     </div>
+  </vcl-data-list-item>
 
-    <div class="row justify-content-between align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-between align-items-center">
       <span>Width</span>
       <span
         >{{ (fulfillment.packaging?.parcels?.[0]?.items || []) |
@@ -147,8 +129,10 @@
         Cm</span
       >
     </div>
+  </vcl-data-list-item>
 
-    <div class="row justify-content-between align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-between align-items-center">
       <span>Height</span>
       <span
         >{{ (fulfillment.packaging?.parcels?.[0]?.items || []) |
@@ -156,13 +140,15 @@
         Cm</span
       >
     </div>
+  </vcl-data-list-item>
 
-    <div class="row justify-content-between align-items-center">
+  <vcl-data-list-item>
+    <div class="flex row justify-content-between align-items-center">
       <span>Weight</span>
       <span
         >{{ (fulfillment.packaging?.parcels?.[0]?.items || []) | parcelTotalWeight }}
         Kg</span
       >
     </div>
-  </div>
+  </vcl-data-list-item>
 </vcl-data-list>
