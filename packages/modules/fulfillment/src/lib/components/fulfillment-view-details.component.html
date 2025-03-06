@@ -74,7 +74,7 @@
   mode="none"
   [noBorder]="true"
 >
-  <vcl-data-list-header (click)="onClickLabel()">
+  <vcl-data-list-header>
     <span class="my-2 rc-lv-l-heading">Labels</span>
   </vcl-data-list-header>
 
@@ -86,10 +86,13 @@
       *ngIf="fulfillment.fulfillmentState !== 'PENDING'; else noLabel"
     ></ng-container>
     <vcl-data-list-item *ngFor="let label of fulfillment.labels">
-      <!-- TODO Click on the parcel ID and you shall see more info about the parcel... -->
       <div class="row justify-content-between align-items-center">
         <span>Parcel Id</span>
-        <span>{{ label.parcelId }}</span>
+        <span
+          class="clickable-label"
+          (click)="onClickLabel(label.parcelId)"
+          >{{ label.parcelId }}</span
+        >
       </div>
 
       <div class="row justify-content-between align-items-center">
@@ -103,7 +106,7 @@
             [href]="label.url"
             target="_blank"
             rel="noopener noreferrer"
-            >URL</a
+            >Download</a
           >
         </span>
       </div>
@@ -115,70 +118,6 @@
       No label available. You need to submit this fulfillment
     </div></ng-template
   >
-</vcl-data-list>
-
-<vcl-data-list
-  mode="none"
-  [noBorder]="true"
->
-  <vcl-data-list-header>
-    <span class="my-2 rc-lv-l-heading">Parcel items</span>
-  </vcl-data-list-header>
-
-  <ng-container
-    *ngFor="let parcelItem of fulfillment.packaging?.parcels?.[0]?.items"
-  >
-    <vcl-data-list-item class="mb-2">
-      <div>
-        <!-- Wrapped in a div so as to allow for more props when
-         we expand upon the item. -->
-        <div class="row justify-content-between align-items-center">
-          <span>Product id</span>
-          <a
-            [routerLink]="
-              productRouter.view.getLink({ id: parcelItem.productId || '' })
-            "
-            >{{ parcelItem.productId }}</a
-          >
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Product variant id</span>
-          <span>{{ parcelItem.variantId }}</span>
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Quantity</span>
-          <span>{{ parcelItem.quantity }}</span>
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Weight</span>
-          <span>{{ parcelItem.package?.weightInKg }} Kg</span>
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Length</span>
-          <span>{{ parcelItem.package?.sizeInCm?.length }} Cm</span>
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Width</span>
-          <span>{{ parcelItem.package?.sizeInCm?.width }} Cm</span>
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Height</span>
-          <span>{{ parcelItem.package?.sizeInCm?.height }} Cm</span>
-        </div>
-
-        <div class="row justify-content-between align-items-center">
-          <span>Rotatable</span>
-          <span>{{ parcelItem.package?.rotatable }}</span>
-        </div>
-      </div>
-    </vcl-data-list-item>
-  </ng-container>
 </vcl-data-list>
 
 <vcl-data-list

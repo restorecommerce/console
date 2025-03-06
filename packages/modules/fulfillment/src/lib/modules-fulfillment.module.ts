@@ -6,12 +6,10 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { FulfillmentCreateComponent } from './components/fulfillment-create.component';
 import { FulfillmentEditComponent } from './components/fulfillment-edit.component';
 import { FulfillmentIndexComponent } from './components/fulfillment-index.component';
-import {
-  FulfillmentViewDetailsComponent,
-  LabelModalComponent,
-} from './components/fulfillment-view-details.component';
+import { FulfillmentViewDetailsComponent } from './components/fulfillment-view-details.component';
 import { FulfillmentViewComponent } from './components/fulfillment-view.component';
 import { FulfillmentTemplateComponent } from './components/template/fulfillment-template.component';
+import { FulfilmentLabelModalComponent } from './components/view/fulfillment-label-modal.component';
 import { modulesFulfillmentRoutes } from './lib.routes';
 import { ParcelsTotalSizePipe } from './pipes/parcels-total-size.pipe';
 import { ParcelsTotalWeightPipe } from './pipes/parcels-total-weight.pipe';
@@ -26,7 +24,7 @@ import { ParcelsTotalWeightPipe } from './pipes/parcels-total-weight.pipe';
     FulfillmentTemplateComponent,
     ParcelsTotalSizePipe,
     ParcelsTotalWeightPipe,
-    LabelModalComponent,
+    FulfilmentLabelModalComponent,
   ],
   imports: [
     ModulesUiModule.forChild(),

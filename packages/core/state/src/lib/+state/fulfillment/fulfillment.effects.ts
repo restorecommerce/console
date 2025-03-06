@@ -21,7 +21,6 @@ import {
   withLatestOrganizationData,
 } from '@console-core/state';
 import { IoRestorecommerceResourcebaseFilterOperation } from '@console-core/graphql';
-import { concatLatestFrom } from '@ngrx/operators';
 
 @Injectable()
 export class FulfillmentEffects {
@@ -230,15 +229,10 @@ export class FulfillmentEffects {
   fulfillmentSubmitRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(fulfillmentActions.fulfillmentSubmitRequest),
-      concatLatestFrom(() => [
-        this.organizationFacade.globalOrganizationLeafId$,
-        this.organizationFacade.globalOrganizationId$,
-      ]),
-      switchMap(([{ payload }, leafOrg, organization]) =>
+      switchMap(({ payload }) =>
         this.fulfillmentService
           .submit({
             items: [payload],
-            scope: leafOrg || organization,
           })
           .pipe(
             tap((result) => {
