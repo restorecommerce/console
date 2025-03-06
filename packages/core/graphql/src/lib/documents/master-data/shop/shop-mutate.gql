@@ -1,0 +1,41 @@
+mutation MasterDataShopMutate($input: IIoRestorecommerceShopShopList!) {
+  master_data {
+    shop {
+      Mutate(input: $input) {
+        details {
+          items {
+            payload {
+              ...ShopFragment
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation MasterDataShopDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  master_data {
+    shop {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
