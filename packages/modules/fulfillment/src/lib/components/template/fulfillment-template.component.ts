@@ -17,6 +17,7 @@ import { SubSink } from 'subsink';
 import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
+  IoRestorecommerceFulfillmentFulfillmentState,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import { FulfillmentFacade, RouterFacade } from '@console-core/state';
@@ -31,6 +32,8 @@ import { ICrudFeature, EUrlSegment, IFulfillment } from '@console-core/types';
 export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter = ROUTER.pages.main.children.fulfillments.children;
+
+  FulfillmentFulfillmentState = IoRestorecommerceFulfillmentFulfillmentState;
 
   feature: Readonly<ICrudFeature> = {
     name: {

@@ -33,6 +33,8 @@
     </ng-container>
   </ng-container>
 
+  @if (vm.selectedFulfillment?.fulfillmentState ===
+  FulfillmentFulfillmentState.Pending) {
   <ng-container rc-crud-actions>
     <button
       (click)="onSubmitFulfillment(vm.selectedFulfillmentId)"
@@ -44,6 +46,7 @@
       <vcl-icon icon="mdi:send-outline" />
     </button>
   </ng-container>
+  }
 
   <ng-container rc-crud-router-outlet>
     <router-outlet />
