@@ -91,7 +91,7 @@
       <vcl-label>Currency</vcl-label>
       <vcl-select placeholder="Select currency">
         <vcl-select-list formControlName="currencyId">
-          @for (item of currencies; track $index) {
+          @for (item of currencies$ | async; track $index) {
           <vcl-select-list-item [value]="item.value">
             {{ item.label }}
           </vcl-select-list-item>

@@ -21,7 +21,12 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { ProductFacade, RouterFacade, TaxFacade } from '@console-core/state';
+import {
+  CurrencyFacade,
+  ProductFacade,
+  RouterFacade,
+  TaxFacade,
+} from '@console-core/state';
 import { ICrudFeature, EUrlSegment, IProduct } from '@console-core/types';
 
 @Component({
@@ -145,12 +150,14 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
+    private readonly currencyFacade: CurrencyFacade,
     private readonly productFacade: ProductFacade,
     private readonly routerFacade: RouterFacade,
     private readonly taxFacade: TaxFacade
   ) {}
 
   ngOnInit(): void {
+    this.currencyFacade.read({});
     this.taxFacade.read({});
     this.subscriptions.sink = this.triggerSearch$.subscribe();
     this.subscriptions.sink = this.triggerPagination$.subscribe();

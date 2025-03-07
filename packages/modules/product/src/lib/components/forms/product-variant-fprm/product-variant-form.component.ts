@@ -13,7 +13,7 @@ import {
   IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceProductPhysicalVariant,
 } from '@console-core/graphql';
-import { TaxFacade } from '@console-core/state';
+import { CurrencyFacade, TaxFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
 import { buildProductVariantReactiveForm } from '../../../jss-forms/product-variant-form';
@@ -35,13 +35,26 @@ export class ProductVariantFormComponent implements OnInit {
   templates: IoRestorecommerceProductPhysicalVariant[] = [];
   productVariantForm!: FormGroup;
 
+  currencies$ = this.currencyFacade.all$.pipe(
+    map((currencies) =>
+      currencies.map((currency) => ({
+        label: currency.name,
+        value: currency.id,
+      }))
+    )
+  );
+
   taxes$ = this.taxFacade.all$.pipe(
     map((taxes) =>
       taxes.map((tax) => ({ label: tax.id, value: tax.name ?? tax.id }))
     )
   );
 
-  constructor(private fb: FormBuilder, private taxFacade: TaxFacade) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly taxFacade: TaxFacade,
+    private readonly currencyFacade: CurrencyFacade
+  ) {}
 
   ngOnInit(): void {
     this.templates = this.product?.product?.physical?.templates || [];
@@ -77,23 +90,11 @@ export class ProductVariantFormComponent implements OnInit {
           });
         }
       });
+
+    this.currencies$.subscribe((currencies) => {
+      console.log('****Currency:', currencies);
+    });
   }
-
-  // TODO Get available taxes from the store.
-  taxes = [
-    {
-      label: 'Germany reduced rate',
-      value: 'germany-reduced-rate',
-    },
-  ];
-
-  // TODO Get available currency from the store.
-  currencies = [
-    {
-      label: 'USD',
-      value: 'USD',
-    },
-  ];
 
   onSubmit(values: Partial<IIoRestorecommerceProductPhysicalVariant>) {
     this.submitVariant.emit(values);
