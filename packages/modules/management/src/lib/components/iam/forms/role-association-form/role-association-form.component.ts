@@ -9,7 +9,10 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
-import { IRoleAssociationScopingInstance } from '@console-core/types';
+import {
+  IRoleAssociationScopingInstance,
+  IRoleInstance,
+} from '@console-core/types';
 
 @Component({
   selector: 'app-role-association-form',
@@ -121,15 +124,10 @@ export class RoleAssociationFormComponent implements OnInit {
     this.associations.removeAt(index);
   }
 
-  // TODO Fix (DRY) out these role assocaitions types...
   onSubmit(): void {
     if (this.form.valid) {
       this.roleAssociationSubmit.emit(
-        this.form.value.associations as {
-          role: string;
-          instanceType: string;
-          instanceId: string;
-        }[]
+        this.form.value.associations as IRoleInstance[]
       );
     }
   }

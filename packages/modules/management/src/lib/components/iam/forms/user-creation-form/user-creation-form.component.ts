@@ -42,7 +42,7 @@ export class UserCreationFormComponent {
   form!: NgForm;
 
   onReset(): void {
-    // TODO this.editForm.form.resetForm(this.schema);
+    this.form.resetForm(this.schema);
   }
 
   onSubmit(): void {

@@ -52,3 +52,9 @@ export interface IRoleAssociationScopingInstance {
   role: IRole | null;
   scopingInstances: TScopingInstances;
 }
+
+export interface IRoleInstance {
+  role: string;
+  instanceType: string;
+  instanceId: string;
+}
