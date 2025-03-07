@@ -7,11 +7,13 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { map } from 'rxjs';
 
 import {
   IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceProductPhysicalVariant,
 } from '@console-core/graphql';
+import { TaxFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
 import { buildProductVariantReactiveForm } from '../../../jss-forms/product-variant-form';
@@ -33,7 +35,13 @@ export class ProductVariantFormComponent implements OnInit {
   templates: IoRestorecommerceProductPhysicalVariant[] = [];
   productVariantForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  taxes$ = this.taxFacade.all$.pipe(
+    map((taxes) =>
+      taxes.map((tax) => ({ label: tax.id, value: tax.name ?? tax.id }))
+    )
+  );
+
+  constructor(private fb: FormBuilder, private taxFacade: TaxFacade) {}
 
   ngOnInit(): void {
     this.templates = this.product?.product?.physical?.templates || [];
@@ -77,34 +85,6 @@ export class ProductVariantFormComponent implements OnInit {
       label: 'Germany reduced rate',
       value: 'germany-reduced-rate',
     },
-    {
-      label: 'Germany standard rate',
-      value: 'germany-standard-rate',
-    },
-    {
-      label: 'Switzerland heavily reduced rate',
-      value: 'switzerland-heavily-reduced-rate',
-    },
-    {
-      label: 'Switzerland reduced rate',
-      value: 'switzerland-reduced-rate',
-    },
-    {
-      label: 'Switzerland standard rate',
-      value: 'switzerland-standard-rate',
-    },
-    {
-      label: 'Belgium heavily reduced rate',
-      value: 'belgium-heavily-reduced-rate',
-    },
-    {
-      label: 'Belgium standard rate',
-      value: 'belgium-standard-rate',
-    },
-    {
-      label: 'France standard rate',
-      value: 'france-standard-rate',
-    },
   ];
 
   // TODO Get available currency from the store.
@@ -112,10 +92,6 @@ export class ProductVariantFormComponent implements OnInit {
     {
       label: 'USD',
       value: 'USD',
-    },
-    {
-      label: 'EURO',
-      value: 'EUR',
     },
   ];
 
