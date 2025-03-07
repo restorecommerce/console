@@ -117,7 +117,7 @@
       <vcl-checkbox formControlName="sale">On sales</vcl-checkbox>
     </vcl-form-control-group>
 
-    <!-- TODO: Condiional: if sales is true. -->
+    @if(productVariantForm.get('price')?.get('sale')?.value) {
     <vcl-form-control-group>
       <vcl-label>Sale price</vcl-label>
       <vcl-input-field>
@@ -127,6 +127,7 @@
         />
       </vcl-input-field>
     </vcl-form-control-group>
+    }
   </fieldset>
 
   <div class="loose-button-group mt-3">
