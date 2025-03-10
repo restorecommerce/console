@@ -6112,44 +6112,6 @@ export type CustomerFragmentFragment = {
         width?: number | null;
         url?: string | null;
       } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-          owners?: Array<{
-            __typename?: 'IoRestorecommerceAttributeAttribute';
-            id?: string | null;
-            value?: string | null;
-            attributes?: Array<{
-              __typename?: 'IoRestorecommerceAttributeAttribute';
-              id?: string | null;
-              value?: string | null;
-            }> | null;
-          }> | null;
-        } | null;
-      }> | null;
       paymentMethods?: Array<{
         __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
         id?: string | null;
@@ -6194,44 +6156,6 @@ export type CustomerFragmentFragment = {
         width?: number | null;
         url?: string | null;
       } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-          owners?: Array<{
-            __typename?: 'IoRestorecommerceAttributeAttribute';
-            id?: string | null;
-            value?: string | null;
-            attributes?: Array<{
-              __typename?: 'IoRestorecommerceAttributeAttribute';
-              id?: string | null;
-              value?: string | null;
-            }> | null;
-          }> | null;
-        } | null;
-      }> | null;
       paymentMethods?: Array<{
         __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
         id?: string | null;
@@ -6720,44 +6644,6 @@ export type OrderFragmentFragment = {
         width?: number | null;
         url?: string | null;
       } | null;
-      contactPoints?: Array<{
-        __typename?: 'IoRestorecommerceContactPointContactPoint';
-        id?: string | null;
-        name?: string | null;
-        description?: string | null;
-        email?: string | null;
-        telephone?: string | null;
-        website?: string | null;
-        timezone?: {
-          __typename?: 'IoRestorecommerceTimezoneTimezone';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-        } | null;
-        locale?: {
-          __typename?: 'IoRestorecommerceLocaleLocale';
-          id?: string | null;
-          value?: string | null;
-          description?: string | null;
-        } | null;
-        meta?: {
-          __typename?: 'IoRestorecommerceMetaMeta';
-          created?: unknown | null;
-          modified?: unknown | null;
-          createdBy?: string | null;
-          modifiedBy?: string | null;
-          owners?: Array<{
-            __typename?: 'IoRestorecommerceAttributeAttribute';
-            id?: string | null;
-            value?: string | null;
-            attributes?: Array<{
-              __typename?: 'IoRestorecommerceAttributeAttribute';
-              id?: string | null;
-              value?: string | null;
-            }> | null;
-          }> | null;
-        } | null;
-      }> | null;
       paymentMethods?: Array<{
         __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
         id?: string | null;
@@ -6822,44 +6708,6 @@ export type OrderFragmentFragment = {
           width?: number | null;
           url?: string | null;
         } | null;
-        contactPoints?: Array<{
-          __typename?: 'IoRestorecommerceContactPointContactPoint';
-          id?: string | null;
-          name?: string | null;
-          description?: string | null;
-          email?: string | null;
-          telephone?: string | null;
-          website?: string | null;
-          timezone?: {
-            __typename?: 'IoRestorecommerceTimezoneTimezone';
-            id?: string | null;
-            value?: string | null;
-            description?: string | null;
-          } | null;
-          locale?: {
-            __typename?: 'IoRestorecommerceLocaleLocale';
-            id?: string | null;
-            value?: string | null;
-            description?: string | null;
-          } | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-            owners?: Array<{
-              __typename?: 'IoRestorecommerceAttributeAttribute';
-              id?: string | null;
-              value?: string | null;
-              attributes?: Array<{
-                __typename?: 'IoRestorecommerceAttributeAttribute';
-                id?: string | null;
-                value?: string | null;
-              }> | null;
-            }> | null;
-          } | null;
-        }> | null;
         paymentMethods?: Array<{
           __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
           id?: string | null;
@@ -6904,44 +6752,6 @@ export type OrderFragmentFragment = {
           width?: number | null;
           url?: string | null;
         } | null;
-        contactPoints?: Array<{
-          __typename?: 'IoRestorecommerceContactPointContactPoint';
-          id?: string | null;
-          name?: string | null;
-          description?: string | null;
-          email?: string | null;
-          telephone?: string | null;
-          website?: string | null;
-          timezone?: {
-            __typename?: 'IoRestorecommerceTimezoneTimezone';
-            id?: string | null;
-            value?: string | null;
-            description?: string | null;
-          } | null;
-          locale?: {
-            __typename?: 'IoRestorecommerceLocaleLocale';
-            id?: string | null;
-            value?: string | null;
-            description?: string | null;
-          } | null;
-          meta?: {
-            __typename?: 'IoRestorecommerceMetaMeta';
-            created?: unknown | null;
-            modified?: unknown | null;
-            createdBy?: string | null;
-            modifiedBy?: string | null;
-            owners?: Array<{
-              __typename?: 'IoRestorecommerceAttributeAttribute';
-              id?: string | null;
-              value?: string | null;
-              attributes?: Array<{
-                __typename?: 'IoRestorecommerceAttributeAttribute';
-                id?: string | null;
-                value?: string | null;
-              }> | null;
-            }> | null;
-          } | null;
-        }> | null;
         paymentMethods?: Array<{
           __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
           id?: string | null;
@@ -7268,44 +7078,6 @@ export type OrganizationFragmentFragment = {
     width?: number | null;
     url?: string | null;
   } | null;
-  contactPoints?: Array<{
-    __typename?: 'IoRestorecommerceContactPointContactPoint';
-    id?: string | null;
-    name?: string | null;
-    description?: string | null;
-    email?: string | null;
-    telephone?: string | null;
-    website?: string | null;
-    timezone?: {
-      __typename?: 'IoRestorecommerceTimezoneTimezone';
-      id?: string | null;
-      value?: string | null;
-      description?: string | null;
-    } | null;
-    locale?: {
-      __typename?: 'IoRestorecommerceLocaleLocale';
-      id?: string | null;
-      value?: string | null;
-      description?: string | null;
-    } | null;
-    meta?: {
-      __typename?: 'IoRestorecommerceMetaMeta';
-      created?: unknown | null;
-      modified?: unknown | null;
-      createdBy?: string | null;
-      modifiedBy?: string | null;
-      owners?: Array<{
-        __typename?: 'IoRestorecommerceAttributeAttribute';
-        id?: string | null;
-        value?: string | null;
-        attributes?: Array<{
-          __typename?: 'IoRestorecommerceAttributeAttribute';
-          id?: string | null;
-          value?: string | null;
-        }> | null;
-      }> | null;
-    } | null;
-  }> | null;
   paymentMethods?: Array<{
     __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
     id?: string | null;
@@ -7451,44 +7223,6 @@ export type ShopFragmentFragment = {
       width?: number | null;
       url?: string | null;
     } | null;
-    contactPoints?: Array<{
-      __typename?: 'IoRestorecommerceContactPointContactPoint';
-      id?: string | null;
-      name?: string | null;
-      description?: string | null;
-      email?: string | null;
-      telephone?: string | null;
-      website?: string | null;
-      timezone?: {
-        __typename?: 'IoRestorecommerceTimezoneTimezone';
-        id?: string | null;
-        value?: string | null;
-        description?: string | null;
-      } | null;
-      locale?: {
-        __typename?: 'IoRestorecommerceLocaleLocale';
-        id?: string | null;
-        value?: string | null;
-        description?: string | null;
-      } | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-        owners?: Array<{
-          __typename?: 'IoRestorecommerceAttributeAttribute';
-          id?: string | null;
-          value?: string | null;
-          attributes?: Array<{
-            __typename?: 'IoRestorecommerceAttributeAttribute';
-            id?: string | null;
-            value?: string | null;
-          }> | null;
-        }> | null;
-      } | null;
-    }> | null;
     paymentMethods?: Array<{
       __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
       id?: string | null;
@@ -9513,44 +9247,6 @@ export type MasterDataOrganizationMutateMutation = {
                 width?: number | null;
                 url?: string | null;
               } | null;
-              contactPoints?: Array<{
-                __typename?: 'IoRestorecommerceContactPointContactPoint';
-                id?: string | null;
-                name?: string | null;
-                description?: string | null;
-                email?: string | null;
-                telephone?: string | null;
-                website?: string | null;
-                timezone?: {
-                  __typename?: 'IoRestorecommerceTimezoneTimezone';
-                  id?: string | null;
-                  value?: string | null;
-                  description?: string | null;
-                } | null;
-                locale?: {
-                  __typename?: 'IoRestorecommerceLocaleLocale';
-                  id?: string | null;
-                  value?: string | null;
-                  description?: string | null;
-                } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                  owners?: Array<{
-                    __typename?: 'IoRestorecommerceAttributeAttribute';
-                    id?: string | null;
-                    value?: string | null;
-                    attributes?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                    }> | null;
-                  }> | null;
-                } | null;
-              }> | null;
               paymentMethods?: Array<{
                 __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                 id?: string | null;
@@ -9645,44 +9341,6 @@ export type MasterDataOrganizationReadQuery = {
                 width?: number | null;
                 url?: string | null;
               } | null;
-              contactPoints?: Array<{
-                __typename?: 'IoRestorecommerceContactPointContactPoint';
-                id?: string | null;
-                name?: string | null;
-                description?: string | null;
-                email?: string | null;
-                telephone?: string | null;
-                website?: string | null;
-                timezone?: {
-                  __typename?: 'IoRestorecommerceTimezoneTimezone';
-                  id?: string | null;
-                  value?: string | null;
-                  description?: string | null;
-                } | null;
-                locale?: {
-                  __typename?: 'IoRestorecommerceLocaleLocale';
-                  id?: string | null;
-                  value?: string | null;
-                  description?: string | null;
-                } | null;
-                meta?: {
-                  __typename?: 'IoRestorecommerceMetaMeta';
-                  created?: unknown | null;
-                  modified?: unknown | null;
-                  createdBy?: string | null;
-                  modifiedBy?: string | null;
-                  owners?: Array<{
-                    __typename?: 'IoRestorecommerceAttributeAttribute';
-                    id?: string | null;
-                    value?: string | null;
-                    attributes?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                    }> | null;
-                  }> | null;
-                } | null;
-              }> | null;
               paymentMethods?: Array<{
                 __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                 id?: string | null;
@@ -9754,44 +9412,6 @@ export type MasterDataShopMutateMutation = {
                   width?: number | null;
                   url?: string | null;
                 } | null;
-                contactPoints?: Array<{
-                  __typename?: 'IoRestorecommerceContactPointContactPoint';
-                  id?: string | null;
-                  name?: string | null;
-                  description?: string | null;
-                  email?: string | null;
-                  telephone?: string | null;
-                  website?: string | null;
-                  timezone?: {
-                    __typename?: 'IoRestorecommerceTimezoneTimezone';
-                    id?: string | null;
-                    value?: string | null;
-                    description?: string | null;
-                  } | null;
-                  locale?: {
-                    __typename?: 'IoRestorecommerceLocaleLocale';
-                    id?: string | null;
-                    value?: string | null;
-                    description?: string | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                    owners?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                      attributes?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                      }> | null;
-                    }> | null;
-                  } | null;
-                }> | null;
                 paymentMethods?: Array<{
                   __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                   id?: string | null;
@@ -9917,44 +9537,6 @@ export type MasterDataShopReadQuery = {
                   width?: number | null;
                   url?: string | null;
                 } | null;
-                contactPoints?: Array<{
-                  __typename?: 'IoRestorecommerceContactPointContactPoint';
-                  id?: string | null;
-                  name?: string | null;
-                  description?: string | null;
-                  email?: string | null;
-                  telephone?: string | null;
-                  website?: string | null;
-                  timezone?: {
-                    __typename?: 'IoRestorecommerceTimezoneTimezone';
-                    id?: string | null;
-                    value?: string | null;
-                    description?: string | null;
-                  } | null;
-                  locale?: {
-                    __typename?: 'IoRestorecommerceLocaleLocale';
-                    id?: string | null;
-                    value?: string | null;
-                    description?: string | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                    owners?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                      attributes?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                      }> | null;
-                    }> | null;
-                  } | null;
-                }> | null;
                 paymentMethods?: Array<{
                   __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                   id?: string | null;
@@ -10421,44 +10003,6 @@ export type OrderingOrderMutateMutation = {
                     width?: number | null;
                     url?: string | null;
                   } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
-                    name?: string | null;
-                    description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
-                      id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                    } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                    } | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                      owners?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                        attributes?: Array<{
-                          __typename?: 'IoRestorecommerceAttributeAttribute';
-                          id?: string | null;
-                          value?: string | null;
-                        }> | null;
-                      }> | null;
-                    } | null;
-                  }> | null;
                   paymentMethods?: Array<{
                     __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                     id?: string | null;
@@ -10523,44 +10067,6 @@ export type OrderingOrderMutateMutation = {
                       width?: number | null;
                       url?: string | null;
                     } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                        owners?: Array<{
-                          __typename?: 'IoRestorecommerceAttributeAttribute';
-                          id?: string | null;
-                          value?: string | null;
-                          attributes?: Array<{
-                            __typename?: 'IoRestorecommerceAttributeAttribute';
-                            id?: string | null;
-                            value?: string | null;
-                          }> | null;
-                        }> | null;
-                      } | null;
-                    }> | null;
                     paymentMethods?: Array<{
                       __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                       id?: string | null;
@@ -10605,44 +10111,6 @@ export type OrderingOrderMutateMutation = {
                       width?: number | null;
                       url?: string | null;
                     } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                        owners?: Array<{
-                          __typename?: 'IoRestorecommerceAttributeAttribute';
-                          id?: string | null;
-                          value?: string | null;
-                          attributes?: Array<{
-                            __typename?: 'IoRestorecommerceAttributeAttribute';
-                            id?: string | null;
-                            value?: string | null;
-                          }> | null;
-                        }> | null;
-                      } | null;
-                    }> | null;
                     paymentMethods?: Array<{
                       __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                       id?: string | null;
@@ -11134,44 +10602,6 @@ export type OrderingOrderReadQuery = {
                     width?: number | null;
                     url?: string | null;
                   } | null;
-                  contactPoints?: Array<{
-                    __typename?: 'IoRestorecommerceContactPointContactPoint';
-                    id?: string | null;
-                    name?: string | null;
-                    description?: string | null;
-                    email?: string | null;
-                    telephone?: string | null;
-                    website?: string | null;
-                    timezone?: {
-                      __typename?: 'IoRestorecommerceTimezoneTimezone';
-                      id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                    } | null;
-                    locale?: {
-                      __typename?: 'IoRestorecommerceLocaleLocale';
-                      id?: string | null;
-                      value?: string | null;
-                      description?: string | null;
-                    } | null;
-                    meta?: {
-                      __typename?: 'IoRestorecommerceMetaMeta';
-                      created?: unknown | null;
-                      modified?: unknown | null;
-                      createdBy?: string | null;
-                      modifiedBy?: string | null;
-                      owners?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                        attributes?: Array<{
-                          __typename?: 'IoRestorecommerceAttributeAttribute';
-                          id?: string | null;
-                          value?: string | null;
-                        }> | null;
-                      }> | null;
-                    } | null;
-                  }> | null;
                   paymentMethods?: Array<{
                     __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                     id?: string | null;
@@ -11236,44 +10666,6 @@ export type OrderingOrderReadQuery = {
                       width?: number | null;
                       url?: string | null;
                     } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                        owners?: Array<{
-                          __typename?: 'IoRestorecommerceAttributeAttribute';
-                          id?: string | null;
-                          value?: string | null;
-                          attributes?: Array<{
-                            __typename?: 'IoRestorecommerceAttributeAttribute';
-                            id?: string | null;
-                            value?: string | null;
-                          }> | null;
-                        }> | null;
-                      } | null;
-                    }> | null;
                     paymentMethods?: Array<{
                       __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                       id?: string | null;
@@ -11318,44 +10710,6 @@ export type OrderingOrderReadQuery = {
                       width?: number | null;
                       url?: string | null;
                     } | null;
-                    contactPoints?: Array<{
-                      __typename?: 'IoRestorecommerceContactPointContactPoint';
-                      id?: string | null;
-                      name?: string | null;
-                      description?: string | null;
-                      email?: string | null;
-                      telephone?: string | null;
-                      website?: string | null;
-                      timezone?: {
-                        __typename?: 'IoRestorecommerceTimezoneTimezone';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      locale?: {
-                        __typename?: 'IoRestorecommerceLocaleLocale';
-                        id?: string | null;
-                        value?: string | null;
-                        description?: string | null;
-                      } | null;
-                      meta?: {
-                        __typename?: 'IoRestorecommerceMetaMeta';
-                        created?: unknown | null;
-                        modified?: unknown | null;
-                        createdBy?: string | null;
-                        modifiedBy?: string | null;
-                        owners?: Array<{
-                          __typename?: 'IoRestorecommerceAttributeAttribute';
-                          id?: string | null;
-                          value?: string | null;
-                          attributes?: Array<{
-                            __typename?: 'IoRestorecommerceAttributeAttribute';
-                            id?: string | null;
-                            value?: string | null;
-                          }> | null;
-                        }> | null;
-                      } | null;
-                    }> | null;
                     paymentMethods?: Array<{
                       __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
                       id?: string | null;
@@ -11952,30 +11306,6 @@ export const ProductFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
-export const ContactPointFragmentFragmentDoc = gql`
-  fragment ContactPointFragment on IoRestorecommerceContactPointContactPoint {
-    id
-    name
-    description
-    email
-    telephone
-    website
-    timezone {
-      id
-      value
-      description
-    }
-    locale {
-      id
-      value
-      description
-    }
-    meta {
-      ...MetaFragment
-    }
-  }
-  ${MetaFragmentFragmentDoc}
-`;
 export const OrganizationFragmentFragmentDoc = gql`
   fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
     id
@@ -11992,9 +11322,6 @@ export const OrganizationFragmentFragmentDoc = gql`
       width
       url
     }
-    contactPoints {
-      ...ContactPointFragment
-    }
     paymentMethods {
       id
       transferType
@@ -12004,7 +11331,6 @@ export const OrganizationFragmentFragmentDoc = gql`
       ...MetaFragment
     }
   }
-  ${ContactPointFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
 export const ShopFragmentFragmentDoc = gql`
@@ -12048,6 +11374,30 @@ export const UserFragmentFragmentDoc = gql`
           value
         }
       }
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
+export const ContactPointFragmentFragmentDoc = gql`
+  fragment ContactPointFragment on IoRestorecommerceContactPointContactPoint {
+    id
+    name
+    description
+    email
+    telephone
+    website
+    timezone {
+      id
+      value
+      description
+    }
+    locale {
+      id
+      value
+      description
     }
     meta {
       ...MetaFragment

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
 import { ROUTER } from '@console-core/config';
-import { AccountFacade, OrganizationFacade } from '@console-core/state';
+import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-header-toolbar',
@@ -36,7 +36,8 @@ export class RcHeaderToolbarComponent implements OnInit {
 
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
-    // organizations: this.organizationFacade.globalChildrenOrganizations$,
+    organizations: this.organizationContextFacade.all$,
+    selectedOrganization: this.organizationContextFacade.selected$,
     // leafOrganization: this.organizationFacade.globalOrganizationLeaf$,
     // selectedParent: this.organizationFacade.globalOrganization$,
   });
@@ -44,14 +45,11 @@ export class RcHeaderToolbarComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly accountFacade: AccountFacade,
-    private readonly organizationFacade: OrganizationFacade
+    private readonly organizationContextFacade: OrganizationContextFacade
   ) {}
 
   ngOnInit(): void {
-    this.organizationFacade.read({});
-    this.vm$.subscribe((vms) => {
-      // console.log('***vm$.organizations', vms.organizations);
-    });
+    this.organizationContextFacade.read({});
   }
 
   resetGlobalSelectOrganization(event: Event) {
@@ -64,8 +62,8 @@ export class RcHeaderToolbarComponent implements OnInit {
     event.stopPropagation();
   }
 
-  onSelectGlobalOrganization(id: string): void {
-    // this.organizationFacade.setSelectedGlobalOrganizationId(id);
+  onSelectOrganization(id: string): void {
+    this.organizationContextFacade.setSelectedOrganizationId(id);
   }
 
   cancelSelection(): void {

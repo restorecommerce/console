@@ -29,31 +29,36 @@ export const initialState: IOrganizationContextState = adapter.getInitialState({
 
 const reducer = createReducer<IOrganizationContextState>(
   initialState,
-  // on(organizationActions.organizationContextReadRequest, () => {}),
   on(
-    organizationActions.setSelectedGlobalOrganizationId,
+    organizationActions.organizationContextReadRequest,
+    (state): IOrganizationContextState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    organizationActions.organizationContextReadRequestSuccess,
+    (state, { payload }): IOrganizationContextState =>
+      adapter.setAll(payload, {
+        ...state,
+        actionStatus: EActionStatus.Succeeded,
+      })
+  ),
+  on(
+    organizationActions.organizationContextReadRequestFail,
+    (state, { error }): IOrganizationContextState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
+    organizationActions.setSelectedOrganizationId,
     (state, { payload }): IOrganizationContextState => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const organization = state.entities[payload!];
-
-      if (organization?.isLeaf) {
-        return {
-          ...state,
-          setSelectedGlobalLeaf: payload,
-        };
-      } else {
-        return {
-          ...state,
-          setSelectedGlobalLeaf: null,
-          selectedGlobalOrganizationHistory: Array.from(
-            new Set([
-              ...state.selectedGlobalOrganizationHistory,
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              payload!,
-            ])
-          ),
-        };
-      }
+      return {
+        ...state,
+        selectedId: payload,
+      };
     }
   ),
   on(

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import { IIoRestorecommerceResourcebaseReadRequest } from '@console-core/graphql';
+
 import * as organizationContextActions from './organization-context.actions';
 import * as organizationSelectors from './organization-context.selector';
 
@@ -25,48 +27,6 @@ export class OrganizationContextFacade {
   readonly selected$ = this.store.select(
     organizationSelectors.selectOrganizationSelected
   );
-  readonly parentIds$ = this.store.select(
-    organizationSelectors.selectOrganizationParentIds
-  );
-  readonly parentEntities$ = this.store.select(
-    organizationSelectors.selectOrganizationParentEntities
-  );
-  readonly parentsAll$ = this.store.select(
-    organizationSelectors.selectOrganizationParentsAll
-  );
-  readonly selectedParentId$ = this.store.select(
-    organizationSelectors.selectOrganizationSelectedParentId
-  );
-  readonly selectedParent$ = this.store.select(
-    organizationSelectors.selectOrganizationSelectedParent
-  );
-  readonly childIds$ = this.store.select(
-    organizationSelectors.selectOrganizationChildIds
-  );
-  readonly childEntities$ = this.store.select(
-    organizationSelectors.selectOrganizationChildEntities
-  );
-  readonly childsAll$ = this.store.select(
-    organizationSelectors.selectOrganizationChildsAll
-  );
-  readonly globalOrganizationId$ = this.store.select(
-    organizationSelectors.selectOrganizationSelectedGlobalOrganizationId
-  );
-  readonly globalOrganization$ = this.store.select(
-    organizationSelectors.selectOrganizationSelectedGlobalOrganization
-  );
-
-  readonly globalChildrenOrganizations$ = this.store.select(
-    organizationSelectors.selectGlobalChildrenOrganizations
-  );
-
-  readonly globalOrganizationLeafId$ = this.store.select(
-    organizationSelectors.selectGlobalOrganizationLeafId
-  );
-
-  readonly globalOrganizationLeaf$ = this.store.select(
-    organizationSelectors.selectGlobalOrganizationLeaf
-  );
 
   readonly actionStatus$ = this.store.select(
     organizationSelectors.selectActionStatus
@@ -74,9 +34,14 @@ export class OrganizationContextFacade {
   readonly error$ = this.store.select(organizationSelectors.selectError);
 
   // Actions
-  setSelectedGlobalOrganizationId = (payload: string | null) =>
+  read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(
-      organizationContextActions.setSelectedGlobalOrganizationId({ payload })
+      organizationContextActions.organizationContextReadRequest({ payload })
+    );
+
+  setSelectedOrganizationId = (payload: string | null) =>
+    this.store.dispatch(
+      organizationContextActions.setSelectedOrganizationId({ payload })
     );
 
   resetSelectedGlobalOrganization = () =>

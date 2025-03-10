@@ -55,14 +55,11 @@ export class RcCrudCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([
-      this.organizationContextFacade.globalOrganizationLeafId$,
-      this.organizationContextFacade.globalOrganizationId$,
-    ]).subscribe(([leafOrganizationId, organizationId]) => {
-      this.currentOrganizationId = leafOrganizationId
-        ? leafOrganizationId
-        : organizationId;
-    });
+    combineLatest([this.organizationContextFacade.selectedId$]).subscribe(
+      ([organizationId]) => {
+        this.currentOrganizationId = organizationId as string;
+      }
+    );
 
     this.accountFacade.userId$.subscribe((userId) => {
       if (userId) {

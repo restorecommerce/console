@@ -24,62 +24,59 @@ import { OrganizationContextFacade } from './organization-context.facade';
 
 @Injectable()
 export class OrganizationContextEffects {
-  // organizationReadRequest$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(organizationActions.organizationReadRequest),
-  //     exhaustMap(({ payload }) =>
-  //       this.organizationService.read(payload).pipe(
-  //         tap((result) => {
-  //           this.errorHandlingService.checkStatusAndThrow(
-  //             result?.data?.master_data?.organization?.Read?.details
-  //               ?.operationStatus as TOperationStatus
-  //           );
-  //         }),
-  //         map((result) => {
-  //           const responseData =
-  //             result?.data?.master_data?.organization?.Read?.details?.items ||
-  //             [];
+  organizationReadRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(organizationContextActions.organizationContextReadRequest),
+      exhaustMap(({ payload }) =>
+        this.organizationService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.master_data?.organization?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const responseData =
+              result?.data?.master_data?.organization?.Read?.details?.items ||
+              [];
 
-  //           const payload = responseData.map((item) => ({
-  //             ...item?.payload,
-  //             isLeaf: !responseData.some(
-  //               (child) => child.payload?.parentId === item.payload?.id
-  //             ),
-  //           })) as IOrganization[];
+            const payload = responseData.map((item) => ({
+              ...item?.payload,
+              isLeaf: !responseData.some(
+                (child) => child.payload?.parentId === item.payload?.id
+              ),
+            })) as IOrganization[];
 
-  //           return organizationActions.organizationReadRequestSuccess({
-  //             payload,
-  //           });
-  //         }),
-  //         catchError((error: Error) =>
-  //           of(
-  //             organizationActions.organizationReadRequestFail({
-  //               error: error.message,
-  //             })
-  //           )
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
+            return organizationContextActions.organizationContextReadRequestSuccess(
+              {
+                payload,
+              }
+            );
+          }),
+          catchError((error: Error) =>
+            of(
+              organizationContextActions.organizationContextReadRequestFail({
+                error: error.message,
+              })
+            )
+          )
+        )
+      )
+    );
+  });
 
   handleOrganizationChangedNotification$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(
-          organizationContextActions.setSelectedGlobalOrganizationId,
+          organizationContextActions.setSelectedOrganizationId,
           organizationContextActions.selectedGlobalOrganizationHistory,
           organizationContextActions.setPreviousSelectedGlobalOrganizationHistory,
           organizationContextActions.cancelOrganizationContextSelection
         ),
-        concatLatestFrom(() => [
-          this.organizationFacade.globalOrganizationLeaf$,
-          this.organizationFacade.globalOrganization$,
-        ]),
-        tap(([, leafOrganization, parentOrganization]) => {
-          const organization = leafOrganization || parentOrganization;
+        tap(() => {
           this.appFacade.addNotification({
-            content: `Organization changed to ${organization?.name}`,
+            content: `Organization changed to [NAME]`,
             type: ENotificationTypes.Info,
           });
         })

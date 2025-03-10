@@ -19,19 +19,15 @@ export function withLatestOrganizationData<T extends Action>(
     source$.pipe(
       ofType<T>(
         ...additionalActionTypes,
-        organizationContextActions.setSelectedGlobalOrganizationId.type,
+        organizationContextActions.setSelectedOrganizationId.type,
         organizationContextActions.selectedGlobalOrganizationHistory.type,
         organizationContextActions.setPreviousSelectedGlobalOrganizationHistory
           .type,
         organizationContextActions.cancelOrganizationContextSelection.type
       ),
-      concatLatestFrom(() => [
-        organizationContextFacade.globalOrganizationLeafId$,
-        organizationContextFacade.globalOrganizationId$,
-      ]),
-      map(([action, organizationLeaf, organization]) => {
-        const selectedOrganization = organizationLeaf || organization;
-        return [action, selectedOrganization] as [T, string];
+      concatLatestFrom(() => [organizationContextFacade.selectedId$]),
+      map(([action, organization]) => {
+        return [action, organization] as [T, string];
       })
     );
 }

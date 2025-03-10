@@ -7,7 +7,7 @@ import { adapter } from './organization-context.reducer';
 
 export const selectOrganizationContext =
   createFeatureSelector<IOrganizationContextState>(
-    STORE.states.organizationState
+    STORE.states.organizationContextState
   );
 
 const { selectIds, selectEntities, selectAll, selectTotal } =
@@ -58,28 +58,6 @@ export const selectOrganizationParentEntities = createSelector(
   (state: IOrganizationContextState) => state.parentEntities
 );
 
-export const selectOrganizationParentsAll = createSelector(
-  selectOrganizationParentEntities,
-  (entities) => Object.values(entities)
-);
-
-export const selectOrganizationSelectedParentId = createSelector(
-  selectOrganizationContext,
-  (state: IOrganizationContextState) => state.selectedParentId
-);
-
-export const selectOrganizationSelectedParent = createSelector(
-  selectOrganizationParentEntities,
-  selectOrganizationSelectedParentId,
-  (entities, selectedParentId) => {
-    return (
-      selectedParentId && selectedParentId in entities
-        ? entities[selectedParentId]
-        : null
-    ) as IOrganization | null;
-  }
-);
-
 export const selectOrganizationChildIds = createSelector(
   selectOrganizationContext,
   (state: IOrganizationContextState) => state.childIds
@@ -118,18 +96,6 @@ export const selectOrganizationSelectedGlobalOrganizationId = createSelector(
     return state.selectedGlobalOrganizationHistory[
       state.selectedGlobalOrganizationHistory.length - 1
     ];
-  }
-);
-
-export const selectOrganizationSelectedGlobalOrganization = createSelector(
-  selectOrganizationEntities,
-  selectOrganizationSelectedGlobalOrganizationId,
-  (entities, selectedGlobalOrganizationId) => {
-    return (
-      selectedGlobalOrganizationId && selectedGlobalOrganizationId in entities
-        ? entities[selectedGlobalOrganizationId]
-        : null
-    ) as IOrganization | null;
   }
 );
 

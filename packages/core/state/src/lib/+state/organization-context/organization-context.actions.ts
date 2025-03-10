@@ -18,7 +18,7 @@ export const organizationContextReadRequestFail = createAction(
   props<{ error: string }>()
 );
 
-export const setSelectedGlobalOrganizationId = createAction(
+export const setSelectedOrganizationId = createAction(
   '[ORGANIZATION CONTEXT] Set selected organization id',
   props<{ payload: string | null }>()
 );
