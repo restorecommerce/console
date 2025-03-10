@@ -111,27 +111,6 @@ export const selectOrganizationSelectedChild = createSelector(
   }
 );
 
-export const selectOrganizationSelectedGlobalOrganizationId = createSelector(
-  selectOrganization,
-  (state: IOrganizationState) => {
-    return state.selectedGlobalOrganizationHistory[
-      state.selectedGlobalOrganizationHistory.length - 1
-    ];
-  }
-);
-
-export const selectOrganizationSelectedGlobalOrganization = createSelector(
-  selectOrganizationEntities,
-  selectOrganizationSelectedGlobalOrganizationId,
-  (entities, selectedGlobalOrganizationId) => {
-    return (
-      selectedGlobalOrganizationId && selectedGlobalOrganizationId in entities
-        ? entities[selectedGlobalOrganizationId]
-        : null
-    ) as IOrganization | null;
-  }
-);
-
 export const selectActionStatus = createSelector(
   selectOrganization,
   (state: IOrganizationState) => state.actionStatus
@@ -140,44 +119,4 @@ export const selectActionStatus = createSelector(
 export const selectError = createSelector(
   selectOrganization,
   (state: IOrganizationState) => state.error
-);
-
-export const selectGlobalOrganizationHistory = createSelector(
-  selectOrganization,
-  (state: IOrganizationState) => state.selectedGlobalOrganizationHistory
-);
-
-export const selectGlobalChildrenOrganizationsHelperSelector = createSelector({
-  organizations: selectOrganizationAll,
-  currentParentId: selectOrganizationSelectedGlobalOrganizationId,
-  globalOrganizationHistory: selectGlobalOrganizationHistory,
-});
-
-export const selectGlobalChildrenOrganizations = createSelector(
-  selectGlobalChildrenOrganizationsHelperSelector,
-  (data) => {
-    const filteredOrganization = data.organizations.filter(
-      (org) => org.parentId === data.currentParentId
-    ) as IOrganization[];
-
-    return filteredOrganization;
-  }
-);
-
-export const selectGlobalOrganizationLeafId = createSelector(
-  selectOrganization,
-  (state: IOrganizationState) => state.setSelectedGlobalLeaf
-);
-
-export const selectGlobalOrganizationLeaf = createSelector(
-  selectOrganizationEntities,
-  selectGlobalOrganizationLeafId,
-  (entities, selectGlobalOrganizationLeafId) => {
-    return (
-      selectGlobalOrganizationLeafId &&
-      selectGlobalOrganizationLeafId in entities
-        ? entities[selectGlobalOrganizationLeafId]
-        : null
-    ) as IOrganization | null;
-  }
 );

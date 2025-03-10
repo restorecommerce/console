@@ -14,15 +14,12 @@ export const adapter: EntityAdapter<IOrganization> =
 
 export const initialState: IOrganizationState = adapter.getInitialState({
   selectedId: null,
-  selectedGlobalOrganizationId: null,
-  selectedGlobalOrganizationHistory: ['system'],
   selectedParentId: null,
   parentIds: [],
   parentEntities: {},
   selectedChildId: null,
   childIds: [],
   childEntities: {},
-  setSelectedGlobalLeaf: null,
   actionStatus: EActionStatus.INIT,
   error: null,
 });
@@ -114,59 +111,6 @@ const reducer = createReducer<IOrganizationState>(
     (state, { payload }): IOrganizationState => ({
       ...state,
       selectedId: payload,
-    })
-  ),
-  on(
-    organizationActions.setSelectedGlobalOrganizationId,
-    (state, { payload }): IOrganizationState => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const organization = state.entities[payload!];
-
-      if (organization?.isLeaf) {
-        return {
-          ...state,
-          setSelectedGlobalLeaf: payload,
-        };
-      } else {
-        return {
-          ...state,
-          setSelectedGlobalLeaf: null,
-          selectedGlobalOrganizationHistory: Array.from(
-            new Set([
-              ...state.selectedGlobalOrganizationHistory,
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              payload!,
-            ])
-          ),
-        };
-      }
-    }
-  ),
-  on(
-    organizationActions.selectedGlobalOrganizationHistory,
-    (state): IOrganizationState => ({
-      ...state,
-      selectedGlobalOrganizationHistory:
-        initialState.selectedGlobalOrganizationHistory,
-    })
-  ),
-
-  on(
-    organizationActions.setPreviousSelectedGlobalOrganizationHistory,
-    (state): IOrganizationState => ({
-      ...state,
-      setSelectedGlobalLeaf: null,
-      selectedGlobalOrganizationHistory:
-        state.selectedGlobalOrganizationHistory.slice(0, -1),
-    })
-  ),
-  on(
-    organizationActions.cancelSelection,
-    (state): IOrganizationState => ({
-      ...state,
-      setSelectedGlobalLeaf: null,
-      selectedGlobalOrganizationHistory:
-        state.selectedGlobalOrganizationHistory.slice(),
     })
   ),
   on(

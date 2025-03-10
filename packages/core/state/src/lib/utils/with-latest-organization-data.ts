@@ -3,8 +3,8 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Action } from '@ngrx/store';
 import { map, Observable, OperatorFunction } from 'rxjs';
 
-import * as organizationActions from '../+state/management/organization/organization.actions';
 import { OrganizationFacade } from '../+state/management/organization/organization.facade';
+import * as organizationActions from '../+state/organization-context/organization-context.actions';
 
 export type OrganizationDataTuple = [
   globalOrganizationLeafId: string,
@@ -22,7 +22,7 @@ export function withLatestOrganizationData<T extends Action>(
         organizationActions.setSelectedGlobalOrganizationId.type,
         organizationActions.selectedGlobalOrganizationHistory.type,
         organizationActions.setPreviousSelectedGlobalOrganizationHistory.type,
-        organizationActions.cancelSelection.type
+        organizationActions.cancelOrganizationContextSelection.type
       ),
       concatLatestFrom(() => [
         organizationFacade.globalOrganizationLeafId$,

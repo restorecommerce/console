@@ -56,23 +56,6 @@ export const setSelectedId = createAction(
   props<{ payload: string | null }>()
 );
 
-export const setSelectedGlobalOrganizationId = createAction(
-  '[ORGANIZATION] Set selected organization id',
-  props<{ payload: string | null }>()
-);
-
-export const selectedGlobalOrganizationHistory = createAction(
-  '[ORGANIZATION] Set selected global organization to default'
-);
-
-export const setPreviousSelectedGlobalOrganizationHistory = createAction(
-  '[ORGANIZATION] Set previously selected global organization'
-);
-
-export const cancelSelection = createAction(
-  '[ORGANIZATION] Set the global selected leaf to null'
-);
-
 export const organizationCreateRequest = createAction(
   '[ORGANIZATION] Organization create request',
   props<{ payload: IIoRestorecommerceOrganizationOrganizationList }>()
