@@ -20,7 +20,7 @@ import { AppFacade } from '../../app';
 
 import * as shopActions from './shop.actions';
 import {
-  OrganizationFacade,
+  OrganizationContextFacade,
   withLatestOrganizationData,
 } from '@console-core/state';
 
@@ -29,7 +29,7 @@ export class ShopEffects {
   shopReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       withLatestOrganizationData(
-        this.organizationFacade,
+        this.organizationContextFacade,
         shopActions.shopReadRequest.type
       ),
       exhaustMap(([action, organization]) =>
@@ -281,7 +281,7 @@ export class ShopEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly shopService: ShopService,
-    private readonly organizationFacade: OrganizationFacade,
+    private readonly organizationContextFacade: OrganizationContextFacade,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

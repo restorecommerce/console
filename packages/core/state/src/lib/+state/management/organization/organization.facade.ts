@@ -54,24 +54,6 @@ export class OrganizationFacade {
   readonly childsAll$ = this.store.select(
     organizationSelectors.selectOrganizationChildsAll
   );
-  readonly globalOrganizationId$ = this.store.select(
-    organizationSelectors.selectOrganizationSelectedGlobalOrganizationId
-  );
-  readonly globalOrganization$ = this.store.select(
-    organizationSelectors.selectOrganizationSelectedGlobalOrganization
-  );
-
-  readonly globalChildrenOrganizations$ = this.store.select(
-    organizationSelectors.selectGlobalChildrenOrganizations
-  );
-
-  readonly globalOrganizationLeafId$ = this.store.select(
-    organizationSelectors.selectGlobalOrganizationLeafId
-  );
-
-  readonly globalOrganizationLeaf$ = this.store.select(
-    organizationSelectors.selectGlobalOrganizationLeaf
-  );
 
   readonly actionStatus$ = this.store.select(
     organizationSelectors.selectActionStatus
@@ -93,23 +75,6 @@ export class OrganizationFacade {
     );
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(organizationActions.setSelectedId({ payload }));
-  setSelectedGlobalOrganizationId = (payload: string | null) =>
-    this.store.dispatch(
-      organizationActions.setSelectedGlobalOrganizationId({ payload })
-    );
-
-  resetSelectedGlobalOrganization = () =>
-    this.store.dispatch(
-      organizationActions.selectedGlobalOrganizationHistory()
-    );
-
-  lastSelectedGlobalOrganization = () =>
-    this.store.dispatch(
-      organizationActions.setPreviousSelectedGlobalOrganizationHistory()
-    );
-
-  cancelSelection = () =>
-    this.store.dispatch(organizationActions.cancelSelection());
 
   create = (payload: IIoRestorecommerceOrganizationOrganizationList) =>
     this.store.dispatch(

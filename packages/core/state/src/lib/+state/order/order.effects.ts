@@ -23,7 +23,7 @@ import { AppFacade } from '../app';
 import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';
 import {
-  OrganizationFacade,
+  OrganizationContextFacade,
   withLatestOrganizationData,
 } from '@console-core/state';
 
@@ -32,7 +32,7 @@ export class OrderEffects {
   orderReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       withLatestOrganizationData(
-        this.organizationFacade,
+        this.organizationContextFacade,
         orderActions.orderReadRequest.type
       ),
       exhaustMap(([action, organization]) => {
@@ -322,7 +322,7 @@ export class OrderEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly organizationFacade: OrganizationFacade,
+    private readonly organizationContextFacade: OrganizationContextFacade,
     private readonly orderService: OrderService,
     private readonly orderFacade: OrderFacade,
     private readonly errorHandlingService: ErrorHandlingService

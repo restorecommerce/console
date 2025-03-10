@@ -85,7 +85,7 @@ const reducer = createReducer<IOrganizationContextState>(
   )
 );
 
-export const organizationReducer = (
+export const organizationContextReducer = (
   state: IOrganizationContextState | undefined,
   action: Action
 ) => reducer(state, action);

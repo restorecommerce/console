@@ -16,7 +16,7 @@
         class="scale155xp"
       ></vcl-icon>
 
-      {{ vm.leafOrganization?.name || vm.selectedParent?.name }}
+      <!-- {{ vm.leafOrganization?.name || vm.selectedParent?.name }} -->
 
       <vcl-icon
         vclAppend
@@ -53,7 +53,7 @@
   [positions]="rightOrientedPositions"
 >
   <div>
-    <rc-toolbar>
+    <!-- <rc-toolbar>
       @if (vm.leafOrganization?.parentId || vm.selectedParent?.parentId) {
       <button
         rc-prepend
@@ -85,11 +85,11 @@
         <vcl-icon icon="vcl:close"></vcl-icon>
       </button>
       }
-    </rc-toolbar>
+    </rc-toolbar> -->
 
     <rc-searchbar (search)="searchTerm = $event" />
 
-    <vcl-data-list
+    <!-- <vcl-data-list
       [noBorder]="true"
       [value]="vm.leafOrganization?.id || vm.selectedParent?.id"
       class="m-0"
@@ -113,7 +113,7 @@
         <div class="p-2">{{ organization?.name }}</div>
       </vcl-data-list-item>
       }
-    </vcl-data-list>
+    </vcl-data-list> -->
   </div>
 </ng-template>
 

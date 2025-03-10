@@ -24,7 +24,7 @@ import * as productActions from './product.actions';
 import { productReadOneByIdRequest } from './product.actions';
 import { concatLatestFrom } from '@ngrx/operators';
 import {
-  OrganizationFacade,
+  OrganizationContextFacade,
   withLatestOrganizationData,
 } from '@console-core/state';
 
@@ -53,7 +53,7 @@ export class ProductEffects {
     let isLoadMore = false;
     return this.actions$.pipe(
       withLatestOrganizationData(
-        this.organizationFacade,
+        this.organizationContextFacade,
         productActions.productReadRequest.type // Pass only the effect-specific action
       ),
       exhaustMap(([action, organization]) => {
@@ -302,7 +302,7 @@ export class ProductEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly organizationFacade: OrganizationFacade,
+    private readonly organizationContextFacade: OrganizationContextFacade,
     private readonly productService: ProductService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}

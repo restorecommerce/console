@@ -304,31 +304,6 @@ export class OrganizationEffects {
     { dispatch: false }
   );
 
-  handleOrganizationChangedNotification$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(
-          organizationActions.setSelectedGlobalOrganizationId,
-          organizationActions.selectedGlobalOrganizationHistory,
-          organizationActions.setPreviousSelectedGlobalOrganizationHistory,
-          organizationActions.cancelSelection
-        ),
-        concatLatestFrom(() => [
-          this.organizationFacade.globalOrganizationLeaf$,
-          this.organizationFacade.globalOrganization$,
-        ]),
-        tap(([, leafOrganization, parentOrganization]) => {
-          const organization = leafOrganization || parentOrganization;
-          this.appFacade.addNotification({
-            content: `Organization changed to ${organization?.name}`,
-            type: ENotificationTypes.Info,
-          });
-        })
-      );
-    },
-    { dispatch: false }
-  );
-
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(

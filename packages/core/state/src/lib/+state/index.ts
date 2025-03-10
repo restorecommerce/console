@@ -4,6 +4,7 @@ export * from './authn';
 export * from './fulfillment';
 export * from './invoice';
 export * from './management';
+export * from './organization-context';
 export * from './order';
 export * from './product';
 export * from './router';

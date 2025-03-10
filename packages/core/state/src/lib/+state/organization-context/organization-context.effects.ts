@@ -23,7 +23,7 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { OrganizationContextFacade } from './organization-context.facade';
 
 @Injectable()
-export class OrganizationEffects {
+export class OrganizationContextEffects {
   // organizationReadRequest$ = createEffect(() => {
   //   return this.actions$.pipe(
   //     ofType(organizationActions.organizationReadRequest),

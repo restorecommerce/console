@@ -36,9 +36,9 @@ export class RcHeaderToolbarComponent implements OnInit {
 
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
-    organizations: this.organizationFacade.globalChildrenOrganizations$,
-    leafOrganization: this.organizationFacade.globalOrganizationLeaf$,
-    selectedParent: this.organizationFacade.globalOrganization$,
+    // organizations: this.organizationFacade.globalChildrenOrganizations$,
+    // leafOrganization: this.organizationFacade.globalOrganizationLeaf$,
+    // selectedParent: this.organizationFacade.globalOrganization$,
   });
 
   constructor(
@@ -50,26 +50,26 @@ export class RcHeaderToolbarComponent implements OnInit {
   ngOnInit(): void {
     this.organizationFacade.read({});
     this.vm$.subscribe((vms) => {
-      console.log('***vm$.organizations', vms.organizations);
+      // console.log('***vm$.organizations', vms.organizations);
     });
   }
 
   resetGlobalSelectOrganization(event: Event) {
-    this.organizationFacade.resetSelectedGlobalOrganization();
+    // this.organizationFacade.resetSelectedGlobalOrganization();
     event.stopPropagation();
   }
 
   lastSelectedGlobalOrganization(event: Event) {
-    this.organizationFacade.lastSelectedGlobalOrganization();
+    // this.organizationFacade.lastSelectedGlobalOrganization();
     event.stopPropagation();
   }
 
   onSelectGlobalOrganization(id: string): void {
-    this.organizationFacade.setSelectedGlobalOrganizationId(id);
+    // this.organizationFacade.setSelectedGlobalOrganizationId(id);
   }
 
   cancelSelection(): void {
-    this.organizationFacade.cancelSelection();
+    // this.organizationFacade.cancelSelection();
   }
 
   onAccountItemSelected(value: string) {

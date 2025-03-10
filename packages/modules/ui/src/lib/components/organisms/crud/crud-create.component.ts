@@ -12,7 +12,7 @@ import { combineLatest } from 'rxjs';
 import { JssFormComponent, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ModeType } from '@console-core/graphql';
-import { AccountFacade, OrganizationFacade } from '@console-core/state';
+import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-crud-create',
@@ -51,13 +51,13 @@ export class RcCrudCreateComponent implements OnInit {
 
   constructor(
     private accountFacade: AccountFacade,
-    private organizationFacade: OrganizationFacade
+    private organizationContextFacade: OrganizationContextFacade
   ) {}
 
   ngOnInit(): void {
     combineLatest([
-      this.organizationFacade.globalOrganizationLeafId$,
-      this.organizationFacade.globalOrganizationId$,
+      this.organizationContextFacade.globalOrganizationLeafId$,
+      this.organizationContextFacade.globalOrganizationId$,
     ]).subscribe(([leafOrganizationId, organizationId]) => {
       this.currentOrganizationId = leafOrganizationId
         ? leafOrganizationId

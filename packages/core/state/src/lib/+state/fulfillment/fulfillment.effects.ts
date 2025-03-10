@@ -17,7 +17,7 @@ import { AppFacade } from '../app';
 import * as fulfillmentActions from './fulfillment.actions';
 import {
   FulfillmentFacade,
-  OrganizationFacade,
+  OrganizationContextFacade,
   withLatestOrganizationData,
 } from '@console-core/state';
 import { IoRestorecommerceResourcebaseFilterOperation } from '@console-core/graphql';
@@ -27,7 +27,7 @@ export class FulfillmentEffects {
   fulfillmentReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       withLatestOrganizationData(
-        this.organizationFacade,
+        this.organizationContextFacade,
         fulfillmentActions.fulfillmentReadRequest.type
       ),
       switchMap(([action, organization]) =>
@@ -279,7 +279,7 @@ export class FulfillmentEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly organizationFacade: OrganizationFacade,
+    private readonly organizationContextFacade: OrganizationContextFacade,
     private readonly fulfilmentFacade: FulfillmentFacade,
     private readonly fulfillmentService: FulfillmentService,
     private readonly errorHandlingService: ErrorHandlingService

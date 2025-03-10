@@ -38,6 +38,9 @@ import {
   OrganizationEffects,
   OrganizationFacade,
   organizationReducer,
+  OrganizationContextEffects,
+  OrganizationContextFacade,
+  organizationContextReducer,
   ProductEffects,
   ProductFacade,
   productReducer,
@@ -73,6 +76,7 @@ const facades = [
   RoleFacade,
   LocaleFacade,
   OrderFacade,
+  OrganizationContextFacade,
   ProductFacade,
   RouterFacade,
   TaxFacade,
@@ -118,6 +122,11 @@ const facades = [
     StoreModule.forFeature(STORE.states.shopState, shopReducer),
     EffectsModule.forFeature([ShopEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
+    EffectsModule.forFeature([OrganizationContextEffects]),
+    StoreModule.forFeature(
+      STORE.states.organizationContextState,
+      organizationContextReducer
+    ),
   ],
   providers: [...facades],
 })

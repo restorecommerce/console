@@ -20,7 +20,7 @@ import { AppFacade } from '../../app';
 
 import * as countryActions from './country.actions';
 import {
-  OrganizationFacade,
+  OrganizationContextFacade,
   withLatestOrganizationData,
 } from '@console-core/state';
 
@@ -29,7 +29,7 @@ export class CountryEffects {
   countryReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       withLatestOrganizationData(
-        this.organizationFacade,
+        this.organizationContextFacade,
         countryActions.countryReadRequest.type
       ),
       exhaustMap(([action, organization]) =>
@@ -271,7 +271,7 @@ export class CountryEffects {
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
     private readonly countryService: CountryService,
-    private readonly organizationFacade: OrganizationFacade,
+    private readonly organizationContextFacade: OrganizationContextFacade,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
 }

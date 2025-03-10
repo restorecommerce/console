@@ -3,8 +3,8 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Action } from '@ngrx/store';
 import { map, Observable, OperatorFunction } from 'rxjs';
 
-import { OrganizationFacade } from '../+state/management/organization/organization.facade';
-import * as organizationActions from '../+state/organization-context/organization-context.actions';
+import { OrganizationContextFacade } from '../+state';
+import * as organizationContextActions from '../+state/organization-context/organization-context.actions';
 
 export type OrganizationDataTuple = [
   globalOrganizationLeafId: string,
@@ -12,21 +12,22 @@ export type OrganizationDataTuple = [
 ];
 
 export function withLatestOrganizationData<T extends Action>(
-  organizationFacade: OrganizationFacade,
+  organizationContextFacade: OrganizationContextFacade,
   ...additionalActionTypes: string[]
 ): OperatorFunction<T, [T, string]> {
   return (source$: Observable<T>) =>
     source$.pipe(
       ofType<T>(
         ...additionalActionTypes,
-        organizationActions.setSelectedGlobalOrganizationId.type,
-        organizationActions.selectedGlobalOrganizationHistory.type,
-        organizationActions.setPreviousSelectedGlobalOrganizationHistory.type,
-        organizationActions.cancelOrganizationContextSelection.type
+        organizationContextActions.setSelectedGlobalOrganizationId.type,
+        organizationContextActions.selectedGlobalOrganizationHistory.type,
+        organizationContextActions.setPreviousSelectedGlobalOrganizationHistory
+          .type,
+        organizationContextActions.cancelOrganizationContextSelection.type
       ),
       concatLatestFrom(() => [
-        organizationFacade.globalOrganizationLeafId$,
-        organizationFacade.globalOrganizationId$,
+        organizationContextFacade.globalOrganizationLeafId$,
+        organizationContextFacade.globalOrganizationId$,
       ]),
       map(([action, organizationLeaf, organization]) => {
         const selectedOrganization = organizationLeaf || organization;
