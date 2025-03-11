@@ -52,7 +52,7 @@
         >Products</rc-drawer-navigation-item
       >
       <!-- Show for only superadmins. -->
-      @if (isAdmin$ | async) {
+      @if (authzService.isAdmin$ | async) {
       <ng-container>
         <rc-drawer-navigation-item
           icon="mdi:invoice-outline"
@@ -259,8 +259,8 @@
         [routerLink]="ROUTER.pages.main.children.orders.link"
         >Home</rc-drawer-navigation-item
       >
-      } @else if (menuMainLinks.includes(currentRoute) && !!!(isSale$ | async))
-      {
+      } @else if (menuMainLinks.includes(currentRoute) && (authzService.isSale$
+      | async) === false) {
       <rc-drawer-navigation-item
         icon="icon mdi mdi-hexagon-outline"
         [routerLink]="ROUTER.pages.main.children.management.children.index.link"

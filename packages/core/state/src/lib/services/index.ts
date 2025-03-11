@@ -1,4 +1,5 @@
 export * from './access-control';
+export * from './authz.service';
 export * from './catalog';
 export * from './fulfillment';
 export * from './identity';
