@@ -53,20 +53,23 @@
       >
       <!-- Show for only superadmins. -->
       @if (isAdmin$ | async) {
-      <rc-drawer-navigation-item
-        icon="mdi:invoice-outline"
-        [routerLink]="ROUTER.pages.main.children.invoices.link"
-        [routerLinkActive]="['selected']"
-        >Invoices</rc-drawer-navigation-item
-      >
-      }
+      <ng-container>
+        <rc-drawer-navigation-item
+          icon="mdi:invoice-outline"
+          [routerLink]="ROUTER.pages.main.children.invoices.link"
+          [routerLinkActive]="['selected']"
+          >Invoices</rc-drawer-navigation-item
+        >
 
-      <rc-drawer-navigation-item
-        icon="mdi:truck-outline"
-        [routerLink]="ROUTER.pages.main.children.fulfillments.link"
-        [routerLinkActive]="['selected']"
-        >Fulfillments</rc-drawer-navigation-item
-      >
+        <rc-drawer-navigation-item
+          icon="mdi:truck-outline"
+          [routerLink]="ROUTER.pages.main.children.fulfillments.link"
+          [routerLinkActive]="['selected']"
+          >Fulfillments</rc-drawer-navigation-item
+        >
+      </ng-container>
+
+      }
     </ng-container>
     <!-- /Home -->
 
@@ -256,10 +259,8 @@
         [routerLink]="ROUTER.pages.main.children.orders.link"
         >Home</rc-drawer-navigation-item
       >
-      } @else if (currentRoute === ROUTER.pages.main.children.orders.link ||
-      currentRoute === ROUTER.pages.main.children.products.link || currentRoute
-      === ROUTER.pages.main.children.invoices.link || currentRoute ===
-      ROUTER.pages.main.children.fulfillments.link) {
+      } @else if (menuMainLinks.includes(currentRoute) && !!!(isSale$ | async))
+      {
       <rc-drawer-navigation-item
         icon="icon mdi mdi-hexagon-outline"
         [routerLink]="ROUTER.pages.main.children.management.children.index.link"

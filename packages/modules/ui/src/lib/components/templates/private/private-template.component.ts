@@ -114,6 +114,30 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     })
   );
 
+  isSale$ = combineLatest([
+    this.accountFacade.user$,
+    this.organizationContextFacade.selectedId$,
+    this.organizationContextFacade.all$,
+  ]).pipe(
+    map(([user, organizationId, organizations]) => {
+      return user?.roleAssociations.some(
+        (ra) =>
+          ra.role === 'sales-r-id' &&
+          ra.attributes?.some((attr) =>
+            attr.attributes?.some(
+              (inst) =>
+                inst.value === organizationId ||
+                isHierarchical(
+                  String(inst.value),
+                  String(organizationId),
+                  organizations
+                )
+            )
+          )
+      );
+    })
+  );
+
   constructor(
     private readonly accountFacade: AccountFacade,
     private readonly breakpointObserver: BreakpointObserver,
