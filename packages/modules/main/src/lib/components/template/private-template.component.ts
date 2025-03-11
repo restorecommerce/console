@@ -41,6 +41,7 @@ export class PrivateTemplateComponent
 
   ngOnInit(): void {
     this.subscriptions.add(this.notifications$.subscribe());
+    // TODO Move this to the Api handling services...
     this.subscriptions.add(
       this.authFacade.expiresIn$.subscribe((expiresIn) => {
         const expires = new Date(expiresIn as string);

@@ -51,12 +51,16 @@
         [routerLinkActive]="['selected']"
         >Products</rc-drawer-navigation-item
       >
+      <!-- Show for only superadmins. -->
+      @if (isAdmin$ | async) {
       <rc-drawer-navigation-item
         icon="mdi:invoice-outline"
         [routerLink]="ROUTER.pages.main.children.invoices.link"
         [routerLinkActive]="['selected']"
         >Invoices</rc-drawer-navigation-item
       >
+      }
+
       <rc-drawer-navigation-item
         icon="mdi:truck-outline"
         [routerLink]="ROUTER.pages.main.children.fulfillments.link"

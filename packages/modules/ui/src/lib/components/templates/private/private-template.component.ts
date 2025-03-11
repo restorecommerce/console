@@ -8,14 +8,37 @@ import {
   HostListener,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
 import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import { APP, ROUTER } from '@console-core/config';
+import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
+import { IOrganization } from '@console-core/types';
 
 import { RcDrawerService } from '../../../services';
+
+const isHierarchical = (
+  root: string,
+  decendant: string | undefined | null,
+  organizations: IOrganization[]
+): boolean => {
+  if (!root || !decendant) return false;
+
+  const parentMap = new Map<string, string | null>(
+    organizations.map((org) => [org.id, String(org.parentId)])
+  );
+
+  while (decendant && parentMap.has(decendant)) {
+    if (decendant === root) return true;
+    decendant = parentMap.get(decendant) ?? null;
+    if (decendant === null) break;
+  }
+
+  return false;
+};
 
 @Component({
   selector: 'rc-private-template',
@@ -59,11 +82,45 @@ export class RcPrivateTemplateComponent implements OnInit, OnDestroy {
     ROUTER.pages.main.children.fulfillments.link,
   ];
 
+  isSuperAdmin$ = this.accountFacade.user$.pipe(
+    map((user) => {
+      return user?.roleAssociations.some(
+        (ra) => ra.role === 'superadministrator-r-id'
+      );
+    })
+  );
+
+  isAdmin$ = combineLatest([
+    this.accountFacade.user$,
+    this.organizationContextFacade.selectedId$,
+    this.organizationContextFacade.all$,
+  ]).pipe(
+    map(([user, organizationId, organizations]) => {
+      return user?.roleAssociations.some(
+        (ra) =>
+          ra.role === 'administrator-r-id' &&
+          ra.attributes?.some((attr) =>
+            attr.attributes?.some(
+              (inst) =>
+                inst.value === organizationId ||
+                isHierarchical(
+                  String(inst.value),
+                  String(organizationId),
+                  organizations
+                )
+            )
+          )
+      );
+    })
+  );
+
   constructor(
+    private readonly accountFacade: AccountFacade,
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly router: Router,
+    private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly drawerService: RcDrawerService,
-    private readonly changeDetectorRef: ChangeDetectorRef
+    private readonly organizationContextFacade: OrganizationContextFacade,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
