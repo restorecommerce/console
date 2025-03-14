@@ -33,21 +33,21 @@ import { IInvoice } from '@console-core/types';
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
           <span>Shop id</span>
-          <span>{{ invoice.shopId || 'N/A' }}</span>
+          <a href="">{{ invoice.shopId || 'N/A' }}</a>
         </div>
       </vcl-data-list-item>
 
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
           <span>User id</span>
-          <span>{{ invoice.userId || 'N/A' }}</span>
+          <a href="">{{ invoice.userId || 'N/A' }}</a>
         </div>
       </vcl-data-list-item>
 
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
           <span>Status</span>
-          <span>{{ invoice.withdrawn || invoice.sent }}</span>
+          <span>{{ invoice.withdrawn || invoice.sent || 'N/A' }}</span>
         </div>
       </vcl-data-list-item>
 
@@ -68,14 +68,7 @@ import { IInvoice } from '@console-core/types';
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
           <span>Customer id</span>
-          <span>{{ invoice.customerId || 'N/A' }}</span>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-item-center">
-          <span>Customer id</span>
-          <span>{{ invoice.customerId || 'N/A' }}</span>
+          <a href="">{{ invoice.customerId || 'N/A' }}</a>
         </div>
       </vcl-data-list-item>
 
