@@ -6400,9 +6400,28 @@ export type FulfillmentFragmentFragment = {
 export type InvoiceFragmentFragment = {
   __typename?: 'IoRestorecommerceInvoiceInvoice';
   id?: string | null;
-  customerId?: string | null;
+  invoiceNumber?: string | null;
+  fromDate?: unknown | null;
+  toDate?: unknown | null;
   shopId?: string | null;
+  sent?: boolean | null;
+  withdrawn?: boolean | null;
+  paymentState?: IoRestorecommerceInvoicePaymentState | null;
+  customerOrderNumber?: string | null;
   userId?: string | null;
+  customerId?: string | null;
+  timestamp?: unknown | null;
+  totalAmounts?: Array<{
+    __typename?: 'IoRestorecommerceAmountAmount';
+    currencyId?: string | null;
+    gross?: number | null;
+    net?: number | null;
+    vats?: Array<{
+      __typename?: 'IoRestorecommerceAmountVAT';
+      taxId?: string | null;
+      vat?: number | null;
+    }> | null;
+  }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -8610,9 +8629,28 @@ export type InvoicingInvoiceMutateMutation = {
             payload?: {
               __typename?: 'IoRestorecommerceInvoiceInvoice';
               id?: string | null;
-              customerId?: string | null;
+              invoiceNumber?: string | null;
+              fromDate?: unknown | null;
+              toDate?: unknown | null;
               shopId?: string | null;
+              sent?: boolean | null;
+              withdrawn?: boolean | null;
+              paymentState?: IoRestorecommerceInvoicePaymentState | null;
+              customerOrderNumber?: string | null;
               userId?: string | null;
+              customerId?: string | null;
+              timestamp?: unknown | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                currencyId?: string | null;
+                gross?: number | null;
+                net?: number | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  taxId?: string | null;
+                  vat?: number | null;
+                }> | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -8687,9 +8725,28 @@ export type InvoicingInvoiceReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceInvoiceInvoice';
               id?: string | null;
-              customerId?: string | null;
+              invoiceNumber?: string | null;
+              fromDate?: unknown | null;
+              toDate?: unknown | null;
               shopId?: string | null;
+              sent?: boolean | null;
+              withdrawn?: boolean | null;
+              paymentState?: IoRestorecommerceInvoicePaymentState | null;
+              customerOrderNumber?: string | null;
               userId?: string | null;
+              customerId?: string | null;
+              timestamp?: unknown | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                currencyId?: string | null;
+                gross?: number | null;
+                net?: number | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  taxId?: string | null;
+                  vat?: number | null;
+                }> | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -11197,9 +11254,26 @@ export const FulfillmentFragmentFragmentDoc = gql`
 export const InvoiceFragmentFragmentDoc = gql`
   fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
     id
-    customerId
+    invoiceNumber
+    fromDate
+    toDate
     shopId
+    sent
+    withdrawn
+    paymentState
+    customerOrderNumber
     userId
+    customerId
+    timestamp
+    totalAmounts {
+      currencyId
+      gross
+      net
+      vats {
+        taxId
+        vat
+      }
+    }
     meta {
       ...MetaFragment
     }

@@ -1,8 +1,25 @@
 fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
   id
-  customerId
+  invoiceNumber
+  fromDate
+  toDate
   shopId
+  sent
+  withdrawn
+  paymentState
+  customerOrderNumber
   userId
+  customerId
+  timestamp
+  totalAmounts {
+    currencyId
+    gross
+    net
+    vats {
+      taxId
+      vat
+    }
+  }
   meta {
     ...MetaFragment
   }
