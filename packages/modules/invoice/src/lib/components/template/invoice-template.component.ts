@@ -17,6 +17,7 @@ import { SubSink } from 'subsink';
 import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
+  IoRestorecommerceInvoicePaymentState,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import { InvoiceFacade, RouterFacade } from '@console-core/state';
@@ -31,6 +32,8 @@ import { ICrudFeature, EUrlSegment, IInvoice } from '@console-core/types';
 export class InvoiceTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter = ROUTER.pages.main.children.invoices.children;
+
+  EInvoicePaymentState = IoRestorecommerceInvoicePaymentState;
 
   feature: Readonly<ICrudFeature> = {
     name: {
