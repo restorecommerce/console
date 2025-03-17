@@ -2,8 +2,10 @@
   <div>
     <img
       *ngIf="!isError"
-      [alt]="product.product.name"
-      [src]="product.product.physical?.variants?.[0]?.images?.[0]?.url"
+      [alt]="product | productImage"
+      [src]="
+        'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+      "
       (error)="onImageError()"
       sizes="(max-width: 60px) 60px, 60px"
       width="60"

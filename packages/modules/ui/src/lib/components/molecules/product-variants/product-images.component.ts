@@ -30,7 +30,7 @@ export class RcProductImagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.totalImagesCount = this.images.length;
-    this.selectedImage = this.images[0];
+    // this.selectedImage = this.images[0];
     this.loadingBar.useRef().start();
   }
 

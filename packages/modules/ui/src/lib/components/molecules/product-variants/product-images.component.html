@@ -9,13 +9,17 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="!isError && images.length > 0">
+<ng-container *ngIf="!isError">
   <div class="row">
     <div class="flex-12 my-4">
       <div class="responsive-image-container">
         <img
-          [src]="selectedImage.url"
-          [alt]="selectedImage.caption"
+          [src]="
+            'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg'
+          "
+          [alt]="
+            'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg'
+          "
           class="responsive-image selected-image"
           loading="lazy"
           ngOptimizedImage
