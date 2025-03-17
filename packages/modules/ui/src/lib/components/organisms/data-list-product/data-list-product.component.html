@@ -3,9 +3,7 @@
     <img
       *ngIf="!isError"
       [alt]="product | productImage"
-      [src]="
-        'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-      "
+      [src]="product | productImage"
       (error)="onImageError()"
       sizes="(max-width: 60px) 60px, 60px"
       width="60"

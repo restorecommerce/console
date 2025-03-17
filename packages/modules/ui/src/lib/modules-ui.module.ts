@@ -117,6 +117,7 @@ import {
   RcPublicTemplateComponent,
 } from './components/templates';
 import { HighlightPipe, ProductImagePipe } from './pipes';
+import { ProductVariantImagePipe } from './pipes/product-variant-image.pipe';
 
 export const RC_MODULE_CONFIG_TOKEN = new InjectionToken('rc.module.config');
 export const RC_MODULE_STATE_TOKEN = new InjectionToken('rc.module.state');
@@ -243,7 +244,7 @@ const pages = [
 
 const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
 
-const pipes = [HighlightPipe, ProductImagePipe];
+const pipes = [HighlightPipe, ProductImagePipe, ProductVariantImagePipe];
 
 @NgModule({
   imports: [...modules],

@@ -16,16 +16,16 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
         id
         name
         description
-        # images {
-        #   id
-        #   index
-        #   filename
-        #   caption
-        #   contentType
-        #   height
-        #   width
-        #   url
-        # }
+        images {
+          id
+          index
+          filename
+          caption
+          contentType
+          height
+          width
+          url
+        }
         stockLevel
         stockKeepingUnit
         parentVariantId
@@ -41,16 +41,16 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
         id
         name
         description
-        # images {
-        #   id
-        #   index
-        #   filename
-        #   caption
-        #   contentType
-        #   height
-        #   width
-        #   url
-        # }
+        images {
+          id
+          index
+          filename
+          caption
+          contentType
+          height
+          width
+          url
+        }
         stockLevel
         stockKeepingUnit
         parentVariantId

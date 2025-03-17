@@ -20,7 +20,14 @@
 
 <div class="row">
   <div class="flex-12 max-width-100">
-    <rc-product-images [images]="variant.images || []" />
+    <img
+      [src]="variant | productVariantImage"
+      [alt]="'Variant image'"
+      class="responsive-image"
+      loading="lazy"
+      ngOptimizedImage
+      priority="auto"
+    />
   </div>
 </div>
 
