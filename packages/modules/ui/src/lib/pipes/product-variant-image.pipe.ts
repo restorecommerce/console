@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { API } from '@console-core/config';
 import {
   IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceImageImage,
@@ -15,7 +16,7 @@ export class ProductVariantImagePipe implements PipeTransform {
       ?.images?.[0] as IoRestorecommerceImageImage;
 
     return firstImageInVariant
-      ? firstImageInVariant.url || ''
+      ? `${API.domains.bucketDomain}${firstImageInVariant.url}`
       : ('https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg' as string);
   }
 }

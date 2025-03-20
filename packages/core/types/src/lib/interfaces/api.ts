@@ -8,6 +8,9 @@ export interface IApiConstant {
     readonly token: string;
     readonly tokenRevocation: string;
   };
+  readonly domains: {
+    readonly bucketDomain: string;
+  };
 }
 
 export interface IStatus
