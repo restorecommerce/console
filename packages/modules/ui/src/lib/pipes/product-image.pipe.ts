@@ -19,8 +19,6 @@ export class ProductImagePipe implements PipeTransform {
     const firstImageInTemplate = firstTemplate
       ?.images?.[0] as IoRestorecommerceImageImage;
 
-    return firstImageInTemplate
-      ? `${API.domains.bucketDomain}${firstImageInTemplate.url}`
-      : ('https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg' as string);
+    return `${API.domains.bucketDomain}${firstImageInTemplate?.url || ''}`;
   }
 }
