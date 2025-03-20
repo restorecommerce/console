@@ -23,6 +23,7 @@
       *ngFor="let variant of variants"
     >
       <rc-product-variant
+        [product]="product"
         [variant]="variant"
         (editVariant)="editVariant.emit($event)"
         (deleteVariant)="deleteVariant.emit($event)"

@@ -31,6 +31,7 @@ import {
   VCLCheckboxModule,
   VCLButtonGroupModule,
   VCLBadgeModule,
+  VCLGalleryModule,
 } from '@vcl/ng-vcl';
 
 import { ModulesSharedModule } from '@console-modules/shared';
@@ -158,6 +159,7 @@ const modules = [
   VCLButtonGroupModule,
   VCLBadgeModule,
   VCLFormControlGroupModule,
+  VCLGalleryModule,
   ModulesSharedModule,
 ];
 

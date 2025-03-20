@@ -6,6 +6,7 @@ import {
   IoRestorecommerceImageImage,
 } from '@console-core/graphql';
 
+// Will not be needed again!
 @Pipe({
   name: 'productVariantImage',
   standalone: false,

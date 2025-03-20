@@ -19,15 +19,27 @@
 </div>
 
 <div class="row">
-  <div class="flex-12 max-width-100">
-    <img
-      [src]="variant | productVariantImage"
-      [alt]="'Variant image'"
-      class="responsive-image"
-      loading="lazy"
-      ngOptimizedImage
-      priority="auto"
-    />
+  <div
+    class="flex max-width-100"
+    style="height: 300px"
+  >
+    @if (images && images.length > 0) {
+    <vcl-gallery
+      [selectedImage]="1"
+      [row]="true"
+    >
+      @for (img of images; track img.id) {
+      <vcl-gallery-image
+        [image]="img.url || ''"
+        [thumbnail]="img.url || ''"
+        alt="Image 1"
+      ></vcl-gallery-image>
+      }
+      <vcl-gallery-body></vcl-gallery-body>
+      <div style="margin-left: 1rem"></div>
+      <vcl-gallery-thumbnails></vcl-gallery-thumbnails>
+    </vcl-gallery>
+    }
   </div>
 </div>
 

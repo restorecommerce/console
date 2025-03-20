@@ -22,6 +22,7 @@ import {
       (deleteTemplate)="deleteTemplate.emit($event)"
     />
     <rc-product-variants
+      [product]="product.product || {}"
       [variants]="product.product?.physical?.variants || []"
       (addVariant)="addVariant.emit()"
       (editVariant)="editVariant.emit($event)"
