@@ -15,56 +15,45 @@ import { IBreadcrumb } from '@console-core/types';
 @Component({
   selector: 'rc-page-header',
   template: `
-    <ng-container
-      *ngIf="
-        breadcrumbs.length &&
-        !breadcrumbsToExclude.includes(
-          breadcrumbs[breadcrumbs.length - 1].label
-        )
-      "
-    >
-      <nav class="breadcrumb-nav">
-        <ol>
-          <li>
-            <a
-              [routerLink]="['/']"
-              class="breadcrumb-nav-item-label"
-              >Home</a
-            >
-            <vcl-icon
-              class="breadcrumb-nav-divider"
-              icon="vcl:arrow-right"
-            />
-          </li>
-          <ng-container
-            *ngFor="
-              let breadcrumb of breadcrumbs;
-              let last = last;
-              trackBy: trackByFn
-            "
+    @if( breadcrumbs.length && !breadcrumbsToExclude.includes(
+    breadcrumbs[breadcrumbs.length - 1].label )) {
+    <nav class="breadcrumb-nav">
+      <ol>
+        <li>
+          <a
+            [routerLink]="['/']"
+            class="breadcrumb-nav-item-label"
+            >Home</a
           >
-            <li [ngClass]="{ selected: last }">
-              <ng-container *ngIf="!last">
-                <a
-                  [routerLink]="breadcrumb.url"
-                  class="breadcrumb-nav-item-label"
-                  >{{ breadcrumb.label }}</a
-                >
-                <vcl-icon
-                  class="breadcrumb-nav-divider"
-                  icon="vcl:arrow-right"
-                />
-              </ng-container>
-              <ng-container *ngIf="last">
-                <span class="breadcrumb-nav-item-label">
-                  {{ breadcrumb.label }}
-                </span>
-              </ng-container>
-            </li>
-          </ng-container>
-        </ol>
-      </nav>
-    </ng-container>
+          <vcl-icon
+            class="breadcrumb-nav-divider"
+            icon="vcl:arrow-right"
+          />
+        </li>
+
+        @for (breadcrumb of breadcrumbs; track breadcrumb.url; let last = $last
+        ) {
+        <li [ngClass]="{ selected: last }">
+          @if(!last) {
+          <a
+            [routerLink]="breadcrumb.url"
+            class="breadcrumb-nav-item-label"
+            >{{ breadcrumb.label }}</a
+          >
+          <vcl-icon
+            class="breadcrumb-nav-divider"
+            icon="vcl:arrow-right"
+          />
+          } @else {
+          <span class="breadcrumb-nav-item-label">
+            {{ breadcrumb.label }}
+          </span>
+          }
+        </li>
+        }
+      </ol>
+    </nav>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
