@@ -119,6 +119,7 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   ): IBreadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
+    console.log('***route.children,', route.children);
     if (children.length === 0) {
       return breadcrumbs;
     }
@@ -132,8 +133,14 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
         url += `/${routeURL}`;
       }
 
-      const label =
-        child.snapshot.data['breadcrumb'] ?? child.snapshot.title ?? '';
+      const data = child.snapshot.data;
+      let label = '';
+
+      if (typeof data['breadcrumb'] === 'function') {
+        label = data['breadcrumb'](data); // Pass data to the breadcrumb factory
+      } else {
+        label = data['breadcrumb'] ?? child.snapshot.title ?? '';
+      }
 
       if (
         label !== '' &&

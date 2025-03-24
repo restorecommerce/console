@@ -7,6 +7,7 @@ import { ProductEditComponent } from './components/product-edit.component';
 import { ProductIndexComponent } from './components/product-index.component';
 import { ProductViewComponent } from './components/product-view.component';
 import { ProductTemplateComponent } from './components/template/product-template.component';
+import { ProductNameResolver } from './resolvers/product-name.resolver';
 
 export const modulesProductRoutes: Route[] = [
   {
@@ -23,6 +24,10 @@ export const modulesProductRoutes: Route[] = [
         path: ROUTER.pages.main.children.products.children.view.path,
         component: ProductViewComponent,
         title: ROUTER.pages.main.children.products.children.view.title,
+        resolve: { productName: ProductNameResolver },
+        data: {
+          breadcrumb: (data: { productName: string }) => data.productName,
+        },
       },
       {
         path: ROUTER.pages.main.children.products.children.create.path,
