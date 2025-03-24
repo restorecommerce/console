@@ -1,0 +1,40 @@
+fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
+  id
+  name
+  description
+  images {
+    id
+    index
+    filename
+    caption
+    contentType
+    height
+    width
+    url
+  }
+  files {
+    id
+    filename
+    contentType
+    tags
+    thumbnail {
+      id
+      url
+      width
+      length
+      index
+      caption
+      contentType
+    }
+  }
+  stockLevel
+  stockKeepingUnit
+  parentVariantId
+  taxIds
+  price {
+    currencyId
+    regularPrice
+    sale
+    salePrice
+  }
+}

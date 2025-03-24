@@ -5775,6 +5775,23 @@ export type CatalogProductMutateMutation = {
                       width?: number | null;
                       url?: string | null;
                     }> | null;
+                    files?: Array<{
+                      __typename?: 'IoRestorecommerceFileFile';
+                      id?: string | null;
+                      filename?: string | null;
+                      contentType?: string | null;
+                      tags?: Array<string> | null;
+                      thumbnail?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        url?: string | null;
+                        width?: number | null;
+                        length?: number | null;
+                        index?: number | null;
+                        caption?: string | null;
+                        contentType?: string | null;
+                      } | null;
+                    }> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
                       currencyId?: string | null;
@@ -5802,6 +5819,23 @@ export type CatalogProductMutateMutation = {
                       height?: number | null;
                       width?: number | null;
                       url?: string | null;
+                    }> | null;
+                    files?: Array<{
+                      __typename?: 'IoRestorecommerceFileFile';
+                      id?: string | null;
+                      filename?: string | null;
+                      contentType?: string | null;
+                      tags?: Array<string> | null;
+                      thumbnail?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        url?: string | null;
+                        width?: number | null;
+                        length?: number | null;
+                        index?: number | null;
+                        caption?: string | null;
+                        contentType?: string | null;
+                      } | null;
                     }> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -5920,6 +5954,23 @@ export type CatalogProductReadQuery = {
                       width?: number | null;
                       url?: string | null;
                     }> | null;
+                    files?: Array<{
+                      __typename?: 'IoRestorecommerceFileFile';
+                      id?: string | null;
+                      filename?: string | null;
+                      contentType?: string | null;
+                      tags?: Array<string> | null;
+                      thumbnail?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        url?: string | null;
+                        width?: number | null;
+                        length?: number | null;
+                        index?: number | null;
+                        caption?: string | null;
+                        contentType?: string | null;
+                      } | null;
+                    }> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
                       currencyId?: string | null;
@@ -5947,6 +5998,23 @@ export type CatalogProductReadQuery = {
                       height?: number | null;
                       width?: number | null;
                       url?: string | null;
+                    }> | null;
+                    files?: Array<{
+                      __typename?: 'IoRestorecommerceFileFile';
+                      id?: string | null;
+                      filename?: string | null;
+                      contentType?: string | null;
+                      tags?: Array<string> | null;
+                      thumbnail?: {
+                        __typename?: 'IoRestorecommerceImageImage';
+                        id?: string | null;
+                        url?: string | null;
+                        width?: number | null;
+                        length?: number | null;
+                        index?: number | null;
+                        caption?: string | null;
+                        contentType?: string | null;
+                      } | null;
                     }> | null;
                     price?: {
                       __typename?: 'IoRestorecommercePricePrice';
@@ -6636,6 +6704,23 @@ export type OrderFragmentFragment = {
               width?: number | null;
               url?: string | null;
             }> | null;
+            files?: Array<{
+              __typename?: 'IoRestorecommerceFileFile';
+              id?: string | null;
+              filename?: string | null;
+              contentType?: string | null;
+              tags?: Array<string> | null;
+              thumbnail?: {
+                __typename?: 'IoRestorecommerceImageImage';
+                id?: string | null;
+                url?: string | null;
+                width?: number | null;
+                length?: number | null;
+                index?: number | null;
+                caption?: string | null;
+                contentType?: string | null;
+              } | null;
+            }> | null;
             price?: {
               __typename?: 'IoRestorecommercePricePrice';
               currencyId?: string | null;
@@ -6663,6 +6748,23 @@ export type OrderFragmentFragment = {
               height?: number | null;
               width?: number | null;
               url?: string | null;
+            }> | null;
+            files?: Array<{
+              __typename?: 'IoRestorecommerceFileFile';
+              id?: string | null;
+              filename?: string | null;
+              contentType?: string | null;
+              tags?: Array<string> | null;
+              thumbnail?: {
+                __typename?: 'IoRestorecommerceImageImage';
+                id?: string | null;
+                url?: string | null;
+                width?: number | null;
+                length?: number | null;
+                index?: number | null;
+                caption?: string | null;
+                contentType?: string | null;
+              } | null;
             }> | null;
             price?: {
               __typename?: 'IoRestorecommercePricePrice';
@@ -7188,6 +7290,52 @@ export type OrganizationFragmentFragment = {
   } | null;
 };
 
+export type ProductVariantFragmentFragment = {
+  __typename?: 'IoRestorecommerceProductPhysicalVariant';
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
+  stockLevel?: number | null;
+  stockKeepingUnit?: string | null;
+  parentVariantId?: string | null;
+  taxIds?: Array<string> | null;
+  images?: Array<{
+    __typename?: 'IoRestorecommerceImageImage';
+    id?: string | null;
+    index?: number | null;
+    filename?: string | null;
+    caption?: string | null;
+    contentType?: string | null;
+    height?: number | null;
+    width?: number | null;
+    url?: string | null;
+  }> | null;
+  files?: Array<{
+    __typename?: 'IoRestorecommerceFileFile';
+    id?: string | null;
+    filename?: string | null;
+    contentType?: string | null;
+    tags?: Array<string> | null;
+    thumbnail?: {
+      __typename?: 'IoRestorecommerceImageImage';
+      id?: string | null;
+      url?: string | null;
+      width?: number | null;
+      length?: number | null;
+      index?: number | null;
+      caption?: string | null;
+      contentType?: string | null;
+    } | null;
+  }> | null;
+  price?: {
+    __typename?: 'IoRestorecommercePricePrice';
+    currencyId?: string | null;
+    regularPrice?: number | null;
+    sale?: boolean | null;
+    salePrice?: number | null;
+  } | null;
+};
+
 export type ProductFragmentFragment = {
   __typename?: 'IoRestorecommerceProductProduct';
   id?: string | null;
@@ -7224,6 +7372,23 @@ export type ProductFragmentFragment = {
           width?: number | null;
           url?: string | null;
         }> | null;
+        files?: Array<{
+          __typename?: 'IoRestorecommerceFileFile';
+          id?: string | null;
+          filename?: string | null;
+          contentType?: string | null;
+          tags?: Array<string> | null;
+          thumbnail?: {
+            __typename?: 'IoRestorecommerceImageImage';
+            id?: string | null;
+            url?: string | null;
+            width?: number | null;
+            length?: number | null;
+            index?: number | null;
+            caption?: string | null;
+            contentType?: string | null;
+          } | null;
+        }> | null;
         price?: {
           __typename?: 'IoRestorecommercePricePrice';
           currencyId?: string | null;
@@ -7251,6 +7416,23 @@ export type ProductFragmentFragment = {
           height?: number | null;
           width?: number | null;
           url?: string | null;
+        }> | null;
+        files?: Array<{
+          __typename?: 'IoRestorecommerceFileFile';
+          id?: string | null;
+          filename?: string | null;
+          contentType?: string | null;
+          tags?: Array<string> | null;
+          thumbnail?: {
+            __typename?: 'IoRestorecommerceImageImage';
+            id?: string | null;
+            url?: string | null;
+            width?: number | null;
+            length?: number | null;
+            index?: number | null;
+            caption?: string | null;
+            contentType?: string | null;
+          } | null;
         }> | null;
         price?: {
           __typename?: 'IoRestorecommercePricePrice';
@@ -10077,6 +10259,23 @@ export type OrderingOrderMutateMutation = {
                           width?: number | null;
                           url?: string | null;
                         }> | null;
+                        files?: Array<{
+                          __typename?: 'IoRestorecommerceFileFile';
+                          id?: string | null;
+                          filename?: string | null;
+                          contentType?: string | null;
+                          tags?: Array<string> | null;
+                          thumbnail?: {
+                            __typename?: 'IoRestorecommerceImageImage';
+                            id?: string | null;
+                            url?: string | null;
+                            width?: number | null;
+                            length?: number | null;
+                            index?: number | null;
+                            caption?: string | null;
+                            contentType?: string | null;
+                          } | null;
+                        }> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
                           currencyId?: string | null;
@@ -10104,6 +10303,23 @@ export type OrderingOrderMutateMutation = {
                           height?: number | null;
                           width?: number | null;
                           url?: string | null;
+                        }> | null;
+                        files?: Array<{
+                          __typename?: 'IoRestorecommerceFileFile';
+                          id?: string | null;
+                          filename?: string | null;
+                          contentType?: string | null;
+                          tags?: Array<string> | null;
+                          thumbnail?: {
+                            __typename?: 'IoRestorecommerceImageImage';
+                            id?: string | null;
+                            url?: string | null;
+                            width?: number | null;
+                            length?: number | null;
+                            index?: number | null;
+                            caption?: string | null;
+                            contentType?: string | null;
+                          } | null;
                         }> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -10698,6 +10914,23 @@ export type OrderingOrderReadQuery = {
                           width?: number | null;
                           url?: string | null;
                         }> | null;
+                        files?: Array<{
+                          __typename?: 'IoRestorecommerceFileFile';
+                          id?: string | null;
+                          filename?: string | null;
+                          contentType?: string | null;
+                          tags?: Array<string> | null;
+                          thumbnail?: {
+                            __typename?: 'IoRestorecommerceImageImage';
+                            id?: string | null;
+                            url?: string | null;
+                            width?: number | null;
+                            length?: number | null;
+                            index?: number | null;
+                            caption?: string | null;
+                            contentType?: string | null;
+                          } | null;
+                        }> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
                           currencyId?: string | null;
@@ -10725,6 +10958,23 @@ export type OrderingOrderReadQuery = {
                           height?: number | null;
                           width?: number | null;
                           url?: string | null;
+                        }> | null;
+                        files?: Array<{
+                          __typename?: 'IoRestorecommerceFileFile';
+                          id?: string | null;
+                          filename?: string | null;
+                          contentType?: string | null;
+                          tags?: Array<string> | null;
+                          thumbnail?: {
+                            __typename?: 'IoRestorecommerceImageImage';
+                            id?: string | null;
+                            url?: string | null;
+                            width?: number | null;
+                            length?: number | null;
+                            index?: number | null;
+                            caption?: string | null;
+                            contentType?: string | null;
+                          } | null;
                         }> | null;
                         price?: {
                           __typename?: 'IoRestorecommercePricePrice';
@@ -11460,6 +11710,48 @@ export const LocationFragmentFragmentDoc = gql`
   }
   ${MetaFragmentFragmentDoc}
 `;
+export const ProductVariantFragmentFragmentDoc = gql`
+  fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
+    id
+    name
+    description
+    images {
+      id
+      index
+      filename
+      caption
+      contentType
+      height
+      width
+      url
+    }
+    files {
+      id
+      filename
+      contentType
+      tags
+      thumbnail {
+        id
+        url
+        width
+        length
+        index
+        caption
+        contentType
+      }
+    }
+    stockLevel
+    stockKeepingUnit
+    parentVariantId
+    taxIds
+    price {
+      currencyId
+      regularPrice
+      sale
+      salePrice
+    }
+  }
+`;
 export const ProductFragmentFragmentDoc = gql`
   fragment ProductFragment on IoRestorecommerceProductProduct {
     id
@@ -11475,54 +11767,10 @@ export const ProductFragmentFragmentDoc = gql`
       taricCode
       physical {
         templates {
-          id
-          name
-          description
-          images {
-            id
-            index
-            filename
-            caption
-            contentType
-            height
-            width
-            url
-          }
-          stockLevel
-          stockKeepingUnit
-          parentVariantId
-          taxIds
-          price {
-            currencyId
-            regularPrice
-            sale
-            salePrice
-          }
+          ...ProductVariantFragment
         }
         variants {
-          id
-          name
-          description
-          images {
-            id
-            index
-            filename
-            caption
-            contentType
-            height
-            width
-            url
-          }
-          stockLevel
-          stockKeepingUnit
-          parentVariantId
-          taxIds
-          price {
-            currencyId
-            regularPrice
-            sale
-            salePrice
-          }
+          ...ProductVariantFragment
         }
       }
     }
@@ -11530,6 +11778,7 @@ export const ProductFragmentFragmentDoc = gql`
       ...MetaFragment
     }
   }
+  ${ProductVariantFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
 export const OrganizationFragmentFragmentDoc = gql`

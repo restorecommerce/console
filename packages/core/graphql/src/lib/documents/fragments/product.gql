@@ -13,54 +13,10 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
     taricCode
     physical {
       templates {
-        id
-        name
-        description
-        images {
-          id
-          index
-          filename
-          caption
-          contentType
-          height
-          width
-          url
-        }
-        stockLevel
-        stockKeepingUnit
-        parentVariantId
-        taxIds
-        price {
-          currencyId
-          regularPrice
-          sale
-          salePrice
-        }
+        ...ProductVariantFragment
       }
       variants {
-        id
-        name
-        description
-        images {
-          id
-          index
-          filename
-          caption
-          contentType
-          height
-          width
-          url
-        }
-        stockLevel
-        stockKeepingUnit
-        parentVariantId
-        taxIds
-        price {
-          currencyId
-          regularPrice
-          sale
-          salePrice
-        }
+        ...ProductVariantFragment
       }
     }
   }
