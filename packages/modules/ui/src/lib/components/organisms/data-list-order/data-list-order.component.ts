@@ -79,24 +79,5 @@ export class RcDataListOrderComponent implements OnInit {
 
     this.shop = this.order.shop;
     this.numberOfItems = this.order.items?.length || 0;
-
-    /*
-
-    const parentVariant = this.product.physical?.templates?.find(
-      (tmpl) => tmpl.id === this.variant.parentVariantId
-    );
-
-    const variantImages = this.variant.images || [];
-    const baseParentVariantImages = parentVariant?.images || [];
-
-    this.images = (
-      variantImages.length
-        ? variantImages
-        : baseParentVariantImages.concat(variantImages)
-    ).map((img) => ({
-      ...img,
-      url: `${API.domains.bucketDomain}${img.url}`,
-    }));
-    */
   }
 }

@@ -21,9 +21,7 @@
 
 <img
   [alt]="item.product?.product?.physical?.variants?.[0]?.name"
-  [src]="
-    'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-  "
+  [src]="product | productImage"
   sizes="(max-width: 123px) 123px, 123px"
   width="123"
   loading="lazy"

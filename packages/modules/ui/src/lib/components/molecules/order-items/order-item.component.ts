@@ -4,10 +4,12 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 
 import { IoRestorecommerceOrderItem } from '@console-core/graphql';
+import { IProduct } from '@console-core/types';
 
 @Component({
   selector: 'rc-order-item',
@@ -22,7 +24,7 @@ import { IoRestorecommerceOrderItem } from '@console-core/graphql';
   ],
   standalone: false,
 })
-export class RcOrderItemComponent {
+export class RcOrderItemComponent implements OnInit {
   @HostBinding('class') classNames = 'order-item';
 
   @Input({ required: true })
@@ -33,4 +35,10 @@ export class RcOrderItemComponent {
 
   @Output() openDeleteOrderItemModal =
     new EventEmitter<IoRestorecommerceOrderItem>();
+
+  product!: IProduct;
+
+  ngOnInit(): void {
+    this.product = this.item.product as IProduct;
+  }
 }
