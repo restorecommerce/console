@@ -1,5 +1,5 @@
+@if (vm$ | async; as vm) {
 <rc-crud-main
-  *ngIf="vm$ | async as vm"
   [feature]="feature"
   [title]="vm.selectedOrder?.customerOrderNr ?? feature.name.singular"
   [id]="vm.selectedOrderId"
@@ -12,26 +12,29 @@
   [triggerCreateFulfillment]="triggerCreateFulfillment"
 >
   <ng-container rc-crud-search>
-    <div
-      *ngIf="vm.dataList.length > 0"
-      class="flex"
-    >
+    @if (vm.dataList.length > 0) {
+    <div class="flex">
       <rc-searchbar
         [value]="triggerSearch.value"
         (search)="onSearch($event)"
       />
     </div>
+    }
   </ng-container>
 
   <ng-container rc-crud-data-list>
-    <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
-      <rc-data-list
-        [itemTemplate]="itemTemplate"
-        [items]="vm.dataList"
-        [selected]="vm.selectedOrderId"
-        (itemSelected)="onItemSelected($event)"
-      />
-    </ng-container>
+    @if (vm.dataList.length > 0) {
+    <rc-data-list
+      [itemTemplate]="itemTemplate"
+      [items]="vm.dataList"
+      [selected]="vm.selectedOrderId"
+      (itemSelected)="onItemSelected($event)"
+    />
+    } @else {
+    <div class="pt-4">
+      <rc-no-records message="No orders loaded" />
+    </div>
+    }
   </ng-container>
 
   <ng-container rc-crud-actions>
@@ -61,19 +64,15 @@
   </ng-container>
 
   <ng-container rc-crud-meta>
+    @if (vm.selectedOrderId) {
     <rc-meta
-      *ngIf="vm.selectedOrderId"
       [id]="vm.selectedOrderId"
       [meta]="vm.selectedOrder?.meta"
     />
+    }
   </ng-container>
 </rc-crud-main>
-
-<ng-template #templateNoRecords>
-  <div class="pt-4">
-    <rc-no-records message="No orders loaded" />
-  </div>
-</ng-template>
+}
 
 <ng-template
   #itemTemplate

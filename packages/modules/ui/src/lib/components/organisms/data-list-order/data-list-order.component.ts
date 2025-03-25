@@ -7,13 +7,16 @@ import {
 } from '@angular/core';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { map } from 'rxjs';
 
+import { API } from '@console-core/config';
 import {
   IoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceShopShop,
   IoRestorecommerceUserUser,
 } from '@console-core/graphql';
-import { IOrder } from '@console-core/types';
+import { ProductFacade } from '@console-core/state';
+import { IOrder, IProduct } from '@console-core/types';
 
 dayjs.extend(relativeTime);
 
@@ -31,18 +34,69 @@ export class RcDataListOrderComponent implements OnInit {
 
   dayjs = dayjs;
 
+  BUCKET_DOMAIN = API.domains.bucketDomain;
+
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;
   shop?: IoRestorecommerceShopShop;
   numberOfItems!: number;
 
-  ngOnInit(): void {
-    this.product =
-      this.order.items?.[0]?.product?.product?.physical?.variants?.[0];
+  constructor(private readonly productFacade: ProductFacade) {}
 
+  product$ = this.productFacade.entities$.pipe(
+    map((entities) => {
+      const productId = this.order.items?.[0].productId as string;
+      const product = entities[productId] as IProduct;
+
+      return product;
+    })
+  );
+
+  productVariantImage$ = this.product$.pipe(
+    map((product) => {
+      const variantId = this.order.items?.[0].variantId as string;
+
+      const variant = product?.product.physical?.variants?.find(
+        (variant) => variant.id === variantId
+      );
+
+      const templateVariant = product.product.physical?.templates?.find(
+        (tmpl) => tmpl.id === variant?.parentVariantId
+      );
+
+      return templateVariant &&
+        templateVariant.images &&
+        templateVariant.images.length > 0
+        ? [...(variant?.images || []), ...templateVariant.images]
+        : [...(variant?.images || [])];
+    })
+  );
+
+  ngOnInit(): void {
+    // This assumes that the customer is always private,
+    // We have to account for commercial customer too...
     this.customer = this.order.customer?.private?.user || this.order.user;
 
     this.shop = this.order.shop;
     this.numberOfItems = this.order.items?.length || 0;
+
+    /*
+
+    const parentVariant = this.product.physical?.templates?.find(
+      (tmpl) => tmpl.id === this.variant.parentVariantId
+    );
+
+    const variantImages = this.variant.images || [];
+    const baseParentVariantImages = parentVariant?.images || [];
+
+    this.images = (
+      variantImages.length
+        ? variantImages
+        : baseParentVariantImages.concat(variantImages)
+    ).map((img) => ({
+      ...img,
+      url: `${API.domains.bucketDomain}${img.url}`,
+    }));
+    */
   }
 }

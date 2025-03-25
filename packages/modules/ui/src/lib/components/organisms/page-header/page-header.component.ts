@@ -108,7 +108,6 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
   ): IBreadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
-    console.log('***route.children,', route.children);
     if (children.length === 0) {
       return breadcrumbs;
     }

@@ -40,6 +40,8 @@
       <vcl-gallery-thumbnails></vcl-gallery-thumbnails>
     </vcl-gallery>
     }
+
+    <!-- TODO Add the upload image, that would open a modal so that you can add an image.. -->
   </div>
 </div>
 
@@ -69,6 +71,16 @@
                 : 'EUR')
       }}
     </p>
+
+    <div class="row align-items-center justify-content-between">
+      <strong>Files [{{ (variant.files || []).length }}]</strong>
+
+      <!-- TODO
+        List files, and provide context menu for deleting the file...
+        Add buttons for managing the file...
+      -->
+      <!-- <span>{{ variant.files | json }}</span> -->
+    </div>
   </div>
 </div>
 

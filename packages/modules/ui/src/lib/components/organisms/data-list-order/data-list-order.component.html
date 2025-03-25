@@ -1,29 +1,31 @@
 <div class="row px-2 py-2">
   <div>
+    @if (productVariantImage$ | async; as productImages) {
     <img
       [alt]="product?.name || 'Product Image'"
-      [src]="product?.images?.[0]?.url"
+      [src]="BUCKET_DOMAIN + productImages[0].url"
       sizes="(max-width: 60px) 60px, 60px"
       width="60"
       loading="lazy"
       ngOptimizedImage
       priority="auto"
     />
-
-    <div>
-      <vcl-badge>
-        {{ numberOfItems }}
-        {{ numberOfItems > 1 ? 'Items' : 'Item' }}</vcl-badge
-      >
-    </div>
+    }
   </div>
   <div class="flex">
     <div class="row">
       <div class="flex">
         <p class="m-0 pl-2">
-          {{ customer?.firstName }} {{ customer?.lastName }}
+          {{ customer?.firstName || 'Customer FN' }}
+          {{ customer?.lastName || 'Customer LN' }}
         </p>
-        <!-- <p class="m-0 pl-2 mt-1">{{ shop?.name }}</p> -->
+        <div class="row align-items-center">
+          <span class="m-0 px-2">{{ shop?.name || 'Toy shop' }}</span>
+          <vcl-badge>
+            {{ numberOfItems }}
+            {{ numberOfItems > 1 ? 'Items' : 'Item' }}</vcl-badge
+          >
+        </div>
       </div>
       <div class="align-right secondary-text-color">
         <p

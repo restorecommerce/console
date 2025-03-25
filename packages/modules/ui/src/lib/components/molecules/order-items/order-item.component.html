@@ -1,5 +1,5 @@
 <div class="row justify-content-between align-items-center">
-  <h4>{{ item.product?.product?.name }}</h4>
+  <h4>{{ item.product?.product?.name || 'Product name' }}</h4>
 
   <div #target>
     <button
@@ -21,7 +21,9 @@
 
 <img
   [alt]="item.product?.product?.physical?.variants?.[0]?.name"
-  [src]="item.product?.product?.physical?.variants?.[0]?.images?.[0]?.url"
+  [src]="
+    'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  "
   sizes="(max-width: 123px) 123px, 123px"
   width="123"
   loading="lazy"
