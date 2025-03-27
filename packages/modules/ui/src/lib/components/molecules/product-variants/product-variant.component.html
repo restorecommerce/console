@@ -72,14 +72,45 @@
       }}
     </p>
 
-    <div class="row align-items-center justify-content-between">
-      <strong>Files [{{ (variant.files || []).length }}]</strong>
+    <div class="pr-2 mb-2">
+      <!-- Files section -->
+      <div class="row align-items-center justify-content-between">
+        <strong>Files [{{ (variant.files || []).length }}]</strong>
 
-      <!-- TODO
-        List files, and provide context menu for deleting the file...
-        Add buttons for managing the file...
-      -->
-      <!-- <span>{{ variant.files | json }}</span> -->
+        <button
+          vcl-button
+          square
+          class="emphasized-transparent"
+          title="Add file"
+          (click)="onAddFile()"
+        >
+          <vcl-icon
+            class="scale155p"
+            icon="mdi mdi-plus"
+          ></vcl-icon>
+        </button>
+      </div>
+
+      <!-- List file -->
+      <div
+        class="p-2 row"
+        style="border: 1px solid #ccc"
+      >
+        <div
+          style="width: 4em; height: 4em; border: 1px solid #ccc"
+          class="row align-items-center justify-content-center mr-3"
+        >
+          <vcl-icon
+            class="scale180p"
+            icon="mdi mdi-paperclip"
+          ></vcl-icon>
+        </div>
+
+        <div class="col">
+          <div><b>FileName.png</b></div>
+          <div>Some caption about this file</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -54,4 +54,30 @@ export class RcProductVariantComponent implements OnInit {
       url: `${API.domains.bucketDomain}${img.url}`,
     }));
   }
+
+  onAddFile() {
+    /*
+    const file = {
+      id: '',
+      filename: '',
+      contentType: '',
+      tags: [],
+      caption: '',
+      url: '',
+      thumbnail: {
+        id: '',
+        url: '',
+        width: '',
+        length: '',
+        index: '',
+        caption: '',
+        contentType: '',
+        filename: '',
+        height: '',
+        tags: [],
+      },
+    };
+    */
+    console.log('Add file');
+  }
 }
