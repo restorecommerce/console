@@ -93,22 +93,39 @@
 
       <!-- List file -->
       <div
-        class="p-2 row"
+        class="py-2 row justify-content-between"
         style="border: 1px solid #ccc"
       >
-        <div
-          style="width: 4em; height: 4em; border: 1px solid #ccc"
-          class="row align-items-center justify-content-center mr-3"
-        >
-          <vcl-icon
-            class="scale180p"
-            icon="mdi mdi-paperclip"
-          ></vcl-icon>
+        <div class="row">
+          <div
+            style="width: 4em; height: 4em; border: 1px solid #ccc"
+            class="row align-items-center justify-content-center ml-1 mr-3"
+          >
+            <vcl-icon
+              class="scale180p"
+              icon="mdi mdi-paperclip"
+            ></vcl-icon>
+          </div>
+
+          <div class="col">
+            <div><b>FileName.png</b></div>
+            <div>Some caption about this file</div>
+          </div>
         </div>
 
-        <div class="col">
-          <div><b>FileName.png</b></div>
-          <div>Some caption about this file</div>
+        <div #target>
+          <button
+            vcl-button
+            square
+            class="emphasized-transparent"
+            title="Options"
+            (click)="popover.open()"
+          >
+            <vcl-icon
+              class="scale155p"
+              icon="mdi mdi-dots-vertical"
+            />
+          </button>
         </div>
       </div>
     </div>

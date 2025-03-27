@@ -1,0 +1,33 @@
+<ng-template
+  vclPopover
+  #popover="vclPopover"
+  [closeOnOffClick]="true"
+  [target]="target"
+  [positions]="[
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top'
+    }
+  ]"
+>
+  <div>
+    <vcl-button-group class="vertical">
+      <button
+        vcl-button
+        class="transparent"
+        (click)="edit.emit(item); popover.close()"
+      >
+        Edit
+      </button>
+      <button
+        class="transparent"
+        vcl-button
+        (click)="delete.emit(item.id || ''); popover.close()"
+      >
+        Delete
+      </button>
+    </vcl-button-group>
+  </div>
+</ng-template>

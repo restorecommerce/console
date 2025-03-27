@@ -42,6 +42,7 @@ import {
   RcNoRecordsComponent,
   RcScrollableContainerComponent,
   RcSubmitButtonComponent,
+  RcPopoverActionComponent,
 } from './components/atoms';
 import {
   RcOrderInfoComponent,
@@ -169,6 +170,7 @@ const atoms = [
   RcNoRecordsComponent,
   RcScrollableContainerComponent,
   RcSubmitButtonComponent,
+  RcPopoverActionComponent,
 ];
 
 const molecules = [
