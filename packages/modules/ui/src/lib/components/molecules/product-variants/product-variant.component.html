@@ -94,7 +94,7 @@
       @for (file of (variant.files || []); track file.id) {
       <!-- List file -->
       <div
-        class="py-2 row justify-content-between"
+        class="py-2 mb-1 row justify-content-between"
         style="border: 1px solid #ccc"
       >
         <div class="row">
@@ -109,8 +109,10 @@
           </div>
 
           <div class="col">
-            <div><b>FileName.png</b></div>
-            <div>Some caption about this file</div>
+            <div>
+              <b>{{ file.filename }}</b>
+            </div>
+            <div>{{ file.caption }}</div>
           </div>
         </div>
 

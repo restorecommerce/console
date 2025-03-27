@@ -15,6 +15,7 @@ fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
   files {
     id
     filename
+    caption
     contentType
     tags
     thumbnail {

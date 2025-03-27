@@ -5779,6 +5779,7 @@ export type CatalogProductMutateMutation = {
                       __typename?: 'IoRestorecommerceFileFile';
                       id?: string | null;
                       filename?: string | null;
+                      caption?: string | null;
                       contentType?: string | null;
                       tags?: Array<string> | null;
                       thumbnail?: {
@@ -5824,6 +5825,7 @@ export type CatalogProductMutateMutation = {
                       __typename?: 'IoRestorecommerceFileFile';
                       id?: string | null;
                       filename?: string | null;
+                      caption?: string | null;
                       contentType?: string | null;
                       tags?: Array<string> | null;
                       thumbnail?: {
@@ -5958,6 +5960,7 @@ export type CatalogProductReadQuery = {
                       __typename?: 'IoRestorecommerceFileFile';
                       id?: string | null;
                       filename?: string | null;
+                      caption?: string | null;
                       contentType?: string | null;
                       tags?: Array<string> | null;
                       thumbnail?: {
@@ -6003,6 +6006,7 @@ export type CatalogProductReadQuery = {
                       __typename?: 'IoRestorecommerceFileFile';
                       id?: string | null;
                       filename?: string | null;
+                      caption?: string | null;
                       contentType?: string | null;
                       tags?: Array<string> | null;
                       thumbnail?: {
@@ -6708,6 +6712,7 @@ export type OrderFragmentFragment = {
               __typename?: 'IoRestorecommerceFileFile';
               id?: string | null;
               filename?: string | null;
+              caption?: string | null;
               contentType?: string | null;
               tags?: Array<string> | null;
               thumbnail?: {
@@ -6753,6 +6758,7 @@ export type OrderFragmentFragment = {
               __typename?: 'IoRestorecommerceFileFile';
               id?: string | null;
               filename?: string | null;
+              caption?: string | null;
               contentType?: string | null;
               tags?: Array<string> | null;
               thumbnail?: {
@@ -7314,6 +7320,7 @@ export type ProductVariantFragmentFragment = {
     __typename?: 'IoRestorecommerceFileFile';
     id?: string | null;
     filename?: string | null;
+    caption?: string | null;
     contentType?: string | null;
     tags?: Array<string> | null;
     thumbnail?: {
@@ -7376,6 +7383,7 @@ export type ProductFragmentFragment = {
           __typename?: 'IoRestorecommerceFileFile';
           id?: string | null;
           filename?: string | null;
+          caption?: string | null;
           contentType?: string | null;
           tags?: Array<string> | null;
           thumbnail?: {
@@ -7421,6 +7429,7 @@ export type ProductFragmentFragment = {
           __typename?: 'IoRestorecommerceFileFile';
           id?: string | null;
           filename?: string | null;
+          caption?: string | null;
           contentType?: string | null;
           tags?: Array<string> | null;
           thumbnail?: {
@@ -10263,6 +10272,7 @@ export type OrderingOrderMutateMutation = {
                           __typename?: 'IoRestorecommerceFileFile';
                           id?: string | null;
                           filename?: string | null;
+                          caption?: string | null;
                           contentType?: string | null;
                           tags?: Array<string> | null;
                           thumbnail?: {
@@ -10308,6 +10318,7 @@ export type OrderingOrderMutateMutation = {
                           __typename?: 'IoRestorecommerceFileFile';
                           id?: string | null;
                           filename?: string | null;
+                          caption?: string | null;
                           contentType?: string | null;
                           tags?: Array<string> | null;
                           thumbnail?: {
@@ -10918,6 +10929,7 @@ export type OrderingOrderReadQuery = {
                           __typename?: 'IoRestorecommerceFileFile';
                           id?: string | null;
                           filename?: string | null;
+                          caption?: string | null;
                           contentType?: string | null;
                           tags?: Array<string> | null;
                           thumbnail?: {
@@ -10963,6 +10975,7 @@ export type OrderingOrderReadQuery = {
                           __typename?: 'IoRestorecommerceFileFile';
                           id?: string | null;
                           filename?: string | null;
+                          caption?: string | null;
                           contentType?: string | null;
                           tags?: Array<string> | null;
                           thumbnail?: {
@@ -11728,6 +11741,7 @@ export const ProductVariantFragmentFragmentDoc = gql`
     files {
       id
       filename
+      caption
       contentType
       tags
       thumbnail {
