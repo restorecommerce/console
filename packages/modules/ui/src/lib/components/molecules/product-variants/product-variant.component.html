@@ -8,7 +8,7 @@
       square
       class="emphasized-transparent"
       title="Options"
-      (click)="popover.open()"
+      (click)="variantPopover.openPopover()"
     >
       <vcl-icon
         class="scale155p"
@@ -91,6 +91,7 @@
         </button>
       </div>
 
+      @for (file of (variant.files || []); track file.id) {
       <!-- List file -->
       <div
         class="py-2 row justify-content-between"
@@ -98,11 +99,11 @@
       >
         <div class="row">
           <div
-            style="width: 4em; height: 4em; border: 1px solid #ccc"
+            style="width: 3em; height: 3em"
             class="row align-items-center justify-content-center ml-1 mr-3"
           >
             <vcl-icon
-              class="scale180p"
+              class="scale120p"
               icon="mdi mdi-paperclip"
             ></vcl-icon>
           </div>
@@ -119,7 +120,6 @@
             square
             class="emphasized-transparent"
             title="Options"
-            (click)="popover.open()"
           >
             <vcl-icon
               class="scale155p"
@@ -128,41 +128,22 @@
           </button>
         </div>
       </div>
+
+      <!-- File Popover -->
+      <rc-popover-action
+        [item]="file"
+        [target]="target"
+      />
+      }
     </div>
   </div>
 </div>
 
-<ng-template
-  vclPopover
-  #popover="vclPopover"
-  [closeOnOffClick]="true"
+<!-- Variant Popover -->
+<rc-popover-action
+  #variantPopover
+  [item]="variant"
   [target]="target"
-  [positions]="[
-    {
-      originX: 'end',
-      originY: 'bottom',
-      overlayX: 'end',
-      overlayY: 'top'
-    }
-  ]"
->
-  <div>
-    <vcl-button-group class="vertical">
-      <button
-        vcl-button
-        class="transparent"
-        (click)="editVariant.emit(variant); popover.close()"
-      >
-        Edit
-      </button>
-      <button
-        class="transparent"
-        vcl-button
-        [value]="2"
-        (click)="deleteVariant.emit(variant.id || ''); popover.close()"
-      >
-        Delete
-      </button>
-    </vcl-button-group>
-  </div>
-</ng-template>
+  (edit)="editVariant.emit($event)"
+  (delete)="deleteVariant.emit($event)"
+/>
