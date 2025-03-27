@@ -15,7 +15,7 @@ import {
   IoRestorecommerceShopShop,
   IoRestorecommerceUserUser,
 } from '@console-core/graphql';
-import { ProductFacade } from '@console-core/state';
+import { ProductFacade, ShopFacade } from '@console-core/state';
 import { IOrder, IProduct } from '@console-core/types';
 
 dayjs.extend(relativeTime);
@@ -40,8 +40,6 @@ export class RcDataListOrderComponent implements OnInit {
   customer?: IoRestorecommerceUserUser | null;
   shop?: IoRestorecommerceShopShop;
   numberOfItems!: number;
-
-  constructor(private readonly productFacade: ProductFacade) {}
 
   product$ = this.productFacade.entities$.pipe(
     map((entities) => {
@@ -72,12 +70,22 @@ export class RcDataListOrderComponent implements OnInit {
     })
   );
 
+  shop$ = this.shopFacade.entities$.pipe(
+    map((shopEntities) => shopEntities[this.order.shopId as string])
+  );
+
+  constructor(
+    private readonly productFacade: ProductFacade,
+    // private readonly customerFacade: ShopFacade,
+    private readonly shopFacade: ShopFacade
+  ) {}
+
   ngOnInit(): void {
     // This assumes that the customer is always private,
     // We have to account for commercial customer too...
     this.customer = this.order.customer?.private?.user || this.order.user;
 
-    this.shop = this.order.shop;
+    // this.shop = this.order.shop;
     this.numberOfItems = this.order.items?.length || 0;
   }
 }

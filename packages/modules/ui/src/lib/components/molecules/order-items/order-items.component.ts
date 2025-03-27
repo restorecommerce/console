@@ -8,7 +8,7 @@ import {
 import { map } from 'rxjs';
 
 import { IoRestorecommerceOrderItem } from '@console-core/graphql';
-import { ProductFacade } from '@console-core/state';
+import { ProductFacade, ShopFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
 @Component({
@@ -39,5 +39,8 @@ export class RcOrderItemsComponent {
     })
   );
 
-  constructor(private readonly productFacade: ProductFacade) {}
+  constructor(
+    private readonly productFacade: ProductFacade,
+    private readonly shopFacade: ShopFacade
+  ) {}
 }

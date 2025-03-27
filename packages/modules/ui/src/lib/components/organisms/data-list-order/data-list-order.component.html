@@ -1,4 +1,4 @@
-<div class="row px-2 py-2">
+<div class="row align-items-center px-2 py-2 h-100p">
   <div>
     @if (productVariantImage$ | async; as productImages) {
     <img
@@ -12,34 +12,35 @@
     />
     }
   </div>
-  <div class="flex">
-    <div class="row">
-      <div class="flex">
-        <p class="m-0 pl-2">
-          {{ customer?.firstName || 'Customer FN' }}
-          {{ customer?.lastName || 'Customer LN' }}
-        </p>
-        <div class="row align-items-center">
-          <span class="m-0 px-2">{{ shop?.name || 'Toy shop' }}</span>
+  <div class="flex row align-items-center">
+    <div class="flex">
+      <p class="m-0 pl-2">
+        <!-- {{ customer?.firstName || 'Customer FN' }}
+      {{ customer?.lastName || 'Customer LN' }} -->
+        <!-- TODO Fix this please.... -->
+        Unauthenticated user
+      </p>
+      <div class="row align-items-center">
+        <div class="px-2">
           <vcl-badge>
             {{ numberOfItems }}
             {{ numberOfItems > 1 ? 'Items' : 'Item' }}</vcl-badge
           >
         </div>
+
+        <span class="m-0">{{ (shop$ | async)?.name }}</span>
       </div>
-      <div class="align-right secondary-text-color">
-        <p
-          [ngClass]="
-            'badge-' + order.orderState.replace('_', '-').toLowerCase()
-          "
-          class="m-0 badge"
-        >
-          {{ order.orderState.replace('_', ' ') }}
-        </p>
-        <p class="created">
-          {{ dayjs(this.order.meta.created).fromNow() }}
-        </p>
-      </div>
+    </div>
+    <div class="align-right secondary-text-color">
+      <p
+        [ngClass]="'badge-' + order.orderState.replace('_', '-').toLowerCase()"
+        class="m-0 badge"
+      >
+        {{ order.orderState.replace('_', ' ') }}
+      </p>
+      <p class="created">
+        {{ dayjs(this.order.meta.created).fromNow() }}
+      </p>
     </div>
   </div>
 </div>
