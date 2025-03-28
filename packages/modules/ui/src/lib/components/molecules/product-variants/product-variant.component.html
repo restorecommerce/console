@@ -122,6 +122,7 @@
             square
             class="emphasized-transparent"
             title="Options"
+            (click)="filePopover.openPopover()"
           >
             <vcl-icon
               class="scale155p"
@@ -133,6 +134,7 @@
 
       <!-- File Popover -->
       <rc-popover-action
+        #filePopover
         [item]="file"
         [target]="target"
       />
