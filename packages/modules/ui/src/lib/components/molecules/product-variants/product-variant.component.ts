@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -6,7 +7,12 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
+
+import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { API } from '@console-core/config';
 import {
@@ -21,7 +27,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcProductVariantComponent implements OnInit {
+export class RcProductVariantComponent implements OnInit, AfterViewInit {
   @HostBinding('class') className = 'w-100p';
 
   @Input({ required: true })
@@ -36,6 +42,16 @@ export class RcProductVariantComponent implements OnInit {
   @Output() deleteVariant = new EventEmitter<string>();
 
   images!: IIoRestorecommerceImageImage[];
+
+  @ViewChild('tplLayerRef')
+  tplLayerRef!: TemplateRef<{ title: string }>;
+
+  tplLayer!: LayerRef;
+
+  constructor(
+    private layerService: LayerService,
+    private viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {
     const parentVariant = this.product.physical?.templates?.find(
@@ -53,6 +69,13 @@ export class RcProductVariantComponent implements OnInit {
       ...img,
       url: `${API.domains.bucketDomain}${img.url}`,
     }));
+  }
+
+  ngAfterViewInit(): void {
+    this.tplLayer = this.layerService.createTemplateLayer(
+      this.tplLayerRef,
+      this.viewContainerRef
+    );
   }
 
   onAddFile() {

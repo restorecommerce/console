@@ -82,7 +82,7 @@
           square
           class="emphasized-transparent"
           title="Add file"
-          (click)="onAddFile()"
+          (click)="tplLayer.open({ data: { title: 'Template layer' } })"
         >
           <vcl-icon
             class="scale155p"
@@ -151,3 +151,24 @@
   (edit)="editVariant.emit($event)"
   (delete)="deleteVariant.emit($event)"
 />
+
+<ng-template
+  #tplLayerRef
+  let-title="title"
+>
+  <vcl-panel-dialog
+    [showCloseButton]="true"
+    (close)="tplLayer.close()"
+  >
+    <vcl-panel-title>{{ title }}</vcl-panel-title>
+    Press escape or click outside of layer to close<br /><br />
+    <button
+      vcl-button
+      vclPanelFooterButton
+      class="transparent outline"
+      (click)="tplLayer.close()"
+    >
+      Close layer
+    </button>
+  </vcl-panel-dialog>
+</ng-template>
