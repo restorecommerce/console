@@ -160,8 +160,41 @@
     [showCloseButton]="true"
     (close)="tplLayer.close()"
   >
-    <!-- <vcl-panel-title>{{ title }}</vcl-panel-title> -->
-    <vcl-file-input [disabled]="true">Upload file</vcl-file-input>
+    <form
+      novalidate
+      [formGroup]="uploadImageFormGroup"
+      (submit)="onUploadFile()"
+      vclForm
+    >
+      <vcl-form-control-group>
+        <vcl-label>File upload</vcl-label>
+        <vcl-file-input
+          [multiple]="false"
+          formControlName="fileInputControl"
+          >Choose a file</vcl-file-input
+        >
+      </vcl-form-control-group>
+
+      <div class="row justify-content-end">
+        <button
+          vcl-button
+          vclPanelFooterButton
+          class="transparent outline"
+          (click)="tplLayer.close()"
+        >
+          Close
+        </button>
+        <span class="mx-2"></span>
+        <button
+          vcl-button
+          vclPanelFooterButton
+          class="emphasized"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
 
     <!-- <button
       vcl-button
@@ -171,20 +204,5 @@
     >
       Close Layer
     </button> -->
-    <button
-      vcl-button
-      vclPanelFooterButton
-      class="emphasized"
-    >
-      Submit
-    </button>
-    <button
-      vcl-button
-      vclPanelFooterButton
-      class="transparent outline"
-      (click)="tplLayer.close()"
-    >
-      Close
-    </button>
   </vcl-panel-dialog>
 </ng-template>

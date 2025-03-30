@@ -11,6 +11,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
@@ -20,6 +21,8 @@ import {
   IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceProductIndividualProduct,
 } from '@console-core/graphql';
+import { UploadService } from '@console-core/state';
+import { IMeta } from '@console-core/types';
 
 @Component({
   selector: 'rc-product-variant',
@@ -48,9 +51,14 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
 
   tplLayer!: LayerRef;
 
+  uploadImageFormGroup = new FormGroup({
+    fileInputControl: new FormControl(null, []),
+  });
+
   constructor(
     private layerService: LayerService,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit(): void {
@@ -78,7 +86,7 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     );
   }
 
-  onAddFile() {
+  onUploadFile() {
     /*
     const file = {
       id: '',
@@ -101,6 +109,37 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       },
     };
     */
-    console.log('Add file');
+
+    const fileList = this.uploadImageFormGroup.get('fileInputControl')
+      ?.value as unknown as FileList;
+    const file = fileList[0];
+
+    const meta: Partial<IMeta> = {
+      owners: [
+        {
+          id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
+          value: 'urn:restorecommerce:acs:model:organization.Organization',
+          attributes: [
+            {
+              id: 'urn:restorecommerce:acs:names:ownerInstance',
+              value: 'nfuse-shop-000-organization',
+              attributes: [],
+            },
+          ],
+        },
+      ],
+    };
+
+    // Further move this into an action...that would then
+    // onload the file, and then do the last step, which is
+    //
+    this.uploadService.uploadFile(
+      file,
+      'http://localhost:5000/graphql',
+      'public',
+      `nfuse-shop/${file.name}`,
+      'token',
+      meta
+    );
   }
 }

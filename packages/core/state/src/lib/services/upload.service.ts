@@ -15,7 +15,7 @@ export class UploadService {
     bucketName: string,
     keyName: string,
     token: string,
-    meta: IMeta
+    meta: Partial<IMeta>
   ) {
     const contentType = file.type || 'application/octet-stream';
 
