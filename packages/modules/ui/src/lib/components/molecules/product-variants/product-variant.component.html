@@ -160,15 +160,31 @@
     [showCloseButton]="true"
     (close)="tplLayer.close()"
   >
-    <vcl-panel-title>{{ title }}</vcl-panel-title>
-    Press escape or click outside of layer to close<br /><br />
+    <!-- <vcl-panel-title>{{ title }}</vcl-panel-title> -->
+    <vcl-file-input [disabled]="true">Upload file</vcl-file-input>
+
+    <!-- <button
+      vcl-button
+      vclPanelFooterButton
+      class="transparent outline"
+      (click)="close()"
+    >
+      Close Layer
+    </button> -->
+    <button
+      vcl-button
+      vclPanelFooterButton
+      class="emphasized"
+    >
+      Submit
+    </button>
     <button
       vcl-button
       vclPanelFooterButton
       class="transparent outline"
       (click)="tplLayer.close()"
     >
-      Close layer
+      Close
     </button>
   </vcl-panel-dialog>
 </ng-template>
