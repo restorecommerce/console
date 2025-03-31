@@ -133,13 +133,16 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     // Further move this into an action...that would then
     // onload the file, and then do the last step, which is
     //
-    this.uploadService.uploadFile(
-      file,
-      'http://localhost:5000/graphql',
-      'public',
-      `nfuse-shop/${file.name}`,
-      'token',
-      meta
-    );
+
+    this.uploadService
+      .uploadFile(
+        file,
+        'http://localhost:5000/graphql',
+        'public',
+        `nfuse-shop/${file.name}`,
+        'WrIBDwBPKNFQ0bBL_FQple6o4pzyqEGB1BT60Qtml5r',
+        meta
+      )
+      .subscribe();
   }
 }
