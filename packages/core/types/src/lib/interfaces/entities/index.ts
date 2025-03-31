@@ -6,6 +6,7 @@ export * from './invoice';
 export * from './meta';
 export * from './order';
 export * from './organization';
+export * from './object-upload';
 export * from './shop';
 export * from './timezone';
 export * from './policy';
