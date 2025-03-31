@@ -61,6 +61,9 @@ import {
   policyReducer,
   PolicyEffects,
   PolicyFacade,
+  ObjectUploadFacade,
+  objectUploadReducer,
+  ObjectUploadEffects,
 } from './+state';
 
 const facades = [
@@ -83,6 +86,7 @@ const facades = [
   TimezoneFacade,
   ShopFacade,
   PolicyFacade,
+  ObjectUploadFacade,
 ];
 
 @NgModule({
@@ -123,6 +127,8 @@ const facades = [
     EffectsModule.forFeature([ShopEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
     EffectsModule.forFeature([OrganizationContextEffects]),
+    StoreModule.forFeature(STORE.states.objectUploadState, objectUploadReducer),
+    EffectsModule.forFeature([ObjectUploadEffects]),
     StoreModule.forFeature(
       STORE.states.organizationContextState,
       organizationContextReducer

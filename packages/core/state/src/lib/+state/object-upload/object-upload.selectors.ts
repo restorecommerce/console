@@ -3,21 +3,21 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { STORE } from '@console-core/config';
 import { IObjectUploadState } from '@console-core/types';
 
-export const selectApp = createFeatureSelector<IObjectUploadState>(
+export const selectObjectUpload = createFeatureSelector<IObjectUploadState>(
   STORE.states.objectUploadState
 );
 
 export const selectUploadedObject = createSelector(
-  selectApp,
+  selectObjectUpload,
   (state: IObjectUploadState) => state.upload
 );
 
 export const selectError = createSelector(
-  selectApp,
+  selectObjectUpload,
   (state: IObjectUploadState) => state.error
 );
 
 export const selectActionStatus = createSelector(
-  selectApp,
+  selectObjectUpload,
   (state: IObjectUploadState) => state.actionStatus
 );

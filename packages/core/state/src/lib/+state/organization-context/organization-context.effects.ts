@@ -4,11 +4,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
-import { ROUTER } from '@console-core/config';
-import {
-  IoRestorecommerceResourcebaseFilterOperation,
-  IoRestorecommerceResourcebaseFilterValueType,
-} from '@console-core/graphql';
 import {
   ENotificationTypes,
   IOrganization,
@@ -19,7 +14,6 @@ import { OrganizationService, ErrorHandlingService } from '../../services';
 import { AppFacade } from '../app';
 
 import * as organizationContextActions from './organization-context.actions';
-import { concatLatestFrom } from '@ngrx/operators';
 import { OrganizationContextFacade } from './organization-context.facade';
 
 @Injectable()

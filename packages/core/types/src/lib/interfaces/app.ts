@@ -14,6 +14,11 @@ export interface IAppConstant {
   readonly name: string;
   readonly logoUrl: string;
   readonly languages: ILanguages;
+  readonly objectUpload: {
+    storageURL: string;
+    bucketName: string;
+    keyPrefix: string;
+  };
 }
 
 export interface INotification {

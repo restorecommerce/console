@@ -6,7 +6,7 @@ import { IMeta } from '@console-core/types';
 @Injectable({
   providedIn: 'root',
 })
-export class UploadService {
+export class ObjectUploadService {
   constructor(private http: HttpClient) {}
 
   uploadFile(
@@ -14,7 +14,6 @@ export class UploadService {
     endpoint: string,
     bucketName: string,
     keyName: string,
-    token: string,
     meta: Partial<IMeta>
   ) {
     const contentType = file.type || 'application/octet-stream';
@@ -56,7 +55,7 @@ export class UploadService {
     formData.append('fileVar', file);
 
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
       'Apollo-Require-Preflight': 'true',
     });
 

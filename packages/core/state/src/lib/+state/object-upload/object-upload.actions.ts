@@ -1,5 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
+import { IObjectUpload } from '@console-core/types';
+
 export const objectUploadRequest = createAction(
   '[Upload] Upload request',
   props<{ payload: File }>()
@@ -7,7 +9,7 @@ export const objectUploadRequest = createAction(
 
 export const objectUploadSuccess = createAction(
   '[Upload] Upload success',
-  props<{ payload: { objectName: string; url: string } }>()
+  props<{ payload: IObjectUpload }>()
 );
 
 export const objectUploadFail = createAction(

@@ -13,6 +13,12 @@ const supported: ILanguage[] = [
   },
 ];
 
+export const objectUpload = {
+  storageURL: 'http://localhost:5000/graphql',
+  bucketName: 'public',
+  keyPrefix: 'nfuse-shop',
+};
+
 export const APP: Readonly<IAppConstant> = {
   name,
   logoUrl: '/assets/images/restore_commerce_logo_square.png',
@@ -22,4 +28,5 @@ export const APP: Readonly<IAppConstant> = {
     },
     supported,
   },
+  objectUpload,
 };

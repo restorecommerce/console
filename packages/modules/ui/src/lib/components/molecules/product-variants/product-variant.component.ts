@@ -21,8 +21,7 @@ import {
   IIoRestorecommerceProductPhysicalVariant,
   IoRestorecommerceProductIndividualProduct,
 } from '@console-core/graphql';
-import { UploadService } from '@console-core/state';
-import { IMeta } from '@console-core/types';
+import { ObjectUploadFacade } from '@console-core/state';
 
 @Component({
   selector: 'rc-product-variant',
@@ -58,7 +57,7 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   constructor(
     private layerService: LayerService,
     private viewContainerRef: ViewContainerRef,
-    private uploadService: UploadService
+    private objectUploadFacade: ObjectUploadFacade
   ) {}
 
   ngOnInit(): void {
@@ -113,36 +112,6 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     const fileList = this.uploadImageFormGroup.get('fileInputControl')
       ?.value as unknown as FileList;
     const file = fileList[0];
-
-    const meta: Partial<IMeta> = {
-      owners: [
-        {
-          id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
-          value: 'urn:restorecommerce:acs:model:organization.Organization',
-          attributes: [
-            {
-              id: 'urn:restorecommerce:acs:names:ownerInstance',
-              value: 'nfuse-shop-000-organization',
-              attributes: [],
-            },
-          ],
-        },
-      ],
-    };
-
-    // Further move this into an action...that would then
-    // onload the file, and then do the last step, which is
-    //
-
-    this.uploadService
-      .uploadFile(
-        file,
-        'http://localhost:5000/graphql',
-        'public',
-        `nfuse-shop/${file.name}`,
-        'WrIBDwBPKNFQ0bBL_FQple6o4pzyqEGB1BT60Qtml5r',
-        meta
-      )
-      .subscribe();
+    this.objectUploadFacade.upload(file);
   }
 }
