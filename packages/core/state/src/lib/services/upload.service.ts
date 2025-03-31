@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { IMeta } from '@console-core/types';
 
@@ -14,8 +15,10 @@ export class ObjectUploadService {
     endpoint: string,
     bucketName: string,
     keyName: string,
-    meta: Partial<IMeta>
-  ) {
+    meta: Partial<IMeta>,
+    token: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ): Observable<any> {
     const contentType = file.type || 'application/octet-stream';
 
     const operations = {
@@ -55,7 +58,7 @@ export class ObjectUploadService {
     formData.append('fileVar', file);
 
     const headers = new HttpHeaders({
-      // Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       'Apollo-Require-Preflight': 'true',
     });
 

@@ -3,26 +3,26 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
-import { IMeta } from '@console-core/types';
+import { IMeta, IObjectUpload } from '@console-core/types';
 
 import { ObjectUploadService } from '../../services';
 
 import * as objectUploadActions from './object-upload.actions';
 import { APP } from '@console-core/config';
-
-//     file,
-//     'http://localhost:5000/graphql',
-//     'public',
-//     `nfuse-shop/${file.name}`,
-//     'WrIBDwBPKNFQ0bBL_FQple6o4pzyqEGB1BT60Qtml5r',
-//     meta
+import { concatLatestFrom } from '@ngrx/operators';
+import { AuthnFacade } from '../authn';
+import { OrganizationContextFacade } from '../organization-context';
 
 @Injectable()
 export class ObjectUploadEffects {
   objectUploadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(objectUploadActions.objectUploadRequest),
-      exhaustMap(({ payload }) => {
+      concatLatestFrom(() => [
+        this.authnFacade.token$,
+        this.organizationContext.selectedId$,
+      ]),
+      exhaustMap(([{ payload }, token, organizationContextId]) => {
         const meta: Partial<IMeta> = {
           owners: [
             {
@@ -31,7 +31,7 @@ export class ObjectUploadEffects {
               attributes: [
                 {
                   id: 'urn:restorecommerce:acs:names:ownerInstance',
-                  value: 'nfuse-shop-000-organization',
+                  value: organizationContextId as string,
                   attributes: [],
                 },
               ],
@@ -44,33 +44,18 @@ export class ObjectUploadEffects {
             payload,
             APP.objectUpload.storageURL,
             APP.objectUpload.bucketName,
-            `APP.objectUpload.keyPrefix/${payload.name}`,
-            meta
+            `${APP.objectUpload.keyPrefix}/${payload.name}`,
+            meta,
+            token as string
           )
           .pipe(
             map((result) => {
-              console.log('****result of upload', result);
+              const payload = result?.data?.ostorage?.object?.Put?.details
+                ?.response?.payload as IObjectUpload;
 
-              // const responseData =
-              //   result?.data?.ostorage?.organization?.Read?.details?.items ||
-              //   [];
-
-              // const payload = responseData.map((item) => ({
-              //   ...item?.payload,
-              //   isLeaf: !responseData.some(
-              //     (child) => child.payload?.parentId === item.payload?.id
-              //   ),
-              // })) as IOrganization[];
-
-              // return organizationContextActions.organizationContextReadRequestSuccess(
-              //   {
-              //     payload,
-              //   }
-              // );
-
-              return {
-                type: 'NULL',
-              };
+              return objectUploadActions.objectUploadSuccess({
+                payload,
+              });
             }),
             catchError((error: Error) =>
               of(
@@ -86,6 +71,8 @@ export class ObjectUploadEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly authnFacade: AuthnFacade,
+    private readonly organizationContext: OrganizationContextFacade,
     private readonly objectUploadService: ObjectUploadService
   ) {}
 }
