@@ -160,6 +160,12 @@
     [showCloseButton]="true"
     (close)="tplLayer.close()"
   >
+    {{ uploadState$ | async }}
+    @if (uploadState$ | async; as uploadState) {
+    <!--  -->
+    @if (uploadState === EActionStatus.INIT || uploadState ===
+    EActionStatus.Failed) {
+    <!--  If upload state is idle || there is error -->
     <form
       novalidate
       [formGroup]="uploadImageFormGroup"
@@ -195,6 +201,79 @@
         </button>
       </div>
     </form>
+    } @else if (uploadState === EActionStatus.Loading) {
+    <div class="row justify-content-center align-items-center">Loading...</div>
+    } @else {
+    <form
+      novalidate
+      vclForm
+      [formGroup]="fileForm"
+    >
+      <vcl-form-control-group>
+        <vcl-label>Filename</vcl-label>
+        <vcl-input-field>
+          <input
+            vclInput
+            formControlName="filename"
+          />
+        </vcl-input-field>
+      </vcl-form-control-group>
+
+      <vcl-form-control-group>
+        <vcl-label>URL</vcl-label>
+        <vcl-input-field>
+          <input
+            vclInput
+            formControlName="url"
+          />
+        </vcl-input-field>
+      </vcl-form-control-group>
+
+      <vcl-form-control-group>
+        <vcl-label>Caption</vcl-label>
+        <vcl-input-field>
+          <input
+            vclInput
+            formControlName="caption"
+          />
+        </vcl-input-field>
+      </vcl-form-control-group>
+
+      <vcl-form-control-group>
+        <vcl-label>Tags</vcl-label>
+        <vcl-input-field>
+          <input
+            vclInput
+            formControlName="caption"
+          />
+        </vcl-input-field>
+      </vcl-form-control-group>
+
+      <div class="row justify-content-end">
+        <button
+          vcl-button
+          vclPanelFooterButton
+          class="transparent outline"
+          (click)="tplLayer.close()"
+        >
+          Close
+        </button>
+        <span class="mx-2"></span>
+        <button
+          vcl-button
+          vclPanelFooterButton
+          class="emphasized"
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+    }
+    <!--  -->
+    }
+
+    <!-- if upload state is completed... we need to show the edit file fields... -->
 
     <!-- We use a state management to show the state of the form  -->
     <!-- Next step which is a form for actually tieing the image url to the product

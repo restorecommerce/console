@@ -11,7 +11,8 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { filter, map, Observable, tap } from 'rxjs';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
@@ -22,6 +23,7 @@ import {
   IoRestorecommerceProductIndividualProduct,
 } from '@console-core/graphql';
 import { ObjectUploadFacade } from '@console-core/state';
+import { EActionStatus } from '@console-core/types';
 
 @Component({
   selector: 'rc-product-variant',
@@ -54,7 +56,17 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     fileInputControl: new FormControl(null, []),
   });
 
+  uploadState$ = this.objectUploadFacade.actionStatus$;
+  EActionStatus = EActionStatus;
+
+  fileForm!: FormGroup;
+  fileData$!: Observable<{
+    filename: string;
+    url: string;
+  }>;
+
   constructor(
+    private fb: FormBuilder,
     private layerService: LayerService,
     private viewContainerRef: ViewContainerRef,
     private objectUploadFacade: ObjectUploadFacade
@@ -76,6 +88,24 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       ...img,
       url: `${API.domains.bucketDomain}${img.url}`,
     }));
+
+    this.fileForm = this.fb.group({
+      filename: [''],
+      contentType: [''],
+      tags: [[]],
+      caption: [''],
+      url: [''],
+    });
+
+    // Select from store
+    this.fileData$ = this.objectUploadFacade.uploadedObject$.pipe(
+      filter((data) => !!data),
+      map((data) => ({
+        filename: data.url.split('/').pop() || '',
+        url: data.url.slice(1),
+      })),
+      tap((data) => this.fileForm.patchValue(data))
+    );
   }
 
   ngAfterViewInit(): void {
@@ -83,6 +113,8 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       this.tplLayerRef,
       this.viewContainerRef
     );
+
+    this.fileData$.subscribe();
   }
 
   onUploadFile() {

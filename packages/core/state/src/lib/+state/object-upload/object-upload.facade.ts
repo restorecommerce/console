@@ -7,7 +7,7 @@ import * as objectUploadSelectors from './object-upload.selectors';
 @Injectable()
 export class ObjectUploadFacade {
   readonly uploadedObject$ = this.store.select(
-    objectUploadSelectors.selectObjectUpload
+    objectUploadSelectors.selectUploadedObject
   );
 
   readonly actionStatus$ = this.store.select(
