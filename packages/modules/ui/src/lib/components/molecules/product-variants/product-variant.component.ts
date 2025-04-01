@@ -121,29 +121,6 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   }
 
   onUploadFile() {
-    /*
-    const file = {
-      id: '',
-      filename: '',
-      contentType: '',
-      tags: [],
-      caption: '',
-      url: '',
-      thumbnail: {
-        id: '',
-        url: '',
-        width: '',
-        length: '',
-        index: '',
-        caption: '',
-        contentType: '',
-        filename: '',
-        height: '',
-        tags: [],
-      },
-    };
-    */
-
     const fileList = this.uploadImageFormGroup.get('fileInputControl')
       ?.value as unknown as FileList;
     const file = fileList[0];
@@ -177,7 +154,6 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     };
 
     this.productFacade.update({ items: [product], mode: ModeType.Update });
-
-    // this.close();
+    this.objectUploadFacade.uploadCompleted();
   }
 }

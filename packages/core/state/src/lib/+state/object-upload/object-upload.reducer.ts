@@ -40,7 +40,10 @@ const reducer = createReducer<IObjectUploadState>(
         error,
       };
     }
-  )
+  ),
+  on(objectUploadActions.objectUploadCompleted, (): IObjectUploadState => {
+    return initialState;
+  })
 );
 
 export const objectUploadReducer = (

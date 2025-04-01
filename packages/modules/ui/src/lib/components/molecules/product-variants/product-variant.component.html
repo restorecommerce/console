@@ -160,7 +160,6 @@
     [showCloseButton]="true"
     (close)="tplLayer.close()"
   >
-    {{ uploadState$ | async }}
     @if (uploadState$ | async; as uploadState) {
     <!--  -->
     @if (uploadState === EActionStatus.INIT || uploadState ===
@@ -204,6 +203,11 @@
     } @else if (uploadState === EActionStatus.Loading) {
     <div class="row justify-content-center align-items-center">Loading...</div>
     } @else {
+    <p>
+      File uploaded successfully to the cloud. Click <strong>Save</strong> to
+      link it with the product.
+    </p>
+
     <form
       novalidate
       vclForm

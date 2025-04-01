@@ -20,5 +20,8 @@ export class ObjectUploadFacade {
   upload = (payload: File) =>
     this.store.dispatch(objectUploadActions.objectUploadRequest({ payload }));
 
+  uploadCompleted = () =>
+    this.store.dispatch(objectUploadActions.objectUploadCompleted());
+
   constructor(private readonly store: Store) {}
 }

@@ -16,3 +16,5 @@ export const objectUploadFail = createAction(
   '[Upload] Upload fail',
   props<{ error: string }>()
 );
+
+export const objectUploadCompleted = createAction('[Upload] Upload completed');
