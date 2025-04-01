@@ -208,6 +208,7 @@
       novalidate
       vclForm
       [formGroup]="fileForm"
+      (ngSubmit)="onSaveUploadedURL()"
     >
       <vcl-form-control-group>
         <vcl-label>Filename</vcl-label>

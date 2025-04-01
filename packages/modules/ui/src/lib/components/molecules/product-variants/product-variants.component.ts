@@ -6,10 +6,8 @@ import {
   Output,
 } from '@angular/core';
 
-import {
-  IIoRestorecommerceProductPhysicalVariant,
-  IoRestorecommerceProductIndividualProduct,
-} from '@console-core/graphql';
+import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
+import { IProduct } from '@console-core/types';
 
 @Component({
   selector: 'rc-product-variants',
@@ -19,7 +17,7 @@ import {
 })
 export class RcProductVariantsComponent {
   @Input({ required: true })
-  product!: IoRestorecommerceProductIndividualProduct;
+  product!: IProduct;
 
   @Input({ required: true })
   variants!: IIoRestorecommerceProductPhysicalVariant[];

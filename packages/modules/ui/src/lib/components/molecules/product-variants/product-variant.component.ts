@@ -18,12 +18,14 @@ import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { API } from '@console-core/config';
 import {
+  IIoRestorecommerceFileFile,
   IIoRestorecommerceImageImage,
   IIoRestorecommerceProductPhysicalVariant,
-  IoRestorecommerceProductIndividualProduct,
+  IIoRestorecommerceProductProduct,
+  ModeType,
 } from '@console-core/graphql';
-import { ObjectUploadFacade } from '@console-core/state';
-import { EActionStatus } from '@console-core/types';
+import { ObjectUploadFacade, ProductFacade } from '@console-core/state';
+import { EActionStatus, IProduct } from '@console-core/types';
 
 @Component({
   selector: 'rc-product-variant',
@@ -35,7 +37,7 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   @HostBinding('class') className = 'w-100p';
 
   @Input({ required: true })
-  product!: IoRestorecommerceProductIndividualProduct;
+  product!: IProduct;
 
   @Input({ required: true })
   variant!: IIoRestorecommerceProductPhysicalVariant;
@@ -69,11 +71,12 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private layerService: LayerService,
     private viewContainerRef: ViewContainerRef,
-    private objectUploadFacade: ObjectUploadFacade
+    private objectUploadFacade: ObjectUploadFacade,
+    private readonly productFacade: ProductFacade
   ) {}
 
   ngOnInit(): void {
-    const parentVariant = this.product.physical?.templates?.find(
+    const parentVariant = this.product.product.physical?.templates?.find(
       (tmpl) => tmpl.id === this.variant.parentVariantId
     );
 
@@ -145,5 +148,36 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       ?.value as unknown as FileList;
     const file = fileList[0];
     this.objectUploadFacade.upload(file);
+  }
+
+  onSaveUploadedURL() {
+    const file: IIoRestorecommerceFileFile = {
+      ...this.fileForm.value,
+    };
+
+    const variantWithNewFile = {
+      ...this.variant,
+      files: [...(this.variant.files || []), file],
+    };
+
+    const productVariant = this.product.product.physical?.variants || [];
+
+    const updatedProductVariants = productVariant.map((variant) =>
+      variant.id === variantWithNewFile.id ? variantWithNewFile : variant
+    );
+
+    const product: IIoRestorecommerceProductProduct = {
+      ...this.product,
+      product: {
+        physical: {
+          templates: [...(this.product.product.physical?.templates || [])],
+          variants: updatedProductVariants,
+        },
+      },
+    };
+
+    this.productFacade.update({ items: [product], mode: ModeType.Update });
+
+    // this.close();
   }
 }

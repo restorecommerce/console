@@ -6,24 +6,22 @@ import {
   Output,
 } from '@angular/core';
 
-import {
-  IIoRestorecommerceProductPhysicalVariant,
-  IoRestorecommerceProductProduct,
-} from '@console-core/graphql';
+import { IIoRestorecommerceProductPhysicalVariant } from '@console-core/graphql';
+import { IProduct } from '@console-core/types';
 
 @Component({
   selector: 'rc-product-view',
   template: `
     <rc-product-details [product]="product.product || {}" />
     <rc-product-templates
-      [templates]="product.product?.physical?.templates || []"
+      [templates]="product.product.physical?.templates || []"
       (addTemplate)="addTemplate.emit()"
       (editTemplate)="editTemplate.emit($event)"
       (deleteTemplate)="deleteTemplate.emit($event)"
     />
     <rc-product-variants
-      [product]="product.product || {}"
-      [variants]="product.product?.physical?.variants || []"
+      [product]="product || {}"
+      [variants]="product.product.physical?.variants || []"
       (addVariant)="addVariant.emit()"
       (editVariant)="editVariant.emit($event)"
       (deleteVariant)="deleteVariant.emit($event)"
@@ -33,7 +31,7 @@ import {
   standalone: false,
 })
 export class RcProductViewComponent {
-  @Input({ required: true }) product!: IoRestorecommerceProductProduct;
+  @Input({ required: true }) product!: IProduct;
   @Output() addVariant = new EventEmitter<void>();
   @Output() editVariant =
     new EventEmitter<IIoRestorecommerceProductPhysicalVariant>();
