@@ -160,6 +160,7 @@
     [showCloseButton]="true"
     (close)="tplLayer.close()"
   >
+    <vcl-panel-title></vcl-panel-title>
     @if (uploadState$ | async; as uploadState) {
     <!--  -->
     @if (uploadState === EActionStatus.INIT || uploadState ===
@@ -171,8 +172,9 @@
       (submit)="onUploadFile()"
       vclForm
     >
+      <h4>Upload Product File</h4>
       <vcl-form-control-group>
-        <vcl-label>File upload</vcl-label>
+        <!-- <vcl-label>File upload</vcl-label> -->
         <vcl-file-input
           [multiple]="false"
           formControlName="fileInputControl"
@@ -194,6 +196,7 @@
           vcl-button
           vclPanelFooterButton
           class="emphasized"
+          [disabled]="uploadImageFormGroup.invalid"
           type="submit"
         >
           Upload
@@ -277,13 +280,5 @@
     }
     <!--  -->
     }
-
-    <!-- if upload state is completed... we need to show the edit file fields... -->
-
-    <!-- We use a state management to show the state of the form  -->
-    <!-- Next step which is a form for actually tieing the image url to the product
-    as well as defining captions etc...
-    -->
-    <div></div>
   </vcl-panel-dialog>
 </ng-template>

@@ -11,7 +11,12 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { filter, map, Observable, tap } from 'rxjs';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
@@ -55,7 +60,7 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   tplLayer!: LayerRef;
 
   uploadImageFormGroup = new FormGroup({
-    fileInputControl: new FormControl(null, []),
+    fileInputControl: new FormControl(null, [Validators.required]),
   });
 
   uploadState$ = this.objectUploadFacade.actionStatus$;
@@ -123,7 +128,13 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   onUploadFile() {
     const fileList = this.uploadImageFormGroup.get('fileInputControl')
       ?.value as unknown as FileList;
+
+    if (!fileList || fileList.length === 0) {
+      return;
+    }
+
     const file = fileList[0];
+
     this.objectUploadFacade.upload(file);
   }
 
