@@ -13,21 +13,25 @@
   ]"
 >
   <div>
-    <vcl-button-group class="vertical">
-      <button
-        vcl-button
-        class="transparent"
+    <vcl-select-list
+      [selectionMode]="'single'"
+      class="vertical"
+    >
+      @if (!noEdit) {
+      <vcl-select-list-item
+        value="edit"
         (click)="edit.emit(item); popover.close()"
       >
         Edit
-      </button>
-      <button
-        class="transparent"
-        vcl-button
-        (click)="delete.emit(item.id || ''); popover.close()"
+      </vcl-select-list-item>
+      }
+
+      <vcl-select-list-item
+        value="delete"
+        (click)="onDeleteClicked(); popover.close()"
       >
         Delete
-      </button>
-    </vcl-button-group>
+      </vcl-select-list-item>
+    </vcl-select-list>
   </div>
 </ng-template>

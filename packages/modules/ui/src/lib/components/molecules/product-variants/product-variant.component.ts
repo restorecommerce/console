@@ -167,4 +167,35 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     this.productFacade.update({ items: [product], mode: ModeType.Update });
     this.objectUploadFacade.uploadCompleted();
   }
+
+  onDeleteFile(id: string, key: any) {
+    const variantsWithoutDeletedFile = {
+      ...this.variant,
+      files: [
+        ...(this.variant.files || []).filter(
+          (file) => (file as any)[key] !== id
+        ),
+      ],
+    };
+
+    const productVariant = this.product.product.physical?.variants || [];
+
+    const updatedProductVariants = productVariant.map((variant) =>
+      variant.id === variantsWithoutDeletedFile.id
+        ? variantsWithoutDeletedFile
+        : variant
+    );
+
+    const product: IIoRestorecommerceProductProduct = {
+      ...this.product,
+      product: {
+        physical: {
+          templates: [...(this.product.product.physical?.templates || [])],
+          variants: updatedProductVariants,
+        },
+      },
+    };
+
+    this.productFacade.update({ items: [product], mode: ModeType.Update });
+  }
 }

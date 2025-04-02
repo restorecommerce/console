@@ -22,7 +22,9 @@ export class RcPopoverActionComponent<
 > {
   private readonly subscriptions = new SubSink();
 
-  @Input() item!: T;
+  @Input() key!: any;
+  @Input() noEdit = false;
+  @Input() item!: any;
   @Input() target!: HTMLDivElement;
   @Input() itemLabel!: string;
   @Output() edit = new EventEmitter<T>();
@@ -54,7 +56,9 @@ export class RcPopoverActionComponent<
       })
       .subscribe((result) => {
         if (result.action === 'confirm') {
-          this.delete.emit(this.item?.id || '');
+          const dispatchItemKey = (this.item as any)[this.key] as string;
+          console.log("this.item")
+          this.delete.emit(dispatchItemKey);
         }
       });
   }

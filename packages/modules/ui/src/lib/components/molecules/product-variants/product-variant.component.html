@@ -135,8 +135,11 @@
       <!-- File Popover -->
       <rc-popover-action
         #filePopover
+        [key]="'filename'"
+        [noEdit]="true"
         [item]="file"
         [target]="target"
+        (delete)="onDeleteFile($event, 'filename')"
       />
       }
     </div>
@@ -247,6 +250,7 @@
         </vcl-input-field>
       </vcl-form-control-group>
 
+      <!-- TODO Use the token fields -->
       <vcl-form-control-group>
         <vcl-label>Tags</vcl-label>
         <vcl-input-field>
