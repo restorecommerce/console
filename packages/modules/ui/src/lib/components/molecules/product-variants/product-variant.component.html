@@ -93,14 +93,10 @@
 
       @for (file of (variant.files || []); track file.id) {
       <!-- List file -->
-      <div
-        class="py-2 mb-1 row justify-content-between"
-        style="border: 1px solid #ccc"
-      >
+      <div class="file-item-container py-2 mb-1 row justify-content-between">
         <div class="row">
           <div
-            style="width: 3em; height: 3em"
-            class="row align-items-center justify-content-center ml-1 mr-3"
+            class="variant-file-icon-container row align-items-center justify-content-center ml-1 mr-3"
           >
             <vcl-icon
               class="scale120p"

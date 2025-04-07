@@ -37,6 +37,18 @@ import { EActionStatus, IProduct } from '@console-core/types';
   templateUrl: './product-variant.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  styles: [
+    `
+      .file-item-container {
+        border: 1px solid #ccc;
+      }
+
+      .variant-file-icon-container {
+        width: 3em;
+        height: 3em;
+      }
+    `,
+  ],
 })
 export class RcProductVariantComponent implements OnInit, AfterViewInit {
   @HostBinding('class') className = 'w-100p';
@@ -168,14 +180,10 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     this.objectUploadFacade.uploadCompleted();
   }
 
-  onDeleteFile(id: string, key: any) {
+  onDeleteFile(id: string, key: keyof IIoRestorecommerceFileFile) {
     const variantsWithoutDeletedFile = {
       ...this.variant,
-      files: [
-        ...(this.variant.files || []).filter(
-          (file) => (file as any)[key] !== id
-        ),
-      ],
+      files: [...(this.variant.files || []).filter((file) => file[key] !== id)],
     };
 
     const productVariant = this.product.product.physical?.variants || [];
