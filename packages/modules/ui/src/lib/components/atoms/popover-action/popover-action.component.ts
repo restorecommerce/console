@@ -22,11 +22,11 @@ export class RcPopoverActionComponent<
 > {
   private readonly subscriptions = new SubSink();
 
-  @Input() key!: keyof T;
+  @Input({ required: true }) key!: keyof T;
   @Input() noEdit = false;
-  @Input() item!: T;
-  @Input() target!: HTMLDivElement;
-  @Input() itemLabel!: string;
+  @Input({ required: true }) item!: T;
+  @Input({ required: true }) target!: HTMLDivElement;
+  @Input({ required: true }) itemLabel!: string;
   @Output() edit = new EventEmitter<T>();
   @Output() delete = new EventEmitter<string>();
 

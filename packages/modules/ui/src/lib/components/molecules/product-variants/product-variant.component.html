@@ -135,6 +135,7 @@
       <!-- File Popover -->
       <rc-popover-action
         #filePopover
+        [itemLabel]="file.filename + ''"
         [key]="'filename'"
         [noEdit]="true"
         [item]="file"
@@ -149,6 +150,8 @@
 <!-- Variant Popover -->
 <rc-popover-action
   #variantPopover
+  [itemLabel]="variant.name + ''"
+  [key]="'id'"
   [item]="variant"
   [target]="target"
   (edit)="editVariant.emit($event)"
