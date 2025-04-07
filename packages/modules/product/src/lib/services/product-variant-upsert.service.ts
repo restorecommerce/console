@@ -34,6 +34,7 @@ export class ProductVariantService {
     value: Partial<IoRestorecommerceProductPhysicalVariant>,
     product: IProduct
   ) {
+    console.log('value.id', value.id);
     if (value.id) {
       const updatedVariant = {
         ...value,

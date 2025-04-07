@@ -18,10 +18,8 @@
     </button>
   </div>
   <ul class="data-list-body no-border">
-    <li
-      class="row data-list-item product-item"
-      *ngFor="let variant of variants"
-    >
+    @for (variant of variants; track variant.id) {
+    <li class="row data-list-item product-item">
       <rc-product-variant
         [product]="product"
         [variant]="variant"
@@ -29,5 +27,6 @@
         (deleteVariant)="deleteVariant.emit($event)"
       />
     </li>
+    }
   </ul>
 </div>
