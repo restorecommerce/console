@@ -106,7 +106,9 @@
 
           <div class="col">
             <div>
-              <b>{{ file.filename }}</b>
+              <a [href]="file.url + '' | appendBucketDomain">{{
+                file.filename
+              }}</a>
             </div>
             <div>{{ file.caption }}</div>
           </div>
