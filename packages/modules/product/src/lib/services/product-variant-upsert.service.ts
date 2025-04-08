@@ -24,7 +24,8 @@ export class ProductVariantService {
     value.price = { ...value.price, regularPrice, salePrice };
 
     if (mode === 'variant') {
-      return this.prepareVariant(value, product);
+      const preparedVariant = this.prepareVariant(value, product);
+      return preparedVariant;
     } else {
       return this.prepareTemplate(value, product);
     }
@@ -33,23 +34,24 @@ export class ProductVariantService {
   private prepareVariant(
     value: Partial<IoRestorecommerceProductPhysicalVariant>,
     product: IProduct
-  ) {
-    console.log('value.id', value.id);
+  ): IProduct {
     if (value.id) {
-      const updatedVariant = {
-        ...value,
-      } as IIoRestorecommerceProductPhysicalVariant;
-      const productWithUpdatedVariant = product.product.physical?.variants?.map(
-        (v) => (v.id === updatedVariant.id ? updatedVariant : v)
+      const updatedVariants = product.product.physical?.variants?.map((v) =>
+        v.id === value.id ? Object.assign({}, v, value) : v
       );
 
-      return {
+      const productWithUpdatedVariant = {
         ...product,
         product: {
           ...product.product,
-          physical: { variants: productWithUpdatedVariant },
+          physical: {
+            templates: product.product.physical?.templates || [],
+            variants: updatedVariants,
+          },
         },
       };
+
+      return productWithUpdatedVariant;
     } else {
       value.id = uuidv4();
       return this.addNewVariant(value, product);

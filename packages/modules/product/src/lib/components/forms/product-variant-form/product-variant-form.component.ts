@@ -103,6 +103,6 @@ export class ProductVariantFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(values: Partial<IIoRestorecommerceProductPhysicalVariant>) {
-    this.submitVariant.emit({ ...values, id: this.product.id });
+    this.submitVariant.emit({ ...values, id: this.variant.id });
   }
 }
