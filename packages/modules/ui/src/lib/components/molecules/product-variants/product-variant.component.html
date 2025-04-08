@@ -18,7 +18,36 @@
   </div>
 </div>
 
-<div class="row">
+<div>
+  <div class="row align-items-center justify-content-between pb-1">
+    <span></span>
+    <span>Simple gallery</span>
+    <div class="gallary-actions">
+      <button
+        vcl-button
+        square
+        class="emphasized-transparent"
+        title="Remove image"
+      >
+        <vcl-icon
+          class="scale155p"
+          icon="mdi mdi-trash-can"
+        />
+      </button>
+
+      <button
+        vcl-button
+        square
+        class="emphasized-transparent"
+        title="Add image"
+      >
+        <vcl-icon
+          class="scale155p"
+          icon="mdi mdi-plus"
+        />
+      </button>
+    </div>
+  </div>
   <div
     class="flex max-width-100"
     style="height: 300px"
@@ -40,8 +69,6 @@
       <vcl-gallery-thumbnails></vcl-gallery-thumbnails>
     </vcl-gallery>
     }
-
-    <!-- TODO Add the upload image, that would open a modal so that you can add an image.. -->
   </div>
 </div>
 
