@@ -69,21 +69,11 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   @ViewChild('fileUploadFormLayerRef')
   fileUploadFormLayerRef!: TemplateRef<{ title: string }>;
 
-  @ViewChild('imageUploadFormLayerRef')
-  imageUploadFormLayerRef!: TemplateRef<void>;
-
   fileUploadFormLayer!: LayerRef;
-  imageUploadFormLayer!: LayerRef;
 
-  // Same code TODO Dry
   uploadFileFormGroup = new FormGroup({
     fileInputControl: new FormControl(null, [Validators.required]),
   });
-
-  uploadImageFormGroup = new FormGroup({
-    fileImageControl: new FormControl(null, [Validators.required]),
-  });
-  // ---
 
   uploadState$ = this.objectUploadFacade.actionStatus$;
   EActionStatus = EActionStatus;
@@ -144,11 +134,6 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       this.viewContainerRef
     );
 
-    this.imageUploadFormLayer = this.layerService.createTemplateLayer(
-      this.imageUploadFormLayerRef,
-      this.viewContainerRef
-    );
-
     this.fileData$.subscribe();
   }
 
@@ -165,34 +150,64 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     this.objectUploadFacade.upload(file);
   }
 
-  onSaveUploadedURL() {
-    const file: IIoRestorecommerceFileFile = {
-      ...this.fileForm.value,
-    };
+  onSaveUploadedURL(objectType: 'Image' | 'File') {
+    if (objectType === 'File') {
+      const file: IIoRestorecommerceFileFile = {
+        ...this.fileForm.value,
+      };
 
-    const variantWithNewFile = {
-      ...this.variant,
-      files: [...(this.variant.files || []), file],
-    };
+      const variantWithNewFile = {
+        ...this.variant,
+        files: [...(this.variant.files || []), file],
+      };
 
-    const productVariant = this.product.product.physical?.variants || [];
+      const productVariant = this.product.product.physical?.variants || [];
 
-    const updatedProductVariants = productVariant.map((variant) =>
-      variant.id === variantWithNewFile.id ? variantWithNewFile : variant
-    );
+      const updatedProductVariants = productVariant.map((variant) =>
+        variant.id === variantWithNewFile.id ? variantWithNewFile : variant
+      );
 
-    const product: IIoRestorecommerceProductProduct = {
-      ...this.product,
-      product: {
-        physical: {
-          templates: [...(this.product.product.physical?.templates || [])],
-          variants: updatedProductVariants,
+      const product: IIoRestorecommerceProductProduct = {
+        ...this.product,
+        product: {
+          physical: {
+            templates: [...(this.product.product.physical?.templates || [])],
+            variants: updatedProductVariants,
+          },
         },
-      },
-    };
+      };
 
-    this.productFacade.update({ items: [product], mode: ModeType.Update });
-    this.objectUploadFacade.uploadCompleted();
+      this.productFacade.update({ items: [product], mode: ModeType.Update });
+      this.objectUploadFacade.uploadCompleted();
+    } else if (objectType === 'Image') {
+      const file: IIoRestorecommerceFileFile = {
+        ...this.fileForm.value,
+      };
+
+      const variantWithNewFile = {
+        ...this.variant,
+        files: [...(this.variant.files || []), file],
+      };
+
+      const productVariant = this.product.product.physical?.variants || [];
+
+      const updatedProductVariants = productVariant.map((variant) =>
+        variant.id === variantWithNewFile.id ? variantWithNewFile : variant
+      );
+
+      const product: IIoRestorecommerceProductProduct = {
+        ...this.product,
+        product: {
+          physical: {
+            templates: [...(this.product.product.physical?.templates || [])],
+            variants: updatedProductVariants,
+          },
+        },
+      };
+
+      this.productFacade.update({ items: [product], mode: ModeType.Update });
+      this.objectUploadFacade.uploadCompleted();
+    }
   }
 
   onDeleteFile(id: string, key: keyof IIoRestorecommerceFileFile) {
@@ -220,10 +235,5 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     };
 
     this.productFacade.update({ items: [product], mode: ModeType.Update });
-  }
-
-  onUploadImage() {
-    // 1 Show the input field for upload!
-    // 2 Addtional field for changing the url etc...
   }
 }

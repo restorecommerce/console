@@ -40,7 +40,7 @@
         square
         class="emphasized-transparent"
         title="Add image"
-        (click)="imageUploadFormLayer.open()"
+        (click)="fileUploadFormLayer.open({ data: { objectType: 'Image' } })"
       >
         <vcl-icon
           class="scale155p"
@@ -110,7 +110,7 @@
           square
           class="emphasized-transparent"
           title="Add file"
-          (click)="fileUploadFormLayer.open()"
+          (click)="fileUploadFormLayer.open({ data: { objectType: 'File' } })"
         >
           <vcl-icon
             class="scale155p"
@@ -186,7 +186,7 @@
 
 <ng-template
   #fileUploadFormLayerRef
-  let-title="title"
+  let-objectType="objectType"
 >
   <vcl-panel-dialog
     [showCloseButton]="true"
@@ -200,17 +200,17 @@
     <!--  If upload state is idle || there is error -->
     <form
       novalidate
-      [formGroup]="uploadImageFormGroup"
+      [formGroup]="uploadFileFormGroup"
       (submit)="onUploadFile()"
       vclForm
     >
-      <h4>Upload Product File</h4>
+      <h4>Upload Product {{ objectType }}</h4>
       <vcl-form-control-group>
         <!-- <vcl-label>File upload</vcl-label> -->
         <vcl-file-input
           [multiple]="false"
           formControlName="fileInputControl"
-          >Choose a file</vcl-file-input
+          >Choose a {{ objectType }}</vcl-file-input
         >
       </vcl-form-control-group>
 
@@ -228,7 +228,7 @@
           vcl-button
           vclPanelFooterButton
           class="emphasized"
-          [disabled]="uploadImageFormGroup.invalid"
+          [disabled]="uploadFileFormGroup.invalid"
           type="submit"
         >
           Upload
@@ -239,15 +239,15 @@
     <div class="row justify-content-center align-items-center">Loading...</div>
     } @else {
     <p>
-      File uploaded successfully to the cloud. Click <strong>Save</strong> to
-      link it with the product.
+      {{ objectType }} uploaded successfully to the cloud. Click
+      <strong>Save</strong> to link it with the product.
     </p>
 
     <form
       novalidate
       vclForm
       [formGroup]="fileForm"
-      (ngSubmit)="onSaveUploadedURL()"
+      (ngSubmit)="onSaveUploadedURL(objectType)"
     >
       <vcl-form-control-group>
         <vcl-label>Filename</vcl-label>
@@ -313,51 +313,5 @@
     }
     <!--  -->
     }
-  </vcl-panel-dialog>
-</ng-template>
-
-<ng-template #imageUploadFormLayerRef>
-  <vcl-panel-dialog
-    [showCloseButton]="true"
-    (close)="imageUploadFormLayer.close()"
-  >
-    <vcl-panel-title></vcl-panel-title>
-    <form
-      novalidate
-      [formGroup]="uploadImageFormGroup"
-      (submit)="onUploadFile()"
-      vclForm
-    >
-      <h4>Upload Product Image</h4>
-      <vcl-form-control-group>
-        <!-- <vcl-label>File upload</vcl-label> -->
-        <vcl-file-input
-          [multiple]="false"
-          formControlName="fileInputControl"
-          >Choose an image</vcl-file-input
-        >
-      </vcl-form-control-group>
-
-      <div class="row justify-content-end">
-        <button
-          vcl-button
-          vclPanelFooterButton
-          class="transparent outline"
-          (click)="imageUploadFormLayer.close()"
-        >
-          Close
-        </button>
-        <span class="mx-2"></span>
-        <button
-          vcl-button
-          vclPanelFooterButton
-          class="emphasized"
-          [disabled]="uploadImageFormGroup.invalid"
-          type="submit"
-        >
-          Upload
-        </button>
-      </div>
-    </form>
   </vcl-panel-dialog>
 </ng-template>
