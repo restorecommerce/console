@@ -66,14 +66,24 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
 
   images!: IIoRestorecommerceImageImage[];
 
-  @ViewChild('tplLayerRef')
-  tplLayerRef!: TemplateRef<{ title: string }>;
+  @ViewChild('fileUploadFormLayerRef')
+  fileUploadFormLayerRef!: TemplateRef<{ title: string }>;
 
-  tplLayer!: LayerRef;
+  @ViewChild('imageUploadFormLayerRef')
+  imageUploadFormLayerRef!: TemplateRef<void>;
 
-  uploadImageFormGroup = new FormGroup({
+  fileUploadFormLayer!: LayerRef;
+  imageUploadFormLayer!: LayerRef;
+
+  // Same code TODO Dry
+  uploadFileFormGroup = new FormGroup({
     fileInputControl: new FormControl(null, [Validators.required]),
   });
+
+  uploadImageFormGroup = new FormGroup({
+    fileImageControl: new FormControl(null, [Validators.required]),
+  });
+  // ---
 
   uploadState$ = this.objectUploadFacade.actionStatus$;
   EActionStatus = EActionStatus;
@@ -129,8 +139,13 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.tplLayer = this.layerService.createTemplateLayer(
-      this.tplLayerRef,
+    this.fileUploadFormLayer = this.layerService.createTemplateLayer(
+      this.fileUploadFormLayerRef,
+      this.viewContainerRef
+    );
+
+    this.imageUploadFormLayer = this.layerService.createTemplateLayer(
+      this.imageUploadFormLayerRef,
       this.viewContainerRef
     );
 
@@ -138,7 +153,7 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   }
 
   onUploadFile() {
-    const fileList = this.uploadImageFormGroup.get('fileInputControl')
+    const fileList = this.uploadFileFormGroup.get('fileInputControl')
       ?.value as unknown as FileList;
 
     if (!fileList || fileList.length === 0) {
@@ -205,5 +220,10 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
     };
 
     this.productFacade.update({ items: [product], mode: ModeType.Update });
+  }
+
+  onUploadImage() {
+    // 1 Show the input field for upload!
+    // 2 Addtional field for changing the url etc...
   }
 }

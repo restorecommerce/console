@@ -21,7 +21,7 @@
 <div>
   <div class="row align-items-center justify-content-between pb-1">
     <span></span>
-    <span>Simple gallery</span>
+    <b>Image sensor #1</b>
     <div class="gallary-actions">
       <button
         vcl-button
@@ -40,6 +40,7 @@
         square
         class="emphasized-transparent"
         title="Add image"
+        (click)="imageUploadFormLayer.open()"
       >
         <vcl-icon
           class="scale155p"
@@ -109,7 +110,7 @@
           square
           class="emphasized-transparent"
           title="Add file"
-          (click)="tplLayer.open({ data: { title: 'Template layer' } })"
+          (click)="fileUploadFormLayer.open()"
         >
           <vcl-icon
             class="scale155p"
@@ -184,12 +185,12 @@
 />
 
 <ng-template
-  #tplLayerRef
+  #fileUploadFormLayerRef
   let-title="title"
 >
   <vcl-panel-dialog
     [showCloseButton]="true"
-    (close)="tplLayer.close()"
+    (close)="fileUploadFormLayer.close()"
   >
     <vcl-panel-title></vcl-panel-title>
     @if (uploadState$ | async; as uploadState) {
@@ -218,7 +219,7 @@
           vcl-button
           vclPanelFooterButton
           class="transparent outline"
-          (click)="tplLayer.close()"
+          (click)="fileUploadFormLayer.close()"
         >
           Close
         </button>
@@ -294,7 +295,7 @@
           vcl-button
           vclPanelFooterButton
           class="transparent outline"
-          (click)="tplLayer.close()"
+          (click)="fileUploadFormLayer.close()"
         >
           Close
         </button>
@@ -312,5 +313,51 @@
     }
     <!--  -->
     }
+  </vcl-panel-dialog>
+</ng-template>
+
+<ng-template #imageUploadFormLayerRef>
+  <vcl-panel-dialog
+    [showCloseButton]="true"
+    (close)="imageUploadFormLayer.close()"
+  >
+    <vcl-panel-title></vcl-panel-title>
+    <form
+      novalidate
+      [formGroup]="uploadImageFormGroup"
+      (submit)="onUploadFile()"
+      vclForm
+    >
+      <h4>Upload Product Image</h4>
+      <vcl-form-control-group>
+        <!-- <vcl-label>File upload</vcl-label> -->
+        <vcl-file-input
+          [multiple]="false"
+          formControlName="fileInputControl"
+          >Choose an image</vcl-file-input
+        >
+      </vcl-form-control-group>
+
+      <div class="row justify-content-end">
+        <button
+          vcl-button
+          vclPanelFooterButton
+          class="transparent outline"
+          (click)="imageUploadFormLayer.close()"
+        >
+          Close
+        </button>
+        <span class="mx-2"></span>
+        <button
+          vcl-button
+          vclPanelFooterButton
+          class="emphasized"
+          [disabled]="uploadImageFormGroup.invalid"
+          type="submit"
+        >
+          Upload
+        </button>
+      </div>
+    </form>
   </vcl-panel-dialog>
 </ng-template>
