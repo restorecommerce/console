@@ -19,9 +19,11 @@
 </div>
 
 <div>
+  @if (variant.images && variant.images.length > 0) {
   <div class="row align-items-center justify-content-between pb-1">
     <span></span>
-    <b>Image sensor #1</b>
+
+    <b>{{ selectedImageInGallary && selectedImageInGallary.filename }}</b>
     <div class="gallary-actions">
       <button
         vcl-button
@@ -49,11 +51,11 @@
       </button>
     </div>
   </div>
+
   <div
     class="flex max-width-100"
     style="height: 300px"
   >
-    @if (variant.images && variant.images.length > 0) {
     <vcl-gallery
       [selectedImage]="1"
       [row]="true"
@@ -69,8 +71,10 @@
       <div style="margin-left: 1rem"></div>
       <vcl-gallery-thumbnails></vcl-gallery-thumbnails>
     </vcl-gallery>
-    }
   </div>
+  } @else {
+  <p>No images for this variant</p>
+  }
 </div>
 
 <div class="row">

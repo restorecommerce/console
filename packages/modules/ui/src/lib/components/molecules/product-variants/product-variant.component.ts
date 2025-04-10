@@ -19,13 +19,14 @@ import {
 } from '@angular/forms';
 import { filter, map, Observable, tap } from 'rxjs';
 
-import { LayerRef, LayerService } from '@vcl/ng-vcl';
+import { GalleryComponent, LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import {
   IIoRestorecommerceFileFile,
   IIoRestorecommerceImageImage,
   IIoRestorecommerceProductPhysicalVariant,
   IIoRestorecommerceProductProduct,
+  IoRestorecommerceImageImage,
   ModeType,
 } from '@console-core/graphql';
 import { ObjectUploadFacade, ProductFacade } from '@console-core/state';
@@ -65,6 +66,11 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
 
   @ViewChild('fileUploadFormLayerRef')
   fileUploadFormLayerRef!: TemplateRef<{ title: string }>;
+
+  selectedImageInGallary!: IoRestorecommerceImageImage;
+
+  @ViewChild(GalleryComponent)
+  productVariantGallary!: GalleryComponent;
 
   fileUploadFormLayer!: LayerRef;
 
@@ -114,6 +120,10 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       this.fileUploadFormLayerRef,
       this.viewContainerRef
     );
+
+    this.selectedImageInGallary = this.variant.images?.find(
+      (_, indx) => indx === this.productVariantGallary.selectedImage
+    ) as IoRestorecommerceImageImage;
 
     this.fileData$.subscribe();
   }
