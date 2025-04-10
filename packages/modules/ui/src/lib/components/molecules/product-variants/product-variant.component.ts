@@ -21,7 +21,6 @@ import { filter, map, Observable, tap } from 'rxjs';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
-import { API } from '@console-core/config';
 import {
   IIoRestorecommerceFileFile,
   IIoRestorecommerceImageImage,
@@ -64,8 +63,6 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
 
   @Output() deleteVariant = new EventEmitter<string>();
 
-  images!: IIoRestorecommerceImageImage[];
-
   @ViewChild('fileUploadFormLayerRef')
   fileUploadFormLayerRef!: TemplateRef<{ title: string }>;
 
@@ -93,22 +90,6 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    const parentVariant = this.product.product.physical?.templates?.find(
-      (tmpl) => tmpl.id === this.variant.parentVariantId
-    );
-
-    const variantImages = this.variant.images || [];
-    const baseParentVariantImages = parentVariant?.images || [];
-
-    this.images = (
-      variantImages.length
-        ? variantImages
-        : baseParentVariantImages.concat(variantImages)
-    ).map((img) => ({
-      ...img,
-      url: `${API.domains.bucketDomain}${img.url}`,
-    }));
-
     this.fileForm = this.fb.group({
       filename: [''],
       contentType: [''],
@@ -180,13 +161,13 @@ export class RcProductVariantComponent implements OnInit, AfterViewInit {
       this.productFacade.update({ items: [product], mode: ModeType.Update });
       this.objectUploadFacade.uploadCompleted();
     } else if (objectType === 'Image') {
-      const file: IIoRestorecommerceFileFile = {
+      const image: IIoRestorecommerceImageImage = {
         ...this.fileForm.value,
       };
 
       const variantWithNewFile = {
         ...this.variant,
-        files: [...(this.variant.files || []), file],
+        images: [...(this.variant.images || []), image],
       };
 
       const productVariant = this.product.product.physical?.variants || [];

@@ -53,15 +53,15 @@
     class="flex max-width-100"
     style="height: 300px"
   >
-    @if (images && images.length > 0) {
+    @if (variant.images && variant.images.length > 0) {
     <vcl-gallery
       [selectedImage]="1"
       [row]="true"
     >
-      @for (img of images; track img.id) {
+      @for (img of variant.images; track $index) {
       <vcl-gallery-image
-        [image]="img.url || ''"
-        [thumbnail]="img.url || ''"
+        [image]="img.url || '' | appendBucketDomain"
+        [thumbnail]="img.url || '' | appendBucketDomain"
         alt="Image 1"
       ></vcl-gallery-image>
       }
