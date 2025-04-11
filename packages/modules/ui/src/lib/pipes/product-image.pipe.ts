@@ -16,7 +16,7 @@ export class ProductImagePipe implements PipeTransform {
     const firstVariat = product.product.physical?.variants?.[0];
 
     if (firstVariat?.images && firstVariat.images.length > 0) {
-      return `${API.domains.bucketDomain}${firstVariat.images[0].url}`;
+      return `${API.domains.bucketDomain}/storage${firstVariat.images[0].url}`;
     } else {
       const firstVariantTemplate = product.product?.physical?.templates?.find(
         (templ) => templ.id === firstVariat?.parentVariantId
@@ -25,7 +25,9 @@ export class ProductImagePipe implements PipeTransform {
       const firstImageInTemplate = firstVariantTemplate
         ?.images?.[0] as IoRestorecommerceImageImage;
 
-      return `${API.domains.bucketDomain}${firstImageInTemplate?.url || ''}`;
+      return `${API.domains.bucketDomain}/storage${
+        firstImageInTemplate?.url || ''
+      }`;
     }
   }
 }
