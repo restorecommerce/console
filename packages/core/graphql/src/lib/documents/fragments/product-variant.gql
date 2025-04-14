@@ -6,11 +6,12 @@ fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
     id
     index
     filename
+    url
     caption
     contentType
+    tags
     height
     width
-    url
   }
   files {
     id

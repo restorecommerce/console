@@ -5769,11 +5769,12 @@ export type CatalogProductMutateMutation = {
                       id?: string | null;
                       index?: number | null;
                       filename?: string | null;
+                      url?: string | null;
                       caption?: string | null;
                       contentType?: string | null;
+                      tags?: Array<string> | null;
                       height?: number | null;
                       width?: number | null;
-                      url?: string | null;
                     }> | null;
                     files?: Array<{
                       __typename?: 'IoRestorecommerceFileFile';
@@ -5816,11 +5817,12 @@ export type CatalogProductMutateMutation = {
                       id?: string | null;
                       index?: number | null;
                       filename?: string | null;
+                      url?: string | null;
                       caption?: string | null;
                       contentType?: string | null;
+                      tags?: Array<string> | null;
                       height?: number | null;
                       width?: number | null;
-                      url?: string | null;
                     }> | null;
                     files?: Array<{
                       __typename?: 'IoRestorecommerceFileFile';
@@ -5952,11 +5954,12 @@ export type CatalogProductReadQuery = {
                       id?: string | null;
                       index?: number | null;
                       filename?: string | null;
+                      url?: string | null;
                       caption?: string | null;
                       contentType?: string | null;
+                      tags?: Array<string> | null;
                       height?: number | null;
                       width?: number | null;
-                      url?: string | null;
                     }> | null;
                     files?: Array<{
                       __typename?: 'IoRestorecommerceFileFile';
@@ -5999,11 +6002,12 @@ export type CatalogProductReadQuery = {
                       id?: string | null;
                       index?: number | null;
                       filename?: string | null;
+                      url?: string | null;
                       caption?: string | null;
                       contentType?: string | null;
+                      tags?: Array<string> | null;
                       height?: number | null;
                       width?: number | null;
-                      url?: string | null;
                     }> | null;
                     files?: Array<{
                       __typename?: 'IoRestorecommerceFileFile';
@@ -6706,11 +6710,12 @@ export type OrderFragmentFragment = {
               id?: string | null;
               index?: number | null;
               filename?: string | null;
+              url?: string | null;
               caption?: string | null;
               contentType?: string | null;
+              tags?: Array<string> | null;
               height?: number | null;
               width?: number | null;
-              url?: string | null;
             }> | null;
             files?: Array<{
               __typename?: 'IoRestorecommerceFileFile';
@@ -6753,11 +6758,12 @@ export type OrderFragmentFragment = {
               id?: string | null;
               index?: number | null;
               filename?: string | null;
+              url?: string | null;
               caption?: string | null;
               contentType?: string | null;
+              tags?: Array<string> | null;
               height?: number | null;
               width?: number | null;
-              url?: string | null;
             }> | null;
             files?: Array<{
               __typename?: 'IoRestorecommerceFileFile';
@@ -7316,11 +7322,12 @@ export type ProductVariantFragmentFragment = {
     id?: string | null;
     index?: number | null;
     filename?: string | null;
+    url?: string | null;
     caption?: string | null;
     contentType?: string | null;
+    tags?: Array<string> | null;
     height?: number | null;
     width?: number | null;
-    url?: string | null;
   }> | null;
   files?: Array<{
     __typename?: 'IoRestorecommerceFileFile';
@@ -7380,11 +7387,12 @@ export type ProductFragmentFragment = {
           id?: string | null;
           index?: number | null;
           filename?: string | null;
+          url?: string | null;
           caption?: string | null;
           contentType?: string | null;
+          tags?: Array<string> | null;
           height?: number | null;
           width?: number | null;
-          url?: string | null;
         }> | null;
         files?: Array<{
           __typename?: 'IoRestorecommerceFileFile';
@@ -7427,11 +7435,12 @@ export type ProductFragmentFragment = {
           id?: string | null;
           index?: number | null;
           filename?: string | null;
+          url?: string | null;
           caption?: string | null;
           contentType?: string | null;
+          tags?: Array<string> | null;
           height?: number | null;
           width?: number | null;
-          url?: string | null;
         }> | null;
         files?: Array<{
           __typename?: 'IoRestorecommerceFileFile';
@@ -10271,11 +10280,12 @@ export type OrderingOrderMutateMutation = {
                           id?: string | null;
                           index?: number | null;
                           filename?: string | null;
+                          url?: string | null;
                           caption?: string | null;
                           contentType?: string | null;
+                          tags?: Array<string> | null;
                           height?: number | null;
                           width?: number | null;
-                          url?: string | null;
                         }> | null;
                         files?: Array<{
                           __typename?: 'IoRestorecommerceFileFile';
@@ -10318,11 +10328,12 @@ export type OrderingOrderMutateMutation = {
                           id?: string | null;
                           index?: number | null;
                           filename?: string | null;
+                          url?: string | null;
                           caption?: string | null;
                           contentType?: string | null;
+                          tags?: Array<string> | null;
                           height?: number | null;
                           width?: number | null;
-                          url?: string | null;
                         }> | null;
                         files?: Array<{
                           __typename?: 'IoRestorecommerceFileFile';
@@ -10930,11 +10941,12 @@ export type OrderingOrderReadQuery = {
                           id?: string | null;
                           index?: number | null;
                           filename?: string | null;
+                          url?: string | null;
                           caption?: string | null;
                           contentType?: string | null;
+                          tags?: Array<string> | null;
                           height?: number | null;
                           width?: number | null;
-                          url?: string | null;
                         }> | null;
                         files?: Array<{
                           __typename?: 'IoRestorecommerceFileFile';
@@ -10977,11 +10989,12 @@ export type OrderingOrderReadQuery = {
                           id?: string | null;
                           index?: number | null;
                           filename?: string | null;
+                          url?: string | null;
                           caption?: string | null;
                           contentType?: string | null;
+                          tags?: Array<string> | null;
                           height?: number | null;
                           width?: number | null;
-                          url?: string | null;
                         }> | null;
                         files?: Array<{
                           __typename?: 'IoRestorecommerceFileFile';
@@ -11745,11 +11758,12 @@ export const ProductVariantFragmentFragmentDoc = gql`
       id
       index
       filename
+      url
       caption
       contentType
+      tags
       height
       width
-      url
     }
     files {
       id
