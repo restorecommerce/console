@@ -40,4 +40,9 @@ fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
     sale
     salePrice
   }
+  properties {
+    id
+    value
+    unitCode
+  }
 }

@@ -22,8 +22,6 @@
   @if (variant.images && variant.images.length > 0) {
   <div class="row align-items-center justify-content-between pb-1">
     <span></span>
-
-    <b>{{ selectedImageInGallary && selectedImageInGallary.filename }}</b>
     <div class="gallary-actions">
       <button
         vcl-button
@@ -73,7 +71,24 @@
     </vcl-gallery>
   </div>
   } @else {
-  <p>No images for this variant</p>
+
+  <div class="row align-items-center justify-content-between pb-1">
+    <p>No images for this variant</p>
+    <div class="gallary-actions">
+      <button
+        vcl-button
+        square
+        class="emphasized-transparent"
+        title="Add image"
+        (click)="fileUploadFormLayer.open({ data: { objectType: 'Image' } })"
+      >
+        <vcl-icon
+          class="scale155p"
+          icon="mdi mdi-plus"
+        />
+      </button>
+    </div>
+  </div>
   }
 </div>
 

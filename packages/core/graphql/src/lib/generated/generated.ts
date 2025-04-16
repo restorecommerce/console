@@ -5802,6 +5802,12 @@ export type CatalogProductMutateMutation = {
                       sale?: boolean | null;
                       salePrice?: number | null;
                     } | null;
+                    properties?: Array<{
+                      __typename?: 'IoRestorecommercePropertyProperty';
+                      id?: string | null;
+                      value?: string | null;
+                      unitCode?: string | null;
+                    }> | null;
                   }> | null;
                   variants?: Array<{
                     __typename?: 'IoRestorecommerceProductPhysicalVariant';
@@ -5850,6 +5856,12 @@ export type CatalogProductMutateMutation = {
                       sale?: boolean | null;
                       salePrice?: number | null;
                     } | null;
+                    properties?: Array<{
+                      __typename?: 'IoRestorecommercePropertyProperty';
+                      id?: string | null;
+                      value?: string | null;
+                      unitCode?: string | null;
+                    }> | null;
                   }> | null;
                 } | null;
               } | null;
@@ -5987,6 +5999,12 @@ export type CatalogProductReadQuery = {
                       sale?: boolean | null;
                       salePrice?: number | null;
                     } | null;
+                    properties?: Array<{
+                      __typename?: 'IoRestorecommercePropertyProperty';
+                      id?: string | null;
+                      value?: string | null;
+                      unitCode?: string | null;
+                    }> | null;
                   }> | null;
                   variants?: Array<{
                     __typename?: 'IoRestorecommerceProductPhysicalVariant';
@@ -6035,6 +6053,12 @@ export type CatalogProductReadQuery = {
                       sale?: boolean | null;
                       salePrice?: number | null;
                     } | null;
+                    properties?: Array<{
+                      __typename?: 'IoRestorecommercePropertyProperty';
+                      id?: string | null;
+                      value?: string | null;
+                      unitCode?: string | null;
+                    }> | null;
                   }> | null;
                 } | null;
               } | null;
@@ -6743,6 +6767,12 @@ export type OrderFragmentFragment = {
               sale?: boolean | null;
               salePrice?: number | null;
             } | null;
+            properties?: Array<{
+              __typename?: 'IoRestorecommercePropertyProperty';
+              id?: string | null;
+              value?: string | null;
+              unitCode?: string | null;
+            }> | null;
           }> | null;
           variants?: Array<{
             __typename?: 'IoRestorecommerceProductPhysicalVariant';
@@ -6791,6 +6821,12 @@ export type OrderFragmentFragment = {
               sale?: boolean | null;
               salePrice?: number | null;
             } | null;
+            properties?: Array<{
+              __typename?: 'IoRestorecommercePropertyProperty';
+              id?: string | null;
+              value?: string | null;
+              unitCode?: string | null;
+            }> | null;
           }> | null;
         } | null;
       } | null;
@@ -7355,6 +7391,12 @@ export type ProductVariantFragmentFragment = {
     sale?: boolean | null;
     salePrice?: number | null;
   } | null;
+  properties?: Array<{
+    __typename?: 'IoRestorecommercePropertyProperty';
+    id?: string | null;
+    value?: string | null;
+    unitCode?: string | null;
+  }> | null;
 };
 
 export type ProductFragmentFragment = {
@@ -7420,6 +7462,12 @@ export type ProductFragmentFragment = {
           sale?: boolean | null;
           salePrice?: number | null;
         } | null;
+        properties?: Array<{
+          __typename?: 'IoRestorecommercePropertyProperty';
+          id?: string | null;
+          value?: string | null;
+          unitCode?: string | null;
+        }> | null;
       }> | null;
       variants?: Array<{
         __typename?: 'IoRestorecommerceProductPhysicalVariant';
@@ -7468,6 +7516,12 @@ export type ProductFragmentFragment = {
           sale?: boolean | null;
           salePrice?: number | null;
         } | null;
+        properties?: Array<{
+          __typename?: 'IoRestorecommercePropertyProperty';
+          id?: string | null;
+          value?: string | null;
+          unitCode?: string | null;
+        }> | null;
       }> | null;
     } | null;
   } | null;
@@ -10313,6 +10367,12 @@ export type OrderingOrderMutateMutation = {
                           sale?: boolean | null;
                           salePrice?: number | null;
                         } | null;
+                        properties?: Array<{
+                          __typename?: 'IoRestorecommercePropertyProperty';
+                          id?: string | null;
+                          value?: string | null;
+                          unitCode?: string | null;
+                        }> | null;
                       }> | null;
                       variants?: Array<{
                         __typename?: 'IoRestorecommerceProductPhysicalVariant';
@@ -10361,6 +10421,12 @@ export type OrderingOrderMutateMutation = {
                           sale?: boolean | null;
                           salePrice?: number | null;
                         } | null;
+                        properties?: Array<{
+                          __typename?: 'IoRestorecommercePropertyProperty';
+                          id?: string | null;
+                          value?: string | null;
+                          unitCode?: string | null;
+                        }> | null;
                       }> | null;
                     } | null;
                   } | null;
@@ -10974,6 +11040,12 @@ export type OrderingOrderReadQuery = {
                           sale?: boolean | null;
                           salePrice?: number | null;
                         } | null;
+                        properties?: Array<{
+                          __typename?: 'IoRestorecommercePropertyProperty';
+                          id?: string | null;
+                          value?: string | null;
+                          unitCode?: string | null;
+                        }> | null;
                       }> | null;
                       variants?: Array<{
                         __typename?: 'IoRestorecommerceProductPhysicalVariant';
@@ -11022,6 +11094,12 @@ export type OrderingOrderReadQuery = {
                           sale?: boolean | null;
                           salePrice?: number | null;
                         } | null;
+                        properties?: Array<{
+                          __typename?: 'IoRestorecommercePropertyProperty';
+                          id?: string | null;
+                          value?: string | null;
+                          unitCode?: string | null;
+                        }> | null;
                       }> | null;
                     } | null;
                   } | null;
@@ -11791,6 +11869,11 @@ export const ProductVariantFragmentFragmentDoc = gql`
       regularPrice
       sale
       salePrice
+    }
+    properties {
+      id
+      value
+      unitCode
     }
   }
 `;
