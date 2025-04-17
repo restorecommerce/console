@@ -34,7 +34,7 @@ export class RcDataListOrderComponent implements OnInit {
 
   dayjs = dayjs;
 
-  BUCKET_DOMAIN = API.domains.bucketDomain;
+  BUCKET_DOMAIN = API.domains.bucketDomain + '/storage';
 
   product?: IoRestorecommerceProductPhysicalVariant | null;
   customer?: IoRestorecommerceUserUser | null;
