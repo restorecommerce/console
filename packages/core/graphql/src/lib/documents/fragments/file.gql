@@ -1,0 +1,11 @@
+fragment FileFragment on IoRestorecommerceFileFile {
+  id
+  url
+  filename
+  caption
+  contentType
+  tags
+  thumbnail {
+    ...ImageFragment
+  }
+}

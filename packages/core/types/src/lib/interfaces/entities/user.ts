@@ -4,9 +4,10 @@ import {
   IoRestorecommerceUserUserRole,
 } from '@console-core/graphql';
 
+import { TScopingInstances } from '../../types';
+
 import { IMeta } from './meta';
 import { IRole } from './role';
-import { TScopingInstances } from '../../types';
 
 export interface IUser
   extends Omit<

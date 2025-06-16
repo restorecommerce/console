@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
@@ -19,7 +20,6 @@ import { OrganizationService, ErrorHandlingService } from '../../../services';
 import { AppFacade } from '../../app';
 
 import * as organizationActions from './organization.actions';
-import { concatLatestFrom } from '@ngrx/operators';
 import { OrganizationFacade } from './organization.facade';
 
 @Injectable()

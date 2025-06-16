@@ -10,6 +10,10 @@ import {
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
 import {
+  OrganizationContextFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
+import {
   ENotificationTypes,
   IShop,
   TOperationStatus,
@@ -19,10 +23,6 @@ import { ErrorHandlingService, ShopService } from '../../../services';
 import { AppFacade } from '../../app';
 
 import * as shopActions from './shop.actions';
-import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
 
 @Injectable()
 export class ShopEffects {

@@ -11,8 +11,9 @@ mutation CreateOrderFulfillment(
               fulfillmentState
               labels {
                 parcelId
-                pdf
-                png
+                file {
+                  url
+                }
                 shipmentNumber
                 status {
                   code

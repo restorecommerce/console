@@ -4,22 +4,18 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
   shopId
   userId
   labels {
-    pdf
-    png
     shipmentNumber
     state
     parcelId
-    url
+    file {
+      url
+    }
     status {
       code
       message
     }
   }
   packaging {
-    exportType
-    notify
-    invoiceNumber
-    exportDescription
     parcels {
       id
       productId
@@ -68,9 +64,11 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
       }
     }
     notify
-    invoiceNumber
-    exportDescription
-    exportType
+    customsDeclaration {
+      invoiceNumber
+      exportDescription
+      exportType
+    }
   }
   references {
     instanceType

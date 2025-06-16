@@ -12,6 +12,10 @@ import {
   IoRestorecommerceAddressShippingAddress,
 } from '@console-core/graphql';
 import {
+  OrganizationContextFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
+import {
   ENotificationTypes,
   IOrder,
   TOperationStatus,
@@ -22,10 +26,6 @@ import { AppFacade } from '../app';
 
 import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';
-import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
 
 @Injectable()
 export class OrderEffects {
@@ -40,17 +40,20 @@ export class OrderEffects {
           .read({
             // Sort object from the product payload or the default goes here!
             // ...productActionPayload,
-            filters: [
-              {
-                filters: [
+            filters: organization
+              ? [
                   {
-                    field: 'meta.owners[*].attributes[**].value',
-                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organization,
+                    filters: [
+                      {
+                        field: 'meta.owners[*].attributes[**].value',
+                        operation:
+                          IoRestorecommerceResourcebaseFilterOperation.In,
+                        value: organization,
+                      },
+                    ],
                   },
-                ],
-              },
-            ],
+                ]
+              : [],
           })
           .pipe(
             tap((result) => {

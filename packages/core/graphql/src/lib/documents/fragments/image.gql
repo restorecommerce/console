@@ -1,0 +1,11 @@
+fragment ImageFragment on IoRestorecommerceImageImage {
+  id
+  index
+  filename
+  url
+  caption
+  contentType
+  tags
+  height
+  width
+}

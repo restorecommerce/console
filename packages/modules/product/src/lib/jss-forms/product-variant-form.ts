@@ -18,7 +18,7 @@ export const buildProductVariantReactiveForm = (
 
     description: [options?.product?.description || ''],
 
-    stockLevel: [options?.product?.stockLevel || '', [Validators.required]],
+    stockLevel: [options?.product?.stockLevel || 0, [Validators.required]],
 
     stockKeepingUnit: [options?.product?.stockKeepingUnit || ''],
 

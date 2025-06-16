@@ -2,7 +2,7 @@
 export default {
   displayName: 'core-state',
   preset: '../../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.spec.ts'],
   coverageDirectory: '../../../coverage/packages/core/state',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [

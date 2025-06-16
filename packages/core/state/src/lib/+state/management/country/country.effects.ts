@@ -10,6 +10,10 @@ import {
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
 import {
+  OrganizationContextFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
+import {
   ENotificationTypes,
   ICountry,
   TOperationStatus,
@@ -19,10 +23,6 @@ import { CountryService, ErrorHandlingService } from '../../../services';
 import { AppFacade } from '../../app';
 
 import * as countryActions from './country.actions';
-import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
 
 @Injectable()
 export class CountryEffects {
@@ -36,17 +36,20 @@ export class CountryEffects {
         this.countryService
           .read({
             // ...productActionPayload,
-            filters: [
-              {
-                filters: [
+            filters: organization
+              ? [
                   {
-                    field: 'meta.owners[*].attributes[**].value',
-                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organization,
+                    filters: [
+                      {
+                        field: 'meta.owners[*].attributes[**].value',
+                        operation:
+                          IoRestorecommerceResourcebaseFilterOperation.In,
+                        value: organization,
+                      },
+                    ],
                   },
-                ],
-              },
-            ],
+                ]
+              : [],
           })
           .pipe(
             tap((result) => {

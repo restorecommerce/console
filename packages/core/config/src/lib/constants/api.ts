@@ -1,4 +1,5 @@
 import { isDevMode } from '@angular/core';
+
 import { IApiConstant } from '@console-core/types';
 
 export const API: Readonly<IApiConstant> = {

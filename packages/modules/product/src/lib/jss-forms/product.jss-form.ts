@@ -54,7 +54,7 @@ export const buildProductSchema = (
             type: 'select',
             // disabled: true,
             validators: [Validators.required],
-            defaultValue: options?.product?.product.manufacturerId || '',
+            defaultValue: options?.product?.product.manufacturerId ?? '',
             params: {
               placeholder: 'Select manufacturer',
               selectionMode: 'single',
@@ -89,7 +89,7 @@ export const buildProductSchema = (
             type: 'select',
             // disabled: true,
             validators: [Validators.required],
-            defaultValue: options?.product?.product.originCountryId || '',
+            defaultValue: options?.product?.product.originCountryId ?? '',
             params: {
               placeholder: 'Select origin country',
               selectionMode: 'single',
@@ -115,27 +115,12 @@ export const buildProductSchema = (
             ],
           },
           {
-            name: 'taricCode',
-            label: 'Taric code',
-            type: 'input',
-            validators: [Validators.required],
-            defaultValue: options?.product?.product.taricCode || '',
-            params: {},
-            hints: [
-              {
-                type: 'error',
-                error: 'required',
-                message: 'This field is required.',
-              },
-            ],
-          },
-          {
             name: 'prototypeId',
             label: 'Prototype',
             type: 'select',
             // disabled: true,
             validators: [Validators.required],
-            defaultValue: options?.product?.product.prototypeId || '',
+            defaultValue: options?.product?.product.prototypeId ?? '',
             params: {
               placeholder: 'Select prototype',
               selectionMode: 'single',
@@ -166,7 +151,7 @@ export const buildProductSchema = (
             type: 'select',
             // disabled: true,
             validators: [Validators.required],
-            defaultValue: options?.product?.product.categoryId || '',
+            defaultValue: options?.product?.product.categoryId ?? '',
             params: {
               placeholder: 'Select category',
               selectionMode: 'single',
@@ -196,7 +181,7 @@ export const buildProductSchema = (
             label: 'Taxes',
             type: 'select',
             // disabled: true,
-            defaultValue: options?.product?.product.taxIds || [],
+            defaultValue: options?.product?.product.taxIds ?? [],
             validators: [Validators.required],
             params: {
               placeholder: 'Select taxes',
@@ -251,7 +236,7 @@ export const buildProductSchema = (
             label: 'Global trade item number',
             type: 'input',
             validators: [Validators.required],
-            defaultValue: options?.product?.product.gtin || '',
+            defaultValue: options?.product?.product.gtin ?? '',
             params: {},
             hints: [
               {

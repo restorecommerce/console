@@ -10,7 +10,6 @@ fragment ProductFragment on IoRestorecommerceProductProduct {
     originCountryId
     categoryId
     prototypeId
-    taricCode
     physical {
       templates {
         ...ProductVariantFragment

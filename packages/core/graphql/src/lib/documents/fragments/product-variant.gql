@@ -2,33 +2,12 @@ fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
   id
   name
   description
+  taricCode
   images {
-    id
-    index
-    filename
-    url
-    caption
-    contentType
-    tags
-    height
-    width
+    ...ImageFragment
   }
   files {
-    id
-    url
-    filename
-    caption
-    contentType
-    tags
-    thumbnail {
-      id
-      url
-      width
-      length
-      index
-      caption
-      contentType
-    }
+    ...FileFragment
   }
   stockLevel
   stockKeepingUnit

@@ -12,6 +12,10 @@ import {
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import {
+  OrganizationContextFacade,
+  withLatestOrganizationData,
+} from '@console-core/state';
+import {
   ENotificationTypes,
   IProduct,
   TOperationStatus,
@@ -22,13 +26,6 @@ import { AppFacade } from '../app';
 
 import * as productActions from './product.actions';
 import { productReadOneByIdRequest } from './product.actions';
-import { concatLatestFrom } from '@ngrx/operators';
-import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
-
-import * as organizationActions from '../management/organization/organization.actions';
 
 const page = {
   limit: PAGINATION.limit,
@@ -64,21 +61,23 @@ export class ProductEffects {
         >;
 
         const productActionPayload = productAction.payload || queryVariables;
-
         return this.productService
           .read({
             // ...productActionPayload,
-            filters: [
-              {
-                filters: [
+            filters: organization
+              ? [
                   {
-                    field: 'meta.owners[*].attributes[**].value',
-                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organization,
+                    filters: [
+                      {
+                        field: 'meta.owners[*].attributes[**].value',
+                        operation:
+                          IoRestorecommerceResourcebaseFilterOperation.In,
+                        value: organization,
+                      },
+                    ],
                   },
-                ],
-              },
-            ],
+                ]
+              : [],
           })
           .pipe(
             tap((result) => {
