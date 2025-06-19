@@ -174,6 +174,47 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'products', 'index'],
               title: 'Products',
             },
+
+            catalogs: {
+              path: 'catalogs',
+              link: '/products/catalogs',
+              title: 'Catalogs',
+              getLink: () => ['', 'products', 'catalog'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/products/catalogs/index',
+                  getLink: () => ['', 'products', 'catalogs', 'index'],
+                  title: 'Catalogs',
+                },
+                create: {
+                  path: 'create',
+                  link: '/products/catalogs/create',
+                  title: 'Create',
+                  getLink: () => ['', 'products', 'catalogs', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/products/catalogs/:id/view',
+                  title: 'Catalog',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'catalogs', params.id, 'view']
+                      : ['', 'products', 'catalogs'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/products/catalogs/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'catalogs', params.id, 'edit']
+                      : ['', 'products', 'catalogs'],
+                },
+              },
+            },
+
+            // TODO Remove
             create: {
               path: 'create',
               link: '/products/create',

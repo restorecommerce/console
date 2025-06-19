@@ -75,6 +75,18 @@ export interface IRouterConstant {
           getLink: () => TRouterLink;
           children: {
             index: IRouterItem;
+            catalogs: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
             create: IRouterItem;
             view: IRouterItem;
             edit: IRouterItem;
