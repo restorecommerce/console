@@ -10,7 +10,7 @@ import {
 import { ProductFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
-import { ProductVariantService } from '../services/product-variant-upsert.service';
+import { ProductVariantService } from '../../services/product-variant-upsert.service';
 
 @Component({
   selector: 'app-module-product-variant-modal',

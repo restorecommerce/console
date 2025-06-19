@@ -18,7 +18,9 @@
             <span>Product id</span>
             <a
               [routerLink]="
-                productRouter.view.getLink({ id: item.productId || '' })
+                productRouter.catalogs.children.view.getLink({
+                  id: item.productId || ''
+                })
               "
               >{{ item.productId }}</a
             >

@@ -1,15 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-product-template',
+  selector: 'app-module-product',
   template: `
-    <div class="row grid-gutterx-2">
-      <div class="flex">
-        <router-outlet />
-      </div>
+    <div>
+      <p>Product</p>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ProductTemplateComponent {}
+export class ProductComponent {}

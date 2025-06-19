@@ -51,27 +51,47 @@
         [routerLinkActive]="['selected']"
         >Products
         <rc-drawer-navigation-item
-          icon="mdi:account-multiple-outline"
+          icon="mdi:book-open-variant"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.catalogs.children.index
+              .link
+          "
           [routerLinkActive]="['selected']"
           >Catalog</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:account-key-outline"
+          icon="mdi:shape-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.categories.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Categories</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:account-convert-outline"
+          icon="mdi:factory"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.manufacturers.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Manufacturers</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:folder-account-outline"
+          icon="mdi:cube-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.prototypies.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Prototypes</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
-          icon="mdi:folder-account-outline"
+          icon="mdi:tag-multiple"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.priceGroups.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Price groups</rc-drawer-navigation-item
         >

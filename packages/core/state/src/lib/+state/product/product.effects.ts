@@ -186,9 +186,11 @@ export class ProductEffects {
         }),
         tap(({ payload }) => {
           this.router.navigate(
-            ROUTER.pages.main.children.products.children.edit.getLink({
-              id: payload.id,
-            })
+            ROUTER.pages.main.children.products.children.catalogs.children.edit.getLink(
+              {
+                id: payload.id,
+              }
+            )
           );
         })
       );

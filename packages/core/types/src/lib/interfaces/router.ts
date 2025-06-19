@@ -87,9 +87,54 @@ export interface IRouterConstant {
                 edit: IRouterItem;
               };
             };
-            create: IRouterItem;
-            view: IRouterItem;
-            edit: IRouterItem;
+            categories: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
+            manufacturers: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
+            prototypies: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
+            priceGroups: {
+              path: string;
+              link: string;
+              title: string;
+              getLink: () => TRouterLink;
+              children: {
+                index: IRouterItem;
+                create: IRouterItem;
+                view: IRouterItem;
+                edit: IRouterItem;
+              };
+            };
           };
         };
         invoices: {

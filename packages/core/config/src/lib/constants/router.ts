@@ -174,7 +174,6 @@ export const ROUTER: Readonly<IRouterConstant> = {
               getLink: () => ['', 'products', 'index'],
               title: 'Products',
             },
-
             catalogs: {
               path: 'catalogs',
               link: '/products/catalogs',
@@ -213,31 +212,157 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 },
               },
             },
-
-            // TODO Remove
-            create: {
-              path: 'create',
-              link: '/products/create',
-              title: 'Create',
-              getLink: () => ['', 'products', 'create'],
+            categories: {
+              path: 'categories',
+              link: '/products/categories',
+              title: 'Catalogs',
+              getLink: () => ['', 'products', 'categories'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/products/categories/index',
+                  getLink: () => ['', 'products', 'categories', 'index'],
+                  title: 'Catalogs',
+                },
+                create: {
+                  path: 'create',
+                  link: '/products/categories/create',
+                  title: 'Create',
+                  getLink: () => ['', 'products', 'categories', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/products/categories/:id/view',
+                  title: 'Catalog',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'categories', params.id, 'view']
+                      : ['', 'products', 'categories'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/products/categories/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'categories', params.id, 'edit']
+                      : ['', 'products', 'categories'],
+                },
+              },
             },
-            view: {
-              path: ':id/view',
-              link: '/products/:id/view',
-              title: 'Product',
-              getLink: (params?: { id?: string }) =>
-                params?.id
-                  ? ['', 'products', params.id, 'view']
-                  : ['', 'products'],
+            manufacturers: {
+              path: 'manufacturer',
+              link: '/products/manufacturer',
+              title: 'Catalogs',
+              getLink: () => ['', 'products', 'manufacturer'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/products/manufacturer/index',
+                  getLink: () => ['', 'products', 'manufacturer', 'index'],
+                  title: 'Catalogs',
+                },
+                create: {
+                  path: 'create',
+                  link: '/products/manufacturer/create',
+                  title: 'Create',
+                  getLink: () => ['', 'products', 'manufacturer', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/products/manufacturer/:id/view',
+                  title: 'Catalog',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'manufacturer', params.id, 'view']
+                      : ['', 'products', 'manufacturer'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/products/manufacturer/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'manufacturer', params.id, 'edit']
+                      : ['', 'products', 'manufacturer'],
+                },
+              },
             },
-            edit: {
-              path: ':id/edit',
-              link: '/products/:id/edit',
-              title: 'Edit',
-              getLink: (params?: { id?: string }) =>
-                params?.id
-                  ? ['', 'products', params.id, 'edit']
-                  : ['', 'products'],
+            prototypies: {
+              path: 'prototypies',
+              link: '/products/prototypies',
+              title: 'Catalogs',
+              getLink: () => ['', 'products', 'prototypies'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/products/prototypies/index',
+                  getLink: () => ['', 'products', 'prototypies', 'index'],
+                  title: 'Catalogs',
+                },
+                create: {
+                  path: 'create',
+                  link: '/products/prototypies/create',
+                  title: 'Create',
+                  getLink: () => ['', 'products', 'prototypies', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/products/prototypies/:id/view',
+                  title: 'Catalog',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'prototypies', params.id, 'view']
+                      : ['', 'products', 'prototypies'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/products/prototypies/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'prototypies', params.id, 'edit']
+                      : ['', 'products', 'prototypies'],
+                },
+              },
+            },
+            priceGroups: {
+              path: 'price-group',
+              link: '/products/price-group',
+              title: 'Price group',
+              getLink: () => ['', 'products', 'price-group'],
+              children: {
+                index: {
+                  path: 'index',
+                  link: '/products/price-group/index',
+                  getLink: () => ['', 'products', 'price-group', 'index'],
+                  title: 'Price group',
+                },
+                create: {
+                  path: 'create',
+                  link: '/products/price-group/create',
+                  title: 'Create',
+                  getLink: () => ['', 'products', 'price-group', 'create'],
+                },
+                view: {
+                  path: ':id/view',
+                  link: '/products/price-group/:id/view',
+                  title: 'Price group',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'price-group', params.id, 'view']
+                      : ['', 'products', 'price-group'],
+                },
+                edit: {
+                  path: ':id/edit',
+                  link: '/products/price-group/:id/edit',
+                  title: 'Edit',
+                  getLink: (params?: { id?: string }) =>
+                    params?.id
+                      ? ['', 'products', 'price-group', params.id, 'edit']
+                      : ['', 'products', 'price-group'],
+                },
+              },
             },
           },
         },
