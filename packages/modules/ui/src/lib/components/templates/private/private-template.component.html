@@ -61,21 +61,37 @@
         >
         <rc-drawer-navigation-item
           icon="mdi:account-key-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.categories.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Categories</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:account-convert-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.manufacturers.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Manufacturers</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:folder-account-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.prototypies.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Prototypes</rc-drawer-navigation-item
         >
         <rc-drawer-navigation-item
           icon="mdi:folder-account-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.priceGroups.children
+              .index.link
+          "
           [routerLinkActive]="['selected']"
           >Price groups</rc-drawer-navigation-item
         >
