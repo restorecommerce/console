@@ -2,11 +2,11 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { ProductCreateComponent } from './components/product-create.component';
-import { ProductEditComponent } from './components/product-edit.component';
-import { ProductIndexComponent } from './components/product-index.component';
-import { ProductViewComponent } from './components/product-view.component';
-import { ProductTemplateComponent } from './components/template/product-template.component';
+import { ProductCreateComponent } from './components/catalog/product-create.component';
+import { ProductEditComponent } from './components/catalog/product-edit.component';
+import { ProductIndexComponent } from './components/catalog/product-index.component';
+import { ProductViewComponent } from './components/catalog/product-view.component';
+import { ProductTemplateComponent } from './components/catalog/template/product-template.component';
 import { ProductNameResolver } from './resolvers/product-name.resolver';
 
 export const modulesProductRoutes: Route[] = [

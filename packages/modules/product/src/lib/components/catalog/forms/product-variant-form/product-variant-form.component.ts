@@ -18,7 +18,7 @@ import {
 import { CurrencyFacade, TaxFacade } from '@console-core/state';
 import { IProduct } from '@console-core/types';
 
-import { buildProductVariantReactiveForm } from '../../../jss-forms/product-variant-form';
+import { buildProductVariantReactiveForm } from '../../jss-forms/product-variant-form';
 
 @Component({
   selector: 'app-module-product-variant-form',
