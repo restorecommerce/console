@@ -3,8 +3,14 @@ import { RouterModule } from '@angular/router';
 
 import { ModulesUiModule } from '@console-modules/ui';
 
+import { ProductTemplateComponent } from './components/template/product-template.component';
+import { modulesProductRoutes } from './lib.routes';
+
 @NgModule({
-  declarations: [],
-  imports: [ModulesUiModule.forChild()],
+  declarations: [ProductTemplateComponent],
+  imports: [
+    ModulesUiModule.forChild(),
+    RouterModule.forChild(modulesProductRoutes),
+  ],
 })
 export class ModulesProductModule {}
