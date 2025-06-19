@@ -52,6 +52,10 @@
         >Products
         <rc-drawer-navigation-item
           icon="mdi:account-multiple-outline"
+          [routerLink]="
+            ROUTER.pages.main.children.products.children.catalogs.children.index
+              .link
+          "
           [routerLinkActive]="['selected']"
           >Catalog</rc-drawer-navigation-item
         >
