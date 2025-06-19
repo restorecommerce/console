@@ -87,9 +87,6 @@ export interface IRouterConstant {
                 edit: IRouterItem;
               };
             };
-            create: IRouterItem;
-            view: IRouterItem;
-            edit: IRouterItem;
           };
         };
         invoices: {

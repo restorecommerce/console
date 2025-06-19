@@ -25,7 +25,9 @@ export class ProductIndexComponent {
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.router.navigate(
-          ROUTER.pages.main.children.products.children.view.getLink({ id })
+          ROUTER.pages.main.children.products.children.catalogs.children.view.getLink(
+            { id }
+          )
         );
       })
     ),

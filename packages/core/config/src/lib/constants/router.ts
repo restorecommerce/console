@@ -213,32 +213,6 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 },
               },
             },
-
-            // TODO Remove
-            create: {
-              path: 'create',
-              link: '/products/create',
-              title: 'Create',
-              getLink: () => ['', 'products', 'create'],
-            },
-            view: {
-              path: ':id/view',
-              link: '/products/:id/view',
-              title: 'Product',
-              getLink: (params?: { id?: string }) =>
-                params?.id
-                  ? ['', 'products', params.id, 'view']
-                  : ['', 'products'],
-            },
-            edit: {
-              path: ':id/edit',
-              link: '/products/:id/edit',
-              title: 'Edit',
-              getLink: (params?: { id?: string }) =>
-                params?.id
-                  ? ['', 'products', params.id, 'edit']
-                  : ['', 'products'],
-            },
           },
         },
         invoices: {

@@ -51,11 +51,15 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
-      create: () => this.featureRouter.create.getLink(),
+      create: () => this.featureRouter.catalogs.children.create.getLink(),
       edit: (id: string | null) =>
-        this.featureRouter.edit.getLink({ id: id ?? undefined }),
+        this.featureRouter.catalogs.children.edit.getLink({
+          id: id ?? undefined,
+        }),
       view: (id: string | null) =>
-        this.featureRouter.view.getLink({ id: id ?? undefined }),
+        this.featureRouter.catalogs.children.view.getLink({
+          id: id ?? undefined,
+        }),
     },
   };
 

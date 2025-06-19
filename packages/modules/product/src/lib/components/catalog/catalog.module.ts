@@ -25,32 +25,46 @@ export const modulesProductRoutes: Route[] = [
     title: ROUTER.pages.main.children.products.title,
     children: [
       {
-        path: ROUTER.pages.main.children.products.children.index.path,
+        path: ROUTER.pages.main.children.products.children.catalogs.children
+          .index.path,
         component: ProductIndexComponent,
-        title: ROUTER.pages.main.children.products.children.index.title,
+        title:
+          ROUTER.pages.main.children.products.children.catalogs.children.index
+            .title,
       },
       {
-        path: ROUTER.pages.main.children.products.children.view.path,
+        path: ROUTER.pages.main.children.products.children.catalogs.children
+          .view.path,
         component: ProductViewComponent,
-        title: ROUTER.pages.main.children.products.children.view.title,
+        title:
+          ROUTER.pages.main.children.products.children.catalogs.children.view
+            .title,
         resolve: { productName: ProductNameResolver },
         data: {
           breadcrumb: (data: { productName: string }) => data.productName,
         },
       },
       {
-        path: ROUTER.pages.main.children.products.children.create.path,
+        path: ROUTER.pages.main.children.products.children.catalogs.children
+          .create.path,
         component: ProductCreateComponent,
-        title: ROUTER.pages.main.children.products.children.create.title,
+        title:
+          ROUTER.pages.main.children.products.children.catalogs.children.create
+            .title,
       },
       {
-        path: ROUTER.pages.main.children.products.children.edit.path,
+        path: ROUTER.pages.main.children.products.children.catalogs.children
+          .edit.path,
         component: ProductEditComponent,
-        title: ROUTER.pages.main.children.products.children.edit.title,
+        title:
+          ROUTER.pages.main.children.products.children.catalogs.children.edit
+            .title,
       },
       {
         path: '**',
-        redirectTo: ROUTER.pages.main.children.products.children.index.path,
+        redirectTo:
+          ROUTER.pages.main.children.products.children.catalogs.children.index
+            .path,
       },
     ],
   },
