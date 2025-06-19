@@ -87,7 +87,6 @@ export class RcPageHeaderComponent implements AfterViewInit, OnDestroy {
     const newBreadcrumbs = this.createBreadcrumbs(
       this.activatedRoute.root
     ).reduce((acc, { label, url }) => {
-      console.log('label, url ', label, url);
       if (label !== '' && !acc.some((breadcrumb) => breadcrumb.url === url)) {
         acc.push({ label, url });
       }

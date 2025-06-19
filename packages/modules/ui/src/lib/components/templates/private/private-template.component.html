@@ -49,8 +49,33 @@
         icon="mdi:tag-outline"
         [routerLink]="ROUTER.pages.main.children.products.link"
         [routerLinkActive]="['selected']"
-        >Products</rc-drawer-navigation-item
-      >
+        >Products
+        <rc-drawer-navigation-item
+          icon="mdi:account-multiple-outline"
+          [routerLinkActive]="['selected']"
+          >Catalog</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:account-key-outline"
+          [routerLinkActive]="['selected']"
+          >Categories</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:account-convert-outline"
+          [routerLinkActive]="['selected']"
+          >Manufacturers</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:folder-account-outline"
+          [routerLinkActive]="['selected']"
+          >Prototypes</rc-drawer-navigation-item
+        >
+        <rc-drawer-navigation-item
+          icon="mdi:folder-account-outline"
+          [routerLinkActive]="['selected']"
+          >Price groups</rc-drawer-navigation-item
+        >
+      </rc-drawer-navigation-item>
       <!-- Show for only superadmins. -->
       @if (authzService.isAdmin$ | async) {
       <ng-container>
