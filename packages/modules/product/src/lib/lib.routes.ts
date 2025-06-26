@@ -26,6 +26,14 @@ export const modulesProductRoutes: Route[] = [
           ),
         title: ROUTER.pages.main.children.products.children.catalogs.title,
       },
+      {
+        path: ROUTER.pages.main.children.products.children.manufacturers.path,
+        loadChildren: () =>
+          import('./components/manufacturer/manufacturer.module').then(
+            (m) => m.ModulesManufacturerModule
+          ),
+        title: ROUTER.pages.main.children.products.children.catalogs.title,
+      },
     ],
   },
 ];
