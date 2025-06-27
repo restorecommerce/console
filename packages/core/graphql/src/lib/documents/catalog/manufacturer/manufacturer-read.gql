@@ -1,0 +1,21 @@
+query ManufucturerRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  catalog {
+    manufacturer {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...ManufacturerFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}

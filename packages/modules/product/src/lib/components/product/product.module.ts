@@ -18,4 +18,4 @@ const routes: Routes = [
   declarations: [ProductComponent],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })
-export class AccessControlModule {}
+export class ProductModule {}
