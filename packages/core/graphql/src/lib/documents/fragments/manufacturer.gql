@@ -1,0 +1,8 @@
+fragment ManufacturerFragment on IoRestorecommerceManufacturerManufacturer {
+  id
+  name
+  description
+  meta {
+    ...MetaFragment
+  }
+}
