@@ -27,35 +27,35 @@ import { transformOrderToInput } from '../utils';
 @Component({
   selector: 'app-module-order-edit',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <div class="mt-2 flex col">
-        <!-- <rc-crud-edit
+    @if (vm$ | async; as vm) {
+    <div class="mt-2 flex col">
+      <!-- <rc-crud-edit
           [id]="vm.id"
           [schema]="schema"
           [update]="update"
         /> -->
-        <div class="col flex">
-          <rc-json-editor
-            #jsonEditor
-            [value]="getOrderSource(vm.order)"
-            class="flex"
-          />
+      <div class="col flex">
+        <rc-json-editor
+          #jsonEditor
+          [value]="getOrderSource(vm.order)"
+          class="flex"
+        />
 
-          <div class="py-2 row justify-content-end">
-            <div class="loose-button-group">
-              <button class="button transparent">Cancel</button>
-              <button
-                class="button"
-                (click)="onSave()"
-                [disabled]="jsonError"
-              >
-                Save
-              </button>
-            </div>
+        <div class="py-2 row justify-content-end">
+          <div class="loose-button-group">
+            <button class="button transparent">Cancel</button>
+            <button
+              class="button"
+              (click)="onSave()"
+              [disabled]="jsonError"
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
-    </ng-container>
+    </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,

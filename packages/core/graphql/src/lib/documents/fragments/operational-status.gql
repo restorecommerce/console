@@ -1,0 +1,4 @@
+fragment OpsStatusFragment on IoRestorecommerceStatusOperationStatus {
+  code
+  message
+}

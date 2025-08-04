@@ -38,6 +38,7 @@
   </ng-container>
 
   <ng-container rc-crud-actions>
+    @if (vm.showInvoiceButton) {
     <button
       (click)="onCreateInvoice(vm.selectedOrderId)"
       vcl-button
@@ -47,7 +48,7 @@
     >
       <vcl-icon icon="mdi:invoice-plus-outline" />
     </button>
-
+    } @if (vm.showFulfillmentButton) {
     <button
       (click)="onCreateFulfillment(vm.selectedOrderId)"
       vcl-button
@@ -57,6 +58,7 @@
     >
       <vcl-icon icon="mdi:send-outline" />
     </button>
+    }
   </ng-container>
 
   <ng-container rc-crud-router-outlet>
