@@ -20,6 +20,10 @@ fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
       vat
     }
   }
+  references {
+    instanceType
+    instanceId
+  }
   meta {
     ...MetaFragment
   }

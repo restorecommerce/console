@@ -19,7 +19,12 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { OrderFacade, RouterFacade } from '@console-core/state';
+import {
+  FulfillmentFacade,
+  InvoiceFacade,
+  OrderFacade,
+  RouterFacade,
+} from '@console-core/state';
 import { ICrudFeature, EUrlSegment, IOrder } from '@console-core/types';
 
 @Component({
@@ -131,6 +136,57 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     debounceTime(10)
   );
 
+  readonly readFulfillmentOnViewSegment$ = this.routerFacade.url$.pipe(
+    map((url) => url.split('/').pop() as EUrlSegment),
+    distinctUntilChanged(),
+    tap((segment) => {
+      if ([EUrlSegment.View].includes(segment)) {
+        console.log('Fulfilment is read');
+        this.fulfillmentFacade.read({});
+        this.invoiceFacade.read({});
+      }
+    }),
+    debounceTime(10)
+  );
+
+  readonly showFulfillmentButton$ = combineLatest([
+    this.fulfillmentFacade.all$,
+    this.orderFacade.selectedId$,
+  ]).pipe(
+    map(([fulfillments, orderId]) => {
+      const orderFulfillment = fulfillments.find((fulfil) => {
+        const orderFulfillment = fulfil.references?.find(
+          (ref) =>
+            ref.instanceType === 'urn:restorecommerce:acs:model:order:Order' &&
+            ref.instanceId === orderId
+        );
+
+        return orderFulfillment;
+      });
+
+      return Boolean(orderFulfillment) === false;
+    })
+  );
+
+  readonly showInvoiceButton$ = combineLatest([
+    this.invoiceFacade.all$,
+    this.orderFacade.selectedId$,
+  ]).pipe(
+    map(([invoices, orderId]) => {
+      const invoiceFulfillment = invoices.find((invoice) => {
+        const invoiceFulfillment = invoice.references?.find(
+          (ref) =>
+            ref.instanceType === 'urn:restorecommerce:acs:model:order:Order' &&
+            ref.instanceId === orderId
+        );
+
+        return invoiceFulfillment;
+      });
+
+      return Boolean(invoiceFulfillment) === false;
+    })
+  );
+
   readonly vm$ = combineLatest({
     dataList: this.orderFacade.all$,
     selectedOrderId: this.orderFacade.selectedId$,
@@ -141,13 +197,18 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     triggerRemove: this.triggerRemove$,
     triggerCreateInvoice: this.triggerCreateInvoice$,
     triggerCreateFulfillment: this.triggerCreateFulfillment$,
+    readFulfillmentOnViewSegment: this.readFulfillmentOnViewSegment$,
+    showFulfillmentButton: this.showFulfillmentButton$,
+    showInvoiceButton: this.showInvoiceButton$,
   });
 
   private readonly subscriptions = new SubSink();
 
   constructor(
     private readonly orderFacade: OrderFacade,
-    private readonly routerFacade: RouterFacade
+    private readonly routerFacade: RouterFacade,
+    private readonly fulfillmentFacade: FulfillmentFacade,
+    private readonly invoiceFacade: InvoiceFacade
   ) {}
 
   ngOnInit(): void {
