@@ -38,19 +38,19 @@ import { transformOrderToInput } from '../utils';
 @Component({
   selector: 'app-module-order-view',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <rc-order-view
-        [order]="vm.order"
-        (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
-        (openAddItemModal)="openAddOrderItemModal(vm.order, vm.products)"
-        (openAddressModal)="onOpenAddress(vm.order, $event, vm.countries)"
-        (openEditOrderItemModal)="
-          onOpenEditOrderItem(vm.order, vm.products, $event)
-        "
-        (openDeleteOrderItemModal)="onDeleteOrderItem(vm.order, $event)"
-        (openEditShopModal)="onOpenEditShopModal(vm.order)"
-      />
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <rc-order-view
+      [order]="vm.order"
+      (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
+      (openAddItemModal)="openAddOrderItemModal(vm.order, vm.products)"
+      (openAddressModal)="onOpenAddress(vm.order, $event, vm.countries)"
+      (openEditOrderItemModal)="
+        onOpenEditOrderItem(vm.order, vm.products, $event)
+      "
+      (openDeleteOrderItemModal)="onDeleteOrderItem(vm.order, $event)"
+      (openEditShopModal)="onOpenEditShopModal(vm.order)"
+    />
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
