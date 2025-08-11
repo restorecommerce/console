@@ -7,6 +7,7 @@ export * from './fulfillment.state';
 export * from './iam.state';
 export * from './invoice.state';
 export * from './locale.state';
+export * from './manaufacturer.state';
 export * from './order.state';
 export * from './organization.state';
 export * from './organization-context.state';
