@@ -1,41 +1,79 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
+// import { ROUTER } from '@console-core/config';
 import {
-  IIoRestorecommerceInvoiceInvoiceList,
-  IIoRestorecommerceResourcebaseReadRequest,
-} from '@console-core/graphql';
+  ENotificationTypes,
+  IManufacturer,
+  TOperationStatus,
+} from '@console-core/types';
 
-import * as invoiceActions from './invoice.actions';
-import * as invoiceSelectors from './invoice.selectors';
+import { ErrorHandlingService, ManufacturerService } from '../../services';
+import { AppFacade } from '../app';
+
+import * as manufacturerActions from './manufacturer.actions';
 
 @Injectable()
-export class InvoiceFacade {
-  // Selectors
-  readonly ids$ = this.store.select(invoiceSelectors.selectInvoiceIds);
-  readonly entities$ = this.store.select(
-    invoiceSelectors.selectInvoiceEntities
-  );
-  readonly all$ = this.store.select(invoiceSelectors.selectInvoiceAll);
-  readonly total$ = this.store.select(invoiceSelectors.selectInvoiceTotal);
-  readonly selectedId$ = this.store.select(
-    invoiceSelectors.selectInvoiceSelectedId
-  );
-  readonly selected$ = this.store.select(
-    invoiceSelectors.selectInvoiceSelected
-  );
-  readonly actionStatus$ = this.store.select(
-    invoiceSelectors.selectActionStatus
-  );
-  readonly error$ = this.store.select(invoiceSelectors.selectError);
+export class InvoiceEffects {
+  manufacturerReadRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(manufacturerActions.manufacturerReadRequest),
+      switchMap(({ payload }) =>
+        this.manufacturerService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.catalog?.manufacturer?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload = (
+              result?.data?.catalog?.manufacturer?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as IManufacturer[];
+            return manufacturerActions.manufacturerReadRequestSuccess({
+              payload,
+            });
+          }),
+          catchError((error: Error) =>
+            of(
+              manufacturerActions.manufacturerReadRequestFail({
+                error: error.message,
+              })
+            )
+          )
+        )
+      )
+    );
+  });
 
-  // Actions
-  read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
-    this.store.dispatch(invoiceActions.invoiceReadRequest({ payload }));
-  setSelectedId = (_payload: string | null) => null;
-  create = (_payload: IIoRestorecommerceInvoiceInvoiceList) => null;
-  update = (_payload: IIoRestorecommerceInvoiceInvoiceList) => null;
-  remove = (_payload: { id: string }) => null;
+  handleNotificationErrors$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(
+          manufacturerActions.manufacturerReadRequestFail
+          // manufacturerActions.manufacturerCreateFail,
+          // manufacturerActions.manufacturerUpdateFail,
+          // manufacturerActions.manufacturerRemoveFail
+        ),
+        tap(({ error }) => {
+          this.appFacade.addNotification({
+            content: error ?? 'unknown error',
+            type: ENotificationTypes.Error,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly router: Router,
+    private readonly actions$: Actions,
+    private readonly appFacade: AppFacade,
+    private readonly manufacturerService: ManufacturerService,
+    private readonly errorHandlingService: ErrorHandlingService
+  ) {}
 }

@@ -4,6 +4,7 @@ export * from './catalog';
 export * from './fulfillment';
 export * from './identity';
 export * from './invoicing';
+export * from './manufacturer';
 export * from './master-data';
 export * from './ordering';
 export * from './api.service';
