@@ -66,6 +66,7 @@ import {
   ObjectUploadEffects,
   ManufacturerEffects,
   manufacturerReducer,
+  ManufacturerFacade,
 } from './+state';
 
 const facades = [
@@ -80,6 +81,7 @@ const facades = [
   OrganizationFacade,
   RoleFacade,
   LocaleFacade,
+  ManufacturerFacade,
   OrderFacade,
   OrganizationContextFacade,
   ProductFacade,

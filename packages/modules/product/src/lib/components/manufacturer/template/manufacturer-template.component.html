@@ -1,8 +1,8 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [title]="vm.selectedPolicy?.name ?? feature.name.singular"
-  [id]="vm.selectedPolicyId"
+  [title]="vm.selectedManufacturer?.name ?? feature.name.singular"
+  [id]="vm.selectedManufacturerId"
   [total]="vm.dataList.length"
   [urlSegment]="vm.urlSegment"
   [triggerRead]="triggerRead"
@@ -26,7 +26,7 @@
       <rc-data-list
         [itemTemplate]="itemTemplate"
         [items]="vm.dataList"
-        [selected]="vm.selectedPolicyId"
+        [selected]="vm.selectedManufacturerId"
         (itemSelected)="triggerSelectId.next($event)"
       />
     </ng-container>
@@ -38,9 +38,9 @@
 
   <ng-container rc-crud-meta>
     <rc-meta
-      *ngIf="vm.selectedPolicyId"
-      [id]="vm.selectedPolicyId"
-      [meta]="vm.selectedPolicy?.meta"
+      *ngIf="vm.selectedManufacturerId"
+      [id]="vm.selectedManufacturerId"
+      [meta]="vm.selectedManufacturer?.meta"
     />
   </ng-container>
 </rc-crud-main>
@@ -49,7 +49,7 @@
   #itemTemplate
   let-item="item"
 >
-  <div class="row align-items-center justify-content-between px-2">
+  <div class="flex row align-items-center justify-content-between px-2">
     <rc-data-list-label
       [innerHTML]="item.name | highlight : triggerSearch.value"
     />

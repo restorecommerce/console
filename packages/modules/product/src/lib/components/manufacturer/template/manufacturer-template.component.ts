@@ -19,7 +19,7 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { RouterFacade, PolicyFacade } from '@console-core/state';
+import { ManufacturerFacade, RouterFacade } from '@console-core/state';
 import { ICrudFeature, EUrlSegment } from '@console-core/types';
 
 @Component({
@@ -60,7 +60,7 @@ export class ManufacturerTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.policyFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.manufacturerFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -76,14 +76,14 @@ export class ManufacturerTemplateComponent implements OnInit, OnDestroy {
           fields: ['name'],
         },
       };
-      this.policyFacade.read(this.queryVariables);
+      this.manufacturerFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.policyFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.manufacturerFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -91,7 +91,7 @@ export class ManufacturerTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.policyFacade.remove({ id });
+      this.manufacturerFacade.remove({ id });
     })
   );
 
@@ -100,16 +100,16 @@ export class ManufacturerTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.policyFacade.setSelectedId(null);
+        this.manufacturerFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.policyFacade.all$,
-    selectedPolicyId: this.policyFacade.selectedId$,
-    selectedPolicy: this.policyFacade.selected$,
+    dataList: this.manufacturerFacade.all$,
+    selectedManufacturerId: this.manufacturerFacade.selectedId$,
+    selectedManufacturer: this.manufacturerFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -119,7 +119,7 @@ export class ManufacturerTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly policyFacade: PolicyFacade,
+    private readonly manufacturerFacade: ManufacturerFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 
