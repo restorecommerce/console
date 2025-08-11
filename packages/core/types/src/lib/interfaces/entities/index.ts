@@ -3,6 +3,7 @@ export * from './currency';
 export * from './fulfillment';
 export * from './locale';
 export * from './invoice';
+export * from './manufacturer';
 export * from './meta';
 export * from './order';
 export * from './organization';
