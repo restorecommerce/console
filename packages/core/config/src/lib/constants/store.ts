@@ -13,6 +13,7 @@ export const STORE: Readonly<IStoreConstant> = {
     iamState: 'iamStateV1',
     invoiceState: 'invoiceStateV1',
     localeState: 'localeStateV1',
+    manaufacturer: 'manufacturerV1',
     orderState: 'orderStateV1',
     organizationState: 'organizationStateV4',
     organizationContextState: 'organizationContextStateV1',
