@@ -17,7 +17,7 @@ import { AppFacade } from '../app';
 import * as manufacturerActions from './manufacturer.actions';
 
 @Injectable()
-export class InvoiceEffects {
+export class ManufacturerEffects {
   manufacturerReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(manufacturerActions.manufacturerReadRequest),

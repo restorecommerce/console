@@ -64,6 +64,8 @@ import {
   ObjectUploadFacade,
   objectUploadReducer,
   ObjectUploadEffects,
+  ManufacturerEffects,
+  manufacturerReducer,
 } from './+state';
 
 const facades = [
@@ -125,6 +127,8 @@ const facades = [
     EffectsModule.forFeature([TimezoneEffects]),
     StoreModule.forFeature(STORE.states.shopState, shopReducer),
     EffectsModule.forFeature([ShopEffects]),
+    StoreModule.forFeature(STORE.states.manaufacturer, manufacturerReducer),
+    EffectsModule.forFeature([ManufacturerEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
     EffectsModule.forFeature([OrganizationContextEffects]),
     StoreModule.forFeature(STORE.states.objectUploadState, objectUploadReducer),
