@@ -1,0 +1,48 @@
+mutation ManufucturerMutate(
+  $input: IIoRestorecommerceManufacturerManufacturerList!
+) {
+  catalog {
+    manufacturer {
+      Mutate(input: $input) {
+        details {
+          items {
+            payload {
+              ...ManufacturerFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation ManufucturerDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  catalog {
+    manufacturer {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            code
+            message
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
