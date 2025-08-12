@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
-  IIoRestorecommerceInvoiceInvoiceList,
+  IIoRestorecommerceManufacturerManufacturerList,
   IIoRestorecommerceResourcebaseReadRequest,
 } from '@console-core/graphql';
 
@@ -49,9 +49,18 @@ export class ManufacturerFacade {
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(manufacturerActions.setSelectedId({ payload }));
 
-  create = (_payload: IIoRestorecommerceInvoiceInvoiceList) => null;
-  update = (_payload: IIoRestorecommerceInvoiceInvoiceList) => null;
-  remove = (_payload: { id: string }) => null;
+  create = (payload: IIoRestorecommerceManufacturerManufacturerList) =>
+    this.store.dispatch(
+      manufacturerActions.manufacturerCreateRequest({ payload })
+    );
+  update = (payload: IIoRestorecommerceManufacturerManufacturerList) =>
+    this.store.dispatch(
+      manufacturerActions.manufacturerUpdateRequest({ payload })
+    );
+  remove = (payload: { id: string }) =>
+    this.store.dispatch(
+      manufacturerActions.manufacturerRemoveRequest({ payload })
+    );
 
   constructor(private readonly store: Store) {}
 }

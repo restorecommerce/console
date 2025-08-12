@@ -2,13 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-// import { ROUTER } from '@console-core/config';
-import {
-  IoRestorecommerceResourcebaseFilterOperation,
-  IoRestorecommerceResourcebaseFilterValueType,
-} from '@console-core/graphql';
 import {
   ENotificationTypes,
   IManufacturer,
@@ -53,50 +48,31 @@ export class ManufacturerEffects {
     );
   });
 
-  // TODO Note this doesn't get called for now....
-  manufacturerReadOneByIdRequest$ = createEffect(() => {
+  manufacturerCreateRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(manufacturerActions.manufacturerReadOneByIdRequest),
-      exhaustMap(({ payload }) =>
-        this.manufacturerService
-          .read({
-            filters: [
-              {
-                filters: [
-                  {
-                    field: 'id',
-                    value: payload.id,
-                    type: IoRestorecommerceResourcebaseFilterValueType.String,
-                    operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
-                  },
-                ],
-              },
-            ],
-            limit: 1,
-          })
-          .pipe(
-            tap((result) => {
-              this.errorHandlingService.checkStatusAndThrow(
-                result?.data?.catalog?.manufacturer?.Read?.details
-                  ?.operationStatus as TOperationStatus
-              );
-            }),
-            map((result) => {
-              const payload =
-                result?.data?.catalog?.manufacturer?.Read?.details?.items?.pop()
-                  ?.payload as IManufacturer;
-              return manufacturerActions.manufacturerReadOneByIdRequestSuccess({
-                payload,
-              });
-            }),
-            catchError((error: Error) =>
-              of(
-                manufacturerActions.manufacturerReadOneByIdRequestFail({
-                  error: error.message,
-                })
-              )
+      ofType(manufacturerActions.manufacturerCreateRequest),
+      switchMap(({ payload }) =>
+        this.manufacturerService.mutate(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.catalog?.manufacturer?.Mutate?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.catalog?.manufacturer?.Mutate?.details?.items?.pop()
+                ?.payload as IManufacturer;
+            return manufacturerActions.manufacturerCreateSuccess({ payload });
+          }),
+          catchError((error: Error) =>
+            of(
+              manufacturerActions.manufacturerCreateFail({
+                error: error.message,
+              })
             )
           )
+        )
       )
     );
   });
@@ -106,8 +82,7 @@ export class ManufacturerEffects {
       return this.actions$.pipe(
         ofType(
           manufacturerActions.manufacturerReadRequestFail,
-          manufacturerActions.manufacturerReadOneByIdRequestFail
-          // manufacturerActions.manufacturerCreateFail,
+          manufacturerActions.manufacturerCreateFail
           // manufacturerActions.manufacturerUpdateFail,
           // manufacturerActions.manufacturerRemoveFail
         ),

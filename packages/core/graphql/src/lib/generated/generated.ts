@@ -6005,6 +6005,92 @@ export type PolicyReadQuery = {
   };
 };
 
+export type ManufucturerMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceManufacturerManufacturerList;
+}>;
+
+export type ManufucturerMutateMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    manufacturer: {
+      __typename?: 'CatalogManufacturerMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceManufacturerManufacturerListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceManufacturerManufacturerListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceManufacturerManufacturerResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceManufacturerManufacturer';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type ManufucturerDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type ManufucturerDeleteMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    manufacturer: {
+      __typename?: 'CatalogManufacturerMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type ManufucturerReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -12808,6 +12894,88 @@ export class PolicyReadGQL extends Apollo.Query<
   PolicyReadQueryVariables
 > {
   override document = PolicyReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const ManufucturerMutateDocument = gql`
+  mutation ManufucturerMutate(
+    $input: IIoRestorecommerceManufacturerManufacturerList!
+  ) {
+    catalog {
+      manufacturer {
+        Mutate(input: $input) {
+          details {
+            items {
+              payload {
+                ...ManufacturerFragment
+              }
+              status {
+                ...StatusFragment
+              }
+            }
+            operationStatus {
+              ...OpsStatusFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ManufacturerFragmentFragmentDoc}
+  ${StatusFragmentFragmentDoc}
+  ${OpsStatusFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ManufucturerMutateGQL extends Apollo.Mutation<
+  ManufucturerMutateMutation,
+  ManufucturerMutateMutationVariables
+> {
+  override document = ManufucturerMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const ManufucturerDeleteDocument = gql`
+  mutation ManufucturerDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    catalog {
+      manufacturer {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              code
+              message
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ManufucturerDeleteGQL extends Apollo.Mutation<
+  ManufucturerDeleteMutation,
+  ManufucturerDeleteMutationVariables
+> {
+  override document = ManufucturerDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

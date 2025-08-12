@@ -1,6 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 
-import { IIoRestorecommerceResourcebaseReadRequest } from '@console-core/graphql';
+import {
+  IIoRestorecommerceManufacturerManufacturerList,
+  IIoRestorecommerceResourcebaseReadRequest,
+} from '@console-core/graphql';
 import { IManufacturer } from '@console-core/types';
 
 export const manufacturerReadRequest = createAction(
@@ -36,4 +39,49 @@ export const manufacturerReadOneByIdRequestFail = createAction(
 export const setSelectedId = createAction(
   '[MANUFACTURER] Set selected id',
   props<{ payload: string | null }>()
+);
+
+export const manufacturerCreateRequest = createAction(
+  '[MANUFACTURER] Manufacturer create request',
+  props<{ payload: IIoRestorecommerceManufacturerManufacturerList }>()
+);
+
+export const manufacturerCreateSuccess = createAction(
+  '[MANUFACTURER] Manufacturer create success',
+  props<{ payload: IManufacturer }>()
+);
+
+export const manufacturerCreateFail = createAction(
+  '[MANUFACTURER] Manufacturer create fail',
+  props<{ error: string }>()
+);
+
+export const manufacturerUpdateRequest = createAction(
+  '[MANUFACTURER] Manufacturer update request',
+  props<{ payload: IIoRestorecommerceManufacturerManufacturerList }>()
+);
+
+export const manufacturerUpdateSuccess = createAction(
+  '[MANUFACTURER] Manufacturer update success',
+  props<{ payload: IManufacturer }>()
+);
+
+export const manufacturerUpdateFail = createAction(
+  '[MANUFACTURER] Manufacturer update fail',
+  props<{ error: string }>()
+);
+
+export const manufacturerRemoveRequest = createAction(
+  '[MANUFACTURER] Manufacturer remove request',
+  props<{ payload: { id: string } }>()
+);
+
+export const manufacturerRemoveSuccess = createAction(
+  '[MANUFACTURER] Manufacturer remove success',
+  props<{ payload: { id: string } }>()
+);
+
+export const manufacturerRemoveFail = createAction(
+  '[MANUFACTURER] Manufacturer remove fail',
+  props<{ error: string }>()
 );
