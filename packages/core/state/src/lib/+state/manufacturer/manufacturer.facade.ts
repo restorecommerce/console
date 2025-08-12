@@ -40,7 +40,15 @@ export class ManufacturerFacade {
     this.store.dispatch(
       manufacturerActions.manufacturerReadRequest({ payload })
     );
-  setSelectedId = (_payload: string | null) => null;
+
+  readOneById = (payload: { id: string }) =>
+    this.store.dispatch(
+      manufacturerActions.manufacturerReadOneByIdRequest({ payload })
+    );
+
+  setSelectedId = (payload: string | null) =>
+    this.store.dispatch(manufacturerActions.setSelectedId({ payload }));
+
   create = (_payload: IIoRestorecommerceInvoiceInvoiceList) => null;
   update = (_payload: IIoRestorecommerceInvoiceInvoiceList) => null;
   remove = (_payload: { id: string }) => null;

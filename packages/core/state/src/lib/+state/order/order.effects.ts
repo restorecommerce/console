@@ -35,7 +35,7 @@ export class OrderEffects {
         this.organizationContextFacade,
         orderActions.orderReadRequest.type
       ),
-      exhaustMap(([action, organization]) => {
+      exhaustMap(([_action, organization]) => {
         return this.orderService
           .read({
             // Sort object from the product payload or the default goes here!

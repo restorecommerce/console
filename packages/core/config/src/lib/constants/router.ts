@@ -271,7 +271,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 view: {
                   path: ':id/view',
                   link: '/products/manufacturer/:id/view',
-                  title: 'Catalog',
+                  title: 'View',
                   getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'products', 'manufacturer', params.id, 'view']

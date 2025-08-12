@@ -49,7 +49,10 @@
   #itemTemplate
   let-item="item"
 >
-  <div class="flex row align-items-center justify-content-between px-2">
+  <div
+    [routerLink]="this.feature.links.view(item.id)"
+    class="flex row align-items-center justify-content-between px-2"
+  >
     <rc-data-list-label
       [innerHTML]="item.name | highlight : triggerSearch.value"
     />

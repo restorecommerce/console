@@ -42,6 +42,40 @@ const reducer = createReducer<IManufacturerState>(
       actionStatus: EActionStatus.Failed,
       error,
     })
+  ),
+
+  on(
+    manufacturerActions.manufacturerReadOneByIdRequest,
+    (state): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Requesting,
+    })
+  ),
+  on(
+    manufacturerActions.manufacturerReadOneByIdRequestSuccess,
+    (state, { payload }): IManufacturerState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    manufacturerActions.manufacturerReadOneByIdRequestFail,
+    (state, { error }): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
+  ),
+  on(
+    manufacturerActions.setSelectedId,
+    (state, { payload }): IManufacturerState => ({
+      ...state,
+      selectedId: payload,
+    })
   )
 );
 

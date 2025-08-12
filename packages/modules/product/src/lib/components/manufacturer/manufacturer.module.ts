@@ -5,6 +5,7 @@ import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
 import { ManufacturerIndexComponent } from './manufacturer-index.component';
+import { ManufacturerViewComponent } from './manufacturer-view.component';
 import { ManufacturerTemplateComponent } from './template/manufacturer-template.component';
 
 export const modulesProductRoutes: Route[] = [
@@ -21,18 +22,14 @@ export const modulesProductRoutes: Route[] = [
           ROUTER.pages.main.children.products.children.manufacturers.children
             .index.title,
       },
-      // {
-      //   path: ROUTER.pages.main.children.products.children.catalogs.children
-      //     .view.path,
-      //   component: ProductViewComponent,
-      //   title:
-      //     ROUTER.pages.main.children.products.children.catalogs.children.view
-      //       .title,
-      //   resolve: { productName: ProductNameResolver },
-      //   data: {
-      //     breadcrumb: (data: { productName: string }) => data.productName,
-      //   },
-      // },
+      {
+        path: ROUTER.pages.main.children.products.children.manufacturers
+          .children.view.path,
+        component: ManufacturerViewComponent,
+        title:
+          ROUTER.pages.main.children.products.children.manufacturers.children
+            .view.title,
+      },
       {
         path: '**',
         redirectTo:
