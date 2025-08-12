@@ -8,16 +8,19 @@
     <ng-content select="rc-header" />
   </vcl-data-list-header>
 
-  @for (item of items; track item.id) {
+  @defer (on viewport) { @for (item of items; track item.id) {
   <vcl-data-list-item
     class="col px-2"
     [value]="item.id"
   >
+    @if (itemTemplate) {
     <ng-container
-      *ngIf="itemTemplate"
       [ngTemplateOutlet]="itemTemplate"
       [ngTemplateOutletContext]="{ item }"
     ></ng-container>
+    }
   </vcl-data-list-item>
+  } } @placeholder {
+  <div>Loading...</div>
   }
 </vcl-data-list>
