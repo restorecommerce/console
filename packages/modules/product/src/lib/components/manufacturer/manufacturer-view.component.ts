@@ -11,7 +11,7 @@ import {
 } from '@console-core/state';
 
 @Component({
-  selector: 'app-module-product-view',
+  selector: 'app-module-manufacturer-view',
   template: `
     @if (vm$ | async; as vm) {
     <div class="data-list m-0 p-0">

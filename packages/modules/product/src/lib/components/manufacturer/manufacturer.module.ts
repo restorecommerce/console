@@ -4,6 +4,7 @@ import { Route, RouterModule } from '@angular/router';
 import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
+import { ManufacturerCreateComponent } from './manufacturer-create.component';
 import { ManufacturerIndexComponent } from './manufacturer-index.component';
 import { ManufacturerViewComponent } from './manufacturer-view.component';
 import { ManufacturerTemplateComponent } from './template/manufacturer-template.component';
@@ -29,6 +30,14 @@ export const modulesProductRoutes: Route[] = [
         title:
           ROUTER.pages.main.children.products.children.manufacturers.children
             .view.title,
+      },
+      {
+        path: ROUTER.pages.main.children.products.children.manufacturers
+          .children.create.path,
+        component: ManufacturerCreateComponent,
+        title:
+          ROUTER.pages.main.children.products.children.manufacturers.children
+            .create.title,
       },
       {
         path: '**',
