@@ -5,6 +5,7 @@ import { ROUTER } from '@console-core/config';
 import { ModulesUiModule } from '@console-modules/ui';
 
 import { ManufacturerCreateComponent } from './manufacturer-create.component';
+import { ManufacturerEditComponent } from './manufacturer-edit.component';
 import { ManufacturerIndexComponent } from './manufacturer-index.component';
 import { ManufacturerViewComponent } from './manufacturer-view.component';
 import { ManufacturerTemplateComponent } from './template/manufacturer-template.component';
@@ -40,6 +41,14 @@ export const modulesProductRoutes: Route[] = [
             .create.title,
       },
       {
+        path: ROUTER.pages.main.children.products.children.manufacturers
+          .children.edit.path,
+        component: ManufacturerEditComponent,
+        title:
+          ROUTER.pages.main.children.products.children.manufacturers.children
+            .edit.title,
+      },
+      {
         path: '**',
         redirectTo:
           ROUTER.pages.main.children.products.children.catalogs.children.index
@@ -50,7 +59,7 @@ export const modulesProductRoutes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [ManufacturerTemplateComponent, ManufacturerIndexComponent],
+  declarations: [],
   imports: [
     ModulesUiModule.forChild(),
     RouterModule.forChild(modulesProductRoutes),

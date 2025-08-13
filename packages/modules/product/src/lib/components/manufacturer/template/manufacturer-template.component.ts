@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,12 +22,13 @@ import {
 } from '@console-core/graphql';
 import { ManufacturerFacade, RouterFacade } from '@console-core/state';
 import { ICrudFeature, EUrlSegment } from '@console-core/types';
+import { ModulesUiModule } from '@console-modules/ui';
 
 @Component({
   selector: 'app-module-product-manufacturer-template',
   templateUrl: './manufacturer-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [AsyncPipe, ModulesUiModule],
 })
 export class ManufacturerTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
