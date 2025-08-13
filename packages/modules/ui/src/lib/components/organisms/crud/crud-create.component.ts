@@ -82,34 +82,10 @@ export class RcCrudCreateComponent implements OnInit {
       items: [
         {
           ...this.createForm.form.value,
-          meta: {
-            owners: [
-              {
-                id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
-                value:
-                  'urn:restorecommerce:acs:model:organization.Organization',
-                attributes: [
-                  {
-                    id: 'urn:restorecommerce:acs:names:ownerInstance',
-                    value: this.currentOrganizationId,
-                  },
-                ],
-              },
-              {
-                id: 'urn:restorecommerce:acs:names:ownerIndicatoryEntity',
-                value: 'urn:restorecommerce:acs:model:user.User',
-                attributes: [
-                  {
-                    id: 'urn:restorecommerce:acs:names:ownerInstance',
-                    value: this.userId,
-                  },
-                ],
-              },
-            ],
-          },
         },
       ],
       mode: ModeType.Create,
+      scope: this.currentOrganizationId,
     });
   }
 }
