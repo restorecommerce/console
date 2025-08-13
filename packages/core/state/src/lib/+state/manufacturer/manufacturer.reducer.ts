@@ -99,6 +99,32 @@ const reducer = createReducer<IManufacturerState>(
       actionStatus: EActionStatus.Failed,
       error,
     })
+  ),
+  on(
+    manufacturerActions.manufacturerUpdateRequest,
+    (state): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    manufacturerActions.manufacturerUpdateSuccess,
+    (state, { payload }): IManufacturerState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    manufacturerActions.manufacturerUpdateFail,
+    (state, { error }): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
   )
 );
 

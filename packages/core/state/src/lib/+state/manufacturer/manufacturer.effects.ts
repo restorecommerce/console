@@ -78,13 +78,42 @@ export class ManufacturerEffects {
     );
   });
 
+  manufacturerUpdateRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(manufacturerActions.manufacturerUpdateRequest),
+      switchMap(({ payload }) =>
+        this.manufacturerService.mutate(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.catalog?.manufacturer?.Mutate?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.catalog?.manufacturer?.Mutate?.details?.items?.pop()
+                ?.payload as IManufacturer;
+            return manufacturerActions.manufacturerUpdateSuccess({ payload });
+          }),
+          catchError((error: Error) =>
+            of(
+              manufacturerActions.manufacturerUpdateFail({
+                error: error.message,
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
   manufacturerCreateSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(manufacturerActions.manufacturerCreateSuccess),
         tap(() => {
           this.appFacade.addNotification({
-            content: 'order created',
+            content: 'manufacturer created',
             type: ENotificationTypes.Success,
           });
         }),
@@ -102,13 +131,28 @@ export class ManufacturerEffects {
     { dispatch: false }
   );
 
+  manufacturerUpdateSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(manufacturerActions.manufacturerUpdateSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'manufacturer updated',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(
           manufacturerActions.manufacturerReadRequestFail,
-          manufacturerActions.manufacturerCreateFail
-          // manufacturerActions.manufacturerUpdateFail,
+          manufacturerActions.manufacturerCreateFail,
+          manufacturerActions.manufacturerUpdateFail
           // manufacturerActions.manufacturerRemoveFail
         ),
         tap(({ error }) => {
