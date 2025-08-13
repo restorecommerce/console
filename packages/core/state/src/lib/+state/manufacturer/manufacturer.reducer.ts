@@ -76,6 +76,29 @@ const reducer = createReducer<IManufacturerState>(
       ...state,
       selectedId: payload,
     })
+  ),
+  on(
+    manufacturerActions.manufacturerCreateRequest,
+    (state): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    manufacturerActions.manufacturerCreateSuccess,
+    (state, { payload }): IManufacturerState =>
+      adapter.addOne(payload, {
+        ...state,
+        actionStatus: EActionStatus.Succeeded,
+      })
+  ),
+  on(
+    manufacturerActions.manufacturerCreateFail,
+    (state, { error }): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
   )
 );
 

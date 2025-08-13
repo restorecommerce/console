@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
+import { ROUTER } from '@console-core/config';
 import {
   ENotificationTypes,
   IManufacturer,
@@ -76,6 +77,30 @@ export class ManufacturerEffects {
       )
     );
   });
+
+  manufacturerCreateSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(manufacturerActions.manufacturerCreateSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'order created',
+            type: ENotificationTypes.Success,
+          });
+        }),
+        tap(({ payload }) => {
+          this.router.navigate(
+            ROUTER.pages.main.children.products.children.manufacturers.children.edit.getLink(
+              {
+                id: payload.id,
+              }
+            )
+          );
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   handleNotificationErrors$ = createEffect(
     () => {
