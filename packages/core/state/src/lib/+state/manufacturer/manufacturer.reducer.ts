@@ -125,6 +125,29 @@ const reducer = createReducer<IManufacturerState>(
       actionStatus: EActionStatus.Failed,
       error,
     })
+  ),
+  on(
+    manufacturerActions.manufacturerRemoveRequest,
+    (state): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    manufacturerActions.manufacturerRemoveSuccess,
+    (state, { payload }): IManufacturerState =>
+      adapter.removeOne(payload.id, {
+        ...state,
+        actionStatus: EActionStatus.Succeeded,
+      })
+  ),
+  on(
+    manufacturerActions.manufacturerRemoveFail,
+    (state, { error }): IManufacturerState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
   )
 );
 

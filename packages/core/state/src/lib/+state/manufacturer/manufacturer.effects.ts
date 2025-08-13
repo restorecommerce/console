@@ -146,14 +146,58 @@ export class ManufacturerEffects {
     { dispatch: false }
   );
 
+  manufacturerRemoveRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(manufacturerActions.manufacturerRemoveRequest),
+      switchMap(({ payload }) => {
+        const id = payload.id;
+        return this.manufacturerService.remove({ ids: [id] }).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.catalog?.manufacturer?.Delete?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map(() => {
+            return manufacturerActions.manufacturerRemoveSuccess({
+              payload: { id },
+            });
+          }),
+          catchError((error: Error) =>
+            of(
+              manufacturerActions.manufacturerRemoveFail({
+                error: error.message,
+              })
+            )
+          )
+        );
+      })
+    );
+  });
+
+  manufacturerRemoveSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(manufacturerActions.manufacturerRemoveSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'manufacturer deleted',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(
           manufacturerActions.manufacturerReadRequestFail,
           manufacturerActions.manufacturerCreateFail,
-          manufacturerActions.manufacturerUpdateFail
-          // manufacturerActions.manufacturerRemoveFail
+          manufacturerActions.manufacturerUpdateFail,
+          manufacturerActions.manufacturerRemoveFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

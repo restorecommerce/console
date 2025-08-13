@@ -8,6 +8,7 @@ import {
   IIoRestorecommerceResourcebaseDeleteRequest,
   IIoRestorecommerceResourcebaseReadRequest,
   ManufucturerDeleteGQL,
+  ManufucturerDeleteMutation,
   ManufucturerMutateGQL,
   ManufucturerMutateMutation,
   ManufucturerReadGQL,
@@ -42,7 +43,7 @@ export class ManufacturerService {
 
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
-  ): Observable<MutationResult<ManufucturerMutateMutation>> {
+  ): Observable<MutationResult<ManufucturerDeleteMutation>> {
     return this.manufacturerDeleteGQL.mutate({
       input: payload,
     });
