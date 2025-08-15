@@ -20,15 +20,15 @@ import {
 })
 export class ProductCategoryService {
   constructor(
-    private readonly priceGroupReadGQL: ProductCategoryReadGQL,
-    private readonly priceGroupMutationGQL: ProductCategoryMutateGQL,
-    private readonly priceGroupDeleteGQL: ProductCategoryDeleteGQL
+    private readonly productCategoryReadGQL: ProductCategoryReadGQL,
+    private readonly productCategoryMutationGQL: ProductCategoryMutateGQL,
+    private readonly productCategoryDeleteGQL: ProductCategoryDeleteGQL
   ) {}
 
   read(
     payload: IIoRestorecommerceResourcebaseReadRequest
   ): Observable<ApolloQueryResult<ProductCategoryReadQuery>> {
-    return this.priceGroupReadGQL.fetch({
+    return this.productCategoryReadGQL.fetch({
       input: payload,
     });
   }
@@ -36,7 +36,7 @@ export class ProductCategoryService {
   mutate(
     payload: IIoRestorecommerceManufacturerManufacturerList
   ): Observable<MutationResult<ProductCategoryMutateMutation>> {
-    return this.priceGroupMutationGQL.mutate({
+    return this.productCategoryMutationGQL.mutate({
       input: payload,
     });
   }
@@ -44,7 +44,7 @@ export class ProductCategoryService {
   remove(
     payload: IIoRestorecommerceResourcebaseDeleteRequest
   ): Observable<MutationResult<ProductCategoryDeleteMutation>> {
-    return this.priceGroupDeleteGQL.mutate({
+    return this.productCategoryDeleteGQL.mutate({
       input: payload,
     });
   }

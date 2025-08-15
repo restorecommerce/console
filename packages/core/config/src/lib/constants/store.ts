@@ -21,6 +21,7 @@ export const STORE: Readonly<IStoreConstant> = {
     policyState: 'policyStateV1',
     productState: 'productStateV1',
     productCategory: 'productCategoryV1',
+    productPrototype: 'productPrototypeV1',
     priceGroup: 'priceGroupV1',
     roleState: 'roleStateV1',
     routerState: 'routerStateV1',
