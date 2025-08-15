@@ -1,0 +1,42 @@
+mutation PriceGroupMutate($input: IIoRestorecommercePriceGroupPriceGroupList!) {
+  catalog {
+    price_group {
+      Mutate(input: $input) {
+        details {
+          items {
+            payload {
+              ...ManufacturerFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation PriceGroupDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  catalog {
+    price_group {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

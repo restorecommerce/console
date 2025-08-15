@@ -1,0 +1,21 @@
+query PriceGroupRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  catalog {
+    price_group {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...PriceGroupFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}

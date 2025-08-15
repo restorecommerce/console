@@ -1,0 +1,8 @@
+fragment PriceGroupFragment on IoRestorecommercePriceGroupPriceGroup {
+  id
+  name
+  description
+  meta {
+    ...MetaFragment
+  }
+}
