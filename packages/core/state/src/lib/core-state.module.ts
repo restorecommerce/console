@@ -72,6 +72,7 @@ import {
   priceGroupReducer,
   ProductCategoryEffects,
   PriceGroupFacade,
+  ProductCategoryFacade,
 } from './+state';
 
 const facades = [
@@ -97,6 +98,7 @@ const facades = [
   PolicyFacade,
   PriceGroupFacade,
   ObjectUploadFacade,
+  ProductCategoryFacade,
 ];
 
 @NgModule({

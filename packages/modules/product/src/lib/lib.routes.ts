@@ -34,6 +34,14 @@ export const modulesProductRoutes: Route[] = [
           ),
         title: ROUTER.pages.main.children.products.children.catalogs.title,
       },
+      {
+        path: ROUTER.pages.main.children.products.children.categories.path,
+        loadChildren: () =>
+          import('./components/category/category.module').then(
+            (m) => m.ModulesCategoryModule
+          ),
+        title: ROUTER.pages.main.children.products.children.catalogs.title,
+      },
     ],
   },
 ];
