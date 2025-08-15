@@ -1,0 +1,44 @@
+mutation ProductPrototypeMutate(
+  $input: IIoRestorecommerceProductPrototypeProductPrototypeList!
+) {
+  catalog {
+    product_prototype {
+      Mutate(input: $input) {
+        details {
+          items {
+            payload {
+              ...ProductPrototypeFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation ProductPrototypeDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  catalog {
+    product_prototype {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

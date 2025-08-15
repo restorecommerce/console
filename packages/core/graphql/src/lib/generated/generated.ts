@@ -6888,6 +6888,152 @@ export type CatalogProductReadQuery = {
   };
 };
 
+export type ProductPrototypeMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceProductPrototypeProductPrototypeList;
+}>;
+
+export type ProductPrototypeMutateMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    product_prototype: {
+      __typename?: 'CatalogProductPrototypeMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceProductPrototypeProductPrototypeListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceProductPrototypeProductPrototypeResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceProductPrototypeProductPrototype';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              categoryId?: string | null;
+              version?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type ProductPrototypeDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type ProductPrototypeDeleteMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    product_prototype: {
+      __typename?: 'CatalogProductPrototypeMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type ProductPrototypeReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type ProductPrototypeReadQuery = {
+  __typename?: 'Query';
+  catalog: {
+    __typename?: 'CatalogQuery';
+    product_prototype: {
+      __typename?: 'CatalogProductPrototypeQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceProductPrototypeProductPrototypeListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceProductPrototypeProductPrototypeListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceProductPrototypeProductPrototypeResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceProductPrototypeProductPrototype';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              categoryId?: string | null;
+              version?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type AddressFragmentFragment = {
   __typename?: 'IoRestorecommerceAddressAddress';
   id?: string | null;
@@ -8292,6 +8438,32 @@ export type ProductCategoryFragmentFragment = {
       }> | null;
     } | null;
   } | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
+  } | null;
+};
+
+export type ProductPrototypeFragmentFragment = {
+  __typename?: 'IoRestorecommerceProductPrototypeProductPrototype';
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
+  categoryId?: string | null;
+  version?: string | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -13252,6 +13424,19 @@ export const ProductCategoryFragmentFragmentDoc = gql`
   ${PriceGroupFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const ProductPrototypeFragmentFragmentDoc = gql`
+  fragment ProductPrototypeFragment on IoRestorecommerceProductPrototypeProductPrototype {
+    id
+    name
+    description
+    categoryId
+    version
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const StatusFragmentFragmentDoc = gql`
   fragment StatusFragment on IoRestorecommerceStatusStatus {
     code
@@ -13840,6 +14025,126 @@ export class CatalogProductReadGQL extends Apollo.Query<
   CatalogProductReadQueryVariables
 > {
   override document = CatalogProductReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const ProductPrototypeMutateDocument = gql`
+  mutation ProductPrototypeMutate(
+    $input: IIoRestorecommerceProductPrototypeProductPrototypeList!
+  ) {
+    catalog {
+      product_prototype {
+        Mutate(input: $input) {
+          details {
+            items {
+              payload {
+                ...ProductPrototypeFragment
+              }
+              status {
+                ...StatusFragment
+              }
+            }
+            operationStatus {
+              ...OpsStatusFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ProductPrototypeFragmentFragmentDoc}
+  ${StatusFragmentFragmentDoc}
+  ${OpsStatusFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProductPrototypeMutateGQL extends Apollo.Mutation<
+  ProductPrototypeMutateMutation,
+  ProductPrototypeMutateMutationVariables
+> {
+  override document = ProductPrototypeMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const ProductPrototypeDeleteDocument = gql`
+  mutation ProductPrototypeDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    catalog {
+      product_prototype {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProductPrototypeDeleteGQL extends Apollo.Mutation<
+  ProductPrototypeDeleteMutation,
+  ProductPrototypeDeleteMutationVariables
+> {
+  override document = ProductPrototypeDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const ProductPrototypeReadDocument = gql`
+  query ProductPrototypeRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    catalog {
+      product_prototype {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                ...ProductPrototypeFragment
+              }
+              status {
+                ...StatusFragment
+              }
+            }
+            operationStatus {
+              ...OpsStatusFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ProductPrototypeFragmentFragmentDoc}
+  ${StatusFragmentFragmentDoc}
+  ${OpsStatusFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProductPrototypeReadGQL extends Apollo.Query<
+  ProductPrototypeReadQuery,
+  ProductPrototypeReadQueryVariables
+> {
+  override document = ProductPrototypeReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

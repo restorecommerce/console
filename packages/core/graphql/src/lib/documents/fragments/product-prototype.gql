@@ -1,0 +1,10 @@
+fragment ProductPrototypeFragment on IoRestorecommerceProductPrototypeProductPrototype {
+  id
+  name
+  description
+  categoryId
+  version
+  meta {
+    ...MetaFragment
+  }
+}

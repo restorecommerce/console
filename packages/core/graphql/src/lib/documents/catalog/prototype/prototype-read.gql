@@ -1,0 +1,21 @@
+query ProductPrototypeRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  catalog {
+    product_prototype {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...ProductPrototypeFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}
