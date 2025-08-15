@@ -18,14 +18,14 @@ import {
       <div class="my-2 rc-lv-l-heading">Product Details</div>
       <ul class="data-list-body no-border">
         <li class="row data-list-item justify-between">
-          <div class="flex text">Name:</div>
+          <div class="flex text"><b>Name:</b></div>
           <div class="flex text align-right rc-lv-label">
             {{ vm.manufacturer.name }}
           </div>
         </li>
-        <li class="row data-list-item justify-between">
-          <div class="flex text">Description:</div>
-          <div class="flex text align-left rc-lv-label">
+        <li class="data-list-item justify-between">
+          <div class="text"><b>Description:</b></div>
+          <div class="text align-left rc-lv-label mt-1">
             {{ vm.manufacturer.description || '' }}
           </div>
         </li>
