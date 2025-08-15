@@ -2,13 +2,13 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IManufacturer } from '@console-core/types';
+import { IProductCategory } from '@console-core/types';
 
 interface ISchemaOptions {
-  manufacturer?: IManufacturer;
+  productCategory?: IProductCategory;
 }
 
-export const buildManufacturerSchema = (
+export const buildProductCategorySchema = (
   options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
   return {
@@ -19,7 +19,7 @@ export const buildManufacturerSchema = (
         label: 'Name',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: options?.manufacturer?.name || '',
+        defaultValue: options?.productCategory?.name || '',
         params: {},
         hints: [
           {
@@ -34,7 +34,7 @@ export const buildManufacturerSchema = (
         label: 'Description',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: options?.manufacturer?.description || '',
+        defaultValue: options?.productCategory?.description || '',
         params: {},
         hints: [
           {

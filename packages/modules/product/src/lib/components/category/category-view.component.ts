@@ -6,7 +6,7 @@ import { combineLatest, map, tap } from 'rxjs';
 import { ROUTER } from '@console-core/config';
 import {
   filterEmptyAndNullishAndUndefined,
-  ManufacturerFacade,
+  ProductCategoryFacade,
   RouterFacade,
 } from '@console-core/state';
 
@@ -20,13 +20,13 @@ import {
         <li class="row data-list-item justify-between">
           <div class="flex text"><b>Name:</b></div>
           <div class="flex text align-right rc-lv-label">
-            {{ vm.manufacturer.name }}
+            {{ vm.productCategory.name }}
           </div>
         </li>
         <li class="data-list-item justify-between">
           <div class="text"><b>Description:</b></div>
           <div class="text align-left rc-lv-label mt-1">
-            {{ vm.manufacturer.description || '' }}
+            {{ vm.productCategory.description || '' }}
           </div>
         </li>
       </ul>
@@ -42,15 +42,15 @@ export class CategoryViewComponent {
       map(({ id }) => id),
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
-        this.manufacturerFacade.setSelectedId(id);
+        this.productCategoryFacade.setSelectedId(id);
       })
     ),
-    manufacturer: this.manufacturerFacade.selected$.pipe(
-      tap((manufacturer) => {
-        if (!manufacturer) {
-          this.manufacturerFacade.setSelectedId(null);
+    productCategory: this.productCategoryFacade.selected$.pipe(
+      tap((productCategory) => {
+        if (!productCategory) {
+          this.productCategoryFacade.setSelectedId(null);
           this.router.navigate(
-            ROUTER.pages.main.children.products.children.manufacturers.children.index.getLink()
+            ROUTER.pages.main.children.products.children.categories.children.index.getLink()
           );
         }
       }),
@@ -61,6 +61,6 @@ export class CategoryViewComponent {
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly manufacturerFacade: ManufacturerFacade
+    private readonly productCategoryFacade: ProductCategoryFacade
   ) {}
 }

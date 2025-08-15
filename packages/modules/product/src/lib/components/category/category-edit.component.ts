@@ -8,12 +8,12 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { ROUTER } from '@console-core/config';
 import {
   filterEmptyAndNullishAndUndefined,
-  ManufacturerFacade,
+  ProductCategoryFacade,
   RouterFacade,
 } from '@console-core/state';
 import { ModulesUiModule } from '@console-modules/ui';
 
-import { buildManufacturerSchema } from './jss-forms';
+import { buildProductCategorySchema } from './jss-forms';
 
 @Component({
   selector: 'app-module-category-edit',
@@ -33,27 +33,27 @@ import { buildManufacturerSchema } from './jss-forms';
 })
 export class CategoryEditComponent {
   schema!: VCLFormFieldSchemaRoot;
-  update = this.manufacturerFacade.update;
+  update = this.ProductCategoryFacade.update;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
       map(({ id }) => id),
       tap((id) => {
-        this.manufacturerFacade.setSelectedId(id);
+        this.ProductCategoryFacade.setSelectedId(id);
       })
     ),
-    manufacturer: this.manufacturerFacade.selected$.pipe(
-      tap((manufacturer) => {
-        if (!manufacturer) {
-          this.manufacturerFacade.setSelectedId(null);
+    ProductCategory: this.ProductCategoryFacade.selected$.pipe(
+      tap((ProductCategory) => {
+        if (!ProductCategory) {
+          this.ProductCategoryFacade.setSelectedId(null);
           this.router.navigate(
-            ROUTER.pages.main.children.products.children.manufacturers.children.index.getLink()
+            ROUTER.pages.main.children.products.children.categories.children.index.getLink()
           );
         }
       }),
       filterEmptyAndNullishAndUndefined(),
-      tap((manufacturer) => {
-        this.schema = buildManufacturerSchema({ manufacturer });
+      tap((productCategory) => {
+        this.schema = buildProductCategorySchema({ productCategory });
       })
     ),
   });
@@ -61,6 +61,6 @@ export class CategoryEditComponent {
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly manufacturerFacade: ManufacturerFacade
+    private readonly ProductCategoryFacade: ProductCategoryFacade
   ) {}
 }

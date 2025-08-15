@@ -1,10 +1,10 @@
 // import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ManufacturerFacade } from '@console-core/state';
+import { ProductCategoryFacade } from '@console-core/state';
 import { ModulesUiModule } from '@console-modules/ui';
 
-import { buildManufacturerSchema } from './jss-forms';
+import { buildProductCategorySchema } from './jss-forms';
 
 @Component({
   selector: 'app-module-category-create',
@@ -20,8 +20,8 @@ import { buildManufacturerSchema } from './jss-forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryCreateComponent {
-  shema = buildManufacturerSchema({});
-  create = this.manufacturerFacade.create;
+  shema = buildProductCategorySchema({});
+  create = this.productCategoryFacade.create;
 
-  constructor(private manufacturerFacade: ManufacturerFacade) {}
+  constructor(private productCategoryFacade: ProductCategoryFacade) {}
 }

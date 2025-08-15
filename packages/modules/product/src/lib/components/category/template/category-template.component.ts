@@ -20,7 +20,7 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { ManufacturerFacade, RouterFacade } from '@console-core/state';
+import { ProductCategoryFacade, RouterFacade } from '@console-core/state';
 import { ICrudFeature, EUrlSegment } from '@console-core/types';
 import { ModulesUiModule } from '@console-modules/ui';
 
@@ -33,12 +33,12 @@ import { ModulesUiModule } from '@console-modules/ui';
 export class CategoryTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter =
-    ROUTER.pages.main.children.products.children.manufacturers.children;
+    ROUTER.pages.main.children.products.children.categories.children;
 
   feature: Readonly<ICrudFeature> = {
     name: {
-      plural: 'Manufacturers',
-      singular: 'Manufacturer',
+      plural: 'Product Categories',
+      singular: 'Product Category',
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
@@ -62,7 +62,7 @@ export class CategoryTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.manufacturerFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.productCategoryFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -78,14 +78,14 @@ export class CategoryTemplateComponent implements OnInit, OnDestroy {
           fields: ['name'],
         },
       };
-      this.manufacturerFacade.read(this.queryVariables);
+      this.productCategoryFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.manufacturerFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.productCategoryFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -93,7 +93,7 @@ export class CategoryTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.manufacturerFacade.remove({ id });
+      this.productCategoryFacade.remove({ id });
     })
   );
 
@@ -102,16 +102,16 @@ export class CategoryTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.manufacturerFacade.setSelectedId(null);
+        this.productCategoryFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.manufacturerFacade.all$,
-    selectedManufacturerId: this.manufacturerFacade.selectedId$,
-    selectedManufacturer: this.manufacturerFacade.selected$,
+    dataList: this.productCategoryFacade.all$,
+    selectedProductCategoryId: this.productCategoryFacade.selectedId$,
+    selectedProductCategory: this.productCategoryFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -121,7 +121,7 @@ export class CategoryTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly manufacturerFacade: ManufacturerFacade,
+    private readonly productCategoryFacade: ProductCategoryFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 
