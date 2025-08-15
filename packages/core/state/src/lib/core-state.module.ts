@@ -74,6 +74,11 @@ import {
   PriceGroupFacade,
   ProductCategoryFacade,
 } from './+state';
+import {
+  ProductPrototypeEffects,
+  ProductPrototypeFacade,
+  productPrototypeReducer,
+} from './+state/product-prototype';
 
 const facades = [
   AccountFacade,
@@ -99,6 +104,7 @@ const facades = [
   PriceGroupFacade,
   ObjectUploadFacade,
   ProductCategoryFacade,
+  ProductPrototypeFacade,
 ];
 
 @NgModule({
@@ -150,6 +156,11 @@ const facades = [
       productCategoryReducer
     ),
     EffectsModule.forFeature([ProductCategoryEffects]),
+    StoreModule.forFeature(
+      STORE.states.productPrototype,
+      productPrototypeReducer
+    ),
+    EffectsModule.forFeature([ProductPrototypeEffects]),
     StoreModule.forFeature(
       STORE.states.organizationContextState,
       organizationContextReducer
