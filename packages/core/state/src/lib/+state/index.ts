@@ -9,5 +9,6 @@ export * from './organization-context';
 export * from './object-upload';
 export * from './order';
 export * from './product';
+export * from './product-category';
 export * from './price-group';
 export * from './router';

@@ -20,6 +20,7 @@ export const STORE: Readonly<IStoreConstant> = {
     objectUploadState: 'objectUploadStateV1',
     policyState: 'policyStateV1',
     productState: 'productStateV1',
+    productCategory: 'productCategoryV1',
     priceGroup: 'priceGroupV1',
     roleState: 'roleStateV1',
     routerState: 'routerStateV1',

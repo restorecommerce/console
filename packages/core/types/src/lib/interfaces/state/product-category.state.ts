@@ -4,7 +4,7 @@ import { IProductCategory } from '../entities';
 
 import { IBaseStore } from './store.state';
 
-export interface IIProductCategoryState
+export interface IProductCategoryState
   extends EntityState<IProductCategory>,
     IBaseStore {
   selectedId: string | null;

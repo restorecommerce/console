@@ -8,6 +8,7 @@ export * from './manufacturer';
 export * from './master-data';
 export * from './ordering';
 export * from './price-group';
+export * from './product-category';
 export * from './api.service';
 export * from './error-handling.service';
 export * from './upload.service';
