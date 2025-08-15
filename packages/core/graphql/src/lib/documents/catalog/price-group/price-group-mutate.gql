@@ -5,7 +5,7 @@ mutation PriceGroupMutate($input: IIoRestorecommercePriceGroupPriceGroupList!) {
         details {
           items {
             payload {
-              ...ManufacturerFragment
+              ...PriceGroupFragment
             }
             status {
               ...StatusFragment

@@ -1,5 +1,5 @@
-import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
+import { gql } from 'apollo-angular';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -6147,6 +6147,148 @@ export type ManufucturerReadQuery = {
   };
 };
 
+export type PriceGroupMutateMutationVariables = Exact<{
+  input: IIoRestorecommercePriceGroupPriceGroupList;
+}>;
+
+export type PriceGroupMutateMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    price_group: {
+      __typename?: 'CatalogPriceGroupMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommercePriceGroupPriceGroupListResponse';
+        details?: {
+          __typename?: 'IoRestorecommercePriceGroupPriceGroupListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommercePriceGroupPriceGroupResponse';
+            payload?: {
+              __typename?: 'IoRestorecommercePriceGroupPriceGroup';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type PriceGroupDeleteMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type PriceGroupDeleteMutation = {
+  __typename?: 'Mutation';
+  catalog: {
+    __typename?: 'CatalogMutation';
+    price_group: {
+      __typename?: 'CatalogPriceGroupMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type PriceGroupReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type PriceGroupReadQuery = {
+  __typename?: 'Query';
+  catalog: {
+    __typename?: 'CatalogQuery';
+    price_group: {
+      __typename?: 'CatalogPriceGroupQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommercePriceGroupPriceGroupListResponse';
+        details?: {
+          __typename?: 'IoRestorecommercePriceGroupPriceGroupListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommercePriceGroupPriceGroupResponse';
+            payload?: {
+              __typename?: 'IoRestorecommercePriceGroupPriceGroup';
+              id?: string | null;
+              name?: string | null;
+              description?: string | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type CatalogProductMutateMutationVariables = Exact<{
   input: IIoRestorecommerceProductProductList;
 }>;
@@ -7843,6 +7985,30 @@ export type OrganizationFragmentFragment = {
     transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
     paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
   }> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+    modified?: unknown | null;
+    createdBy?: string | null;
+    modifiedBy?: string | null;
+    owners?: Array<{
+      __typename?: 'IoRestorecommerceAttributeAttribute';
+      id?: string | null;
+      value?: string | null;
+      attributes?: Array<{
+        __typename?: 'IoRestorecommerceAttributeAttribute';
+        id?: string | null;
+        value?: string | null;
+      }> | null;
+    }> | null;
+  } | null;
+};
+
+export type PriceGroupFragmentFragment = {
+  __typename?: 'IoRestorecommercePriceGroupPriceGroup';
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -12770,6 +12936,17 @@ export const OrderFragmentFragmentDoc = gql`
   ${UserFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const PriceGroupFragmentFragmentDoc = gql`
+  fragment PriceGroupFragment on IoRestorecommercePriceGroupPriceGroup {
+    id
+    name
+    description
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${MetaFragmentFragmentDoc}
+`;
 export const StatusFragmentFragmentDoc = gql`
   fragment StatusFragment on IoRestorecommerceStatusStatus {
     code
@@ -13016,6 +13193,124 @@ export class ManufucturerReadGQL extends Apollo.Query<
   ManufucturerReadQueryVariables
 > {
   override document = ManufucturerReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const PriceGroupMutateDocument = gql`
+  mutation PriceGroupMutate(
+    $input: IIoRestorecommercePriceGroupPriceGroupList!
+  ) {
+    catalog {
+      price_group {
+        Mutate(input: $input) {
+          details {
+            items {
+              payload {
+                ...PriceGroupFragment
+              }
+              status {
+                ...StatusFragment
+              }
+            }
+            operationStatus {
+              ...OpsStatusFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${PriceGroupFragmentFragmentDoc}
+  ${StatusFragmentFragmentDoc}
+  ${OpsStatusFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PriceGroupMutateGQL extends Apollo.Mutation<
+  PriceGroupMutateMutation,
+  PriceGroupMutateMutationVariables
+> {
+  override document = PriceGroupMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const PriceGroupDeleteDocument = gql`
+  mutation PriceGroupDelete(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    catalog {
+      price_group {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PriceGroupDeleteGQL extends Apollo.Mutation<
+  PriceGroupDeleteMutation,
+  PriceGroupDeleteMutationVariables
+> {
+  override document = PriceGroupDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const PriceGroupReadDocument = gql`
+  query PriceGroupRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    catalog {
+      price_group {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                ...PriceGroupFragment
+              }
+              status {
+                ...StatusFragment
+              }
+            }
+            operationStatus {
+              ...OpsStatusFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${PriceGroupFragmentFragmentDoc}
+  ${StatusFragmentFragmentDoc}
+  ${OpsStatusFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PriceGroupReadGQL extends Apollo.Query<
+  PriceGroupReadQuery,
+  PriceGroupReadQueryVariables
+> {
+  override document = PriceGroupReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

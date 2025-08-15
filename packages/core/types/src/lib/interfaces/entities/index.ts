@@ -11,6 +11,7 @@ export * from './object-upload';
 export * from './shop';
 export * from './timezone';
 export * from './policy';
+export * from './price-group';
 export * from './product';
 export * from './role';
 export * from './tax';
