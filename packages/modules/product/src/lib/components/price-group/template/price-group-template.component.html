@@ -1,8 +1,8 @@
 <rc-crud-main
   *ngIf="vm$ | async as vm"
   [feature]="feature"
-  [title]="vm.selectedManufacturer?.name ?? feature.name.singular"
-  [id]="vm.selectedManufacturerId"
+  [title]="vm.selectedPriceGroup?.name ?? feature.name.singular"
+  [id]="vm.selectedPriceGroupId"
   [total]="vm.dataList.length"
   [urlSegment]="vm.urlSegment"
   [triggerRead]="triggerRead"
@@ -26,7 +26,7 @@
       <rc-data-list
         [itemTemplate]="itemTemplate"
         [items]="vm.dataList"
-        [selected]="vm.selectedManufacturerId"
+        [selected]="vm.selectedPriceGroupId"
         (itemSelected)="triggerSelectId.next($event)"
       />
     </ng-container>
@@ -38,9 +38,9 @@
 
   <ng-container rc-crud-meta>
     <rc-meta
-      *ngIf="vm.selectedManufacturerId"
-      [id]="vm.selectedManufacturerId"
-      [meta]="vm.selectedManufacturer?.meta"
+      *ngIf="vm.selectedPriceGroupId"
+      [id]="vm.selectedPriceGroupId"
+      [meta]="vm.selectedPriceGroup?.meta"
     />
   </ng-container>
 </rc-crud-main>
@@ -61,6 +61,6 @@
 
 <ng-template #templateNoRecords>
   <div class="pt-4">
-    <rc-no-records message="No manufacturers loaded" />
+    <rc-no-records message="No price group loaded" />
   </div>
 </ng-template>

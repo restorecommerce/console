@@ -2,10 +2,10 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IManufacturer } from '@console-core/types';
+import { IPriceGroup } from '@console-core/types';
 
 interface ISchemaOptions {
-  manufacturer?: IManufacturer;
+  priceGroup?: IPriceGroup;
 }
 
 export const buildPriceGroupSchema = (
@@ -19,7 +19,7 @@ export const buildPriceGroupSchema = (
         label: 'Name',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: options?.manufacturer?.name || '',
+        defaultValue: options?.priceGroup?.name || '',
         params: {},
         hints: [
           {
@@ -34,7 +34,7 @@ export const buildPriceGroupSchema = (
         label: 'Description',
         type: 'input',
         validators: [Validators.required],
-        defaultValue: options?.manufacturer?.description || '',
+        defaultValue: options?.priceGroup?.description || '',
         params: {},
         hints: [
           {

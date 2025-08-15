@@ -68,6 +68,7 @@ import {
   manufacturerReducer,
   ManufacturerFacade,
 } from './+state';
+import { PriceGroupEffects, PriceGroupFacade } from './+state/price-group';
 
 const facades = [
   AccountFacade,
@@ -90,6 +91,7 @@ const facades = [
   TimezoneFacade,
   ShopFacade,
   PolicyFacade,
+  PriceGroupFacade,
   ObjectUploadFacade,
 ];
 
@@ -135,6 +137,8 @@ const facades = [
     EffectsModule.forFeature([OrganizationContextEffects]),
     StoreModule.forFeature(STORE.states.objectUploadState, objectUploadReducer),
     EffectsModule.forFeature([ObjectUploadEffects]),
+    StoreModule.forFeature(STORE.states.priceGroup, fromRouter.routerReducer),
+    EffectsModule.forFeature([PriceGroupEffects]),
     StoreModule.forFeature(
       STORE.states.organizationContextState,
       organizationContextReducer

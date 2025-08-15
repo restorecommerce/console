@@ -1,13 +1,13 @@
 // import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ManufacturerFacade } from '@console-core/state';
+import { PriceGroupFacade } from '@console-core/state';
 import { ModulesUiModule } from '@console-modules/ui';
 
 import { buildPriceGroupSchema } from './jss-forms';
 
 @Component({
-  selector: 'app-module-manufacturer-create',
+  selector: 'app-module-price-group-create',
   template: `
     <div class="mt-2">
       <rc-crud-create
@@ -21,7 +21,7 @@ import { buildPriceGroupSchema } from './jss-forms';
 })
 export class PriceGroupCreateComponent {
   shema = buildPriceGroupSchema({});
-  create = this.manufacturerFacade.create;
+  create = this.priceGroupFacade.create;
 
-  constructor(private manufacturerFacade: ManufacturerFacade) {}
+  constructor(private priceGroupFacade: PriceGroupFacade) {}
 }

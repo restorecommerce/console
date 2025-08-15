@@ -20,25 +20,25 @@ import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
-import { ManufacturerFacade, RouterFacade } from '@console-core/state';
+import { PriceGroupFacade, RouterFacade } from '@console-core/state';
 import { ICrudFeature, EUrlSegment } from '@console-core/types';
 import { ModulesUiModule } from '@console-modules/ui';
 
 @Component({
-  selector: 'app-module-product-manufacturer-template',
-  templateUrl: './manufacturer-template.component.html',
+  selector: 'app-module-product-price-group-template',
+  templateUrl: './price-group-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [AsyncPipe, ModulesUiModule],
 })
 export class PriceGroupTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter =
-    ROUTER.pages.main.children.products.children.manufacturers.children;
+    ROUTER.pages.main.children.products.children.priceGroups.children;
 
   feature: Readonly<ICrudFeature> = {
     name: {
-      plural: 'Manufacturers',
-      singular: 'Manufacturer',
+      plural: 'Price groups',
+      singular: 'Price group',
     },
     links: {
       index: () => this.featureRouter.index.getLink(),
@@ -62,7 +62,7 @@ export class PriceGroupTemplateComponent implements OnInit, OnDestroy {
   readonly triggerRead = new BehaviorSubject<null>(null);
   readonly triggerRead$ = this.triggerRead
     .asObservable()
-    .pipe(tap(() => this.manufacturerFacade.read(this.queryVariables)));
+    .pipe(tap(() => this.priceGroupFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -78,14 +78,14 @@ export class PriceGroupTemplateComponent implements OnInit, OnDestroy {
           fields: ['name'],
         },
       };
-      this.manufacturerFacade.read(this.queryVariables);
+      this.priceGroupFacade.read(this.queryVariables);
     })
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
   readonly triggerSelectId$ = this.triggerSelectId
     .asObservable()
-    .pipe(tap((id) => this.manufacturerFacade.setSelectedId(id)));
+    .pipe(tap((id) => this.priceGroupFacade.setSelectedId(id)));
 
   readonly triggerRemove = new BehaviorSubject<string | null>(null);
   readonly triggerRemove$ = this.triggerRemove.asObservable().pipe(
@@ -93,7 +93,7 @@ export class PriceGroupTemplateComponent implements OnInit, OnDestroy {
       if (id === null) {
         return;
       }
-      this.manufacturerFacade.remove({ id });
+      this.priceGroupFacade.remove({ id });
     })
   );
 
@@ -102,16 +102,16 @@ export class PriceGroupTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.Index, EUrlSegment.Create].includes(segment)) {
-        this.manufacturerFacade.setSelectedId(null);
+        this.priceGroupFacade.setSelectedId(null);
       }
     }),
     debounceTime(10)
   );
 
   readonly vm$ = combineLatest({
-    dataList: this.manufacturerFacade.all$,
-    selectedManufacturerId: this.manufacturerFacade.selectedId$,
-    selectedManufacturer: this.manufacturerFacade.selected$,
+    dataList: this.priceGroupFacade.all$,
+    selectedPriceGroupId: this.priceGroupFacade.selectedId$,
+    selectedPriceGroup: this.priceGroupFacade.selected$,
     urlSegment: this.urlSegment$,
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
@@ -121,7 +121,7 @@ export class PriceGroupTemplateComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly manufacturerFacade: ManufacturerFacade,
+    private readonly priceGroupFacade: PriceGroupFacade,
     private readonly routerFacade: RouterFacade
   ) {}
 

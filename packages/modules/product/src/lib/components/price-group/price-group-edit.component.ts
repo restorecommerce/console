@@ -8,7 +8,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { ROUTER } from '@console-core/config';
 import {
   filterEmptyAndNullishAndUndefined,
-  ManufacturerFacade,
+  PriceGroupFacade,
   RouterFacade,
 } from '@console-core/state';
 import { ModulesUiModule } from '@console-modules/ui';
@@ -16,7 +16,7 @@ import { ModulesUiModule } from '@console-modules/ui';
 import { buildPriceGroupSchema } from './jss-forms';
 
 @Component({
-  selector: 'app-module-manufacturer-edit',
+  selector: 'app-module-price-group-edit',
   template: `
     @if (vm$ | async; as vm) {
     <div class="mt-2">
@@ -33,27 +33,27 @@ import { buildPriceGroupSchema } from './jss-forms';
 })
 export class PriceGroupEditComponent {
   schema!: VCLFormFieldSchemaRoot;
-  update = this.manufacturerFacade.update;
+  update = this.priceGroupFacade.update;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
       map(({ id }) => id),
       tap((id) => {
-        this.manufacturerFacade.setSelectedId(id);
+        this.priceGroupFacade.setSelectedId(id);
       })
     ),
-    manufacturer: this.manufacturerFacade.selected$.pipe(
-      tap((manufacturer) => {
-        if (!manufacturer) {
-          this.manufacturerFacade.setSelectedId(null);
+    priceGroup: this.priceGroupFacade.selected$.pipe(
+      tap((priceGroup) => {
+        if (!priceGroup) {
+          this.priceGroupFacade.setSelectedId(null);
           this.router.navigate(
-            ROUTER.pages.main.children.products.children.manufacturers.children.index.getLink()
+            ROUTER.pages.main.children.products.children.priceGroups.children.index.getLink()
           );
         }
       }),
       filterEmptyAndNullishAndUndefined(),
-      tap((manufacturer) => {
-        this.schema = buildPriceGroupSchema({ manufacturer });
+      tap((priceGroup) => {
+        this.schema = buildPriceGroupSchema({ priceGroup });
       })
     ),
   });
@@ -61,6 +61,6 @@ export class PriceGroupEditComponent {
   constructor(
     private readonly router: Router,
     private readonly routerFacade: RouterFacade,
-    private readonly manufacturerFacade: ManufacturerFacade
+    private readonly priceGroupFacade: PriceGroupFacade
   ) {}
 }

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-product',
-  template: ` <h3>Manufacturers</h3> `,
+  selector: 'app-module-price-groups',
+  template: ` <h3>Price groups</h3> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceGroupIndexComponent {}
