@@ -1,1 +1,1 @@
-export * from './manufacturer.jss-form';
+export * from './category.jss-form';

@@ -1,0 +1,44 @@
+mutation ProductCategoryMutate(
+  $input: IIoRestorecommerceProductCategoryProductCategoryList!
+) {
+  catalog {
+    product_category {
+      Mutate(input: $input) {
+        details {
+          items {
+            payload {
+              ...ProductCategoryFragment
+            }
+            status {
+              ...StatusFragment
+            }
+          }
+          operationStatus {
+            ...OpsStatusFragment
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation ProductCategoryDelete(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  catalog {
+    product_category {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

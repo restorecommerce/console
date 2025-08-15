@@ -1,0 +1,18 @@
+fragment ProductCategoryFragment on IoRestorecommerceProductCategoryProductCategory {
+  id
+  name
+  description
+  # priceGroupId
+  image {
+    ...ImageFragment
+  }
+  parent {
+    parentId
+  }
+  priceGroup {
+    ...PriceGroupFragment
+  }
+  meta {
+    ...MetaFragment
+  }
+}
