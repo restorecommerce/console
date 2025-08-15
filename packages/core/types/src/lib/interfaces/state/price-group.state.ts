@@ -1,11 +1,9 @@
 import { EntityState } from '@ngrx/entity';
 
-import { IManufacturer } from '../entities';
+import { IPriceGroup } from '../entities';
 
 import { IBaseStore } from './store.state';
 
-export interface IPriceGroupState
-  extends EntityState<IManufacturer>,
-    IBaseStore {
+export interface IPriceGroupState extends EntityState<IPriceGroup>, IBaseStore {
   selectedId: string | null;
 }

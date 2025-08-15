@@ -15,6 +15,7 @@ export * from './object-upload.state';
 export * from './policy.state';
 export * from './price-group.state';
 export * from './product.state';
+export * from './product-category.state';
 export * from './role.state';
 export * from './router.state';
 export * from './shop.state';

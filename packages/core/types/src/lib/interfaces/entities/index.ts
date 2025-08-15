@@ -13,6 +13,7 @@ export * from './timezone';
 export * from './policy';
 export * from './price-group';
 export * from './product';
+export * from './product-category';
 export * from './role';
 export * from './tax';
 export * from './user';
