@@ -288,41 +288,41 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 },
               },
             },
-            prototypies: {
-              path: 'prototypies',
-              link: '/products/prototypies',
+            prototypes: {
+              path: 'prototypes',
+              link: '/products/prototypes',
               title: 'Catalogs',
-              getLink: () => ['', 'products', 'prototypies'],
+              getLink: () => ['', 'products', 'prototypes'],
               children: {
                 index: {
                   path: 'index',
-                  link: '/products/prototypies/index',
-                  getLink: () => ['', 'products', 'prototypies', 'index'],
+                  link: '/products/prototypes/index',
+                  getLink: () => ['', 'products', 'prototypes', 'index'],
                   title: 'Catalogs',
                 },
                 create: {
                   path: 'create',
-                  link: '/products/prototypies/create',
+                  link: '/products/prototypes/create',
                   title: 'Create',
-                  getLink: () => ['', 'products', 'prototypies', 'create'],
+                  getLink: () => ['', 'products', 'prototypes', 'create'],
                 },
                 view: {
                   path: ':id/view',
-                  link: '/products/prototypies/:id/view',
+                  link: '/products/prototypes/:id/view',
                   title: 'Catalog',
                   getLink: (params?: { id?: string }) =>
                     params?.id
-                      ? ['', 'products', 'prototypies', params.id, 'view']
-                      : ['', 'products', 'prototypies'],
+                      ? ['', 'products', 'prototypes', params.id, 'view']
+                      : ['', 'products', 'prototypes'],
                 },
                 edit: {
                   path: ':id/edit',
-                  link: '/products/prototypies/:id/edit',
+                  link: '/products/prototypes/:id/edit',
                   title: 'Edit',
                   getLink: (params?: { id?: string }) =>
                     params?.id
-                      ? ['', 'products', 'prototypies', params.id, 'edit']
-                      : ['', 'products', 'prototypies'],
+                      ? ['', 'products', 'prototypes', params.id, 'edit']
+                      : ['', 'products', 'prototypes'],
                 },
               },
             },

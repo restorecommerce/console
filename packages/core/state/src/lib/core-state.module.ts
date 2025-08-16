@@ -73,12 +73,10 @@ import {
   ProductCategoryEffects,
   PriceGroupFacade,
   ProductCategoryFacade,
-} from './+state';
-import {
   ProductPrototypeEffects,
   ProductPrototypeFacade,
   productPrototypeReducer,
-} from './+state/product-prototype';
+} from './+state';
 
 const facades = [
   AccountFacade,

@@ -111,7 +111,7 @@ export interface IRouterConstant {
                 edit: IRouterItem;
               };
             };
-            prototypies: {
+            prototypes: {
               path: string;
               link: string;
               title: string;
