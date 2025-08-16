@@ -215,14 +215,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             categories: {
               path: 'categories',
               link: '/products/categories',
-              title: 'Catalogs',
+              title: 'Categories',
               getLink: () => ['', 'products', 'categories'],
               children: {
                 index: {
                   path: 'index',
                   link: '/products/categories/index',
                   getLink: () => ['', 'products', 'categories', 'index'],
-                  title: 'Catalogs',
+                  title: 'Categories',
                 },
                 create: {
                   path: 'create',
@@ -233,7 +233,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 view: {
                   path: ':id/view',
                   link: '/products/categories/:id/view',
-                  title: 'Catalog',
+                  title: 'Category',
                   getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'products', 'categories', params.id, 'view']
@@ -253,14 +253,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             manufacturers: {
               path: 'manufacturer',
               link: '/products/manufacturer',
-              title: 'Catalogs',
+              title: 'Manufacturers',
               getLink: () => ['', 'products', 'manufacturer'],
               children: {
                 index: {
                   path: 'index',
                   link: '/products/manufacturer/index',
                   getLink: () => ['', 'products', 'manufacturer', 'index'],
-                  title: 'Catalogs',
+                  title: 'Manufacturers',
                 },
                 create: {
                   path: 'create',
@@ -271,7 +271,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 view: {
                   path: ':id/view',
                   link: '/products/manufacturer/:id/view',
-                  title: 'View',
+                  title: 'Manufacturer',
                   getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'products', 'manufacturer', params.id, 'view']
@@ -291,14 +291,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             prototypes: {
               path: 'prototypes',
               link: '/products/prototypes',
-              title: 'Catalogs',
+              title: 'Prototypes',
               getLink: () => ['', 'products', 'prototypes'],
               children: {
                 index: {
                   path: 'index',
                   link: '/products/prototypes/index',
                   getLink: () => ['', 'products', 'prototypes', 'index'],
-                  title: 'Catalogs',
+                  title: 'Prototypes',
                 },
                 create: {
                   path: 'create',
@@ -309,7 +309,7 @@ export const ROUTER: Readonly<IRouterConstant> = {
                 view: {
                   path: ':id/view',
                   link: '/products/prototypes/:id/view',
-                  title: 'Catalog',
+                  title: 'Prototype',
                   getLink: (params?: { id?: string }) =>
                     params?.id
                       ? ['', 'products', 'prototypes', params.id, 'view']
@@ -329,14 +329,14 @@ export const ROUTER: Readonly<IRouterConstant> = {
             priceGroups: {
               path: 'price-group',
               link: '/products/price-group',
-              title: 'Price group',
+              title: 'Price groups',
               getLink: () => ['', 'products', 'price-group'],
               children: {
                 index: {
                   path: 'index',
                   link: '/products/price-group/index',
                   getLink: () => ['', 'products', 'price-group', 'index'],
-                  title: 'Price group',
+                  title: 'Price groups',
                 },
                 create: {
                   path: 'create',
