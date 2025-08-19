@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { combineLatest } from 'rxjs';
+import { SubSink } from 'subsink';
 
 import {
   CountryFacade,
@@ -25,7 +31,7 @@ import { buildProductSchema } from './jss-forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ProductCreateComponent implements OnInit {
+export class ProductCreateComponent implements OnInit, OnDestroy {
   schema = buildProductSchema({});
   create = this.productFacade.create;
 
@@ -36,6 +42,8 @@ export class ProductCreateComponent implements OnInit {
     categories: this.categoryFacade.all$,
     taxes: this.taxFacade.all$,
   });
+
+  private readonly subscriptions = new SubSink();
 
   constructor(
     private readonly countriesFacade: CountryFacade,
@@ -54,14 +62,20 @@ export class ProductCreateComponent implements OnInit {
     this.manufacturerFacade.read({});
     this.taxFacade.read({});
 
-    this.vm$.subscribe((vm) => {
-      this.schema = buildProductSchema({
-        manufacturers: vm.manufacturers,
-        countries: vm.countries,
-        prototypes: vm.prototypes,
-        categories: vm.categories,
-        taxes: vm.taxes,
-      });
-    });
+    this.subscriptions.add(
+      this.vm$.subscribe((vm) => {
+        this.schema = buildProductSchema({
+          manufacturers: vm.manufacturers,
+          countries: vm.countries,
+          prototypes: vm.prototypes,
+          categories: vm.categories,
+          taxes: vm.taxes,
+        });
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
