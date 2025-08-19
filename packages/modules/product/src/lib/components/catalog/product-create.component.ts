@@ -10,14 +10,14 @@ import { buildProductSchema } from './jss-forms';
 @Component({
   selector: 'app-module-product-create',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <div class="mt-2">
-        <rc-crud-create
-          [schema]="schema"
-          [create]="create"
-        />
-      </div>
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <div class="mt-2">
+      <rc-crud-create
+        [schema]="schema"
+        [create]="create"
+      />
+    </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,

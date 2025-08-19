@@ -63,21 +63,7 @@ export class ProductEffects {
         const productActionPayload = productAction.payload || queryVariables;
         return this.productService
           .read({
-            // ...productActionPayload,
-            filters: organization
-              ? [
-                  {
-                    filters: [
-                      {
-                        field: 'meta.owners[*].attributes[**].value',
-                        operation:
-                          IoRestorecommerceResourcebaseFilterOperation.In,
-                        value: organization,
-                      },
-                    ],
-                  },
-                ]
-              : [],
+            scope: organization,
           })
           .pipe(
             tap((result) => {
