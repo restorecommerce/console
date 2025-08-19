@@ -2,10 +2,11 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IProduct } from '@console-core/types';
+import { IManufacturer, IProduct } from '@console-core/types';
 
-interface ISchemaOptions {
+export interface ISchemaOptions {
   product?: IProduct;
+  manufacturers?: IManufacturer[];
 }
 
 export const buildProductSchema = (
@@ -60,20 +61,10 @@ export const buildProductSchema = (
               selectionMode: 'single',
               clearable: false,
               search: false,
-              options: [
-                {
-                  label: 'Manufacturer A',
-                  value: 'manu-a',
-                },
-                {
-                  label: 'Manufacturer B',
-                  value: 'manu-b',
-                },
-                {
-                  label: 'Manufacturer C',
-                  value: 'manu-c',
-                },
-              ],
+              options: (options.manufacturers || []).map((manufacturer) => ({
+                label: manufacturer.name,
+                value: manufacturer.id,
+              })),
             },
             hints: [
               {
