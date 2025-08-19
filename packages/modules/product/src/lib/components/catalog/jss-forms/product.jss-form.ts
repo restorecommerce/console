@@ -2,12 +2,22 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { ICountry, IManufacturer, IProduct } from '@console-core/types';
+import {
+  ICountry,
+  IManufacturer,
+  IProduct,
+  IProductCategory,
+  IProductPrototype,
+  ITax,
+} from '@console-core/types';
 
 export interface ISchemaOptions {
   product?: IProduct;
   manufacturers?: IManufacturer[];
   countries?: ICountry[];
+  prototypes?: IProductPrototype[];
+  categories?: IProductCategory[];
+  taxes?: ITax[];
 }
 
 export const buildProductSchema = (
@@ -112,16 +122,10 @@ export const buildProductSchema = (
               selectionMode: 'single',
               clearable: false,
               search: false,
-              options: [
-                {
-                  label: 'Prototype A',
-                  value: 'proto-a',
-                },
-                {
-                  label: 'Prototype B',
-                  value: 'proto-b',
-                },
-              ],
+              options: (options.prototypes || []).map((prototype) => ({
+                label: prototype.name,
+                value: prototype.id,
+              })),
             },
             hints: [
               {
@@ -143,16 +147,10 @@ export const buildProductSchema = (
               selectionMode: 'single',
               clearable: false,
               search: false,
-              options: [
-                {
-                  label: 'Category A',
-                  value: 'cat-a',
-                },
-                {
-                  label: 'Category B',
-                  value: 'cat-b',
-                },
-              ],
+              options: (options.categories || []).map((category) => ({
+                label: category.name,
+                value: category.id,
+              })),
             },
             hints: [
               {
@@ -174,40 +172,10 @@ export const buildProductSchema = (
               selectionMode: 'multiple',
               clearable: false,
               search: false,
-              options: [
-                {
-                  label: 'Germany reduced rate',
-                  value: 'germany-reduced-rate',
-                },
-                {
-                  label: 'Germany standard rate',
-                  value: 'germany-standard-rate',
-                },
-                {
-                  label: 'Switzerland heavily reduced rate',
-                  value: 'switzerland-heavily-reduced-rate',
-                },
-                {
-                  label: 'Switzerland reduced rate',
-                  value: 'switzerland-reduced-rate',
-                },
-                {
-                  label: 'Switzerland standard rate',
-                  value: 'switzerland-standard-rate',
-                },
-                {
-                  label: 'Belgium heavily reduced rate',
-                  value: 'belgium-heavily-reduced-rate',
-                },
-                {
-                  label: 'Belgium standard rate',
-                  value: 'belgium-standard-rate',
-                },
-                {
-                  label: 'France standard rate',
-                  value: 'france-standard-rate',
-                },
-              ],
+              options: (options.taxes || []).map((tax) => ({
+                label: `${tax.id} ${tax.rate}`,
+                value: tax.id,
+              })),
             },
             hints: [
               {
