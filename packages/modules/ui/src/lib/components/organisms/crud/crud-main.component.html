@@ -38,6 +38,16 @@
         >
           <vcl-icon icon="mdi:refresh" />
         </button>
+        <button
+          vcl-button
+          rc-append
+          *ngIf="hasFilter"
+          (click)="onFilter()"
+          class="square half-transparent button"
+          title="Filter"
+        >
+          <vcl-icon icon="mdi:dots-vertical" />
+        </button>
       </rc-toolbar>
 
       <ng-container

@@ -38,6 +38,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() isDelete = true;
   @Input() isMeta = true;
   @Input() isNested = false;
+  @Input() hasFilter = true;
 
   isTriggerCreateInvoice = false;
   isTriggerCreateFulfillment = false;
@@ -97,6 +98,11 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
 
   onSelectId(id: string | null): void {
     this.triggerSelectId.next(id);
+  }
+
+  onFilter(): void {
+    // TODO Open the filter and sort modal
+    // We pass a form schema inorder to perform this operation.
   }
 
   onRemove(id: string | null): void {
