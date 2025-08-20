@@ -45,6 +45,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   isTriggerSubmitFulfillment = false;
 
   showMeta = false;
+  isFilterOpen = false;
 
   readonly EUrlSegment = EUrlSegment;
 
@@ -102,7 +103,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
 
   onFilter(): void {
     // TODO Open the filter and sort modal
-    // We pass a form schema inorder to perform this operation.
+    // We pass a form
   }
 
   onRemove(id: string | null): void {
