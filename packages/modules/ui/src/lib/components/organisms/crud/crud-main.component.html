@@ -15,10 +15,10 @@
 
         {{ feature.name.plural }}
 
+        @if (isCreate) {
         <button
           vcl-button
           rc-append
-          *ngIf="isCreate"
           [routerLink]="feature.links.create()"
           [ngClass]="{
             active: [EUrlSegment.Create].includes(urlSegment)
@@ -28,18 +28,17 @@
         >
           <vcl-icon icon="mdi:plus" />
         </button>
+        } @if(isRead) {
         <button
           vcl-button
           rc-append
-          *ngIf="isRead"
           (click)="onRead()"
           class="square half-transparent button"
           title="Refresh"
         >
           <vcl-icon icon="mdi:refresh" />
         </button>
-
-        @if (hasFilter) {
+        } @if (hasFilter) {
         <button
           vcl-button
           rc-append
@@ -58,25 +57,29 @@
             [cdkConnectedOverlayOpen]="isFilterOpen"
             (detach)="isFilterOpen = false"
           >
-            <ul class="example-list">
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-            </ul>
+            <vcl-panel>
+              <!-- <vcl-panel-title>Panel Title</vcl-panel-title> -->
+              <vcl-jss-form
+                autocomplete="off"
+                ngDefaultControl
+                [schema]="filterSchema"
+                (formAction)="onFilterAction($event)"
+                (formSubmit)="onFilterSubmit()"
+              />
+              <vcl-panel-footer>
+                <div class="row align-items-center py-1">Panel Footer</div>
+              </vcl-panel-footer>
+            </vcl-panel>
           </ng-template>
         </button>
         }
       </rc-toolbar>
 
-      <ng-container
-        *ngIf="vm.isXsOrSm && [EUrlSegment.Index].includes(urlSegment)"
-      >
-        <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
-      </ng-container>
-
-      <ng-container *ngIf="vm.isMdOrLgOrXl">
-        <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
-      </ng-container>
+      @if (vm.isXsOrSm && [EUrlSegment.Index].includes(urlSegment)) {
+      <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
+      } @if (vm.isMdOrLgOrXl) {
+      <ng-container *ngTemplateOutlet="searchAndDataListTemplate" />
+      }
     </div>
 
     <ng-container *ngIf="![EUrlSegment.Index].includes(urlSegment)">

@@ -10,7 +10,12 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
-import { AlertService, AlertType, VCLBreakpoints } from '@vcl/ng-vcl';
+import {
+  AlertService,
+  AlertType,
+  VCLBreakpoints,
+  VCLFormFieldSchemaRoot,
+} from '@vcl/ng-vcl';
 
 import { EUrlSegment, ICrudFeature } from '@console-core/types';
 
@@ -39,7 +44,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() isMeta = true;
   @Input() isNested = false;
   @Input() hasFilter = true;
-
+  @Input() filterSchema: VCLFormFieldSchemaRoot | undefined;
   isTriggerCreateInvoice = false;
   isTriggerCreateFulfillment = false;
   isTriggerSubmitFulfillment = false;
@@ -124,5 +129,13 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
         }
         this.triggerRemove.next(id);
       });
+  }
+
+  onFilterAction(_event: Event) {
+    // TODO Open the filter and sort modal
+  }
+
+  onFilterSubmit() {
+    // TODO Open the filter and sort modal
   }
 }

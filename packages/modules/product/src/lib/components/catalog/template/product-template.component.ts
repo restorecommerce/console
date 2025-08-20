@@ -29,6 +29,8 @@ import {
 } from '@console-core/state';
 import { ICrudFeature, EUrlSegment, IProduct } from '@console-core/types';
 
+import { buildProductListFilterSchema } from '../jss-forms';
+
 @Component({
   selector: 'app-module-product-template',
   templateUrl: './product-template.component.html',
@@ -150,6 +152,8 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
     triggerSelectId: this.triggerSelectId$,
     triggerRemove: this.triggerRemove$,
   });
+
+  filterSchema = buildProductListFilterSchema({});
 
   private readonly subscriptions = new SubSink();
 
