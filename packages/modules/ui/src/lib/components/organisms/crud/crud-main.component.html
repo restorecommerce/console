@@ -62,6 +62,7 @@
               <vcl-jss-form
                 autocomplete="off"
                 ngDefaultControl
+                #filterForm="vclJssForm"
                 [schema]="filterSchema"
                 (formAction)="onFilterAction($event)"
                 (formSubmit)="onFilterSubmit()"

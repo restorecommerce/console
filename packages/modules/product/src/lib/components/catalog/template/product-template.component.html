@@ -9,6 +9,7 @@
   [triggerSelectId]="triggerSelectId"
   [triggerRemove]="triggerRemove"
   [filterSchema]="filterSchema"
+  (filter)="onFilter($event)"
 >
   <ng-container rc-crud-search>
     <div

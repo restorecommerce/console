@@ -2,9 +2,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,6 +16,7 @@ import { SubSink } from 'subsink';
 import {
   AlertService,
   AlertType,
+  JssFormComponent,
   VCLBreakpoints,
   VCLFormFieldSchemaRoot,
 } from '@vcl/ng-vcl';
@@ -45,6 +49,9 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() isNested = false;
   @Input() hasFilter = true;
   @Input() filterSchema: VCLFormFieldSchemaRoot | undefined;
+
+  @Output() filter = new EventEmitter<{ [key: string]: string }>();
+
   isTriggerCreateInvoice = false;
   isTriggerCreateFulfillment = false;
   isTriggerSubmitFulfillment = false;
@@ -53,6 +60,9 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   isFilterOpen = false;
 
   readonly EUrlSegment = EUrlSegment;
+
+  @ViewChild('filterForm')
+  filterForm!: JssFormComponent;
 
   readonly vm$ = combineLatest({
     isXs: this.breakpointObserver
@@ -106,9 +116,8 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
     this.triggerSelectId.next(id);
   }
 
-  onFilter(): void {
-    // TODO Open the filter and sort modal
-    // We pass a form
+  onFilterSubmit(): void {
+    this.filter.emit(this.filterForm.form.value);
   }
 
   onRemove(id: string | null): void {
@@ -132,10 +141,6 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   }
 
   onFilterAction(_event: Event) {
-    // TODO Open the filter and sort modal
-  }
-
-  onFilterSubmit() {
     // TODO Open the filter and sort modal
   }
 }

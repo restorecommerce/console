@@ -205,4 +205,8 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
   trackByFn(_: number, item: IProduct) {
     return item.id;
   }
+
+  onFilter(data: { [key: string]: string }) {
+    console.log('Dispatch read with filter', data);
+  }
 }
