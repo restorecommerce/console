@@ -20,7 +20,9 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { PAGINATION, ROUTER } from '@console-core/config';
 import {
+  IIoRestorecommerceResourcebaseFilter,
   IIoRestorecommerceResourcebaseReadRequest,
+  IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import {
@@ -207,11 +209,22 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
   }
 
   onFilter(data: { [key: string]: string }) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const filters: IIoRestorecommerceResourcebaseFilter[] = Object.entries(
+      data
+    ).map(([key, value]) => ({
+      field: `product.${key}`,
+      value: value,
+      operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+    }));
+
     const readRequestInput: IIoRestorecommerceResourcebaseReadRequest = {
-      filters: [],
+      filters: [
+        {
+          filters,
+        },
+      ],
     };
 
-    console.log('Dispatch read with filter', data);
+    this.productFacade.read(readRequestInput);
   }
 }
