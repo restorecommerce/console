@@ -55,6 +55,7 @@
     "ace-builds": "^1.36.2",
     "apollo-angular": "^5.0.0",
     "caniuse-lite": "^1.0.30001605",
+    "change-case": "^5.4.4",
     "dayjs": "^1.11.9",
     "fuse.js": "^6.6.2",
     "ngrx-store-localstorage": "^16.0.0",

@@ -207,6 +207,11 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
   }
 
   onFilter(data: { [key: string]: string }) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const readRequestInput: IIoRestorecommerceResourcebaseReadRequest = {
+      filters: [],
+    };
+
     console.log('Dispatch read with filter', data);
   }
 }

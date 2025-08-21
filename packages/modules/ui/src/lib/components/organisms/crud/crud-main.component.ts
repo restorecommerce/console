@@ -22,6 +22,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { EUrlSegment, ICrudFeature } from '@console-core/types';
+import { snakeCase } from '@console-modules/shared';
 
 @Component({
   selector: 'rc-crud-main',
@@ -117,7 +118,14 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   }
 
   onFilterSubmit(): void {
-    this.filter.emit(this.filterForm.form.value);
+    const formValue = this.filterForm.form.value;
+
+    const snakeCased = Object.keys(formValue).reduce((acc, key) => {
+      acc[snakeCase(key)] = formValue[key];
+      return acc;
+    }, {} as Record<string, string>);
+
+    this.filter.emit(snakeCased);
   }
 
   onRemove(id: string | null): void {
