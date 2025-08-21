@@ -16,6 +16,8 @@ import {
 } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 
+import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
+
 import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
@@ -23,6 +25,7 @@ import {
 } from '@console-core/graphql';
 import {
   CurrencyFacade,
+  ProductCategoryFacade,
   ProductFacade,
   RouterFacade,
   TaxFacade,
@@ -153,7 +156,7 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
     triggerRemove: this.triggerRemove$,
   });
 
-  filterSchema = buildProductListFilterSchema({});
+  filterSchema!: VCLFormFieldSchemaRoot;
 
   private readonly subscriptions = new SubSink();
 
@@ -161,6 +164,7 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
     private readonly currencyFacade: CurrencyFacade,
     private readonly productFacade: ProductFacade,
     private readonly routerFacade: RouterFacade,
+    private readonly categoryFacade: ProductCategoryFacade,
     private readonly taxFacade: TaxFacade
   ) {}
 
@@ -169,6 +173,14 @@ export class ProductTemplateComponent implements OnInit, OnDestroy {
     this.taxFacade.read({});
     this.subscriptions.sink = this.triggerSearch$.subscribe();
     this.subscriptions.sink = this.triggerPagination$.subscribe();
+
+    this.subscriptions.sink = this.categoryFacade.all$.subscribe(
+      (categories) => {
+        this.filterSchema = buildProductListFilterSchema({
+          categories,
+        });
+      }
+    );
   }
 
   ngOnDestroy(): void {
