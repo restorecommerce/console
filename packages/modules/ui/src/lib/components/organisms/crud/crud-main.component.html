@@ -57,8 +57,7 @@
             [cdkConnectedOverlayOpen]="isFilterOpen"
             (detach)="isFilterOpen = false"
           >
-            <vcl-panel>
-              <!-- <vcl-panel-title>Panel Title</vcl-panel-title> -->
+            <rc-card title="Filters">
               <vcl-jss-form
                 autocomplete="off"
                 ngDefaultControl
@@ -67,10 +66,7 @@
                 (formAction)="onFilterAction($event)"
                 (formSubmit)="onFilterSubmit()"
               />
-              <vcl-panel-footer>
-                <div class="row align-items-center py-1">Panel Footer</div>
-              </vcl-panel-footer>
-            </vcl-panel>
+            </rc-card>
           </ng-template>
         </button>
         }

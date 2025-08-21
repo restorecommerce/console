@@ -61,7 +61,6 @@ export class ProductEffects {
         >;
 
         const productActionPayload = productAction.payload || queryVariables;
-        console.log('productActionPayload', productActionPayload);
         return this.productService
           .read({
             ...productActionPayload,

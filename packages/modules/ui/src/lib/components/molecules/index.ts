@@ -1,3 +1,4 @@
+export * from './card/card.component';
 export * from './order-info/order-info.component';
 export * from './order-items/order-items.component';
 export * from './order-totals/order-totals.component';

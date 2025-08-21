@@ -1,0 +1,21 @@
+.rc-card {
+  &.panel {
+    margin-bottom: 0;
+  }
+
+  .panel-header,
+  .panel-footer {
+    background-color: transparent;
+    border-style: none !important;
+    border-width: 0;
+  }
+
+  .panel-body {
+    border-style: unset;
+    border-width: 0;
+  }
+
+  .panel-content {
+    padding-bottom: 0;
+  }
+}

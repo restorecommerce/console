@@ -28,6 +28,7 @@ import { snakeCase } from '@console-modules/shared';
   selector: 'rc-crud-main',
   templateUrl: './crud-main.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+
   standalone: false,
 })
 export class RcCrudMainComponent implements OnInit, OnDestroy {
