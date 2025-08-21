@@ -63,7 +63,7 @@
                 ngDefaultControl
                 #filterForm="vclJssForm"
                 [schema]="filterSchema"
-                (formAction)="onFilterAction($event)"
+                (formAction)="isFilterOpen = !isFilterOpen"
                 (formSubmit)="onFilterSubmit()"
               />
             </rc-card>
