@@ -149,44 +149,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     debounceTime(10)
   );
 
-  readonly showFulfillmentButton$ = combineLatest([
-    this.fulfillmentFacade.all$,
-    this.orderFacade.selectedId$,
-  ]).pipe(
-    map(([fulfillments, orderId]) => {
-      const orderFulfillment = fulfillments.find((fulfil) => {
-        const orderFulfillment = fulfil.references?.find(
-          (ref) =>
-            ref.instanceType === 'urn:restorecommerce:acs:model:order:Order' &&
-            ref.instanceId === orderId
-        );
-
-        return orderFulfillment;
-      });
-
-      return Boolean(orderFulfillment) === false;
-    })
-  );
-
-  readonly showInvoiceButton$ = combineLatest([
-    this.invoiceFacade.all$,
-    this.orderFacade.selectedId$,
-  ]).pipe(
-    map(([invoices, orderId]) => {
-      const invoiceFulfillment = invoices.find((invoice) => {
-        const invoiceFulfillment = invoice.references?.find(
-          (ref) =>
-            ref.instanceType === 'urn:restorecommerce:acs:model:order:Order' &&
-            ref.instanceId === orderId
-        );
-
-        return invoiceFulfillment;
-      });
-
-      return Boolean(invoiceFulfillment) === false;
-    })
-  );
-
   readonly vm$ = combineLatest({
     dataList: this.orderFacade.all$,
     selectedOrderId: this.orderFacade.selectedId$,
@@ -198,8 +160,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     triggerCreateInvoice: this.triggerCreateInvoice$,
     triggerCreateFulfillment: this.triggerCreateFulfillment$,
     readFulfillmentOnViewSegment: this.readFulfillmentOnViewSegment$,
-    showFulfillmentButton: this.showFulfillmentButton$,
-    showInvoiceButton: this.showInvoiceButton$,
   });
 
   private readonly subscriptions = new SubSink();

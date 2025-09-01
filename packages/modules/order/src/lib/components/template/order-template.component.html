@@ -37,30 +37,6 @@
     }
   </ng-container>
 
-  <ng-container rc-crud-actions>
-    @if (vm.showInvoiceButton) {
-    <button
-      (click)="onCreateInvoice(vm.selectedOrderId)"
-      vcl-button
-      rc-append
-      class="square half-transparent button"
-      title="Create Invoice"
-    >
-      <vcl-icon icon="mdi:invoice-plus-outline" />
-    </button>
-    } @if (vm.showFulfillmentButton) {
-    <button
-      (click)="onCreateFulfillment(vm.selectedOrderId)"
-      vcl-button
-      rc-append
-      class="square half-transparent button"
-      title="Create Fulfillment"
-    >
-      <vcl-icon icon="mdi:send-outline" />
-    </button>
-    }
-  </ng-container>
-
   <ng-container rc-crud-router-outlet>
     <router-outlet />
   </ng-container>
