@@ -26,5 +26,6 @@ export interface IOrder
   user: IoRestorecommerceUserUser;
   customerOrderNr: string;
   orderState: IoRestorecommerceOrderOrderState;
+  thumbnailUrl?: string;
   meta: IMeta;
 }
