@@ -50,9 +50,7 @@ export class OrderItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // This assumes that the customer is always private,
-    // We have to account for commercial customer too...
-    this.customer = this.order.customer?.private?.user || this.order.user;
+    this.customer = this.order.customer;
 
     // this.shop = this.order.shop;
     this.numberOfItems = this.order.items?.length || 0;

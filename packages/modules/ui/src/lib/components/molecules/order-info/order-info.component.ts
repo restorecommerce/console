@@ -3,14 +3,10 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 
-import {
-  IoRestorecommerceOrderOrder,
-  IoRestorecommerceUserUser,
-} from '@console-core/graphql';
+import { IOrder } from '@console-core/types';
 
 @Component({
   selector: 'rc-order-info',
@@ -18,16 +14,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcOrderInfoComponent implements OnInit {
+export class RcOrderInfoComponent {
   @Input({ required: true })
-  order!: IoRestorecommerceOrderOrder;
+  order!: IOrder;
 
   @Output() openEditOrderInfoModal = new EventEmitter<void>();
-
-  customer?: IoRestorecommerceUserUser;
-
-  ngOnInit(): void {
-    this.customer =
-      this.order.customer?.private?.user || this.order.user || undefined;
-  }
 }

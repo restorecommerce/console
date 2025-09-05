@@ -48,31 +48,7 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
       phone
     }
     address {
-      id
-      street
-      buildingNumber
-      locality
-      region
-      businessAddress {
-        name
-      }
-      addressAddition {
-        field1
-        field2
-      }
-      countryId
-      country {
-        id
-        name
-        countryCode
-      }
-      postcode
-      residentialAddress {
-        title
-        givenName
-        midName
-        familyName
-      }
+      ...AddressFragment
     }
   }
   billingAddress {
@@ -83,31 +59,7 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
       phone
     }
     address {
-      id
-      street
-      buildingNumber
-      locality
-      region
-      businessAddress {
-        name
-      }
-      addressAddition {
-        field1
-        field2
-      }
-      countryId
-      country {
-        id
-        name
-        countryCode
-      }
-      postcode
-      residentialAddress {
-        title
-        givenName
-        midName
-        familyName
-      }
+      ...AddressFragment
     }
   }
   totalAmounts {

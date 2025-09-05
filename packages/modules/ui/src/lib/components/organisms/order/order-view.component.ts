@@ -41,7 +41,5 @@ export class RcOrderViewComponent implements OnInit {
   ngOnInit(): void {
     this.product =
       this.order.items?.[0]?.product?.product?.physical?.variants?.[0];
-
-    this.customer = this.order.customer?.private?.user || this.order.user;
   }
 }
