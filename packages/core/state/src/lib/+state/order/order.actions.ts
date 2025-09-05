@@ -105,3 +105,18 @@ export const createFulfilment = createAction(
   '[ORDER] Create fulfilment',
   props<{ payload: string }>()
 );
+
+export const orderChangeStatusRequest = createAction(
+  '[ORDER] Change status request',
+  props<{ payload: IIoRestorecommerceOrderOrderList }>()
+);
+
+export const orderChangeStatusSuccess = createAction(
+  '[ORDER] Change status success',
+  props<{ payload: IOrder }>()
+);
+
+export const orderChangeStatusFail = createAction(
+  '[ORDER] Change status fail',
+  props<{ error: string }>()
+);

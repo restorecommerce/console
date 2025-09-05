@@ -27,23 +27,26 @@
       <vcl-form-control-group>
         <vcl-label>Change status</vcl-label>
         <vcl-select>
-          <vcl-select-list>
-            <vcl-select-list-item value="Pending">
+          <vcl-select-list
+            (valueChange)="onChangeOrderStatus($event, vm.selectedOrder)"
+            [value]="vm.selectedOrder?.orderState"
+          >
+            <vcl-select-list-item [value]="EOrderStatus.Pending">
               Pending
             </vcl-select-list-item>
-            <vcl-select-list-item value="Submitted">
+            <vcl-select-list-item [value]="EOrderStatus.Submitted">
               Submitted
             </vcl-select-list-item>
-            <vcl-select-list-item value="Completed">
+            <vcl-select-list-item [value]="EOrderStatus.Completed">
               Completed
             </vcl-select-list-item>
-            <vcl-select-list-item value="Cancelled">
+            <vcl-select-list-item [value]="EOrderStatus.Cancelled">
               Cancelled
             </vcl-select-list-item>
-            <vcl-select-list-item value="Widthdrawn">
+            <vcl-select-list-item [value]="EOrderStatus.Withdrawn">
               Widthdrawn
             </vcl-select-list-item>
-            <vcl-select-list-item value="Invalid">
+            <vcl-select-list-item [value]="EOrderStatus.Invalid">
               Invalid
             </vcl-select-list-item>
           </vcl-select-list>

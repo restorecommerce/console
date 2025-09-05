@@ -25,7 +25,12 @@ import {
   OrderFacade,
   RouterFacade,
 } from '@console-core/state';
-import { ICrudFeature, EUrlSegment, IOrder } from '@console-core/types';
+import {
+  ICrudFeature,
+  EUrlSegment,
+  EOrderStatus,
+  IOrder,
+} from '@console-core/types';
 
 @Component({
   selector: 'app-module-order-template',
@@ -36,6 +41,7 @@ import { ICrudFeature, EUrlSegment, IOrder } from '@console-core/types';
 export class OrderTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter = ROUTER.pages.main.children.orders.children;
+  EOrderStatus = EOrderStatus;
 
   feature: Readonly<ICrudFeature> = {
     name: {
@@ -183,20 +189,18 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     this.triggerSearch.next(value);
   }
 
-  trackByFn(_: number, item: IOrder) {
-    return item.id;
-  }
-
-  onCreateInvoice(id: string | null): void {
-    this.triggerCreateInvoice?.next(id);
-  }
-
-  onCreateFulfillment(_: string | null): void {
-    // this.triggerCreateFulfillment?.next(id);
-  }
-
   onItemSelected(itemId: string) {
     this.triggerSelectId.next(itemId);
     this.routerFacade.navigate(this.feature.links.view(itemId));
+  }
+
+  onChangeOrderStatus(status: EOrderStatus, order: IOrder | null) {
+    if (!order) return;
+
+    const modifiedOrder: IOrder = { ...order, orderState: status };
+
+    if (status && status !== order.orderState) {
+      this.orderFacade.changeStatus(modifiedOrder);
+    }
   }
 }

@@ -208,6 +208,46 @@ export class OrderEffects {
     { dispatch: false }
   );
 
+  orderStatusChangeRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(orderActions.orderChangeStatusRequest),
+      switchMap(({ payload }) =>
+        this.orderService.mutate(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.ordering?.order?.Mutate?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.ordering?.order?.Mutate?.details?.items?.pop()
+                ?.payload as IOrder;
+            return orderActions.orderChangeStatusSuccess({ payload });
+          }),
+          catchError((error: Error) =>
+            of(orderActions.orderUpdateFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  orderStatusChangeSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(orderActions.orderChangeStatusSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'order status updated',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   orderRemoveRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(orderActions.orderRemoveRequest),
@@ -308,7 +348,8 @@ export class OrderEffects {
           orderActions.orderCreateFail,
           orderActions.orderUpdateFail,
           orderActions.orderRemoveFail,
-          orderActions.orderCreateInvoiceFail
+          orderActions.orderCreateInvoiceFail,
+          orderActions.orderChangeStatusFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({
