@@ -22,6 +22,36 @@
     }
   </ng-container>
 
+  <ng-container rc-crud-actions>
+    <div class="flex">
+      <vcl-form-control-group>
+        <vcl-label>Change status</vcl-label>
+        <vcl-select>
+          <vcl-select-list>
+            <vcl-select-list-item value="Pending">
+              Pending
+            </vcl-select-list-item>
+            <vcl-select-list-item value="Submitted">
+              Submitted
+            </vcl-select-list-item>
+            <vcl-select-list-item value="Completed">
+              Completed
+            </vcl-select-list-item>
+            <vcl-select-list-item value="Cancelled">
+              Cancelled
+            </vcl-select-list-item>
+            <vcl-select-list-item value="Widthdrawn">
+              Widthdrawn
+            </vcl-select-list-item>
+            <vcl-select-list-item value="Invalid">
+              Invalid
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+      </vcl-form-control-group>
+    </div>
+  </ng-container>
+
   <ng-container rc-crud-data-list>
     @if (vm.dataList.length > 0) {
     <rc-data-list
