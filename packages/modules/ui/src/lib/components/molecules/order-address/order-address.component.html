@@ -90,13 +90,13 @@
       <div class="flex text">Full name:</div>
       <div class="flex text align-right rc-lv-label">
         {{
-          rcOrderAddress?.address?.residentialAddress?.title +
+          (rcOrderAddress?.address?.residentialAddress?.title || '') +
             ' ' +
-            rcOrderAddress?.address?.residentialAddress?.givenName +
+            (rcOrderAddress?.address?.residentialAddress?.givenName || '') +
             ' ' +
             (rcOrderAddress?.address?.residentialAddress?.midName || '') +
             ' ' +
-            rcOrderAddress?.address?.residentialAddress?.familyName
+            (rcOrderAddress?.address?.residentialAddress?.familyName || '')
         }}
       </div>
     </li>

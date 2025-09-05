@@ -8,7 +8,10 @@ import {
   Output,
 } from '@angular/core';
 
-import { IoRestorecommerceOrderItem } from '@console-core/graphql';
+import {
+  IoRestorecommerceOrderItem,
+  IoRestorecommerceProductIndividualProductVariant,
+} from '@console-core/graphql';
 import { IProduct } from '@console-core/types';
 
 @Component({
@@ -30,6 +33,8 @@ export class RcOrderItemComponent implements OnInit {
   @Input({ required: true })
   item!: IoRestorecommerceOrderItem;
 
+  variant!: IoRestorecommerceProductIndividualProductVariant;
+
   @Output() openEditOrderItemModal =
     new EventEmitter<IoRestorecommerceOrderItem>();
 
@@ -40,5 +45,8 @@ export class RcOrderItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = this.item.product as IProduct;
+    this.variant = this.product.product.physical?.variants?.find((variant) => {
+      return variant.id === this.item.variantId;
+    }) as IoRestorecommerceProductIndividualProductVariant;
   }
 }

@@ -15,24 +15,21 @@
     </button>
   </div>
   <ul class="data-list-body no-border">
+    @if(shop.name) {
     <li class="row data-list-item justify-between">
       <div class="flex text">Name:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="shop.name; else naTemplate">{{
-          shop.name
-        }}</ng-container>
+        {{ shop.name }}
       </div>
     </li>
 
+    } @if(shop.description) {
     <li class="row data-list-item justify-between">
       <div class="flex text">Description:</div>
       <div class="flex text align-right rc-lv-label">
-        <ng-container *ngIf="shop.description; else naTemplate">{{
-          shop.description
-        }}</ng-container>
+        {{ shop.description }}
       </div>
     </li>
+    }
   </ul>
 </div>
-
-<ng-template #naTemplate>N/A</ng-template>
