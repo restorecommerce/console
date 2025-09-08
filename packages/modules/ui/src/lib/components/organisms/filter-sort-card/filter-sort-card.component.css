@@ -37,12 +37,7 @@
   flex-direction: column;
   gap: 10px;
 }
-.row {
-  display: flex;
-  gap: 12px;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
+
 .item {
   align-items: flex-start;
 }

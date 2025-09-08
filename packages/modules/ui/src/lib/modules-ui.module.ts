@@ -34,6 +34,7 @@ import {
   VCLBadgeModule,
   VCLGalleryModule,
   VCLFileInputModule,
+  VCLRadioButtonModule,
 } from '@vcl/ng-vcl';
 
 import { ModulesSharedModule } from '@console-modules/shared';
@@ -167,6 +168,7 @@ const modules = [
   VCLFileInputModule,
   ModulesSharedModule,
   OverlayModule,
+  VCLRadioButtonModule,
 ];
 
 const atoms = [
