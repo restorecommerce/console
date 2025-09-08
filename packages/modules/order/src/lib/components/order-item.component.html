@@ -1,24 +1,19 @@
 <div class="row align-items-center px-2 py-2 h-100p">
   <div>
-    @if (productVariantImage$ | async; as productImages) {
     <img
-      [alt]="product?.name || 'Product Image'"
-      [src]="BUCKET_DOMAIN + productImages[0].url"
+      [alt]="order.items?.[0]?.id"
+      [src]="BUCKET_DOMAIN + (order | orderItemImageThumb)"
       sizes="(max-width: 60px) 60px, 60px"
       width="60"
       loading="lazy"
       ngOptimizedImage
       priority="auto"
     />
-    }
   </div>
   <div class="flex row align-items-center">
     <div class="flex">
       <p class="m-0 pl-2">
-        <!-- {{ customer?.firstName || 'Customer FN' }}
-      {{ customer?.lastName || 'Customer LN' }} -->
-        <!-- TODO Fix this please.... -->
-        Unauthenticated user
+        {{ customer?.name || '' }}
       </p>
       <div class="row align-items-center">
         <div class="px-2">
@@ -28,7 +23,9 @@
           >
         </div>
 
-        <span class="m-0">{{ (shop$ | async)?.name }}</span>
+        <span class="m-0"
+          >From <b>{{ (shop$ | async)?.name }}</b> shop</span
+        >
       </div>
     </div>
     <div class="align-right secondary-text-color">

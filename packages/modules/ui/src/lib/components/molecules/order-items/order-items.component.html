@@ -15,7 +15,7 @@
     </button>
   </div>
 
-  @for (item of orderItemsWithProduct$ | async; track item.id) {
+  @for (item of items; track item.id) {
   <rc-order-item
     [item]="item"
     (openEditOrderItemModal)="openEditOrderItemModal.emit($event)"

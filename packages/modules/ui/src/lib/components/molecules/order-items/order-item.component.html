@@ -1,5 +1,5 @@
 <div class="row justify-content-between align-items-center">
-  <h4>{{ item.product?.product?.name || 'Product name' }}</h4>
+  <h4>{{ item.product?.product?.name }}</h4>
 
   <div #target>
     <button
@@ -36,8 +36,6 @@
         : (item.unitPrice?.currencyId ? item.unitPrice?.currencyId + '' : 'EUR')
   }}
 </p>
-
-<span>URL: {{ product | productImage }}</span>
 
 <ng-template
   vclPopover

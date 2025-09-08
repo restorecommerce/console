@@ -3,7 +3,6 @@ import {
   IoRestorecommerceOrderOrder,
   IoRestorecommerceUserUser,
   IoRestorecommerceShopShop,
-  IoRestorecommerceCustomerCustomer,
 } from '@console-core/graphql';
 
 import { IMeta } from './meta';
@@ -12,19 +11,23 @@ export interface IOrder
   extends Omit<
     IoRestorecommerceOrderOrder,
     | 'id'
-    | 'customer'
     | 'shop'
     | 'user'
     | 'customerOrderNr'
     | 'orderState'
     | 'meta'
+    | 'customer'
     | '__typename'
   > {
   id: string;
-  customer: IoRestorecommerceCustomerCustomer;
   shop: IoRestorecommerceShopShop;
   user: IoRestorecommerceUserUser;
   customerOrderNr: string;
   orderState: IoRestorecommerceOrderOrderState;
+  thumbnailUrl?: string;
+  customer: {
+    id: string;
+    name: string;
+  };
   meta: IMeta;
 }

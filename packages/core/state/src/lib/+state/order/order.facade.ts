@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 import {
   IIoRestorecommerceOrderOrderList,
   IIoRestorecommerceResourcebaseReadRequest,
+  ModeType,
 } from '@console-core/graphql';
+import { IOrder } from '@console-core/types';
 
 import * as orderActions from './order.actions';
 import * as orderSelectors from './order.selectors';
@@ -51,6 +53,22 @@ export class OrderFacade {
         payload,
       })
     );
+
+  changeStatus = (order: IOrder) => {
+    this.store.dispatch(
+      orderActions.orderChangeStatusRequest({
+        payload: {
+          items: [
+            {
+              id: order.id,
+              orderState: order.orderState,
+            },
+          ],
+          mode: ModeType.Update,
+        },
+      })
+    );
+  };
 
   constructor(private readonly store: Store) {}
 }
