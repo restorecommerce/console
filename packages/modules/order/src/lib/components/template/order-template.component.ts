@@ -32,6 +32,8 @@ import {
   IOrder,
 } from '@console-core/types';
 
+import { orderSchema } from '../../schemas/filter-sort.schemas';
+
 @Component({
   selector: 'app-module-order-template',
   templateUrl: './order-template.component.html',
@@ -42,6 +44,8 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter = ROUTER.pages.main.children.orders.children;
   EOrderStatus = EOrderStatus;
+
+  orderSchema = orderSchema;
 
   feature: Readonly<ICrudFeature> = {
     name: {

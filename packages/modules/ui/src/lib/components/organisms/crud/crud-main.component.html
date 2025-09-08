@@ -38,7 +38,7 @@
         >
           <vcl-icon icon="mdi:refresh" />
         </button>
-        } @if (hasFilter) {
+        } @if (schema) {
         <button
           vcl-button
           rc-append
@@ -57,16 +57,10 @@
             [cdkConnectedOverlayOpen]="isFilterOpen"
             (detach)="isFilterOpen = false"
           >
-            <rc-card title="Filters">
-              <vcl-jss-form
-                autocomplete="off"
-                ngDefaultControl
-                #filterForm="vclJssForm"
-                [schema]="filterSchema"
-                (formAction)="isFilterOpen = !isFilterOpen"
-                (formSubmit)="onFilterSubmit()"
-              />
-            </rc-card>
+            <rc-filter-sort-card
+              [schema]="schema"
+              [initial]="currentQueryState"
+            />
           </ng-template>
         </button>
         }

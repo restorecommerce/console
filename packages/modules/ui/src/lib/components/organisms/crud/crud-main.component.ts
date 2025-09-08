@@ -18,10 +18,14 @@ import {
   AlertType,
   JssFormComponent,
   VCLBreakpoints,
-  VCLFormFieldSchemaRoot,
 } from '@vcl/ng-vcl';
 
-import { EUrlSegment, ICrudFeature } from '@console-core/types';
+import {
+  EUrlSegment,
+  FilterSortState,
+  ICrudFeature,
+  ResourceSchema,
+} from '@console-core/types';
 import { snakeCase } from '@console-modules/shared';
 
 @Component({
@@ -50,7 +54,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() isMeta = true;
   @Input() isNested = false;
   @Input() hasFilter = true;
-  @Input() filterSchema: VCLFormFieldSchemaRoot | undefined;
+  @Input() schema: ResourceSchema | null = null;
 
   @Output() filter = new EventEmitter<{ [key: string]: string }>();
 
@@ -60,6 +64,8 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
 
   showMeta = false;
   isFilterOpen = false;
+
+  currentQueryState: Partial<FilterSortState> = {};
 
   readonly EUrlSegment = EUrlSegment;
 

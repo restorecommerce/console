@@ -1,0 +1,137 @@
+/* filter-sort-card.component.css */
+.fs-card {
+  width: min(560px, 92vw);
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.fs-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+.fs-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.fs-body {
+  padding: 12px 16px;
+}
+.fs-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.full {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.item {
+  align-items: flex-start;
+}
+.lbl {
+  font-size: 12px;
+  color: #475569;
+}
+.muted {
+  color: #64748b;
+  font-size: 12px;
+  align-self: center;
+}
+.third {
+  flex: 1 1 240px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.half {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.twoThird {
+  flex: 2 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.oneThird {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+.between {
+  display: flex;
+  gap: 8px;
+}
+.sp {
+  margin: 8px 0 4px;
+}
+
+input[type='text'],
+input[type='date'],
+input[type='number'],
+select {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+}
+input:focus,
+select:focus {
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.25);
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  cursor: pointer;
+}
+.btn.primary {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+.btn.ghost {
+  background: #fff;
+}
+.icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+.icon-btn.danger {
+  color: #ef4444;
+}
+.sort-dir label {
+  font-size: 12px;
+  color: #334155;
+}

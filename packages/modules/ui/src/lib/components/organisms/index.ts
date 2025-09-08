@@ -36,3 +36,4 @@ export * from './toolbar/toolbar.component';
 export * from './toggle-drawer.component';
 export * from './json-editor/json-editor.component';
 export * from './data-list-fulfilment/data-list-fulfilment.component';
+export * from './filter-sort-card/filter-sort-card.component';

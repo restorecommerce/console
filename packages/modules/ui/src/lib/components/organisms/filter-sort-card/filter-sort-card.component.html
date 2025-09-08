@@ -1,0 +1,297 @@
+<!-- filter-sort-card.component.html -->
+<div
+  class="fs-card"
+  role="dialog"
+  aria-label="Filter and sort"
+>
+  <header class="fs-header">
+    <h3>Filter &amp; Sort — {{ schema.title }}</h3>
+  </header>
+
+  <section class="fs-body">
+    <!-- Quick search -->
+    <label class="full">
+      <span class="lbl">Search {{ schema.title }}</span>
+      <input
+        type="text"
+        [value]="q || ''"
+        (input)="q = ($any($event.target).value || '').trim() || null"
+      />
+    </label>
+
+    <!-- Block operator -->
+    <div class="row">
+      <span class="muted">Match rows using:</span>
+      <div class="toggle">
+        <label
+          ><input
+            type="radio"
+            name="blockOp"
+            value="and"
+            [(ngModel)]="blockOperator"
+          />
+          AND</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="blockOp"
+            value="or"
+            [(ngModel)]="blockOperator"
+          />
+          OR</label
+        >
+      </div>
+    </div>
+
+    <!-- Dynamic rows -->
+    <div class="rows">
+      <div
+        class="row item"
+        *ngFor="let r of rows; let i = index"
+      >
+        <!-- Field -->
+        <label class="third">
+          <span class="lbl">Field</span>
+          <select [(ngModel)]="r.fieldPath">
+            <option [ngValue]="null">Select a field…</option>
+            <option
+              *ngFor="let f of fields"
+              [ngValue]="f.path"
+            >
+              {{ f.label }}
+            </option>
+          </select>
+        </label>
+
+        <!-- Operation -->
+        <label
+          class="third"
+          *ngIf="r.fieldPath"
+        >
+          <span class="lbl">Operation</span>
+          <select [(ngModel)]="r.op">
+            <option [ngValue]="null">Select…</option>
+            <option
+              *ngFor="let op of fieldOps(r.fieldPath)"
+              [ngValue]="op"
+            >
+              {{ op }}
+            </option>
+          </select>
+        </label>
+
+        <!-- Value (switch by type/op) -->
+        <ng-container *ngIf="r.fieldPath && r.op as op">
+          <ng-container [ngSwitch]="op">
+            <!-- between (number/date) -->
+            <div
+              class="third between"
+              *ngSwitchCase="'between'"
+            >
+              <ng-container [ngSwitch]="fieldType(r.fieldPath)">
+                <ng-container *ngSwitchCase="'date'">
+                  <label class="half">
+                    <span class="lbl">From</span>
+                    <input
+                      type="date"
+                      [value]="r.value?.from || ''"
+                    />
+                  </label>
+                  <label class="half">
+                    <span class="lbl">To</span>
+                    <input
+                      type="date"
+                      [value]="r.value?.to || ''"
+                    />
+                  </label>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <label class="half">
+                    <span class="lbl">Min</span>
+                    <input
+                      type="number"
+                      [value]="r.value?.min ?? ''"
+                    />
+                  </label>
+                  <label class="half">
+                    <span class="lbl">Max</span>
+                    <input
+                      type="number"
+                      [value]="r.value?.max ?? ''"
+                    />
+                  </label>
+                </ng-container>
+              </ng-container>
+            </div>
+
+            <!-- in (enum/string/id) as comma list -->
+            <label
+              class="third"
+              *ngSwitchCase="'in'"
+            >
+              <span class="lbl">Values</span>
+              <ng-container [ngSwitch]="fieldType(r.fieldPath)">
+                <ng-container *ngSwitchCase="'enum'">
+                  <select multiple>
+                    <option
+                      *ngFor="let o of fieldOptions(r.fieldPath)"
+                      [value]="o.value"
+                    >
+                      {{ o.label }}
+                    </option>
+                  </select>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <input
+                    type="text"
+                    placeholder="a, b, c"
+                  />
+                </ng-container>
+              </ng-container>
+            </label>
+
+            <!-- boolean -->
+            <div
+              class="third"
+              *ngSwitchCase="'isTrue'"
+            >
+              <span class="lbl">&nbsp;</span><em>Value implicit: true</em>
+            </div>
+            <div
+              class="third"
+              *ngSwitchCase="'isFalse'"
+            >
+              <span class="lbl">&nbsp;</span><em>Value implicit: false</em>
+            </div>
+            <div
+              class="third"
+              *ngSwitchCase="'isNull'"
+            >
+              <span class="lbl">&nbsp;</span><em>Value implicit: null</em>
+            </div>
+            <div
+              class="third"
+              *ngSwitchCase="'notNull'"
+            >
+              <span class="lbl">&nbsp;</span><em>Value implicit: not null</em>
+            </div>
+
+            <!-- default single value -->
+            <label
+              class="third"
+              *ngSwitchDefault
+            >
+              <span class="lbl">Value</span>
+              <ng-container [ngSwitch]="fieldType(r.fieldPath)">
+                <input
+                  *ngSwitchCase="'number'"
+                  type="number"
+                  [(ngModel)]="r.value"
+                />
+                <input
+                  *ngSwitchCase="'date'"
+                  type="date"
+                  [(ngModel)]="r.value"
+                />
+                <select
+                  *ngSwitchCase="'enum'"
+                  [(ngModel)]="r.value"
+                >
+                  <option [ngValue]="null">Any</option>
+                  <option
+                    *ngFor="let o of fieldOptions(r.fieldPath)"
+                    [ngValue]="o.value"
+                  >
+                    {{ o.label }}
+                  </option>
+                </select>
+                <ng-container *ngSwitchDefault>
+                  <input
+                    type="text"
+                    [(ngModel)]="r.value"
+                  />
+                </ng-container>
+              </ng-container>
+            </label>
+          </ng-container>
+        </ng-container>
+
+        <button
+          type="button"
+          class="icon-btn danger"
+          (click)="removeRow(i)"
+          aria-label="Remove row"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <button
+        type="button"
+        class="btn ghost"
+        (click)="addRow()"
+      >
+        + Add Row
+      </button>
+    </div>
+
+    <hr class="sp" />
+
+    <!-- Sort -->
+    <div class="row">
+      <label class="twoThird">
+        <span class="lbl">Sort by</span>
+        <select [(ngModel)]="sort.by">
+          <option [ngValue]="null">None</option>
+          <option
+            *ngFor="let s of sortKeys"
+            [ngValue]="s.key"
+          >
+            {{ s.label }}
+          </option>
+        </select>
+      </label>
+
+      <div class="oneThird sort-dir">
+        <label
+          ><input
+            type="radio"
+            name="sortdir"
+            value="asc"
+            [(ngModel)]="sort.dir"
+          />
+          ↑ Asc</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="sortdir"
+            value="desc"
+            [(ngModel)]="sort.dir"
+          />
+          ↓ Desc</label
+        >
+      </div>
+    </div>
+  </section>
+
+  <footer class="fs-actions">
+    <button
+      type="button"
+      class="btn ghost"
+      (click)="clearAll()"
+    >
+      Reset
+    </button>
+    <button
+      type="button"
+      class="btn primary"
+      (click)="submit()"
+    >
+      Apply
+    </button>
+  </footer>
+</div>
