@@ -11,7 +11,7 @@
   <section class="fs-body">
     <!-- Block operator -->
     <div class="row align-items-center">
-      <span class="muted">Match rows using:</span>
+      <span class="mb-2">Match rows using:</span>
       <vcl-radio-group [(value)]="blockOperator">
         <vcl-radio-button value="and"></vcl-radio-button> AND
         <vcl-radio-button value="or"></vcl-radio-button> OR
@@ -184,7 +184,7 @@
         <button
           vcl-button
           square
-          class="transparent outline"
+          class="transparent"
           title="Remove row"
           (click)="removeRow(i)"
         >
@@ -193,13 +193,13 @@
       </div>
     </div>
 
-    <div class="row mt-2">
+    <div>
       <button
         vcl-button
-        class="transparent outline"
+        class="transparent"
         (click)="addRow()"
       >
-        + Add Row
+        <vcl-icon icon="vcl:add"></vcl-icon>
       </button>
     </div>
 
@@ -232,20 +232,22 @@
     </div>
   </section>
 
-  <footer class="fs-actions">
+  <div class="loose-button-group p-3 row justify-content-end">
     <button
+      vcl-button
+      class="transparent"
       type="button"
-      class="btn ghost"
       (click)="clearAll()"
     >
       Reset
     </button>
     <button
+      vcl-button
       type="button"
-      class="btn primary"
       (click)="submit()"
+      class="emphasized"
     >
       Apply
     </button>
-  </footer>
+  </div>
 </div>

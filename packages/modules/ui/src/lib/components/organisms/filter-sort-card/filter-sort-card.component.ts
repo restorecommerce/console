@@ -33,6 +33,7 @@ export class FilterSortCardComponent implements OnInit {
   get fields(): FieldConfig[] {
     return this.schema.fields;
   }
+
   get sortKeys(): SortKey[] {
     return this.schema.sortKeys;
   }
@@ -57,6 +58,7 @@ export class FilterSortCardComponent implements OnInit {
   addRow() {
     this.rows.push({ fieldPath: null, op: null, value: null });
   }
+
   removeRow(i: number) {
     this.rows.splice(i, 1);
     if (this.rows.length === 0) this.addRow();
@@ -201,10 +203,12 @@ export class FilterSortCardComponent implements OnInit {
     const f = this.fields.find((x) => x.path === path);
     return (f?.ops ?? []) as unknown as string[];
   }
+
   fieldType(path: string | null): string | null {
     const f = this.fields.find((x) => x.path === path);
     return f?.type ?? null;
   }
+
   fieldOptions(path: string | null) {
     const f = this.fields.find((x) => x.path === path);
     return f?.options ?? [];
