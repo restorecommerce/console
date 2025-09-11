@@ -26,29 +26,29 @@
   <ng-container rc-crud-actions>
     <div class="flex">
       <vcl-form-control-group>
-        <vcl-label>Change status</vcl-label>
+        <vcl-label>Status</vcl-label>
         <vcl-select>
           <vcl-select-list
             (valueChange)="onChangeOrderStatus($event, vm.selectedOrder)"
             [value]="vm.selectedOrder?.orderState"
           >
             <vcl-select-list-item [value]="EOrderStatus.Pending">
-              Pending
+              {{ EOrderStatus.Pending }}
             </vcl-select-list-item>
             <vcl-select-list-item [value]="EOrderStatus.Submitted">
-              Submitted
+              {{ EOrderStatus.Submitted }}
             </vcl-select-list-item>
             <vcl-select-list-item [value]="EOrderStatus.Completed">
-              Completed
+              {{ EOrderStatus.Completed }}
             </vcl-select-list-item>
             <vcl-select-list-item [value]="EOrderStatus.Cancelled">
-              Cancelled
+              {{ EOrderStatus.Cancelled }}
             </vcl-select-list-item>
             <vcl-select-list-item [value]="EOrderStatus.Withdrawn">
-              Widthdrawn
+              {{ EOrderStatus.Withdrawn }}
             </vcl-select-list-item>
             <vcl-select-list-item [value]="EOrderStatus.Invalid">
-              Invalid
+              {{ EOrderStatus.Invalid }}
             </vcl-select-list-item>
           </vcl-select-list>
         </vcl-select>
