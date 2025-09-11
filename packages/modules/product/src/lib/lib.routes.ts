@@ -2,13 +2,15 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { ProductTemplateComponent } from './components/template/product-template.component';
+// Auto redirect to catalog!
+// import { ProductTemplateComponent } from './components/template/product-template.component';
 
 export const modulesProductRoutes: Route[] = [
   {
     path: '',
-    component: ProductTemplateComponent,
-    title: ROUTER.pages.main.children.products.title,
+    // component: ProductTemplateComponent,
+    // title: ROUTER.pages.main.children.products.title,
+    // redirectTo: ROUTER.pages.main.children.products.children.catalogs.path,
     children: [
       {
         path: ROUTER.pages.main.children.products.children.catalogs.path,
@@ -49,6 +51,11 @@ export const modulesProductRoutes: Route[] = [
             (m) => m.ModulesPriceGroupModule
           ),
         title: ROUTER.pages.main.children.products.children.priceGroups.title,
+      },
+      {
+        path: '',
+        redirectTo: ROUTER.pages.main.children.products.children.catalogs.path,
+        pathMatch: 'full',
       },
     ],
   },
