@@ -78,7 +78,6 @@ export interface FilterRow {
 }
 
 export interface FilterSortState {
-  q: string | null;
   rows: FilterRow[]; // dynamic filter rows
   blockOperator: 'and' | 'or'; // how to join rows inside a single block
   sort: SortState;

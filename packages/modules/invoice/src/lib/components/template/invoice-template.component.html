@@ -21,6 +21,27 @@
     </div>
   </ng-container>
 
+  <ng-container rc-crud-actions>
+    <div class="flex">
+      <vcl-form-control-group>
+        <vcl-label>Status</vcl-label>
+        <vcl-select>
+          <vcl-select-list
+            (valueChange)="onChangePaymentState($event, vm.selectedInvoice)"
+            [value]="vm.selectedInvoice?.paymentState"
+          >
+            <vcl-select-list-item [value]="EInvoicePaymentState.Payed">
+              {{ EInvoicePaymentState.Payed }}
+            </vcl-select-list-item>
+            <vcl-select-list-item [value]="EInvoicePaymentState.Unpayed">
+              {{ EInvoicePaymentState.Unpayed }}
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+      </vcl-form-control-group>
+    </div>
+  </ng-container>
+
   <ng-container rc-crud-data-list>
     <ng-container *ngIf="vm.dataList.length > 0; else templateNoRecords">
       <rc-data-list

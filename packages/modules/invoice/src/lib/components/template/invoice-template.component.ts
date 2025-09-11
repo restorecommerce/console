@@ -17,11 +17,15 @@ import { SubSink } from 'subsink';
 import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
-  IoRestorecommerceInvoicePaymentState,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import { InvoiceFacade, RouterFacade } from '@console-core/state';
-import { ICrudFeature, EUrlSegment, IInvoice } from '@console-core/types';
+import {
+  ICrudFeature,
+  EUrlSegment,
+  IInvoice,
+  EInvoicePaymentState,
+} from '@console-core/types';
 
 @Component({
   selector: 'app-module-invoice-template',
@@ -33,7 +37,7 @@ export class InvoiceTemplateComponent implements OnInit, OnDestroy {
   ROUTER = ROUTER;
   featureRouter = ROUTER.pages.main.children.invoices.children;
 
-  EInvoicePaymentState = IoRestorecommerceInvoicePaymentState;
+  EInvoicePaymentState = EInvoicePaymentState;
 
   feature: Readonly<ICrudFeature> = {
     name: {
@@ -138,7 +142,13 @@ export class InvoiceTemplateComponent implements OnInit, OnDestroy {
     this.triggerSearch.next(value);
   }
 
-  trackByFn(_: number, item: IInvoice) {
-    return item.id;
+  onChangePaymentState(status: EInvoicePaymentState, invoice: IInvoice | null) {
+    if (!invoice) return;
+
+    const modifiedInvoice: IInvoice = { ...invoice, paymentState: status };
+
+    if (status && status !== invoice.paymentState) {
+      this.invoiceFacade.changePaymentState(modifiedInvoice);
+    }
   }
 }

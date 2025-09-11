@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 import {
   IIoRestorecommerceInvoiceInvoiceList,
   IIoRestorecommerceResourcebaseReadRequest,
+  ModeType,
 } from '@console-core/graphql';
+import { IInvoice } from '@console-core/types';
 
 import * as invoiceActions from './invoice.actions';
 import * as invoiceSelectors from './invoice.selectors';
@@ -40,6 +42,22 @@ export class InvoiceFacade {
     this.store.dispatch(invoiceActions.invoiceUpdateRequest({ payload }));
   remove = (payload: { id: string }) =>
     this.store.dispatch(invoiceActions.invoiceRemoveRequest({ payload }));
+
+  changePaymentState = (invoice: IInvoice) => {
+    this.store.dispatch(
+      invoiceActions.invoiceChangeStateRequest({
+        payload: {
+          items: [
+            {
+              id: invoice.id,
+              paymentState: invoice.paymentState,
+            },
+          ],
+          mode: ModeType.Update,
+        },
+      })
+    );
+  };
 
   constructor(private readonly store: Store) {}
 }
