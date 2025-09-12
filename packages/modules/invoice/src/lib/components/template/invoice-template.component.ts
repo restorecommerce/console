@@ -143,7 +143,9 @@ export class InvoiceTemplateComponent implements OnInit, OnDestroy {
   }
 
   onChangePaymentState(status: EInvoicePaymentState, invoice: IInvoice | null) {
-    if (!invoice) return;
+    if (!invoice) {
+      return;
+    }
 
     const modifiedInvoice: IInvoice = { ...invoice, paymentState: status };
 
