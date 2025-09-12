@@ -46,6 +46,7 @@ import {
   RcScrollableContainerComponent,
   RcSubmitButtonComponent,
   RcPopoverActionComponent,
+  RCBadgeComponent,
 } from './components/atoms';
 import {
   RcOrderInfoComponent,
@@ -172,6 +173,7 @@ const modules = [
 ];
 
 const atoms = [
+  RCBadgeComponent,
   RcBusyIndicatorComponent,
   RcCopyrightComponent,
   RcNoRecordsComponent,

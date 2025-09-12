@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { IInvoice } from '@console-core/types';
+import { EInvoicePaymentState, IInvoice } from '@console-core/types';
 
 @Component({
   selector: 'app-module-invoice-view-details',
@@ -16,62 +16,78 @@ import { IInvoice } from '@console-core/types';
         </div>
       </vcl-data-list-item>
 
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-item-center">
-          <span>From date</span>
-          <span>{{ invoice.fromDate || 'N/A' }}</span>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-item-center">
-          <span>To date</span>
-          <span>{{ invoice.toDate || 'N/A' }}</span>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-item-center">
-          <span>Shop id</span>
-          <a href="">{{ invoice.shopId || 'N/A' }}</a>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-item-center">
-          <span>User id</span>
-          <a href="">{{ invoice.userId || 'N/A' }}</a>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="flex row justify-content-between align-item-center">
-          <span>Status</span>
-          <span>{{ invoice.withdrawn || invoice.sent || 'N/A' }}</span>
-        </div>
-      </vcl-data-list-item>
-
+      @if(invoice.paymentState) {
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
           <span>Payment</span>
-          <span>{{ invoice.paymentState || 'N/A' }}</span>
+          <rc-badge
+            [label]="invoice.paymentState"
+            [type]="
+              invoice.paymentState === EInvoicePaymentState.Payed
+                ? 'success'
+                : 'error'
+            "
+          />
         </div>
       </vcl-data-list-item>
 
+      } @if (invoice.withdrawn || invoice.sent) {
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
-          <span>Customer order number</span>
-          <span>{{ invoice.customerOrderNumber || 'N/A' }}</span>
+          <span>Status</span>
+          <span>{{ invoice.withdrawn || invoice.sent }}</span>
         </div>
       </vcl-data-list-item>
 
+      } @if (invoice.fromDate) {
+      <vcl-data-list-item>
+        <div class="flex row justify-content-between align-item-center">
+          <span>From date</span>
+          <span>{{ invoice.fromDate }}</span>
+        </div>
+      </vcl-data-list-item>
+
+      } @if (invoice.toDate) {
+      <vcl-data-list-item>
+        <div class="flex row justify-content-between align-item-center">
+          <span>To date</span>
+          <span>{{ invoice.toDate }}</span>
+        </div>
+      </vcl-data-list-item>
+
+      } @if (invoice.userId) {
+      <vcl-data-list-item>
+        <div class="flex row justify-content-between align-item-center">
+          <span>User id</span>
+          <a href="">{{ invoice.userId }}</a>
+        </div>
+      </vcl-data-list-item>
+
+      } @if (invoice.customerId ) {
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
           <span>Customer id</span>
-          <a href="">{{ invoice.customerId || 'N/A' }}</a>
+          <a href="">{{ invoice.customerId }}</a>
         </div>
       </vcl-data-list-item>
 
+      }@if (invoice.customerOrderNumber) {
+      <vcl-data-list-item>
+        <div class="flex row justify-content-between align-item-center">
+          <span>Customer order number</span>
+          <span>{{ invoice.customerOrderNumber }}</span>
+        </div>
+      </vcl-data-list-item>
+
+      } @if (invoice.shopId) {
+      <vcl-data-list-item>
+        <div class="flex row justify-content-between align-item-center">
+          <span>Shop id</span>
+          <a href="">{{ invoice.shopId }}</a>
+        </div>
+      </vcl-data-list-item>
+
+      }
       <div class="my-2 rc-lv-l-heading">Total</div>
       @for (total of invoice.totalAmounts; track $index) {
       <vcl-data-list-item>
@@ -89,4 +105,10 @@ import { IInvoice } from '@console-core/types';
 })
 export class InvoiceViewDetailsComponent {
   @Input({ required: true }) invoice!: IInvoice;
+
+  EInvoicePaymentState = EInvoicePaymentState;
+
+  cin() {
+    this.EInvoicePaymentState.Unpayed;
+  }
 }

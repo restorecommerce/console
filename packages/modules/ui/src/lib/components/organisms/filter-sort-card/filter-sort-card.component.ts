@@ -25,7 +25,6 @@ export class FilterSortCardComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() reset = new EventEmitter<void>();
 
-  q: string | null = null;
   blockOperator: 'and' | 'or' = 'and';
   rows: FilterRow[] = [];
   sort: { by: string | null; dir: 'asc' | 'desc' } = { by: null, dir: 'desc' };
@@ -40,7 +39,6 @@ export class FilterSortCardComponent implements OnInit {
 
   ngOnInit(): void {
     const s = this.initial ?? {};
-    this.q = s.q ?? null;
     this.blockOperator = (s.blockOperator as any) ?? 'and';
     this.sort = {
       by:
@@ -65,7 +63,6 @@ export class FilterSortCardComponent implements OnInit {
   }
 
   clearAll() {
-    this.q = null;
     this.blockOperator = 'and';
     this.rows = [{ fieldPath: null, op: null, value: null }];
     this.sort = {
@@ -77,11 +74,11 @@ export class FilterSortCardComponent implements OnInit {
 
   submit() {
     const state: FilterSortState = {
-      q: this.q,
       rows: this.rows,
       blockOperator: this.blockOperator,
       sort: this.sort,
     };
+    state;
     const filtersMapped = this.mapToBackendFilters(state);
     this.apply.emit({ ...state, filtersMapped });
   }
@@ -89,19 +86,6 @@ export class FilterSortCardComponent implements OnInit {
   // ========== Mapping ==========
   private mapToBackendFilters(v: FilterSortState): BackendFilter {
     const blocks: any[] = [];
-
-    // quick search OR block
-    const q = (v.q ?? '').trim();
-    if (q && this.schema.quickSearchPaths?.length) {
-      blocks.push({
-        operator: 'or',
-        filters: this.schema.quickSearchPaths.map((p) => ({
-          field: this.mapField(p),
-          operation: 'contains',
-          value: q,
-        })),
-      });
-    }
 
     // user rows combined with blockOperator
     const flatFilters: any[] = [];

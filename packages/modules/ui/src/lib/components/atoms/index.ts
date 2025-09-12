@@ -1,3 +1,4 @@
+export * from './badge/badge.component';
 export * from './busy-indicator/busy-indicator.component';
 export * from './copyright/copyright.component';
 export * from './no-records/no-records.component';

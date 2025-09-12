@@ -20,10 +20,8 @@
 
     <!-- Dynamic rows -->
     <div class="rows">
-      <div
-        class="row item"
-        *ngFor="let r of rows; let i = index"
-      >
+      @for (r of rows; track $index; let i = $index) {
+      <div class="row item">
         <!-- Field -->
         <div class="third">
           <vcl-form-control-group>
@@ -191,6 +189,7 @@
           <vcl-icon icon="vcl:close"></vcl-icon>
         </button>
       </div>
+      }
     </div>
 
     <div>
