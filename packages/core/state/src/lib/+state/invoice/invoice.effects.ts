@@ -172,6 +172,46 @@ export class InvoiceEffects {
     { dispatch: false }
   );
 
+  invoicePaymentRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invoiceActions.invoicePaymentStateRequest),
+      switchMap(({ payload }) =>
+        this.invoiceService.mutate(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.invoicing?.invoice?.Mutate?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload =
+              result?.data?.invoicing?.invoice?.Mutate?.details?.items?.pop()
+                ?.payload as IInvoice;
+            return invoiceActions.invoicePaymentStateSuccess({ payload });
+          }),
+          catchError((error: Error) =>
+            of(invoiceActions.invoicePaymentStateFail({ error: error.message }))
+          )
+        )
+      )
+    );
+  });
+
+  invoicePaymentSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(invoiceActions.invoicePaymentStateSuccess),
+        tap(() => {
+          this.appFacade.addNotification({
+            content: 'Payment changed',
+            type: ENotificationTypes.Success,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   handleNotificationErrors$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -179,7 +219,8 @@ export class InvoiceEffects {
           invoiceActions.invoiceReadRequestFail,
           invoiceActions.invoiceCreateFail,
           invoiceActions.invoiceUpdateFail,
-          invoiceActions.invoiceRemoveFail
+          invoiceActions.invoiceRemoveFail,
+          invoiceActions.invoicePaymentStateFail
         ),
         tap(({ error }) => {
           this.appFacade.addNotification({

@@ -45,7 +45,7 @@ export class InvoiceFacade {
 
   changePaymentState = (invoice: IInvoice) => {
     this.store.dispatch(
-      invoiceActions.invoiceChangeStateRequest({
+      invoiceActions.invoicePaymentStateRequest({
         payload: {
           items: [
             {

@@ -71,17 +71,17 @@ export const invoiceRemoveFail = createAction(
   props<{ error: string }>()
 );
 
-export const invoiceChangeStateRequest = createAction(
-  '[INVOICE] Invoice change payment state request',
+export const invoicePaymentStateRequest = createAction(
+  '[INVOICE] Invoice payment state request',
   props<{ payload: IIoRestorecommerceInvoiceInvoiceList }>()
 );
 
-export const invoiceChangeStateSuccess = createAction(
-  '[INVOICE] Invoice change payment state success',
+export const invoicePaymentStateSuccess = createAction(
+  '[INVOICE] Invoice payment state success',
   props<{ payload: IInvoice }>()
 );
 
-export const invoiceChangeStateFail = createAction(
-  '[INVOICE] Invoice change payment state fail',
+export const invoicePaymentStateFail = createAction(
+  '[INVOICE] Invoice payment state fail',
   props<{ error: string }>()
 );

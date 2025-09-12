@@ -116,6 +116,32 @@ const reducer = createReducer<IInvoiceState>(
       actionStatus: EActionStatus.Failed,
       error,
     })
+  ),
+  on(
+    invoiceActions.invoicePaymentStateRequest,
+    (state): IInvoiceState => ({
+      ...state,
+      actionStatus: EActionStatus.Mutating,
+    })
+  ),
+  on(
+    invoiceActions.invoicePaymentStateSuccess,
+    (state, { payload }): IInvoiceState =>
+      adapter.updateOne(
+        { id: payload.id, changes: payload },
+        {
+          ...state,
+          actionStatus: EActionStatus.Succeeded,
+        }
+      )
+  ),
+  on(
+    invoiceActions.invoicePaymentStateFail,
+    (state, { error }): IInvoiceState => ({
+      ...state,
+      actionStatus: EActionStatus.Failed,
+      error,
+    })
   )
 );
 
