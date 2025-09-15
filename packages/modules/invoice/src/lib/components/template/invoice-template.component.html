@@ -22,24 +22,22 @@
   </ng-container>
 
   <ng-container rc-crud-actions>
-    <div class="flex">
-      <vcl-form-control-group>
-        <vcl-label>Status</vcl-label>
-        <vcl-select>
-          <vcl-select-list
-            (valueChange)="onChangePaymentState($event, vm.selectedInvoice)"
-            [value]="vm.selectedInvoice?.paymentState"
-          >
-            <vcl-select-list-item [value]="EInvoicePaymentState.Payed">
-              {{ EInvoicePaymentState.Payed }}
-            </vcl-select-list-item>
-            <vcl-select-list-item [value]="EInvoicePaymentState.Unpayed">
-              {{ EInvoicePaymentState.Unpayed }}
-            </vcl-select-list-item>
-          </vcl-select-list>
-        </vcl-select>
-      </vcl-form-control-group>
-    </div>
+    <vcl-form-control-group>
+      <vcl-label>Status</vcl-label>
+      <vcl-select>
+        <vcl-select-list
+          (valueChange)="onChangePaymentState($event, vm.selectedInvoice)"
+          [value]="vm.selectedInvoice?.paymentState"
+        >
+          <vcl-select-list-item [value]="EInvoicePaymentState.Payed">
+            {{ EInvoicePaymentState.Payed }}
+          </vcl-select-list-item>
+          <vcl-select-list-item [value]="EInvoicePaymentState.Unpayed">
+            {{ EInvoicePaymentState.Unpayed }}
+          </vcl-select-list-item>
+        </vcl-select-list>
+      </vcl-select>
+    </vcl-form-control-group>
   </ng-container>
 
   <ng-container rc-crud-data-list>
@@ -82,9 +80,15 @@
 
       @if (item.paymentState && item.paymentState === EInvoicePaymentState.Payed
       ) {
-      <vcl-badge type="success">{{ item.paymentState }}</vcl-badge>
+      <rc-badge
+        [label]="item.paymentState"
+        type="success"
+      />
       } @else {
-      <vcl-badge type="error">{{ EInvoicePaymentState.Unpayed }}</vcl-badge>
+      <rc-badge
+        [label]="EInvoicePaymentState.Unpayed"
+        type="error"
+      />
       }
     </div>
 

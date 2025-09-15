@@ -89,6 +89,7 @@ import { EInvoicePaymentState, IInvoice } from '@console-core/types';
 
       }
       <div class="my-2 rc-lv-l-heading">Total</div>
+
       @for (total of invoice.totalAmounts; track $index) {
       <vcl-data-list-item>
         <div class="flex row justify-content-between align-item-center">
