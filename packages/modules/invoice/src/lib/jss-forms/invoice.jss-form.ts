@@ -20,9 +20,9 @@ export const buildInvoiceSchema = (
         label: 'Items',
         fields: [
           {
-            name: 'invoiceId',
-            label: 'Invoice ID',
-            type: 'input',
+            name: 'from',
+            label: 'From',
+            type: 'date-picker',
             validators: [Validators.required],
             params: {},
             hints: [
@@ -33,25 +33,108 @@ export const buildInvoiceSchema = (
               },
             ],
           },
+          {
+            name: 'to',
+            label: 'To',
+            type: 'date-picker',
+            validators: [Validators.required],
+            params: {},
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
+          {
+            name: 'paymentState',
+            label: 'Payment state',
+            type: 'select',
+            validators: [Validators.required],
+            params: {
+              options: [],
+            },
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
+          {
+            name: 'customerOrderNumber',
+            label: 'Order number',
+            type: 'input',
+          },
+          {
+            name: 'customerId',
+            label: 'Customer',
+            type: 'select',
+            validators: [Validators.required],
+            params: {
+              options: [],
+              search: true,
+            },
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
+          {
+            name: 'customerVatId',
+            label: 'Vat ID',
+            type: 'input',
+            validators: [],
+            params: {},
+          },
+          {
+            name: 'userId',
+            label: 'User',
+            type: 'select',
+            validators: [Validators.required],
+            params: {
+              options: [],
+              search: true,
+            },
+            hints: [
+              {
+                type: 'error',
+                error: 'required',
+                message: 'This field is required.',
+              },
+            ],
+          },
+          {
+            name: 'shopId',
+            label: 'Shop',
+            type: 'select',
+            params: {
+              options: [],
+              search: true,
+            },
+          },
+          {
+            name: 'withdrawn',
+            label: 'Withdrawn',
+            type: 'checkbox',
+          },
+          {
+            name: 'sent',
+            label: 'Sent',
+            type: 'checkbox',
+          },
+          {
+            name: 'paymentHints',
+            label: 'Payment hints',
+            type: 'token',
+          },
         ],
       },
-      // {
-      //   name: 'invoiceState',
-      //   label: 'Invoice state',
-      //   type: 'input',
-      //   ...(options.invoice
-      //     ? { defaultValue: IoRestorecommerceInvoiceInvoiceState.Created }
-      //     : {}),
-      //   validators: [Validators.required],
-      //   params: {},
-      //   hints: [
-      //     {
-      //       type: 'error',
-      //       error: 'required',
-      //       message: 'This field is required.',
-      //     },
-      //   ],
-      // },
 
       {
         type: 'buttons',
