@@ -1,5 +1,8 @@
 fragment CustomerFragment on IoRestorecommerceCustomerCustomer {
   id
+  description
+  name
+  settingId
   commercial {
     organization {
       ...OrganizationFragment

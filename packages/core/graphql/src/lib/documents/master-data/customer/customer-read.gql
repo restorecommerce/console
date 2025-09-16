@@ -1,0 +1,21 @@
+query MasterDataCustomerRead(
+  $input: IIoRestorecommerceResourcebaseReadRequest!
+) {
+  master_data {
+    customer {
+      Read(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...CustomerFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

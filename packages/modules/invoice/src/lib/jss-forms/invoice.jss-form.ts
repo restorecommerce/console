@@ -2,14 +2,22 @@ import { Validators } from '@angular/forms';
 
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IInvoice } from '@console-core/types';
+import {
+  EInvoicePaymentState,
+  IInvoice,
+  IShop,
+  IUser,
+} from '@console-core/types';
 
 interface ISchemaOptions {
   invoice?: IInvoice;
+  users?: IUser[];
+  shops?: IShop[];
+  customers?: any[];
 }
 
 export const buildInvoiceSchema = (
-  _: ISchemaOptions
+  options: ISchemaOptions
 ): VCLFormFieldSchemaRoot => {
   return {
     type: 'form',
@@ -23,6 +31,7 @@ export const buildInvoiceSchema = (
             name: 'from',
             label: 'From',
             type: 'date-picker',
+            defaultValue: options.invoice?.fromDate,
             validators: [Validators.required],
             params: {},
             hints: [
@@ -37,6 +46,7 @@ export const buildInvoiceSchema = (
             name: 'to',
             label: 'To',
             type: 'date-picker',
+            defaultValue: options.invoice?.toDate,
             validators: [Validators.required],
             params: {},
             hints: [
@@ -51,9 +61,20 @@ export const buildInvoiceSchema = (
             name: 'paymentState',
             label: 'Payment state',
             type: 'select',
+            defaultValue:
+              options.invoice?.paymentState || EInvoicePaymentState.Unpayed,
             validators: [Validators.required],
             params: {
-              options: [],
+              options: [
+                {
+                  value: EInvoicePaymentState.Unpayed,
+                  label: EInvoicePaymentState.Unpayed,
+                },
+                {
+                  value: EInvoicePaymentState.Payed,
+                  label: EInvoicePaymentState.Payed,
+                },
+              ],
             },
             hints: [
               {
@@ -66,12 +87,14 @@ export const buildInvoiceSchema = (
           {
             name: 'customerOrderNumber',
             label: 'Order number',
+            defaultValue: options.invoice?.customerOrderNumber,
             type: 'input',
           },
           {
             name: 'customerId',
             label: 'Customer',
             type: 'select',
+            defaultValue: options.invoice?.customerId,
             validators: [Validators.required],
             params: {
               options: [],
@@ -89,6 +112,7 @@ export const buildInvoiceSchema = (
             name: 'customerVatId',
             label: 'Vat ID',
             type: 'input',
+            defaultValue: options.invoice?.customerVatId,
             validators: [],
             params: {},
           },
@@ -96,6 +120,7 @@ export const buildInvoiceSchema = (
             name: 'userId',
             label: 'User',
             type: 'select',
+            defaultValue: options.invoice?.userId,
             validators: [Validators.required],
             params: {
               options: [],
@@ -113,6 +138,7 @@ export const buildInvoiceSchema = (
             name: 'shopId',
             label: 'Shop',
             type: 'select',
+            defaultValue: options.invoice?.shopId,
             params: {
               options: [],
               search: true,
@@ -122,16 +148,19 @@ export const buildInvoiceSchema = (
             name: 'withdrawn',
             label: 'Withdrawn',
             type: 'checkbox',
+            defaultValue: options.invoice?.withdrawn,
           },
           {
             name: 'sent',
             label: 'Sent',
             type: 'checkbox',
+            defaultValue: options.invoice?.sent,
           },
           {
             name: 'paymentHints',
             label: 'Payment hints',
             type: 'token',
+            defaultValue: options.invoice?.paymentHints,
           },
         ],
       },
