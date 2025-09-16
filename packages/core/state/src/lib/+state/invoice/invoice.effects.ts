@@ -22,6 +22,7 @@ import {
 import { ErrorHandlingService, InvoiceService } from '../../services';
 import { AppFacade } from '../app';
 import * as CustomerActions from '../management/customer/customer.actions';
+import * as IamActions from '../management/iam/iam.actions';
 import * as ShopActions from '../management/shop/shop.actions';
 
 import * as invoiceActions from './invoice.actions';
@@ -109,14 +110,13 @@ export class InvoiceEffects {
   preloadOnEdit$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(routerNavigationAction),
-      tap(() => console.log('Here is our edit page router action')),
       map((a) => a.payload.routerState?.url as string),
       filter(isInvoiceEdit),
-      tap(() => console.log('Should be ready to load something...')),
       // eslint-disable-next-line @ngrx/no-multiple-actions-in-effects
       mergeMap(() => [
         CustomerActions.customerReadRequest({ payload: {} }),
         ShopActions.shopReadRequest({ payload: {} }),
+        IamActions.userReadRequest({ payload: {} }),
       ])
     );
   });
@@ -130,8 +130,7 @@ export class InvoiceEffects {
       mergeMap(() => [
         CustomerActions.customerReadRequest({ payload: {} }),
         ShopActions.shopReadRequest({ payload: {} }),
-        // data only the create page needs (e.g. default terms, next invoice number, templates)
-        // InvoiceMetaActions.loadCreationDefaultsIfNeeded(),
+        IamActions.userReadRequest({ payload: {} }),
       ])
     );
   });

@@ -8,6 +8,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 import { ROUTER } from '@console-core/config';
 import {
   CustomerFacade,
+  IamFacade,
   InvoiceFacade,
   RouterFacade,
   ShopFacade,
@@ -56,13 +57,14 @@ export class InvoiceEditComponent {
     ),
     customers: this.customerFacade.all$,
     shops: this.shopFacade.all$,
+    users: this.iamFacade.all$,
   }).pipe(
-    map(({ id, invoice, customers, shops }) => {
+    map(({ id, invoice, customers, shops, users }) => {
       const schema = buildInvoiceSchema({
         invoice,
         customers,
         shops,
-        users: [],
+        users,
       });
 
       return {
@@ -79,6 +81,7 @@ export class InvoiceEditComponent {
     private readonly routerFacade: RouterFacade,
     private readonly shopFacade: ShopFacade,
     private readonly customerFacade: CustomerFacade,
-    private readonly invoiceFacade: InvoiceFacade
+    private readonly invoiceFacade: InvoiceFacade,
+    private readonly iamFacade: IamFacade
   ) {}
 }
