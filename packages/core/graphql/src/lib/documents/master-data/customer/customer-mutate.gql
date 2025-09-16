@@ -1,0 +1,43 @@
+mutation MasterDataCustomerMutate(
+  $input: IIoRestorecommerceCustomerCustomerList!
+) {
+  master_data {
+    customer {
+      Mutate(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          items {
+            payload {
+              ...CustomerFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation MasterDataCustomerDeleteMutate(
+  $input: IIoRestorecommerceResourcebaseDeleteRequest!
+) {
+  master_data {
+    customer {
+      Delete(input: $input) {
+        details {
+          operationStatus {
+            code
+            message
+          }
+          status {
+            id
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

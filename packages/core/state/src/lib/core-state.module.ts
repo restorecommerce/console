@@ -76,6 +76,9 @@ import {
   ProductPrototypeEffects,
   ProductPrototypeFacade,
   productPrototypeReducer,
+  CustomerFacade,
+  customerReducer,
+  CustomerEffects,
 } from './+state';
 
 const facades = [
@@ -84,6 +87,7 @@ const facades = [
   AuthnFacade,
   CountryFacade,
   CurrencyFacade,
+  CustomerFacade,
   FulfillmentFacade,
   InvoiceFacade,
   IamFacade,
@@ -149,6 +153,8 @@ const facades = [
     EffectsModule.forFeature([ObjectUploadEffects]),
     StoreModule.forFeature(STORE.states.priceGroup, priceGroupReducer),
     EffectsModule.forFeature([PriceGroupEffects]),
+    StoreModule.forFeature(STORE.states.customerState, customerReducer),
+    EffectsModule.forFeature([CustomerEffects]),
     StoreModule.forFeature(
       STORE.states.productCategory,
       productCategoryReducer

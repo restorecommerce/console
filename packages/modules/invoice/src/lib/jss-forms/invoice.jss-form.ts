@@ -4,6 +4,7 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import {
   EInvoicePaymentState,
+  ICustomer,
   IInvoice,
   IShop,
   IUser,
@@ -13,7 +14,7 @@ interface ISchemaOptions {
   invoice?: IInvoice;
   users?: IUser[];
   shops?: IShop[];
-  customers?: any[];
+  customers?: ICustomer[];
 }
 
 export const buildInvoiceSchema = (

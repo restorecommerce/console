@@ -10735,6 +10735,264 @@ export type MasterDataCurrencyReadQuery = {
   };
 };
 
+export type MasterDataCustomerMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceCustomerCustomerList;
+}>;
+
+export type MasterDataCustomerMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    customer: {
+      __typename?: 'ResourceCustomerMutation';
+      Mutate?: {
+        __typename?: 'ProtoIoRestorecommerceCustomerCustomerListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceCustomerCustomerListResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          items?: Array<{
+            __typename?: 'IoRestorecommerceCustomerCustomerResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceCustomerCustomer';
+              id?: string | null;
+              description?: string | null;
+              name?: string | null;
+              settingId?: string | null;
+              commercial?: {
+                __typename?: 'IoRestorecommerceCustomerCommercial';
+                organization?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  paymentMethods?: Array<{
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
+                  } | null;
+                } | null;
+              } | null;
+              publicSector?: {
+                __typename?: 'IoRestorecommerceCustomerPublicSector';
+                organization?: {
+                  __typename?: 'IoRestorecommerceOrganizationOrganization';
+                  id?: string | null;
+                  parentId?: string | null;
+                  name?: string | null;
+                  email?: string | null;
+                  website?: string | null;
+                  vatId?: string | null;
+                  logo?: {
+                    __typename?: 'IoRestorecommerceImageImage';
+                    id?: string | null;
+                    index?: number | null;
+                    filename?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url?: string | null;
+                  } | null;
+                  paymentMethods?: Array<{
+                    __typename?: 'IoRestorecommercePaymentMethodPaymentMethod';
+                    id?: string | null;
+                    transferType?: IoRestorecommercePaymentMethodTransferTypeEnum | null;
+                    paymentMethod?: IoRestorecommercePaymentMethodPaymentMethodEnum | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
+                  } | null;
+                } | null;
+              } | null;
+              private?: {
+                __typename?: 'IoRestorecommerceCustomerPrivate';
+                user?: {
+                  __typename?: 'IoRestorecommerceUserUser';
+                  id?: string | null;
+                  active?: boolean | null;
+                  activationCode?: string | null;
+                  email?: string | null;
+                  newEmail?: string | null;
+                  name?: string | null;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  lastAccess?: unknown | null;
+                  defaultScope?: string | null;
+                  localeId?: string | null;
+                  timezoneId?: string | null;
+                  roleAssociations?: Array<{
+                    __typename?: 'IoRestorecommerceAuthRoleAssociation';
+                    role?: string | null;
+                    attributes?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
+                  }> | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
+                  } | null;
+                } | null;
+                contactPoints?: Array<{
+                  __typename?: 'IoRestorecommerceContactPointContactPoint';
+                  id?: string | null;
+                  name?: string | null;
+                  description?: string | null;
+                  email?: string | null;
+                  telephone?: string | null;
+                  website?: string | null;
+                  timezone?: {
+                    __typename?: 'IoRestorecommerceTimezoneTimezone';
+                    id?: string | null;
+                    value?: string | null;
+                    description?: string | null;
+                  } | null;
+                  locale?: {
+                    __typename?: 'IoRestorecommerceLocaleLocale';
+                    id?: string | null;
+                    value?: string | null;
+                    description?: string | null;
+                  } | null;
+                  meta?: {
+                    __typename?: 'IoRestorecommerceMetaMeta';
+                    created?: unknown | null;
+                    modified?: unknown | null;
+                    createdBy?: string | null;
+                    modifiedBy?: string | null;
+                    owners?: Array<{
+                      __typename?: 'IoRestorecommerceAttributeAttribute';
+                      id?: string | null;
+                      value?: string | null;
+                      attributes?: Array<{
+                        __typename?: 'IoRestorecommerceAttributeAttribute';
+                        id?: string | null;
+                        value?: string | null;
+                      }> | null;
+                    }> | null;
+                  } | null;
+                }> | null;
+              } | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+                modified?: unknown | null;
+                createdBy?: string | null;
+                modifiedBy?: string | null;
+                owners?: Array<{
+                  __typename?: 'IoRestorecommerceAttributeAttribute';
+                  id?: string | null;
+                  value?: string | null;
+                  attributes?: Array<{
+                    __typename?: 'IoRestorecommerceAttributeAttribute';
+                    id?: string | null;
+                    value?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+            } | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type MasterDataCustomerDeleteMutateMutationVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseDeleteRequest;
+}>;
+
+export type MasterDataCustomerDeleteMutateMutation = {
+  __typename?: 'Mutation';
+  master_data: {
+    __typename?: 'ResourceMutation';
+    customer: {
+      __typename?: 'ResourceCustomerMutation';
+      Delete?: {
+        __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceResourcebaseDeleteResponse';
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+          status?: Array<{
+            __typename?: 'IoRestorecommerceStatusStatus';
+            id?: string | null;
+            code?: number | null;
+            message?: string | null;
+          }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type MasterDataCustomerReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
@@ -15553,6 +15811,81 @@ export class MasterDataCurrencyReadGQL extends Apollo.Query<
   MasterDataCurrencyReadQueryVariables
 > {
   override document = MasterDataCurrencyReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCustomerMutateDocument = gql`
+  mutation MasterDataCustomerMutate(
+    $input: IIoRestorecommerceCustomerCustomerList!
+  ) {
+    master_data {
+      customer {
+        Mutate(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            items {
+              payload {
+                ...CustomerFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${CustomerFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCustomerMutateGQL extends Apollo.Mutation<
+  MasterDataCustomerMutateMutation,
+  MasterDataCustomerMutateMutationVariables
+> {
+  override document = MasterDataCustomerMutateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const MasterDataCustomerDeleteMutateDocument = gql`
+  mutation MasterDataCustomerDeleteMutate(
+    $input: IIoRestorecommerceResourcebaseDeleteRequest!
+  ) {
+    master_data {
+      customer {
+        Delete(input: $input) {
+          details {
+            operationStatus {
+              code
+              message
+            }
+            status {
+              id
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MasterDataCustomerDeleteMutateGQL extends Apollo.Mutation<
+  MasterDataCustomerDeleteMutateMutation,
+  MasterDataCustomerDeleteMutateMutationVariables
+> {
+  override document = MasterDataCustomerDeleteMutateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

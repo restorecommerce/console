@@ -1,4 +1,5 @@
 export * from './country';
+export * from './customer';
 export * from './currency';
 export * from './fulfillment';
 export * from './locale';
