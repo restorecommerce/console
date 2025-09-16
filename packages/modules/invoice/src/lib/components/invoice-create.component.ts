@@ -23,7 +23,12 @@ import { buildInvoiceSchema } from '../jss-forms';
   standalone: false,
 })
 export class InvoiceCreateComponent {
-  schema: VCLFormFieldSchemaRoot = buildInvoiceSchema({});
+  schema: VCLFormFieldSchemaRoot = buildInvoiceSchema({
+    customers: [],
+    users: [],
+    shops: [],
+  });
+
   create = this.invoiceFacade.create;
 
   readonly vm$ = combineLatest({

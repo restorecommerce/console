@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { routerNavigationAction } from '@ngrx/router-store';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import {
+  catchError,
+  filter,
+  map,
+  mergeMap,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
@@ -13,8 +21,14 @@ import {
 
 import { ErrorHandlingService, InvoiceService } from '../../services';
 import { AppFacade } from '../app';
+import * as CustomerActions from '../management/customer/customer.actions';
+import * as ShopActions from '../management/shop/shop.actions';
 
 import * as invoiceActions from './invoice.actions';
+
+const isInvoiceEdit = (url?: string): url is string =>
+  // eslint-disable-next-line no-useless-escape
+  !!url && /^\/invoices\/[^/]+\/edit(?:$|[\?#\/])/.test(url);
 
 @Injectable()
 export class InvoiceEffects {
@@ -91,6 +105,36 @@ export class InvoiceEffects {
     },
     { dispatch: false }
   );
+
+  preloadOnEdit$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(routerNavigationAction),
+      tap(() => console.log('Here is our edit page router action')),
+      map((a) => a.payload.routerState?.url as string),
+      filter(isInvoiceEdit),
+      tap(() => console.log('Should be ready to load something...')),
+      // eslint-disable-next-line @ngrx/no-multiple-actions-in-effects
+      mergeMap(() => [
+        CustomerActions.customerReadRequest({ payload: {} }),
+        ShopActions.shopReadRequest({ payload: {} }),
+      ])
+    );
+  });
+
+  preloadOnCreate$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(routerNavigationAction),
+      map((a) => a.payload.routerState?.url as string),
+      filter((url) => url?.startsWith('/invoices/create')),
+      // eslint-disable-next-line @ngrx/no-multiple-actions-in-effects
+      mergeMap(() => [
+        CustomerActions.customerReadRequest({ payload: {} }),
+        ShopActions.shopReadRequest({ payload: {} }),
+        // data only the create page needs (e.g. default terms, next invoice number, templates)
+        // InvoiceMetaActions.loadCreationDefaultsIfNeeded(),
+      ])
+    );
+  });
 
   invoiceUpdateRequest$ = createEffect(() => {
     return this.actions$.pipe(

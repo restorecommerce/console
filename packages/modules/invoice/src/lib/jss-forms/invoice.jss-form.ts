@@ -12,9 +12,9 @@ import {
 
 interface ISchemaOptions {
   invoice?: IInvoice;
-  users?: IUser[];
-  shops?: IShop[];
-  customers?: ICustomer[];
+  users: IUser[];
+  shops: IShop[];
+  customers: ICustomer[];
 }
 
 export const buildInvoiceSchema = (
@@ -98,7 +98,10 @@ export const buildInvoiceSchema = (
             defaultValue: options.invoice?.customerId,
             validators: [Validators.required],
             params: {
-              options: [],
+              options: options.customers.map((customer) => ({
+                label: customer.name,
+                value: customer.id,
+              })),
               search: true,
             },
             hints: [
@@ -124,7 +127,10 @@ export const buildInvoiceSchema = (
             defaultValue: options.invoice?.userId,
             validators: [Validators.required],
             params: {
-              options: [],
+              options: options.users.map((user) => ({
+                label: `${user.firstName} ${user.lastName}`,
+                value: user.id,
+              })),
               search: true,
             },
             hints: [
@@ -141,7 +147,10 @@ export const buildInvoiceSchema = (
             type: 'select',
             defaultValue: options.invoice?.shopId,
             params: {
-              options: [],
+              options: options.shops.map((shop) => ({
+                label: shop.name,
+                value: shop.id,
+              })),
               search: true,
             },
           },
