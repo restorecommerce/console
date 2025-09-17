@@ -42,7 +42,9 @@ export const buildInvoiceSchema = (
         name: 'fromDate',
         label: 'From',
         type: 'date-picker',
-        defaultValue: options.invoice?.fromDate,
+        defaultValue: options.invoice?.fromDate
+          ? new Date(options.invoice?.fromDate as string)
+          : null,
         validators: [Validators.required],
         params: {},
         hints: [
@@ -57,7 +59,9 @@ export const buildInvoiceSchema = (
         name: 'toDate',
         label: 'To',
         type: 'date-picker',
-        defaultValue: options.invoice?.toDate,
+        defaultValue: options.invoice?.toDate
+          ? new Date(options.invoice?.toDate as string)
+          : null,
         validators: [Validators.required],
         params: {},
         hints: [
