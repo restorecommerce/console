@@ -24,6 +24,21 @@ export const buildInvoiceSchema = (
     type: 'form',
     fields: [
       {
+        name: 'invoiceNumber',
+        label: 'Invoice number',
+        type: 'input',
+        defaultValue: options.invoice?.invoiceNumber,
+        validators: [Validators.required],
+        params: {},
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
         name: 'fromDate',
         label: 'From',
         type: 'date-picker',
