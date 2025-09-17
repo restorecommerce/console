@@ -24,157 +24,149 @@ export const buildInvoiceSchema = (
     type: 'form',
     fields: [
       {
-        type: 'object',
-        name: 'items',
-        label: 'Items',
-        fields: [
+        name: 'fromDate',
+        label: 'From',
+        type: 'date-picker',
+        defaultValue: options.invoice?.fromDate,
+        validators: [Validators.required],
+        params: {},
+        hints: [
           {
-            name: 'from',
-            label: 'From',
-            type: 'date-picker',
-            defaultValue: options.invoice?.fromDate,
-            validators: [Validators.required],
-            params: {},
-            hints: [
-              {
-                type: 'error',
-                error: 'required',
-                message: 'This field is required.',
-              },
-            ],
-          },
-          {
-            name: 'to',
-            label: 'To',
-            type: 'date-picker',
-            defaultValue: options.invoice?.toDate,
-            validators: [Validators.required],
-            params: {},
-            hints: [
-              {
-                type: 'error',
-                error: 'required',
-                message: 'This field is required.',
-              },
-            ],
-          },
-          {
-            name: 'paymentState',
-            label: 'Payment state',
-            type: 'select',
-            defaultValue:
-              options.invoice?.paymentState || EInvoicePaymentState.Unpayed,
-            validators: [Validators.required],
-            params: {
-              options: [
-                {
-                  value: EInvoicePaymentState.Unpayed,
-                  label: EInvoicePaymentState.Unpayed,
-                },
-                {
-                  value: EInvoicePaymentState.Payed,
-                  label: EInvoicePaymentState.Payed,
-                },
-              ],
-            },
-            hints: [
-              {
-                type: 'error',
-                error: 'required',
-                message: 'This field is required.',
-              },
-            ],
-          },
-          {
-            name: 'customerOrderNumber',
-            label: 'Order number',
-            defaultValue: options.invoice?.customerOrderNumber,
-            type: 'input',
-          },
-          {
-            name: 'customerId',
-            label: 'Customer',
-            type: 'select',
-            defaultValue: options.invoice?.customerId,
-            validators: [Validators.required],
-            params: {
-              options: options.customers.map((customer) => ({
-                label: customer.name,
-                value: customer.id,
-              })),
-              search: true,
-            },
-            hints: [
-              {
-                type: 'error',
-                error: 'required',
-                message: 'This field is required.',
-              },
-            ],
-          },
-          {
-            name: 'customerVatId',
-            label: 'Vat ID',
-            type: 'input',
-            defaultValue: options.invoice?.customerVatId,
-            validators: [],
-            params: {},
-          },
-          {
-            name: 'userId',
-            label: 'User',
-            type: 'select',
-            defaultValue: options.invoice?.userId,
-            validators: [Validators.required],
-            params: {
-              options: options.users.map((user) => ({
-                label: `${user.firstName} ${user.lastName}`,
-                value: user.id,
-              })),
-              search: true,
-            },
-            hints: [
-              {
-                type: 'error',
-                error: 'required',
-                message: 'This field is required.',
-              },
-            ],
-          },
-          {
-            name: 'shopId',
-            label: 'Shop',
-            type: 'select',
-            defaultValue: options.invoice?.shopId,
-            params: {
-              options: options.shops.map((shop) => ({
-                label: shop.name,
-                value: shop.id,
-              })),
-              search: true,
-            },
-          },
-          {
-            name: 'withdrawn',
-            label: 'Withdrawn',
-            type: 'checkbox',
-            defaultValue: options.invoice?.withdrawn,
-          },
-          {
-            name: 'sent',
-            label: 'Sent',
-            type: 'checkbox',
-            defaultValue: options.invoice?.sent,
-          },
-          {
-            name: 'paymentHints',
-            label: 'Payment hints',
-            type: 'token',
-            defaultValue: options.invoice?.paymentHints,
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
           },
         ],
       },
-
+      {
+        name: 'toDate',
+        label: 'To',
+        type: 'date-picker',
+        defaultValue: options.invoice?.toDate,
+        validators: [Validators.required],
+        params: {},
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        name: 'paymentState',
+        label: 'Payment state',
+        type: 'select',
+        defaultValue:
+          options.invoice?.paymentState || EInvoicePaymentState.Unpayed,
+        validators: [Validators.required],
+        params: {
+          options: [
+            {
+              value: EInvoicePaymentState.Unpayed,
+              label: EInvoicePaymentState.Unpayed,
+            },
+            {
+              value: EInvoicePaymentState.Payed,
+              label: EInvoicePaymentState.Payed,
+            },
+          ],
+        },
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        name: 'customerOrderNumber',
+        label: 'Order number',
+        defaultValue: options.invoice?.customerOrderNumber,
+        type: 'input',
+      },
+      {
+        name: 'customerId',
+        label: 'Customer',
+        type: 'select',
+        defaultValue: options.invoice?.customerId,
+        validators: [Validators.required],
+        params: {
+          options: options.customers.map((customer) => ({
+            label: customer.name,
+            value: customer.id,
+          })),
+          search: true,
+        },
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        name: 'customerVatId',
+        label: 'Vat ID',
+        type: 'input',
+        defaultValue: options.invoice?.customerVatId,
+        validators: [],
+        params: {},
+      },
+      {
+        name: 'userId',
+        label: 'User',
+        type: 'select',
+        defaultValue: options.invoice?.userId,
+        validators: [Validators.required],
+        params: {
+          options: options.users.map((user) => ({
+            label: `${user.firstName} ${user.lastName}`,
+            value: user.id,
+          })),
+          search: true,
+        },
+        hints: [
+          {
+            type: 'error',
+            error: 'required',
+            message: 'This field is required.',
+          },
+        ],
+      },
+      {
+        name: 'shopId',
+        label: 'Shop',
+        type: 'select',
+        defaultValue: options.invoice?.shopId,
+        params: {
+          options: options.shops.map((shop) => ({
+            label: shop.name,
+            value: shop.id,
+          })),
+          search: true,
+        },
+      },
+      {
+        name: 'withdrawn',
+        label: 'Withdrawn',
+        type: 'checkbox',
+        defaultValue: options.invoice?.withdrawn,
+      },
+      {
+        name: 'sent',
+        label: 'Sent',
+        type: 'checkbox',
+        defaultValue: options.invoice?.sent,
+      },
+      {
+        name: 'paymentHints',
+        label: 'Payment hints',
+        type: 'token',
+        defaultValue: options.invoice?.paymentHints || null,
+      },
       {
         type: 'buttons',
         buttons: [
