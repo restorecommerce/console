@@ -10,12 +10,9 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { map } from 'rxjs';
 
 import { API } from '@console-core/config';
-import {
-  IoRestorecommerceShopShop,
-  IoRestorecommerceUserUser,
-} from '@console-core/graphql';
+import { IoRestorecommerceShopShop } from '@console-core/graphql';
 import { ProductFacade, ShopFacade } from '@console-core/state';
-import { IOrder } from '@console-core/types';
+import { IAddressContact, IOrder } from '@console-core/types';
 
 dayjs.extend(relativeTime);
 
@@ -35,7 +32,7 @@ export class OrderItemComponent implements OnInit {
 
   BUCKET_DOMAIN = API.domains.bucketDomain + '/storage';
 
-  customer?: IoRestorecommerceUserUser | null;
+  customer!: IAddressContact;
   shop?: IoRestorecommerceShopShop;
   numberOfItems!: number;
 
@@ -50,7 +47,7 @@ export class OrderItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.customer = this.order.customer;
+    this.customer = this.order.shippingAddress.contact;
 
     // this.shop = this.order.shop;
     this.numberOfItems = this.order.items?.length || 0;
