@@ -1,3 +1,6 @@
+export * from './address';
+export * from './billing-address';
+export * from './contact-address';
 export * from './country';
 export * from './customer';
 export * from './currency';
@@ -9,6 +12,7 @@ export * from './meta';
 export * from './order';
 export * from './organization';
 export * from './object-upload';
+export * from './shipping-address';
 export * from './shop';
 export * from './timezone';
 export * from './policy';

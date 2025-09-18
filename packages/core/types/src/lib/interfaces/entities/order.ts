@@ -5,7 +5,9 @@ import {
   IoRestorecommerceShopShop,
 } from '@console-core/graphql';
 
+import { IBillingAddress } from './billing-address';
 import { IMeta } from './meta';
+import { IShippingAddress } from './shipping-address';
 
 export interface IOrder
   extends Omit<
@@ -17,6 +19,8 @@ export interface IOrder
     | 'orderState'
     | 'meta'
     | 'customer'
+    | 'shippingAddress'
+    | 'billingAddress'
     | '__typename'
   > {
   id: string;
@@ -25,6 +29,8 @@ export interface IOrder
   customerOrderNr: string;
   orderState: IoRestorecommerceOrderOrderState;
   thumbnailUrl?: string;
+  shippingAddress: IShippingAddress;
+  billingAddress: IBillingAddress;
   customer: {
     id: string;
     name: string;
