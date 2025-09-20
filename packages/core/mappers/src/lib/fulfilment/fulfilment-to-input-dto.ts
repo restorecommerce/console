@@ -2,13 +2,13 @@ import { IIoRestorecommerceFulfillmentFulfillment } from '@console-core/graphql'
 import { IFulfillment } from '@console-core/types';
 
 export const fulfilmentToInputDTO = (
-  fulfillemnt: IFulfillment
+  fulfillment: IFulfillment
 ): IIoRestorecommerceFulfillmentFulfillment => {
   return {
-    id: fulfillemnt.id,
-    userId: fulfillemnt.userId,
-    fulfillmentState: fulfillemnt.fulfillmentState,
-    shopId: fulfillemnt.shopId,
-    customerId: fulfillemnt.customerId,
+    id: fulfillment.id,
+    userId: fulfillment.userId,
+    fulfillmentState: fulfillment.fulfillmentState,
+    shopId: fulfillment.shopId,
+    customerId: fulfillment.customerId,
   };
 };

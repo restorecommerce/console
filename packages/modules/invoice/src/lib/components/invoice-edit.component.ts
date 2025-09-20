@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
@@ -6,6 +11,8 @@ import { map, shareReplay, tap } from 'rxjs/operators';
 import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
+import { ModeType } from '@console-core/graphql';
+import { invoiceToInputDTO } from '@console-core/mappers';
 import {
   CustomerFacade,
   IamFacade,
@@ -14,6 +21,8 @@ import {
   ShopFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
+import { IInvoice } from '@console-core/types';
+import { JSONEditorComponent } from '@console-modules/ui';
 
 import { buildInvoiceSchema } from '../jss-forms';
 
@@ -21,12 +30,27 @@ import { buildInvoiceSchema } from '../jss-forms';
   selector: 'app-module-invoice-edit',
   template: `
     @if(vm$ | async; as vm) {
-    <div class="mt-2">
-      <rc-crud-edit
-        [id]="vm.id"
-        [schema]="vm.schema"
-        [update]="update"
-      />
+    <div class="mt-2 flex col">
+      <div class="col flex">
+        <rc-json-editor
+          #jsonEditor
+          [value]="getInvoiceSource(vm.invoice)"
+          class="flex"
+        />
+
+        <div class="py-2 row justify-content-end">
+          <div class="loose-button-group">
+            <button class="button transparent">Cancel</button>
+            <button
+              class="button"
+              (click)="onSave()"
+              [disabled]="jsonError"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     }
   `,
@@ -36,6 +60,13 @@ import { buildInvoiceSchema } from '../jss-forms';
 export class InvoiceEditComponent {
   schema!: VCLFormFieldSchemaRoot;
   update = this.invoiceFacade.update;
+
+  jsonError = false;
+
+  @HostBinding('class') classNames = 'col w-100p h-100p';
+
+  @ViewChild('jsonEditor')
+  jsonEditor!: JSONEditorComponent;
 
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(
@@ -84,4 +115,20 @@ export class InvoiceEditComponent {
     private readonly invoiceFacade: InvoiceFacade,
     private readonly iamFacade: IamFacade
   ) {}
+
+  getInvoiceSource(invoice: IInvoice): string {
+    const invoiceInput = invoiceToInputDTO(invoice);
+    return JSON.stringify(invoiceInput, null, 4);
+  }
+
+  onSave() {
+    this.update({
+      items: [
+        {
+          ...JSON.parse(this.jsonEditor.getValue()),
+        },
+      ],
+      mode: ModeType.Update,
+    });
+  }
 }

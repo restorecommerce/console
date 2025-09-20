@@ -26,36 +26,30 @@ import { buildFulfillmentSchema } from '../jss-forms';
 @Component({
   selector: 'app-module-fulfillment-edit',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <div class="mt-2 flex col">
-        <!-- <rc-crud-edit
-          [id]="vm.id"
-          [schema]="schema"
-          [update]="update"
-        /> -->
+    @if(vm$ | async; as vm) {
+    <div class="mt-2 flex col">
+      <div class="col flex">
+        <rc-json-editor
+          #jsonEditor
+          [value]="getFulfillmentSource(vm.fulfillment)"
+          class="flex"
+        />
 
-        <div class="col flex">
-          <rc-json-editor
-            #jsonEditor
-            [value]="getFulfillmentSource(vm.fulfillment)"
-            class="flex"
-          />
-
-          <div class="py-2 row justify-content-end">
-            <div class="loose-button-group">
-              <button class="button transparent">Cancel</button>
-              <button
-                class="button"
-                (click)="onSave()"
-                [disabled]="jsonError"
-              >
-                Save
-              </button>
-            </div>
+        <div class="py-2 row justify-content-end">
+          <div class="loose-button-group">
+            <button class="button transparent">Cancel</button>
+            <button
+              class="button"
+              (click)="onSave()"
+              [disabled]="jsonError"
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
-    </ng-container>
+    </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
@@ -103,8 +97,8 @@ export class FulfillmentEditComponent {
     private readonly fulfillmentFacade: FulfillmentFacade
   ) {}
 
-  getFulfillmentSource(fulfillemnt: IFulfillment): string {
-    const fulfillemntInput = fulfilmentToInputDTO(fulfillemnt);
+  getFulfillmentSource(fulfillment: IFulfillment): string {
+    const fulfillemntInput = fulfilmentToInputDTO(fulfillment);
     return JSON.stringify(fulfillemntInput, null, 4);
   }
 
