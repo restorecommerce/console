@@ -1,4 +1,1 @@
-export * from './lib/core-types';
-
-// Types: Types
-export * from './lib/types/index';
+export * from './lib/fulfilment';

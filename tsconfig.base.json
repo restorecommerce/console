@@ -19,6 +19,7 @@
       "@console-core/config": ["packages/core/config/src/index.ts"],
       "@console-core/graphql": ["packages/core/graphql/src/index.ts"],
       "@console-core/state": ["packages/core/state/src/index.ts"],
+      "@console-core/mappers": ["packages/core/mappers/src/index.ts"],
       "@console-core/types": ["packages/core/types/src/index.ts"],
       "@console-modules/account": ["packages/modules/account/src/index.ts"],
       "@console-modules/authn": ["packages/modules/authn/src/index.ts"],
