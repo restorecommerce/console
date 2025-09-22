@@ -5,11 +5,9 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
-import { IoRestorecommerceResourcebaseFilterOperation } from '@console-core/graphql';
 import {
   FulfillmentFacade,
   OrganizationContextFacade,
-  withLatestOrganizationData,
 } from '@console-core/state';
 import {
   ENotificationTypes,
@@ -26,49 +24,31 @@ import * as fulfillmentActions from './fulfillment.actions';
 export class FulfillmentEffects {
   fulfillmentReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      withLatestOrganizationData(
-        this.organizationContextFacade,
-        fulfillmentActions.fulfillmentReadRequest.type
-      ),
-      switchMap(([action, organization]) =>
-        this.fulfillmentService
-          .read({
-            filters: [
-              {
-                filters: [
-                  {
-                    field: 'meta.owners[*].attributes[**].value',
-                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organization,
-                  },
-                ],
-              },
-            ],
-          })
-          .pipe(
-            tap((result) => {
-              this.errorHandlingService.checkStatusAndThrow(
-                result?.data?.fulfillment?.fulfillment?.Read?.details
-                  ?.operationStatus as TOperationStatus
-              );
-            }),
-            map((result) => {
-              const payload = (
-                result?.data?.fulfillment?.fulfillment?.Read?.details?.items ||
-                []
-              )?.map((item) => item?.payload) as IFulfillment[];
-              return fulfillmentActions.fulfillmentReadRequestSuccess({
-                payload,
-              });
-            }),
-            catchError((error: Error) =>
-              of(
-                fulfillmentActions.fulfillmentReadRequestFail({
-                  error: error.message,
-                })
-              )
+      ofType(fulfillmentActions.fulfillmentReadRequest),
+      switchMap(({ payload }) =>
+        this.fulfillmentService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.fulfillment?.fulfillment?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload = (
+              result?.data?.fulfillment?.fulfillment?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as IFulfillment[];
+            return fulfillmentActions.fulfillmentReadRequestSuccess({
+              payload,
+            });
+          }),
+          catchError((error: Error) =>
+            of(
+              fulfillmentActions.fulfillmentReadRequestFail({
+                error: error.message,
+              })
             )
           )
+        )
       )
     );
   });

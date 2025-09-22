@@ -67,7 +67,9 @@ import { transformOrderToInput } from '../utils';
 
         <div class="mb-1">
           <a
-            [routerLink]="['/invoices']"
+            [routerLink]="
+              this.ROUTER.pages.main.children.invoices.children.index.getLink()
+            "
             [queryParams]="{ orderId: vm.order.id }"
           >
             View invoices for this order
@@ -76,7 +78,9 @@ import { transformOrderToInput } from '../utils';
 
         <div>
           <a
-            [routerLink]="['/fulfillments']"
+            [routerLink]="
+              this.ROUTER.pages.main.children.fulfillments.children.index.getLink()
+            "
             [queryParams]="{ orderId: vm.order.id }"
           >
             View fulfillments for this order
@@ -116,6 +120,8 @@ import { transformOrderToInput } from '../utils';
 })
 export class OrderViewComponent implements OnInit, OnDestroy {
   addressType = EAddressType;
+
+  ROUTER = ROUTER;
 
   private readonly subscriptions = new SubSink();
   readonly vm$ = combineLatest({

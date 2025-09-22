@@ -151,7 +151,6 @@ export class OrderTemplateComponent implements OnInit, OnDestroy {
     distinctUntilChanged(),
     tap((segment) => {
       if ([EUrlSegment.View].includes(segment)) {
-        console.log('Fulfilment is read');
         this.fulfillmentFacade.read({});
         this.invoiceFacade.read({});
       }

@@ -17,6 +17,8 @@ import { SubSink } from 'subsink';
 import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterOpOperator,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import { InvoiceFacade, RouterFacade } from '@console-core/state';
@@ -102,6 +104,35 @@ export class InvoiceTemplateComponent implements OnInit, OnDestroy {
     })
   );
 
+  readonly queryParams$ = this.routerFacade.queryParams$.pipe(
+    tap((params) => {
+      if (params['orderId']) {
+        this.queryVariables = {
+          ...this.queryVariables,
+          filters: [
+            {
+              filters: [
+                {
+                  field: 'references[*].instance_type',
+                  value: 'urn:restorecommerce:acs:model:order:Order',
+                  operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                },
+                {
+                  field: 'references[*].instance_id',
+                  value: params['orderId'],
+                  operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                },
+              ],
+              operator: IoRestorecommerceResourcebaseFilterOpOperator.And,
+            },
+          ],
+        };
+        this.invoiceFacade.read(this.queryVariables);
+      }
+    }),
+    debounceTime(10)
+  );
+
   readonly urlSegment$ = this.routerFacade.url$.pipe(
     map((url) => url.split('/').pop() as EUrlSegment),
     distinctUntilChanged(),
@@ -121,6 +152,7 @@ export class InvoiceTemplateComponent implements OnInit, OnDestroy {
     triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
     triggerRemove: this.triggerRemove$,
+    queryParams: this.queryParams$,
   });
 
   private readonly subscriptions = new SubSink();

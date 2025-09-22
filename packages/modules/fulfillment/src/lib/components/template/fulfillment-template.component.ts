@@ -18,6 +18,8 @@ import { PAGINATION, ROUTER } from '@console-core/config';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
   IoRestorecommerceFulfillmentFulfillmentState,
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterOpOperator,
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import { FulfillmentFacade, RouterFacade } from '@console-core/state';
@@ -74,9 +76,9 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
     );
 
   readonly triggerRead = new BehaviorSubject<null>(null);
-  readonly triggerRead$ = this.triggerRead
-    .asObservable()
-    .pipe(tap(() => this.fulfillmentFacade.read(this.queryVariables)));
+  // readonly triggerRead$ = this.triggerRead
+  //   .asObservable()
+  //   .pipe(tap(() => this.fulfillmentFacade.read(this.queryVariables)));
 
   readonly triggerSearch = new BehaviorSubject<string>('');
   readonly triggerSearch$ = this.triggerSearch.asObservable().pipe(
@@ -94,6 +96,36 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
       };
       this.fulfillmentFacade.read(this.queryVariables);
     })
+  );
+
+  readonly queryParams$ = this.routerFacade.queryParams$.pipe(
+    tap((params) => {
+      if (params['orderId']) {
+        this.queryVariables = {
+          ...this.queryVariables,
+          filters: [
+            {
+              filters: [
+                {
+                  field: 'references[*].instance_type',
+                  value: 'urn:restorecommerce:acs:model:order:Order',
+                  operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                },
+                {
+                  field: 'references[*].instance_id',
+                  value: params['orderId'],
+                  operation: IoRestorecommerceResourcebaseFilterOperation.In,
+                },
+              ],
+              operator: IoRestorecommerceResourcebaseFilterOpOperator.And,
+            },
+          ],
+        };
+
+        this.fulfillmentFacade.read(this.queryVariables);
+      }
+    }),
+    debounceTime(10)
   );
 
   readonly triggerSelectId = new BehaviorSubject<string | null>(null);
@@ -127,10 +159,11 @@ export class FulfillmentTemplateComponent implements OnInit, OnDestroy {
     selectedFulfillmentId: this.fulfillmentFacade.selectedId$,
     selectedFulfillment: this.fulfillmentFacade.selected$,
     urlSegment: this.urlSegment$,
-    triggerRead: this.triggerRead$,
+    // triggerRead: this.triggerRead$,
     triggerSelectId: this.triggerSelectId$,
     triggerRemove: this.triggerRemove$,
     triggerSubmitFulfillment: this.triggerSubmitFulfillment$,
+    queryParams: this.queryParams$,
   });
 
   private readonly subscriptions = new SubSink();
