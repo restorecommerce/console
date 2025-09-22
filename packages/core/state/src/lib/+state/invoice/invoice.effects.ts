@@ -13,6 +13,8 @@ import {
 } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
+import { IoRestorecommerceInvoiceInvoice } from '@console-core/graphql';
+import { mapInvoiceReadResponseToInvoice } from '@console-core/mappers';
 import {
   ENotificationTypes,
   IInvoice,
@@ -47,9 +49,11 @@ export class InvoiceEffects {
           map((result) => {
             const payload = (
               result?.data?.invoicing?.invoice?.Read?.details?.items || []
-            )?.map((item) => item?.payload) as IInvoice[];
+            )?.map(
+              (item) => item?.payload
+            ) as IoRestorecommerceInvoiceInvoice[];
             return invoiceActions.invoiceReadRequestSuccess({
-              payload,
+              payload: mapInvoiceReadResponseToInvoice(payload),
             });
           }),
           catchError((error: Error) =>
