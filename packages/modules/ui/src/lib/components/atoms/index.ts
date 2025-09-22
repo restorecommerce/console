@@ -5,3 +5,4 @@ export * from './no-records/no-records.component';
 export * from './scrollable-container/scrollable-container.component';
 export * from './submit-button/submit-button.component';
 export * from './popover-action/popover-action.component';
+export * from './heading1/heading1.component';

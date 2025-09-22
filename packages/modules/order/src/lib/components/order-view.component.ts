@@ -39,23 +39,84 @@ import { transformOrderToInput } from '../utils';
   selector: 'app-module-order-view',
   template: `
     @if (vm$ | async; as vm) {
-    <rc-order-view
-      [order]="vm.order"
-      (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
-      (openAddItemModal)="openAddOrderItemModal(vm.order, vm.products)"
-      (openAddressModal)="onOpenAddress(vm.order, $event, vm.countries)"
-      (openEditOrderItemModal)="
-        onOpenEditOrderItem(vm.order, vm.products, $event)
-      "
-      (openDeleteOrderItemModal)="onDeleteOrderItem(vm.order, $event)"
-      (openEditShopModal)="onOpenEditShopModal(vm.order)"
-    />
+    <div class="order-details">
+      <div class="order-info">
+        <rc-order-info
+          [order]="vm.order"
+          (openEditOrderInfoModal)="onOpenOrderDetailModal(vm.order)"
+        />
+      </div>
+
+      <div class="order-items">
+        <rc-order-items
+          [items]="vm.order.items || []"
+          (openAddItemModal)="openAddOrderItemModal(vm.order, vm.products)"
+          (openEditOrderItemModal)="
+            onOpenEditOrderItem(vm.order, vm.products, $event)
+          "
+          (openDeleteOrderItemModal)="onDeleteOrderItem(vm.order, $event)"
+        />
+      </div>
+
+      <div class="order-totals">
+        <rc-order-totals [totalAmounts]="vm.order.totalAmounts || []" />
+      </div>
+
+      <div class="related">
+        <rc-heading-1>Related</rc-heading-1>
+
+        <div class="mb-1">
+          <a
+            [routerLink]="['/invoices']"
+            [queryParams]="{ orderId: vm.order.id }"
+          >
+            View invoices for this order
+          </a>
+        </div>
+
+        <div>
+          <a
+            [routerLink]="['/fulfillments']"
+            [queryParams]="{ orderId: vm.order.id }"
+          >
+            View fulfillments for this order
+          </a>
+        </div>
+      </div>
+
+      <div class="order-shipping-address">
+        <rc-order-address
+          title="Shipping address"
+          [addressType]="addressType.shippingAddress"
+          [rcOrderAddress]="vm.order.shippingAddress || undefined"
+          (openAddressModal)="onOpenAddress(vm.order, $event, vm.countries)"
+        />
+      </div>
+
+      <div class="order-shipping-address">
+        <rc-order-address
+          title="Billing address"
+          [addressType]="addressType.billingAddress"
+          [rcOrderAddress]="vm.order.billingAddress || undefined"
+          (openAddressModal)="onOpenAddress(vm.order, $event, vm.countries)"
+        />
+      </div>
+
+      <div class="order-shop">
+        <rc-shop-info
+          [shop]="vm.order.shop || {}"
+          (openEditShopModal)="onOpenEditShopModal(vm.order)"
+        />
+      </div>
+    </div>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
 export class OrderViewComponent implements OnInit, OnDestroy {
+  addressType = EAddressType;
+
   private readonly subscriptions = new SubSink();
   readonly vm$ = combineLatest({
     id: this.routerFacade.params$.pipe(

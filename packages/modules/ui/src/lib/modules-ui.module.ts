@@ -47,6 +47,7 @@ import {
   RcSubmitButtonComponent,
   RcPopoverActionComponent,
   RCBadgeComponent,
+  RCHeading1Component,
 } from './components/atoms';
 import {
   RcOrderInfoComponent,
@@ -99,7 +100,6 @@ import {
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
-  RcOrderViewComponent,
   RcProductViewComponent,
   JSONEditorComponent,
   RcDataListFulfilmentComponent,
@@ -180,6 +180,7 @@ const atoms = [
   RcScrollableContainerComponent,
   RcSubmitButtonComponent,
   RcPopoverActionComponent,
+  RCHeading1Component,
 ];
 
 const molecules = [
@@ -234,7 +235,6 @@ const organisms = [
   RcCrudMainComponent,
   RcCrudCreateComponent,
   RcCrudEditComponent,
-  RcOrderViewComponent,
   RcProductViewComponent,
   JSONEditorComponent,
   RcDataListFulfilmentComponent,
