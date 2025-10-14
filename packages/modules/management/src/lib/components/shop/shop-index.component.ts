@@ -21,7 +21,6 @@ import {
 export class ShopIndexComponent {
   readonly vm$ = combineLatest({
     selectedOrganizationId: this.shopFacade.selectedId$.pipe(
-      tap((data) => console.log(`data: ${data}`)),
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.router.navigate(

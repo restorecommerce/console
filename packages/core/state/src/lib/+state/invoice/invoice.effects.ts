@@ -222,7 +222,6 @@ export class InvoiceEffects {
   invoicePaymentRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invoiceActions.invoicePaymentStateRequest),
-      tap(() => console.log('****Hello world****')),
       switchMap(({ payload }) =>
         this.invoiceService.mutate(payload).pipe(
           tap((result) => {
