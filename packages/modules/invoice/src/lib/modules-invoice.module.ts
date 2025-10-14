@@ -10,6 +10,7 @@ import { InvoiceViewDetailsComponent } from './components/invoice-view-details.c
 import { InvoiceViewComponent } from './components/invoice-view.component';
 import { InvoiceTemplateComponent } from './components/template/invoice-template.component';
 import { modulesInvoiceRoutes } from './lib.routes';
+import { InvoiceSourcePipe } from './pipes/invoice-sources.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { modulesInvoiceRoutes } from './lib.routes';
     InvoiceViewComponent,
     InvoiceViewDetailsComponent,
     InvoiceTemplateComponent,
+    InvoiceSourcePipe,
   ],
   imports: [
     ModulesUiModule.forChild(),

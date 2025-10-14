@@ -12,7 +12,6 @@ import { VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
 import { ModeType } from '@console-core/graphql';
-import { invoiceToInputDTO } from '@console-core/mappers';
 import {
   CustomerFacade,
   IamFacade,
@@ -21,7 +20,6 @@ import {
   ShopFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
-import { IInvoice } from '@console-core/types';
 import { omitNullishAndUndefined } from '@console-modules/shared';
 import { JSONEditorComponent } from '@console-modules/ui';
 
@@ -35,7 +33,7 @@ import { buildInvoiceSchema } from '../jss-forms';
       <div class="col flex">
         <rc-json-editor
           #jsonEditor
-          [value]="getInvoiceSource(vm.invoice)"
+          [value]="vm.invoice | invoiceSource"
           class="flex"
         />
 
@@ -116,11 +114,6 @@ export class InvoiceEditComponent {
     private readonly invoiceFacade: InvoiceFacade,
     private readonly iamFacade: IamFacade
   ) {}
-
-  getInvoiceSource(invoice: IInvoice): string {
-    const invoiceInput = invoiceToInputDTO(invoice);
-    return JSON.stringify(invoiceInput, null, 4);
-  }
 
   onSave() {
     this.update({

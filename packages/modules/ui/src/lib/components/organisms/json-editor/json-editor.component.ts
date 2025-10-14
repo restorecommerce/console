@@ -4,7 +4,9 @@ import {
   ElementRef,
   HostBinding,
   Input,
+  OnChanges,
   OnDestroy,
+  SimpleChanges,
 } from '@angular/core';
 import ace from 'ace-builds';
 import 'ace-builds/src-noconflict/mode-json';
@@ -15,7 +17,9 @@ import 'ace-builds/src-noconflict/theme-github_light_default';
   templateUrl: './json-editor.component.html',
   standalone: false,
 })
-export class JSONEditorComponent implements AfterViewInit, OnDestroy {
+export class JSONEditorComponent
+  implements AfterViewInit, OnChanges, OnDestroy
+{
   @HostBinding('class') classNames = 'col w-100p';
   private editor!: ace.Ace.Editor;
 
@@ -45,8 +49,10 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
     this.editor.session.setMode('ace/mode/json');
     this.editor.session.on('change', () => {
       try {
-        JSON.stringify(JSON.parse(this.getValue()));
-        this.jsonError = '';
+        if (this.getValue()) {
+          JSON.stringify(JSON.parse(this.getValue()));
+          this.jsonError = '';
+        }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         this.jsonError = err.message;
@@ -57,6 +63,19 @@ export class JSONEditorComponent implements AfterViewInit, OnDestroy {
       );
       innerTextArea.reportValidity();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['value'] && this.editor && !this.editor.isFocused()) {
+      const next = changes['value'].currentValue ?? '';
+      if (next !== this.editor.getValue()) {
+        const scrollTop = this.editor.session.getScrollTop();
+        const pos = this.editor.getCursorPosition();
+        this.editor.session.setValue(next);
+        this.editor.session.setScrollTop(scrollTop);
+        this.editor.moveCursorToPosition(pos);
+      }
+    }
   }
 
   ngOnDestroy(): void {
