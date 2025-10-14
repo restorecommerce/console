@@ -11,6 +11,54 @@ fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
   userId
   customerId
   timestamp
+  sections {
+    id
+    customerRemark
+    positions {
+      id
+      toDate
+      quantity
+      unitPrice {
+        salePrice
+        currencyId
+        sale
+        regularPrice
+      }
+      fromDate
+      fulfillmentItem {
+        productId
+        variantId
+      }
+      manualItem {
+        name
+        descritpion
+        stockKeepingUnit
+        properties {
+          id
+          value
+        }
+      }
+      productItem {
+        productId
+        variantId
+        product {
+          id
+          active
+          tags
+          shopIds
+        }
+      }
+    }
+    amounts {
+      gross
+      net
+      currencyId
+      vats {
+        taxId
+        vat
+      }
+    }
+  }
   totalAmounts {
     currencyId
     gross

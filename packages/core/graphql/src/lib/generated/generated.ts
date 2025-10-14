@@ -7563,6 +7563,64 @@ export type InvoiceFragmentFragment = {
   userId?: string | null;
   customerId?: string | null;
   timestamp?: unknown | null;
+  sections?: Array<{
+    __typename?: 'IoRestorecommerceInvoiceSection';
+    id?: string | null;
+    customerRemark?: string | null;
+    positions?: Array<{
+      __typename?: 'IoRestorecommerceInvoicePosition';
+      id?: string | null;
+      toDate?: unknown | null;
+      quantity?: number | null;
+      fromDate?: unknown | null;
+      unitPrice?: {
+        __typename?: 'IoRestorecommercePricePrice';
+        salePrice?: number | null;
+        currencyId?: string | null;
+        sale?: boolean | null;
+        regularPrice?: number | null;
+      } | null;
+      fulfillmentItem?: {
+        __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+        productId?: string | null;
+        variantId?: string | null;
+      } | null;
+      manualItem?: {
+        __typename?: 'IoRestorecommerceInvoiceManualItem';
+        name?: string | null;
+        descritpion?: string | null;
+        stockKeepingUnit?: string | null;
+        properties?: Array<{
+          __typename?: 'IoRestorecommercePropertyProperty';
+          id?: string | null;
+          value?: string | null;
+        }> | null;
+      } | null;
+      productItem?: {
+        __typename?: 'IoRestorecommerceInvoiceProductItem';
+        productId?: string | null;
+        variantId?: string | null;
+        product?: {
+          __typename?: 'IoRestorecommerceProductProduct';
+          id?: string | null;
+          active?: boolean | null;
+          tags?: Array<string> | null;
+          shopIds?: Array<string> | null;
+        } | null;
+      } | null;
+    }> | null;
+    amounts?: Array<{
+      __typename?: 'IoRestorecommerceAmountAmount';
+      gross?: number | null;
+      net?: number | null;
+      currencyId?: string | null;
+      vats?: Array<{
+        __typename?: 'IoRestorecommerceAmountVAT';
+        taxId?: string | null;
+        vat?: number | null;
+      }> | null;
+    }> | null;
+  }> | null;
   totalAmounts?: Array<{
     __typename?: 'IoRestorecommerceAmountAmount';
     currencyId?: string | null;
@@ -10233,6 +10291,64 @@ export type InvoicingInvoiceMutateMutation = {
               userId?: string | null;
               customerId?: string | null;
               timestamp?: unknown | null;
+              sections?: Array<{
+                __typename?: 'IoRestorecommerceInvoiceSection';
+                id?: string | null;
+                customerRemark?: string | null;
+                positions?: Array<{
+                  __typename?: 'IoRestorecommerceInvoicePosition';
+                  id?: string | null;
+                  toDate?: unknown | null;
+                  quantity?: number | null;
+                  fromDate?: unknown | null;
+                  unitPrice?: {
+                    __typename?: 'IoRestorecommercePricePrice';
+                    salePrice?: number | null;
+                    currencyId?: string | null;
+                    sale?: boolean | null;
+                    regularPrice?: number | null;
+                  } | null;
+                  fulfillmentItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                  } | null;
+                  manualItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceManualItem';
+                    name?: string | null;
+                    descritpion?: string | null;
+                    stockKeepingUnit?: string | null;
+                    properties?: Array<{
+                      __typename?: 'IoRestorecommercePropertyProperty';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  } | null;
+                  productItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceProductItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                    product?: {
+                      __typename?: 'IoRestorecommerceProductProduct';
+                      id?: string | null;
+                      active?: boolean | null;
+                      tags?: Array<string> | null;
+                      shopIds?: Array<string> | null;
+                    } | null;
+                  } | null;
+                }> | null;
+                amounts?: Array<{
+                  __typename?: 'IoRestorecommerceAmountAmount';
+                  gross?: number | null;
+                  net?: number | null;
+                  currencyId?: string | null;
+                  vats?: Array<{
+                    __typename?: 'IoRestorecommerceAmountVAT';
+                    taxId?: string | null;
+                    vat?: number | null;
+                  }> | null;
+                }> | null;
+              }> | null;
               totalAmounts?: Array<{
                 __typename?: 'IoRestorecommerceAmountAmount';
                 currencyId?: string | null;
@@ -10334,6 +10450,64 @@ export type InvoicingInvoiceReadQuery = {
               userId?: string | null;
               customerId?: string | null;
               timestamp?: unknown | null;
+              sections?: Array<{
+                __typename?: 'IoRestorecommerceInvoiceSection';
+                id?: string | null;
+                customerRemark?: string | null;
+                positions?: Array<{
+                  __typename?: 'IoRestorecommerceInvoicePosition';
+                  id?: string | null;
+                  toDate?: unknown | null;
+                  quantity?: number | null;
+                  fromDate?: unknown | null;
+                  unitPrice?: {
+                    __typename?: 'IoRestorecommercePricePrice';
+                    salePrice?: number | null;
+                    currencyId?: string | null;
+                    sale?: boolean | null;
+                    regularPrice?: number | null;
+                  } | null;
+                  fulfillmentItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                  } | null;
+                  manualItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceManualItem';
+                    name?: string | null;
+                    descritpion?: string | null;
+                    stockKeepingUnit?: string | null;
+                    properties?: Array<{
+                      __typename?: 'IoRestorecommercePropertyProperty';
+                      id?: string | null;
+                      value?: string | null;
+                    }> | null;
+                  } | null;
+                  productItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceProductItem';
+                    productId?: string | null;
+                    variantId?: string | null;
+                    product?: {
+                      __typename?: 'IoRestorecommerceProductProduct';
+                      id?: string | null;
+                      active?: boolean | null;
+                      tags?: Array<string> | null;
+                      shopIds?: Array<string> | null;
+                    } | null;
+                  } | null;
+                }> | null;
+                amounts?: Array<{
+                  __typename?: 'IoRestorecommerceAmountAmount';
+                  gross?: number | null;
+                  net?: number | null;
+                  currencyId?: string | null;
+                  vats?: Array<{
+                    __typename?: 'IoRestorecommerceAmountVAT';
+                    taxId?: string | null;
+                    vat?: number | null;
+                  }> | null;
+                }> | null;
+              }> | null;
               totalAmounts?: Array<{
                 __typename?: 'IoRestorecommerceAmountAmount';
                 currencyId?: string | null;
@@ -13587,6 +13761,54 @@ export const InvoiceFragmentFragmentDoc = gql`
     userId
     customerId
     timestamp
+    sections {
+      id
+      customerRemark
+      positions {
+        id
+        toDate
+        quantity
+        unitPrice {
+          salePrice
+          currencyId
+          sale
+          regularPrice
+        }
+        fromDate
+        fulfillmentItem {
+          productId
+          variantId
+        }
+        manualItem {
+          name
+          descritpion
+          stockKeepingUnit
+          properties {
+            id
+            value
+          }
+        }
+        productItem {
+          productId
+          variantId
+          product {
+            id
+            active
+            tags
+            shopIds
+          }
+        }
+      }
+      amounts {
+        gross
+        net
+        currencyId
+        vats {
+          taxId
+          vat
+        }
+      }
+    }
     totalAmounts {
       currencyId
       gross

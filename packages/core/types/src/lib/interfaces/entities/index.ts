@@ -7,6 +7,7 @@ export * from './currency';
 export * from './fulfillment';
 export * from './locale';
 export * from './invoice';
+export * from './invoice-sections';
 export * from './manufacturer';
 export * from './meta';
 export * from './order';

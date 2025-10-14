@@ -5,19 +5,14 @@ import { IMeta } from './meta';
 export interface IInvoice
   extends Omit<
     IoRestorecommerceInvoiceInvoice,
-    | 'id'
-    | 'customerId'
-    | 'shopId'
-    | 'userId'
-    | 'references'
-    | 'meta'
-    | '__typename'
+    'id' | 'customerId' | 'shopId' | 'userId' | 'meta' | '__typename'
   > {
   id: string;
   customerId: string;
   shopId: string;
   userId: string;
   orderIds: string[];
+  // sections: IInvoiceSections;
   fulfillmentIds: string[];
   meta: IMeta;
 }

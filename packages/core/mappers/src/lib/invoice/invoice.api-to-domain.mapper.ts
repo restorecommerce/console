@@ -27,6 +27,38 @@ function splitReferenceIds(refs: ApiReference[] | null | undefined) {
   return { orderIds, fulfillmentIds };
 }
 
+// export const mapInvoiceSections = () => {
+//   const positions: IInvoicePosition[] = (sec.positions ?? []).map((p: any) => {
+//     const isProduct = !!p.productItem;
+//     const unit = Number(p.unitPrice?.salePrice ?? 0);
+//     const qty = Number(p.quantity ?? 0);
+//     return {
+//       id: p.id,
+//       kind: isProduct ? 'product' : 'manual',
+//       title: isProduct ? p.productItem.productId : 'Manual line',
+//       sku: isProduct ? p.productItem.product?.id : undefined,
+//       variant: isProduct ? p.productItem.variantId : undefined,
+//       productId: isProduct ? p.productItem.productId : undefined,
+//       quantity: qty,
+//       currency: p.unitPrice?.currencyId ?? firstCurrency,
+//       unit,
+//       total: +(qty * unit).toFixed(2),
+//       sale: !!p.unitPrice?.sale,
+//       // imageUrl resolved via your product->image pipe in template
+//     };
+//   });
+
+//   const sectionSubtotal = positions.reduce((acc, r) => acc + (r.total || 0), 0);
+
+//   return {
+//     id: sec.id,
+//     label: `Order • ${sec.id.slice(0, 8)}`,
+//     customerRemark: sec.customerRemark,
+//     positions,
+//     subtotal: { gross: +sectionSubtotal.toFixed(2) }, // if you don’t track tax, show gross=unit*qty
+//   };
+// };
+
 export function mapInvoiceReadResponseToInvoice(
   items: IoRestorecommerceInvoiceInvoice[]
 ): IInvoice[] {
@@ -44,7 +76,7 @@ export function mapInvoiceReadResponseToInvoice(
       orderIds,
       fulfillmentIds,
       meta: item.meta as IMeta,
-
+      sections: item.sections ?? [],
       fromDate: item.fromDate ?? null,
       toDate: item.toDate ?? null,
       withdrawn: item.withdrawn ?? null,

@@ -70,7 +70,7 @@ export class OrganizationContextEffects {
         ),
         tap(() => {
           this.appFacade.addNotification({
-            content: `Organization changed to [NAME]`,
+            content: `Organization changed`,
             type: ENotificationTypes.Info,
           });
         })
