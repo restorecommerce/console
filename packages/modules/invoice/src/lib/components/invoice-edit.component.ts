@@ -22,6 +22,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 import { IInvoice } from '@console-core/types';
+import { omitNullishAndUndefined } from '@console-modules/shared';
 import { JSONEditorComponent } from '@console-modules/ui';
 
 import { buildInvoiceSchema } from '../jss-forms';
@@ -125,7 +126,7 @@ export class InvoiceEditComponent {
     this.update({
       items: [
         {
-          ...JSON.parse(this.jsonEditor.getValue()),
+          ...omitNullishAndUndefined(JSON.parse(this.jsonEditor.getValue())),
         },
       ],
       mode: ModeType.Update,
