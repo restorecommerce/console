@@ -19,6 +19,7 @@ import {
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
 import { IFulfillment } from '@console-core/types';
+import { omitNullishAndEmpty } from '@console-modules/shared';
 import { JSONEditorComponent } from '@console-modules/ui';
 
 import { buildFulfillmentSchema } from '../jss-forms';
@@ -74,9 +75,6 @@ export class FulfillmentEditComponent {
     ),
     fulfillment: this.fulfillmentFacade.selected$.pipe(
       tap((fulfillment) => {
-        if (fulfillment) {
-          console.log(this.getFulfillmentSource(fulfillment));
-        }
         if (!fulfillment) {
           this.fulfillmentFacade.setSelectedId(null);
           this.router.navigate(
@@ -106,7 +104,7 @@ export class FulfillmentEditComponent {
     this.update({
       items: [
         {
-          ...JSON.parse(this.jsonEditor.getValue()),
+          ...omitNullishAndEmpty(JSON.parse(this.jsonEditor.getValue())),
         },
       ],
       mode: ModeType.Update,

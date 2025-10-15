@@ -20,7 +20,7 @@ import {
   ShopFacade,
   filterEmptyAndNullishAndUndefined,
 } from '@console-core/state';
-import { omitNullishAndUndefined } from '@console-modules/shared';
+import { omitNullishAndEmpty } from '@console-modules/shared';
 import { JSONEditorComponent } from '@console-modules/ui';
 
 import { buildInvoiceSchema } from '../jss-forms';
@@ -119,7 +119,7 @@ export class InvoiceEditComponent {
     this.update({
       items: [
         {
-          ...omitNullishAndUndefined(JSON.parse(this.jsonEditor.getValue())),
+          ...omitNullishAndEmpty(JSON.parse(this.jsonEditor.getValue())),
         },
       ],
       mode: ModeType.Update,
