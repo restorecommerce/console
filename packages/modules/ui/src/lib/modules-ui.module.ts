@@ -35,6 +35,7 @@ import {
   VCLGalleryModule,
   VCLFileInputModule,
   VCLRadioButtonModule,
+  VCLTabNavModule,
 } from '@vcl/ng-vcl';
 
 import { ModulesSharedModule } from '@console-modules/shared';
@@ -173,6 +174,7 @@ const modules = [
   ModulesSharedModule,
   OverlayModule,
   VCLRadioButtonModule,
+  VCLTabNavModule,
 ];
 
 const atoms = [
