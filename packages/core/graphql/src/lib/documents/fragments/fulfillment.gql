@@ -23,6 +23,9 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
       items {
         productId
         variantId
+        hsCode
+        taricCode
+        name
         quantity
         package {
           rotatable

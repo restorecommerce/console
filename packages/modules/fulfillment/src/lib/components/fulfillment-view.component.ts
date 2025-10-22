@@ -27,6 +27,7 @@ export class FulfillmentViewComponent {
       filterEmptyAndNullishAndUndefined(),
       tap((id) => {
         this.fulfillmentFacade.setSelectedId(id);
+        this.fulfillmentFacade.readOneById({ id });
       })
     ),
     fulfillment: this.fulfillmentFacade.selected$.pipe(

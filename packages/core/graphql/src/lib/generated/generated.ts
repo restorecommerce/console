@@ -7456,6 +7456,9 @@ export type FulfillmentFragmentFragment = {
         __typename?: 'IoRestorecommerceFulfillmentItem';
         productId?: string | null;
         variantId?: string | null;
+        hsCode?: string | null;
+        taricCode?: string | null;
+        name?: string | null;
         quantity?: number | null;
         package?: {
           __typename?: 'IoRestorecommerceProductPackage';
@@ -7516,6 +7519,25 @@ export type FulfillmentFragmentFragment = {
     __typename?: 'IoRestorecommerceReferenceReference';
     instanceType?: string | null;
     instanceId?: string | null;
+  }> | null;
+  trackings?: Array<{
+    __typename?: 'IoRestorecommerceFulfillmentTracking';
+    shipmentNumber?: string | null;
+    events?: Array<{
+      __typename?: 'IoRestorecommerceFulfillmentEvent';
+      location?: string | null;
+      timestamp?: unknown | null;
+      details?: {
+        __typename?: 'GoogleProtobufAny';
+        value?: unknown | null;
+        typeUrl?: string | null;
+      } | null;
+      status?: {
+        __typename?: 'IoRestorecommerceStatusStatus';
+        code?: number | null;
+        message?: string | null;
+      } | null;
+    }> | null;
   }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -9159,6 +9181,9 @@ export type FulfillmentFulfillmentMutateMutation = {
                     __typename?: 'IoRestorecommerceFulfillmentItem';
                     productId?: string | null;
                     variantId?: string | null;
+                    hsCode?: string | null;
+                    taricCode?: string | null;
+                    name?: string | null;
                     quantity?: number | null;
                     package?: {
                       __typename?: 'IoRestorecommerceProductPackage';
@@ -9219,6 +9244,25 @@ export type FulfillmentFulfillmentMutateMutation = {
                 __typename?: 'IoRestorecommerceReferenceReference';
                 instanceType?: string | null;
                 instanceId?: string | null;
+              }> | null;
+              trackings?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentTracking';
+                shipmentNumber?: string | null;
+                events?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentEvent';
+                  location?: string | null;
+                  timestamp?: unknown | null;
+                  details?: {
+                    __typename?: 'GoogleProtobufAny';
+                    value?: unknown | null;
+                    typeUrl?: string | null;
+                  } | null;
+                  status?: {
+                    __typename?: 'IoRestorecommerceStatusStatus';
+                    code?: number | null;
+                    message?: string | null;
+                  } | null;
+                }> | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -9325,6 +9369,9 @@ export type FulfillmentFulfillmentReadQuery = {
                     __typename?: 'IoRestorecommerceFulfillmentItem';
                     productId?: string | null;
                     variantId?: string | null;
+                    hsCode?: string | null;
+                    taricCode?: string | null;
+                    name?: string | null;
                     quantity?: number | null;
                     package?: {
                       __typename?: 'IoRestorecommerceProductPackage';
@@ -9385,6 +9432,25 @@ export type FulfillmentFulfillmentReadQuery = {
                 __typename?: 'IoRestorecommerceReferenceReference';
                 instanceType?: string | null;
                 instanceId?: string | null;
+              }> | null;
+              trackings?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentTracking';
+                shipmentNumber?: string | null;
+                events?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentEvent';
+                  location?: string | null;
+                  timestamp?: unknown | null;
+                  details?: {
+                    __typename?: 'GoogleProtobufAny';
+                    value?: unknown | null;
+                    typeUrl?: string | null;
+                  } | null;
+                  status?: {
+                    __typename?: 'IoRestorecommerceStatusStatus';
+                    code?: number | null;
+                    message?: string | null;
+                  } | null;
+                }> | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -9466,6 +9532,9 @@ export type FulfillmentFulfillmentSubmitMutation = {
                     __typename?: 'IoRestorecommerceFulfillmentItem';
                     productId?: string | null;
                     variantId?: string | null;
+                    hsCode?: string | null;
+                    taricCode?: string | null;
+                    name?: string | null;
                     quantity?: number | null;
                     package?: {
                       __typename?: 'IoRestorecommerceProductPackage';
@@ -9526,6 +9595,25 @@ export type FulfillmentFulfillmentSubmitMutation = {
                 __typename?: 'IoRestorecommerceReferenceReference';
                 instanceType?: string | null;
                 instanceId?: string | null;
+              }> | null;
+              trackings?: Array<{
+                __typename?: 'IoRestorecommerceFulfillmentTracking';
+                shipmentNumber?: string | null;
+                events?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentEvent';
+                  location?: string | null;
+                  timestamp?: unknown | null;
+                  details?: {
+                    __typename?: 'GoogleProtobufAny';
+                    value?: unknown | null;
+                    typeUrl?: string | null;
+                  } | null;
+                  status?: {
+                    __typename?: 'IoRestorecommerceStatusStatus';
+                    code?: number | null;
+                    message?: string | null;
+                  } | null;
+                }> | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -13689,6 +13777,9 @@ export const FulfillmentFragmentFragmentDoc = gql`
         items {
           productId
           variantId
+          hsCode
+          taricCode
+          name
           quantity
           package {
             rotatable
@@ -13739,6 +13830,21 @@ export const FulfillmentFragmentFragmentDoc = gql`
     references {
       instanceType
       instanceId
+    }
+    trackings {
+      shipmentNumber
+      events {
+        location
+        timestamp
+        details {
+          value
+          typeUrl
+        }
+        status {
+          code
+          message
+        }
+      }
     }
     fulfillmentState
     meta {

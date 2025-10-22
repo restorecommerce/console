@@ -148,7 +148,7 @@ const facades = [
     StoreModule.forFeature(STORE.states.manaufacturer, manufacturerReducer),
     EffectsModule.forFeature([ManufacturerEffects]),
     StoreModule.forFeature(STORE.states.routerState, fromRouter.routerReducer),
-    EffectsModule.forFeature([OrganizationContextEffects]),
+    // EffectsModule.forFeature([OrganizationContextEffects]),
     StoreModule.forFeature(STORE.states.objectUploadState, objectUploadReducer),
     EffectsModule.forFeature([ObjectUploadEffects]),
     StoreModule.forFeature(STORE.states.priceGroup, priceGroupReducer),

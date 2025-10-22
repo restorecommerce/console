@@ -20,7 +20,20 @@ export const fulfillmentReadRequestFail = createAction(
   '[FULFILLMENT] Read fail',
   props<{ error: string }>()
 );
+export const fulfillmentReadOneByIdRequest = createAction(
+  '[FULFILLMENT] Read one by id request',
+  props<{ payload: { id: string } }>()
+);
 
+export const fulfillmentReadOneByIdRequestSuccess = createAction(
+  '[FULFILLMENT] Read one by id success',
+  props<{ payload: IFulfillment }>()
+);
+
+export const fulfillmentReadOneByIdRequestFail = createAction(
+  '[FULFILLMENT] Read one by id fail',
+  props<{ error: string }>()
+);
 export const setSelectedId = createAction(
   '[FULFILLMENT] Set selected id',
   props<{ payload: string | null }>()

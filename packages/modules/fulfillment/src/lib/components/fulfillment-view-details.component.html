@@ -96,21 +96,22 @@
 </rc-card>
 
 <section class="mt-6">
-  <h2 class="text-lg font-semibold">
+  <h4 class="text-lg font-semibold">
     Parcels ({{ fulfillment.packaging.parcels.length }})
-  </h2>
+  </h4>
+
   <rc-accordion>
     <rc-accordion-item
-      *ngFor="let parcel of fulfillment.packaging?.parcels"
+      *ngFor="let parcel of fulfillment.packaging.parcels"
       [title]="parcel.id"
     >
-      <div class="text-sm text-gray-600 mb-2">
+      <div class="text-sm text-gray-600 my-2">
         Items: {{ parcel.items.length || 0 }} • Weight:
         {{ parcel.package.weightInKg | number : '1.3-3' }}
         kg
       </div>
 
-      <!-- <rc-table>
+      <rc-table>
         <table>
           <thead>
             <tr>
@@ -122,16 +123,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let it of parcel.items">
+            @for (it of parcel.items; track it.name) {
+            <tr>
               <td>{{ it.name }}</td>
               <td>{{ it.quantity }}</td>
               <td>{{ it.hsCode || it.taricCode || '—' }}</td>
               <td>{{ it.originCountryId || '—' }}</td>
               <td>{{ it.package?.weightInKg || 0 | number : '1.3-3' }}</td>
             </tr>
+            }
           </tbody>
         </table>
-      </rc-table> -->
+      </rc-table>
     </rc-accordion-item>
   </rc-accordion>
 </section>

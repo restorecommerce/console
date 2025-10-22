@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
-  FulfillmentFacade,
-  OrganizationContextFacade,
-} from '@console-core/state';
+  IoRestorecommerceResourcebaseFilterOperation,
+  IoRestorecommerceResourcebaseFilterValueType,
+} from '@console-core/graphql';
 import {
   ENotificationTypes,
   IFulfillment,
@@ -49,6 +49,55 @@ export class FulfillmentEffects {
             )
           )
         )
+      )
+    );
+  });
+
+  orderReadOneByIdRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fulfillmentActions.fulfillmentReadOneByIdRequest),
+      exhaustMap(({ payload }) =>
+        this.fulfillmentService
+          .read({
+            filters: [
+              {
+                filters: [
+                  {
+                    field: 'id',
+                    value: payload.id,
+                    type: IoRestorecommerceResourcebaseFilterValueType.String,
+                    operation: IoRestorecommerceResourcebaseFilterOperation.Eq,
+                  },
+                ],
+              },
+            ],
+            limit: 1,
+          })
+          .pipe(
+            tap((result) => {
+              this.errorHandlingService.checkStatusAndThrow(
+                result?.data?.fulfillment?.fulfillment?.Read?.details
+                  ?.operationStatus as TOperationStatus
+              );
+            }),
+            map((result) => {
+              const payload = (
+                result?.data?.fulfillment?.fulfillment?.Read?.details?.items ||
+                []
+              )?.map((item) => item?.payload) as IFulfillment[];
+
+              return fulfillmentActions.fulfillmentReadOneByIdRequestSuccess({
+                payload: payload.pop() as IFulfillment,
+              });
+            }),
+            catchError((error: Error) =>
+              of(
+                fulfillmentActions.fulfillmentReadOneByIdRequestFail({
+                  error: error.message,
+                })
+              )
+            )
+          )
       )
     );
   });
@@ -259,8 +308,6 @@ export class FulfillmentEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly organizationContextFacade: OrganizationContextFacade,
-    private readonly fulfilmentFacade: FulfillmentFacade,
     private readonly fulfillmentService: FulfillmentService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}

@@ -34,6 +34,10 @@ export class FulfillmentFacade {
   // Actions
   read = (payload: IIoRestorecommerceResourcebaseReadRequest) =>
     this.store.dispatch(fulfillmentActions.fulfillmentReadRequest({ payload }));
+  readOneById = (payload: { id: string }) =>
+    this.store.dispatch(
+      fulfillmentActions.fulfillmentReadOneByIdRequest({ payload })
+    );
   setSelectedId = (payload: string | null) =>
     this.store.dispatch(fulfillmentActions.setSelectedId({ payload }));
   create = (payload: IIoRestorecommerceFulfillmentFulfillmentList) =>
