@@ -1,3 +1,5 @@
+export * from './accordion/accordion.component';
+export * from './accordion/accordion-item.component';
 export * from './card/card.component';
 export * from './order-info/order-info.component';
 export * from './order-items/order-items.component';

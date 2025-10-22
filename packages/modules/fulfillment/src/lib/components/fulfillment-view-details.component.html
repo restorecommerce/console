@@ -1,4 +1,4 @@
-<header class="flex items-center justify-between gap-4">
+<header class="row items-center justify-between gap-4">
   <div>
     <h3 class="text-xl font-semibold">
       Fulfilment
@@ -22,7 +22,7 @@
   <div class="row gap-2 mt-3">
     <button
       vcl-button
-      [disabled]="!fulfillment.labels[0]?.file?.url"
+      [disabled]="!fulfillment.labels[0].file.url"
     >
       Open Label URL
     </button>
@@ -44,7 +44,7 @@
 <section class="row mt-4">
   <div class="flex-6-md pr-2">
     <rc-card title="Summary">
-      <div>Parcels: {{ fulfillment.packaging?.parcels?.length }}</div>
+      <div>Parcels: {{ fulfillment.packaging.parcels.length }}</div>
       <div>Items: {{ 99 }}</div>
       <div>Total Weight: {{ 999.999 | number : '1.3-3' }} kg</div>
       <!-- <div *ngIf="maxDims">
@@ -56,9 +56,9 @@
 
   <div class="flex-6-md pl-2">
     <rc-card title="Carrier Label">
-      <div>State: {{ fulfillment.labels[0]?.state || '—' }}</div>
+      <div>State: {{ fulfillment.labels[0].state || '—' }}</div>
       <div>
-        Status: {{ fulfillment.labels[0]?.status?.message?.trim() || '—' }}
+        Status: {{ fulfillment.labels[0].status?.message?.trim() || '—' }}
       </div>
       <a
         *ngIf="fulfillment.labels[0]?.file?.url"
@@ -94,3 +94,44 @@
     <!-- render events when present -->
   </ng-template>
 </rc-card>
+
+<section class="mt-6">
+  <h2 class="text-lg font-semibold">
+    Parcels ({{ fulfillment.packaging.parcels.length }})
+  </h2>
+  <rc-accordion>
+    <rc-accordion-item
+      *ngFor="let parcel of fulfillment.packaging?.parcels"
+      [title]="parcel.id"
+    >
+      <div class="text-sm text-gray-600 mb-2">
+        Items: {{ parcel.items.length || 0 }} • Weight:
+        {{ parcel.package.weightInKg | number : '1.3-3' }}
+        kg
+      </div>
+
+      <!-- <rc-table>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Qty</th>
+              <th>HS/TARIC</th>
+              <th>Origin</th>
+              <th>Weight (kg)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let it of parcel.items">
+              <td>{{ it.name }}</td>
+              <td>{{ it.quantity }}</td>
+              <td>{{ it.hsCode || it.taricCode || '—' }}</td>
+              <td>{{ it.originCountryId || '—' }}</td>
+              <td>{{ it.package?.weightInKg || 0 | number : '1.3-3' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </rc-table> -->
+    </rc-accordion-item>
+  </rc-accordion>
+</section>

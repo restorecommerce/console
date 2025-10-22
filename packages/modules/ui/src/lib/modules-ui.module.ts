@@ -60,6 +60,8 @@ import {
   RcProductVariantsComponent,
   RcProductImagesComponent,
   RcCardComponent,
+  RcAccordionComponent,
+  RcAccordionItemComponent,
 } from './components/molecules';
 import { RcOrderItemComponent } from './components/molecules/order-items/order-item.component';
 import { RcProductTemplateComponent } from './components/molecules/product-templates/product-template.component';
@@ -199,6 +201,8 @@ const molecules = [
   RcRoleAssociationComponent,
   RcRolesAssociationsComponent,
   RcCardComponent,
+  RcAccordionComponent,
+  RcAccordionItemComponent,
 ];
 
 const organisms = [
