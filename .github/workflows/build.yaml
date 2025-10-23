@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
         run: npm run console:build:prod
 
   image:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - name: Checkout
