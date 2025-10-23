@@ -9,6 +9,7 @@
   [triggerSelectId]="triggerSelectId"
   [triggerRemove]="triggerRemove"
   [triggerSubmitFulfillment]="triggerSubmitFulfillment"
+  [hasMeta]="false"
 >
   <ng-container rc-crud-search>
     @if(vm.dataList.length > 0) {
@@ -55,14 +56,14 @@
     <router-outlet />
   </ng-container>
 
-  <ng-container rc-crud-meta>
+  <!-- <ng-container rc-crud-meta>
     @if(vm.selectedFulfillmentId){
     <rc-meta
       [id]="vm.selectedFulfillmentId"
       [meta]="vm.selectedFulfillment?.meta"
     />
     }
-  </ng-container>
+  </ng-container> -->
 </rc-crud-main>
 }
 

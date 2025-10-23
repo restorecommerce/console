@@ -22,19 +22,20 @@
   <div class="row gap-2 mt-3">
     <button
       vcl-button
+      class="scale75p"
       [disabled]="!fulfillment.labels[0].file.url"
     >
       Open Label URL
     </button>
     <button
       vcl-button
-      class="transparent outline ml-2"
+      class="transparent outline ml-2 scale75p"
     >
       Reprint
     </button>
     <button
       vcl-button
-      class="transparent outline ml-2"
+      class="transparent outline ml-2 scale75p"
     >
       Retry
     </button>
@@ -88,7 +89,7 @@
         <!-- scale down button -->
         <button
           vcl-button
-          class="mt-2"
+          class="mt-2 scale85p"
         >
           Add tracking
         </button>
@@ -171,5 +172,83 @@
         </tbody>
       </table>
     </rc-table>
+  </vcl-tab>
+  <vcl-tab>
+    <vcl-label>Labels ({{ fulfillment.labels.length }})</vcl-label>
+    <section>
+      <div *ngFor="let lb of fulfillment.labels; let i = index">
+        <div class="row items-center justify-between">
+          <div>
+            #{{ i + 1 }} State: {{ lb.state }} • Status:
+            {{ lb.status?.message?.trim() || '—' }}
+            <div class="text-xs text-gray-500">
+              Shipment #: {{ lb.shipmentNumber }}
+            </div>
+          </div>
+          <div class="row">
+            <a
+              *ngIf="lb.file?.url"
+              [href]="lb.file.url"
+              target="_blank"
+              vcl-button
+              class="scale75p"
+              >Open URL</a
+            >
+            <button
+              vcl-button
+              class="scale75p ml-2"
+            >
+              Reprint
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </vcl-tab>
+  <vcl-tab>
+    <vcl-tab-label
+      >References ({{ fulfillment.references?.length }})</vcl-tab-label
+    >
+    <section>
+      <div class="row flex-wrap">
+        <span
+          *ngFor="let r of fulfillment.references || []"
+          class="chip mr-2"
+        >
+          {{ r.instanceType?.split(':')?.pop() }}
+          {{ r.instanceId | slice : 0 : 8 }}…
+        </span>
+      </div>
+    </section>
+  </vcl-tab>
+  <vcl-tab>
+    <vcl-tab-label>Meta</vcl-tab-label>
+    <section class="mt-6">
+      <div class="text-sm">
+        Created: {{ fulfillment.meta.created | date : 'medium' }}
+      </div>
+      <div class="text-sm">
+        Modified: {{ fulfillment.meta.modified | date : 'medium' }}
+      </div>
+      <div class="text-sm">Created by: {{ fulfillment.meta.createdBy }}</div>
+      <div class="text-sm">Modified by: {{ fulfillment.meta.modifiedBy }}</div>
+
+      <rc-table class="mt-2">
+        <table>
+          <thead>
+            <tr>
+              <th>Entity</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let o of fulfillment.meta.owners">
+              <td>{{ o.value?.split('.')?.pop() }}</td>
+              <td>{{ (o.attributes || [])[0]?.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </rc-table>
+    </section>
   </vcl-tab>
 </vcl-tab-nav>

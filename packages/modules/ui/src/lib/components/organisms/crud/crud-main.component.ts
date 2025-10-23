@@ -51,7 +51,7 @@ export class RcCrudMainComponent implements OnInit, OnDestroy {
   @Input() isCreate = true;
   @Input() isEdit = true;
   @Input() isDelete = true;
-  @Input() isMeta = true;
+  @Input() hasMeta = true;
   @Input() isNested = false;
   @Input() hasFilter = true;
   @Input() schema: ResourceSchema | null = null;
