@@ -9,20 +9,20 @@ import { IFulfilmentLabel } from './fulfilment-label';
 import { IMeta } from './meta';
 import { IProductPackage } from './package';
 
-interface IFulfilmentItem
+export interface IFulfilmentItem
   extends Omit<IoRestorecommerceFulfillmentItem, 'id' | 'name' | 'quantity'> {
   id: string;
   name: string;
   quantity: number;
 }
 
-interface IFulfilmentParcel
+export interface IFulfilmentParcel
   extends Omit<IoRestorecommerceFulfillmentParcel, 'id' | 'items' | 'package'> {
   id: string;
   items: IFulfilmentItem[];
   package: IProductPackage;
 }
-interface IFulfilmentPackaging
+export interface IFulfilmentPackaging
   extends Omit<IoRestorecommerceFulfillmentPackaging, 'parcels'> {
   parcels: IFulfilmentParcel[];
 }

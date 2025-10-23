@@ -11,8 +11,7 @@ import { FulfillmentViewComponent } from './components/fulfillment-view.componen
 import { FulfillmentTemplateComponent } from './components/template/fulfillment-template.component';
 import { FulfilmentLabelModalComponent } from './components/view/fulfillment-label-modal.component';
 import { modulesFulfillmentRoutes } from './lib.routes';
-import { ParcelsTotalSizePipe } from './pipes/parcels-total-size.pipe';
-import { ParcelsTotalWeightPipe } from './pipes/parcels-total-weight.pipe';
+import { FulfilmentParcelsItemsPipe } from './pipes';
 
 @NgModule({
   declarations: [
@@ -22,9 +21,8 @@ import { ParcelsTotalWeightPipe } from './pipes/parcels-total-weight.pipe';
     FulfillmentViewComponent,
     FulfillmentViewDetailsComponent,
     FulfillmentTemplateComponent,
-    ParcelsTotalSizePipe,
-    ParcelsTotalWeightPipe,
     FulfilmentLabelModalComponent,
+    FulfilmentParcelsItemsPipe,
   ],
   imports: [
     ModulesUiModule.forChild(),
