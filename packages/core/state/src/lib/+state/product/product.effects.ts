@@ -12,17 +12,15 @@ import {
   IoRestorecommerceResourcebaseSortSortOrder,
 } from '@console-core/graphql';
 import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
-import {
   ENotificationTypes,
   IProduct,
   TOperationStatus,
 } from '@console-core/types';
 
 import { ErrorHandlingService, ProductService } from '../../services';
+import { withLatestOrganizationData } from '../../utils';
 import { AppFacade } from '../app';
+import { OrganizationContextFacade } from '../organization-context';
 
 import * as productActions from './product.actions';
 import { productReadOneByIdRequest } from './product.actions';

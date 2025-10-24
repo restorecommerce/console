@@ -1,11 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import _ from 'lodash';
-import { IamRoleAssociationModalComponent } from 'packages/modules/management/src/lib/components/iam/role-association-modal.component';
+// import { IamRoleAssociationModalComponent } from 'packages/modules/management/src/lib/components/iam/role-association-modal.component';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
@@ -19,7 +14,7 @@ import { IRoleAssociationScopingInstance } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcRolesAssociationsComponent implements OnInit {
+export class RcRolesAssociationsComponent {
   @Input({ required: true }) id!: string;
 
   @Input({ required: true })
@@ -33,15 +28,16 @@ export class RcRolesAssociationsComponent implements OnInit {
     private readonly iamFacade: IamFacade
   ) {}
 
-  ngOnInit(): void {
-    this.roleAssociationLayer = this.layerService.create(
-      IamRoleAssociationModalComponent,
-      {
-        closeOnBackdropClick: false,
-        closeOnEscape: false,
-      }
-    );
-  }
+  // Discourage the use of IamRoleAssociationModalComponent from external deps.
+  // ngOnInit(): void {
+  //   this.roleAssociationLayer = this.layerService.create(
+  //     IamRoleAssociationModalComponent,
+  //     {
+  //       closeOnBackdropClick: false,
+  //       closeOnEscape: false,
+  //     }
+  //   );
+  // }
 
   onAddRole() {
     this.roleAssociationLayer

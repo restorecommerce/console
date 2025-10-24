@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 
-import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
 import { IOrganization, IUser } from '@console-core/types';
+
+import { AccountFacade } from '../+state/account';
+import { OrganizationContextFacade } from '../+state/organization-context';
 
 const isHierarchical = (
   root: string,

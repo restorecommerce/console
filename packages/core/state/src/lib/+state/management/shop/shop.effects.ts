@@ -10,17 +10,15 @@ import {
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
 import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
-import {
   ENotificationTypes,
   IShop,
   TOperationStatus,
 } from '@console-core/types';
 
 import { ErrorHandlingService, ShopService } from '../../../services';
+import { withLatestOrganizationData } from '../../../utils';
 import { AppFacade } from '../../app';
+import { OrganizationContextFacade } from '../../organization-context';
 
 import * as shopActions from './shop.actions';
 
@@ -32,7 +30,7 @@ export class ShopEffects {
         this.organizationContextFacade,
         shopActions.shopReadRequest.type
       ),
-      exhaustMap(([action, organization]) =>
+      exhaustMap(([_, organization]) =>
         this.shopService
           .read({
             // ...productActionPayload,

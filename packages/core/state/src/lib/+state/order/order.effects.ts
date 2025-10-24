@@ -12,17 +12,15 @@ import {
   IoRestorecommerceAddressShippingAddress,
 } from '@console-core/graphql';
 import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
-import {
   ENotificationTypes,
   IOrder,
   TOperationStatus,
 } from '@console-core/types';
 
 import { ErrorHandlingService, OrderService } from '../../services';
+import { withLatestOrganizationData } from '../../utils';
 import { AppFacade } from '../app';
+import { OrganizationContextFacade } from '../organization-context';
 
 import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';

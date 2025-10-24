@@ -14,7 +14,6 @@ export * from './crud/crud-create.component';
 export * from './crud/crud-edit.component';
 export * from './data-list/data-list-item.component';
 export * from './data-list/data-list.component';
-export * from '../../../../../order/src/lib/components/order-item.component';
 export * from './data-list-product/data-list-product.component';
 export * from './drawer/drawer-navigation-item.component';
 export * from './drawer/drawer-navigation-state.service';

@@ -14,7 +14,9 @@
           "dayjs",
           "deepmerge",
           "ngrx-store-localstorage",
-          "ngrx-store-logger"
+          "ngrx-store-logger",
+          "lodash",
+          "ace-builds"
         ],
         "outputPath": "dist/apps/restorecommerce",
         "index": "apps/restorecommerce/src/index.html",

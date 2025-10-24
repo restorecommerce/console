@@ -10,17 +10,15 @@ import {
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
 import {
-  OrganizationContextFacade,
-  withLatestOrganizationData,
-} from '@console-core/state';
-import {
   ENotificationTypes,
   ICountry,
   TOperationStatus,
 } from '@console-core/types';
 
 import { CountryService, ErrorHandlingService } from '../../../services';
+import { withLatestOrganizationData } from '../../../utils';
 import { AppFacade } from '../../app';
+import { OrganizationContextFacade } from '../../organization-context';
 
 import * as countryActions from './country.actions';
 
