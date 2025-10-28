@@ -113,9 +113,10 @@ import {
         </li>
 
         <!-- User roles components. -->
-        <rc-user-role-associations
+        <app-user-role-associations
           [id]="vm.user.id"
           [roles]="roleScopingInstances"
+          [scope]="vm.scope"
         />
 
         <li>
@@ -204,6 +205,7 @@ export class IamDetailsComponent implements OnInit, OnChanges {
     organizationsHash: Dictionary<IOrganization>;
     rolesHash: Dictionary<IRole>;
     userHash: Dictionary<IUser>;
+    scope: string;
   };
 
   roleScopingInstances: IRoleAssociationScopingInstance[] = [];

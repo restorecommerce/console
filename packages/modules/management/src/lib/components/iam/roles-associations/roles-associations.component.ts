@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import _ from 'lodash';
-// import { IamRoleAssociationModalComponent } from 'packages/modules/management/src/lib/components/iam/role-association-modal.component';
 
 import { LayerRef, LayerService } from '@vcl/ng-vcl';
 
@@ -8,14 +12,18 @@ import { ModeType } from '@console-core/graphql';
 import { IamFacade, UserService } from '@console-core/state';
 import { IRoleAssociationScopingInstance } from '@console-core/types';
 
+import { IamRoleAssociationModalComponent } from '../role-association-modal.component';
+
 @Component({
-  selector: 'rc-user-role-associations',
+  selector: 'app-user-role-associations',
   templateUrl: './roles-associations.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcRolesAssociationsComponent {
+export class RolesAssociationsComponent implements OnInit {
   @Input({ required: true }) id!: string;
+
+  @Input({ required: true }) scope!: string;
 
   @Input({ required: true })
   roles!: IRoleAssociationScopingInstance[];
@@ -29,15 +37,15 @@ export class RcRolesAssociationsComponent {
   ) {}
 
   // Discourage the use of IamRoleAssociationModalComponent from external deps.
-  // ngOnInit(): void {
-  //   this.roleAssociationLayer = this.layerService.create(
-  //     IamRoleAssociationModalComponent,
-  //     {
-  //       closeOnBackdropClick: false,
-  //       closeOnEscape: false,
-  //     }
-  //   );
-  // }
+  ngOnInit(): void {
+    this.roleAssociationLayer = this.layerService.create(
+      IamRoleAssociationModalComponent,
+      {
+        closeOnBackdropClick: false,
+        closeOnEscape: false,
+      }
+    );
+  }
 
   onAddRole() {
     this.roleAssociationLayer
@@ -91,6 +99,7 @@ export class RcRolesAssociationsComponent {
                   roleAssociations,
                 },
               ],
+              scope: this.scope,
               mode: ModeType.Update,
             });
           }
@@ -179,6 +188,7 @@ export class RcRolesAssociationsComponent {
                     roleAssociations,
                   },
                 ],
+                scope: this.scope,
                 mode: ModeType.Update,
               });
             }
@@ -233,6 +243,7 @@ export class RcRolesAssociationsComponent {
           roleAssociations,
         },
       ],
+      scope: this.scope,
       mode: ModeType.Update,
     });
   }

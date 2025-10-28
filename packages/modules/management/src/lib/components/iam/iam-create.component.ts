@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 
-import { IamFacade } from '@console-core/state';
+import { IamFacade, OrganizationContextFacade } from '@console-core/state';
 
 import { JssFormService } from './services';
 
@@ -14,6 +14,7 @@ import { JssFormService } from './services';
           [schema]="vm.userCreationForm"
           [options]="vm.options"
           [update]="create"
+          [scope]="vm.scope"
         />
       </div>
     </ng-container>
@@ -27,11 +28,13 @@ export class IamCreateComponent implements OnDestroy {
 
   readonly vm$ = combineLatest([
     this.iamFacade.selected$,
+    this.organizationContext.selectedId$,
     this.jssFormService.userForm$,
     this.jssFormService.formOptions$,
   ]).pipe(
-    map(([_, form, options]) => {
+    map(([_, organizationId, form, options]) => {
       return {
+        scope: organizationId as string,
         userCreationForm: form,
         options: {
           user: options.user,
@@ -46,7 +49,8 @@ export class IamCreateComponent implements OnDestroy {
 
   constructor(
     private readonly iamFacade: IamFacade,
-    private readonly jssFormService: JssFormService
+    private readonly jssFormService: JssFormService,
+    private readonly organizationContext: OrganizationContextFacade
   ) {}
 
   ngOnDestroy(): void {

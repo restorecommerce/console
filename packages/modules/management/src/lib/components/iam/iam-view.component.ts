@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
   IamFacade,
+  OrganizationContextFacade,
   OrganizationFacade,
   RoleFacade,
   RouterFacade,
@@ -46,6 +47,7 @@ export class IamViewComponent implements OnInit {
     organizationsHash: this.organizationFacade.entities$,
     rolesHash: this.roleFacade.entities$,
     userHash: this.iamFacade.entities$,
+    scope: this.organizationContext.selectedId$ as Observable<string>,
   });
 
   constructor(
@@ -53,7 +55,8 @@ export class IamViewComponent implements OnInit {
     private readonly routerFacade: RouterFacade,
     private readonly iamFacade: IamFacade,
     private readonly organizationFacade: OrganizationFacade,
-    private readonly roleFacade: RoleFacade
+    private readonly roleFacade: RoleFacade,
+    private readonly organizationContext: OrganizationContextFacade
   ) {}
 
   ngOnInit(): void {

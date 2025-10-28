@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ROUTER } from '@console-core/config';
+import { APP, ROUTER } from '@console-core/config';
 
 @Component({
   selector: 'rc-page-authn-sign-in',
@@ -10,4 +10,5 @@ import { ROUTER } from '@console-core/config';
 })
 export class RcPageSignInComponent {
   ROUTER = ROUTER;
+  APP = APP;
 }

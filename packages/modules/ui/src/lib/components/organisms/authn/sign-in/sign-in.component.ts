@@ -12,8 +12,8 @@ import { AuthnFacade } from '@console-core/state';
 export class RcSignInComponent {
   ROUTER = ROUTER;
   form = this.fb.group({
-    identifier: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.pattern(REGEX.password)]],
+    identifier: ['', []],
+    password: ['', [Validators.pattern(REGEX.password)]],
   });
 
   get formFields() {

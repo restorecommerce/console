@@ -10,7 +10,7 @@ import {
 import { IRoleAssociationScopingInstance } from '@console-core/types';
 
 @Component({
-  selector: 'rc-user-role-association',
+  selector: 'app-user-role-association',
   template: `
     <div class="flex row align-items-center justify-content-between">
       <span>{{ role.role?.name }}</span>
@@ -72,7 +72,7 @@ import { IRoleAssociationScopingInstance } from '@console-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class RcRoleAssociationComponent {
+export class RoleAssociationComponent {
   @HostBinding('class') klasses =
     'row align-items-center justify-content-between w-100p';
 

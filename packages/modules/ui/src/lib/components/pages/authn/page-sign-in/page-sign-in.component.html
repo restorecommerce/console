@@ -46,9 +46,17 @@
 -->
 
 <div class="self-center justify-center">
-  <div class="row rc-sign-in-form">
-    <div>
-      <h2>Sign In</h2>
+  <div class="rc-sign-in-form px-3">
+    <div class="flex">
+      <div class="w-100p row mb-2">
+        <img
+          width="30"
+          src="assets/images/restore_commerce_logo_square.png"
+          alt="RC Logo"
+        />
+        <span class="ml-1 self-end">{{ APP.name }}</span>
+      </div>
+      <hr />
       <rc-authn-sign-in />
     </div>
   </div>

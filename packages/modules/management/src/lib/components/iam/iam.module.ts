@@ -15,6 +15,8 @@ import { AppendLastLoginPipe } from './pipes/append-last-login.pipe';
 import { ListScopingInstanceNamesPipe } from './pipes/list-scopinginstance-names.pipe';
 import { ResolveRoleAssociationKeyPipe } from './pipes/resolve-roleassociation.pipe';
 import { IamRoleAssociationModalComponent } from './role-association-modal.component';
+import { RoleAssociationComponent } from './roles-associations/role-association.component';
+import { RolesAssociationsComponent } from './roles-associations/roles-associations.component';
 import { IamTemplateComponent } from './template/iam-template.component';
 import { IamChangePasswordFormComponent } from './views/iam-change-password-form.component';
 import { IamDetailsComponent } from './views/iam-details.component';
@@ -92,6 +94,8 @@ const routes: Routes = [
     ListScopingInstanceNamesPipe,
     ResolveRoleAssociationKeyPipe,
     RoleAssociationFormComponent,
+    RoleAssociationComponent,
+    RolesAssociationsComponent,
   ],
   imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
 })

@@ -18,6 +18,7 @@ import { ILocale, ITimezone, IUser } from '@console-core/types';
   standalone: false,
 })
 export class UserCreationFormComponent {
+  @Input() scope!: string;
   @Input() schema!: FormGroup;
   @Input() options: {
     user: IUser | null;
@@ -57,6 +58,7 @@ export class UserCreationFormComponent {
           ...this.form.form.value,
         },
       ],
+      scope: this.scope,
       mode: this.id ? ModeType.Update : ModeType.Create,
     });
   }
