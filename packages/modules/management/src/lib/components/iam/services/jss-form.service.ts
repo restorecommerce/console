@@ -147,7 +147,7 @@ export class JssFormService {
     const form = this.fb.group({
       firstName: [user?.firstName, [Validators.required]],
       lastName: [user?.lastName || '', [Validators.required]],
-      name: [user?.name || '', [Validators.required]],
+      name: [user?.name || '', [Validators.required, Validators.minLength(8)]],
       email: [user?.email || '', [Validators.required, Validators.email]],
       active: [user?.active ?? true, []],
       invite: [false, []],
