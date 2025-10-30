@@ -50,7 +50,7 @@
     "@ngrx/store": "19.0.1",
     "@ngx-loading-bar/core": "^6.0.2",
     "@nx/angular": "20.4.6",
-    "@vcl/ng-vcl": "^3.2.1",
+    "@vcl/ng-vcl": "^3.3.0",
     "@vcl/vcl": "^3.3.0",
     "@zxcvbn-ts/core": "^3.0.4",
     "@zxcvbn-ts/language-common": "^3.0.4",

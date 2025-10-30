@@ -31,7 +31,7 @@ export class PrivateTemplateComponent
   private readonly subscriptions = new SubSink();
 
   constructor(
-    private readonly notifier: NotifierService,
+    readonly notifier: NotifierService,
     private readonly appFacade: AppFacade,
     private readonly authFacade: AuthnFacade
   ) {
