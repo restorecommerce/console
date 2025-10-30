@@ -6,10 +6,15 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { AbstractControl, FormGroup, NgForm } from '@angular/forms';
 
 import { ModeType } from '@console-core/graphql';
 import { ILocale, ITimezone, IUser } from '@console-core/types';
+
+type ZxcvbnMinScoreError = {
+  score: number;
+  feedback: { warning?: string; suggestions: string[] };
+};
 
 @Component({
   selector: 'app-user-creation-form',
@@ -29,6 +34,8 @@ export class UserCreationFormComponent {
     locales: [],
     timezones: [],
   };
+
+  minScore = 3;
 
   @Input()
   id: string | null | undefined = null;
@@ -61,5 +68,15 @@ export class UserCreationFormComponent {
       scope: this.scope,
       mode: this.id ? ModeType.Update : ModeType.Create,
     });
+  }
+
+  get passwordCtrl(): AbstractControl {
+    return this.schema.controls['password'];
+  }
+
+  get zxcvbnErr(): ZxcvbnMinScoreError | null {
+    return this.passwordCtrl.getError(
+      'zxcvbnMinScore'
+    ) as ZxcvbnMinScoreError | null;
   }
 }

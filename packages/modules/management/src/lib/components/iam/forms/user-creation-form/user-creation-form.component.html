@@ -75,6 +75,22 @@
       />
     </vcl-password-input>
     <vcl-hint-error error="required">Password is required.</vcl-hint-error>
+    <vcl-hint-error error="minlength"
+      >Password must have a length of at least 12 characters</vcl-hint-error
+    >
+
+    @if (zxcvbnErr) {
+
+    <span class="form-control-hint"
+      >Strength: {{ zxcvbnErr.score }}/4 (min {{ minScore }})</span
+    >
+
+    } @if (zxcvbnErr; as err) { @if (err.feedback.warning) {
+    <span class="form-control-hint warning">{{ err.feedback.warning }}</span>
+    } @if (err.feedback.suggestions.length) { @for (s of
+    err.feedback.suggestions; track $index) {
+    <span class="form-control-hint info">{{ s }}</span>
+    } } }
   </vcl-form-control-group>
   }
 

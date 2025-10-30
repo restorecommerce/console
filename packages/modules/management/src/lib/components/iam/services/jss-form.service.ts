@@ -20,6 +20,8 @@ import {
   IUser,
 } from '@console-core/types';
 
+import { zxcvbnMinScoreValidator } from '../validators';
+
 interface IUserSchemaOptions {
   user: IUser | null;
   locales: ILocale[];
@@ -153,12 +155,11 @@ export class JssFormService {
         ? {
             password: [
               '',
-              [
-                Validators.required,
-                Validators.pattern(
-                  '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-                ),
-              ],
+              {
+                validators: [Validators.required, Validators.minLength(12)],
+                asyncValidators: [zxcvbnMinScoreValidator(3)],
+                updateOn: 'blur',
+              },
             ],
           }
         : {}),
