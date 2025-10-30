@@ -244,7 +244,7 @@
           <tbody>
             <tr *ngFor="let o of fulfillment.meta.owners">
               <td>{{ o.value?.split('.')?.pop() }}</td>
-              <td>{{ (o.attributes || [])[0]?.value }}</td>
+              <td>{{ (o.attributes || [])[0].value }}</td>
             </tr>
           </tbody>
         </table>
