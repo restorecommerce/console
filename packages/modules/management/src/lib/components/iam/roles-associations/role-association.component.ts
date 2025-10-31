@@ -14,9 +14,7 @@ import { IRoleAssociationScopingInstance } from '@console-core/types';
   template: `
     <div class="flex row align-items-center justify-content-between">
       <span>{{ role.role?.name }}</span>
-      <span>{{
-        role.scopingInstances && role.scopingInstances[0].instance.name
-      }}</span>
+      <span>{{ role.scopingInstances?.[0]?.instance?.name || '—' }}</span>
     </div>
 
     <div #target>
