@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 
-import { REGEX, ROUTER } from '@console-core/config';
+import { ROUTER } from '@console-core/config';
 import { AuthnFacade } from '@console-core/state';
 
 @Component({
@@ -13,7 +13,7 @@ export class RcSignInComponent {
   ROUTER = ROUTER;
   form = this.fb.group({
     identifier: ['', []],
-    password: ['', [Validators.pattern(REGEX.password)]],
+    password: ['', []],
   });
 
   get formFields() {
