@@ -103,14 +103,13 @@
   <!-- Locale -->
   <vcl-form-control-group>
     <vcl-label>Locale</vcl-label>
-    <vcl-select>
+    <vcl-select [search]="true">
       <vcl-select-list formControlName="localeId">
         <vcl-select-list-item
           *ngFor="let locale of options?.locales"
-          [value]="locale.id"
+          [value]="locale.value"
         >
-          {{ locale.value }}
-          <vcl-sub-label>{{ locale.description }}</vcl-sub-label>
+          {{ locale.name }}
         </vcl-select-list-item>
       </vcl-select-list>
     </vcl-select>

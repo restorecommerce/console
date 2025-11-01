@@ -8,16 +8,16 @@ import { JssFormService } from './services';
 @Component({
   selector: 'app-module-management-iam-create',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <div class="mt-2">
-        <app-user-creation-form
-          [schema]="vm.userCreationForm"
-          [options]="vm.options"
-          [update]="create"
-          [scope]="vm.scope"
-        />
-      </div>
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <div class="mt-2">
+      <app-user-creation-form
+        [schema]="vm.userCreationForm"
+        [options]="vm.options"
+        [update]="create"
+        [scope]="vm.scope"
+      />
+    </div>
+    }
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,

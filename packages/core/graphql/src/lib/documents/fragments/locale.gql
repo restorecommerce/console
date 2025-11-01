@@ -1,5 +1,6 @@
 fragment LocaleFragment on IoRestorecommerceLocaleLocale {
   id
+  name
   description
   value
   meta {

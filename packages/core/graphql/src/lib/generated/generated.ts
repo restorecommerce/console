@@ -7681,6 +7681,7 @@ export type InvoiceFragmentFragment = {
 export type LocaleFragmentFragment = {
   __typename?: 'IoRestorecommerceLocaleLocale';
   id?: string | null;
+  name?: string | null;
   description?: string | null;
   value?: string | null;
   meta?: {
@@ -11506,6 +11507,7 @@ export type MasterDataLocaleReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceLocaleLocale';
               id?: string | null;
+              name?: string | null;
               description?: string | null;
               value?: string | null;
               meta?: {
@@ -13937,6 +13939,7 @@ export const InvoiceFragmentFragmentDoc = gql`
 export const LocaleFragmentFragmentDoc = gql`
   fragment LocaleFragment on IoRestorecommerceLocaleLocale {
     id
+    name
     description
     value
     meta {
