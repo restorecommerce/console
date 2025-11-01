@@ -105,14 +105,12 @@
     <vcl-label>Locale</vcl-label>
     <vcl-select [search]="true">
       <vcl-select-list formControlName="localeId">
-        <vcl-select-list-item
-          *ngFor="let locale of options?.locales"
-          [value]="locale.id"
-        >
+        @for (locale of options.locales; track locale.id) {
+        <vcl-select-list-item [value]="locale.id">
           {{ locale.name }}
-
           <vcl-sub-label>{{ locale.value }}</vcl-sub-label>
         </vcl-select-list-item>
+        }
       </vcl-select-list>
     </vcl-select>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
@@ -123,13 +121,12 @@
     <vcl-label>Timezone</vcl-label>
     <vcl-select [search]="true">
       <vcl-select-list formControlName="timezoneId">
-        <vcl-select-list-item
-          *ngFor="let timezone of options.timezones"
-          [value]="timezone.id"
-        >
+        @for (timezone of options.timezones; track timezone.id) {
+        <vcl-select-list-item [value]="timezone.id">
           {{ timezone.name }}
           <vcl-sub-label>{{ timezone.description }}</vcl-sub-label>
         </vcl-select-list-item>
+        }
       </vcl-select-list>
     </vcl-select>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
