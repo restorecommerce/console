@@ -140,7 +140,14 @@ export class JssFormService {
         },
       ],
     });
-    this.timezoneFacade.read({});
+    this.timezoneFacade.read({
+      sorts: [
+        {
+          field: 'name',
+          order: ESortOrder.Ascending,
+        },
+      ],
+    });
     this.roleFacade.read({});
     this.organizationFacade.read({});
   }

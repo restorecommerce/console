@@ -107,9 +107,11 @@
       <vcl-select-list formControlName="localeId">
         <vcl-select-list-item
           *ngFor="let locale of options?.locales"
-          [value]="locale.value"
+          [value]="locale.id"
         >
           {{ locale.name }}
+
+          <vcl-sub-label>{{ locale.value }}</vcl-sub-label>
         </vcl-select-list-item>
       </vcl-select-list>
     </vcl-select>
@@ -119,13 +121,13 @@
   <!-- Timezone -->
   <vcl-form-control-group>
     <vcl-label>Timezone</vcl-label>
-    <vcl-select>
+    <vcl-select [search]="true">
       <vcl-select-list formControlName="timezoneId">
         <vcl-select-list-item
           *ngFor="let timezone of options.timezones"
           [value]="timezone.id"
         >
-          {{ timezone.value }}
+          {{ timezone.name }}
           <vcl-sub-label>{{ timezone.description }}</vcl-sub-label>
         </vcl-select-list-item>
       </vcl-select-list>

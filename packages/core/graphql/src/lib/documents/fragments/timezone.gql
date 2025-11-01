@@ -1,7 +1,8 @@
 fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
   id
-  value
+  name
   description
+  value
   meta {
     ...MetaFragment
   }

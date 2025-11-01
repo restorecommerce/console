@@ -8976,8 +8976,9 @@ export type TaxFragmentFragment = {
 export type TimezoneFragmentFragment = {
   __typename?: 'IoRestorecommerceTimezoneTimezone';
   id?: string | null;
-  value?: string | null;
+  name?: string | null;
   description?: string | null;
+  value?: string | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -12161,8 +12162,9 @@ export type MasterDataTimezoneReadQuery = {
             payload?: {
               __typename?: 'IoRestorecommerceTimezoneTimezone';
               id?: string | null;
-              value?: string | null;
+              name?: string | null;
               description?: string | null;
+              value?: string | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -14430,8 +14432,9 @@ export const TaxFragmentFragmentDoc = gql`
 export const TimezoneFragmentFragmentDoc = gql`
   fragment TimezoneFragment on IoRestorecommerceTimezoneTimezone {
     id
-    value
+    name
     description
+    value
     meta {
       ...MetaFragment
     }
