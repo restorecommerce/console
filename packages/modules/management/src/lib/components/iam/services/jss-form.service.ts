@@ -12,6 +12,7 @@ import {
   UserService,
 } from '@console-core/state';
 import {
+  ESortOrder,
   ILocale,
   IOrganization,
   IRole,
@@ -131,7 +132,14 @@ export class JssFormService {
   }
 
   init() {
-    this.localeFacade.read({});
+    this.localeFacade.read({
+      sorts: [
+        {
+          field: 'name',
+          order: ESortOrder.Ascending,
+        },
+      ],
+    });
     this.timezoneFacade.read({});
     this.roleFacade.read({});
     this.organizationFacade.read({});
