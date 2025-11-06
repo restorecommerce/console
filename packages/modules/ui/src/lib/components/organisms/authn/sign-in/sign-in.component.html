@@ -21,6 +21,7 @@
     </vcl-input-field>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
   </vcl-form-control-group>
+
   <vcl-form-control-group>
     <vcl-label>Password</vcl-label>
     <vcl-password-input>
@@ -39,6 +40,12 @@
         maxlength="20"
       />
     </vcl-password-input>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-checkbox formControlName="remember"
+      >Stay signed in for 7 days</vcl-checkbox
+    >
   </vcl-form-control-group>
 
   <div class="row">

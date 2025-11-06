@@ -14,12 +14,14 @@ export class RcSignInComponent {
   form = this.fb.group({
     identifier: ['', []],
     password: ['', []],
+    remember: [false, []],
   });
 
   get formFields() {
     return {
       identifier: this.form.get('identifier') as FormControl,
       password: this.form.get('password') as FormControl,
+      remember: this.form.get('remember') as FormControl,
     };
   }
 
@@ -36,6 +38,7 @@ export class RcSignInComponent {
     this.authnFacade.signIn({
       identifier: this.formFields.identifier.value,
       password: this.formFields.password.value,
+      // remember: this.formFields.remember.value
     });
   }
 }
