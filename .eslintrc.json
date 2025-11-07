@@ -70,17 +70,13 @@
         "@ngrx/prefix-selectors-with-select": "warn",
         "@ngrx/select-style": "warn",
         "@ngrx/use-consistent-global-store-name": "warn",
-        "@typescript-eslint/no-extra-semi": "error",
-        "no-extra-semi": "off"
+        "@angular-eslint/prefer-inject": "off"
       }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {
-        "@typescript-eslint/no-extra-semi": "error",
-        "no-extra-semi": "off"
-      }
+      "rules": {}
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],

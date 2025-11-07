@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { FuseResult } from 'fuse.js';
 
 import { FuseSearchService } from '../services';
 
@@ -8,6 +9,7 @@ import { FuseSearchService } from '../services';
   standalone: false,
 })
 export class FuseSearchPipe<T> implements PipeTransform {
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private searchService: FuseSearchService<T>) {}
 
   transform(items: T[], searchTerm: string, keys: string[]): T[] {
@@ -17,6 +19,6 @@ export class FuseSearchPipe<T> implements PipeTransform {
 
     this.searchService.setSearchKeys(keys);
     const fuse = this.searchService.getSearchEngine(items);
-    return fuse.search(searchTerm).map((result) => result.item);
+    return fuse.search(searchTerm).map((result: FuseResult<T>) => result.item);
   }
 }
