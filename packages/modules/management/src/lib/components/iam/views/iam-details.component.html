@@ -1,0 +1,106 @@
+<header>
+  <h3>User detail</h3>
+</header>
+
+<vcl-tab-nav>
+  <vcl-tab>
+    <vcl-label>Overview</vcl-label>
+
+    <vcl-data-list
+      mode="none"
+      [noBorder]="true"
+    >
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Name</dt>
+          <dd>{{ vm.user.name }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>First name</dt>
+          <dd>{{ vm.user.firstName || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Last name</dt>
+          <dd>{{ vm.user.lastName || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Email</dt>
+          <dd>{{ vm.user.email || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Locale</dt>
+          <dd>{{ vm.user.localeId || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Timezone ID</dt>
+          <dd>{{ vm.user.timezoneId || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Default scope</dt>
+          <dd>{{ vm.user.defaultScope || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Invite</dt>
+          <dd>{{ vm.user.invite || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Guest</dt>
+          <dd>{{ vm.user.guest || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Activation code</dt>
+          <dd>{{ vm.user.activationCode || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Last access</dt>
+          <dd>{{ vm.user.lastAccess || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Status</dt>
+          <dd>{{ vm.user.lastAccess || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+    </vcl-data-list>
+  </vcl-tab>
+  <vcl-tab>
+    <vcl-label>Tab2</vcl-label>
+    Content2
+  </vcl-tab>
+  <vcl-tab>
+    <vcl-label>Tab3</vcl-label>
+    Content3
+  </vcl-tab>
+</vcl-tab-nav>
