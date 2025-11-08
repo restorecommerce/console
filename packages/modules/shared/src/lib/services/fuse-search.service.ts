@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Fuse from 'fuse.js';
+import Fuse, { IFuseOptions } from 'fuse.js';
 
 export interface FuseOptionsType {
   shouldSort: boolean;
@@ -26,7 +26,7 @@ export class FuseSearchService<T> {
   };
 
   getSearchEngine(items: T[] = [], options = this.fuseOptions) {
-    return new Fuse(items, options as Fuse.IFuseOptions<T>);
+    return new Fuse(items, options as IFuseOptions<T>);
   }
 
   getDefaultOptions() {
