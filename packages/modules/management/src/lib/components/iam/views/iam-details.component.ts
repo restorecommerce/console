@@ -14,6 +14,7 @@ import {
   IRole,
   IRoleAssociationScopingInstance,
   IUser,
+  IAttribute,
 } from '@console-core/types';
 
 @Component({
@@ -68,5 +69,21 @@ export class IamDetailsComponent implements OnInit, OnChanges {
         this.vm.organizationsHash,
         this.vm.userHash
       );
+  }
+
+  attrPairs(
+    attrs?: IAttribute[] | null
+  ): Array<{ path: string; id: string; value?: string | null }> {
+    const out: Array<{ path: string; id: string; value?: string | null }> = [];
+    const walk = (arr: IAttribute[] | null | undefined, prefix: string[]) => {
+      if (!arr) return;
+      for (const a of arr) {
+        const path = [...prefix, a.id];
+        out.push({ path: path.join(' ▸ '), id: a.id, value: a.value });
+        if (a.attributes?.length) walk(a.attributes, path);
+      }
+    };
+    walk(attrs, []);
+    return out;
   }
 }

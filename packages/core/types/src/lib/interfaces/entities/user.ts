@@ -6,6 +6,7 @@ import {
 
 import { TScopingInstances } from '../../types';
 
+import { IAttribute } from './attribute';
 import { IMeta } from './meta';
 import { IRole } from './role';
 
@@ -45,8 +46,12 @@ export interface IUser
 }
 
 export interface IRoleAssociation
-  extends Omit<IoRestorecommerceAuthRoleAssociation, 'id' | '__typename'> {
+  extends Omit<
+    IoRestorecommerceAuthRoleAssociation,
+    'id' | 'attributes' | '__typename'
+  > {
   id?: string;
+  attributes: IAttribute[];
 }
 
 export interface IRoleAssociationScopingInstance {

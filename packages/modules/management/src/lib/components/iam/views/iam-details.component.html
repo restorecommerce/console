@@ -125,7 +125,37 @@
     </rc-table>
   </vcl-tab>
   <vcl-tab>
-    <vcl-label>Tab3</vcl-label>
-    Content3
+    <vcl-label
+      >Role Associations ({{ vm.user.roleAssociations.length || 0 }})</vcl-label
+    >
+    <rc-table>
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ra of vm.user.roleAssociations; track ra.id) {
+          <tr>
+            <td>{{ ra.role }}</td>
+            <td>
+              @if (attrPairs(ra.attributes).length) {
+              <ul>
+                @for (p of attrPairs(ra.attributes); track p.id) {
+                <li>
+                  <span class="text-gray-600">{{ p.path }}:</span>
+                  <code>{{ p.value || '—' }}</code>
+                </li>
+                }
+              </ul>
+              } @else { — }
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </rc-table>
   </vcl-tab>
 </vcl-tab-nav>
