@@ -96,8 +96,33 @@
     </vcl-data-list>
   </vcl-tab>
   <vcl-tab>
-    <vcl-label>Tab2</vcl-label>
-    Content2
+    <vcl-label>Roles ({{ vm.user.roles?.length || 0 }})</vcl-label>
+    <rc-table>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Assignable By</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of vm.user.roles ?? []; track r.id) {
+          <tr>
+            <td>{{ r.id }}</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.description || '—' }}</td>
+            <td>
+              @if (r.assignableByRoles?.length) {
+              {{ r.assignableByRoles?.join(', ') }}
+              } @else { — }
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </rc-table>
   </vcl-tab>
   <vcl-tab>
     <vcl-label>Tab3</vcl-label>
