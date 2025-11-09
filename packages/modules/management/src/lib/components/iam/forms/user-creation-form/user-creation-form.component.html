@@ -39,10 +39,10 @@
     </vcl-input-field>
     <vcl-hint-error error="required">This field is required.</vcl-hint-error>
     <vcl-hint-error error="minlength"
-      >Password must have a length of atleast 8 characters</vcl-hint-error
+      >Username must have a length of atleast 8 characters</vcl-hint-error
     >
     <vcl-hint-error error="maxlength"
-      >Password must have a length of atmost 40 characters.</vcl-hint-error
+      >Username must have a length of atmost 40 characters.</vcl-hint-error
     >
   </vcl-form-control-group>
 
@@ -99,6 +99,22 @@
     } } }
   </vcl-form-control-group>
   }
+
+  <!-- User type -->
+  <vcl-form-control-group>
+    <vcl-label>User Type</vcl-label>
+    <vcl-select [search]="true">
+      <vcl-select-list formControlName="userType">
+        @for (opt of userTypeOptions; track opt.id) {
+        <vcl-select-list-item [value]="opt.id">
+          {{ opt.name }}
+          <vcl-sub-label>{{ opt.description }}</vcl-sub-label>
+        </vcl-select-list-item>
+        }
+      </vcl-select-list>
+    </vcl-select>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  </vcl-form-control-group>
 
   <!-- Locale -->
   <vcl-form-control-group>

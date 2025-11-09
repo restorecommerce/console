@@ -148,7 +148,7 @@ export class IamEffects {
         }),
         tap(({ payload }) => {
           this.router.navigate(
-            ROUTER.pages.main.children.management.children.iam.children.edit.getLink(
+            ROUTER.pages.main.children.management.children.iam.children.view.getLink(
               { id: payload.id }
             )
           );

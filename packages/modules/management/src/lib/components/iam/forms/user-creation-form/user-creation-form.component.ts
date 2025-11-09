@@ -9,11 +9,17 @@ import {
 import { AbstractControl, FormGroup, NgForm } from '@angular/forms';
 
 import { ModeType } from '@console-core/graphql';
-import { ILocale, ITimezone, IUser } from '@console-core/types';
+import { EUserType, ILocale, ITimezone, IUser } from '@console-core/types';
 
 type ZxcvbnMinScoreError = {
   score: number;
   feedback: { warning?: string; suggestions: string[] };
+};
+
+type UserTypeOption = {
+  id: EUserType;
+  name: string;
+  description?: string;
 };
 
 @Component({
@@ -25,6 +31,7 @@ type ZxcvbnMinScoreError = {
 export class UserCreationFormComponent {
   @Input() scope!: string;
   @Input() schema!: FormGroup;
+
   @Input() options: {
     user: IUser | null;
     locales: ILocale[];
@@ -48,6 +55,29 @@ export class UserCreationFormComponent {
 
   @ViewChild('form')
   form!: NgForm;
+
+  userTypeOptions = [
+    {
+      id: EUserType.OrgUser,
+      name: 'Organization User',
+      description: 'Member of an organization (default)',
+    },
+    {
+      id: EUserType.IndividualUser,
+      name: 'Individual User',
+      description: 'Standalone individual account',
+    },
+    {
+      id: EUserType.Guest,
+      name: 'Guest',
+      description: 'Limited, temporary or trial access',
+    },
+    {
+      id: EUserType.TechnicalUser,
+      name: 'Technical User',
+      description: 'Service/bot account for integrations',
+    },
+  ] as const satisfies readonly UserTypeOption[];
 
   onReset(): void {
     this.form.resetForm(this.schema);

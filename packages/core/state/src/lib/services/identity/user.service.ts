@@ -170,6 +170,7 @@ export class UserService {
         name: user?.timezone?.name ?? user?.locale?.id ?? null,
       },
       roles: user?.roles ?? [],
+      tokens: user.tokens ?? [],
       roleAssociations: user?.roleAssociations ?? [],
     };
   }

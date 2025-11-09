@@ -13,6 +13,7 @@ import {
 } from '@console-core/state';
 import {
   ESortOrder,
+  EUserType,
   ILocale,
   IOrganization,
   IRole,
@@ -165,6 +166,7 @@ export class JssFormService {
       name: [user?.name || '', [Validators.required, Validators.minLength(8)]],
       email: [user?.email || '', [Validators.required, Validators.email]],
       active: [user?.active ?? true, []],
+      userType: [user?.userType || EUserType.OrgUser, [Validators.required]],
       invite: [false, []],
       ...(!user
         ? {
