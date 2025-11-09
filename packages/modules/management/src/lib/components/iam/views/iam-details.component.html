@@ -191,8 +191,8 @@
         <tbody>
           @for (token of vm.user.tokens; track token.token ) {
           <tr>
-            <td>{{ token.name }}</td>
-            <td>{{ token.token }}</td>
+            <td class="overflow-ellipsis">{{ token.name }}</td>
+            <td class="overflow-ellipsis">{{ token.token }}</td>
             <td>
               {{
                 token.lastLogin
