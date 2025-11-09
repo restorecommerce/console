@@ -51,6 +51,10 @@ import {
         font-weight: 600;
         padding: 0.625rem 0.75rem; /* 10px 12px */
         border-bottom: 1px solid var(--rc-border, #e5e7eb);
+        white-space: nowrap;
+        /* Optional: if your table can shrink, keep headers tidy instead of wrapping */
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       /* Body cells */

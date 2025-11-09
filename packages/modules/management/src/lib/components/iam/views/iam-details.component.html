@@ -158,4 +158,57 @@
       </table>
     </rc-table>
   </vcl-tab>
+  <vcl-tab>
+    <vcl-label>Tokens ({{ vm.user.tokens.length || 0 }})</vcl-label>
+    <rc-table>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Token</th>
+            <th>Last Login</th>
+            <th>Interactive</th>
+            <th>Expires In</th>
+            <th>Client ID</th>
+            <th>Type</th>
+            <th>Scopes</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (token of vm.user.tokens; track token.token ) {
+          <tr>
+            <td>{{ token.name }}</td>
+            <td>{{ token.token }}</td>
+            <td>
+              {{
+                token.lastLogin
+                  ? (token.lastLogin | date : DATE.format.dateTime)
+                  : '—'
+              }}
+            </td>
+            <td>
+              {{
+                token.interactive === null || token.interactive === undefined
+                  ? '—'
+                  : token.interactive
+                  ? 'Yes'
+                  : 'No'
+              }}
+            </td>
+            <td>
+              {{
+                token.expiresIn
+                  ? (token.expiresIn | date : DATE.format.dateTime)
+                  : '—'
+              }}
+            </td>
+            <td>{{ token.clientId || '—' }}</td>
+            <td>{{ token.type || '—' }}</td>
+            <td>{{ (token.scopes || []).join(', ') || '—' }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </rc-table>
+  </vcl-tab>
 </vcl-tab-nav>

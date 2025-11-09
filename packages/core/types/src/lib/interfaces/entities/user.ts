@@ -9,6 +9,7 @@ import { TScopingInstances } from '../../types';
 import { IAttribute } from './attribute';
 import { IMeta } from './meta';
 import { IRole } from './role';
+import { IAuthToken } from './token';
 
 export interface IUser
   extends Omit<
@@ -40,6 +41,7 @@ export interface IUser
   firstName: string;
   lastName: string;
   fullName: string;
+  tokens: IAuthToken[];
   lastAccess: string;
   roleAssociations: IRoleAssociation[];
   meta: IMeta;
