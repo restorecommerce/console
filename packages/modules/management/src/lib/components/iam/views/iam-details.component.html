@@ -1,5 +1,20 @@
-<header>
-  <h3>User detail</h3>
+<header class="mb-6">
+  <h3>
+    User
+    <span>#{{ vm.user.id | slice : 0 : 8 }}…</span>
+  </h3>
+
+  <div class="mt-2">
+    <vcl-badge type="info">{{ vm.user.userType || '—' }}</vcl-badge>
+    <span class="ml-3">Active: {{ vm.user.active ? 'Yes' : 'No' }}</span>
+    <span class="ml-3">Locale: {{ vm.user.localeId || '—' }}</span>
+    <span class="ml-3">TZ: {{ vm.user.timezoneId || '—' }}</span>
+  </div>
+
+  <div class="mt-2">
+    {{ vm.user.firstName || '—' }} {{ vm.user.lastName || '' }} ·
+    {{ vm.user.email || '—' }}
+  </div>
 </header>
 
 <vcl-tab-nav>
