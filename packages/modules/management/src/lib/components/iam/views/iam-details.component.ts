@@ -20,17 +20,6 @@ import {
 @Component({
   selector: 'app-module-management-iam-details',
   templateUrl: './iam-details.component.html',
-  styles: [
-    `
-      .token-template {
-        border: 1px solid #e8e8e8;
-      }
-
-      .token-toggler {
-        cursor: pointer;
-      }
-    `,
-  ],
   standalone: false,
 })
 export class IamDetailsComponent implements OnInit, OnChanges {

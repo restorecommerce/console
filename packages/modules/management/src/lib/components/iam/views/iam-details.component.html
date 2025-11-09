@@ -104,7 +104,6 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Assignable By</th>
           </tr>
         </thead>
         <tbody>
@@ -113,11 +112,6 @@
             <td>{{ r.id }}</td>
             <td>{{ r.name }}</td>
             <td>{{ r.description || '—' }}</td>
-            <td>
-              @if (r.assignableByRoles?.length) {
-              {{ r.assignableByRoles?.join(', ') }}
-              } @else { — }
-            </td>
           </tr>
           }
         </tbody>
@@ -142,14 +136,19 @@
             <td>{{ ra.role }}</td>
             <td>
               @if (attrPairs(ra.attributes).length) {
-              <ul>
+              <vcl-data-list
+                mode="none"
+                [noBorder]="true"
+              >
                 @for (p of attrPairs(ra.attributes); track p.id) {
-                <li>
-                  <span class="text-gray-600">{{ p.path }}:</span>
-                  <code>{{ p.value || '—' }}</code>
-                </li>
+                <vcl-data-list-item>
+                  <div class="row align-items-center">
+                    <span>{{ p.path }}:</span>
+                    <code>{{ p.value || '—' }}</code>
+                  </div>
+                </vcl-data-list-item>
                 }
-              </ul>
+              </vcl-data-list>
               } @else { — }
             </td>
           </tr>
@@ -210,5 +209,49 @@
         </tbody>
       </table>
     </rc-table>
+  </vcl-tab>
+
+  <vcl-tab>
+    <vcl-tab-label> Meta </vcl-tab-label>
+
+    <vcl-data-list
+      mode="none"
+      [noBorder]="true"
+    >
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>ID</dt>
+          <dd>{{ vm.user.id }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Created</dt>
+          <dd>{{ vm.user.meta.created | date : 'medium' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Modified</dt>
+          <dd>{{ vm.user.meta.modified | date : 'medium' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Created By</dt>
+          <dd>{{ vm.user.meta.createdBy || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
+          <dt>Modified By</dt>
+          <dd>{{ vm.user.meta.modifiedBy || '—' }}</dd>
+        </div>
+      </vcl-data-list-item>
+    </vcl-data-list>
   </vcl-tab>
 </vcl-tab-nav>
