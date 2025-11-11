@@ -120,192 +120,22 @@
   </vcl-tab>
   <vcl-tab>
     <vcl-label>Roles ({{ vm.user.roles?.length || 0 }})</vcl-label>
-    <rc-table>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th class="w-5p align-centered"></th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (r of vm.user.roles ?? []; track r.id) {
-          <tr>
-            <td>{{ r.id }}</td>
-            <td>{{ r.name }}</td>
-            <td>{{ r.description || '—' }}</td>
-            <td class="align-centered">
-              <div
-                #target
-                class="d-inline"
-              >
-                <button
-                  vcl-button
-                  square
-                  class="transparent"
-                  title="More"
-                  type="button"
-                  (click)="roleMenu.toggle()"
-                >
-                  <span class="icon mdi mdi-dots-vertical"></span>
-                </button>
-              </div>
-
-              <ng-template
-                vclPopover
-                #roleMenu="vclPopover"
-                [target]="target"
-                (afterClose)="roleMenu.close()"
-                [positions]="positions"
-              >
-                <rc-context-menu
-                  [items]="roleMenuItems"
-                  (select)="onRoleMenu($event)"
-                ></rc-context-menu>
-              </ng-template>
-            </td>
-          </tr>
-          }
-        </tbody>
-      </table>
-    </rc-table>
+    <app-user-role-table [user]="vm.user" />
   </vcl-tab>
   <vcl-tab>
     <vcl-label
       >Role Associations ({{ vm.user.roleAssociations.length || 0 }})</vcl-label
     >
-    <rc-table>
-      <table>
-        <thead>
-          <tr>
-            <th>Role</th>
-            <th>Attributes</th>
-            <th class="w-5p align-centered"></th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (ra of vm.user.roleAssociations; track ra.id) {
-          <tr class="role-association-row">
-            <td>{{ ra.role }}</td>
-            <td>
-              @if (attrPairs(ra.attributes).length) {
-              <vcl-data-list
-                mode="none"
-                [noBorder]="true"
-              >
-                @for (p of attrPairs(ra.attributes); track $index) {
-                <vcl-data-list-item>
-                  <div class="row align-items-center">
-                    <span>{{ p.path }}:</span>
-                    <code>{{ p.value || '—' }}</code>
-                  </div>
-                </vcl-data-list-item>
-                }
-              </vcl-data-list>
-              } @else { — }
-            </td>
-            <td>
-              <div
-                #target
-                class="d-inline"
-              >
-                <button
-                  vcl-button
-                  square
-                  class="transparent"
-                  title="More"
-                  type="button"
-                  (click)="roleAssoMenu.toggle()"
-                >
-                  <span class="icon mdi mdi-dots-vertical"></span>
-                </button>
-              </div>
-
-              <ng-template
-                vclPopover
-                #roleAssoMenu="vclPopover"
-                [target]="target"
-                (afterClose)="roleAssoMenu.close()"
-                [positions]="positions"
-              >
-                <rc-context-menu
-                  [items]="roleMenuItems"
-                  (select)="onRoleAssociationMenu($event); roleAssoMenu.close()"
-                ></rc-context-menu>
-              </ng-template>
-            </td>
-          </tr>
-          }
-        </tbody>
-      </table>
-    </rc-table>
+    <app-user-role-associations-table [user]="vm.user" />
   </vcl-tab>
   <vcl-tab>
     <vcl-label>Tokens ({{ vm.user.tokens.length || 0 }})</vcl-label>
-    <rc-table>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Token</th>
-            <th>Last Login</th>
-            <th>Interactive</th>
-            <th>Expires In</th>
-            <th>Client ID</th>
-            <th>Type</th>
-            <th>Scopes</th>
-            <th class="w-5p align-centered"></th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (token of vm.user.tokens; track token.token ) {
-          <tr>
-            <td class="overflow-ellipsis">{{ token.name }}</td>
-            <td class="overflow-ellipsis">{{ token.token }}</td>
-            <td>
-              {{
-                token.lastLogin
-                  ? (token.lastLogin | date : DATE.format.dateTime)
-                  : '—'
-              }}
-            </td>
-            <td>
-              <vcl-badge [type]="token.interactive ? 'success' : 'error'">{{
-                token.interactive ? 'Yes' : 'No'
-              }}</vcl-badge>
-            </td>
-            <td>
-              {{
-                token.expiresIn
-                  ? (token.expiresIn | date : DATE.format.dateTime)
-                  : '—'
-              }}
-            </td>
-            <td>{{ token.clientId || '—' }}</td>
-            <td>{{ token.type || '—' }}</td>
-            <td>{{ (token.scopes || []).join(', ') || '—' }}</td>
-            <td class="align-centered">
-              <button
-                vcl-button
-                square
-                class="transparent"
-                title="More"
-                type="button"
-              >
-                <span class="icon mdi mdi-dots-vertical"></span>
-              </button>
-            </td>
-          </tr>
-          }
-        </tbody>
-      </table>
-    </rc-table>
+    <app-user-tokens-table [user]="vm.user" />
   </vcl-tab>
   <vcl-tab>
     <vcl-tab-label> Meta </vcl-tab-label>
 
+    <!-- TODO Extract meta into a UIs module... -->
     <vcl-data-list
       mode="none"
       [noBorder]="true"

@@ -1,0 +1,51 @@
+<rc-table>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th class="w-5p align-centered"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of user.roles ?? []; track r.id) {
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.name }}</td>
+        <td>{{ r.description || '—' }}</td>
+        <td class="align-centered">
+          <div
+            #target
+            class="d-inline"
+          >
+            <button
+              vcl-button
+              square
+              class="transparent"
+              title="More"
+              type="button"
+              (click)="roleMenu.toggle()"
+            >
+              <span class="icon mdi mdi-dots-vertical"></span>
+            </button>
+          </div>
+
+          <ng-template
+            vclPopover
+            #roleMenu="vclPopover"
+            [target]="target"
+            (afterClose)="roleMenu.close()"
+            [positions]="positions"
+          >
+            <rc-context-menu
+              [items]="roleMenuItems"
+              (select)="onRoleMenu($event)"
+            ></rc-context-menu>
+          </ng-template>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</rc-table>
