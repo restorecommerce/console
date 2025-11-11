@@ -137,25 +137,34 @@
             <td>{{ r.name }}</td>
             <td>{{ r.description || '—' }}</td>
             <td class="align-centered">
-              <div #target>
+              <div
+                #target
+                class="d-inline"
+              >
                 <button
                   vcl-button
                   square
                   class="transparent"
                   title="More"
                   type="button"
-                  (click)="roleMenu.open($any($event.currentTarget))"
+                  (click)="roleMenu.toggle()"
                 >
                   <span class="icon mdi mdi-dots-vertical"></span>
                 </button>
               </div>
 
-              <rc-context-menu
-                #roleMenu
+              <ng-template
+                vclPopover
+                #roleMenu="vclPopover"
                 [target]="target"
-                [items]="roleMenuItems"
-                (select)="onRoleMenu($event)"
-              ></rc-context-menu>
+                (afterClose)="roleMenu.close()"
+                [positions]="positions"
+              >
+                <rc-context-menu
+                  [items]="roleMenuItems"
+                  (select)="onRoleMenu($event)"
+                ></rc-context-menu>
+              </ng-template>
             </td>
           </tr>
           }
@@ -178,7 +187,7 @@
         </thead>
         <tbody>
           @for (ra of vm.user.roleAssociations; track ra.id) {
-          <tr>
+          <tr class="role-association-row">
             <td>{{ ra.role }}</td>
             <td>
               @if (attrPairs(ra.attributes).length) {
@@ -186,7 +195,7 @@
                 mode="none"
                 [noBorder]="true"
               >
-                @for (p of attrPairs(ra.attributes); track p.id) {
+                @for (p of attrPairs(ra.attributes); track $index) {
                 <vcl-data-list-item>
                   <div class="row align-items-center">
                     <span>{{ p.path }}:</span>
@@ -198,15 +207,34 @@
               } @else { — }
             </td>
             <td>
-              <button
-                vcl-button
-                square
-                class="transparent"
-                title="More"
-                type="button"
+              <div
+                #target
+                class="d-inline"
               >
-                <span class="icon mdi mdi-dots-vertical"></span>
-              </button>
+                <button
+                  vcl-button
+                  square
+                  class="transparent"
+                  title="More"
+                  type="button"
+                  (click)="roleAssoMenu.toggle()"
+                >
+                  <span class="icon mdi mdi-dots-vertical"></span>
+                </button>
+              </div>
+
+              <ng-template
+                vclPopover
+                #roleAssoMenu="vclPopover"
+                [target]="target"
+                (afterClose)="roleAssoMenu.close()"
+                [positions]="positions"
+              >
+                <rc-context-menu
+                  [items]="roleMenuItems"
+                  (select)="onRoleAssociationMenu($event); roleAssoMenu.close()"
+                ></rc-context-menu>
+              </ng-template>
             </td>
           </tr>
           }
@@ -244,13 +272,9 @@
               }}
             </td>
             <td>
-              {{
-                token.interactive === null || token.interactive === undefined
-                  ? '—'
-                  : token.interactive
-                  ? 'Yes'
-                  : 'No'
-              }}
+              <vcl-badge [type]="token.interactive ? 'success' : 'error'">{{
+                token.interactive ? 'Yes' : 'No'
+              }}</vcl-badge>
             </td>
             <td>
               {{
