@@ -136,16 +136,26 @@
             <td>{{ r.id }}</td>
             <td>{{ r.name }}</td>
             <td>{{ r.description || '—' }}</td>
-            <td>
-              <button
-                vcl-button
-                square
-                class="transparent"
-                title="More"
-                type="button"
-              >
-                <span class="icon mdi mdi-dots-vertical"></span>
-              </button>
+            <td class="align-centered">
+              <div #target>
+                <button
+                  vcl-button
+                  square
+                  class="transparent"
+                  title="More"
+                  type="button"
+                  (click)="roleMenu.open($any($event.currentTarget))"
+                >
+                  <span class="icon mdi mdi-dots-vertical"></span>
+                </button>
+              </div>
+
+              <rc-context-menu
+                #roleMenu
+                [target]="target"
+                [items]="roleMenuItems"
+                (select)="onRoleMenu($event)"
+              ></rc-context-menu>
             </td>
           </tr>
           }

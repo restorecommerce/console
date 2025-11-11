@@ -38,6 +38,11 @@ export class IamDetailsComponent implements OnInit, OnChanges {
 
   DATE = DATE;
 
+  roleMenuItems = [
+    { value: 'edit', label: 'Edit' },
+    { value: 'delete', label: 'Delete', danger: true },
+  ];
+
   constructor(private readonly userService: UserService) {}
 
   ngOnInit(): void {
@@ -58,6 +63,10 @@ export class IamDetailsComponent implements OnInit, OnChanges {
         this.vm.organizationsHash,
         this.vm.userHash
       );
+  }
+
+  onRoleMenu(option: string) {
+    console.log('Option:', option);
   }
 
   attrPairs(
