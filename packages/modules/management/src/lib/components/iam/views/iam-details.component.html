@@ -1,12 +1,20 @@
 <header class="mb-6">
   <h3>
-    User
-    <span>#{{ vm.user.id | slice : 0 : 8 }}…</span>
+    {{ vm.user.firstName }}
+    {{ '  ' }}
+    {{ vm.user.firstName }}
   </h3>
 
   <div class="mt-2">
     <vcl-badge type="info">{{ vm.user.userType || '—' }}</vcl-badge>
-    <span class="ml-3">Active: {{ vm.user.active ? 'Yes' : 'No' }}</span>
+    <span class="ml-3"
+      >Active: @if (vm.user.active ) {
+      <vcl-badge type="success">Yes</vcl-badge>
+      } @else {
+      <vcl-badge type="error">No</vcl-badge>
+      }
+    </span>
+
     <span class="ml-3">Locale: {{ vm.user.localeId || '—' }}</span>
     <span class="ml-3">TZ: {{ vm.user.timezoneId || '—' }}</span>
   </div>
@@ -19,7 +27,7 @@
 
 <vcl-tab-nav>
   <vcl-tab>
-    <vcl-label>Overview</vcl-label>
+    <vcl-label>Basic</vcl-label>
 
     <vcl-data-list
       mode="none"
@@ -119,6 +127,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th class="w-5p align-centered"></th>
           </tr>
         </thead>
         <tbody>
@@ -127,6 +136,17 @@
             <td>{{ r.id }}</td>
             <td>{{ r.name }}</td>
             <td>{{ r.description || '—' }}</td>
+            <td>
+              <button
+                vcl-button
+                square
+                class="transparent"
+                title="More"
+                type="button"
+              >
+                <span class="icon mdi mdi-dots-vertical"></span>
+              </button>
+            </td>
           </tr>
           }
         </tbody>
@@ -143,6 +163,7 @@
           <tr>
             <th>Role</th>
             <th>Attributes</th>
+            <th class="w-5p align-centered"></th>
           </tr>
         </thead>
         <tbody>
@@ -166,6 +187,17 @@
               </vcl-data-list>
               } @else { — }
             </td>
+            <td>
+              <button
+                vcl-button
+                square
+                class="transparent"
+                title="More"
+                type="button"
+              >
+                <span class="icon mdi mdi-dots-vertical"></span>
+              </button>
+            </td>
           </tr>
           }
         </tbody>
@@ -186,6 +218,7 @@
             <th>Client ID</th>
             <th>Type</th>
             <th>Scopes</th>
+            <th class="w-5p align-centered"></th>
           </tr>
         </thead>
         <tbody>
@@ -219,6 +252,17 @@
             <td>{{ token.clientId || '—' }}</td>
             <td>{{ token.type || '—' }}</td>
             <td>{{ (token.scopes || []).join(', ') || '—' }}</td>
+            <td class="align-centered">
+              <button
+                vcl-button
+                square
+                class="transparent"
+                title="More"
+                type="button"
+              >
+                <span class="icon mdi mdi-dots-vertical"></span>
+              </button>
+            </td>
           </tr>
           }
         </tbody>
