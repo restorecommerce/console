@@ -106,14 +106,14 @@
       <vcl-data-list-item>
         <div class="row justify-between align-items">
           <dt>Last access</dt>
-          <dd>{{ vm.user.lastAccess || '—' }}</dd>
+          <dd>{{ vm.user.lastAccess | date : 'medium' }}</dd>
         </div>
       </vcl-data-list-item>
 
       <vcl-data-list-item>
         <div class="row justify-between align-items">
           <dt>Status</dt>
-          <dd>{{ vm.user.lastAccess || '—' }}</dd>
+          <dd>{{ vm.user.lastAccess | date : 'medium' }}</dd>
         </div>
       </vcl-data-list-item>
     </vcl-data-list>
