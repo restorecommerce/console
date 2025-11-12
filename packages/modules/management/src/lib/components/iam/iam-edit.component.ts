@@ -15,16 +15,16 @@ import { JssFormService } from './services';
 @Component({
   selector: 'app-module-management-iam-edit',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <div class="mt-2">
-        <app-user-creation-form
-          [schema]="vm.schema"
-          [options]="vm.options"
-          [update]="update"
-          [id]="vm.id"
-        />
-      </div>
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <div class="mt-2">
+      <app-user-creation-form
+        [schema]="vm.schema"
+        [options]="vm.options"
+        [update]="update"
+        [id]="vm.id"
+      />
+    </div>
+    }
   `,
   providers: [JssFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,

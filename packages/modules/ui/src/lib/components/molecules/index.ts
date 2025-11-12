@@ -15,5 +15,6 @@ export * from './product-variants/product-images.component';
 export * from './product-templates/product-template.component';
 export * from './product-templates/product-templates.component';
 export * from './order-address/order-address.component';
+export * from './meta/meta.component';
 export * from './shop-info/shop-info.component';
 export * from './table/table.component';

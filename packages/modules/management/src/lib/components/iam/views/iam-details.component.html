@@ -8,7 +8,7 @@
   <div class="mt-2">
     <vcl-badge type="info">{{ vm.user.userType || '—' }}</vcl-badge>
     <span class="ml-3"
-      >Active: @if (vm.user.active ) {
+      >Active: @if (vm.user.active) {
       <vcl-badge type="success">Yes</vcl-badge>
       } @else {
       <vcl-badge type="error">No</vcl-badge>
@@ -84,6 +84,17 @@
 
       <vcl-data-list-item>
         <div class="row justify-between align-items">
+          <dt>Active</dt>
+          <dd>
+            <vcl-badge [type]="vm.user.active ? 'success' : 'error'">{{
+              vm.user.active ? 'Yes' : 'No'
+            }}</vcl-badge>
+          </dd>
+        </div>
+      </vcl-data-list-item>
+
+      <vcl-data-list-item>
+        <div class="row justify-between align-items">
           <dt>Invite</dt>
           <dd>{{ vm.user.invite || '—' }}</dd>
         </div>
@@ -109,13 +120,6 @@
           <dd>{{ vm.user.lastAccess | date : 'medium' }}</dd>
         </div>
       </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="row justify-between align-items">
-          <dt>Status</dt>
-          <dd>{{ vm.user.lastAccess | date : 'medium' }}</dd>
-        </div>
-      </vcl-data-list-item>
     </vcl-data-list>
   </vcl-tab>
   <vcl-tab>
@@ -134,46 +138,6 @@
   </vcl-tab>
   <vcl-tab>
     <vcl-tab-label> Meta </vcl-tab-label>
-
-    <!-- TODO Extract meta into a UIs module... -->
-    <vcl-data-list
-      mode="none"
-      [noBorder]="true"
-    >
-      <vcl-data-list-item>
-        <div class="row justify-between align-items">
-          <dt>ID</dt>
-          <dd>{{ vm.user.id }}</dd>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="row justify-between align-items">
-          <dt>Created</dt>
-          <dd>{{ vm.user.meta.created | date : 'medium' }}</dd>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="row justify-between align-items">
-          <dt>Modified</dt>
-          <dd>{{ vm.user.meta.modified | date : 'medium' }}</dd>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="row justify-between align-items">
-          <dt>Created By</dt>
-          <dd>{{ vm.user.meta.createdBy || '—' }}</dd>
-        </div>
-      </vcl-data-list-item>
-
-      <vcl-data-list-item>
-        <div class="row justify-between align-items">
-          <dt>Modified By</dt>
-          <dd>{{ vm.user.meta.modifiedBy || '—' }}</dd>
-        </div>
-      </vcl-data-list-item>
-    </vcl-data-list>
+    <rc-tab-meta [data]="vm.user.meta" />
   </vcl-tab>
 </vcl-tab-nav>

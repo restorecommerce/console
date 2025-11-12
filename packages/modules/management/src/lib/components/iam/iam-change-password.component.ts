@@ -14,9 +14,9 @@ import {
 @Component({
   selector: 'app-module-management-iam-change-password',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <app-module-management-iam-change-password-form [vm]="vm" />
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <app-module-management-iam-change-password-form [vm]="vm" />
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,

@@ -16,9 +16,9 @@ import {
 @Component({
   selector: 'app-module-management-iam-view',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <app-module-management-iam-details [vm]="vm" />
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <app-module-management-iam-details [vm]="vm" />
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
