@@ -13,6 +13,7 @@ import { IUser } from '@console-core/types';
 })
 export class RolesTableComponent {
   @Input({ required: true }) user!: IUser;
+  @Input({ required: true }) scope!: string;
 
   roleAssociationLayer!: LayerRef;
 

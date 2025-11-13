@@ -16,9 +16,7 @@ import { ListScopingInstanceNamesPipe } from './pipes/list-scopinginstance-names
 import { ResolveRoleAssociationKeyPipe } from './pipes/resolve-roleassociation.pipe';
 import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { RolesTableComponent } from './roles/roles-table.component';
-import { RoleAssociationComponent } from './roles-associations/role-association.component';
 import { RolesAssociationsTableComponent } from './roles-associations/role-associations-table.component';
-import { RolesAssociationsComponent } from './roles-associations/roles-associations.component';
 import { IamTemplateComponent } from './template/iam-template.component';
 import { TokensTableComponent } from './tokens-table/tokens-table.component';
 import { IamChangePasswordFormComponent } from './views/iam-change-password-form.component';
@@ -97,8 +95,6 @@ const routes: Routes = [
     ListScopingInstanceNamesPipe,
     ResolveRoleAssociationKeyPipe,
     RoleAssociationFormComponent,
-    RoleAssociationComponent,
-    RolesAssociationsComponent,
     RolesAssociationsTableComponent,
     RolesTableComponent,
     TokensTableComponent,

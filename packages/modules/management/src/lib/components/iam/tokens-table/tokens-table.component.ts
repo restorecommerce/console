@@ -14,6 +14,7 @@ import { IUser } from '@console-core/types';
 })
 export class TokensTableComponent {
   @Input({ required: true }) user!: IUser;
+  @Input({ required: true }) scope!: string;
 
   DATE = DATE;
 

@@ -9,7 +9,7 @@ import { SubSink } from 'subsink';
 
 import { AlertService, AlertType, LayerRef, LayerService } from '@vcl/ng-vcl';
 
-import { IamFacade, UserService } from '@console-core/state';
+import { IamFacade } from '@console-core/state';
 import {
   EModeType,
   IAttribute,
@@ -44,6 +44,7 @@ import {
 })
 export class RolesAssociationsTableComponent implements OnInit {
   @Input({ required: true }) user!: IUser;
+  @Input({ required: true }) scope!: string;
 
   editIndex: number | null = null;
   private readonly subscriptions = new SubSink();
@@ -67,11 +68,9 @@ export class RolesAssociationsTableComponent implements OnInit {
   constructor(
     private readonly layerService: LayerService,
     private readonly alertService: AlertService,
-    private readonly userService: UserService,
     private readonly iamFacade: IamFacade
   ) {}
 
-  // Discourage the use of IamRoleAssociationModalComponent from external deps.
   ngOnInit(): void {
     this.roleAssociationLayer = this.layerService.create(
       IamRoleAssociationModalComponent,
@@ -118,6 +117,7 @@ export class RolesAssociationsTableComponent implements OnInit {
               roleAssociations,
             },
           ],
+          scope: this.scope,
           mode: EModeType.Update,
         });
       });

@@ -159,6 +159,8 @@ export class IamEffects {
     return this.actions$.pipe(
       ofType(userActions.userUpdateRequest),
       switchMap(({ payload }) => {
+        console.log('***User', payload);
+
         return this.userService
           .mutate({
             ...payload,
@@ -171,6 +173,8 @@ export class IamEffects {
               );
             }),
             map((result) => {
+              console.log('***Result', result);
+
               const payload =
                 result?.data?.identity?.user?.Mutate?.details?.items?.pop()
                   ?.payload as IUser;

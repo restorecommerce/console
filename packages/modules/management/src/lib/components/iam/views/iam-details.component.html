@@ -124,17 +124,26 @@
   </vcl-tab>
   <vcl-tab>
     <vcl-label>Roles ({{ vm.user.roles?.length || 0 }})</vcl-label>
-    <app-user-role-table [user]="vm.user" />
+    <app-user-role-table
+      [user]="vm.user"
+      [scope]="vm.scope"
+    />
   </vcl-tab>
   <vcl-tab>
     <vcl-label
       >Role Associations ({{ vm.user.roleAssociations.length || 0 }})</vcl-label
     >
-    <app-user-role-associations-table [user]="vm.user" />
+    <app-user-role-associations-table
+      [user]="vm.user"
+      [scope]="vm.scope"
+    />
   </vcl-tab>
   <vcl-tab>
     <vcl-label>Tokens ({{ vm.user.tokens.length || 0 }})</vcl-label>
-    <app-user-tokens-table [user]="vm.user" />
+    <app-user-tokens-table
+      [user]="vm.user"
+      [scope]="vm.scope"
+    />
   </vcl-tab>
   <vcl-tab>
     <vcl-tab-label> Meta </vcl-tab-label>
