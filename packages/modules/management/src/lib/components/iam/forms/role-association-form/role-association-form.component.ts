@@ -9,10 +9,7 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
-import {
-  IRoleAssociationScopingInstance,
-  IRoleInstance,
-} from '@console-core/types';
+import { IRoleInstance } from '@console-core/types';
 
 @Component({
   selector: 'app-role-association-form',
@@ -43,7 +40,7 @@ import {
 export class RoleAssociationFormComponent implements OnInit {
   form!: FormGroup;
 
-  @Input() role: IRoleAssociationScopingInstance | undefined;
+  @Input() role: IRoleInstance | undefined;
 
   @Output() roleAssociationSubmit = new EventEmitter<
     { role: string; instanceType: string; instanceId: string }[]
@@ -61,37 +58,19 @@ export class RoleAssociationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.role) {
-      const flattendRoleAssociationValues = [this.role]
-        .flatMap((rai) =>
-          rai.scopingInstances?.map((inst) => ({
-            role: rai.role?.id || '',
-            instanceType: inst.instanceType || '',
-            instanceId: inst.instance.id || '',
-          }))
-        )
-        .map((ra) =>
-          this.createUser({
-            role: ra?.role || '',
-            instanceType: ra?.instanceType || '',
-            instanceId: ra?.instanceId || '',
-          })
-        );
+    const EMPTY_ASSOC = { role: '', instanceType: '', instanceId: '' } as const;
 
-      this.form = this.fb.group({
-        associations: this.fb.array(flattendRoleAssociationValues),
-      });
-    } else {
-      this.form = this.fb.group({
-        associations: this.fb.array([
-          this.createUser({
-            role: '',
-            instanceType: '',
-            instanceId: '',
-          }),
-        ]),
-      });
-    }
+    const assoc = this.role ?? EMPTY_ASSOC;
+
+    this.form = this.fb.group({
+      associations: this.fb.array([
+        this.createUser({
+          role: assoc.role,
+          instanceType: assoc.instanceType,
+          instanceId: assoc.instanceId,
+        }),
+      ]),
+    });
   }
 
   get associations(): FormArray {

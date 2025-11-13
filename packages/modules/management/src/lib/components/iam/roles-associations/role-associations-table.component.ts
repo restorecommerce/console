@@ -5,13 +5,27 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { SubSink } from 'subsink';
 
-import { LayerRef, LayerService } from '@vcl/ng-vcl';
+import { AlertService, AlertType, LayerRef, LayerService } from '@vcl/ng-vcl';
 
 import { IamFacade, UserService } from '@console-core/state';
-import { IAttribute, IUser } from '@console-core/types';
+import {
+  EModeType,
+  IAttribute,
+  IRoleAssociation,
+  IRoleInstance,
+  IUser,
+} from '@console-core/types';
 
 import { IamRoleAssociationModalComponent } from '../role-association-modal.component';
+import {
+  buildDeleteMessage,
+  filterAssociationsOut,
+  replaceAtIndex,
+  toRoleAssociationInput,
+  transformRoleAssociation,
+} from '../utils';
 
 @Component({
   selector: 'app-user-role-associations-table',
@@ -31,6 +45,9 @@ import { IamRoleAssociationModalComponent } from '../role-association-modal.comp
 export class RolesAssociationsTableComponent implements OnInit {
   @Input({ required: true }) user!: IUser;
 
+  editIndex: number | null = null;
+  private readonly subscriptions = new SubSink();
+
   roleAssociationLayer!: LayerRef;
 
   roleMenuItems = [
@@ -49,6 +66,7 @@ export class RolesAssociationsTableComponent implements OnInit {
 
   constructor(
     private readonly layerService: LayerService,
+    private readonly alertService: AlertService,
     private readonly userService: UserService,
     private readonly iamFacade: IamFacade
   ) {}
@@ -64,21 +82,80 @@ export class RolesAssociationsTableComponent implements OnInit {
     );
   }
 
-  onRoleAssociationMenu(option: string) {
+  onRoleAssociationMenu(option: string, role: IRoleAssociation, idx: number) {
     if (option === 'edit') {
-      this.openRoleAssociationComponent();
+      this.openRoleAssociationComponent(transformRoleAssociation(role), idx);
     } else if (option === 'delete') {
-      console.log('***delete', option);
+      this.onDeleteRoleAssociation(transformRoleAssociation(role));
     }
   }
 
-  private openRoleAssociationComponent() {
+  private openRoleAssociationComponent(role: IRoleInstance, idx: number) {
+    this.editIndex = idx;
+
     this.roleAssociationLayer
       .open({
-        data: {},
+        data: {
+          title: 'Assign Roles',
+          role,
+        },
+      })
+      .subscribe((result: { value: IRoleInstance[] }) => {
+        const updatedAssoc = toRoleAssociationInput(result.value[0]);
+        const current = (this.user.roleAssociations ??
+          []) as IRoleAssociation[];
+
+        const roleAssociations = replaceAtIndex(
+          current,
+          this.editIndex as number,
+          updatedAssoc
+        );
+
+        this.iamFacade.update({
+          items: [
+            {
+              id: this.user.id,
+              roleAssociations,
+            },
+          ],
+          mode: EModeType.Update,
+        });
+      });
+  }
+
+  private onDeleteRoleAssociation(role: IRoleInstance) {
+    const modifiedRoleAssociations = filterAssociationsOut(
+      this.user.roleAssociations,
+      role
+    );
+
+    const text = buildDeleteMessage(role);
+
+    this.subscriptions.sink = this.alertService
+      .open({
+        text,
+        type: AlertType.Question,
+        showCloseButton: true,
+        showCancelButton: true,
+        cancelButtonLabel: 'Cancel',
+        cancelButtonClass: 'transparent',
+        confirmButtonLabel: 'Delete role',
+        confirmButtonClass: 'button',
       })
       .subscribe((result) => {
-        console.log('Bar component result: ' + result?.value);
+        if (!this.user?.id || result.action !== 'confirm') {
+          return;
+        }
+
+        this.iamFacade.update({
+          items: [
+            {
+              id: this.user.id,
+              roleAssociations: [...modifiedRoleAssociations],
+            },
+          ],
+          mode: EModeType.Update,
+        });
       });
   }
 

@@ -6,8 +6,6 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTER } from '@console-core/config';
 import {
-  IIoRestorecommerceUserUser,
-  IIoRestorecommerceUserUserList,
   IoRestorecommerceResourcebaseFilterOperation,
   IoRestorecommerceResourcebaseFilterValueType,
 } from '@console-core/graphql';
@@ -104,7 +102,6 @@ export class IamEffects {
         return this.userService
           .mutate({
             ...payload,
-            items: this.getItems(payload),
           })
           .pipe(
             tap((result) => {
@@ -165,7 +162,6 @@ export class IamEffects {
         return this.userService
           .mutate({
             ...payload,
-            items: this.getItems(payload),
           })
           .pipe(
             tap((result) => {
@@ -363,22 +359,4 @@ export class IamEffects {
     private readonly userService: UserService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}
-
-  private getItems(payload: IIoRestorecommerceUserUserList) {
-    return (payload.items || []).map((item) => {
-      return {
-        ...item,
-        roleAssociations: item.roleAssociations?.map((ra) => {
-          const [role, instanceType, instanceId] = (
-            ra as unknown as string
-          ).split('|') as unknown as [string, string, string];
-          return this.userService.createRoleAssociation(
-            role,
-            instanceType,
-            instanceId
-          );
-        }),
-      } as IIoRestorecommerceUserUser;
-    });
-  }
 }

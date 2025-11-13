@@ -1,12 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import {
-  ComponentLayerRef,
-  JssFormComponent,
-  VCLFormFieldSchemaRoot,
-} from '@vcl/ng-vcl';
+import { ComponentLayerRef, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IRoleAssociationScopingInstance } from '@console-core/types';
+import { IRoleInstance } from '@console-core/types';
 
 import { JssFormService } from './services';
 
@@ -34,13 +30,10 @@ import { JssFormService } from './services';
   standalone: false,
 })
 export class IamRoleAssociationModalComponent {
-  @ViewChild('roleAssociationsForm')
-  roleAssociationsForm!: JssFormComponent;
-
   constructor(
     public layer: ComponentLayerRef<{
       title: string;
-      role: IRoleAssociationScopingInstance;
+      role: IRoleInstance;
       roleAssociationsSchema: VCLFormFieldSchemaRoot;
     }>
   ) {}
@@ -51,17 +44,11 @@ export class IamRoleAssociationModalComponent {
     }
   }
 
-  onSubmit(
-    roleAssociations: {
-      role: string;
-      instanceType: string;
-      instanceId: string;
-    }[]
-  ): void {
+  onSubmit(roleAssociations: IRoleInstance[]): void {
     this.close(roleAssociations);
   }
 
-  close(value?: { role: string; instanceType: string; instanceId: string }[]) {
+  close(value?: IRoleInstance[]) {
     this.layer.close({
       value,
     });
