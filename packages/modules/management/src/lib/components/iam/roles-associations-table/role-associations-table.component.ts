@@ -86,13 +86,44 @@ export class RolesAssociationsTableComponent implements OnInit {
     }
   }
 
+  onAddRoleAssociation() {
+    this.roleAssociationLayer
+      .open({
+        data: {
+          title: 'Assign Role',
+        },
+      })
+      .subscribe((result: { value: IRoleAssociation[] }) => {
+        if (!result.value) {
+          return;
+        }
+
+        const updatedAssoc = result.value[0];
+        const current = (this.user.roleAssociations ??
+          []) as IRoleAssociation[];
+
+        const roleAssociations = [...current, updatedAssoc];
+
+        this.iamFacade.update({
+          items: [
+            {
+              id: this.user.id,
+              roleAssociations,
+            },
+          ],
+          scope: this.scope,
+          mode: EModeType.Update,
+        });
+      });
+  }
+
   private openRoleAssociationComponent(role: IRoleAssociation, idx: number) {
     this.editIndex = idx;
 
     this.roleAssociationLayer
       .open({
         data: {
-          title: 'Assign Roles',
+          title: 'Assign Role',
           role,
         },
       })

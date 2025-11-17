@@ -1,3 +1,23 @@
+<div class="rc-section-header my-2 row justify-between">
+  <div class="rc-section-header__left">
+    <!-- <h3 class="rc-section-header__title">Role associations</h3> -->
+    <span class="rc-section-header__subtitle">
+      Manage which roles apply to this user and their scope.
+    </span>
+  </div>
+
+  <div class="rc-section-header__right">
+    <button
+      vcl-button
+      class="emphasized scale85p"
+      type="button"
+      (click)="onAddRoleAssociation()"
+    >
+      + Add role association
+    </button>
+  </div>
+</div>
+
 <rc-table>
   <table>
     <thead>
