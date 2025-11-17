@@ -4,11 +4,8 @@ import {
   IoRestorecommerceUserUserRole,
 } from '@console-core/graphql';
 
-import { TScopingInstances } from '../../types';
-
 import { IAttribute } from './attribute';
 import { IMeta } from './meta';
-import { IRole } from './role';
 import { IAuthToken } from './token';
 
 export interface IUser
@@ -55,15 +52,4 @@ export interface IRoleAssociation
   id?: string;
   role: string;
   attributes: IAttribute[];
-}
-
-export interface IRoleAssociationScopingInstance {
-  role: IRole | null;
-  scopingInstances: TScopingInstances;
-}
-
-export interface IRoleInstance {
-  role: string;
-  instanceType: string;
-  instanceId: string;
 }

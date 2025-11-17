@@ -38,16 +38,8 @@ import {
   IdentityUserMutateMutation,
   IdentityUserDeleteMutateGQL,
   IdentityUserDeleteMutateMutation,
-  IoRestorecommerceAttributeAttribute,
 } from '@console-core/graphql';
-import {
-  IOrganization,
-  IRole,
-  IRoleAssociation,
-  IRoleAssociationScopingInstance,
-  IUser,
-  TScopingInstances,
-} from '@console-core/types';
+import { IRole, IRoleAssociation, IUser } from '@console-core/types';
 
 @Injectable({
   providedIn: 'root',
@@ -208,75 +200,6 @@ export class UserService {
     const uniqueRoles = [...new Set(roles)];
     uniqueRoles.sort((a, b) => a.name.localeCompare(b.name));
     return uniqueRoles;
-  }
-
-  getRoleAssociationsScopingInstances(
-    roleAssociations: IRoleAssociation[],
-    rolesHash: Dictionary<IRole>,
-    organizationsHash: Dictionary<IOrganization>,
-    usersHash: Dictionary<IUser>
-  ): IRoleAssociationScopingInstance[] {
-    return roleAssociations.map(({ role, attributes }) => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const roleData = rolesHash[role!];
-      let organization = null;
-      let user = null;
-      const scopingInstances: TScopingInstances = [];
-
-      attributes?.forEach(({ id, value, attributes }) => {
-        if (id === 'urn:restorecommerce:acs:names:roleScopingEntity') {
-          const scopedEntity = value;
-
-          if (
-            scopedEntity ===
-              'urn:restorecommerce:acs:model:organization.Organization' &&
-            attributes
-          ) {
-            const orgInstance = attributes.find(
-              (attr) =>
-                attr.id === 'urn:restorecommerce:acs:names:roleScopingInstance'
-            ) as IoRestorecommerceAttributeAttribute;
-
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            if (orgInstance && organizationsHash[orgInstance.value!]) {
-              organization = organizationsHash[
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                orgInstance.value!
-              ] as IOrganization;
-              scopingInstances.push({
-                instanceType:
-                  'urn:restorecommerce:acs:model:organization.Organization',
-                instance: organization,
-              });
-            }
-          } else if (
-            scopedEntity === 'urn:restorecommerce:acs:model:user.User' &&
-            attributes
-          ) {
-            const userInstance = attributes.find(
-              (attr) =>
-                attr.id === 'urn:restorecommerce:acs:names:roleScopingInstance'
-            ) as IoRestorecommerceAttributeAttribute;
-
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            if (userInstance && usersHash[userInstance.value!]) {
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              user = usersHash[userInstance.value!] as IUser;
-
-              scopingInstances.push({
-                instanceType: 'urn:restorecommerce:acs:model:user.User',
-                instance: user,
-              });
-            }
-          }
-        }
-      });
-
-      return {
-        role: roleData,
-        scopingInstances,
-      } as IRoleAssociationScopingInstance;
-    });
   }
 
   createRoleAssociation(

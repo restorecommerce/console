@@ -13,8 +13,7 @@ import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
 import { IRoleAssociation } from '@console-core/types';
 
 import { RoleAssociationForm } from './role-association.form';
-import { fromFormValue, toFormValue } from './role-association.mapper';
-import { IRoleAssociationFormValue } from './role-association.types';
+import { fromFormValue } from './role-association.mapper';
 
 @Component({
   selector: 'app-role-association-form',
@@ -44,6 +43,7 @@ import { IRoleAssociationFormValue } from './role-association.types';
 })
 export class RoleAssociationFormComponent implements OnInit {
   form!: FormGroup;
+  private formFactory = new RoleAssociationForm(this.fb);
 
   @Input() role: IRoleAssociation | undefined;
 
@@ -68,14 +68,7 @@ export class RoleAssociationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // form & edit state
-    if (this.role) {
-      this.form = new RoleAssociationForm(this.fb).create(
-        toFormValue(this.role)
-      );
-    } else {
-      this.form = new RoleAssociationForm(this.fb).create();
-    }
+    this.form = this.formFactory.create(this.role ?? undefined);
   }
 
   addTargetRow() {
@@ -93,7 +86,14 @@ export class RoleAssociationFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const value = this.form.getRawValue() as IRoleAssociationFormValue;
+    console.log('this.form.getRawValue()', this.form.getRawValue());
+    console.log(
+      'fromFormValue(this.form.getRawValue())',
+      fromFormValue(this.form.getRawValue())
+    );
+    const value = this.form.getRawValue();
+
+    console.log('value', fromFormValue(value));
 
     if (!this.form.valid) {
       return;

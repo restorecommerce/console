@@ -12,7 +12,6 @@ import { IamEditComponent } from './iam-edit.component';
 import { IamIndexComponent } from './iam-index.component';
 import { IamViewComponent } from './iam-view.component';
 import { AppendLastLoginPipe } from './pipes/append-last-login.pipe';
-import { ListScopingInstanceNamesPipe } from './pipes/list-scopinginstance-names.pipe';
 import { ResolveRoleAssociationKeyPipe } from './pipes/resolve-roleassociation.pipe';
 import { IamRoleAssociationModalComponent } from './role-association-modal.component';
 import { RolesAssociationsTableComponent } from './roles-associations-table/role-associations-table.component';
@@ -92,7 +91,6 @@ const routes: Routes = [
     IamRoleAssociationModalComponent,
     UserCreationFormComponent,
     AppendLastLoginPipe,
-    ListScopingInstanceNamesPipe,
     ResolveRoleAssociationKeyPipe,
     RoleAssociationFormComponent,
     RolesAssociationsTableComponent,

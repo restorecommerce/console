@@ -14,7 +14,6 @@ import {
   EModeType,
   IAttribute,
   IRoleAssociation,
-  IRoleInstance,
   IUser,
 } from '@console-core/types';
 
@@ -23,8 +22,6 @@ import {
   buildDeleteMessage,
   filterAssociationsOut,
   replaceAtIndex,
-  toRoleAssociationInput,
-  transformRoleAssociation,
 } from '../utils';
 
 @Component({
@@ -85,7 +82,7 @@ export class RolesAssociationsTableComponent implements OnInit {
     if (option === 'edit') {
       this.openRoleAssociationComponent(role, idx);
     } else if (option === 'delete') {
-      this.onDeleteRoleAssociation(transformRoleAssociation(role));
+      this.onDeleteRoleAssociation(role);
     }
   }
 
@@ -99,8 +96,8 @@ export class RolesAssociationsTableComponent implements OnInit {
           role,
         },
       })
-      .subscribe((result: { value: IRoleInstance[] }) => {
-        const updatedAssoc = toRoleAssociationInput(result.value[0]);
+      .subscribe((result: { value: IRoleAssociation[] }) => {
+        const updatedAssoc = result.value[0];
         const current = (this.user.roleAssociations ??
           []) as IRoleAssociation[];
 
@@ -123,7 +120,7 @@ export class RolesAssociationsTableComponent implements OnInit {
       });
   }
 
-  private onDeleteRoleAssociation(role: IRoleInstance) {
+  private onDeleteRoleAssociation(role: IRoleAssociation) {
     const modifiedRoleAssociations = filterAssociationsOut(
       this.user.roleAssociations,
       role
