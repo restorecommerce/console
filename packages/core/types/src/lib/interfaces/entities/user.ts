@@ -50,9 +50,10 @@ export interface IUser
 export interface IRoleAssociation
   extends Omit<
     IoRestorecommerceAuthRoleAssociation,
-    'id' | 'attributes' | '__typename'
+    'id' | 'role' | 'attributes' | '__typename'
   > {
   id?: string;
+  role: string;
   attributes: IAttribute[];
 }
 

@@ -4,132 +4,114 @@
   (submit)="onSubmit()"
   [formGroup]="form"
 >
-  <fieldset>
-    <legend>
-      {{ role ? 'Edit role' : 'Add role' }}
-      @if (!role) {
-      <vcl-icon
-        class="role-add"
-        icon="vcl:add"
-        (click)="addUser()"
-      ></vcl-icon>
-      }
-    </legend>
-
-    <div formArrayName="associations">
-      @for (association of associations.controls; track $index; let idx =
-      $index) {
-      <fieldset
-        [formGroupName]="idx"
-        class="mb-3"
-      >
-        <legend>
-          Role {{ role ? '' : idx + 1 }}
-          @if(!role) {
-          <vcl-icon
-            class="role-remove"
-            icon="vcl:remove"
-            (click)="removeUser(idx)"
-          ></vcl-icon>
-          }
-        </legend>
-
-        <vcl-form-control-group>
-          <vcl-label>Role</vcl-label>
-          <vcl-select
-            [clearable]="true"
-            placeholder="Select role"
-            [search]="true"
-          >
-            <vcl-select-list formControlName="role">
-              @for (role of roles$ | async; track role.id) {
-              <vcl-select-list-item [value]="role.id">
-                {{ role.name }}
-                <vcl-sub-label>{{ role.description }}</vcl-sub-label>
-              </vcl-select-list-item>
-              }
-            </vcl-select-list>
-          </vcl-select>
-          <vcl-hint-error error="required"
-            >This field is required.</vcl-hint-error
-          >
-        </vcl-form-control-group>
-
-        <vcl-form-control-group>
-          <vcl-label>Instance type</vcl-label>
-          <vcl-select
-            [clearable]="true"
-            placeholder="Select scoping instance"
-          >
-            <vcl-select-list formControlName="instanceType">
-              <vcl-select-list-item
-                [value]="
-                  'urn:restorecommerce:acs:model:organization.Organization'
-                "
-              >
-                urn:restorecommerce:acs:model:organization.Organization
-              </vcl-select-list-item>
-
-              <vcl-select-list-item
-                [value]="'urn:restorecommerce:acs:model:user.User'"
-              >
-                urn:restorecommerce:acs:model:user.User
-              </vcl-select-list-item>
-            </vcl-select-list>
-          </vcl-select>
-          <vcl-hint-error error="required"
-            >This field is required.</vcl-hint-error
-          >
-        </vcl-form-control-group>
-
-        @if (association.get('instanceType')?.value ===
-        'urn:restorecommerce:acs:model:organization.Organization') {
-        <!-- Organization -->
-        <vcl-form-control-group>
-          <vcl-label>Organization</vcl-label>
-          <vcl-select
-            [clearable]="true"
-            placeholder="Select Organization"
-            [search]="true"
-          >
-            <vcl-select-list formControlName="instanceId">
-              @for (organization of organizations$ | async; track
-              organization.id) {
-              <vcl-select-list-item [value]="organization.id">
-                {{ organization.name }}
-              </vcl-select-list-item>
-              }
-            </vcl-select-list>
-          </vcl-select>
-          <vcl-hint-error error="required"
-            >This field is required.</vcl-hint-error
-          >
-        </vcl-form-control-group>
-        } @if (association.get('instanceType')?.value ===
-        'urn:restorecommerce:acs:model:user.User') {
-        <vcl-form-control-group>
-          <vcl-label>User</vcl-label>
-          <vcl-select
-            [clearable]="true"
-            placeholder="Select User"
-            [search]="true"
-          >
-            <vcl-select-list formControlName="instanceId">
-              @for (user of users$ | async; track user.id) {
-              <vcl-select-list-item [value]="user.id">
-                {{ user.name }}
-                <vcl-sub-label>{{ user.email }}</vcl-sub-label>
-              </vcl-select-list-item>
-              }
-            </vcl-select-list>
-          </vcl-select>
-          <vcl-hint-error error="required"
-            >This field is required.</vcl-hint-error
-          >
-        </vcl-form-control-group>
+  <vcl-form-control-group>
+    <vcl-label>Role</vcl-label>
+    <vcl-select
+      [clearable]="true"
+      placeholder="Select role"
+      [search]="true"
+    >
+      <vcl-select-list formControlName="role">
+        @for (role of roles$ | async; track role.id) {
+        <vcl-select-list-item [value]="role.id">
+          {{ role.name }}
+          <vcl-sub-label>{{ role.description }}</vcl-sub-label>
+        </vcl-select-list-item>
         }
-      </fieldset>
-      } @empty { No role associations }
+      </vcl-select-list>
+    </vcl-select>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  </vcl-form-control-group>
+
+  <fieldset>
+    <legend>Scoping targets</legend>
+
+    <div formArrayName="targets">
+      @for ( _ of targets.controls; track $index; let i = $index) {
+      <div
+        class="row align-items-center"
+        [formGroupName]="i"
+      >
+        <div class="flex pr-1">
+          <vcl-form-control-group>
+            <vcl-label>Instance type</vcl-label>
+            <vcl-select>
+              <vcl-select-list formControlName="instanceType">
+                <vcl-select-list-item
+                  value="
+                    urn:restorecommerce:acs:model:organization.Organization
+                  "
+                >
+                  Organization
+                </vcl-select-list-item>
+
+                <vcl-select-list-item
+                  value="urn:restorecommerce:acs:model:user.User"
+                >
+                  User
+                </vcl-select-list-item>
+              </vcl-select-list>
+            </vcl-select>
+          </vcl-form-control-group>
+        </div>
+
+        <div class="flex pl-1">
+          <vcl-form-control-group>
+            <vcl-label>Instance ID</vcl-label>
+
+            <vcl-select [search]="true">
+              <vcl-select-list formControlName="instanceId">
+                @let type = targets.at(i).get('instanceType')?.value; @if (type)
+                { @for (opt of getInstanceIdOptions(type) | async; track
+                opt.value) {
+                <vcl-select-list-item [value]="opt.value">
+                  {{ opt.label }}
+                </vcl-select-list-item>
+                } }
+              </vcl-select-list>
+            </vcl-select>
+          </vcl-form-control-group>
+        </div>
+
+        <div>
+          <button
+            vcl-button
+            square
+            class="transparent"
+            title="Remove"
+            style="height: auto"
+            (click)="removeTargetRow(i)"
+          >
+            <!-- class="icon " -->
+            <vcl-icon icon="mdi mdi-close"></vcl-icon>
+          </button>
+        </div>
+      </div>
+
+      <p>{{ targets.at(i).get('instanceType')?.value }}</p>
+
+      }
+
+      <!-- <vcl-hint-error
+        [error]="'duplicateTargets'"
+        *ngIf="targets.errors?.duplicateTargets"
+      >
+        Duplicate targets are not allowed.
+      </vcl-hint-error>
+      <vcl-hint-error
+        [error]="'atLeastOne'"
+        *ngIf="targets.errors?.atLeastOne"
+      >
+        Add at least one target.
+      </vcl-hint-error> -->
+
+      <button
+        class="vcl-button"
+        type="button"
+        (click)="addTargetRow()"
+      >
+        + Add target
+      </button>
     </div>
   </fieldset>
 

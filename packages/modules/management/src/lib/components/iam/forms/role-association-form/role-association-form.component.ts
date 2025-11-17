@@ -3,13 +3,17 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder } from '@angular/forms';
+import { map, of } from 'rxjs';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
-import { IRoleInstance } from '@console-core/types';
+import { IRoleAssociation, IRoleInstance } from '@console-core/types';
+
+import { RoleAssociationForm } from './role-association.form';
+import { fromFormValue, toFormValue } from './role-association.mapper';
+import { IRoleAssociationFormValue } from './role-association.types';
 
 @Component({
   selector: 'app-role-association-form',
@@ -37,18 +41,24 @@ import { IRoleInstance } from '@console-core/types';
   ],
   standalone: false,
 })
-export class RoleAssociationFormComponent implements OnInit {
-  form!: FormGroup;
-
+export class RoleAssociationFormComponent {
+  userId!: string;
   @Input() role: IRoleInstance | undefined;
 
   @Output() roleAssociationSubmit = new EventEmitter<
     { role: string; instanceType: string; instanceId: string }[]
   >();
 
+  INSTANCE_TYPE_USER = 'urn:restorecommerce:acs:model:user.User';
+  INSTANCE_TYPE_ORG = 'urn:restorecommerce:acs:model:organization.Organization';
+
   readonly roles$ = this.roleFacade.all$;
-  readonly organizations$ = this.organizationFacade.all$;
-  readonly users$ = this.iamFacade.all$;
+  readonly organizations$ = this.organizationFacade.all$.pipe(
+    map((orgs) => orgs.map((org) => ({ label: org.name, value: org.id })))
+  );
+  readonly users$ = this.iamFacade.all$.pipe(
+    map((users) => users.map((user) => ({ label: user.name, value: user.id })))
+  );
 
   constructor(
     private fb: FormBuilder,
@@ -57,57 +67,86 @@ export class RoleAssociationFormComponent implements OnInit {
     private readonly organizationFacade: OrganizationFacade
   ) {}
 
-  ngOnInit(): void {
-    const EMPTY_ASSOC = { role: '', instanceType: '', instanceId: '' } as const;
+  roleAssociations: IRoleAssociation[] = [];
 
-    const assoc = this.role ?? EMPTY_ASSOC;
+  // form & edit state
+  form = new RoleAssociationForm(this.fb).create();
+  editIndex: number | null = null;
 
-    this.form = this.fb.group({
-      associations: this.fb.array([
-        this.createUser({
-          role: assoc.role,
-          instanceType: assoc.instanceType,
-          instanceId: assoc.instanceId,
-        }),
-      ]),
-    });
+  addTargetRow() {
+    const fac = new RoleAssociationForm(this.fb);
+    this.targets.push(fac.createTargetGroup());
   }
 
-  get associations(): FormArray {
-    return this.form.get('associations') as FormArray;
+  removeTargetRow(i: number) {
+    this.targets.removeAt(i);
+    this.targets.updateValueAndValidity();
   }
 
-  createUser(roleData: {
-    role: string;
-    instanceType: string;
-    instanceId: string;
-  }): FormGroup {
-    return this.fb.group({
-      role: [roleData.role || '', Validators.required],
-      instanceType: [roleData.instanceType || '', [Validators.required]],
-      instanceId: [roleData.instanceId || '', [Validators.required]],
-    });
+  // --- Add ---
+  startAdd() {
+    const fac = new RoleAssociationForm(this.fb);
+    this.form = fac.create(); // empty
+    this.editIndex = null;
+    // open modal…
   }
 
-  addUser(): void {
-    this.associations.push(
-      this.createUser({
-        role: '',
-        instanceType: '',
-        instanceId: '',
-      })
-    );
+  // --- Edit ---
+  startEdit(index: number) {
+    const assoc = this.roleAssociations[index];
+    const fac = new RoleAssociationForm(this.fb);
+    this.form = fac.create(toFormValue(assoc));
+    this.editIndex = index;
+    // open modal…
   }
 
-  removeUser(index: number): void {
-    this.associations.removeAt(index);
+  get targets(): FormArray {
+    return this.form.get('targets') as FormArray;
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      this.roleAssociationSubmit.emit(
-        this.form.value.associations as IRoleInstance[]
+    const value = this.form.getRawValue() as IRoleAssociationFormValue;
+
+    if (this.editIndex == null) {
+      // ADD
+      const newAssoc = fromFormValue(value);
+      this.roleAssociations = [...this.roleAssociations, newAssoc];
+    } else {
+      // EDIT (preserve possible id on the existing entry)
+      const existing = this.roleAssociations[this.editIndex];
+      const edited = fromFormValue(value, existing?.id);
+      this.roleAssociations = this.roleAssociations.map((a, i) =>
+        i === this.editIndex ? edited : a
       );
+      this.editIndex = null;
     }
+
+    // Submit to backend
+    this.iamFacade.update({
+      items: [{ id: this.userId, roleAssociations: this.roleAssociations }],
+    });
+
+    // close modal…
   }
+
+  getInstanceIdOptions(instanceType: string | null | undefined) {
+    console.log('***Organization#instanceType:', instanceType);
+    if (!instanceType) return of([]);
+
+    if (instanceType === this.INSTANCE_TYPE_USER) {
+      return this.users$;
+    }
+
+    if (instanceType === this.INSTANCE_TYPE_ORG) {
+      console.log('Organization selected');
+      return this.organizations$;
+    }
+
+    return of([]);
+  }
+
+  // onInstanceTypeChange(index: number) {
+  //   const group = this.targets.at(index);
+  //   group.get('instanceId')!.reset('');
+  // }
 }
