@@ -97,6 +97,10 @@ export class RolesAssociationsTableComponent implements OnInit {
         },
       })
       .subscribe((result: { value: IRoleAssociation[] }) => {
+        if (!result.value) {
+          return;
+        }
+
         const updatedAssoc = result.value[0];
         const current = (this.user.roleAssociations ??
           []) as IRoleAssociation[];
@@ -148,7 +152,10 @@ export class RolesAssociationsTableComponent implements OnInit {
           items: [
             {
               id: this.user.id,
-              roleAssociations: [...modifiedRoleAssociations],
+              roleAssociations:
+                modifiedRoleAssociations.length > 0
+                  ? modifiedRoleAssociations
+                  : null, // Backend bug when the array..
             },
           ],
           mode: EModeType.Update,

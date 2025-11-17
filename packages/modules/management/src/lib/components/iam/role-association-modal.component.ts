@@ -15,13 +15,11 @@ import { JssFormService } from './services';
       class="panel-dialog"
     >
       <vcl-panel-title>{{ layer.data.title }}</vcl-panel-title>
-      <div class="row">
-        <div class="flex-12">
-          <app-role-association-form
-            [role]="layer.data.role"
-            (roleAssociationSubmit)="onSubmit($event)"
-          />
-        </div>
+      <div>
+        <app-role-association-form
+          [role]="layer.data.role"
+          (roleAssociationSubmit)="onSubmit($event)"
+        />
       </div>
     </vcl-panel-dialog>
   `,

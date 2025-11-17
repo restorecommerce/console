@@ -13,7 +13,7 @@ import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
 import { IRoleAssociation } from '@console-core/types';
 
 import { RoleAssociationForm } from './role-association.form';
-import { fromFormValue } from './role-association.mapper';
+import { fromFormValue, toFormValue } from './role-association.mapper';
 
 @Component({
   selector: 'app-role-association-form',
@@ -68,7 +68,9 @@ export class RoleAssociationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.formFactory.create(this.role ?? undefined);
+    this.form = this.formFactory.create(
+      this.role ? toFormValue(this.role) : undefined
+    );
   }
 
   addTargetRow() {
