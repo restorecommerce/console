@@ -37,17 +37,11 @@
             <vcl-label>Instance type</vcl-label>
             <vcl-select>
               <vcl-select-list formControlName="instanceType">
-                <vcl-select-list-item
-                  value="
-                    urn:restorecommerce:acs:model:organization.Organization
-                  "
-                >
+                <vcl-select-list-item [value]="INSTANCE_TYPE_ORG">
                   Organization
                 </vcl-select-list-item>
 
-                <vcl-select-list-item
-                  value="urn:restorecommerce:acs:model:user.User"
-                >
+                <vcl-select-list-item [value]="INSTANCE_TYPE_USER">
                   User
                 </vcl-select-list-item>
               </vcl-select-list>
@@ -87,9 +81,6 @@
           </button>
         </div>
       </div>
-
-      <p>{{ targets.at(i).get('instanceType')?.value }}</p>
-
       }
 
       <!-- <vcl-hint-error
@@ -106,8 +97,9 @@
       </vcl-hint-error> -->
 
       <button
-        class="vcl-button"
+        vcl-button
         type="button"
+        class="scale85p"
         (click)="addTargetRow()"
       >
         + Add target

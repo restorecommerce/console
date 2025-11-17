@@ -83,13 +83,13 @@ export class RolesAssociationsTableComponent implements OnInit {
 
   onRoleAssociationMenu(option: string, role: IRoleAssociation, idx: number) {
     if (option === 'edit') {
-      this.openRoleAssociationComponent(transformRoleAssociation(role), idx);
+      this.openRoleAssociationComponent(role, idx);
     } else if (option === 'delete') {
       this.onDeleteRoleAssociation(transformRoleAssociation(role));
     }
   }
 
-  private openRoleAssociationComponent(role: IRoleInstance, idx: number) {
+  private openRoleAssociationComponent(role: IRoleAssociation, idx: number) {
     this.editIndex = idx;
 
     this.roleAssociationLayer

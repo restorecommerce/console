@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ComponentLayerRef, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IRoleInstance } from '@console-core/types';
+import { IRoleAssociation } from '@console-core/types';
 
 import { JssFormService } from './services';
 
@@ -33,7 +33,7 @@ export class IamRoleAssociationModalComponent {
   constructor(
     public layer: ComponentLayerRef<{
       title: string;
-      role: IRoleInstance;
+      role: IRoleAssociation;
       roleAssociationsSchema: VCLFormFieldSchemaRoot;
     }>
   ) {}
@@ -44,11 +44,11 @@ export class IamRoleAssociationModalComponent {
     }
   }
 
-  onSubmit(roleAssociations: IRoleInstance[]): void {
+  onSubmit(roleAssociations: IRoleAssociation[]): void {
     this.close(roleAssociations);
   }
 
-  close(value?: IRoleInstance[]) {
+  close(value?: IRoleAssociation[]) {
     this.layer.close({
       value,
     });
