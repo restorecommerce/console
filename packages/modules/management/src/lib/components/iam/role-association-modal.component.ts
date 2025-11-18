@@ -1,12 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import {
-  ComponentLayerRef,
-  JssFormComponent,
-  VCLFormFieldSchemaRoot,
-} from '@vcl/ng-vcl';
+import { ComponentLayerRef, VCLFormFieldSchemaRoot } from '@vcl/ng-vcl';
 
-import { IRoleAssociationScopingInstance } from '@console-core/types';
+import { IRoleAssociation } from '@console-core/types';
 
 import { JssFormService } from './services';
 
@@ -19,13 +15,11 @@ import { JssFormService } from './services';
       class="panel-dialog"
     >
       <vcl-panel-title>{{ layer.data.title }}</vcl-panel-title>
-      <div class="row">
-        <div class="flex-12">
-          <app-role-association-form
-            [role]="layer.data.role"
-            (roleAssociationSubmit)="onSubmit($event)"
-          />
-        </div>
+      <div>
+        <app-role-association-form
+          [role]="layer.data.role"
+          (roleAssociationSubmit)="onSubmit($event)"
+        />
       </div>
     </vcl-panel-dialog>
   `,
@@ -34,13 +28,10 @@ import { JssFormService } from './services';
   standalone: false,
 })
 export class IamRoleAssociationModalComponent {
-  @ViewChild('roleAssociationsForm')
-  roleAssociationsForm!: JssFormComponent;
-
   constructor(
     public layer: ComponentLayerRef<{
       title: string;
-      role: IRoleAssociationScopingInstance;
+      role: IRoleAssociation;
       roleAssociationsSchema: VCLFormFieldSchemaRoot;
     }>
   ) {}
@@ -51,17 +42,11 @@ export class IamRoleAssociationModalComponent {
     }
   }
 
-  onSubmit(
-    roleAssociations: {
-      role: string;
-      instanceType: string;
-      instanceId: string;
-    }[]
-  ): void {
+  onSubmit(roleAssociations: IRoleAssociation[]): void {
     this.close(roleAssociations);
   }
 
-  close(value?: { role: string; instanceType: string; instanceId: string }[]) {
+  close(value?: IRoleAssociation[]) {
     this.layer.close({
       value,
     });

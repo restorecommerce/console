@@ -65,6 +65,8 @@ import {
   RcAccordionItemComponent,
   RcTableComponent,
   RcProductTemplatesComponent,
+  RcContextMenuComponent,
+  RcMetaTabComponent,
 } from './components/molecules';
 import { RcOrderItemComponent } from './components/molecules/order-items/order-item.component';
 import { RcProductTemplateComponent } from './components/molecules/product-templates/product-template.component';
@@ -203,6 +205,8 @@ const molecules = [
   RcAccordionComponent,
   RcAccordionItemComponent,
   RcTableComponent,
+  RcContextMenuComponent,
+  RcMetaTabComponent,
 ];
 
 const organisms = [

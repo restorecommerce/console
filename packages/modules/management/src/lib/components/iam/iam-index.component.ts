@@ -12,9 +12,9 @@ import {
 @Component({
   selector: 'app-module-management-iam-index',
   template: `
-    <ng-container *ngIf="vm$ | async as vm">
-      <h3>IAM</h3>
-    </ng-container>
+    @if (vm$ | async; as vm) {
+    <h3>IAM</h3>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,

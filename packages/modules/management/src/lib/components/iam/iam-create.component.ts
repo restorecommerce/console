@@ -40,8 +40,6 @@ export class IamCreateComponent implements OnDestroy {
           user: options.user,
           locales: options.locales,
           timezones: options.timezones,
-          uniqueRoleAssociationsScopingInstances:
-            options.roleAssociationsScopingInstances,
         },
       };
     })

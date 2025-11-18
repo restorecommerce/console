@@ -1,0 +1,58 @@
+<rc-table>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Token</th>
+        <th>Last Login</th>
+        <th>Interactive</th>
+        <th>Expires In</th>
+        <th>Client ID</th>
+        <th>Type</th>
+        <th>Scopes</th>
+        <th class="w-5p align-centered"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (token of user.tokens; track token.token ) {
+      <tr>
+        <td class="overflow-ellipsis">{{ token.name }}</td>
+        <td class="overflow-ellipsis">{{ token.token }}</td>
+        <td>
+          {{
+            token.lastLogin
+              ? (token.lastLogin | date : DATE.format.dateTime)
+              : '—'
+          }}
+        </td>
+        <td>
+          <vcl-badge [type]="token.interactive ? 'success' : 'error'">{{
+            token.interactive ? 'Yes' : 'No'
+          }}</vcl-badge>
+        </td>
+        <td>
+          {{
+            token.expiresIn
+              ? (token.expiresIn | date : DATE.format.dateTime)
+              : '—'
+          }}
+        </td>
+        <td>{{ token.clientId || '—' }}</td>
+        <td>{{ token.type || '—' }}</td>
+        <td>{{ (token.scopes || []).join(', ') || '—' }}</td>
+        <td class="align-centered">
+          <button
+            vcl-button
+            square
+            class="transparent"
+            title="More"
+            type="button"
+          >
+            <span class="icon mdi mdi-dots-vertical"></span>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</rc-table>

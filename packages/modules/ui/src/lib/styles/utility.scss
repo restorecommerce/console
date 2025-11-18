@@ -1,5 +1,17 @@
 @use './theme/_console-variables.scss' as *;
 
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-block {
+  display: block;
+}
+
 // Flex utility classes
 .flex-basis-10 {
   flex-basis: 10%;

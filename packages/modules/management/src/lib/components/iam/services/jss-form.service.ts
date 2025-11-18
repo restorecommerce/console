@@ -9,14 +9,13 @@ import {
   OrganizationFacade,
   RoleFacade,
   TimezoneFacade,
-  UserService,
 } from '@console-core/state';
 import {
   ESortOrder,
+  EUserType,
   ILocale,
   IOrganization,
   IRole,
-  IRoleAssociationScopingInstance,
   ITimezone,
   IUser,
 } from '@console-core/types';
@@ -30,7 +29,6 @@ interface IUserSchemaOptions {
   timezones: ITimezone[];
   roles: IRole[];
   organizations: IOrganization[];
-  roleAssociationsScopingInstances: IRoleAssociationScopingInstance[];
 }
 
 @Injectable({
@@ -52,20 +50,6 @@ export class JssFormService {
     tempRoleAssociations: this.iamFacade.tempRoleAssociations$,
   }).pipe(
     map((data): IUserSchemaOptions => {
-      const roleAssociationsScopingInstances =
-        this.userService.getRoleAssociationsScopingInstances(
-          [
-            ...(data.user?.roleAssociations || []),
-            ...data.tempRoleAssociations,
-          ],
-          data.rolesHash,
-          data.organizationsHash,
-          data.usersHash
-        );
-
-      const uniqueRoleAssociationsScopingInstances =
-        roleAssociationsScopingInstances;
-
       return {
         locales: data.locales,
         organizations: data.organizations,
@@ -73,8 +57,6 @@ export class JssFormService {
         users: data.users,
         timezones: data.timezones,
         user: data.user,
-        roleAssociationsScopingInstances:
-          uniqueRoleAssociationsScopingInstances,
       };
     })
   );
@@ -87,7 +69,6 @@ export class JssFormService {
       roles: [],
       users: [],
       organizations: [],
-      roleAssociationsScopingInstances: [],
     })
   );
 
@@ -99,23 +80,14 @@ export class JssFormService {
     private readonly localeFacade: LocaleFacade,
     private readonly timezoneFacade: TimezoneFacade,
     private readonly roleFacade: RoleFacade,
-    private readonly organizationFacade: OrganizationFacade,
-    private readonly userService: UserService
+    private readonly organizationFacade: OrganizationFacade
   ) {
     this.init();
 
     this.formOptions$
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        ({
-          user,
-          locales,
-          timezones,
-          roles,
-          users,
-          roleAssociationsScopingInstances,
-          organizations,
-        }) => {
+        ({ user, locales, timezones, roles, users, organizations }) => {
           this.userForm$.next(
             this.createUserForm({
               user,
@@ -124,7 +96,6 @@ export class JssFormService {
               users,
               roles,
               organizations,
-              roleAssociationsScopingInstances,
             })
           );
         }
@@ -165,6 +136,7 @@ export class JssFormService {
       name: [user?.name || '', [Validators.required, Validators.minLength(8)]],
       email: [user?.email || '', [Validators.required, Validators.email]],
       active: [user?.active ?? true, []],
+      userType: [user?.userType || EUserType.OrgUser, [Validators.required]],
       invite: [false, []],
       ...(!user
         ? {

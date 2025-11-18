@@ -1,6 +1,7 @@
 export * from './accordion/accordion.component';
 export * from './accordion/accordion-item.component';
 export * from './card/card.component';
+export * from './context-menu/rc-context-menu.component';
 export * from './order-info/order-info.component';
 export * from './order-items/order-item.component';
 export * from './order-items/order-items.component';
@@ -14,5 +15,6 @@ export * from './product-variants/product-images.component';
 export * from './product-templates/product-template.component';
 export * from './product-templates/product-templates.component';
 export * from './order-address/order-address.component';
+export * from './meta/meta.component';
 export * from './shop-info/shop-info.component';
 export * from './table/table.component';

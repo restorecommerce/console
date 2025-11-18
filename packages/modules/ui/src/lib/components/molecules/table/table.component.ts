@@ -10,13 +10,12 @@ import {
 @Component({
   selector: 'rc-table',
   standalone: false,
-  encapsulation: ViewEncapsulation.None, // let styles affect slotted <table>
+  encapsulation: ViewEncapsulation.None, // allow VCL styles to flow in
   template: `
     <div
       class="rc-table__container"
       role="region"
       [attr.aria-label]="ariaLabel || 'Data table'"
-      [style.maxHeight]="maxHeight"
       [style.overflowY]="stickyHeader ? 'auto' : 'visible'"
       [style.overflowX]="scrollX ? 'auto' : 'visible'"
     >
@@ -25,125 +24,45 @@ import {
   `,
   styles: [
     `
-      /* Container */
+      /* Keep the container minimal; VCL styles the table itself */
       .rc-table__container {
-        border: 1px solid var(--rc-border, #e5e7eb);
-        border-radius: 0.75rem; /* 12px */
-        background: var(--rc-surface, #fff);
+        background: var(--rc-surface, transparent);
       }
 
-      /* Base table styling (applied via class injection below) */
-      table.rc-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        font-size: 0.875rem; /* 14px */
-      }
-
-      /* Head cells */
-      table.rc-table thead th {
+      /* Optional sticky header support while using VCL classes */
+      :host([stickyHeader]) table thead th,
+      .rc-table__container table thead th {
         position: sticky;
         top: 0;
         z-index: 1;
-        background: var(--rc-head, #f9fafb);
-        color: var(--rc-head-fg, #111827);
-        text-align: left;
-        font-weight: 600;
-        padding: 0.625rem 0.75rem; /* 10px 12px */
-        border-bottom: 1px solid var(--rc-border, #e5e7eb);
-      }
-
-      /* Body cells */
-      table.rc-table tbody td {
-        padding: 0.625rem 0.75rem;
-        border-bottom: 1px solid var(--rc-row-border, #f3f4f6);
-        vertical-align: top;
-        color: var(--rc-fg, #111827);
-      }
-
-      /* Zebra stripes */
-      table.rc-table.rc--striped tbody tr:nth-child(even) td {
-        background: var(--rc-row-alt, #fafafa);
-      }
-
-      /* Hover rows */
-      table.rc-table.rc--hover tbody tr:hover td {
-        background: var(--rc-row-hover, #f5f7ff);
-      }
-
-      /* Dense mode */
-      table.rc-table.rc--dense thead th,
-      table.rc-table.rc--dense tbody td {
-        padding-top: 0.375rem; /* 6px */
-        padding-bottom: 0.375rem;
-      }
-
-      /* Rounded corners on the table top */
-      table.rc-table thead th:first-child {
-        border-top-left-radius: 0.75rem;
-      }
-      table.rc-table thead th:last-child {
-        border-top-right-radius: 0.75rem;
-      }
-
-      /* Last row bottom radius (only when container isn't clipping) */
-      table.rc-table tbody tr:last-child td:first-child {
-        border-bottom-left-radius: 0.75rem;
-      }
-      table.rc-table tbody tr:last-child td:last-child {
-        border-bottom-right-radius: 0.75rem;
-      }
-
-      /* Responsive: allow cells to wrap nicely */
-      table.rc-table th,
-      table.rc-table td {
-        word-break: break-word;
-      }
-
-      /* Dark mode (optional) */
-      @media (prefers-color-scheme: dark) {
-        .rc-table__container {
-          border-color: #1f2937;
-          background: #0b0f1a;
-        }
-        table.rc-table thead th {
-          background: #0f172a;
-          color: #e5e7eb;
-          border-bottom-color: #1f2937;
-        }
-        table.rc-table tbody td {
-          color: #e5e7eb;
-          border-bottom-color: #111827;
-        }
-        table.rc-table.rc--striped tbody tr:nth-child(even) td {
-          background: #0d1324;
-        }
-        table.rc-table.rc--hover tbody tr:hover td {
-          background: #111a33;
-        }
+        /* inherit thead background from VCL theme */
+        background: inherit;
       }
     `,
   ],
 })
 export class RcTableComponent implements AfterContentInit {
-  /** Make header sticky & enable vertical scroll within the container */
+  /** VERTICAL SCROLL + sticky header behavior */
   @Input() stickyHeader = true;
-  /** Apply zebra stripes */
-  @Input() striped = true;
-  /** Highlight row on hover */
-  @Input() hover = true;
-  /** Reduce paddings */
-  @Input() dense = false;
-  /** Horizontal scroll for wide tables */
+
+  /** VCL class toggles (default choices align with your previous behavior) */
+  @Input() noBorder = true; // -> .no-border
+  @Input() fixed = true; // -> .fixed
+  @Input() altRowColor = true; // -> .alt-row-color (striped)
+  @Input() vAlignMiddle = true; // -> .v-align-middle
+  @Input() hoverHighlight = true; // -> .row-hover-highlight
+  @Input() selectable = false; // -> .row-selectability
+
+  /** Container behavior */
   @Input() scrollX = true;
-  /** Max height for the scroll container (e.g., '320px', '50vh') */
-  @Input() maxHeight = '320px';
-  /** Optional aria label for the scroll region */
+
+  /** ARIA roles/labels */
   @Input() ariaLabel?: string;
+  /** Role to set on the <table> to match VCL example (e.g., 'listbox') */
+  @Input() tableRole = 'listbox';
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ContentChild('table', { read: ElementRef, static: false as any })
-  // ^ not reliable for projected nodes, so we'll query manually in ngAfterContentInit
   _ignored?: ElementRef;
 
   constructor(private host: ElementRef<HTMLElement>) {}
@@ -152,12 +71,23 @@ export class RcTableComponent implements AfterContentInit {
     const table = this.host.nativeElement.querySelector('table');
     if (!table) return;
 
-    table.classList.add('rc-table');
-    this.striped && table.classList.add('rc--striped');
-    this.hover && table.classList.add('rc--hover');
-    this.dense && table.classList.add('rc--dense');
+    // Apply VCL base class
+    table.classList.add('table');
 
-    // Ensure <thead> is present for stickyHeader to work safely
+    // Apply VCL option classes based on inputs
+    this.noBorder && table.classList.add('no-border');
+    this.fixed && table.classList.add('fixed');
+    this.altRowColor && table.classList.add('alt-row-color');
+    this.vAlignMiddle && table.classList.add('v-align-middle');
+    this.hoverHighlight && table.classList.add('row-hover-highlight');
+    this.selectable && table.classList.add('row-selectability');
+
+    // Set ARIA role on the table as in the VCL example
+    if (this.tableRole) {
+      table.setAttribute('role', this.tableRole);
+    }
+
+    // Warn if sticky header requested without <thead>
     if (this.stickyHeader) {
       const thead = table.querySelector('thead');
       if (!thead) {

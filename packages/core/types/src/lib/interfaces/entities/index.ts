@@ -1,4 +1,5 @@
 export * from './address';
+export * from './attribute';
 export * from './billing-address';
 export * from './contact-address';
 export * from './country';
@@ -19,6 +20,7 @@ export * from './object-upload';
 export * from './shipping-address';
 export * from './shop';
 export * from './timezone';
+export * from './token';
 export * from './package';
 export * from './policy';
 export * from './price-group';

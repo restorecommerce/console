@@ -1,0 +1,87 @@
+<div class="rc-section-header my-2 row justify-between">
+  <div class="rc-section-header__left">
+    <!-- <h3 class="rc-section-header__title">Role associations</h3> -->
+    <span class="rc-section-header__subtitle">
+      Manage which roles apply to this user and their scope.
+    </span>
+  </div>
+
+  <div class="rc-section-header__right">
+    <button
+      vcl-button
+      class="emphasized scale85p"
+      type="button"
+      (click)="onAddRoleAssociation()"
+    >
+      Add role association
+    </button>
+  </div>
+</div>
+
+<rc-table>
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Attributes</th>
+        <th class="w-5p align-centered"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (ra of user.roleAssociations; track ra.id; let idx = $index) {
+      <tr class="role-association-row">
+        <td>{{ ra.role }}</td>
+        <td>
+          @if (attrPairs(ra.attributes).length) {
+          <vcl-data-list
+            mode="none"
+            [noBorder]="true"
+          >
+            @for (p of attrPairs(ra.attributes); track $index) {
+            <vcl-data-list-item>
+              <div class="row align-items-center">
+                <span>{{ p.path }}:</span>
+                <code>{{ p.value || '—' }}</code>
+              </div>
+            </vcl-data-list-item>
+            }
+          </vcl-data-list>
+          } @else { — }
+        </td>
+        <td>
+          <div
+            #target
+            class="d-inline"
+          >
+            <button
+              vcl-button
+              square
+              class="transparent"
+              title="More"
+              type="button"
+              (click)="roleAssoMenu.toggle()"
+            >
+              <span class="icon mdi mdi-dots-vertical"></span>
+            </button>
+          </div>
+
+          <ng-template
+            vclPopover
+            #roleAssoMenu="vclPopover"
+            [target]="target"
+            (afterClose)="roleAssoMenu.close()"
+            [positions]="positions"
+          >
+            <rc-context-menu
+              [items]="roleMenuItems"
+              (select)="
+                onRoleAssociationMenu($event, ra, idx); roleAssoMenu.close()
+              "
+            ></rc-context-menu>
+          </ng-template>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</rc-table>

@@ -6,13 +6,14 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { map, of } from 'rxjs';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
-import {
-  IRoleAssociationScopingInstance,
-  IRoleInstance,
-} from '@console-core/types';
+import { IRoleAssociation } from '@console-core/types';
+
+import { RoleAssociationForm } from './role-association.form';
+import { fromFormValue, toFormValue } from './role-association.mapper';
 
 @Component({
   selector: 'app-role-association-form',
@@ -42,16 +43,22 @@ import {
 })
 export class RoleAssociationFormComponent implements OnInit {
   form!: FormGroup;
+  private formFactory = new RoleAssociationForm(this.fb);
 
-  @Input() role: IRoleAssociationScopingInstance | undefined;
+  @Input() role: IRoleAssociation | undefined;
 
-  @Output() roleAssociationSubmit = new EventEmitter<
-    { role: string; instanceType: string; instanceId: string }[]
-  >();
+  @Output() roleAssociationSubmit = new EventEmitter<IRoleAssociation[]>();
+
+  INSTANCE_TYPE_USER = 'urn:restorecommerce:acs:model:user.User';
+  INSTANCE_TYPE_ORG = 'urn:restorecommerce:acs:model:organization.Organization';
 
   readonly roles$ = this.roleFacade.all$;
-  readonly organizations$ = this.organizationFacade.all$;
-  readonly users$ = this.iamFacade.all$;
+  readonly organizations$ = this.organizationFacade.all$.pipe(
+    map((orgs) => orgs.map((org) => ({ label: org.name, value: org.id })))
+  );
+  readonly users$ = this.iamFacade.all$.pipe(
+    map((users) => users.map((user) => ({ label: user.name, value: user.id })))
+  );
 
   constructor(
     private fb: FormBuilder,
@@ -61,74 +68,58 @@ export class RoleAssociationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.role) {
-      const flattendRoleAssociationValues = [this.role]
-        .flatMap((rai) =>
-          rai.scopingInstances?.map((inst) => ({
-            role: rai.role?.id || '',
-            instanceType: inst.instanceType || '',
-            instanceId: inst.instance.id || '',
-          }))
-        )
-        .map((ra) =>
-          this.createUser({
-            role: ra?.role || '',
-            instanceType: ra?.instanceType || '',
-            instanceId: ra?.instanceId || '',
-          })
-        );
-
-      this.form = this.fb.group({
-        associations: this.fb.array(flattendRoleAssociationValues),
-      });
-    } else {
-      this.form = this.fb.group({
-        associations: this.fb.array([
-          this.createUser({
-            role: '',
-            instanceType: '',
-            instanceId: '',
-          }),
-        ]),
-      });
-    }
-  }
-
-  get associations(): FormArray {
-    return this.form.get('associations') as FormArray;
-  }
-
-  createUser(roleData: {
-    role: string;
-    instanceType: string;
-    instanceId: string;
-  }): FormGroup {
-    return this.fb.group({
-      role: [roleData.role || '', Validators.required],
-      instanceType: [roleData.instanceType || '', [Validators.required]],
-      instanceId: [roleData.instanceId || '', [Validators.required]],
-    });
-  }
-
-  addUser(): void {
-    this.associations.push(
-      this.createUser({
-        role: '',
-        instanceType: '',
-        instanceId: '',
-      })
+    this.form = this.formFactory.create(
+      this.role ? toFormValue(this.role) : undefined
     );
   }
 
-  removeUser(index: number): void {
-    this.associations.removeAt(index);
+  addTargetRow() {
+    const fac = new RoleAssociationForm(this.fb);
+    this.targets.push(fac.createTargetGroup());
+  }
+
+  removeTargetRow(i: number) {
+    this.targets.removeAt(i);
+    this.targets.updateValueAndValidity();
+  }
+
+  get targets(): FormArray {
+    return this.form.get('targets') as FormArray;
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      this.roleAssociationSubmit.emit(
-        this.form.value.associations as IRoleInstance[]
-      );
+    console.log('this.form.getRawValue()', this.form.getRawValue());
+    console.log(
+      'fromFormValue(this.form.getRawValue())',
+      fromFormValue(this.form.getRawValue())
+    );
+    const value = this.form.getRawValue();
+
+    console.log('value', fromFormValue(value));
+
+    if (!this.form.valid) {
+      return;
     }
+
+    this.roleAssociationSubmit.next([fromFormValue(value)]);
+  }
+
+  getInstanceIdOptions(instanceType: string | null | undefined) {
+    if (!instanceType) return of([]);
+
+    if (instanceType === this.INSTANCE_TYPE_USER) {
+      return this.users$;
+    }
+
+    if (instanceType === this.INSTANCE_TYPE_ORG) {
+      return this.organizations$;
+    }
+
+    return of([]);
+  }
+
+  onInstanceTypeChange(index: number) {
+    const group = this.targets.at(index);
+    group.get('instanceId')?.reset('');
   }
 }
