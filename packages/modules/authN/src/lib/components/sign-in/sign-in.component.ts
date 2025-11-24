@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   inject,
   Input,
+  Output,
 } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,12 +13,20 @@ import {
   VCLInputModule,
   VCLFormControlGroupModule,
   VCLPasswordInputModule,
+  VCLButtonModule,
 } from '@vcl/ng-vcl';
 
 import {
   SIGN_IN_BRANDING_CONFIG,
   SignInBrandingConfig,
 } from './sign-in.config';
+
+export interface SignInCredentials {
+  identifier: string;
+  password: string;
+  remember: boolean;
+}
+
 @Component({
   selector: 'app-authn-sign-in',
   templateUrl: './sign-in.component.html',
@@ -24,6 +34,7 @@ import {
   imports: [
     ReactiveFormsModule,
     VCLCheckboxModule,
+    VCLButtonModule,
     VCLInputModule,
     VCLFormControlGroupModule,
     VCLPasswordInputModule,
@@ -34,6 +45,8 @@ export class LogInComponent {
   @Input() logoUrl?: string;
   @Input() logoAlt?: string;
   @Input() tagline?: string;
+
+  @Output() signIn = new EventEmitter<SignInCredentials>();
 
   fb = inject(FormBuilder);
   readonly defaultConfig = inject(SIGN_IN_BRANDING_CONFIG, { optional: true });
@@ -68,5 +81,20 @@ export class LogInComponent {
       logoAlt: this.logoAlt ?? base.logoAlt ?? base.appName,
       tagline: this.tagline ?? base.tagline,
     };
+  }
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const { identifier, password, remember } = this.form.value;
+
+    this.signIn.emit({
+      identifier: identifier || '',
+      password: password || '',
+      remember: remember || false,
+    });
   }
 }
