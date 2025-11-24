@@ -4,10 +4,10 @@
       <div class="w-100p col align-items-center mt-3 mb-2">
         <img
           width="100"
-          src="assets/images/restore_commerce_logo_square.png"
-          alt="RC Logo"
+          [src]="branding.logoUrl"
+          [alt]="branding.logoAlt"
         />
-        <span class="p-2">{{ 'APP.name' }}</span>
+        <span class="p-2">{{ branding.appName }}</span>
       </div>
       <div class="mt-1 row justify-center align-item-center">
         <span>Sign in</span>
