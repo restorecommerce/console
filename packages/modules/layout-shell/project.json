@@ -1,23 +1,23 @@
 {
-  "name": "authN",
+  "name": "modules-layout",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/modules/authN/src",
+  "sourceRoot": "packages/modules/layout/src",
   "prefix": "app",
-  "tags": ["type:feature", "scope:authN"],
+  "tags": ["type:feature", "scope:layout"],
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/modules/authN/ng-package.json"
+        "project": "packages/modules/layout/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "packages/modules/authN/tsconfig.lib.prod.json"
+          "tsConfig": "packages/modules/layout/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "packages/modules/authN/tsconfig.lib.json"
+          "tsConfig": "packages/modules/layout/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/modules/authN/jest.config.ts"
+        "jestConfig": "packages/modules/layout/jest.config.ts"
       }
     },
     "lint": {
