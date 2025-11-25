@@ -1,0 +1,28 @@
+{
+  "name": "@belsman/sign-in",
+  "version": "0.0.4",
+  "description": "Authn / sign-in module for the Console.",
+  "sideEffects": false,
+  "peerDependencies": {
+    "@angular/common": "^20.3.10",
+    "@angular/compiler": "^20.3.10",
+    "@angular/core": "^20.3.10",
+    "@angular/forms": "^20.3.10",
+    "@angular/router": "^20.3.10"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "nx build authN"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belsman/sign-in.git"
+  },
+  "author": "",
+  "license": "MIT"
+}

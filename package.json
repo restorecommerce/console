@@ -26,7 +26,8 @@
     "console:e2e": "nx run-many --target=e2e",
     "console:graph": "nx graph restorecommerce",
     "console:list": "nx list",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release:sign-in": "nx build authN && cd dist/packages/modules/authN && npm publish"
   },
   "private": true,
   "dependencies": {
