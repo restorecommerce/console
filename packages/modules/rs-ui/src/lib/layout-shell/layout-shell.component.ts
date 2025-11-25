@@ -30,7 +30,7 @@ import { LayoutFacade } from './layout.facade';
 import { LAYOUT_CONFIG, ORG_CONTEXT_OPTIONS } from './layout.tokens';
 
 @Component({
-  selector: 'app-module-layout-shell-index',
+  selector: 'rs-layout-shell',
   templateUrl: './layout-shell.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

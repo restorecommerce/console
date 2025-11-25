@@ -23,7 +23,6 @@ import {
 import { RsHeaderOrganization, RsHeaderUser } from './header-toolbar.models';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'rs-header-toolbar',
   templateUrl: './header-toolbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

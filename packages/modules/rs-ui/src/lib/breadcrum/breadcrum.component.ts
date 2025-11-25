@@ -25,7 +25,6 @@ export interface IBreadcrumb {
 }
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'rs-breadcrumb',
   standalone: true,
   imports: [NgClass, RouterModule, VCLIconModule],
