@@ -1,0 +1,134 @@
+@if (user) {
+<div>
+  <!-- Organization trigger -->
+  <span
+    #popoverOrganizationTarget
+    class="inline-block"
+  >
+    <button
+      vcl-button
+      [selectable]="true"
+      (click)="templatePopoverOrganization.toggle()"
+      class="half-transparent"
+    >
+      <vcl-icon
+        vclPrepend
+        icon="mdi:home-outline"
+      ></vcl-icon>
+
+      {{ selectedOrganization?.name || 'Select organization' }}
+
+      <vcl-icon
+        vclAppend
+        icon="mdi:chevron-down"
+      ></vcl-icon>
+    </button>
+  </span>
+
+  <!-- Account trigger -->
+  <span
+    #popoverAccountTarget
+    class="inline-block"
+  >
+    <button
+      vcl-button
+      [selectable]="true"
+      (click)="templatePopoverAccount.toggle()"
+      class="half-transparent account"
+    >
+      <vcl-icogram>
+        <vcl-icon icon="mdi:account-outline"></vcl-icon>
+        {{ user.fullName }}
+        <vcl-icon icon="mdi:chevron-down"></vcl-icon>
+      </vcl-icogram>
+    </button>
+  </span>
+</div>
+
+<!-- ORG POPOVER -->
+<ng-template
+  vclPopover
+  #templatePopoverOrganization="vclPopover"
+  [target]="popoverOrganizationTarget"
+  [closeOnOffClick]="true"
+  [positions]="rightOrientedPositions"
+>
+  <div class="rc-header-toolbar-org-popover">
+    <!-- Search -->
+    <div class="rc-header-toolbar-search">
+      <input
+        type="search"
+        class="vclInput"
+        placeholder="Search organizations..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange($event)"
+      />
+    </div>
+
+    <!-- Organization list -->
+    <vcl-data-list
+      [noBorder]="true"
+      class="m-0"
+      (valueChange)="
+        onSelectOrganization($event); templatePopoverOrganization.close()
+      "
+    >
+      <vcl-data-list-item
+        class="row center"
+        *ngFor="let organization of filteredOrganizations"
+        [value]="organization.id"
+      >
+        <div class="p-2">{{ organization?.name }}</div>
+      </vcl-data-list-item>
+    </vcl-data-list>
+  </div>
+</ng-template>
+
+<!-- ACCOUNT POPOVER -->
+<ng-template
+  vclPopover
+  #templatePopoverAccount="vclPopover"
+  [target]="popoverAccountTarget"
+  [closeOnOffClick]="true"
+  [positions]="rightOrientedPositions"
+>
+  <vcl-select-list
+    (valueChange)="
+      onAccountItemSelected($event); templatePopoverAccount.close()
+    "
+  >
+    <vcl-select-list-item
+      value="profile"
+      *ngIf="showProfile"
+    >
+      <vcl-icon
+        vclPrepend
+        icon="mdi:account-cog-outline"
+      ></vcl-icon>
+      Profile
+    </vcl-select-list-item>
+
+    <vcl-select-list-item
+      value="preferences"
+      *ngIf="showPreferences"
+    >
+      <vcl-icon
+        vclPrepend
+        icon="mdi:cog-outline"
+      ></vcl-icon>
+      Preferences
+    </vcl-select-list-item>
+
+    <vcl-select-list-item
+      value="sign-out"
+      *ngIf="showSignOut"
+    >
+      <vcl-icon
+        vclPrepend
+        icon="mdi:logout"
+      ></vcl-icon>
+      Sign Out
+    </vcl-select-list-item>
+  </vcl-select-list>
+</ng-template>
+}
