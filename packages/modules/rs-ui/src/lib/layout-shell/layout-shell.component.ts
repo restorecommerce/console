@@ -9,6 +9,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 
 import {
+  VCLButtonModule,
   VCLDrawerModule,
   VCLIcogramModule,
   VCLIconModule,
@@ -24,6 +25,7 @@ import {
   LAYOUT_SET_SELECTED_ORG,
   LAYOUT_USER$,
 } from '../header/header-toolbar.tokens';
+import { RsBannerComponent } from '../header-brand';
 
 import { LayoutNavItem } from './layout-config.model';
 import { LayoutFacade } from './layout.facade';
@@ -33,6 +35,7 @@ import { LAYOUT_CONFIG } from './layout.tokens';
   selector: 'rs-layout-shell',
   templateUrl: './layout-shell.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './layout-shell.component.scss',
   imports: [
     AsyncPipe,
     RouterModule,
@@ -40,14 +43,16 @@ import { LAYOUT_CONFIG } from './layout.tokens';
     VCLNavigationModule,
     VCLIcogramModule,
     VCLIconModule,
+    VCLButtonModule,
     RsBreadcrumbComponent,
     RsHeaderToolbarComponent,
+    RsBannerComponent,
   ],
 })
 export class LayoutShellComponent {
   private router = inject(Router);
   public facade = inject(LayoutFacade);
-  readonly config = inject(LAYOUT_CONFIG, { optional: false });
+  public readonly config = inject(LAYOUT_CONFIG, { optional: false });
 
   readonly accountHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {
     optional: false,

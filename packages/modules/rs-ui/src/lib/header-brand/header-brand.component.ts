@@ -21,22 +21,22 @@ import { RouterModule } from '@angular/router';
       />
     </a>
     } @if (showName) {
-    <h1 class="app-name hide-to-sm">
+    <span class="app-name hide-to-sm">
       {{ brandName }}
-    </h1>
+    </span>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterModule],
 })
-export class RcBannerComponent {
+export class RsBannerComponent {
   @HostBinding('class.row')
   @HostBinding('class.center')
   _hostClasses = true;
 
   @Input() brandName!: string;
 
-  @Input() showName = true;
+  @Input() showName = false;
 
   @Input()
   logoUrl?: string;

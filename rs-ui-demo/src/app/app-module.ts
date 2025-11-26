@@ -45,8 +45,16 @@ const routes: Routes = [
     path: '',
     component: LayoutShellComponent, // ⬅ shell from rs-ui
     children: [
-      { path: 'dashboard', component: DemoDashboardPageComponent },
-      { path: 'settings', component: DemoSettingsPageComponent },
+      {
+        path: 'dashboard',
+        component: DemoDashboardPageComponent,
+        data: { breadcrumb: 'Dashboard' },
+      },
+      {
+        path: 'settings',
+        component: DemoSettingsPageComponent,
+        data: { breadcrumb: 'Settings' },
+      },
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
   },
@@ -54,7 +62,7 @@ const routes: Routes = [
 
 const demoLayoutConfig: LayoutConfig = {
   appName: 'RS UI Demo',
-  logoUrl: '/assets/logo.svg',
+  logoUrl: 'favicon.ico',
   navItems: [
     {
       id: 'dashboard',

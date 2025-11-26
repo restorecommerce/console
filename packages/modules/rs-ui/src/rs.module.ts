@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { LogInComponent } from './lib/auth';
 import { RsBreadcrumbComponent } from './lib/breadcrum';
 import { RsHeaderToolbarComponent } from './lib/header';
-import { RcBannerComponent } from './lib/header-brand';
+import { RsBannerComponent } from './lib/header-brand';
 import { LayoutShellComponent } from './lib/layout-shell';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { LayoutShellComponent } from './lib/layout-shell';
     CommonModule,
     RouterModule,
     LogInComponent,
-    RcBannerComponent,
+    RsBannerComponent,
     LayoutShellComponent,
     RsBreadcrumbComponent,
     RsHeaderToolbarComponent,

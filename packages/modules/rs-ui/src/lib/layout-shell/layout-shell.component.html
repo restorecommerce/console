@@ -1,6 +1,27 @@
-<vcl-drawer-container>
-  <vcl-drawer [opened]="true">
+<vcl-drawer-container class="layout-shell-container">
+  <vcl-drawer
+    mode="side"
+    [opened]="(collapsed$ | async) === false"
+  >
     <vcl-navigation>
+      <div class="row justify-content-between py-1 px-2">
+        <rs-brand
+          [brandName]="config.appName"
+          [logoUrl]="config.logoUrl"
+        />
+        <button
+          vcl-button
+          square
+          class="transparent"
+          [title]="(collapsed$ | async) ? 'Hide sidebar' : 'Show sidebar'"
+          (click)="toggleSidebar()"
+        >
+          <vcl-icon
+            class="scale155p"
+            icon="mdi mdi-page-layout-sidebar-left"
+          />
+        </button>
+      </div>
       @for (item of (facade.visibleNavItems$ | async); track $index) {
       <vcl-navigation-item
         [routerLink]="item.route"
@@ -44,10 +65,25 @@
   </vcl-drawer>
 
   <header class="row align-items-center">
+    @if (collapsed$ | async) {
+    <button
+      vcl-button
+      square
+      class="transparent"
+      [title]="'Show sidebar'"
+      (click)="toggleSidebar()"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-page-layout-sidebar-left"
+      />
+    </button>
+    }
+
     <rs-breadcrumb
       [rootLabel]="'Home'"
       [rootUrl]="'/'"
-      [breadcrumbsToExclude]="['']"
+      [breadcrumbsToExclude]="['Home']"
     />
 
     <div class="flex"></div>
@@ -61,7 +97,7 @@
     />
   </header>
 
-  <main class="flex rc-main">
+  <main class="flex rs-main">
     <router-outlet />
   </main>
 </vcl-drawer-container>
