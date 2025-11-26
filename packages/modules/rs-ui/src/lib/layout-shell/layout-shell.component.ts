@@ -27,7 +27,7 @@ import {
 
 import { LayoutNavItem } from './layout-config.model';
 import { LayoutFacade } from './layout.facade';
-import { LAYOUT_CONFIG, ORG_CONTEXT_OPTIONS } from './layout.tokens';
+import { LAYOUT_CONFIG } from './layout.tokens';
 
 @Component({
   selector: 'rs-layout-shell',
@@ -48,7 +48,6 @@ export class LayoutShellComponent {
   private router = inject(Router);
   public facade = inject(LayoutFacade);
   readonly config = inject(LAYOUT_CONFIG, { optional: false });
-  readonly orgs = inject(ORG_CONTEXT_OPTIONS, { optional: false });
 
   readonly accountHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {
     optional: false,

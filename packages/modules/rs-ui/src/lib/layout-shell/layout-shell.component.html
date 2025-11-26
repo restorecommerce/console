@@ -1,49 +1,43 @@
 <vcl-drawer-container>
-  <vcl-drawer [opened]="(collapsed$ | async) || false">
-    <div class="h-100p col">
-      <div class="flex">
+  <vcl-drawer [opened]="true">
+    <vcl-navigation>
+      @for (item of (facade.visibleNavItems$ | async); track $index) {
+      <vcl-navigation-item (click)="navigate(item); $event.stopPropagation()">
+        <vcl-navigation-label>
+          <vcl-icogram>
+            <vcl-icon
+              vclPrepend
+              [icon]="item.icon"
+            ></vcl-icon>
+            {{ item.label }}
+          </vcl-icogram>
+        </vcl-navigation-label>
+
+        @if (item.children?.length) {
         <vcl-navigation>
-          @for (item of (facade.visibleNavItems$ | async); track $index) {
+          @for (child of item.children; track $index) {
           <vcl-navigation-item
-            (click)="navigate(item); $event.stopPropagation()"
+            (click)="navigate(child); $event.stopPropagation()"
           >
             <vcl-navigation-label>
               <vcl-icogram>
                 <vcl-icon
                   vclPrepend
-                  [icon]="item.icon"
+                  [icon]="child.icon"
                 ></vcl-icon>
-                {{ item.label }}
+                {{ child.label }}
               </vcl-icogram>
             </vcl-navigation-label>
-
-            @if (item.children?.length) {
-            <vcl-navigation>
-              @for (child of item.children; track $index) {
-              <vcl-navigation-item
-                (click)="navigate(child); $event.stopPropagation()"
-              >
-                <vcl-navigation-label>
-                  <vcl-icogram>
-                    <vcl-icon
-                      vclPrepend
-                      [icon]="child.icon"
-                    ></vcl-icon>
-                    {{ child.label }}
-                  </vcl-icogram>
-                </vcl-navigation-label>
-              </vcl-navigation-item>
-              }
-            </vcl-navigation>
-            }
           </vcl-navigation-item>
           }
         </vcl-navigation>
-      </div>
-    </div>
+        }
+      </vcl-navigation-item>
+      }
+    </vcl-navigation>
   </vcl-drawer>
 
-  <header>
+  <header class="row align-items-center">
     <rs-breadcrumb
       [rootLabel]="'Home'"
       [rootUrl]="'/'"

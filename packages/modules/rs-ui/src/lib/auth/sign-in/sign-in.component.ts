@@ -28,7 +28,7 @@ export interface SignInCredentials {
 }
 
 @Component({
-  selector: 'app-authn-sign-in',
+  selector: 'rs-sign-in',
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
