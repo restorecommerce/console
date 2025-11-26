@@ -2,7 +2,11 @@
   <vcl-drawer [opened]="true">
     <vcl-navigation>
       @for (item of (facade.visibleNavItems$ | async); track $index) {
-      <vcl-navigation-item (click)="navigate(item); $event.stopPropagation()">
+      <vcl-navigation-item
+        [routerLink]="item.route"
+        [routerLinkActive]="['selected']"
+        (click)="navigate(item); $event.stopPropagation()"
+      >
         <vcl-navigation-label>
           <vcl-icogram>
             <vcl-icon
@@ -17,6 +21,8 @@
         <vcl-navigation>
           @for (child of item.children; track $index) {
           <vcl-navigation-item
+            [routerLink]="child.route"
+            [routerLinkActive]="['selected']"
             (click)="navigate(child); $event.stopPropagation()"
           >
             <vcl-navigation-label>
@@ -41,7 +47,7 @@
     <rs-breadcrumb
       [rootLabel]="'Home'"
       [rootUrl]="'/'"
-      [breadcrumbsToExclude]="['Home']"
+      [breadcrumbsToExclude]="['']"
     />
 
     <div class="flex"></div>

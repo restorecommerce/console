@@ -9,3 +9,7 @@ export * from './lib/header';
 export * from './lib/auth';
 
 export * from './rs.module';
+
+export * from './rs-ui-base.module';
+
+export * from './rs-ui-base.providers';

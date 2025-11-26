@@ -8,10 +8,10 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "generators": {
     "@nx/angular:application": {
-      "style": "css",
+      "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "style": "css",
+      "unitTestRunner": "jest"
     },
     "@nx/angular:library": {
       "linter": "eslint",
@@ -49,6 +49,11 @@
         "{workspaceRoot}/.eslintignore"
       ],
       "cache": true
+    },
+    "@angular-devkit/build-angular:browser": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"]
     }
   },
   "useInferencePlugins": false,

@@ -1,6 +1,13 @@
 {
   "name": "@console-modules/rs-ui",
   "version": "0.0.1",
+  "style": "styles/rs-ui-theme.css",
+  "exports": {
+    ".": {
+      "default": "./src/index.js",
+      "style": "./styles/rs-ui-theme.css"
+    }
+  },
   "peerDependencies": {
     "@angular/core": "^20.3.10",
     "@angular/common": "^20.3.10",
@@ -8,6 +15,10 @@
     "@angular/router": "^20.3.10"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@angular/cdk": "^20.2.12",
+    "@mdi/font": "^7.4.47",
+    "@vcl/ng-vcl": "^3.3.0",
+    "@vcl/vcl": "^3.4.0"
   }
 }

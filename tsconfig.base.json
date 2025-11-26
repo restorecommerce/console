@@ -38,6 +38,7 @@
       "@console-modules/product": ["packages/modules/product/src/index.ts"],
       "@console-modules/shared": ["packages/modules/shared/src/index.ts"],
       "@console-modules/ui": ["packages/modules/ui/src/index.ts"],
+      "@console/rs-ui": ["packages/modules/rs-ui/src/index.ts"],
       "data-mapper": ["packages/core/src/index.ts"]
     }
   },
