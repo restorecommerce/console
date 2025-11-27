@@ -3,7 +3,7 @@
     mode="side"
     [opened]="(collapsed$ | async) === false"
   >
-    <vcl-navigation>
+    <vcl-navigation class="h-100p layout-shell-navigation">
       <div class="row justify-content-between py-1 px-2">
         <rs-brand
           [brandName]="config.appName"
@@ -61,6 +61,35 @@
         }
       </vcl-navigation-item>
       }
+
+      <div class="py-1 px-2 rs-navigation-item-bottom-container">
+        @if (categories$ | async; as categories) {
+        <vcl-navigation-item>
+          <vcl-form-control-group>
+            <vcl-label>Select country</vcl-label>
+            <vcl-select>
+              <vcl-select-list
+                [value]="activeCategory$ | async"
+                (valueChange)="onSelectCategory($event)"
+              >
+                @for (cat of categories; track cat.id) {
+                <vcl-select-list-item [value]="cat.id">
+                  {{ cat.label }}
+                </vcl-select-list-item>
+                }
+              </vcl-select-list>
+            </vcl-select>
+          </vcl-form-control-group>
+        </vcl-navigation-item>
+
+        }
+
+        <vcl-navigation-item>
+          <vcl-navigation-label>
+            ©2025 <a href="#">Restorecommerce</a>. All rights reserved.
+          </vcl-navigation-label>
+        </vcl-navigation-item>
+      </div>
     </vcl-navigation>
   </vcl-drawer>
 

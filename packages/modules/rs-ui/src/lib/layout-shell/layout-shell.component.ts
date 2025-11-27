@@ -11,9 +11,11 @@ import { Router, RouterModule } from '@angular/router';
 import {
   VCLButtonModule,
   VCLDrawerModule,
+  VCLFormControlGroupModule,
   VCLIcogramModule,
   VCLIconModule,
   VCLNavigationModule,
+  VCLSelectModule,
 } from '@vcl/ng-vcl';
 
 import { RsBreadcrumbComponent } from '../breadcrum/breadcrum.component';
@@ -27,7 +29,7 @@ import {
 } from '../header/header-toolbar.tokens';
 import { RsBannerComponent } from '../header-brand';
 
-import { LayoutNavItem } from './layout-config.model';
+import { LayoutNavCategoryId, LayoutNavItem } from './layout-config.model';
 import { LayoutFacade } from './layout.facade';
 import { LAYOUT_CONFIG } from './layout.tokens';
 
@@ -47,6 +49,8 @@ import { LAYOUT_CONFIG } from './layout.tokens';
     RsBreadcrumbComponent,
     RsHeaderToolbarComponent,
     RsBannerComponent,
+    VCLSelectModule,
+    VCLFormControlGroupModule,
   ],
 })
 export class LayoutShellComponent {
@@ -72,7 +76,9 @@ export class LayoutShellComponent {
   >();
 
   collapsed$ = this.facade.collapsed$;
-  activeOrg$ = this.facade.activeOrg$;
+  categories$ = this.facade.categories$;
+  activeCategory$ = this.facade.activeCategory$;
+  visibleNavItems$ = this.facade.visibleNavItems$;
 
   navigate(item: LayoutNavItem) {
     if (item.externalUrl) {
@@ -95,5 +101,9 @@ export class LayoutShellComponent {
   onAccountAction(action: 'profile' | 'preferences' | 'sign-out'): void {
     // For generic shell lib: bubble this up to host via an @Output
     this.accountAction.emit(action);
+  }
+
+  onSelectCategory(catId: LayoutNavCategoryId) {
+    this.facade.setActiveCategory(catId);
   }
 }

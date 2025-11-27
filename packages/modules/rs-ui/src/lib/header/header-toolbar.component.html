@@ -55,15 +55,13 @@
 >
   <div class="rc-header-toolbar-org-popover">
     <!-- Search -->
-    <div class="rc-header-toolbar-search">
+    <vcl-input-field class="searchField">
       <input
-        type="search"
-        class="vclInput"
+        vclInput
         placeholder="Search organizations..."
         [(ngModel)]="searchTerm"
-        (ngModelChange)="onSearchChange($event)"
       />
-    </div>
+    </vcl-input-field>
 
     <!-- Organization list -->
     <vcl-data-list

@@ -1,3 +1,10 @@
+export type LayoutNavCategoryId = 'home' | 'management' | string;
+
+export interface LayoutNavCategory {
+  id: LayoutNavCategoryId;
+  label: string;
+}
+
 export interface LayoutNavItem {
   id: string;
   label: string;
@@ -7,14 +14,7 @@ export interface LayoutNavItem {
   children?: LayoutNavItem[];
   isHidden?: boolean;
   requiredPermission?: string;
-}
-
-export interface OrgContextOption {
-  id: string;
-  name: string;
-  logoUrl?: string;
-  // anything extra you need for org context
-  meta?: Record<string, unknown>;
+  categoryId?: LayoutNavCategoryId; // e.g. 'home' | 'management'
 }
 
 export interface LayoutConfig {
@@ -22,4 +22,5 @@ export interface LayoutConfig {
   logoUrl?: string;
   navItems: LayoutNavItem[];
   basePath?: string;
+  categories?: LayoutNavCategory[];
 }

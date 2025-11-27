@@ -16,6 +16,7 @@ import {
   VCLDataListModule,
   VCLIcogramModule,
   VCLIconModule,
+  VCLInputModule,
   VCLPopoverModule,
   VCLSelectListModule,
 } from '@vcl/ng-vcl';
@@ -36,6 +37,7 @@ import { RsHeaderOrganization, RsHeaderUser } from './header-toolbar.models';
     VCLSelectListModule,
     VCLIconModule,
     VCLIcogramModule,
+    VCLInputModule,
   ],
 })
 export class RsHeaderToolbarComponent {
