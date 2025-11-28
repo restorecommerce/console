@@ -151,16 +151,16 @@
         />
       </vcl-password-input>
       <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+
+      @if ( !formFields.password.hasError('required') &&
+      form.hasError('passwordConfirmationMismatch')) {
       <vcl-hint-error
-        *ngIf="
-          !formFields.password.hasError('required') &&
-          form.hasError('passwordConfirmationMismatch')
-        "
         >Fields Password and Confirm password must match.</vcl-hint-error
       >
+      }
     </vcl-form-control-group>
 
-    <div class="row align-right mt-3">
+    <div class="align-right mt-3">
       <button
         vcl-button
         type="submit"

@@ -2,12 +2,17 @@ import { Route } from '@angular/router';
 
 import { RsPasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 import { RsSignInComponent } from './sign-in/sign-in.component';
+import { RsSignUpComponent } from './sign-up/sign-up.component';
 
 export const AUTH_ROUTES: Route[] = [
   {
     path: '',
     pathMatch: 'full',
     component: RsSignInComponent,
+  },
+  {
+    path: 'sign-up',
+    component: RsSignUpComponent,
   },
   {
     path: 'password-recovery',

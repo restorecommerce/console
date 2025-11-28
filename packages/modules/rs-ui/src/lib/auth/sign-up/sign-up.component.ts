@@ -9,7 +9,11 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { VCLInputModule, VCLPasswordInputModule } from '@vcl/ng-vcl';
+import {
+  VCLButtonModule,
+  VCLInputModule,
+  VCLPasswordInputModule,
+} from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
 
@@ -46,6 +50,7 @@ const passwordConfirmationValidator: ValidatorFn = (group: AbstractControl) => {
     RsAuthPageComponent,
     VCLInputModule,
     VCLPasswordInputModule,
+    VCLButtonModule,
   ],
   templateUrl: './sign-up.component.html',
 })
