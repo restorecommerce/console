@@ -64,21 +64,20 @@
     </vcl-input-field>
 
     <!-- Organization list -->
-    <vcl-data-list
-      [noBorder]="true"
+    <vcl-select-list
       class="m-0"
       (valueChange)="
         onSelectOrganization($event); templatePopoverOrganization.close()
       "
     >
-      <vcl-data-list-item
+      <vcl-select-list-item
         class="row center"
         *ngFor="let organization of filteredOrganizations"
         [value]="organization.id"
       >
         <div class="p-2">{{ organization?.name }}</div>
-      </vcl-data-list-item>
-    </vcl-data-list>
+      </vcl-select-list-item>
+    </vcl-select-list>
   </div>
 </ng-template>
 
@@ -95,38 +94,31 @@
       onAccountItemSelected($event); templatePopoverAccount.close()
     "
   >
-    <vcl-select-list-item
-      value="profile"
-      *ngIf="showProfile"
-    >
+    @if (showProfile) {
+    <vcl-select-list-item value="profile">
       <vcl-icon
         vclPrepend
         icon="mdi:account-cog-outline"
       ></vcl-icon>
       Profile
     </vcl-select-list-item>
-
-    <vcl-select-list-item
-      value="preferences"
-      *ngIf="showPreferences"
-    >
+    } @if (showPreferences) {
+    <vcl-select-list-item value="preferences">
       <vcl-icon
         vclPrepend
         icon="mdi:cog-outline"
       ></vcl-icon>
       Preferences
     </vcl-select-list-item>
-
-    <vcl-select-list-item
-      value="sign-out"
-      *ngIf="showSignOut"
-    >
+    } @if (showSignOut) {
+    <vcl-select-list-item value="sign-out">
       <vcl-icon
         vclPrepend
         icon="mdi:logout"
       ></vcl-icon>
       Sign Out
     </vcl-select-list-item>
+    }
   </vcl-select-list>
 </ng-template>
 }

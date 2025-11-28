@@ -28,7 +28,7 @@ export interface SignInCredentials {
 }
 
 @Component({
-  selector: 'rs-sign-in',
+  selector: 'rs-auth-sign-in',
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -40,7 +40,7 @@ export interface SignInCredentials {
     VCLPasswordInputModule,
   ],
 })
-export class LogInComponent {
+export class RsLogInComponent {
   @Input() appName?: string;
   @Input() logoUrl?: string;
   @Input() logoAlt?: string;

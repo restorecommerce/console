@@ -1,82 +1,80 @@
-<div>
-  <div class="w-100p col align-items-center mt-3 mb-2">
-    <img
-      width="100"
-      [src]="branding.logoUrl"
-      [alt]="branding.logoAlt"
-    />
-    <span class="p-2">{{ branding.appName }}</span>
-  </div>
-  <div class="mt-1 row justify-center align-item-center">
-    <span>Sign in</span>
-  </div>
-  <hr />
-  <form
-    vclForm
-    class="form m-0"
-    [formGroup]="form"
-    (ngSubmit)="onSubmit()"
-  >
-    <vcl-form-control-group>
-      <vcl-label>Email or Username</vcl-label>
-      <vcl-input-field>
-        <input
-          vclInput
-          class="input"
-          [class.error]="
-            formFields.identifier.hasError('required') &&
-            formFields.identifier.touched
-          "
-          formControlName="identifier"
-          type="text"
-          name="identifier"
-        />
-      </vcl-input-field>
-      <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-    </vcl-form-control-group>
-
-    <vcl-form-control-group>
-      <vcl-label>Password</vcl-label>
-      <vcl-password-input>
-        <input
-          vclInput
-          class="input"
-          [class.error]="
-            formFields.password.hasError('required') &&
-            formFields.password.touched
-          "
-          type="password"
-          formControlName="password"
-          name="password"
-          autocomplete="false"
-          minlength="6"
-          maxlength="20"
-        />
-      </vcl-password-input>
-    </vcl-form-control-group>
-
-    <vcl-form-control-group>
-      <vcl-checkbox formControlName="remember"
-        >Stay signed in for 7 days</vcl-checkbox
-      >
-    </vcl-form-control-group>
-
-    <div class="row">
-      <button
-        vcl-button
-        type="submit"
-        class="w-100p"
-      >
-        Sign in
-      </button>
-    </div>
-
-    <div class="row">
-      <div class="flex">
-        <p class="mt-3">
-          <a> Forgot your password? </a>
-        </p>
-      </div>
-    </div>
-  </form>
+<div class="w-100p col align-items-center mt-3 mb-2">
+  <img
+    width="100"
+    [src]="branding.logoUrl"
+    [alt]="branding.logoAlt"
+  />
+  <span class="p-2">{{ branding.appName }}</span>
 </div>
+<div class="mt-1 row justify-center align-item-center">
+  <span>Sign in</span>
+</div>
+<hr />
+<form
+  vclForm
+  class="form m-0"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <vcl-form-control-group>
+    <vcl-label>Email or Username</vcl-label>
+    <vcl-input-field>
+      <input
+        vclInput
+        class="input"
+        [class.error]="
+          formFields.identifier.hasError('required') &&
+          formFields.identifier.touched
+        "
+        formControlName="identifier"
+        type="text"
+        name="identifier"
+      />
+    </vcl-input-field>
+    <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-label>Password</vcl-label>
+    <vcl-password-input>
+      <input
+        vclInput
+        class="input"
+        [class.error]="
+          formFields.password.hasError('required') &&
+          formFields.password.touched
+        "
+        type="password"
+        formControlName="password"
+        name="password"
+        autocomplete="false"
+        minlength="6"
+        maxlength="20"
+      />
+    </vcl-password-input>
+  </vcl-form-control-group>
+
+  <vcl-form-control-group>
+    <vcl-checkbox formControlName="remember"
+      >Stay signed in for 7 days</vcl-checkbox
+    >
+  </vcl-form-control-group>
+
+  <div class="row">
+    <button
+      vcl-button
+      type="submit"
+      class="w-100p"
+    >
+      Sign in
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="flex">
+      <p class="mt-3">
+        <a> Forgot your password? </a>
+      </p>
+    </div>
+  </div>
+</form>
