@@ -12,6 +12,8 @@ import {
   VCLInputModule,
 } from '@vcl/ng-vcl';
 
+import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+
 export interface PasswordRecoveryPayload {
   identifier: string;
 }
@@ -19,11 +21,19 @@ export interface PasswordRecoveryPayload {
 @Component({
   selector: 'rs-auth-password-recovery',
   templateUrl: 'password-recovery.component.html',
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   imports: [
     ReactiveFormsModule,
     VCLButtonModule,
     VCLInputModule,
     VCLFormControlGroupModule,
+    RsAuthPageComponent,
   ],
 })
 export class RsPasswordRecoveryComponent {

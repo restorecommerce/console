@@ -17,6 +17,8 @@ import {
   VCLButtonModule,
 } from '@vcl/ng-vcl';
 
+import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+
 import {
   SIGN_IN_BRANDING_CONFIG,
   SignInBrandingConfig,
@@ -40,6 +42,7 @@ export interface SignInCredentials {
     VCLFormControlGroupModule,
     VCLPasswordInputModule,
     RouterModule,
+    RsAuthPageComponent,
   ],
 })
 export class RsSignInComponent {

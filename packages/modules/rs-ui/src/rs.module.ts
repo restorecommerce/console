@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { RsSignInComponent, RsPasswordRecoveryComponent } from './lib/auth';
+import { RsAuthPageComponent } from './lib/auth/auth-page/auth-page.component';
 import { RsBreadcrumbComponent } from './lib/breadcrum';
+import { RsCardComponent } from './lib/card/card.component';
+import { RsCenteredPageComponent } from './lib/centered-page/centered-page.component';
+import { RsCopyrightComponent } from './lib/copyright/copyright.component';
 import { RsHeaderToolbarComponent } from './lib/header';
 import { RsBannerComponent } from './lib/header-brand';
 import { LayoutShellComponent } from './lib/layout-shell';
@@ -18,6 +22,10 @@ import { LayoutShellComponent } from './lib/layout-shell';
     LayoutShellComponent,
     RsBreadcrumbComponent,
     RsHeaderToolbarComponent,
+    RsCardComponent,
+    RsCenteredPageComponent,
+    RsCopyrightComponent,
+    RsAuthPageComponent,
   ],
   exports: [
     CommonModule,
@@ -28,6 +36,10 @@ import { LayoutShellComponent } from './lib/layout-shell';
     LayoutShellComponent,
     RsBreadcrumbComponent,
     RsHeaderToolbarComponent,
+    RsCardComponent,
+    RsCenteredPageComponent,
+    RsCopyrightComponent,
+    RsAuthPageComponent,
   ],
 })
 export class RSUiModule {}
