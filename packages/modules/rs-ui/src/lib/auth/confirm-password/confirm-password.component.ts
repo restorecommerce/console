@@ -1,4 +1,3 @@
-// rs-confirm-password.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {

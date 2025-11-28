@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { RsAuthPageComponent } from './auth-page/auth-page.component';
+import { RsAuthResultPageComponent } from './auth-result-page/auth-result-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RsConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { RsPasswordRecoveryComponent } from './password-recovery';
@@ -15,6 +16,7 @@ import { RsSignUpComponent } from './sign-up/sign-up.component';
     AuthRoutingModule,
     RsConfirmPasswordComponent,
     RsAuthPageComponent,
+    RsAuthResultPageComponent,
   ],
   exports: [
     RsSignInComponent,
@@ -22,6 +24,7 @@ import { RsSignUpComponent } from './sign-up/sign-up.component';
     RsPasswordRecoveryComponent,
     AuthRoutingModule,
     RsAuthPageComponent,
+    RsAuthResultPageComponent,
   ],
 })
 export class RsAuthModule {}
