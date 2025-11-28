@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'rs-copyright',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterModule],
   template: `
     <div class="align-centered mt-5 rs-copyright">
-      &copy; {{ year }} {{ company }}. {{ text }}
+      &copy; {{ year }} <a [routerLink]="['/']">{{ company }}</a> . {{ text }}
     </div>
   `,
   styles: [

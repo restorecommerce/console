@@ -7,8 +7,8 @@ import { RsCopyrightComponent } from '../../copyright/copyright.component';
 @Component({
   template: `
     <rs-centered-page>
-      <div class="column gap-2">
-        <rs-card>
+      <div class="col">
+        <rs-card class="mb-5">
           <ng-content></ng-content>
         </rs-card>
 
