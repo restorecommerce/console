@@ -1,10 +1,8 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {
   RSUiModule,
-  LayoutShellComponent,
   LayoutConfig,
   LAYOUT_CONFIG,
   LAYOUT_USER$,
@@ -20,45 +18,11 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 import { App } from './app';
-// import { appRoutes } from './app.routes';
-
-@Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'demo-dashboard-page',
-  template: `<h1>Demo Dashboard</h1>`,
-  // eslint-disable-next-line @angular-eslint/prefer-standalone
-  standalone: false,
-})
-export class DemoDashboardPageComponent {}
-
-@Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'demo-settings-page',
-  template: `<h1>Demo Settings</h1>`,
-  // eslint-disable-next-line @angular-eslint/prefer-standalone
-  standalone: false,
-})
-export class DemoSettingsPageComponent {}
-
-const routes: Routes = [
-  {
-    path: '',
-    component: LayoutShellComponent, // ⬅ shell from rs-ui
-    children: [
-      {
-        path: 'dashboard',
-        component: DemoDashboardPageComponent,
-        data: { breadcrumb: 'Dashboard' },
-      },
-      {
-        path: 'settings',
-        component: DemoSettingsPageComponent,
-        data: { breadcrumb: 'Settings' },
-      },
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-    ],
-  },
-];
+import {
+  appRoutes,
+  DemoDashboardPageComponent,
+  DemoSettingsPageComponent,
+} from './app.routes';
 
 const demoLayoutConfig: LayoutConfig = {
   appName: 'RS UI Demo',
@@ -96,7 +60,7 @@ const selectedOrgId$ = new BehaviorSubject<string | null>('org-1');
   declarations: [App, DemoDashboardPageComponent, DemoSettingsPageComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(appRoutes),
     RSUiModule,
     ModulesRsUiBaseModule,
   ],

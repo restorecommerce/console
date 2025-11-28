@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import {
   VCLCheckboxModule,
@@ -28,7 +29,7 @@ export interface SignInCredentials {
 }
 
 @Component({
-  selector: 'rs-auth-sign-in',
+  selector: 'rs-sign-in',
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -38,9 +39,10 @@ export interface SignInCredentials {
     VCLInputModule,
     VCLFormControlGroupModule,
     VCLPasswordInputModule,
+    RouterModule,
   ],
 })
-export class RsLogInComponent {
+export class RsSignInComponent {
   @Input() appName?: string;
   @Input() logoUrl?: string;
   @Input() logoAlt?: string;

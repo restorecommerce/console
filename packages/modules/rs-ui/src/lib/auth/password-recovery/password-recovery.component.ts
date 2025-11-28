@@ -6,7 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { VCLFormControlGroupModule, VCLInputModule } from '@vcl/ng-vcl';
+import {
+  VCLButtonModule,
+  VCLFormControlGroupModule,
+  VCLInputModule,
+} from '@vcl/ng-vcl';
 
 export interface PasswordRecoveryPayload {
   identifier: string;
@@ -15,7 +19,12 @@ export interface PasswordRecoveryPayload {
 @Component({
   selector: 'rs-auth-password-recovery',
   templateUrl: 'password-recovery.component.html',
-  imports: [ReactiveFormsModule, VCLInputModule, VCLFormControlGroupModule],
+  imports: [
+    ReactiveFormsModule,
+    VCLButtonModule,
+    VCLInputModule,
+    VCLFormControlGroupModule,
+  ],
 })
 export class RsPasswordRecoveryComponent {
   @Output()
