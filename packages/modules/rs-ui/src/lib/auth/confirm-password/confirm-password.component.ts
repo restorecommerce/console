@@ -1,4 +1,4 @@
-// rs-sign-up.component.ts
+// rs-confirm-password.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
@@ -8,33 +8,19 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs';
 
 import {
-  VCLButtonModule,
   VCLInputModule,
   VCLPasswordInputModule,
+  ButtonComponent,
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
 
-export interface SignUpPayload {
-  firstName: string;
-  lastName: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
-const USERNAME_PATTERN = /^(?!.*(.)\1)[A-Za-z][A-Za-z0-9._\-@]{7,19}$/;
-// - start with a letter
-// - only letters, numbers, .-_@
-// - 8–20 chars
-// - no consecutive repeated chars
-
 const PASSWORD_PATTERN =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,20}$/;
-// - 6–20 chars
-// - at least 1 lower, 1 upper, 1 number, 1 special
 
 const passwordConfirmationValidator: ValidatorFn = (group: AbstractControl) => {
   const password = group.get('password')?.value;
@@ -49,8 +35,14 @@ const passwordConfirmationValidator: ValidatorFn = (group: AbstractControl) => {
     : { passwordConfirmationMismatch: true };
 };
 
+export interface ConfirmPasswordPayload {
+  identifier: string; // email or username
+  password: string;
+  activationCode: string; // token from route
+}
+
 @Component({
-  selector: 'rs-sign-up',
+  selector: 'rs-confirm-password',
   standalone: true,
   imports: [
     CommonModule,
@@ -58,44 +50,60 @@ const passwordConfirmationValidator: ValidatorFn = (group: AbstractControl) => {
     RsAuthPageComponent,
     VCLInputModule,
     VCLPasswordInputModule,
-    VCLButtonModule,
+    VCLInputModule,
+    ButtonComponent,
   ],
-  templateUrl: './sign-up.component.html',
+  templateUrl: './confirm-password.component.html',
 })
-export class RsSignUpComponent {
-  @Output() signUp = new EventEmitter<SignUpPayload>();
-
+export class RsConfirmPasswordComponent {
   fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
 
-  form = this.fb.group(
+  activationCode = '';
+
+  @Output() confirmPassword = new EventEmitter<ConfirmPasswordPayload>();
+
+  form = this.fb.nonNullable.group(
     {
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      name: ['', [Validators.required, Validators.pattern(USERNAME_PATTERN)]],
-      email: ['', [Validators.required, Validators.email]],
+      identifier: ['', Validators.required],
       password: [
         '',
         [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
       ],
       passwordConfirmation: ['', Validators.required],
     },
-    {
-      validators: passwordConfirmationValidator,
-    }
+    { validators: passwordConfirmationValidator }
+  );
+
+  routerParams$ = this.route.queryParams.pipe(
+    tap((params) => {
+      const { code: activationCode, identifier } = params ?? {};
+      console.log('params', params);
+      this.activationCode = activationCode;
+      this.formFields.identifier.setValue(identifier);
+    })
   );
 
   get formFields() {
     return this.form.controls;
   }
 
-  onClickSignUp() {
+  onReset() {
+    this.form.reset();
+  }
+
+  onClickConfirm() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const payload = this.form.value;
-    // TODO: plug into your sign-up API / facade
-    console.log('Sign-up payload', payload);
+    const { identifier, password } = this.form.getRawValue();
+
+    this.confirmPassword.emit({
+      identifier,
+      password,
+      activationCode: this.activationCode,
+    });
   }
 }
