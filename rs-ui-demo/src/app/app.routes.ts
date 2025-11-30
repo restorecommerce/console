@@ -39,13 +39,20 @@ export const appRoutes: Route[] = [
     component: LayoutShellComponent, // ⬅ shell from rs-ui
     children: [
       {
-        path: 'catalog/products',
-        component: DemoProductsPageComponent,
-      },
-      {
         path: 'dashboard',
         component: DemoDashboardPageComponent,
         data: { breadcrumb: 'Dashboard' },
+      },
+      {
+        path: 'catalog',
+        children: [
+          {
+            path: 'products',
+            component: DemoProductsPageComponent,
+            data: { breadcrumb: 'Products' },
+          },
+        ],
+        data: { breadcrumb: 'Catalog' },
       },
       {
         path: 'settings',
