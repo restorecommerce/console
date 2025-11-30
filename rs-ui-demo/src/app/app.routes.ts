@@ -20,6 +20,15 @@ export class DemoDashboardPageComponent {}
 })
 export class DemoSettingsPageComponent {}
 
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-product-page',
+  template: `<h3>Product page</h3>`,
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
+})
+export class DemoProductsPageComponent {}
+
 export const appRoutes: Route[] = [
   {
     path: 'auth',
@@ -29,6 +38,10 @@ export const appRoutes: Route[] = [
     path: 'app',
     component: LayoutShellComponent, // ⬅ shell from rs-ui
     children: [
+      {
+        path: 'catalog/products',
+        component: DemoProductsPageComponent,
+      },
       {
         path: 'dashboard',
         component: DemoDashboardPageComponent,

@@ -14,8 +14,11 @@ import {
   VCLFormControlGroupModule,
   VCLIcogramModule,
   VCLIconModule,
+  VCLInputModule,
   VCLNavigationModule,
-  VCLSelectModule,
+  VCLSelectComponent,
+  VCLSelectListComponent,
+  VCLSelectListItemComponent,
 } from '@vcl/ng-vcl';
 
 import { RsBreadcrumbComponent } from '../breadcrum/breadcrum.component';
@@ -44,12 +47,15 @@ import { LAYOUT_CONFIG } from './layout.tokens';
     VCLDrawerModule,
     VCLNavigationModule,
     VCLIcogramModule,
+    VCLSelectComponent,
+    VCLSelectListComponent,
+    VCLSelectListItemComponent,
     VCLIconModule,
+    VCLInputModule,
     VCLButtonModule,
     RsBreadcrumbComponent,
     RsHeaderToolbarComponent,
     RsBannerComponent,
-    VCLSelectModule,
     VCLFormControlGroupModule,
   ],
 })

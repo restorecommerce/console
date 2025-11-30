@@ -13,7 +13,7 @@ import { tap } from 'rxjs';
 import {
   VCLInputModule,
   VCLPasswordInputModule,
-  ButtonComponent,
+  VCLButtonComponent,
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
@@ -50,7 +50,7 @@ export interface ConfirmPasswordPayload {
     VCLInputModule,
     VCLPasswordInputModule,
     VCLInputModule,
-    ButtonComponent,
+    VCLButtonComponent,
   ],
   templateUrl: './confirm-password.component.html',
 })

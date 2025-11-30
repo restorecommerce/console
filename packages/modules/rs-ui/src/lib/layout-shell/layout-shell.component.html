@@ -24,16 +24,27 @@
       </div>
       @for (item of (facade.visibleNavItems$ | async); track $index) {
       <vcl-navigation-item
-        [routerLink]="item.route"
-        [routerLinkActive]="['selected']"
-        (click)="navigate(item); $event.stopPropagation()"
+        #navItem="vclNavigationItem"
+        [routerLink]="item.children?.length ? null : item.route"
+        [routerLinkActive]="item.children?.length ? [] : ['selected']"
+        (click)="
+          !item.children?.length && navigate(item); $event.stopPropagation()
+        "
       >
         <vcl-navigation-label>
           <vcl-icogram>
+            @if (item.children?.length) {
+            <vcl-icon
+              vclPrepend
+              [icon]="navItem.opened ? 'vcl:chevron-down' : 'vcl:chevron-right'"
+            ></vcl-icon>
+            } @if (!item.children?.length) {
             <vcl-icon
               vclPrepend
               [icon]="item.icon"
             ></vcl-icon>
+            }
+
             {{ item.label }}
           </vcl-icogram>
         </vcl-navigation-label>
@@ -64,9 +75,9 @@
 
       <div class="py-1 px-2 rs-navigation-item-bottom-container">
         @if (categories$ | async; as categories) {
-        <vcl-navigation-item>
+        <div>
           <vcl-form-control-group>
-            <vcl-label>Select country</vcl-label>
+            <vcl-label>Select category</vcl-label>
             <vcl-select>
               <vcl-select-list
                 [value]="activeCategory$ | async"
@@ -80,7 +91,7 @@
               </vcl-select-list>
             </vcl-select>
           </vcl-form-control-group>
-        </vcl-navigation-item>
+        </div>
 
         }
 

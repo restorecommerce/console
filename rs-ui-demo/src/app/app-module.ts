@@ -24,23 +24,63 @@ import {
   DemoSettingsPageComponent,
 } from './app.routes';
 
+export const NAV_ITEMS = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    icon: 'mdi mdi-home',
+    route: '/dashboard',
+  },
+  {
+    id: 'catalog',
+    label: 'Catalog',
+    // icon: 'mdi mdi-store',
+    expanded: true,
+    children: [
+      {
+        id: 'products',
+        label: 'Products',
+        icon: 'mdi mdi-package-variant-closed', // or 'mdi-cube-outline'
+        route: '/app/catalog/products',
+      },
+      {
+        id: 'categories',
+        label: 'Categories',
+        icon: 'mdi mdi-shape-outline', // or 'mdi-view-list'
+        route: '/catalog/categories',
+      },
+      {
+        id: 'attributes',
+        label: 'Attributes',
+        icon: 'mdi mdi-tune-variant', // or 'mdi-tag-text-outline'
+        route: '/catalog/attributes',
+      },
+    ],
+  },
+  {
+    id: 'orders',
+    label: 'Orders',
+    icon: 'mdi mdi-receipt',
+    children: [
+      { id: 'all-orders', label: 'All Orders', route: '/orders' },
+      { id: 'returns', label: 'Returns', route: '/orders/returns' },
+    ],
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    icon: 'mdi mdi-cog',
+    children: [
+      { id: 'general', label: 'General', route: '/settings/general' },
+      { id: 'users', label: 'Users', route: '/settings/users' },
+    ],
+  },
+];
+
 const demoLayoutConfig: LayoutConfig = {
   appName: 'RS UI Demo',
   logoUrl: 'favicon.ico',
-  navItems: [
-    {
-      id: 'dashboard',
-      label: 'Dashboard',
-      route: '/dashboard',
-      icon: 'mdi mdi-view-dashboard-outline',
-    },
-    {
-      id: 'settings',
-      label: 'Settings',
-      route: '/settings',
-      icon: 'mdi mdi-cog-outline',
-    },
-  ],
+  navItems: NAV_ITEMS,
 };
 
 const user$ = new BehaviorSubject<RsHeaderUser | null>({
