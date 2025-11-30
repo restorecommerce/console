@@ -16,12 +16,10 @@ import {
   VCLIconModule,
   VCLInputModule,
   VCLNavigationModule,
-  VCLSelectComponent,
-  VCLSelectListComponent,
-  VCLSelectListItemComponent,
 } from '@vcl/ng-vcl';
 
 import { RsBreadcrumbComponent } from '../breadcrum/breadcrum.component';
+import { RsCategorySelectComponent } from '../category-select/category-select.component';
 import { RsHeaderToolbarComponent } from '../header';
 import {
   LAYOUT_ACCOUNT_ACTION_HANDLER,
@@ -47,9 +45,7 @@ import { LAYOUT_CONFIG } from './layout.tokens';
     VCLDrawerModule,
     VCLNavigationModule,
     VCLIcogramModule,
-    VCLSelectComponent,
-    VCLSelectListComponent,
-    VCLSelectListItemComponent,
+    RsCategorySelectComponent,
     VCLIconModule,
     VCLInputModule,
     VCLButtonModule,
@@ -63,6 +59,8 @@ export class LayoutShellComponent {
   private router = inject(Router);
   public facade = inject(LayoutFacade);
   public readonly config = inject(LAYOUT_CONFIG, { optional: false });
+
+  isHandset$ = this.facade.isHandset$;
 
   readonly accountHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {
     optional: false,
@@ -93,6 +91,12 @@ export class LayoutShellComponent {
     }
     if (item.route) {
       this.router.navigate([item.route]);
+    }
+  }
+
+  onToggleSidebar(isHandset: boolean | null): void {
+    if (isHandset) {
+      this.toggleSidebar();
     }
   }
 

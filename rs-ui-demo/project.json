@@ -22,8 +22,8 @@
           }
         ],
         "styles": [
-          "rs-ui-demo/src/styles.css",
-          "packages/modules/ui/src/lib/modules-ui.styles.scss"
+          "packages/modules/ui/src/lib/modules-ui.styles.scss",
+          "rs-ui-demo/src/styles.css"
         ]
       },
       "configurations": {

@@ -4,16 +4,19 @@
 
 @use './styles/theme/console-theme';
 
+@use '@angular/cdk/overlay-prebuilt';
+@use '@angular/cdk/a11y-prebuilt';
+
 /* VCL */
+@use '@vcl/vcl/theme' with (
+  $app-area-max-width: 100%,
+  $block-elem-vertical-gap: 0,
+  $form-control-vertical-gap: 0
+);
+
 @use '@vcl/vcl';
 
 /* Material Design Icons */
 @use '@mdi/font/scss/materialdesignicons' with (
   $mdi-font-path: '~@mdi/font/fonts'
 );
-
-/* App Style */
-@use './styles/index';
-
-@use '@angular/cdk/overlay-prebuilt';
-@use '@angular/cdk/a11y-prebuilt';

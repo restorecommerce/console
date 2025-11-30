@@ -29,7 +29,7 @@ export const NAV_ITEMS = [
     id: 'dashboard',
     label: 'Dashboard',
     icon: 'mdi mdi-home',
-    route: '/dashboard',
+    route: '/app/dashboard',
   },
   {
     id: 'catalog',
@@ -47,13 +47,13 @@ export const NAV_ITEMS = [
         id: 'categories',
         label: 'Categories',
         icon: 'mdi mdi-shape-outline', // or 'mdi-view-list'
-        route: '/catalog/categories',
+        route: '/app/catalog/categories',
       },
       {
         id: 'attributes',
         label: 'Attributes',
         icon: 'mdi mdi-tune-variant', // or 'mdi-tag-text-outline'
-        route: '/catalog/attributes',
+        route: '/app/catalog/attributes',
       },
     ],
   },
@@ -63,7 +63,7 @@ export const NAV_ITEMS = [
     icon: 'mdi mdi-receipt',
     children: [
       { id: 'all-orders', label: 'All Orders', route: '/orders' },
-      { id: 'returns', label: 'Returns', route: '/orders/returns' },
+      { id: 'returns', label: 'Returns', route: '/app/orders/returns' },
     ],
   },
   {
@@ -71,8 +71,8 @@ export const NAV_ITEMS = [
     label: 'Settings',
     icon: 'mdi mdi-cog',
     children: [
-      { id: 'general', label: 'General', route: '/settings/general' },
-      { id: 'users', label: 'Users', route: '/settings/users' },
+      { id: 'general', label: 'General', route: '/app/settings/general' },
+      { id: 'users', label: 'Users', route: '/app/settings/users' },
     ],
   },
 ];

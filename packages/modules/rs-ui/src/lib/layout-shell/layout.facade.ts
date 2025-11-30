@@ -1,6 +1,9 @@
 // layout.facade.ts
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, shareReplay } from 'rxjs';
+
+import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import {
   LayoutNavCategory,
@@ -11,6 +14,15 @@ import { LAYOUT_CONFIG } from './layout.tokens';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutFacade {
+  private breakpointObserver = inject(BreakpointObserver);
+
+  isHandset$ = this.breakpointObserver
+    .observe([VCLBreakpoints.xs, VCLBreakpoints.sm])
+    .pipe(
+      map((state) => state.matches),
+      shareReplay({ bufferSize: 1, refCount: true })
+    );
+
   private collapsedSubject = new BehaviorSubject<boolean>(false);
   collapsed$ = this.collapsedSubject.asObservable();
 

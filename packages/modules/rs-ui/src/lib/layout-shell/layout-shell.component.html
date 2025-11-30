@@ -1,6 +1,9 @@
-<vcl-drawer-container class="layout-shell-container">
+<vcl-drawer-container
+  (backdropClick)="toggleSidebar()"
+  class="layout-shell-container"
+>
   <vcl-drawer
-    mode="side"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(collapsed$ | async) === false"
   >
     <vcl-navigation class="h-100p layout-shell-navigation">
@@ -22,7 +25,16 @@
           />
         </button>
       </div>
-      @for (item of (facade.visibleNavItems$ | async); track $index) {
+
+      @if (isHandset$ | async) { @if (categories$ | async; as categories) {
+      <div class="my-2 px-2">
+        <rs-category-select
+          [categories]="(categories$ | async) || []"
+          [value]="activeCategory$ | async"
+          (valueChange)="onSelectCategory($event)"
+        />
+      </div>
+      } } @for (item of (facade.visibleNavItems$ | async); track $index) {
       <vcl-navigation-item
         #navItem="vclNavigationItem"
         [routerLink]="item.children?.length ? null : item.route"
@@ -74,26 +86,14 @@
       }
 
       <div class="py-1 px-2 rs-navigation-item-bottom-container">
-        @if (categories$ | async; as categories) {
-        <div>
-          <vcl-form-control-group>
-            <vcl-label>Select category</vcl-label>
-            <vcl-select>
-              <vcl-select-list
-                [value]="activeCategory$ | async"
-                (valueChange)="onSelectCategory($event)"
-              >
-                @for (cat of categories; track cat.id) {
-                <vcl-select-list-item [value]="cat.id">
-                  {{ cat.label }}
-                </vcl-select-list-item>
-                }
-              </vcl-select-list>
-            </vcl-select>
-          </vcl-form-control-group>
-        </div>
-
-        }
+        @if ((isHandset$ | async) === false) { @if (categories$ | async; as
+        categories) {
+        <rs-category-select
+          [categories]="(categories$ | async) || []"
+          [value]="activeCategory$ | async"
+          (valueChange)="onSelectCategory($event)"
+        />
+        } }
 
         <vcl-navigation-item>
           <vcl-navigation-label>
