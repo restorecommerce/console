@@ -23,7 +23,7 @@
         ],
         "styles": [
           "packages/modules/ui/src/lib/modules-ui.styles.scss",
-          "rs-ui-demo/src/styles.css"
+          "rs-ui-demo/src/styles.scss"
         ]
       },
       "configurations": {
