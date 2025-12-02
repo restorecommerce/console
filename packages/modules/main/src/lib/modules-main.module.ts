@@ -10,27 +10,18 @@ import {
   LAYOUT_USER$,
   ModulesRsUiBaseModule,
   RsHeaderOrganization,
-  RsHeaderUser,
   RSUiModule,
 } from '@console/rs-ui';
 import { BehaviorSubject } from 'rxjs';
 
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
 
+import { AccountFacade } from '@console-core/state';
 import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
-import {
-  PrivateTemplateComponent,
-  PublicTemplateComponent,
-} from './components/template';
+import { PublicTemplateComponent } from './components/template';
 import { modulesMainRoutes } from './lib.routes';
 import { MAIN_LAYOUT_CONFIG } from './main-layout.config';
-
-const user$ = new BehaviorSubject<RsHeaderUser | null>({
-  id: 'u1',
-  fullName: 'Demo User',
-  email: 'demo@example.com',
-});
 
 const orgs$ = new BehaviorSubject<RsHeaderOrganization[]>([
   { id: 'org-1', name: 'Demo Org One' },
@@ -40,7 +31,7 @@ const orgs$ = new BehaviorSubject<RsHeaderOrganization[]>([
 const selectedOrgId$ = new BehaviorSubject<string | null>('org-1');
 
 @NgModule({
-  declarations: [PrivateTemplateComponent, PublicTemplateComponent],
+  declarations: [PublicTemplateComponent],
   imports: [
     ModulesUiBaseModule,
     ModulesUiModule.forRoot(),
@@ -51,7 +42,11 @@ const selectedOrgId$ = new BehaviorSubject<string | null>('org-1');
   ],
   providers: [
     { provide: LAYOUT_CONFIG, useValue: MAIN_LAYOUT_CONFIG },
-    { provide: LAYOUT_USER$, useValue: user$.asObservable() },
+    {
+      provide: LAYOUT_USER$,
+      useFactory: (account: AccountFacade) => account.user$,
+      deps: [AccountFacade],
+    },
     { provide: LAYOUT_ORGS$, useValue: orgs$.asObservable() },
     {
       provide: LAYOUT_SELECTED_ORG_ID$,

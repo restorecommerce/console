@@ -123,10 +123,7 @@ import {
   RcPageAccountComponent,
   RcPageOrderComponent,
 } from './components/pages';
-import {
-  RcPrivateTemplateComponent,
-  RcPublicTemplateComponent,
-} from './components/templates';
+import { RcPublicTemplateComponent } from './components/templates';
 import { HighlightPipe, ProductImagePipe } from './pipes';
 import { AppendBucketDomainPipe } from './pipes/append-bucket-domain.pipe';
 
@@ -264,7 +261,7 @@ const pages = [
   RcPageOrderComponent,
 ];
 
-const templates = [RcPublicTemplateComponent, RcPrivateTemplateComponent];
+const templates = [RcPublicTemplateComponent];
 
 const pipes = [HighlightPipe, ProductImagePipe, AppendBucketDomainPipe];
 
