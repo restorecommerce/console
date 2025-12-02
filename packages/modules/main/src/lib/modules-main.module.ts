@@ -15,7 +15,11 @@ import {
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
 
 import { ROUTER } from '@console-core/config';
-import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
+import {
+  AccountFacade,
+  AuthnFacade,
+  OrganizationContextFacade,
+} from '@console-core/state';
 import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
 import { PublicTemplateComponent } from './components/template';
@@ -58,26 +62,25 @@ import { MAIN_LAYOUT_CONFIG } from './main-layout.config';
     },
     {
       provide: LAYOUT_ACCOUNT_ACTION_HANDLER,
-      useFactory: (router: Router) => (action: AccountAction) => {
-        switch (action) {
-          case 'profile':
-            router.navigate([
-              ROUTER.pages.main.children.account.children.profile.link,
-            ]);
-            break;
-          case 'preferences':
-            router.navigate([
-              ROUTER.pages.main.children.account.children.preferences.link,
-            ]);
-            break;
-          case 'sign-out':
-            router.navigate([
-              ROUTER.pages.main.children.auth.children.signOut.link,
-            ]);
-            break;
-        }
-      },
-      deps: [Router],
+      useFactory:
+        (router: Router, auth: AuthnFacade) => (action: AccountAction) => {
+          switch (action) {
+            case 'profile':
+              router.navigate([
+                ROUTER.pages.main.children.account.children.profile.link,
+              ]);
+              break;
+            case 'preferences':
+              router.navigate([
+                ROUTER.pages.main.children.account.children.preferences.link,
+              ]);
+              break;
+            case 'sign-out':
+              auth.signOut();
+              break;
+          }
+        },
+      deps: [Router, AuthnFacade],
     },
   ],
 })

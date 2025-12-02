@@ -59,6 +59,9 @@ export class LayoutShellComponent {
   private router = inject(Router);
   public facade = inject(LayoutFacade);
   public readonly config = inject(LAYOUT_CONFIG, { optional: false });
+  private readonly preferenceHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {
+    optional: false,
+  });
 
   constructor() {
     this.facade.initConfig(this.config);
@@ -113,8 +116,8 @@ export class LayoutShellComponent {
   }
 
   onAccountAction(action: 'profile' | 'preferences' | 'sign-out'): void {
-    // For generic shell lib: bubble this up to host via an @Output
     this.accountAction.emit(action);
+    this.preferenceHandler(action);
   }
 
   onSelectCategory(catId: LayoutNavCategoryId) {
