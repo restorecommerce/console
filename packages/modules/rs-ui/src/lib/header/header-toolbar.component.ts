@@ -21,6 +21,8 @@ import {
   VCLSelectListModule,
 } from '@vcl/ng-vcl';
 
+import { RsTranslatePipe } from '../i18n/translate.pipe';
+
 import { RsHeaderOrganization, RsHeaderUser } from './header-toolbar.models';
 
 @Component({
@@ -38,6 +40,7 @@ import { RsHeaderOrganization, RsHeaderUser } from './header-toolbar.models';
     VCLIconModule,
     VCLIcogramModule,
     VCLInputModule,
+    RsTranslatePipe,
   ],
 })
 export class RsHeaderToolbarComponent {

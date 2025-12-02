@@ -16,7 +16,10 @@
         icon="mdi:home-outline"
       ></vcl-icon>
 
-      {{ selectedOrganization?.name || 'Select organization' }}
+      {{
+        selectedOrganization?.name ||
+          ('rs-ui.header.org.selectPlaceholder' | rsTranslate)
+      }}
 
       <vcl-icon
         vclAppend
@@ -102,7 +105,7 @@
         vclPrepend
         icon="mdi:account-cog-outline"
       ></vcl-icon>
-      Profile
+      {{ 'rs-ui.header.account.profileLabel' | rsTranslate }}
     </vcl-select-list-item>
     } @if (showPreferences) {
     <vcl-select-list-item value="preferences">
@@ -110,7 +113,7 @@
         vclPrepend
         icon="mdi:cog-outline"
       ></vcl-icon>
-      Preferences
+      {{ 'rs-ui.header.account.preferencesLabel' | rsTranslate }}
     </vcl-select-list-item>
     } @if (showSignOut) {
     <vcl-select-list-item value="sign-out">
@@ -118,7 +121,7 @@
         vclPrepend
         icon="mdi:logout"
       ></vcl-icon>
-      Sign Out
+      {{ 'rs-ui.header.account.signOutLabel' | rsTranslate }}
     </vcl-select-list-item>
     }
   </vcl-select-list>

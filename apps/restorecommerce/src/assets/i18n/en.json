@@ -4,7 +4,15 @@
   },
   "rs-ui": {
     "header": {
-      "welcome": "Welcome, {{name}}"
+      "org": {
+        "selectPlaceholder": "Select organization",
+        "searchPlaceholder": "Search organizations..."
+      },
+      "account": {
+        "profileLabel": "Profile",
+        "preferencesLabel": "Preferences",
+        "signOutLabel": "Sign Out"
+      }
     }
   }
 }
