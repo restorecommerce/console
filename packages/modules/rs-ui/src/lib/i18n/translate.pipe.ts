@@ -1,6 +1,6 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
 
-import { RS_TRANSLATION } from '../rs-token';
+import { RS_TRANSLATION } from '../../rs-token';
 
 @Pipe({
   name: 'rsTranslate',

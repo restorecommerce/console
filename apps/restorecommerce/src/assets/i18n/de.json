@@ -1,10 +1,115 @@
 {
-  "app": {
-    "title": "RestoreCommerce Konsole"
-  },
   "rs-ui": {
     "header": {
-      "welcome": "Willkommen, {{name}}"
+      "org": {
+        "selectPlaceholder": "Organisation auswählen",
+        "searchPlaceholder": "Organisationen suchen..."
+      },
+      "account": {
+        "profileLabel": "Profil",
+        "preferencesLabel": "Einstellungen",
+        "signOutLabel": "Abmelden"
+      }
+    },
+    "layout": {
+      "shell": {
+        "appTitle": "Konsole",
+        "homeLabel": "Startseite",
+        "loading": "Laden..."
+      },
+      "sidebar": {
+        "toggleCollapse": "Seitenleiste umschalten",
+        "navSectionMain": "Hauptbereich",
+        "navSectionManagement": "Verwaltung"
+      },
+      "footer": {
+        "poweredBy": "Bereitgestellt von RestoreCommerce",
+        "versionLabel": "Version {{version}}"
+      }
+    },
+    "nav": {
+      "back": "Zurück",
+      "more": "Mehr",
+      "expand": "Erweitern",
+      "collapse": "Einklappen"
+    },
+    "breadcrumbs": {
+      "root": "Startseite",
+      "separator": "/"
+    },
+    "auth": {
+      "signIn": {
+        "title": "Anmelden",
+        "subtitle": "Greife auf dein Konto zu",
+        "identifierLabel": "E-Mail oder Benutzername",
+        "passwordLabel": "Passwort",
+        "rememberMeLabel": "Angemeldet bleiben",
+        "submitButton": "Anmelden",
+        "forgotPasswordLink": "Passwort vergessen?",
+        "errors": {
+          "invalidCredentials": "Ungültige Zugangsdaten. Bitte versuche es erneut.",
+          "requiredIdentifier": "Bitte gib deine E-Mail oder deinen Benutzernamen ein.",
+          "requiredPassword": "Bitte gib dein Passwort ein."
+        }
+      },
+      "passwordRecovery": {
+        "title": "Passwort zurücksetzen",
+        "subtitle": "Wir senden dir einen Reset-Link.",
+        "identifierLabel": "E-Mail-Adresse",
+        "submitButton": "Link senden",
+        "successMessage": "Falls ein Konto existiert, wurde ein Reset-Link gesendet.",
+        "backToSignIn": "Zurück zur Anmeldung"
+      },
+      "signOut": {
+        "title": "Abmelden",
+        "message": "Bitte warten...",
+        "completedTitle": "Abgemeldet",
+        "completedMessage": "Du wurdest abgemeldet."
+      }
+    },
+    "resource": {
+      "list": {
+        "emptyTitle": "Keine Einträge gefunden",
+        "emptyDescription": "Es sind noch keine Daten vorhanden.",
+        "searchPlaceholder": "Suchen...",
+        "filtersLabel": "Filter",
+        "clearFilters": "Filter zurücksetzen"
+      },
+      "toolbar": {
+        "createButton": "Neu",
+        "editButton": "Bearbeiten",
+        "deleteButton": "Löschen",
+        "refreshButton": "Aktualisieren"
+      },
+      "detail": {
+        "titleFallback": "Details",
+        "unsavedChangesWarning": "Du hast ungespeicherte Änderungen.",
+        "saveButton": "Speichern",
+        "cancelButton": "Abbrechen"
+      }
+    },
+    "table": {
+      "noData": "Keine Daten vorhanden",
+      "rowsCount": "{{count}} Eintrag",
+      "rowsCount_plural": "{{count}} Einträge",
+      "columnActions": "Aktionen"
+    },
+    "dialog": {
+      "confirmTitle": "Bist du sicher?",
+      "confirmMessage": "Diese Aktion kann nicht rückgängig gemacht werden.",
+      "confirmButton": "Bestätigen",
+      "cancelButton": "Abbrechen"
+    },
+    "notify": {
+      "successGeneric": "Vorgang erfolgreich abgeschlossen.",
+      "errorGeneric": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
+    },
+    "common": {
+      "yes": "Ja",
+      "no": "Nein",
+      "ok": "OK",
+      "cancel": "Abbrechen",
+      "close": "Schließen"
     }
   }
 }

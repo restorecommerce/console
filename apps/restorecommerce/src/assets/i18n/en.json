@@ -1,7 +1,4 @@
 {
-  "app": {
-    "title": "RestoreCommerce Console"
-  },
   "rs-ui": {
     "header": {
       "org": {
@@ -13,6 +10,106 @@
         "preferencesLabel": "Preferences",
         "signOutLabel": "Sign Out"
       }
+    },
+    "layout": {
+      "shell": {
+        "appTitle": "Console",
+        "homeLabel": "Home",
+        "loading": "Loading..."
+      },
+      "sidebar": {
+        "toggleCollapse": "Toggle sidebar",
+        "navSectionMain": "Main",
+        "navSectionManagement": "Management"
+      },
+      "footer": {
+        "poweredBy": "Powered by RestoreCommerce",
+        "versionLabel": "Version {{version}}"
+      }
+    },
+    "nav": {
+      "back": "Back",
+      "more": "More",
+      "expand": "Expand",
+      "collapse": "Collapse"
+    },
+    "breadcrumbs": {
+      "root": "Home",
+      "separator": "/"
+    },
+    "auth": {
+      "signIn": {
+        "title": "Sign in",
+        "subtitle": "Access your account",
+        "identifierLabel": "Email or username",
+        "passwordLabel": "Password",
+        "rememberMeLabel": "Remember me",
+        "submitButton": "Sign in",
+        "forgotPasswordLink": "Forgot password?",
+        "errors": {
+          "invalidCredentials": "Invalid credentials. Please try again.",
+          "requiredIdentifier": "Please enter your email or username.",
+          "requiredPassword": "Please enter your password."
+        }
+      },
+      "passwordRecovery": {
+        "title": "Reset password",
+        "subtitle": "We will send you a reset link.",
+        "identifierLabel": "Email address",
+        "submitButton": "Send reset link",
+        "successMessage": "If an account exists for this email, we have sent a reset link.",
+        "backToSignIn": "Back to sign in"
+      },
+      "signOut": {
+        "title": "Signing out",
+        "message": "Please wait...",
+        "completedTitle": "Signed out",
+        "completedMessage": "You have been signed out."
+      }
+    },
+    "resource": {
+      "list": {
+        "emptyTitle": "No records found",
+        "emptyDescription": "There are no items to display yet.",
+        "searchPlaceholder": "Search...",
+        "filtersLabel": "Filters",
+        "clearFilters": "Clear filters"
+      },
+      "toolbar": {
+        "createButton": "Create",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "refreshButton": "Refresh"
+      },
+      "detail": {
+        "titleFallback": "Details",
+        "unsavedChangesWarning": "You have unsaved changes.",
+        "saveButton": "Save",
+        "cancelButton": "Cancel"
+      }
+    },
+    "table": {
+      "noData": "No data available",
+      "rowsCount": "{{count}} item",
+      "rowsCount_plural": "{{count}} items",
+      "columnActions": "Actions"
+    },
+    "dialog": {
+      "confirmTitle": "Are you sure?",
+      "confirmMessage": "This action cannot be undone.",
+      "confirmButton": "Confirm",
+      "cancelButton": "Cancel"
+    },
+    "notify": {
+      "successGeneric": "Operation completed successfully.",
+      "errorGeneric": "Something went wrong. Please try again."
+    },
+    "common": {
+      "yes": "Yes",
+      "no": "No",
+      "ok": "OK",
+      "cancel": "Cancel",
+      "close": "Close"
     }
   }
 }
