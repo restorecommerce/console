@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {
   AccountAction,
   LAYOUT_ACCOUNT_ACTION_HANDLER,
@@ -9,26 +9,18 @@ import {
   LAYOUT_SET_SELECTED_ORG,
   LAYOUT_USER$,
   ModulesRsUiBaseModule,
-  RsHeaderOrganization,
   RSUiModule,
 } from '@console/rs-ui';
-import { BehaviorSubject } from 'rxjs';
 
 import { VCLDateAdapterModule } from '@vcl/ng-vcl';
 
-import { AccountFacade } from '@console-core/state';
+import { ROUTER } from '@console-core/config';
+import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
 import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
 import { PublicTemplateComponent } from './components/template';
 import { modulesMainRoutes } from './lib.routes';
 import { MAIN_LAYOUT_CONFIG } from './main-layout.config';
-
-const orgs$ = new BehaviorSubject<RsHeaderOrganization[]>([
-  { id: 'org-1', name: 'Demo Org One' },
-  { id: 'org-2', name: 'Demo Org Two' },
-]);
-
-const selectedOrgId$ = new BehaviorSubject<string | null>('org-1');
 
 @NgModule({
   declarations: [PublicTemplateComponent],
@@ -47,21 +39,45 @@ const selectedOrgId$ = new BehaviorSubject<string | null>('org-1');
       useFactory: (account: AccountFacade) => account.user$,
       deps: [AccountFacade],
     },
-    { provide: LAYOUT_ORGS$, useValue: orgs$.asObservable() },
+    {
+      provide: LAYOUT_ORGS$,
+      useFactory: (org: OrganizationContextFacade) => org.all$,
+      deps: [OrganizationContextFacade],
+    },
     {
       provide: LAYOUT_SELECTED_ORG_ID$,
-      useValue: selectedOrgId$.asObservable(),
+      useFactory: (org: OrganizationContextFacade) => org.selectedId$,
+      deps: [OrganizationContextFacade],
     },
 
     {
       provide: LAYOUT_SET_SELECTED_ORG,
-      useValue: (id: string) => selectedOrgId$.next(id),
+      useFactory: (org: OrganizationContextFacade) => (id: string) =>
+        org.setSelectedOrganizationId(id),
+      deps: [OrganizationContextFacade],
     },
     {
       provide: LAYOUT_ACCOUNT_ACTION_HANDLER,
-      useValue: (action: AccountAction) => {
-        console.log('[rs-ui-demo] account action', action);
+      useFactory: (router: Router) => (action: AccountAction) => {
+        switch (action) {
+          case 'profile':
+            router.navigate([
+              ROUTER.pages.main.children.account.children.profile.link,
+            ]);
+            break;
+          case 'preferences':
+            router.navigate([
+              ROUTER.pages.main.children.account.children.preferences.link,
+            ]);
+            break;
+          case 'sign-out':
+            router.navigate([
+              ROUTER.pages.main.children.auth.children.signOut.link,
+            ]);
+            break;
+        }
       },
+      deps: [Router],
     },
   ],
 })

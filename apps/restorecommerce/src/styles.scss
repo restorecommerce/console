@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+// Host app
+
+@use '@vcl/vcl/theme' with (
+  $brand-accent-darker: #ff5f22,
+  $brand-accent-dark: #ff8330,
+  $brand-accent: #ffae44,
+  $brand-accent-light: #ffb327,
+  $brand-accent-lighter: #ffc236,
+
+  $drawer-content-bg-color: #fff,
+
+  $app-area-max-width: 100%,
+  $block-elem-vertical-gap: 0,
+  $form-control-vertical-gap: 0
+);
+
+@use '@vcl/vcl';

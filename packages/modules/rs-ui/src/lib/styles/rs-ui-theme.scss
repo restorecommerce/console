@@ -1,9 +1,3 @@
-// src/lib/styles/rs-ui-theme.scss
-
-// @use '@vcl/vcl/app/normalize' as *;
-
-@use './styles/theme/console-theme';
-
 @use '@angular/cdk/overlay-prebuilt';
 @use '@angular/cdk/a11y-prebuilt';
 
@@ -11,7 +5,9 @@
 @use '@vcl/vcl/theme' with (
   $app-area-max-width: 100%,
   $block-elem-vertical-gap: 0,
-  $form-control-vertical-gap: 0
+  $form-control-vertical-gap: 0,
+
+  $drawer-content-bg-color: #fff
 );
 
 @use '@vcl/vcl';
@@ -20,3 +16,9 @@
 @use '@mdi/font/scss/materialdesignicons' with (
   $mdi-font-path: '~@mdi/font/fonts'
 );
+
+// Custom style
+
+.drawer {
+  width: 15rem;
+}

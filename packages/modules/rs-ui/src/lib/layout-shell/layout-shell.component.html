@@ -104,7 +104,7 @@
     </vcl-navigation>
   </vcl-drawer>
 
-  <header class="row align-items-center">
+  <header class="row align-items-center px-2">
     @if (collapsed$ | async) {
     <button
       vcl-button
@@ -137,7 +137,7 @@
     />
   </header>
 
-  <main class="flex rs-main">
+  <main class="flex px-2 rs-main">
     <router-outlet />
   </main>
 </vcl-drawer-container>

@@ -29,6 +29,7 @@
         ],
         "styles": [
           "packages/modules/ui/src/lib/modules-ui.styles.scss",
+          "packages/modules/rs-ui/src/lib/styles/rs-ui-theme.scss",
           "apps/restorecommerce/src/styles.scss"
         ],
         "scripts": []
