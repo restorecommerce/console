@@ -13,6 +13,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+import { MODULES_AUTHN_CONFIG } from '../authn.tokens';
 
 export interface PasswordRecoveryPayload {
   identifier: string;
@@ -40,6 +41,7 @@ export class RsPasswordRecoveryComponent {
   @Output()
   passwordRecovery = new EventEmitter<PasswordRecoveryPayload>();
 
+  private config = inject(MODULES_AUTHN_CONFIG, { optional: true });
   fb = inject(FormBuilder);
 
   form = this.fb.group({
@@ -69,6 +71,16 @@ export class RsPasswordRecoveryComponent {
       return;
     }
 
-    this.passwordRecovery.emit({ identifier });
+    const payload: PasswordRecoveryPayload = {
+      identifier,
+    };
+
+    this.passwordRecovery.emit(payload);
+
+    if (this.config?.passwordRecoveryHandler) {
+      this.config.passwordRecoveryHandler(payload);
+    } else {
+      console.warn('[Authn] passwordRecoveryHandler not configured');
+    }
   }
 }

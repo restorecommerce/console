@@ -35,9 +35,11 @@ export const modulesMainRoutes: Route[] = [
     component: PublicTemplateComponent,
     canActivate: [RedirectConfirmPasswordGuard],
   },
+
+  // Latest code where we used the plug and play router.
   {
     path: ROUTER.pages.main.children.auth.path,
-    component: PublicTemplateComponent,
+    // TODO Let's place a guard here....
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
   },

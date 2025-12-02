@@ -18,6 +18,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+import { MODULES_AUTHN_CONFIG } from '../authn.tokens';
 
 import {
   SIGN_IN_BRANDING_CONFIG,
@@ -55,6 +56,7 @@ export class RsSignInComponent {
 
   fb = inject(FormBuilder);
   readonly defaultConfig = inject(SIGN_IN_BRANDING_CONFIG, { optional: true });
+  private readonly config = inject(MODULES_AUTHN_CONFIG, { optional: true });
 
   form = this.fb.group({
     identifier: ['', []],
@@ -94,12 +96,18 @@ export class RsSignInComponent {
       return;
     }
 
-    const { identifier, password, remember } = this.form.value;
+    const payload: SignInCredentials = {
+      identifier: this.form.value.identifier?.trim() ?? '',
+      password: this.form.value.password ?? '',
+      remember: this.form.value.remember || false,
+    };
 
-    this.signIn.emit({
-      identifier: identifier || '',
-      password: password || '',
-      remember: remember || false,
-    });
+    this.signIn.emit(payload);
+
+    if (this.config?.signInHandler) {
+      this.config.signInHandler(payload);
+    } else {
+      console.warn('[Authn] signInHandler not configured');
+    }
   }
 }

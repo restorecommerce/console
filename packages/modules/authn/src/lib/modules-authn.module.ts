@@ -1,16 +1,35 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {
+  RsAuthModule,
+  SIGN_IN_BRANDING_CONFIG,
+  SignInBrandingConfig,
+  MODULES_AUTHN_CONFIG,
+  ModulesAuthnConfig,
+} from '@console/rs-ui';
 
-import { ModulesUiModule } from '@console-modules/ui';
-
-import { AuthnTemplateComponent } from './components/template/authn-template.component';
-import { modulesAuthnRoutes } from './lib.routes';
+import { AuthnFacade } from '@console-core/state';
 
 @NgModule({
-  declarations: [AuthnTemplateComponent],
-  imports: [
-    ModulesUiModule.forChild(),
-    RouterModule.forChild(modulesAuthnRoutes),
+  imports: [RsAuthModule],
+  providers: [
+    {
+      provide: MODULES_AUTHN_CONFIG,
+      deps: [AuthnFacade],
+      useFactory: (authFacade: AuthnFacade): ModulesAuthnConfig => ({
+        signInHandler: ({ identifier, password }) =>
+          authFacade.signIn({ identifier, password }),
+        passwordRecoveryHandler: ({ identifier }) =>
+          authFacade.passwordRecovery({ identifier }),
+      }),
+    },
+    {
+      provide: SIGN_IN_BRANDING_CONFIG,
+      useValue: <SignInBrandingConfig>{
+        appName: 'Restore Commerce Console', // or APP.name
+        logoUrl: 'assets/images/restore_commerce_logo_square.png',
+        logoAlt: 'RC Logo',
+      },
+    },
   ],
 })
 export class ModulesAuthnModule {}
