@@ -7,3 +7,4 @@ export * from './auth-result-page/auth-result-page.component';
 export * from './auth-progress-page/auth-progress-page.component';
 export * from './auth.routes';
 export * from './auth.module';
+export * from './auth-routing.module';

@@ -5,11 +5,6 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["src/lib/styles"]
   },
-  "assets": [
-    {
-      "input": "src/lib/styles",
-      "glob": "rs-ui-theme.scss",
-      "output": "styles"
-    }
-  ]
+  "assets": ["src/lib/styles/**/*"],
+  "allowedNonPeerDependencies": ["tslib"]
 }
