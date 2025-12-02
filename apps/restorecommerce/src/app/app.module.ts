@@ -7,8 +7,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, TitleStrategy } from '@angular/router';
-
-import { VCLProgressBarModule } from '@vcl/ng-vcl';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { CoreGraphQLModule } from '@console-core/graphql';
 
@@ -33,7 +33,14 @@ import { RoutesTitleStrategyService } from './routes-title-strategy.service';
     RouterModule.forRoot(appRoutes, {
       initialNavigation: 'enabledBlocking',
     }),
-    VCLProgressBarModule,
+    TranslateModule.forRoot({
+      fallbackLang: 'en',
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+      }),
+      isolate: false,
+    }),
   ],
   providers: [
     {

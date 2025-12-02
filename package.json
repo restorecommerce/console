@@ -50,6 +50,8 @@
     "@ngrx/router-store": "^20.1.0",
     "@ngrx/store": "^20.1.0",
     "@ngx-loading-bar/core": "^7.0.0",
+    "@ngx-translate/core": "^17.0.0",
+    "@ngx-translate/http-loader": "^17.0.0",
     "@nx/angular": "^22.0.2",
     "@vcl/ng-vcl": "^3.4.3",
     "@vcl/vcl": "^3.4.4",

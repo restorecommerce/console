@@ -1,18 +1,11 @@
 @use 'packages/modules/rs-ui/src/lib/styles/theme/rs-ui-tokens' with (
-  $app-area-max-width: 90%,
   $drawer-content-bg-color: #f8fafc,
 
-  $brand-accent-darker: #1f2933,
-  $brand-accent-dark: #334e68,
-  $brand-accent: #3b82f6,
-  $brand-accent-light: #60a5fa,
-  $brand-accent-lighter: #93c5fd
+  $brand-accent-darker: #ff5f22,
+  $brand-accent-dark: #ff8330,
+  $brand-accent: #ffae44,
+  $brand-accent-light: #ffb327,
+  $brand-accent-lighter: #ffc236
 );
 
-// 2) Now pull in the rs-ui theme, which uses the already-configured tokens
 @use 'packages/modules/rs-ui/src/lib/styles/rs-ui-theme';
-
-// 3) App-specific global styles
-.app-root {
-  min-height: 100vh;
-}

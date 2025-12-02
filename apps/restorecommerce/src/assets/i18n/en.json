@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "RestoreCommerce Console"
+  },
+  "rs-ui": {
+    "header": {
+      "welcome": "Welcome, {{name}}"
+    }
+  }
+}
