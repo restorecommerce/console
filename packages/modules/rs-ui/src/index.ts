@@ -19,3 +19,5 @@ export * from './rs.module';
 export * from './rs-ui-base.module';
 
 export * from './rs-ui-base.providers';
+
+export * from './lib/rs-token';

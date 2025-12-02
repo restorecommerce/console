@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, TitleStrategy } from '@angular/router';
+import { RS_TRANSLATION } from '@console/rs-ui';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -19,6 +20,7 @@ import { appRoutes } from './app.routes';
 import { AppStateModule } from './app.state.module';
 import { AppHttpInterceptor } from './http-interceptor';
 import { RoutesTitleStrategyService } from './routes-title-strategy.service';
+import { RsTranslateAdapter } from './rs-translate-adapter';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +36,7 @@ import { RoutesTitleStrategyService } from './routes-title-strategy.service';
       initialNavigation: 'enabledBlocking',
     }),
     TranslateModule.forRoot({
-      fallbackLang: 'en',
+      fallbackLang: 'de',
       loader: provideTranslateHttpLoader({
         prefix: '/assets/i18n/',
         suffix: '.json',
@@ -59,6 +61,10 @@ import { RoutesTitleStrategyService } from './routes-title-strategy.service';
     {
       provide: TitleStrategy,
       useClass: RoutesTitleStrategyService,
+    },
+    {
+      provide: RS_TRANSLATION,
+      useClass: RsTranslateAdapter,
     },
     provideHttpClient(withInterceptorsFromDi()),
   ],

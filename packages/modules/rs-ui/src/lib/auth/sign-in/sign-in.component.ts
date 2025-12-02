@@ -17,6 +17,7 @@ import {
   VCLButtonModule,
 } from '@vcl/ng-vcl';
 
+import { RS_TRANSLATION } from '../../rs-token';
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
 import { MODULES_AUTHN_CONFIG } from '../authn.tokens';
 
@@ -57,6 +58,8 @@ export class RsSignInComponent {
   fb = inject(FormBuilder);
   readonly defaultConfig = inject(SIGN_IN_BRANDING_CONFIG, { optional: true });
   private readonly config = inject(MODULES_AUTHN_CONFIG, { optional: true });
+
+  private readonly i18n = inject(RS_TRANSLATION);
 
   form = this.fb.group({
     identifier: ['', []],
@@ -109,5 +112,9 @@ export class RsSignInComponent {
     } else {
       console.warn('[Authn] signInHandler not configured');
     }
+  }
+
+  get title() {
+    return this.i18n.t('rs-ui.header.welcome', { name: 'Babas' });
   }
 }

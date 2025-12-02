@@ -71,13 +71,14 @@
         onSelectOrganization($event); templatePopoverOrganization.close()
       "
     >
+      @for (organization of filteredOrganizations; track $index) {
       <vcl-select-list-item
         class="row center"
-        *ngFor="let organization of filteredOrganizations"
         [value]="organization.id"
       >
         <div class="p-2">{{ organization?.name }}</div>
       </vcl-select-list-item>
+      }
     </vcl-select-list>
   </div>
 </ng-template>
