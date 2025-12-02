@@ -6,11 +6,11 @@ import { BehaviorSubject, combineLatest, map, shareReplay } from 'rxjs';
 import { VCLBreakpoints } from '@vcl/ng-vcl';
 
 import {
+  LayoutConfig,
   LayoutNavCategory,
   LayoutNavCategoryId,
   LayoutNavItem,
 } from './layout-config.model';
-import { LAYOUT_CONFIG } from './layout.tokens';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutFacade {
@@ -26,20 +26,10 @@ export class LayoutFacade {
   private collapsedSubject = new BehaviorSubject<boolean>(false);
   collapsed$ = this.collapsedSubject.asObservable();
 
-  private config = inject(LAYOUT_CONFIG, { optional: false });
-
-  private navItemsSubject = new BehaviorSubject<LayoutNavItem[]>(
-    this.config.navItems ?? []
-  );
+  private navItemsSubject = new BehaviorSubject<LayoutNavItem[]>([]);
+  private categoriesSubject = new BehaviorSubject<LayoutNavCategory[]>([]);
 
   private navItems$ = this.navItemsSubject.asObservable();
-
-  private categoriesSubject = new BehaviorSubject<LayoutNavCategory[]>(
-    this.config.categories && this.config.categories.length
-      ? this.config.categories
-      : [{ id: 'home', label: 'Home' }]
-  );
-
   categories$ = this.categoriesSubject.asObservable();
 
   private activeCategorySubject = new BehaviorSubject<LayoutNavCategoryId>(
@@ -61,6 +51,22 @@ export class LayoutFacade {
       });
     })
   );
+
+  /** Called by the shell once it has the config */
+  initConfig(config: LayoutConfig): void {
+    const navItems = config.navItems ?? [];
+    const categories =
+      config.categories && config.categories.length
+        ? config.categories
+        : [{ id: 'home', label: 'Home' }];
+
+    this.navItemsSubject.next(navItems);
+    this.categoriesSubject.next(categories);
+
+    // reset active category if needed
+    const firstId = categories[0]?.id ?? 'home';
+    this.activeCategorySubject.next(firstId);
+  }
 
   toggleSidebar() {
     this.collapsedSubject.next(!this.collapsedSubject.value);

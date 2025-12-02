@@ -60,6 +60,10 @@ export class LayoutShellComponent {
   public facade = inject(LayoutFacade);
   public readonly config = inject(LAYOUT_CONFIG, { optional: false });
 
+  constructor() {
+    this.facade.initConfig(this.config);
+  }
+
   isHandset$ = this.facade.isHandset$;
 
   readonly accountHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {

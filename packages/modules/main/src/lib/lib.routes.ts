@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { LayoutShellComponent } from '@console/rs-ui';
 
 import { ROUTER } from '@console-core/config';
 import {
@@ -8,15 +9,12 @@ import {
   RedirectConfirmPasswordGuard,
 } from '@console-modules/shared';
 
-import {
-  PrivateTemplateComponent,
-  PublicTemplateComponent,
-} from './components/template';
+import { PublicTemplateComponent } from './components/template';
 
 export const modulesMainRoutes: Route[] = [
   {
     path: ROUTER.pages.main.children.home.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
@@ -45,7 +43,7 @@ export const modulesMainRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.account.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
@@ -53,7 +51,7 @@ export const modulesMainRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.management.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
@@ -63,7 +61,7 @@ export const modulesMainRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.orders.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
@@ -71,7 +69,7 @@ export const modulesMainRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.products.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
@@ -79,7 +77,7 @@ export const modulesMainRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.invoices.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>
@@ -87,7 +85,7 @@ export const modulesMainRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.fulfillments.path,
-    component: PrivateTemplateComponent,
+    component: LayoutShellComponent,
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     loadChildren: () =>

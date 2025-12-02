@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {
-  VCLAlertModule,
   VCLIcogramModule,
   VCLLayerModule,
   VCLNotifierModule,
@@ -36,6 +35,7 @@ import {
   VCLFileInputModule,
   VCLRadioButtonModule,
   VCLTabNavModule,
+  VCLSelectListModule,
 } from '@vcl/ng-vcl';
 
 import { ModulesSharedModule } from '@console-modules/shared';
@@ -133,7 +133,7 @@ import { AppendBucketDomainPipe } from './pipes/append-bucket-domain.pipe';
 export const RC_MODULE_CONFIG_TOKEN = new InjectionToken('rc.module.config');
 export const RC_MODULE_STATE_TOKEN = new InjectionToken('rc.module.state');
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type
 export interface UiComponentsConfig {}
 
 // Installed modules
@@ -146,12 +146,12 @@ const modules = [
   RouterModule,
   ScrollingModule,
   CdkVirtualScrollViewport,
-  VCLAlertModule,
   VCLIcogramModule,
   VCLLayerModule,
   VCLNotifierModule,
   VCLOffClickModule,
   VCLSelectModule,
+  VCLSelectListModule,
   VCLJssFormModule,
   VCLNavigationModule,
   VCLButtonModule,

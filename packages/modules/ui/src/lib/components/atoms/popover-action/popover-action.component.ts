@@ -5,10 +5,11 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { SubSink } from 'subsink';
 
-import { AlertService, AlertType, PopoverDirective } from '@vcl/ng-vcl';
+import { AlertService, AlertType, VCLPopoverDirective } from '@vcl/ng-vcl';
 
 import { InputMaybe } from '@console-core/graphql';
 
@@ -22,6 +23,8 @@ export class RcPopoverActionComponent<
 > {
   private readonly subscriptions = new SubSink();
 
+  private readonly alertService = inject(AlertService);
+
   @Input({ required: true }) key!: keyof T;
   @Input() noEdit = false;
   @Input({ required: true }) item!: T;
@@ -30,9 +33,8 @@ export class RcPopoverActionComponent<
   @Output() edit = new EventEmitter<T>();
   @Output() delete = new EventEmitter<string>();
 
-  @ViewChild(PopoverDirective, { static: true }) popover!: PopoverDirective;
-
-  constructor(private readonly alertService: AlertService) {}
+  @ViewChild(VCLPopoverDirective, { static: true })
+  popover!: VCLPopoverDirective;
 
   closePopover(): void {
     this.popover?.close();
