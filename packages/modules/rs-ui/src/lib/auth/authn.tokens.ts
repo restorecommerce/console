@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { PasswordRecoveryPayload } from './password-recovery';
 import { SignInCredentials } from './sign-in/sign-in.component';
@@ -11,8 +12,10 @@ export interface ModulesAuthnConfig {
 
   // Optional extras – logo, redirects, etc. (extend as you like)
   logoUrl?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  redirectAfterLoginUrl?: string | any[];
+  redirectAfterLoginUrl?: string;
+
+  isAuthenticated$: Observable<boolean>;
+  redirectAuthenticatedTo?: string;
 }
 
 export const MODULES_AUTHN_CONFIG = new InjectionToken<ModulesAuthnConfig>(

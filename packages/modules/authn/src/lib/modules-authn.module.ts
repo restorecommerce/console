@@ -7,6 +7,7 @@ import {
   ModulesAuthnConfig,
 } from '@console/rs-ui';
 
+import { ROUTER } from '@console-core/config';
 import { AuthnFacade } from '@console-core/state';
 
 @NgModule({
@@ -20,6 +21,8 @@ import { AuthnFacade } from '@console-core/state';
           authFacade.signIn({ identifier, password }),
         passwordRecoveryHandler: ({ identifier }) =>
           authFacade.passwordRecovery({ identifier }),
+        isAuthenticated$: authFacade.isAuthenticated$,
+        redirectAuthenticatedTo: ROUTER.pages.main.children.orders.path,
       }),
     },
     {
