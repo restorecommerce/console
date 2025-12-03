@@ -10,6 +10,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+import { RsPasswordPolicyHintsComponent } from '../password-policy/password-policy-hints.component';
 import { rsPasswordConfirmationValidator } from '../validators';
 import { rsZxcvbnMinScoreValidator } from '../validators/password-strength.validator';
 
@@ -39,6 +40,7 @@ const MIN_SCORE = 3;
     VCLInputModule,
     VCLPasswordInputModule,
     VCLButtonModule,
+    RsPasswordPolicyHintsComponent,
   ],
   templateUrl: './sign-up.component.html',
 })

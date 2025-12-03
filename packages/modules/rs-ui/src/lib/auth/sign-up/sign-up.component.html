@@ -16,14 +16,7 @@
       <vcl-input-field>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.firstName.hasError('required') &&
-            formFields.firstName.touched
-          "
           formControlName="firstName"
-          type="text"
-          name="firstName"
         />
       </vcl-input-field>
       <vcl-hint-error error="required">This field is required.</vcl-hint-error>
@@ -34,14 +27,7 @@
       <vcl-input-field>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.lastName.hasError('required') &&
-            formFields.lastName.touched
-          "
           formControlName="lastName"
-          type="text"
-          name="lastName"
         />
       </vcl-input-field>
       <vcl-hint-error error="required">This field is required.</vcl-hint-error>
@@ -52,32 +38,9 @@
       <vcl-input-field>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.name.hasError('required') && formFields.name.touched
-          "
           formControlName="name"
-          type="text"
-          name="name"
-          minlength="8"
-          maxlength="20"
         />
       </vcl-input-field>
-      <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-      <vcl-hint-error error="pattern">This field must: </vcl-hint-error>
-      <vcl-hint-error error="pattern"
-        >- have at least 8 characters in length</vcl-hint-error
-      >
-      <vcl-hint-error error="pattern"
-        >- start with a letter (lowercase or uppercase)</vcl-hint-error
-      >
-      <vcl-hint-error error="pattern"
-        >- it can contain only letters (lowercase or uppercase), numbers, and
-        the characters .-_&#64;</vcl-hint-error
-      >
-      <vcl-hint-error error="pattern"
-        >- does not have any consecutive characters repeated</vcl-hint-error
-      >
     </vcl-form-control-group>
 
     <vcl-form-control-group>
@@ -85,13 +48,7 @@
       <vcl-input-field>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.email.hasError('required') && formFields.email.touched
-          "
           formControlName="email"
-          type="email"
-          name="email"
         />
       </vcl-input-field>
       <vcl-hint-error error="required">This field is required.</vcl-hint-error>
@@ -105,34 +62,10 @@
       <vcl-password-input>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.password.hasError('required') &&
-            formFields.password.touched
-          "
-          type="password"
           formControlName="password"
-          name="password"
-          autocomplete="false"
-          minlength="6"
-          maxlength="20"
         />
       </vcl-password-input>
-      <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-      <vcl-hint-error error="pattern">This field must: </vcl-hint-error>
-      <vcl-hint-error error="pattern"
-        >- have at least 6 characters length</vcl-hint-error
-      >
-      <vcl-hint-error error="pattern"
-        >- contain a lowercase letter</vcl-hint-error
-      >
-      <vcl-hint-error error="pattern"
-        >- contain a uppercase letter</vcl-hint-error
-      >
-      <vcl-hint-error error="pattern">- contain a number</vcl-hint-error>
-      <vcl-hint-error error="pattern"
-        >- contain a special character</vcl-hint-error
-      >
+      <rs-password-policy-hints [control]="formFields.password" />
     </vcl-form-control-group>
 
     <vcl-form-control-group>
@@ -140,14 +73,7 @@
       <vcl-password-input>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.passwordConfirmation.hasError('required') &&
-            formFields.passwordConfirmation.touched
-          "
-          type="password"
           formControlName="passwordConfirmation"
-          name="passwordConfirmation"
         />
       </vcl-password-input>
       <vcl-hint-error error="required">This field is required.</vcl-hint-error>
