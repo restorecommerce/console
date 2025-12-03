@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  ValidatorFn,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 
@@ -17,22 +11,10 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+import { rsPasswordConfirmationValidator } from '../validators';
+import { rsZxcvbnMinScoreValidator } from '../validators/password-strength.validator';
 
-const PASSWORD_PATTERN =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,20}$/;
-
-const passwordConfirmationValidator: ValidatorFn = (group: AbstractControl) => {
-  const password = group.get('password')?.value;
-  const confirmation = group.get('passwordConfirmation')?.value;
-
-  if (!password || !confirmation) {
-    return null;
-  }
-
-  return password === confirmation
-    ? null
-    : { passwordConfirmationMismatch: true };
-};
+const MIN_SCORE = 3;
 
 export interface ConfirmPasswordPayload {
   identifier: string; // email or username
@@ -67,11 +49,15 @@ export class RsConfirmPasswordComponent {
       identifier: ['', Validators.required],
       password: [
         '',
-        [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
+        {
+          validators: [Validators.required],
+          asyncValidators: [rsZxcvbnMinScoreValidator(MIN_SCORE)],
+          updateOn: 'blur',
+        },
       ],
       passwordConfirmation: ['', Validators.required],
     },
-    { validators: passwordConfirmationValidator }
+    { validators: rsPasswordConfirmationValidator() }
   );
 
   routerParams$ = this.route.queryParams.pipe(

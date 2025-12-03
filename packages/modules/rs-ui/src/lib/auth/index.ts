@@ -9,3 +9,5 @@ export * from './auth.routes';
 export * from './auth.module';
 export * from './authn.tokens';
 export * from './auth-routing.module';
+export * from './password-strength/password-strength.util';
+export * from './validators';

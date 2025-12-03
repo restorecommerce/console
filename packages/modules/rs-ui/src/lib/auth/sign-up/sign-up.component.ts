@@ -1,13 +1,7 @@
 // rs-sign-up.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  ValidatorFn,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import {
   VCLButtonModule,
@@ -16,6 +10,8 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+import { rsPasswordConfirmationValidator } from '../validators';
+import { rsZxcvbnMinScoreValidator } from '../validators/password-strength.validator';
 
 export interface SignUpPayload {
   firstName: string;
@@ -31,23 +27,7 @@ const USERNAME_PATTERN = /^(?!.*(.)\1)[A-Za-z][A-Za-z0-9._\-@]{7,19}$/;
 // - 8–20 chars
 // - no consecutive repeated chars
 
-const PASSWORD_PATTERN =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,20}$/;
-// - 6–20 chars
-// - at least 1 lower, 1 upper, 1 number, 1 special
-
-const passwordConfirmationValidator: ValidatorFn = (group: AbstractControl) => {
-  const password = group.get('password')?.value;
-  const confirmation = group.get('passwordConfirmation')?.value;
-
-  if (!password || !confirmation) {
-    return null;
-  }
-
-  return password === confirmation
-    ? null
-    : { passwordConfirmationMismatch: true };
-};
+const MIN_SCORE = 3;
 
 @Component({
   selector: 'rs-sign-up',
@@ -75,12 +55,16 @@ export class RsSignUpComponent {
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
-        [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
+        {
+          validators: [Validators.required],
+          asyncValidators: [rsZxcvbnMinScoreValidator(MIN_SCORE)],
+          updateOn: 'blur',
+        },
       ],
       passwordConfirmation: ['', Validators.required],
     },
     {
-      validators: passwordConfirmationValidator,
+      validators: rsPasswordConfirmationValidator(),
     }
   );
 
