@@ -26,17 +26,9 @@
       <vcl-input-field>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.identifier.hasError('required') &&
-            formFields.identifier.touched
-          "
           formControlName="identifier"
-          type="text"
-          name="identifier"
         />
       </vcl-input-field>
-      <vcl-hint-error error="required">This field is required.</vcl-hint-error>
     </vcl-form-control-group>
 
     <vcl-form-control-group>
@@ -44,17 +36,7 @@
       <vcl-password-input>
         <input
           vclInput
-          class="input"
-          [class.error]="
-            formFields.password.hasError('required') &&
-            formFields.password.touched
-          "
-          type="password"
           formControlName="password"
-          name="password"
-          autocomplete="false"
-          minlength="6"
-          maxlength="20"
         />
       </vcl-password-input>
     </vcl-form-control-group>

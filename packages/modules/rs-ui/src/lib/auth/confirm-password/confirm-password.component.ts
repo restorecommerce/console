@@ -11,6 +11,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
+import { RsPasswordPolicyHintsComponent } from '../field-policy-hints/password-policy-hints.component';
 import { rsPasswordConfirmationValidator } from '../validators';
 import { rsZxcvbnMinScoreValidator } from '../validators/password-strength.validator';
 
@@ -33,6 +34,7 @@ export interface ConfirmPasswordPayload {
     VCLPasswordInputModule,
     VCLInputModule,
     VCLButtonComponent,
+    RsPasswordPolicyHintsComponent,
   ],
   templateUrl: './confirm-password.component.html',
 })

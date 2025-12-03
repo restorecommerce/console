@@ -1,4 +1,3 @@
-// password.validator.ts
 import {
   AbstractControl,
   AsyncValidatorFn,

@@ -41,6 +41,8 @@
           formControlName="name"
         />
       </vcl-input-field>
+
+      <rs-username-policy-hints [control]="formFields.name" />
     </vcl-form-control-group>
 
     <vcl-form-control-group>
@@ -51,10 +53,8 @@
           formControlName="email"
         />
       </vcl-input-field>
-      <vcl-hint-error error="required">This field is required.</vcl-hint-error>
-      <vcl-hint-error error="email"
-        >This field should be a valid email address.</vcl-hint-error
-      >
+
+      <rs-email-policy-hints [control]="formFields.email" />
     </vcl-form-control-group>
 
     <vcl-form-control-group>

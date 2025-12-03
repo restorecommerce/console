@@ -1,4 +1,3 @@
-// rs-sign-up.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -10,9 +9,12 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RsAuthPageComponent } from '../auth-page/auth-page.component';
-import { RsPasswordPolicyHintsComponent } from '../password-policy/password-policy-hints.component';
+import { RsEmailPolicyHintsComponent } from '../field-policy-hints/email-policy-hints.component';
+import { RsPasswordPolicyHintsComponent } from '../field-policy-hints/password-policy-hints.component';
+import { RsUsernamePolicyHintsComponent } from '../field-policy-hints/username-policy-hints.component.component';
 import { rsPasswordConfirmationValidator } from '../validators';
 import { rsZxcvbnMinScoreValidator } from '../validators/password-strength.validator';
+import { rsUsernamePatternValidator } from '../validators/username.validator';
 
 export interface SignUpPayload {
   firstName: string;
@@ -21,12 +23,6 @@ export interface SignUpPayload {
   email: string;
   password: string;
 }
-
-const USERNAME_PATTERN = /^(?!.*(.)\1)[A-Za-z][A-Za-z0-9._\-@]{7,19}$/;
-// - start with a letter
-// - only letters, numbers, .-_@
-// - 8–20 chars
-// - no consecutive repeated chars
 
 const MIN_SCORE = 3;
 
@@ -41,6 +37,8 @@ const MIN_SCORE = 3;
     VCLPasswordInputModule,
     VCLButtonModule,
     RsPasswordPolicyHintsComponent,
+    RsUsernamePolicyHintsComponent,
+    RsEmailPolicyHintsComponent,
   ],
   templateUrl: './sign-up.component.html',
 })
@@ -53,7 +51,7 @@ export class RsSignUpComponent {
     {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      name: ['', [Validators.required, Validators.pattern(USERNAME_PATTERN)]],
+      name: ['', [Validators.required, rsUsernamePatternValidator()]],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
