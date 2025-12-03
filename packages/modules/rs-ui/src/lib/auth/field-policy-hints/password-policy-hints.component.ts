@@ -8,7 +8,6 @@ import { RsFieldPolicyHintsComponent } from './field-policy-hints.component';
   template: `
     <rs-field-policy-hints
       [control]="control"
-      header="Your password must:"
       requiredMessage="Password is required."
       patternErrorKey="rsZxcvbnMinScore"
       patternTitle="Your password does not meet the policy."

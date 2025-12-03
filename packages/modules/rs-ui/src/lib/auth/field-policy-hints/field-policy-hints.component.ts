@@ -11,42 +11,21 @@ interface RsExtraErrorConfig {
 @Component({
   selector: 'rs-field-policy-hints',
   template: `
-    <!-- Optional neutral header -->
-    <vcl-hint *ngIf="header">
-      {{ header }}
-    </vcl-hint>
-
-    @if (control && (control.touched || control.dirty)) {
-    <!-- Required -->
-    @if (control.hasError('required')) {
-    <vcl-hint-error>
+    <vcl-hint-error error="required">
       {{ requiredMessage }}
     </vcl-hint-error>
-    }
 
-    <!-- Pattern / rule error -->
-    @if (control.hasError(patternErrorKey)) {
-    <!--  -->
     @if (patternTitle) {
-    <vcl-hint-error>
+    <vcl-hint-error [error]="patternErrorKey">
       {{ patternTitle }}
     </vcl-hint-error>
-    }
-    <!--  -->
-    @for (bullet of patternBullets; track $index) {
-    <!--  -->
+    } @for (bullet of patternBullets; track $index) {
     <vcl-hint-warning> - {{ bullet }} </vcl-hint-warning>
-    } }
-
-    <!--  -->
-    <!-- Extra error keys (email, minlength, etc.) -->
-    @for ( extra of extraErrors; track extra.key) {
-    <!--  -->
-    @if (control.hasError(extra.key)) {
-    <vcl-hint-error>
+    } @for (extra of extraErrors; track extra.key) {
+    <vcl-hint-error [error]="extra.key">
       {{ extra.message }}
     </vcl-hint-error>
-    } } }
+    }
   `,
   imports: [VCLFormControlGroupModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,21 +33,9 @@ interface RsExtraErrorConfig {
 export class RsFieldPolicyHintsComponent {
   @Input({ required: true }) control!: AbstractControl | null;
 
-  /** Optional neutral text above everything, e.g. 'Your password must:' */
-  @Input() header: string | null = null;
-
-  /** Message for the 'required' error */
   @Input() requiredMessage = 'This field is required.';
-
-  /** Error key used for pattern / rule violations (default 'pattern') */
   @Input() patternErrorKey = 'pattern';
-
-  /** Title shown once before bullets, e.g. 'This field must:' */
   @Input() patternTitle: string | null = 'This field must:';
-
-  /** Bullet lines describing the rules */
   @Input() patternBullets: string[] = [];
-
-  /** Extra error keys (email, minlength, etc.) with simple messages */
   @Input() extraErrors: RsExtraErrorConfig[] = [];
 }

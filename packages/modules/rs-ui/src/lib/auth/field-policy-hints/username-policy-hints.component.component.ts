@@ -9,7 +9,6 @@ import { RsFieldPolicyHintsComponent } from './field-policy-hints.component';
   template: `
     <rs-field-policy-hints
       [control]="control"
-      header="Your username must:"
       requiredMessage="This field is required."
       patternErrorKey="pattern"
       patternTitle="This field must:"
