@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -17,9 +18,12 @@ import {
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [AsyncPipe],
 })
 export class IamIndexComponent {
+  private readonly router = inject(Router);
+  private readonly IamFacade = inject(IamFacade);
+
   readonly vm$ = combineLatest({
     selectedUserId: this.IamFacade.selectedId$.pipe(
       filterEmptyAndNullishAndUndefined(),
@@ -32,9 +36,4 @@ export class IamIndexComponent {
       })
     ),
   });
-
-  constructor(
-    private readonly router: Router,
-    private readonly IamFacade: IamFacade
-  ) {}
 }

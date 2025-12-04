@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
@@ -10,7 +15,7 @@ import { ROUTER } from '@console-core/config';
   standalone: false,
 })
 export class HomeComponent implements OnInit {
-  constructor(private readonly router: Router) {}
+  private readonly router = inject(Router);
 
   ngOnInit(): void {
     this.router.navigate([ROUTER.pages.main.children.orders.link]);

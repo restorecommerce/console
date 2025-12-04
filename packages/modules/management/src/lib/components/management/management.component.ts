@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
@@ -11,11 +16,11 @@ import { ROUTER } from '@console-core/config';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ManagementComponent implements OnInit {
-  constructor(private readonly router: Router) {}
+  private readonly router = inject(Router);
 
+  // Prove that the main router page is useless...
   ngOnInit(): void {
     this.router.navigate(
       ROUTER.pages.main.children.management.children.iam.getLink()

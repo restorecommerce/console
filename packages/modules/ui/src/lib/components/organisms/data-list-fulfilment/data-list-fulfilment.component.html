@@ -1,9 +1,0 @@
-<span>{{ fulfillment.meta.created | date : 'mediumDate' }}</span>
-<p
-  [ngClass]="
-    'badge-' + fulfillment.fulfillmentState?.replace('_', '-')?.toLowerCase()
-  "
-  class="m-0 badge"
->
-  {{ fulfillment.fulfillmentState?.replace('_', ' ') }}
-</p>

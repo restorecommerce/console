@@ -28,7 +28,6 @@ import {
   selector: 'app-user-role-associations-table',
   templateUrl: './role-associations-table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
   styles: [
     `
       .role-association-row {
@@ -38,6 +37,9 @@ import {
       }
     `,
   ],
+  imports: [
+
+  ]
 })
 export class RolesAssociationsTableComponent implements OnInit {
   @Input({ required: true }) user!: IUser;

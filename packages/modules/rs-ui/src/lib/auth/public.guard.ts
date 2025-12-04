@@ -1,4 +1,3 @@
-// public.guard.ts
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';

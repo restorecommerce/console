@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ModulesUiModule } from '@console-modules/ui';
-
 import { ManagementComponent } from './management.component';
 
 const routes: Routes = [
@@ -13,7 +11,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ManagementComponent],
-  imports: [ModulesUiModule.forChild(), RouterModule.forChild(routes)],
+  imports: [ManagementComponent, RouterModule.forChild(routes)],
 })
 export class ManagementModule {}

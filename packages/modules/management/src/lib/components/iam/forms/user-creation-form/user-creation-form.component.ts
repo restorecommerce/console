@@ -6,7 +6,21 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { AbstractControl, FormGroup, NgForm } from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+  NgForm,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import {
+  VCLFormControlGroupModule,
+  VCLIconComponent,
+  VCLInputModule,
+  VCLPasswordInputComponent,
+  VCLSelectComponent,
+  VCLSelectListItemComponent,
+} from '@vcl/ng-vcl';
 
 import { ModeType } from '@console-core/graphql';
 import { EUserType, ILocale, ITimezone, IUser } from '@console-core/types';
@@ -26,7 +40,15 @@ type UserTypeOption = {
   selector: 'app-user-creation-form',
   templateUrl: './user-creation-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    VCLFormControlGroupModule,
+    VCLInputModule,
+    VCLSelectComponent,
+    VCLSelectListItemComponent,
+    VCLIconComponent,
+    VCLPasswordInputComponent,
+  ],
 })
 export class UserCreationFormComponent {
   @Input() scope!: string;

@@ -12,26 +12,19 @@ import {
   RSUiModule,
 } from '@console/rs-ui';
 
-import { VCLDateAdapterModule } from '@vcl/ng-vcl';
-
 import { ROUTER } from '@console-core/config';
 import {
   AccountFacade,
   AuthnFacade,
   OrganizationContextFacade,
 } from '@console-core/state';
-import { ModulesUiBaseModule, ModulesUiModule } from '@console-modules/ui';
 
-import { PublicTemplateComponent } from './components/template';
 import { modulesMainRoutes } from './lib.routes';
 import { MAIN_LAYOUT_CONFIG } from './main-layout.config';
 
 @NgModule({
-  declarations: [PublicTemplateComponent],
+  declarations: [],
   imports: [
-    ModulesUiBaseModule,
-    ModulesUiModule.forRoot(),
-    VCLDateAdapterModule.forRoot(),
     RouterModule.forChild(modulesMainRoutes),
     RSUiModule,
     ModulesRsUiBaseModule,

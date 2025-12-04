@@ -2,11 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-module-management-template',
-  template: `
-    <rc-page-management>
-      <router-outlet />
-    </rc-page-management>
-  `,
+  template: `<router-outlet />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

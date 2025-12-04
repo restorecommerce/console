@@ -1,13 +1,28 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { map, of } from 'rxjs';
+
+import {
+  VCLFormControlGroupModule,
+  VCLIconComponent,
+  VCLSelectComponent,
+  VCLSelectListComponent,
+  VCLSelectListItemComponent,
+} from '@vcl/ng-vcl';
 
 import { IamFacade, OrganizationFacade, RoleFacade } from '@console-core/state';
 import { IRoleAssociation } from '@console-core/types';
@@ -39,10 +54,23 @@ import { fromFormValue, toFormValue } from './role-association.mapper';
       }
     `,
   ],
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    AsyncPipe,
+    VCLFormControlGroupModule,
+    VCLSelectComponent,
+    VCLSelectListComponent,
+    VCLSelectListItemComponent,
+    VCLIconComponent,
+  ],
 })
 export class RoleAssociationFormComponent implements OnInit {
   form!: FormGroup;
+  private fb = inject(FormBuilder);
+  private readonly iamFacade = inject(IamFacade);
+  private readonly roleFacade = inject(RoleFacade);
+  private readonly organizationFacade = inject(OrganizationFacade);
+
   private formFactory = new RoleAssociationForm(this.fb);
 
   @Input() role: IRoleAssociation | undefined;
@@ -59,13 +87,6 @@ export class RoleAssociationFormComponent implements OnInit {
   readonly users$ = this.iamFacade.all$.pipe(
     map((users) => users.map((user) => ({ label: user.name, value: user.id })))
   );
-
-  constructor(
-    private fb: FormBuilder,
-    private readonly iamFacade: IamFacade,
-    private readonly roleFacade: RoleFacade,
-    private readonly organizationFacade: OrganizationFacade
-  ) {}
 
   ngOnInit(): void {
     this.form = this.formFactory.create(
