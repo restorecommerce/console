@@ -2,12 +2,7 @@ import { Route } from '@angular/router';
 import { LayoutShellComponent } from '@console/rs-ui';
 
 import { ROUTER } from '@console-core/config';
-import {
-  PrivateGuard,
-  RedirectActivationGuard,
-  RedirectConfirmEmailGuard,
-  RedirectConfirmPasswordGuard,
-} from '@console-modules/shared';
+import { PrivateGuard } from '@console-modules/shared';
 
 export const modulesMainRoutes: Route[] = [
   {
@@ -20,24 +15,23 @@ export const modulesMainRoutes: Route[] = [
   },
 
   // Account Activation.....
-  {
-    path: ROUTER.pages.main.children.activateAccount.path,
-    canActivate: [RedirectActivationGuard],
-  },
-  {
-    path: ROUTER.pages.main.children.confirmEmailChange.path,
-    canActivate: [RedirectConfirmEmailGuard],
-  },
-  {
-    path: ROUTER.pages.main.children.confirmPasswordChange.path,
-    canActivate: [RedirectConfirmPasswordGuard],
-  },
+  // {
+  //   path: ROUTER.pages.main.children.activateAccount.path,
+  //   canActivate: [RedirectActivationGuard],
+  // },
+  // {
+  //   path: ROUTER.pages.main.children.confirmEmailChange.path,
+  //   canActivate: [RedirectConfirmEmailGuard],
+  // },
+  // {
+  //   path: ROUTER.pages.main.children.confirmPasswordChange.path,
+  //   canActivate: [RedirectConfirmPasswordGuard],
+  // },
   // .........
 
   // Latest code where we used the plug and play router.
   {
     path: ROUTER.pages.main.children.auth.path,
-    // TODO Let's place a guard here....
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
   },

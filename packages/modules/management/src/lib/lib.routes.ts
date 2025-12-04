@@ -10,15 +10,14 @@ export const modulesManagementRoutes: Route[] = [
       {
         path: ROUTER.pages.main.children.management.children.index.path,
         loadChildren: () =>
-          import('./components/management/management.module').then(
+          import('./management/management.module').then(
             (m) => m.ManagementModule
           ),
         title: ROUTER.pages.main.children.management.children.index.title,
       },
       {
         path: ROUTER.pages.main.children.management.children.iam.path,
-        loadChildren: () =>
-          import('./components/iam/iam.module').then((m) => m.IamModule),
+        loadChildren: () => import('./iam/iam.module').then((m) => m.IamModule),
         title:
           ROUTER.pages.main.children.management.children.iam.children.index
             .title,

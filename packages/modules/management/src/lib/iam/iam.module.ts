@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { IamIndexComponent } from './iam-index.component';
-import { IamViewComponent } from './iam-view.component';
+import { IamIndexComponent } from './components/iam-index.component';
+import { IamViewComponent } from './components/iam-view.component';
 
 const routes: Routes = [
   {
