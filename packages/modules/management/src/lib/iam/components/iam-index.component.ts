@@ -1,6 +1,6 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { RsResourcePageLayoutComponent } from '@console/rs-ui';
 import { combineLatest } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -12,13 +12,9 @@ import {
 
 @Component({
   selector: 'app-module-management-iam-index',
-  template: `
-    @if (vm$ | async; as vm) {
-    <h3>IAM</h3>
-    }
-  `,
+  template: ` <rs-resource-page-layout /> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe],
+  imports: [RsResourcePageLayoutComponent],
 })
 export class IamIndexComponent {
   private readonly router = inject(Router);

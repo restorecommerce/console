@@ -11,6 +11,7 @@ import { RsCopyrightComponent } from './lib/copyright/copyright.component';
 import { RsHeaderToolbarComponent } from './lib/header';
 import { RsBannerComponent } from './lib/header-brand';
 import { LayoutShellComponent } from './lib/layout-shell';
+import { RsResourcePageLayoutComponent } from './lib/resource-page-layout/resource-page-layout.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { LayoutShellComponent } from './lib/layout-shell';
     RsCenteredPageComponent,
     RsCopyrightComponent,
     RsAuthPageComponent,
+    RsResourcePageLayoutComponent,
   ],
   exports: [
     CommonModule,

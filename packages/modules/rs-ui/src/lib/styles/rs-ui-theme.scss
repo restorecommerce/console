@@ -27,7 +27,11 @@
 );
 
 // Custom style
-
 .drawer {
   width: 15rem;
+}
+
+.drawer-container .drawer-content {
+  display: flex;
+  flex-direction: column;
 }
