@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { JssFormService } from './services';
+import { JssFormService } from '../services';
 
 @Component({
   selector: 'app-module-management-iam-edit',

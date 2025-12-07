@@ -9,11 +9,11 @@ import { IamViewComponent } from './components/iam-view.component';
 const routes: Routes = [
   {
     path: '',
+    component: IamIndexComponent,
     children: [
       {
         path: ROUTER.pages.main.children.management.children.iam.children.index
           .path,
-        component: IamIndexComponent,
         title:
           ROUTER.pages.main.children.management.children.iam.children.index
             .title,

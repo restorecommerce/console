@@ -3,17 +3,11 @@ import { Component, HostBinding } from '@angular/core';
 @Component({
   selector: 'rs-resource-page-layout',
   template: `
-    <div
-      class="flex-4-md flex-12"
-      style="background-color: aqua;"
-    >
-      Side bar
+    <div class="flex-4-md flex-12">
+      <ng-content select="[rsResourceSidebar]"></ng-content>
     </div>
-    <div
-      class="flex-8-md flex-12"
-      style="background-color: bisque;"
-    >
-      Content
+    <div class="flex-8-md flex-12">
+      <ng-content select="[rsResourceContent]"></ng-content>
     </div>
   `,
 })

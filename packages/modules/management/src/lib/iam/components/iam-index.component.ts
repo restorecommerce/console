@@ -1,35 +1,19 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { RsResourcePageLayoutComponent } from '@console/rs-ui';
-import { combineLatest } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
-import { ROUTER } from '@console-core/config';
-import {
-  IamFacade,
-  filterEmptyAndNullishAndUndefined,
-} from '@console-core/state';
+import { UsersListComponent } from './user-list/user-list.component';
 
 @Component({
   selector: 'app-module-management-iam-index',
-  template: ` <rs-resource-page-layout /> `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RsResourcePageLayoutComponent],
-})
-export class IamIndexComponent {
-  private readonly router = inject(Router);
-  private readonly IamFacade = inject(IamFacade);
+  template: `
+    <rs-resource-page-layout>
+      <app-users-list rsResourceSidebar />
 
-  readonly vm$ = combineLatest({
-    selectedUserId: this.IamFacade.selectedId$.pipe(
-      filterEmptyAndNullishAndUndefined(),
-      tap((id) => {
-        this.router.navigate(
-          ROUTER.pages.main.children.management.children.iam.children.view.getLink(
-            { id }
-          )
-        );
-      })
-    ),
-  });
-}
+      <router-outlet rsResourceContent />
+    </rs-resource-page-layout>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, UsersListComponent, RsResourcePageLayoutComponent],
+})
+export class IamIndexComponent {}
