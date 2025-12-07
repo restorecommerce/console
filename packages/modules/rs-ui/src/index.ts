@@ -23,3 +23,5 @@ export * from './rs-ui-base.providers';
 export * from './rs-token';
 
 export * from './lib/resource-page-layout/resource-page-layout.component';
+
+export * from './lib/notification';

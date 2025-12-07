@@ -110,6 +110,13 @@
       "ok": "OK",
       "cancel": "Cancel",
       "close": "Close"
+    },
+    "notifications": {
+      "infoTitle": "Info",
+      "crud": {
+        "createSuccess": "{{resource}} created successfully.",
+        "successTitle": "Success"
+      }
     }
   }
 }
