@@ -46,7 +46,6 @@ import { MAIN_LAYOUT_CONFIG } from './main-layout.config';
       useFactory: (org: OrganizationContextFacade) => org.selectedId$,
       deps: [OrganizationContextFacade],
     },
-
     {
       provide: LAYOUT_SET_SELECTED_ORG,
       useFactory: (org: OrganizationContextFacade) => (id: string) =>

@@ -5,11 +5,17 @@ import {
   DestroyRef,
   EventEmitter,
   inject,
+  OnInit,
   Output,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter } from 'rxjs';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
+import { combineLatest, distinctUntilChanged, filter, map, take } from 'rxjs';
 
 import {
   VCLButtonModule,
@@ -23,7 +29,7 @@ import {
 
 import { RsBreadcrumbComponent } from '../breadcrum/breadcrum.component';
 import { RsCategorySelectComponent } from '../category-select/category-select.component';
-import { RsHeaderToolbarComponent } from '../header';
+import { RsHeaderOrganization, RsHeaderToolbarComponent } from '../header';
 import {
   LAYOUT_ACCOUNT_ACTION_HANDLER,
   LAYOUT_ORGS$,
@@ -58,8 +64,9 @@ import { LAYOUT_CONFIG } from './layout.tokens';
     VCLFormControlGroupModule,
   ],
 })
-export class LayoutShellComponent {
+export class LayoutShellComponent implements OnInit {
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   public facade = inject(LayoutFacade);
   public readonly config = inject(LAYOUT_CONFIG, { optional: false });
   private readonly preferenceHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {
@@ -77,6 +84,28 @@ export class LayoutShellComponent {
       )
       .subscribe((e) => {
         this.syncCategoryWithUrl(e.urlAfterRedirects);
+      });
+  }
+
+  ngOnInit(): void {
+    const orgFromUrl$ = this.route.queryParamMap.pipe(
+      map((params) => params.get('org')),
+      distinctUntilChanged()
+    );
+
+    orgFromUrl$
+      .pipe(filter((orgId): orgId is string => !!orgId))
+      .subscribe((orgId) => {
+        this.setSelectedOrg(orgId);
+      });
+
+    combineLatest([orgFromUrl$, this.orgs$])
+      .pipe(take(1))
+      .subscribe(([orgId, orgs]) => {
+        if (!orgId && orgs.length) {
+          const defaultId = this.pickDefaultOrgId(orgs);
+          this.navigateWithOrg(defaultId);
+        }
       });
   }
 
@@ -209,5 +238,23 @@ export class LayoutShellComponent {
     }
 
     return url === path || url.startsWith(path + '/');
+  }
+
+  onOrgChanged(orgId: string): void {
+    this.navigateWithOrg(orgId);
+  }
+
+  private navigateWithOrg(orgId: string): void {
+    // We ONLY change the URL here.
+    // The subscription in ngOnInit will push it into OrgContext.
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { org: orgId },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  private pickDefaultOrgId(orgs: RsHeaderOrganization[]): string {
+    return orgs[0].id;
   }
 }
