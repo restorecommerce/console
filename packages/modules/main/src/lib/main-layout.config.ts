@@ -7,8 +7,21 @@ export const MAIN_LAYOUT_CONFIG: LayoutConfig = {
   logoUrl: APP.logoUrl,
 
   categories: [
-    { id: 'home', label: 'Home' },
-    { id: 'management', label: 'Management' },
+    {
+      id: 'home',
+      label: 'Home',
+      defaultRoute: ROUTER.pages.main.children.orders.link,
+    },
+    {
+      id: 'management',
+      label: 'Management',
+      defaultRoute: ROUTER.pages.main.children.management.children.iam.link,
+    },
+    // {
+    //   id: 'account',
+    //   label: 'Account',
+    //   defaultRoute: ROUTER.pages.main.children.account.children.profile.link,
+    // },
   ],
 
   navItems: [

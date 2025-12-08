@@ -52,11 +52,11 @@ interface AppUserListItem {
       <vcl-data-list
         [noBorder]="true"
         class="flex"
-        mode="single"
+        mode="none"
       >
         @for (user of users; track user.id) {
         <vcl-data-list-item
-          routerLink="{{ user.id }}"
+          [routerLink]="[user.id, 'view']"
           routerLinkActive="selected"
         >
           <ng-container

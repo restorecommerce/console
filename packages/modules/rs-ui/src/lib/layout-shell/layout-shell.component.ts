@@ -2,11 +2,14 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   EventEmitter,
   inject,
   Output,
 } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 
 import {
   VCLButtonModule,
@@ -62,9 +65,19 @@ export class LayoutShellComponent {
   private readonly preferenceHandler = inject(LAYOUT_ACCOUNT_ACTION_HANDLER, {
     optional: false,
   });
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
     this.facade.initConfig(this.config);
+
+    this.router.events
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((e) => {
+        this.syncCategoryWithUrl(e.urlAfterRedirects);
+      });
   }
 
   isHandset$ = this.facade.isHandset$;
@@ -120,7 +133,81 @@ export class LayoutShellComponent {
     this.preferenceHandler(action);
   }
 
-  onSelectCategory(catId: LayoutNavCategoryId) {
-    this.facade.setActiveCategory(catId);
+  onSelectCategory(id: LayoutNavCategoryId): void {
+    this.facade.setActiveCategory(id);
+
+    const category = this.config.categories?.find((c) => c.id === id);
+    let target = category?.defaultRoute;
+
+    if (!target) {
+      const first = this.getFirstNavItemForCategory(id);
+      if (first) {
+        target = first.route ?? first.children?.[0]?.route;
+      }
+    }
+
+    if (!target) {
+      return;
+    }
+
+    if (Array.isArray(target)) {
+      this.router.navigate(target);
+    } else {
+      this.router.navigate([target]);
+    }
+  }
+
+  private getFirstNavItemForCategory(
+    id: LayoutNavCategoryId
+  ): LayoutNavItem | undefined {
+    const flat = this.flattenNavItems(this.config.navItems);
+    const defaultCategoryId = this.config.categories?.[0]?.id;
+
+    return flat.find((item) => {
+      const cid = item.categoryId ?? defaultCategoryId;
+      return cid === id && (item.route || item.children?.some((c) => c.route));
+    });
+  }
+
+  private flattenNavItems(items: LayoutNavItem[]): LayoutNavItem[] {
+    const out: LayoutNavItem[] = [];
+    for (const item of items) {
+      out.push(item);
+      if (item.children?.length) {
+        out.push(...this.flattenNavItems(item.children));
+      }
+    }
+    return out;
+  }
+
+  private syncCategoryWithUrl(url: string): void {
+    const flat = this.flattenNavItems(this.config.navItems);
+    const defaultCategoryId = this.config.categories?.[0]?.id;
+
+    const match = flat.find((item) => this.routeMatchesUrl(item.route, url));
+
+    if (!match) {
+      return;
+    }
+
+    const categoryId = match.categoryId ?? defaultCategoryId;
+    if (!categoryId) {
+      return;
+    }
+
+    this.facade.setActiveCategory(categoryId);
+  }
+
+  private routeMatchesUrl(route: string | undefined, url: string): boolean {
+    if (!route) return false;
+
+    let path: string;
+    if (Array.isArray(route)) {
+      path = this.router.createUrlTree(route).toString();
+    } else {
+      path = this.router.createUrlTree([route]).toString();
+    }
+
+    return url === path || url.startsWith(path + '/');
   }
 }

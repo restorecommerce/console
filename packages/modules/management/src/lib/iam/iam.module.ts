@@ -17,6 +17,8 @@ const routes: Routes = [
         title:
           ROUTER.pages.main.children.management.children.iam.children.index
             .title,
+
+        redirectTo: '',
       },
       {
         path: ROUTER.pages.main.children.management.children.iam.children.view

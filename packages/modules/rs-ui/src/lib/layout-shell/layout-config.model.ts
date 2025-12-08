@@ -1,8 +1,11 @@
+export type LayoutCategoryRoute = string;
+
 export type LayoutNavCategoryId = 'home' | 'management' | string;
 
 export interface LayoutNavCategory {
   id: LayoutNavCategoryId;
   label: string;
+  defaultRoute?: LayoutCategoryRoute;
 }
 
 export interface LayoutNavItem {
