@@ -1,5 +1,5 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
@@ -14,13 +14,7 @@ import {
   VCLPanelHeaderDirective,
 } from '@vcl/ng-vcl';
 
-interface AppUserListItem {
-  id: string;
-  name: string;
-  email: string;
-  role?: string;
-  status?: 'active' | 'invited' | 'disabled';
-}
+import { IamFacade } from '@console-core/state';
 
 @Component({
   selector: 'app-users-list',
@@ -99,7 +93,7 @@ interface AppUserListItem {
         class="flex"
         mode="single"
       >
-        @for (user of users; track user.id) {
+        @for (user of users$ | async; track user.id) {
         <vcl-data-list-item
           [routerLink]="[user.id, 'view']"
           routerLinkActive="selected"
@@ -133,28 +127,7 @@ interface AppUserListItem {
   ],
 })
 export class UsersListComponent {
-  // For now, static data; later you can wire this up to a facade or data-access lib
-  protected readonly users: AppUserListItem[] = [
-    {
-      id: '1',
-      name: 'Alice Admin',
-      email: 'alice@example.com',
-      role: 'admin',
-      status: 'active',
-    },
-    {
-      id: '2',
-      name: 'Bob Manager',
-      email: 'bob@example.com',
-      role: 'manager',
-      status: 'active',
-    },
-    {
-      id: '3',
-      name: 'Charlie Viewer',
-      email: 'charlie@example.com',
-      role: 'viewer',
-      status: 'invited',
-    },
-  ];
+  private readonly iamFacade = inject(IamFacade);
+
+  users$ = this.iamFacade.all$;
 }

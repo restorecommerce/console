@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
@@ -12,6 +12,8 @@ import * as userSelectors from './iam.selectors';
 
 @Injectable()
 export class IamFacade {
+  private readonly store = inject(Store);
+
   // Selectors
   readonly ids$ = this.store.select(userSelectors.selectUserIds);
   readonly entities$ = this.store.select(userSelectors.selectUserEntities);
@@ -47,6 +49,4 @@ export class IamFacade {
 
   remove = (payload: { id: string }) =>
     this.store.dispatch(userActions.userRemoveRequest({ payload }));
-
-  constructor(private readonly store: Store) {}
 }
