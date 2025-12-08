@@ -16,7 +16,10 @@
   $brand-accent-dark: tokens.$brand-accent-dark,
   $brand-accent: tokens.$brand-accent,
   $brand-accent-light: tokens.$brand-accent-light,
-  $brand-accent-lighter: tokens.$brand-accent-lighter
+  $brand-accent-lighter: tokens.$brand-accent-lighter,
+
+  // panel setting
+  $panel-border-color: transparent
 );
 
 @use '@vcl/vcl';
@@ -26,7 +29,7 @@
   $mdi-font-path: '~@mdi/font/fonts'
 );
 
-// Custom style
+// Custom style for VCL
 .drawer {
   width: 15rem;
 }
@@ -34,4 +37,21 @@
 .drawer-container .drawer-content {
   display: flex;
   flex-direction: column;
+}
+
+// Fix panel layout....
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
 }
