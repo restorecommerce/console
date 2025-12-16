@@ -1,0 +1,28 @@
+{
+  "name": "rc-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/modules/rc-ui/src",
+  "prefix": "rc",
+  "projectType": "library",
+  "tags": ["type:library", "scope:modules", "domain:rc-ui", "npm:private"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/modules/rc-ui/ng-package.json",
+        "tsConfig": "packages/modules/rc-ui/tsconfig.lib.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/modules/rc-ui/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

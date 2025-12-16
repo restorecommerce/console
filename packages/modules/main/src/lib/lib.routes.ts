@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { LayoutShellComponent } from '@console/rs-ui';
+import { RcLayoutShellComponent } from '@console/rc-ui';
 
 import { ROUTER } from '@console-core/config';
 import { PrivateGuard } from '@console-modules/shared';
@@ -7,9 +7,9 @@ import { PrivateGuard } from '@console-modules/shared';
 export const modulesMainRoutes: Route[] = [
   {
     path: ROUTER.pages.main.children.home.path,
-    component: LayoutShellComponent,
-    canActivate: [PrivateGuard],
-    canActivateChild: [PrivateGuard],
+    component: RcLayoutShellComponent,
+    // canActivate: [PrivateGuard],
+    // canActivateChild: [PrivateGuard],
     loadChildren: () =>
       import('@console-modules/home').then((m) => m.ModulesHomeModule),
   },
@@ -43,16 +43,16 @@ export const modulesMainRoutes: Route[] = [
   //   loadChildren: () =>
   //     import('@console-modules/account').then((m) => m.ModulesAccountModule),
   // },
-  {
-    path: ROUTER.pages.main.children.management.path,
-    component: LayoutShellComponent,
-    canActivate: [PrivateGuard],
-    canActivateChild: [PrivateGuard],
-    loadChildren: () =>
-      import('@console-modules/management').then(
-        (m) => m.ModulesManagementModule
-      ),
-  },
+  // {
+  //   path: ROUTER.pages.main.children.management.path,
+  //   component: LayoutShellComponent,
+  //   canActivate: [PrivateGuard],
+  //   canActivateChild: [PrivateGuard],
+  //   loadChildren: () =>
+  //     import('@console-modules/management').then(
+  //       (m) => m.ModulesManagementModule
+  //     ),
+  // },
   {
     path: '',
     redirectTo: ROUTER.pages.main.children.home.path,

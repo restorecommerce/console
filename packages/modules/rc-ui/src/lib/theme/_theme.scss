@@ -1,0 +1,55 @@
+@use '@angular/cdk/overlay-prebuilt';
+@use '@angular/cdk/a11y-prebuilt';
+
+@use './tokens' as tokens;
+
+@use '@vcl/vcl/theme' with (
+  $app-area-max-width: tokens.$app-area-max-width,
+  $block-elem-vertical-gap: tokens.$block-elem-vertical-gap,
+  $form-control-vertical-gap: tokens.$form-control-vertical-gap,
+
+  $drawer-content-bg-color: tokens.$drawer-content-bg-color,
+
+  // optional: brand colors
+  $brand-accent-darker: tokens.$brand-accent-darker,
+  $brand-accent-dark: tokens.$brand-accent-dark,
+  $brand-accent: tokens.$brand-accent,
+  $brand-accent-light: tokens.$brand-accent-light,
+  $brand-accent-lighter: tokens.$brand-accent-lighter,
+
+  // panel setting
+  $panel-border-color: transparent
+);
+
+@use '@vcl/vcl';
+
+/* Material Design Icons */
+@use '@mdi/font/scss/materialdesignicons' with (
+  $mdi-font-path: '/assets/mdi/fonts'
+);
+
+// Custom style for VCL
+.drawer {
+  width: 15rem;
+}
+
+.drawer-container .drawer-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+}

@@ -1,0 +1,139 @@
+<vcl-drawer-container
+  (backdropClick)="toggleSidebar()"
+  class="layout-shell-container"
+>
+  <vcl-drawer
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(collapsed$ | async) === false"
+  >
+    <vcl-navigation class="h-100p layout-shell-navigation">
+      <div class="row justify-content-between py-1 px-2">
+        <rc-brand
+          [brandName]="config.appName"
+          [logoUrl]="config.logoUrl"
+        />
+        <button
+          vcl-button
+          square
+          class="transparent"
+          [title]="(collapsed$ | async) ? 'Hide sidebar' : 'Show sidebar'"
+          (click)="toggleSidebar()"
+        >
+          <vcl-icon
+            class="scale155p"
+            icon="mdi mdi-page-layout-sidebar-left"
+          />
+        </button>
+      </div>
+
+      @if (isHandset$ | async) { @if (categories$ | async; as categories) {
+      <div class="my-2 px-2">
+        <rc-category-select
+          [categories]="(categories$ | async) || []"
+          [value]="activeCategory$ | async"
+          (valueChange)="onSelectCategory($event)"
+        />
+      </div>
+      } } @for (item of (facade.visibleNavItems$ | async); track $index) {
+      <vcl-navigation-item
+        #navItem="vclNavigationItem"
+        [routerLink]="item.children?.length ? null : item.route"
+        [routerLinkActive]="item.children?.length ? [] : ['selected']"
+        (click)="
+          !item.children?.length && navigate(item); $event.stopPropagation()
+        "
+      >
+        <vcl-navigation-label>
+          <vcl-icogram>
+            @if (item.children?.length) {
+            <vcl-icon
+              vclPrepend
+              [icon]="navItem.opened ? 'vcl:chevron-down' : 'vcl:chevron-right'"
+            ></vcl-icon>
+            } @if (!item.children?.length) {
+            <vcl-icon
+              vclPrepend
+              [icon]="item.icon"
+            ></vcl-icon>
+            }
+
+            {{ item.label }}
+          </vcl-icogram>
+        </vcl-navigation-label>
+
+        @if (item.children?.length) {
+        <vcl-navigation>
+          @for (child of item.children; track $index) {
+          <vcl-navigation-item
+            [routerLink]="child.route"
+            [routerLinkActive]="['selected']"
+            (click)="navigate(child); $event.stopPropagation()"
+          >
+            <vcl-navigation-label>
+              <vcl-icogram>
+                <vcl-icon
+                  vclPrepend
+                  [icon]="child.icon"
+                ></vcl-icon>
+                {{ child.label }}
+              </vcl-icogram>
+            </vcl-navigation-label>
+          </vcl-navigation-item>
+          }
+        </vcl-navigation>
+        }
+      </vcl-navigation-item>
+      }
+
+      <div class="py-1 px-2 rs-navigation-item-bottom-container">
+        @if ((isHandset$ | async) === false) { @if (categories$ | async; as
+        categories) {
+        <rc-category-select
+          [categories]="(categories$ | async) || []"
+          [value]="activeCategory$ | async"
+          (valueChange)="onSelectCategory($event)"
+        />
+        } }
+
+        <vcl-navigation-item>
+          <vcl-navigation-label>
+            ©2025
+            <a href="#">Restorecommerce</a>
+            . All rights reserved.
+          </vcl-navigation-label>
+        </vcl-navigation-item>
+      </div>
+    </vcl-navigation>
+  </vcl-drawer>
+
+  <header class="row align-items-center px-2">
+    @if (collapsed$ | async) {
+    <button
+      vcl-button
+      square
+      class="transparent"
+      title="Show sidebar"
+      (click)="toggleSidebar()"
+    >
+      <vcl-icon
+        class="scale155p"
+        icon="mdi mdi-page-layout-sidebar-left"
+      />
+    </button>
+    }
+
+    <rc-breadcrumb
+      [rootLabel]="'Home'"
+      [rootUrl]="'/'"
+      [breadcrumbsToExclude]="['Home']"
+    />
+
+    <div class="flex"></div>
+
+    <rc-header-toolbar />
+  </header>
+
+  <main class="flex px-2 rs-main">
+    <ng-content />
+  </main>
+</vcl-drawer-container>

@@ -7,18 +7,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, TitleStrategy } from '@angular/router';
-import {
-  RS_NOTIFICATION_DEFAULTS,
-  RS_NOTIFICATION_TRANSLATE,
-  RS_TRANSLATION,
-  RsNotificationDefaults,
-  RsNotificationModule,
-  RsNotificationTranslateFn,
-} from '@console/rs-ui';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MODULES_RS_UI_BASE_PROVIDERS } from '@console/rc-ui';
+import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { NotifierPosition } from '@vcl/ng-vcl';
 
 import { CoreGraphQLModule } from '@console-core/graphql';
 
@@ -29,7 +20,6 @@ import { appRoutes } from './app.routes';
 import { AppStateModule } from './app.state.module';
 import { AppHttpInterceptor } from './http-interceptor';
 import { RoutesTitleStrategyService } from './routes-title-strategy.service';
-import { RsTranslateAdapter } from './rs-translate-adapter';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +34,6 @@ import { RsTranslateAdapter } from './rs-translate-adapter';
     RouterModule.forRoot(appRoutes, {
       initialNavigation: 'enabledBlocking',
     }),
-    RsNotificationModule.forRoot(),
     TranslateModule.forRoot({
       fallbackLang: 'de',
       loader: provideTranslateHttpLoader({
@@ -55,6 +44,7 @@ import { RsTranslateAdapter } from './rs-translate-adapter';
     }),
   ],
   providers: [
+    ...MODULES_RS_UI_BASE_PROVIDERS,
     {
       provide: 'oidcKey',
       useValue: environment.oidcKey,
@@ -71,27 +61,6 @@ import { RsTranslateAdapter } from './rs-translate-adapter';
     {
       provide: TitleStrategy,
       useClass: RoutesTitleStrategyService,
-    },
-    {
-      provide: RS_TRANSLATION,
-      useClass: RsTranslateAdapter,
-    },
-    {
-      provide: RS_NOTIFICATION_DEFAULTS,
-      useValue: {
-        position: NotifierPosition.BottomRight,
-        timeout: 4000,
-        showCloseButton: true,
-        icon: 'vcl:info',
-      } satisfies RsNotificationDefaults,
-    },
-    {
-      provide: RS_NOTIFICATION_TRANSLATE,
-      useFactory:
-        (translate: TranslateService): RsNotificationTranslateFn =>
-        (key: string, params?: Record<string, unknown>) =>
-          translate.instant(key, params),
-      deps: [TranslateService],
     },
     provideHttpClient(withInterceptorsFromDi()),
   ],

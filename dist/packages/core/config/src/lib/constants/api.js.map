@@ -1,0 +1,1 @@
+{"version":3,"file":"api.js","sourceRoot":"","sources":["../../../../../../../packages/core/config/src/lib/constants/api.ts"],"names":[],"mappings":";;;AAAA,wCAA0C;AAI7B,QAAA,GAAG,GAA2B;IACzC,SAAS,EAAE;QACT,KAAK,EAAE,QAAQ;QACf,eAAe,EAAE,mBAAmB;KACrC;IACD,OAAO,EAAE;QACP,YAAY,EAAE,IAAA,gBAAS,GAAE,CAAC,CAAC,CAAC,uBAAuB,CAAC,CAAC,CAAC,EAAE;KACzD;CACF,CAAC"}

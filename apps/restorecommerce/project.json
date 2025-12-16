@@ -25,11 +25,14 @@
         "tsConfig": "apps/restorecommerce/tsconfig.app.json",
         "assets": [
           "apps/restorecommerce/src/assets",
-          "apps/restorecommerce/src/manifest.webmanifest"
+          "apps/restorecommerce/src/manifest.webmanifest",
+          {
+            "glob": "**/*",
+            "input": "node_modules/@mdi/font/fonts",
+            "output": "assets/mdi/fonts"
+          }
         ],
-        "styles": [
-          "apps/restorecommerce/src/styles.scss"
-        ],
+        "styles": ["apps/restorecommerce/src/styles.scss"],
         "scripts": []
       },
       "configurations": {

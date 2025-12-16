@@ -1,8 +1,8 @@
-import { LayoutConfig } from '@console/rs-ui';
+import { RcLayoutConfig } from '@console/rc-ui';
 
 import { APP, ROUTER } from '@console-core/config';
 
-export const MAIN_LAYOUT_CONFIG: LayoutConfig = {
+export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
   appName: APP.name ?? 'Restore Commerce Console',
   logoUrl: APP.logoUrl,
 

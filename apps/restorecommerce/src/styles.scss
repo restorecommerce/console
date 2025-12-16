@@ -1,4 +1,4 @@
-@use 'packages/modules/rs-ui/src/lib/styles/theme/rs-ui-tokens' with (
+@use 'packages/modules/rc-ui/src/lib/theme/tokens' with (
   $drawer-content-bg-color: #f8fafc,
 
   $brand-accent-darker: #ff5f22,
@@ -8,4 +8,4 @@
   $brand-accent-lighter: #ffc236
 );
 
-@use 'packages/modules/rs-ui/src/lib/styles/rs-ui-theme';
+@use 'packages/modules/rc-ui/src/lib/theme';

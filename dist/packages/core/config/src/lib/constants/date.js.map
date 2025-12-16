@@ -1,0 +1,1 @@
+{"version":3,"file":"date.js","sourceRoot":"","sources":["../../../../../../../packages/core/config/src/lib/constants/date.ts"],"names":[],"mappings":";;;AAEa,QAAA,IAAI,GAA4B;IAC3C,MAAM,EAAE;QACN,IAAI,EAAE,YAAY;QAClB,QAAQ,EAAE,kBAAkB;QAC5B,eAAe,EAAE,qBAAqB;QACtC,IAAI,EAAE,OAAO;QACb,WAAW,EAAE,UAAU;QACvB,mBAAmB,EAAE,sBAAsB;KAC5C;CACF,CAAC"}

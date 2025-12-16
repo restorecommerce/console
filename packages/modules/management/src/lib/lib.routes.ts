@@ -15,13 +15,13 @@ export const modulesManagementRoutes: Route[] = [
           ),
         title: ROUTER.pages.main.children.management.children.index.title,
       },
-      {
-        path: ROUTER.pages.main.children.management.children.iam.path,
-        loadChildren: () => import('./iam/iam.module').then((m) => m.IamModule),
-        title:
-          ROUTER.pages.main.children.management.children.iam.children.index
-            .title,
-      },
+      // {
+      //   path: ROUTER.pages.main.children.management.children.iam.path,
+      //   loadChildren: () => import('./iam/iam.module').then((m) => m.IamModule),
+      //   title:
+      //     ROUTER.pages.main.children.management.children.iam.children.index
+      //       .title,
+      // },
       {
         path: '**',
         redirectTo: ROUTER.pages.main.children.management.children.iam.path,
