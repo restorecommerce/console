@@ -1,5 +1,10 @@
 {
-  "name": "rc-ui",
+  "name": "@console/rc-ui",
   "version": "0.0.1",
-  "sideEffects": false
+  "sideEffects": false,
+  "peerDependencies": {
+    "@angular/core": "^20.3.0",
+    "@angular/common": "^20.3.0",
+    "@vcl/ng-vcl": "^3.4.0"
+  }
 }
