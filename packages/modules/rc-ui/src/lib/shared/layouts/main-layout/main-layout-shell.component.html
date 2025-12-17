@@ -130,7 +130,13 @@
 
     <div class="flex"></div>
 
-    <rc-header-toolbar />
+    <rc-header-toolbar
+      [organizations]="organizations"
+      [user]="user"
+      (organizationSelected)="onSelectOrganization($event)"
+      (accountAction)="onAccountItemSelected($event)"
+      (searchChange)="onSearchChange($event)"
+    />
   </header>
 
   <main class="flex px-2 rs-main">

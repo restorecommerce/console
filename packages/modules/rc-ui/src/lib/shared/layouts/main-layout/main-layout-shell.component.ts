@@ -3,7 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  EventEmitter,
   inject,
+  Input,
+  Output,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -35,7 +38,11 @@ import {
   RcBreadcrumbComponent,
   RcCategorySelectComponent,
 } from '../../patterns';
-import { RcHeaderToolbarComponent } from '../header-toolbar';
+import {
+  RcHeaderOrganization,
+  RcHeaderToolbarComponent,
+  RcHeaderUser,
+} from '../header-toolbar';
 
 @Component({
   selector: 'rc-layout-shell',
@@ -61,9 +68,45 @@ import { RcHeaderToolbarComponent } from '../header-toolbar';
 })
 export class RcLayoutShellComponent {
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
   public facade = inject(RcLayoutFacade);
   public readonly config = inject(RC_LAYOUT_CONFIG, { optional: false });
+
+  @Input() user: RcHeaderUser | null = {
+    id: 'user-1',
+    fullName: 'Bello Babakolo',
+    email: 'bello.babakolo@example.com',
+  };
+
+  @Input() organizations: RcHeaderOrganization[] = [
+    {
+      id: 'org-nfuse',
+      name: 'n-fuse GmbH',
+      description: 'IoT & E-commerce platform',
+    },
+    {
+      id: 'org-fieldmorph',
+      name: 'FieldMorph',
+      description: 'Field operations & asset tracking',
+    },
+    {
+      id: 'org-bells',
+      name: 'Bells Transport',
+      description: 'Bus ticketing & logistics',
+    },
+  ];
+
+  @Input() selectedOrganizationId: string | null = 'org-nfuse';
+
+  @Input() showProfile = true;
+  @Input() showPreferences = true;
+  @Input() showSignOut = true;
+
+  @Output() organizationSelected = new EventEmitter<string>();
+  @Output() accountAction = new EventEmitter<
+    'profile' | 'preferences' | 'sign-out'
+  >();
+
+  @Output() searchChange = new EventEmitter<string>();
 
   private readonly destroyRef = inject(DestroyRef);
 
@@ -73,11 +116,10 @@ export class RcLayoutShellComponent {
     this.router.events
       .pipe(
         filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        takeUntilDestroyed(this.destroyRef),
+        takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe(() => {
-        // TODO Will revisit this later
-        // this.syncCategoryWithUrl(e.urlAfterRedirects);
+      .subscribe((e) => {
+        this.syncCategoryWithUrl(e.urlAfterRedirects);
       });
   }
 
@@ -132,8 +174,26 @@ export class RcLayoutShellComponent {
     }
   }
 
+  onSearchChange(term: string): void {
+    this.searchChange.emit(term);
+  }
+
+  onSelectOrganization(id: string): void {
+    this.organizationSelected.emit(id);
+  }
+
+  onAccountItemSelected(value: string): void {
+    if (
+      value === 'profile' ||
+      value === 'preferences' ||
+      value === 'sign-out'
+    ) {
+      this.accountAction.emit(value);
+    }
+  }
+
   private getFirstNavItemForCategory(
-    id: RcLayoutNavCategoryId,
+    id: RcLayoutNavCategoryId
   ): RcLayoutNavItem | undefined {
     const flat = this.flattenNavItems(this.config.navItems);
     const defaultCategoryId = this.config.categories?.[0]?.id;
