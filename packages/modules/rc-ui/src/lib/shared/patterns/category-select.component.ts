@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   Output,
 } from '@angular/core';
@@ -12,11 +13,8 @@ import {
   VCLSelectModule,
   VCLSelectListModule,
 } from '@vcl/ng-vcl';
-
-export interface LayoutNavCategory {
-  id: string;
-  label: string;
-}
+import { RcLayoutNavCategory, RcTranslatable } from '../layouts';
+import { RS_TRANSLATE } from '../../i18n.tokens';
 
 @Component({
   selector: 'rc-category-select',
@@ -38,7 +36,7 @@ export interface LayoutNavCategory {
         >
           @for (cat of categories; track cat.id) {
           <vcl-select-list-item [value]="cat.id">
-            {{ cat.label }}
+            {{ label$(cat.label) | async }}
           </vcl-select-list-item>
           }
         </vcl-select-list>
@@ -49,12 +47,18 @@ export interface LayoutNavCategory {
 })
 export class RcCategorySelectComponent {
   @Input() label = 'Select category';
-  @Input() categories: LayoutNavCategory[] = [];
+  @Input() categories: RcLayoutNavCategory[] = [];
   @Input() value: string | null = null;
+
+  private readonly t = inject(RS_TRANSLATE, { optional: false });
 
   @Output() valueChange = new EventEmitter<string>();
 
   onChange(id: string) {
     this.valueChange.emit(id);
+  }
+
+  label$(v: RcTranslatable) {
+    return this.t(v);
   }
 }

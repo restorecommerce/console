@@ -2,15 +2,19 @@ export type RcLayoutCategoryRoute = string;
 
 export type RcLayoutNavCategoryId = 'home' | 'management' | string;
 
+export type RcTranslatable =
+  | string
+  | { key: string; params?: Record<string, unknown>; fallback?: string };
+
 export interface RcLayoutNavCategory {
   id: RcLayoutNavCategoryId;
-  label: string;
+  label: RcTranslatable;
   defaultRoute?: RcLayoutCategoryRoute;
 }
 
 export interface RcLayoutNavItem {
   id: string;
-  label: string;
+  label: RcTranslatable;
   icon?: string;
   route?: string;
   externalUrl?: string;
@@ -26,4 +30,16 @@ export interface RcLayoutConfig {
   navItems: RcLayoutNavItem[];
   basePath?: string;
   categories?: RcLayoutNavCategory[];
+
+  uiText?: {
+    showSidebar?: RcTranslatable;
+    hideSidebar?: RcTranslatable;
+    selectCategory?: RcTranslatable;
+  };
+
+  accountMenu?: {
+    profile?: RcTranslatable;
+    preferences?: RcTranslatable;
+    signOut?: RcTranslatable;
+  };
 }

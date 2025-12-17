@@ -16,7 +16,11 @@
           vcl-button
           square
           class="transparent"
-          [title]="(collapsed$ | async) ? 'Hide sidebar' : 'Show sidebar'"
+          [title]="
+            (collapsed$ | async)
+              ? (label$(config.uiText?.hideSidebar || 'Hide') | async)
+              : (label$(config.uiText?.showSidebar || 'Show') | async)
+          "
           (click)="toggleSidebar()"
         >
           <vcl-icon
@@ -57,7 +61,7 @@
             ></vcl-icon>
             }
 
-            {{ item.label }}
+            {{ label$(item.label) | async }}
           </vcl-icogram>
         </vcl-navigation-label>
 
@@ -75,7 +79,7 @@
                   vclPrepend
                   [icon]="child.icon"
                 ></vcl-icon>
-                {{ child.label }}
+                {{ label$(child.label) | async }}
               </vcl-icogram>
             </vcl-navigation-label>
           </vcl-navigation-item>
@@ -112,7 +116,7 @@
       vcl-button
       square
       class="transparent"
-      title="Show sidebar"
+      [title]="label$(config.uiText?.showSidebar ?? 'Show sidebar') | async"
       (click)="toggleSidebar()"
     >
       <vcl-icon

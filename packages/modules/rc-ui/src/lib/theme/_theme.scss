@@ -28,6 +28,20 @@
   $mdi-font-path: '/assets/mdi/fonts'
 );
 
+body {
+  margin: 0;
+}
+
+.navigation {
+  margin-bottom: 0;
+}
+
+[popover='manual'] {
+  margin: 0;
+  all: unset;
+  position: absolute;
+}
+
 // Custom style for VCL
 .drawer {
   width: 15rem;

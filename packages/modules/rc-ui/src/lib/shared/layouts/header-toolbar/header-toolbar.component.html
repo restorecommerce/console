@@ -102,7 +102,8 @@
         vclPrepend
         icon="mdi:account-cog-outline"
       ></vcl-icon>
-      {{ 'rs-ui.header.account.profileLabel' }}
+
+      {{ label$(config.accountMenu?.profile || 'Profile') | async }}
     </vcl-select-list-item>
     } @if (showPreferences) {
     <vcl-select-list-item value="preferences">
@@ -110,7 +111,7 @@
         vclPrepend
         icon="mdi:cog-outline"
       ></vcl-icon>
-      {{ 'rs-ui.header.account.preferencesLabel' }}
+      {{ label$(config.accountMenu?.preferences || 'Preferences') | async }}
     </vcl-select-list-item>
     } @if (showSignOut) {
     <vcl-select-list-item value="sign-out">
@@ -118,7 +119,7 @@
         vclPrepend
         icon="mdi:logout"
       ></vcl-icon>
-      {{ 'rs-ui.header.account.signOutLabel' }}
+      {{ label$(config.accountMenu?.signOut || 'Sign out') | async }}
     </vcl-select-list-item>
     }
   </vcl-select-list>

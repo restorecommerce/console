@@ -1,4 +1,3 @@
-// rc-breadcrumb.component.ts
 import { NgClass } from '@angular/common';
 import {
   AfterViewInit,
@@ -122,7 +121,7 @@ export class RcBreadcrumbComponent implements AfterViewInit, OnDestroy {
     this.router.events
       .pipe(
         filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        takeUntil(this.destroy$),
+        takeUntil(this.destroy$)
       )
       .subscribe(() => {
         this.updateBreadcrumbs();
@@ -141,7 +140,7 @@ export class RcBreadcrumbComponent implements AfterViewInit, OnDestroy {
 
   private updateBreadcrumbs(): void {
     const newBreadcrumbs = this.createBreadcrumbs(
-      this.activatedRoute.root,
+      this.activatedRoute.root
     ).reduce((acc, { label, url }) => {
       if (label !== '' && !acc.some((breadcrumb) => breadcrumb.url === url)) {
         acc.push({ label, url });
@@ -159,7 +158,7 @@ export class RcBreadcrumbComponent implements AfterViewInit, OnDestroy {
   private createBreadcrumbs(
     route: ActivatedRoute,
     url = '',
-    breadcrumbs: IBreadcrumb[] = [],
+    breadcrumbs: IBreadcrumb[] = []
   ): IBreadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 

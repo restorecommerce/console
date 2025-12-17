@@ -9,12 +9,7 @@ import {
   Output,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterModule,
-} from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 
 import {
@@ -30,6 +25,7 @@ import {
 import {
   RcLayoutNavCategoryId,
   RcLayoutNavItem,
+  RcTranslatable,
 } from './main-layout-config.model';
 import { RcLayoutFacade } from './main-layout.facade';
 import { RC_LAYOUT_CONFIG } from './main-layout.tokens';
@@ -43,6 +39,7 @@ import {
   RcHeaderToolbarComponent,
   RcHeaderUser,
 } from '../header-toolbar';
+import { RS_TRANSLATE } from '../../../i18n.tokens';
 
 @Component({
   selector: 'rc-layout-shell',
@@ -70,6 +67,7 @@ export class RcLayoutShellComponent {
   private router = inject(Router);
   public facade = inject(RcLayoutFacade);
   public readonly config = inject(RC_LAYOUT_CONFIG, { optional: false });
+  private readonly t = inject(RS_TRANSLATE, { optional: false });
 
   @Input() user: RcHeaderUser | null = {
     id: 'user-1',
@@ -129,6 +127,10 @@ export class RcLayoutShellComponent {
   categories$ = this.facade.categories$;
   activeCategory$ = this.facade.activeCategory$;
   visibleNavItems$ = this.facade.visibleNavItems$;
+
+  label$(v: RcTranslatable) {
+    return this.t(v);
+  }
 
   navigate(item: RcLayoutNavItem) {
     if (item.externalUrl) {

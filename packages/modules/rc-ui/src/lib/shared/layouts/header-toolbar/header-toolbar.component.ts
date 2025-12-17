@@ -5,6 +5,7 @@ import {
   Component,
   EventEmitter,
   HostBinding,
+  inject,
   Input,
   Output,
 } from '@angular/core';
@@ -22,6 +23,8 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RcHeaderOrganization, RcHeaderUser } from './header-toolbar.models';
+import { RS_TRANSLATE } from '../../../i18n.tokens';
+import { RC_LAYOUT_CONFIG, RcTranslatable } from '../main-layout';
 
 @Component({
   selector: 'rc-header-toolbar',
@@ -96,6 +99,9 @@ export class RcHeaderToolbarComponent {
   @HostBinding('class.row')
   hostRowClass = true;
 
+  private readonly t = inject(RS_TRANSLATE, { optional: false });
+  public readonly config = inject(RC_LAYOUT_CONFIG, { optional: false });
+
   searchTerm = '';
 
   get selectedOrganization(): RcHeaderOrganization | undefined {
@@ -129,5 +135,9 @@ export class RcHeaderToolbarComponent {
     ) {
       this.accountAction.emit(value);
     }
+  }
+
+  label$(v: RcTranslatable) {
+    return this.t(v);
   }
 }
