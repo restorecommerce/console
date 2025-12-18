@@ -14,7 +14,7 @@ import {
   VCLSelectListModule,
 } from '@vcl/ng-vcl';
 import { RcLayoutNavCategory, RcTranslatable } from '../layouts';
-import { RS_TRANSLATE } from '../../i18n.tokens';
+import { RS_TRANSLATE } from '../../i18n/i18n.tokens';
 
 @Component({
   selector: 'rc-category-select',

@@ -23,7 +23,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RcHeaderOrganization, RcHeaderUser } from './header-toolbar.models';
-import { RS_TRANSLATE } from '../../../i18n.tokens';
+import { RS_TRANSLATE } from '../../../i18n/i18n.tokens';
 import { RC_LAYOUT_CONFIG, RcTranslatable } from '../main-layout';
 
 @Component({

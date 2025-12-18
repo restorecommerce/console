@@ -6,7 +6,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {
@@ -19,6 +24,8 @@ import {
 
 import { AUTH_BRANDING_CONFIG, AuthBrandingConfig } from '../../auth.config';
 import { RsAuthLayoutComponent } from '../../layouts';
+import { RsTranslatePipe } from '../../../i18n';
+import { AsyncPipe } from '@angular/common';
 
 export interface SignInCredentials {
   identifier: string;
@@ -39,6 +46,8 @@ export interface SignInCredentials {
     VCLPasswordInputModule,
     RouterModule,
     RsAuthLayoutComponent,
+    RsTranslatePipe,
+    AsyncPipe,
   ],
 })
 export class RcSignInComponent {
@@ -53,8 +62,8 @@ export class RcSignInComponent {
   readonly config = inject(AUTH_BRANDING_CONFIG, { optional: true });
 
   form = this.fb.group({
-    identifier: ['', []],
-    password: ['', []],
+    identifier: ['', [Validators.required]],
+    password: ['', [Validators.required]],
     remember: [false, []],
   });
 

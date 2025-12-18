@@ -39,7 +39,7 @@ import {
   RcHeaderToolbarComponent,
   RcHeaderUser,
 } from '../header-toolbar';
-import { RS_TRANSLATE } from '../../../i18n.tokens';
+import { RS_TRANSLATE } from '../../../i18n/i18n.tokens';
 
 @Component({
   selector: 'rc-layout-shell',

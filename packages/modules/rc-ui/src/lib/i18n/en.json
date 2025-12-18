@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "signIn": {
+      "title": "Sign in",
+      "identifierLabel": "Email or Username",
+      "passwordLabel": "Password",
+      "remember7Days": "Stay signed in for 7 days",
+      "submit": "Sign in",
+      "forgotPassword": "Forgot Password?"
+    }
+  }
+}

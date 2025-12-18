@@ -12,7 +12,9 @@
     <h3 class="p-2">{{ branding.appName }}</h3>
   </div>
   <div class="mt-1 row justify-center align-item-center">
-    <span>Sign in</span>
+    <span>{{
+      { key: 'auth.signIn.title', fallback: 'Sign in' } | rsTranslate | async
+    }}</span>
   </div>
   <hr />
   <form
@@ -22,7 +24,11 @@
     (ngSubmit)="onSubmit()"
   >
     <vcl-form-control-group>
-      <vcl-label>Email or Username</vcl-label>
+      <vcl-label>{{
+        { key: 'auth.signIn.identifierLabel', fallback: 'Email or Username' }
+          | rsTranslate
+          | async
+      }}</vcl-label>
       <vcl-input-field>
         <input
           vclInput
@@ -32,7 +38,14 @@
     </vcl-form-control-group>
 
     <vcl-form-control-group>
-      <vcl-label>Password</vcl-label>
+      <vcl-label>
+        {{
+          { key: 'auth.signIn.passwordLabel', fallback: 'Password' }
+            | rsTranslate
+            | async
+        }}
+        Password</vcl-label
+      >
       <vcl-password-input>
         <input
           vclInput
@@ -42,13 +55,21 @@
     </vcl-form-control-group>
 
     <vcl-form-control-group>
-      <vcl-checkbox formControlName="remember"
-        >Stay signed in for 7 days</vcl-checkbox
-      >
+      <vcl-checkbox formControlName="remember">
+        {{
+          {
+            key: 'auth.signIn.remember7Days',
+            fallback: 'Stay signed in for 7 days'
+          }
+            | rsTranslate
+            | async
+        }}
+      </vcl-checkbox>
     </vcl-form-control-group>
 
     <div class="row">
       <button
+        [disabled]="form.invalid"
         vcl-button
         type="submit"
         class="w-100p"
