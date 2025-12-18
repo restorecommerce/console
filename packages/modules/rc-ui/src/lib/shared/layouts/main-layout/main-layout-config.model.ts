@@ -35,6 +35,7 @@ export interface RcLayoutConfig {
     showSidebar?: RcTranslatable;
     hideSidebar?: RcTranslatable;
     selectCategory?: RcTranslatable;
+    selectOrganization?: RcTranslatable;
   };
 
   accountMenu?: {

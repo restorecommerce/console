@@ -16,7 +16,11 @@
         icon="mdi:home-outline"
       ></vcl-icon>
 
-      {{ selectedOrganization?.name || 'rs-ui.header.org.selectPlaceholder' }}
+      {{
+        selectedOrganization?.name ||
+          (label$(config.uiText?.selectOrganization || 'Select organization')
+            | async)
+      }}
 
       <vcl-icon
         vclAppend

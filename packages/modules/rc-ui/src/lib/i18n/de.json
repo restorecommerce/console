@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "signIn": {
+      "title": "Anmelden",
+      "identifierLabel": "E-Mail-Adresse oder Benutzername",
+      "passwordLabel": "Passwort",
+      "remember7Days": "7 Tage lang angemeldet bleiben",
+
+      "submit": "Anmelden",
+
+      "forgotPassword": "Passwort vergessen?"
+    }
+  }
+}

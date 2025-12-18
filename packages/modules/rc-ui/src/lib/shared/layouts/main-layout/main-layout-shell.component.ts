@@ -93,7 +93,7 @@ export class RcLayoutShellComponent {
     },
   ];
 
-  @Input() selectedOrganizationId: string | null = 'org-nfuse';
+  @Input() selectedOrganizationId: string | null = null;
 
   @Input() showProfile = true;
   @Input() showPreferences = true;

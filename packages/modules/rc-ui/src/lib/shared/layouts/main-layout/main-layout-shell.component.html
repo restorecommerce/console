@@ -33,6 +33,7 @@
       @if (isHandset$ | async) { @if (categories$ | async; as categories) {
       <div class="my-2 px-2">
         <rc-category-select
+          [title]="label$(config.uiText?.selectCategory || '') | async"
           [categories]="(categories$ | async) || []"
           [value]="activeCategory$ | async"
           (valueChange)="onSelectCategory($event)"
@@ -93,6 +94,7 @@
         @if ((isHandset$ | async) === false) { @if (categories$ | async; as
         categories) {
         <rc-category-select
+          [title]="label$(config.uiText?.selectCategory || '') | async"
           [categories]="(categories$ | async) || []"
           [value]="activeCategory$ | async"
           (valueChange)="onSelectCategory($event)"
@@ -137,6 +139,7 @@
     <rc-header-toolbar
       [organizations]="organizations"
       [user]="user"
+      [selectedOrganizationId]="selectedOrganizationId"
       (organizationSelected)="onSelectOrganization($event)"
       (accountAction)="onAccountItemSelected($event)"
       (searchChange)="onSearchChange($event)"
