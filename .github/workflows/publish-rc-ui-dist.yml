@@ -1,0 +1,110 @@
+name: Publish rc-ui build to dist repo
+
+on:
+  push:
+    branches: ["main"]
+    # Only run when rc-ui (or its build config) changes
+    paths:
+      - "libs/rc-ui/**"
+      - "nx.json"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.base.json"
+      - "angular.json"
+      - "workspace.json"
+      - "tools/**"
+  # Allow manual run (useful for emergencies)
+  workflow_dispatch: {}
+
+concurrency:
+  group: rc-ui-dist-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish-dist:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build rc-ui
+        run: npx nx build rc-ui
+
+      - name: Validate built package name
+        run: |
+          set -euo pipefail
+          PKG_JSON="dist/libs/rc-ui/package.json"
+
+          if [ ! -f "$PKG_JSON" ]; then
+            echo "ERROR: build output package.json not found at $PKG_JSON"
+            exit 1
+          fi
+
+          NAME="$(node -p "require('./$PKG_JSON').name")"
+          if [ "$NAME" != "@console/rc-ui" ]; then
+            echo "ERROR: Built package name must be '@console/rc-ui' but got: '$NAME'"
+            echo "Fix: ensure the library package.json (source) has name '@console/rc-ui' so ng-packagr outputs it."
+            exit 1
+          fi
+
+          echo "OK: package name is $NAME"
+
+      - name: Create GitHub App token (for dist repo)
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.RC_UI_APP_ID }}
+          private-key: ${{ secrets.RC_UI_APP_PRIVATE_KEY }}
+          owner: restorecommerce
+          repositories: rc-ui-lib
+
+      - name: Push build output to dist repo
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+          DIST_REPO: restorecommerce/rc-ui-lib
+          DIST_BRANCH: main
+          PKG_DIR: dist/libs/rc-ui
+          SRC_SHA: ${{ github.sha }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          if [ ! -d "$PKG_DIR" ]; then
+            echo "ERROR: Build output not found at: $PKG_DIR"
+            exit 1
+          fi
+
+          rm -rf .tmp_dist
+          mkdir -p .tmp_dist
+          cp -R "$PKG_DIR"/. .tmp_dist/
+
+          cd .tmp_dist
+
+          git init
+          git checkout -b "$DIST_BRANCH"
+
+          # Traceability
+          echo "$SRC_SHA" > SOURCE_COMMIT
+          echo "$REF_NAME" > SOURCE_REF
+
+          git add -A
+          git -c user.name="rc-ui-bot" \
+              -c user.email="rc-ui-bot@users.noreply.github.com" \
+              commit -m "rc-ui build from ${SRC_SHA}" || true
+
+          git remote add origin "https://x-access-token:${TOKEN}@github.com/${DIST_REPO}.git"
+          git push -f origin "$DIST_BRANCH"
