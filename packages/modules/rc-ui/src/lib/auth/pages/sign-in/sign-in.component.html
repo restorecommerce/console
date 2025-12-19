@@ -44,8 +44,7 @@
             | rsTranslate
             | async
         }}
-        Password</vcl-label
-      >
+      </vcl-label>
       <vcl-password-input>
         <input
           vclInput
@@ -74,12 +73,28 @@
         type="submit"
         class="w-100p"
       >
-        Sign in
+        {{
+          {
+            key: 'auth.signIn.submit',
+            fallback: 'Sign in'
+          }
+            | rsTranslate
+            | async
+        }}
       </button>
     </div>
 
     <p class="mt-3">
-      <a routerLink="password-recovery">Forgot Password?</a>
+      <a routerLink="asRouteLink(branding.forgotPasswordRoute)">
+        {{
+          {
+            key: 'auth.signIn.forgotPassword',
+            fallback: 'Forgot Password?'
+          }
+            | rsTranslate
+            | async
+        }}
+      </a>
     </p>
   </form>
 </rc-auth-layout>

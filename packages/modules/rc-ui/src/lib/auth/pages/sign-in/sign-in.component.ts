@@ -81,6 +81,7 @@ export class RcSignInComponent {
       logoUrl: '',
       logoAlt: 'App logo',
       tagline: '',
+      forgotPasswordRoute: 'password-recovery',
     };
 
     const base = this.config ?? fallback;
@@ -90,7 +91,12 @@ export class RcSignInComponent {
       logoUrl: this.logoUrl ?? base.logoUrl,
       logoAlt: this.logoAlt ?? base.logoAlt ?? base.appName,
       tagline: this.tagline ?? base.tagline,
+      forgotPasswordRoute: base?.forgotPasswordRoute,
     };
+  }
+
+  asRouteLink(route: string | any[]) {
+    return Array.isArray(route) ? route : [route];
   }
 
   onSubmit(): void {
