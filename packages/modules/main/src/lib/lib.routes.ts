@@ -1,13 +1,13 @@
 import { Route } from '@angular/router';
-import { RcLayoutShellComponent } from '@console/rc-ui';
+// import { RcLayoutShellComponent } from '@console/rc-ui';
 
 import { ROUTER } from '@console-core/config';
-import { PrivateGuard } from '@console-modules/shared';
+// import { PrivateGuard } from '@console-modules/shared';
 
 export const modulesMainRoutes: Route[] = [
   {
     path: ROUTER.pages.main.children.home.path,
-    component: RcLayoutShellComponent,
+    // component: RcLayoutShellComponent,
     // canActivate: [PrivateGuard],
     // canActivateChild: [PrivateGuard],
     loadChildren: () =>
