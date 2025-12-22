@@ -18,7 +18,6 @@ import {
 } from '@console-core/types';
 
 import { ErrorHandlingService, ProductService } from '../../services';
-import { withLatestOrganizationData } from '../../utils';
 import { AppFacade } from '../app';
 import { OrganizationContextFacade } from '../organization-context';
 
@@ -47,48 +46,34 @@ export class ProductEffects {
   productReadRequest$ = createEffect(() => {
     let isLoadMore = false;
     return this.actions$.pipe(
-      withLatestOrganizationData(
-        this.organizationContextFacade,
-        productActions.productReadRequest.type // Pass only the effect-specific action
+      ofType(
+        productActions.productReadRequest // Pass only the effect-specific action
       ),
-      exhaustMap(([action, organization]) => {
-        // Action dispatched could be of many things...
-        // OrganizationSwitching, Organization back, or loadProducts
-        const productAction = action as ReturnType<
-          typeof productActions.productReadRequest
-        >;
+      exhaustMap(({ payload }) => {
+        const productActionPayload = payload || queryVariables;
+        return this.productService.read(payload).pipe(
+          tap((result) => {
+            if (productActionPayload.offset) {
+              isLoadMore = productActionPayload.offset > 0;
+            }
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.catalog?.product?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const items = (
+              result?.data?.catalog?.product?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as IProduct[];
 
-        const productActionPayload = productAction.payload || queryVariables;
-        return this.productService
-          .read({
-            ...productActionPayload,
-            scope: organization,
-          })
-          .pipe(
-            tap((result) => {
-              if (productActionPayload.offset) {
-                isLoadMore = productActionPayload.offset > 0;
-              }
-              this.errorHandlingService.checkStatusAndThrow(
-                result?.data?.catalog?.product?.Read?.details
-                  ?.operationStatus as TOperationStatus
-              );
-            }),
-            map((result) => {
-              const items = (
-                result?.data?.catalog?.product?.Read?.details?.items || []
-              )?.map((item) => item?.payload) as IProduct[];
-
-              return productActions.productReadRequestSuccess({
-                payload: { items, isLoadMore },
-              });
-            }),
-            catchError((error: Error) =>
-              of(
-                productActions.productReadRequestFail({ error: error.message })
-              )
-            )
-          );
+            return productActions.productReadRequestSuccess({
+              payload: { items, isLoadMore },
+            });
+          }),
+          catchError((error: Error) =>
+            of(productActions.productReadRequestFail({ error: error.message }))
+          )
+        );
       })
     );
   });
@@ -288,7 +273,6 @@ export class ProductEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly organizationContextFacade: OrganizationContextFacade,
     private readonly productService: ProductService,
     private readonly errorHandlingService: ErrorHandlingService
   ) {}

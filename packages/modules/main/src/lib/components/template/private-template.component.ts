@@ -2,13 +2,27 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   OnInit,
 } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { RcLayoutShellComponent } from '@console/rc-ui';
-import { combineLatest } from 'rxjs';
+import {
+  combineLatest,
+  distinctUntilChanged,
+  filter,
+  map,
+  startWith,
+} from 'rxjs';
 
+import { ORG_QUERY_PARAM_KEY } from '@console-core/config';
 import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
 
 @Component({
@@ -31,11 +45,16 @@ import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
   imports: [RouterOutlet, AsyncPipe, RcLayoutShellComponent],
 })
 export class PrivateTemplateComponent implements OnInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
+
   private readonly router = inject(Router);
   private readonly accountFacade = inject(AccountFacade);
   private readonly organizationContextFacade = inject(
     OrganizationContextFacade
   );
+
+  private readonly orgQueryParamKey = inject(ORG_QUERY_PARAM_KEY);
 
   readonly vm$ = combineLatest({
     user: this.accountFacade.user$,
@@ -44,11 +63,52 @@ export class PrivateTemplateComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    // Change organization merges the route with the query param (?org=orgId)
     this.organizationContextFacade.read({});
+
+    const urlOrgId$ = this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      startWith(null), // read initial URL too
+      map(
+        () => this.route.snapshot.queryParamMap.get(this.orgQueryParamKey) ?? ''
+      ),
+      distinctUntilChanged()
+    );
+
+    combineLatest({
+      organizations: this.organizationContextFacade.all$,
+      selectedId: this.organizationContextFacade.selectedId$,
+      urlOrgId: urlOrgId$,
+    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(({ organizations, selectedId, urlOrgId }) => {
+        if (!organizations?.length) return;
+
+        const exists = (id: string) => organizations.some((o) => o.id === id);
+
+        // 1) URL has org and it's valid -> ensure facade matches it
+        if (urlOrgId && exists(urlOrgId)) {
+          if (selectedId !== urlOrgId) {
+            this.organizationContextFacade.setSelectedOrganizationId(urlOrgId);
+          }
+          return;
+        }
+
+        // 2) URL missing/invalid, but facade has a valid selection -> write it to URL
+        if (selectedId && exists(selectedId)) {
+          this.setOrgInUrl(selectedId, true);
+          return;
+        }
+
+        // 3) Neither URL nor facade has a valid selection -> pick a default
+        const defaultId = organizations[0].id;
+        this.organizationContextFacade.setSelectedOrganizationId(defaultId);
+        this.setOrgInUrl(defaultId, true);
+      });
   }
 
   onHandleSelectedOrganization(orgId: string) {
-    this.organizationContextFacade.setSelectedOrganizationId(orgId);
+    this.setOrgInUrl(orgId, true);
   }
 
   onAccountAction(action: 'profile' | 'preferences' | 'sign-out') {
@@ -64,16 +124,19 @@ export class PrivateTemplateComponent implements OnInit {
 
   onSearch(_: string) {
     // Filter organizations...
-    // const q = (term ?? '').trim().toLowerCase();
-    // if (!q) {
-    //   this.organizations = [...this.organizations];
-    //   return;
-    // }
-    // this.organizations = this.organizations.filter((org) => {
-    //   const haystack = `${org.name} ${org.id} ${
-    //     org.description ?? ''
-    //   }`.toLowerCase();
-    //   return haystack.includes(q);
-    // });
+  }
+
+  private setOrgInUrl(orgId: string, replaceUrl = false) {
+    const current = this.route.snapshot.queryParamMap.get(
+      this.orgQueryParamKey
+    );
+    if (current === orgId) return;
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { [this.orgQueryParamKey]: orgId },
+      queryParamsHandling: 'merge',
+      replaceUrl,
+    });
   }
 }

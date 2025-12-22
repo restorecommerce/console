@@ -16,7 +16,6 @@ import {
 } from '@console-core/types';
 
 import { CountryService, ErrorHandlingService } from '../../../services';
-import { withLatestOrganizationData } from '../../../utils';
 import { AppFacade } from '../../app';
 import { OrganizationContextFacade } from '../../organization-context';
 
@@ -26,12 +25,9 @@ import * as countryActions from './country.actions';
 export class CountryEffects {
   countryReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      withLatestOrganizationData(
-        this.organizationContextFacade,
-        countryActions.countryReadRequest.type
-      ),
-      exhaustMap(([_action, _organization]) =>
-        this.countryService.read({}).pipe(
+      ofType(countryActions.countryReadRequest),
+      exhaustMap(({ payload }) =>
+        this.countryService.read(payload).pipe(
           tap((result) => {
             this.errorHandlingService.checkStatusAndThrow(
               result?.data?.master_data?.country?.Read?.details

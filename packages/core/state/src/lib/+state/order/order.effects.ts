@@ -18,7 +18,6 @@ import {
 } from '@console-core/types';
 
 import { ErrorHandlingService, OrderService } from '../../services';
-import { withLatestOrganizationData } from '../../utils';
 import { AppFacade } from '../app';
 import { OrganizationContextFacade } from '../organization-context';
 
@@ -29,47 +28,26 @@ import { OrderFacade } from './order.facade';
 export class OrderEffects {
   orderReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      withLatestOrganizationData(
-        this.organizationContextFacade,
-        orderActions.orderReadRequest.type
-      ),
-      exhaustMap(([_action, organization]) => {
-        return this.orderService
-          .read({
-            // Sort object from the product payload or the default goes here!
-            // ...productActionPayload,
-            filters: organization
-              ? [
-                  {
-                    filters: [
-                      {
-                        field: 'meta.owners[*].attributes[**].value',
-                        operation:
-                          IoRestorecommerceResourcebaseFilterOperation.In,
-                        value: organization,
-                      },
-                    ],
-                  },
-                ]
-              : [],
-          })
-          .pipe(
-            tap((result) => {
-              this.errorHandlingService.checkStatusAndThrow(
-                result?.data?.ordering?.order?.Read?.details
-                  ?.operationStatus as TOperationStatus
-              );
-            }),
-            map((result) => {
-              const payload = (
-                result?.data?.ordering?.order?.Read?.details?.items || []
-              )?.map((item) => item?.payload) as IOrder[];
-              return orderActions.orderReadRequestSuccess({ payload });
-            }),
-            catchError((error: Error) =>
-              of(orderActions.orderReadRequestFail({ error: error.message }))
-            )
-          );
+      ofType(orderActions.orderReadRequest),
+      exhaustMap(({ payload }) => {
+        // Action are gotten only and only from the
+        return this.orderService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.ordering?.order?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload = (
+              result?.data?.ordering?.order?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as IOrder[];
+            return orderActions.orderReadRequestSuccess({ payload });
+          }),
+          catchError((error: Error) =>
+            of(orderActions.orderReadRequestFail({ error: error.message }))
+          )
+        );
       })
     );
   });

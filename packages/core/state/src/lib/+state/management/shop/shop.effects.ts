@@ -16,7 +16,6 @@ import {
 } from '@console-core/types';
 
 import { ErrorHandlingService, ShopService } from '../../../services';
-import { withLatestOrganizationData } from '../../../utils';
 import { AppFacade } from '../../app';
 import { OrganizationContextFacade } from '../../organization-context';
 
@@ -26,43 +25,25 @@ import * as shopActions from './shop.actions';
 export class ShopEffects {
   shopReadRequest$ = createEffect(() => {
     return this.actions$.pipe(
-      withLatestOrganizationData(
-        this.organizationContextFacade,
-        shopActions.shopReadRequest.type
-      ),
-      exhaustMap(([_, organization]) =>
-        this.shopService
-          .read({
-            // ...productActionPayload,
-            filters: [
-              {
-                filters: [
-                  {
-                    field: 'meta.owners[*].attributes[**].value',
-                    operation: IoRestorecommerceResourcebaseFilterOperation.In,
-                    value: organization,
-                  },
-                ],
-              },
-            ],
-          })
-          .pipe(
-            tap((result) => {
-              this.errorHandlingService.checkStatusAndThrow(
-                result?.data?.master_data?.shop?.Read?.details
-                  ?.operationStatus as TOperationStatus
-              );
-            }),
-            map((result) => {
-              const payload = (
-                result?.data?.master_data?.shop?.Read?.details?.items || []
-              )?.map((item) => item?.payload) as IShop[];
-              return shopActions.shopReadRequestSuccess({ payload });
-            }),
-            catchError((error: Error) =>
-              of(shopActions.shopReadRequestFail({ error: error.message }))
-            )
+      ofType(shopActions.shopReadRequest),
+      exhaustMap(({ payload }) =>
+        this.shopService.read(payload).pipe(
+          tap((result) => {
+            this.errorHandlingService.checkStatusAndThrow(
+              result?.data?.master_data?.shop?.Read?.details
+                ?.operationStatus as TOperationStatus
+            );
+          }),
+          map((result) => {
+            const payload = (
+              result?.data?.master_data?.shop?.Read?.details?.items || []
+            )?.map((item) => item?.payload) as IShop[];
+            return shopActions.shopReadRequestSuccess({ payload });
+          }),
+          catchError((error: Error) =>
+            of(shopActions.shopReadRequestFail({ error: error.message }))
           )
+        )
       )
     );
   });
