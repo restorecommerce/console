@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
         [src]="logoUrl"
         class="responsive-image logo"
         role="presentation"
-        width="100"
+        [width]="logoWidth"
       />
     </a>
     } @if (showName) {
@@ -39,6 +39,8 @@ export class RcBannerComponent {
 
   @Input()
   logoUrl?: string;
+
+  @Input() logoWidth = 100;
 
   @Input()
   logoLink?: string;

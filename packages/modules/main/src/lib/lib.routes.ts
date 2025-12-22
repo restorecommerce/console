@@ -44,6 +44,14 @@ export const modulesMainRoutes: Route[] = [
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
   },
+  {
+    path: ROUTER.pages.main.children.orders.path,
+    component: PrivateTemplateComponent,
+    canActivate: [PrivateGuard],
+    canActivateChild: [PrivateGuard],
+    loadChildren: () =>
+      import('@console-modules/order').then((m) => m.ModulesOrderModule),
+  },
   // {
   //   path: ROUTER.pages.main.children.account.path,
   //   component: LayoutShellComponent,

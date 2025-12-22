@@ -27,6 +27,7 @@ export interface RcLayoutNavItem {
 export interface RcLayoutConfig {
   appName: string;
   logoUrl?: string;
+  logoWidth?: number;
   navItems: RcLayoutNavItem[];
   basePath?: string;
   categories?: RcLayoutNavCategory[];
