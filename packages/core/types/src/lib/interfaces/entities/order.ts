@@ -7,6 +7,7 @@ import {
 
 import { IBillingAddress } from './billing-address';
 import { IMeta } from './meta';
+import { IOrderItem } from './order-item';
 import { IShippingAddress } from './shipping-address';
 
 export interface IOrder
@@ -17,6 +18,7 @@ export interface IOrder
     | 'user'
     | 'customerOrderNr'
     | 'orderState'
+    | 'items'
     | 'meta'
     | 'customer'
     | 'shippingAddress'
@@ -29,6 +31,7 @@ export interface IOrder
   customerOrderNr: string;
   orderState: IoRestorecommerceOrderOrderState;
   thumbnailUrl?: string;
+  items: IOrderItem[];
   shippingAddress: IShippingAddress;
   billingAddress: IBillingAddress;
   customer: {
