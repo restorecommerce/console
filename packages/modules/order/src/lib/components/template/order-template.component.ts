@@ -5,13 +5,14 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
   RcResourcePageLayoutComponent,
   RcResourceListComponent,
 } from '@console/rc-ui';
 import { combineLatest, map } from 'rxjs';
 
-import { OrderFacade, RouterFacade } from '@console-core/state';
+import { OrderFacade } from '@console-core/state';
 import { IOrderItem } from '@console-core/types';
 
 @Component({
@@ -24,6 +25,7 @@ import { IOrderItem } from '@console-core/types';
     RcResourceListComponent,
     RcResourcePageLayoutComponent,
     RcResourceListComponent,
+    RouterOutlet,
   ],
   styles: [
     `
@@ -41,7 +43,8 @@ import { IOrderItem } from '@console-core/types';
 })
 export class OrderTemplateComponent implements OnInit {
   private readonly orderFacade = inject(OrderFacade);
-  private readonly routerFacade = inject(RouterFacade);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
   readonly vm$ = combineLatest({
     items: this.orderFacade.all$.pipe(
@@ -61,12 +64,17 @@ export class OrderTemplateComponent implements OnInit {
         }));
       })
     ),
-    selectedOrderId: this.orderFacade.selectedId$,
-    selectedOrder: this.orderFacade.selected$,
   });
 
   ngOnInit(): void {
     this.orderFacade.read({});
+  }
+
+  onSelect(order: { id: string }): void {
+    // TODO Use the route constants here!
+    this.router.navigate([order.id, 'view'], {
+      relativeTo: this.route,
+    });
   }
 
   getId(item: { id: string }) {

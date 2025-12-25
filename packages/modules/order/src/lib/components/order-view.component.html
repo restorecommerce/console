@@ -1,0 +1,164 @@
+@if (selectedOrder$ | async; as order ) {
+<rc-resource-detail
+  [title]="'Order details'"
+  (back)="goBack()"
+  (edit)="editOrder()"
+  (delete)="deleteOrder()"
+  toolbarAriaLabel="Stellenanzeige Aktionen"
+>
+  <header class="mb-3">
+    <div class="title">
+      <h3 class="m-0">Order 2a73d21bc9b0417db2393b30f556c063</h3>
+      <vcl-badge>SUBMITTED</vcl-badge>
+    </div>
+
+    <div class="actions mt-2">
+      <!-- slot: add buttons like "Cancel", "Refund", "Resend email" -->
+      <button
+        vcl-button
+        class="transparent outline scale85p"
+      >
+        Create fulfilment
+      </button>
+
+      <button
+        vcl-button
+        class="ml-2 transparent outline scale85p"
+      >
+        Create invoice
+      </button>
+    </div>
+    <!--
+title, state badge, actions (cancel/refund/mark paid etc.)
+  --></header>
+
+  <vcl-tab-nav [selectedTabIndex]="0">
+    <vcl-tab>
+      <vcl-label>Basic</vcl-label>
+
+      <div class="grid">
+        <div>
+          <div class="muted small">State</div>
+          <div>{{ order?.orderState }}</div>
+        </div>
+
+        <div>
+          <div class="muted small">Created</div>
+          <div>{{ order?.meta?.created | date : 'medium' }}</div>
+        </div>
+
+        <div>
+          <div class="muted small">Shop</div>
+          <div>{{ order?.shopId }}</div>
+        </div>
+
+        <div>
+          <div class="muted small">Notification Email</div>
+          <div>{{ order?.notificationEmail || '—' }}</div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="grid">
+        <div>
+          <div class="muted small">Customer</div>
+          <div>{{ order?.customer?.name || '—' }}</div>
+          <div class="muted small">{{ order?.customer?.id }}</div>
+        </div>
+
+        <div>
+          <div class="muted small">User</div>
+          <div>{{ order?.user?.firstName }} {{ order?.user?.lastName }}</div>
+          <div class="muted small">{{ order?.user?.email }}</div>
+        </div>
+      </div>
+    </vcl-tab>
+    <vcl-tab>
+      <vcl-label>Items</vcl-label>
+
+      <div class="items">
+        @for (it of order.items; track $index) {
+        <div class="item">
+          <div class="row justify-between">
+            <div class="col">
+              <div class="title">
+                {{ it.product.product.physical?.variants?.[0]?.name
+                  || it.product.product.physical?.templates?.[0]?.name
+                  || it.productId }}
+              </div>
+              <div class="muted small">
+                Product: {{ it.productId }} · Variant: {{ it.variantId }}
+              </div>
+            </div>
+
+            <div class="col right">
+              <div class="muted small">Qty</div>
+              <div>{{ it.quantity }}</div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </vcl-tab>
+    <vcl-tab>
+      <vcl-label>Shipping</vcl-label>
+      <div class="grid">
+        <div>
+          <div class="muted small">Contact</div>
+          <div>{{ order.shippingAddress.contact.name || '—' }}</div>
+          <div class="muted small">
+            {{ order.shippingAddress.contact.email || '—' }}
+          </div>
+          <div class="muted small">
+            {{ order.shippingAddress.contact.phone || '—' }}
+          </div>
+        </div>
+
+        <div>
+          <div class="muted small">Address</div>
+          <div>
+            {{ order.shippingAddress.address.street }}
+            {{ order.shippingAddress.address.buildingNumber }}
+          </div>
+          <div class="muted small">
+            {{ order.shippingAddress.address.postcode }}
+            {{ order.shippingAddress.address.locality }}
+          </div>
+          <div class="muted small">
+            {{ order.shippingAddress.address.countryId }}
+          </div>
+        </div>
+      </div>
+    </vcl-tab>
+    <vcl-tab>
+      <vcl-label>Payment</vcl-label>
+
+      <h4>No payment made yet for this Order</h4>
+    </vcl-tab>
+    <vcl-tab>
+      <vcl-label>History / Timeline</vcl-label>
+
+      <div class="history">
+        @for (h of order.history; track $index) {
+        <div class="history-row">
+          <div class="muted small">{{ h.code }}</div>
+          <div>{{ h.message }}</div>
+        </div>
+        } @empty {
+        <h4>No history available for this Order</h4>
+        }
+      </div>
+    </vcl-tab>
+    <vcl-tab>
+      <vcl-label>Raw JSON / Meta</vcl-label>
+
+      <div class="raw">
+        <div class="muted small">Raw payload</div>
+        <pre class="pre">{{ order | json }}</pre>
+      </div>
+    </vcl-tab>
+  </vcl-tab-nav>
+</rc-resource-detail>
+
+}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
+// import { routerNavigatedAction } from '@ngrx/router-store';
 import { of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 
@@ -19,7 +20,7 @@ import {
 
 import { ErrorHandlingService, OrderService } from '../../services';
 import { AppFacade } from '../app';
-import { OrganizationContextFacade } from '../organization-context';
+import { RouterFacade } from '../router';
 
 import * as orderActions from './order.actions';
 import { OrderFacade } from './order.facade';
@@ -51,6 +52,24 @@ export class OrderEffects {
       })
     );
   });
+
+  // loadOrderDetail$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(routerNavigatedAction),
+  //     // 1. Grab both the URL and the ID from the store
+  //     concatLatestFrom(() => [
+  //       this.routerFacade.url$, // Accessing the Facade observables
+  //       this.routerFacade.params$,
+  //     ]),
+  //     // 2. ONLY proceed if the URL starts with /orders AND an ID exists
+  //     filter(([action, url, id]) => url.startsWith('/orders') && !!id),
+  //     // 3. Dispatch the order-specific load action
+  //     filter(([_, url, params]) => url.startsWith('/orders') && !!params['id']),
+  //     map(([_, url, params]) =>
+  //       orderActions.orderReadOneByIdRequest({ payload: { id: params['id'] } })
+  //     )
+  //   );
+  // });
 
   orderReadOneByIdRequest$ = createEffect(() => {
     return this.actions$.pipe(
@@ -342,7 +361,7 @@ export class OrderEffects {
     private readonly router: Router,
     private readonly actions$: Actions,
     private readonly appFacade: AppFacade,
-    private readonly organizationContextFacade: OrganizationContextFacade,
+    private readonly routerFacade: RouterFacade,
     private readonly orderService: OrderService,
     private readonly orderFacade: OrderFacade,
     private readonly errorHandlingService: ErrorHandlingService

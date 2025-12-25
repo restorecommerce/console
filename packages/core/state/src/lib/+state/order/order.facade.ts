@@ -18,9 +18,7 @@ export class OrderFacade {
   readonly entities$ = this.store.select(orderSelectors.selectOrderEntities);
   readonly all$ = this.store.select(orderSelectors.selectOrderAll);
   readonly total$ = this.store.select(orderSelectors.selectOrderTotal);
-  readonly selectedId$ = this.store.select(
-    orderSelectors.selectOrderSelectedId
-  );
+
   readonly selected$ = this.store.select(orderSelectors.selectOrderSelected);
   readonly actionStatus$ = this.store.select(orderSelectors.selectActionStatus);
   readonly error$ = this.store.select(orderSelectors.selectError);
