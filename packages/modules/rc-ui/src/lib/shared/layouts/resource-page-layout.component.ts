@@ -6,7 +6,7 @@ import { Component, HostBinding } from '@angular/core';
     <div class="flex-4-md flex-12">
       <ng-content select="[rcResourceSidebar]"></ng-content>
     </div>
-    <div class="flex-8-md flex-12 px-2">
+    <div class="flex-8-md flex-12">
       <ng-content select="[rcResourceContent]"></ng-content>
     </div>
   `,

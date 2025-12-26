@@ -6,9 +6,9 @@
   (delete)="deleteOrder()"
   toolbarAriaLabel="Stellenanzeige Aktionen"
 >
-  <header class="mb-3">
+  <header class="mb-3 row justify-between">
     <div class="title">
-      <h3 class="m-0">Order 2a73d21bc9b0417db2393b30f556c063</h3>
+      <h3 class="m-0 mb-1">Order 2a73d21bc9b0417db2393b30f556c063</h3>
       <vcl-badge>SUBMITTED</vcl-badge>
     </div>
 
@@ -77,29 +77,94 @@ title, state badge, actions (cancel/refund/mark paid etc.)
     <vcl-tab>
       <vcl-label>Items</vcl-label>
 
-      <div class="items">
-        @for (it of order.items; track $index) {
-        <div class="item">
-          <div class="row justify-between">
-            <div class="col">
-              <div class="title">
-                {{ it.product.product.physical?.variants?.[0]?.name
-                  || it.product.product.physical?.templates?.[0]?.name
-                  || it.productId }}
-              </div>
-              <div class="muted small">
-                Product: {{ it.productId }} · Variant: {{ it.variantId }}
-              </div>
-            </div>
-
-            <div class="col right">
-              <div class="muted small">Qty</div>
-              <div>{{ it.quantity }}</div>
-            </div>
-          </div>
-        </div>
-        }
-      </div>
+      <table
+        class="table vertical-border row-selectability"
+        role="table"
+      >
+        <thead>
+          <tr role="row">
+            <th role="columnheader"><span>Col 1</span></th>
+            <th role="columnheader"><span>Col 2</span></th>
+            <th role="columnheader"><span>Col 3</span></th>
+            <th role="columnheader"><span>Col 4</span></th>
+          </tr>
+          <tr
+            class="table-tool-bar"
+            role="row"
+          >
+            <th
+              colspan="4"
+              role="cell"
+            >
+              <button
+                type="button"
+                class="button transparent"
+                disabled
+                aria-disabled="true"
+              >
+                <div class="icogram">
+                  <div
+                    class="icon mdi mdi-delete-outline"
+                    aria-hidden="true"
+                    role="img"
+                  ></div>
+                  <!-- MDI Trash Icon -->
+                </div>
+              </button>
+              <button
+                type="button"
+                class="button transparent"
+              >
+                <div class="icogram">
+                  <div
+                    class="icon mdi mdi-refresh"
+                    aria-hidden="true"
+                    role="img"
+                  ></div>
+                  <!-- MDI Refresh Icon -->
+                </div>
+              </button>
+              <button
+                type="button"
+                class="button transparent"
+              >
+                <div class="icogram">
+                  <div
+                    class="icon mdi mdi-plus"
+                    aria-hidden="true"
+                    role="img"
+                  ></div>
+                  <!-- MDI Plus Icon -->
+                </div>
+              </button>
+            </th>
+          </tr>
+          <tr
+            class="table-filter-bar"
+            role="row"
+          ></tr>
+        </thead>
+        <tbody>
+          <tr role="row">
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+          </tr>
+          <tr role="row">
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+          </tr>
+          <tr role="row">
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+            <td role="cell">Lorem ipsum</td>
+          </tr>
+        </tbody>
+      </table>
     </vcl-tab>
     <vcl-tab>
       <vcl-label>Shipping</vcl-label>
