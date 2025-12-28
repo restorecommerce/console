@@ -32,10 +32,10 @@ export const modulesOrderRoutes: Route[] = [
       //   component: OrderEditComponent,
       //   title: ROUTER.pages.main.children.orders.children.edit.title,
       // },
-      {
-        path: '**',
-        redirectTo: ROUTER.pages.main.children.orders.children.index.path,
-      },
+      // {
+      //   path: '**',
+      //   redirectTo: ROUTER.pages.main.children.orders.children.index.path,
+      // },
     ],
   },
 ];

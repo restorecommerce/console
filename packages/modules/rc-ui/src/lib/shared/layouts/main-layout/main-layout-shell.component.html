@@ -45,6 +45,7 @@
         #navItem="vclNavigationItem"
         [routerLink]="item.children?.length ? null : item.route"
         [routerLinkActive]="item.children?.length ? [] : ['selected']"
+        queryParamsHandling="preserve"
         (click)="
           !item.children?.length && navigate(item); $event.stopPropagation()
         "
@@ -73,6 +74,7 @@
           <vcl-navigation-item
             [routerLink]="child.route"
             [routerLinkActive]="['selected']"
+            queryParamsHandling="preserve"
             (click)="navigate(child); $event.stopPropagation()"
           >
             <vcl-navigation-label>

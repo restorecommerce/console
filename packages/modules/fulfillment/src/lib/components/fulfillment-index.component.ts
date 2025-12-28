@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-module-fulfillment',
-  template: ` <h3>Fulfillments</h3> `,
+  template: `<router-outlet />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [RouterOutlet],
 })
-export class FulfillmentIndexComponent {}
+export class FulfillmentIndexComponent implements OnInit {
+  ngOnInit(): void {
+    console.log('***Loading Fulfilment route');
+  }
+}
