@@ -19,8 +19,8 @@
           class="transparent"
           [title]="
             (collapsed$ | async)
-              ? (label$(config.uiText?.hideSidebar || 'Hide') | async)
-              : (label$(config.uiText?.showSidebar || 'Show') | async)
+              ? (label$(config.uiText?.showSidebar || 'Show sidebar') | async)
+              : (label$(config.uiText?.hideSidebar || 'Hide sidebar') | async)
           "
           (click)="toggleSidebar()"
         >

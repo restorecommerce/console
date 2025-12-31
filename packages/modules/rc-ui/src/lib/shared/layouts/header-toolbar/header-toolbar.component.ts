@@ -23,7 +23,7 @@ import {
 } from '@vcl/ng-vcl';
 
 import { RcHeaderOrganization, RcHeaderUser } from './header-toolbar.models';
-import { RS_TRANSLATE } from '../../../i18n/i18n.tokens';
+import { RC_TRANSLATE } from '../../../i18n/i18n.tokens';
 import { RC_LAYOUT_CONFIG, RcTranslatable } from '../main-layout';
 
 @Component({
@@ -99,7 +99,7 @@ export class RcHeaderToolbarComponent {
   @HostBinding('class.row')
   hostRowClass = true;
 
-  private readonly t = inject(RS_TRANSLATE, { optional: false });
+  private readonly t = inject(RC_TRANSLATE, { optional: false });
   public readonly config = inject(RC_LAYOUT_CONFIG, { optional: false });
 
   searchTerm = '';

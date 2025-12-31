@@ -14,7 +14,7 @@ import {
   VCLSelectListModule,
 } from '@vcl/ng-vcl';
 import { RcLayoutNavCategory, RcTranslatable } from '../layouts';
-import { RS_TRANSLATE } from '../../i18n/i18n.tokens';
+import { RC_TRANSLATE } from '../../i18n/i18n.tokens';
 
 @Component({
   selector: 'rc-category-select',
@@ -50,7 +50,7 @@ export class RcCategorySelectComponent {
   @Input() categories: RcLayoutNavCategory[] = [];
   @Input() value: string | null = null;
 
-  private readonly t = inject(RS_TRANSLATE, { optional: false });
+  private readonly t = inject(RC_TRANSLATE, { optional: false });
 
   @Output() valueChange = new EventEmitter<string>();
 

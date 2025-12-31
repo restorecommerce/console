@@ -39,7 +39,7 @@ import {
   RcHeaderToolbarComponent,
   RcHeaderUser,
 } from '../header-toolbar';
-import { RS_TRANSLATE } from '../../../i18n/i18n.tokens';
+import { RC_TRANSLATE } from '../../../i18n/i18n.tokens';
 
 @Component({
   selector: 'rc-layout-shell',
@@ -67,7 +67,7 @@ export class RcLayoutShellComponent {
   private router = inject(Router);
   public facade = inject(RcLayoutFacade);
   public readonly config = inject(RC_LAYOUT_CONFIG, { optional: false });
-  private readonly t = inject(RS_TRANSLATE, { optional: false });
+  private readonly t = inject(RC_TRANSLATE, { optional: false });
 
   @Input() user: RcHeaderUser | null = {
     id: 'user-1',
