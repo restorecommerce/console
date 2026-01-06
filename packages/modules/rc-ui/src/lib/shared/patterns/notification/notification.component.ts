@@ -43,4 +43,4 @@ import {
     `,
   ],
 })
-export class NotificationComponent {}
+export class RcNotificationComponent {}

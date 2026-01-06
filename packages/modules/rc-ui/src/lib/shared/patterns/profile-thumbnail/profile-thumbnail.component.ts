@@ -48,6 +48,6 @@ import { VCLPopoverDirective } from '@vcl/ng-vcl';
     `,
   ],
 })
-export class ProfileThumbnailComponent {
+export class RcProfileThumbnailComponent {
   @Input() avatarUrl = 'https://i.pravatar.cc/80';
 }
