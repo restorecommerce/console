@@ -24,7 +24,7 @@ import {
 
 import { AUTH_BRANDING_CONFIG, AuthBrandingConfig } from '../../auth.config';
 import { RsAuthLayoutComponent } from '../../layouts';
-import { RsTranslatePipe } from '../../../i18n';
+import { RcTranslatePipe } from '../../../i18n';
 import { AsyncPipe } from '@angular/common';
 
 export interface SignInCredentials {
@@ -46,7 +46,7 @@ export interface SignInCredentials {
     VCLPasswordInputModule,
     RouterModule,
     RsAuthLayoutComponent,
-    RsTranslatePipe,
+    RcTranslatePipe,
     AsyncPipe,
   ],
 })

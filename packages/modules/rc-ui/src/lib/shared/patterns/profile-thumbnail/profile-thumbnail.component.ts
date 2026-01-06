@@ -1,32 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { VCLPopoverDirective } from '@vcl/ng-vcl';
 
 @Component({
   selector: 'ui-profile-thumbnail',
   imports: [VCLPopoverDirective],
   template: `
-    <div class="profile-trigger">
-      <a
-        href="https://i.pravatar.cc/80"
-        (click)="$event.preventDefault(); popover.toggle()"
-      >
-        <img
-          src="https://i.pravatar.cc/80"
-          alt="User avatar"
-          class="responsive-image img-shape-circular"
-        />
-      </a>
+    <button
+      #profileTarget
+      vcl-button
+      square
+      class="profile-trigger transparent"
+      (click)="popover.toggle()"
+      (keydown.enter)="popover.toggle()"
+      (keydown.space)="popover.toggle()"
+      aria-haspopup="menu"
+      aria-label="User menu"
+    >
+      <img
+        [src]="avatarUrl"
+        alt="User avatar"
+        class="responsive-image img-shape-circular"
+      />
+    </button>
 
-      <div #profileTarget></div>
-    </div>
-
+    <!-- Popover -->
     <ng-template
       vclPopover
       #popover="vclPopover"
       [target]="profileTarget"
-      (afterClose)="popover.close()"
+      [closeOnOffClick]="true"
     >
-      <div class="p-2">Popover is connected to the target</div>
+      <div
+        class="profile-popover"
+        role="menu"
+      >
+        <ng-content></ng-content>
+      </div>
     </ng-template>
   `,
   styles: [
@@ -39,4 +48,6 @@ import { VCLPopoverDirective } from '@vcl/ng-vcl';
     `,
   ],
 })
-export class ProfileThumbnailComponent {}
+export class ProfileThumbnailComponent {
+  @Input() avatarUrl = 'https://i.pravatar.cc/80';
+}

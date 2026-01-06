@@ -13,7 +13,7 @@
   </div>
   <div class="mt-1 row justify-center align-item-center">
     <span>{{
-      { key: 'auth.signIn.title', fallback: 'Sign in' } | rsTranslate | async
+      { key: 'auth.signIn.title', fallback: 'Sign in' } | rcTranslate | async
     }}</span>
   </div>
   <hr />
@@ -26,7 +26,7 @@
     <vcl-form-control-group>
       <vcl-label>{{
         { key: 'auth.signIn.identifierLabel', fallback: 'Email or Username' }
-          | rsTranslate
+          | rcTranslate
           | async
       }}</vcl-label>
       <vcl-input-field>
@@ -41,7 +41,7 @@
       <vcl-label>
         {{
           { key: 'auth.signIn.passwordLabel', fallback: 'Password' }
-            | rsTranslate
+            | rcTranslate
             | async
         }}
       </vcl-label>
@@ -60,7 +60,7 @@
             key: 'auth.signIn.remember7Days',
             fallback: 'Stay signed in for 7 days'
           }
-            | rsTranslate
+            | rcTranslate
             | async
         }}
       </vcl-checkbox>
@@ -78,7 +78,7 @@
             key: 'auth.signIn.submit',
             fallback: 'Sign in'
           }
-            | rsTranslate
+            | rcTranslate
             | async
         }}
       </button>
@@ -91,7 +91,7 @@
             key: 'auth.signIn.forgotPassword',
             fallback: 'Forgot Password?'
           }
-            | rsTranslate
+            | rcTranslate
             | async
         }}
       </a>

@@ -4,9 +4,9 @@ import { RcTranslatable } from '../shared';
 import { RC_TRANSLATE } from './i18n.tokens';
 
 @Pipe({
-  name: 'rsTranslate',
+  name: 'rcTranslate',
 })
-export class RsTranslatePipe implements PipeTransform {
+export class RcTranslatePipe implements PipeTransform {
   private readonly t = inject(RC_TRANSLATE);
 
   transform(value: RcTranslatable): Observable<string> {

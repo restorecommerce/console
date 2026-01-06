@@ -17,6 +17,7 @@ import {
 import { filter, Subject, takeUntil } from 'rxjs';
 
 import { VCLIconModule } from '@vcl/ng-vcl';
+import { RcTranslatePipe } from '../../i18n';
 
 export interface IBreadcrumb {
   label: string;
@@ -26,7 +27,7 @@ export interface IBreadcrumb {
 @Component({
   selector: 'rc-breadcrumb',
   standalone: true,
-  imports: [NgClass, RouterModule, VCLIconModule],
+  imports: [NgClass, RouterModule, VCLIconModule, RcTranslatePipe],
   template: `
     @if (breadcrumbs.length && !breadcrumbsToExclude.includes(lastLabel)) {
     <nav class="breadcrumb-nav">
@@ -37,7 +38,7 @@ export interface IBreadcrumb {
             [routerLink]="[rootUrl]"
             class="breadcrumb-nav-item-label"
           >
-            {{ rootLabel }}
+            {{ rootLabel | rcTranslate }}
           </a>
           <vcl-icon
             class="breadcrumb-nav-divider"
@@ -55,7 +56,7 @@ export interface IBreadcrumb {
             [routerLink]="breadcrumb.url"
             class="breadcrumb-nav-item-label"
           >
-            {{ breadcrumb.label }}
+            {{ breadcrumb.label | rcTranslate }}
           </a>
           <vcl-icon
             class="breadcrumb-nav-divider"
@@ -63,7 +64,7 @@ export interface IBreadcrumb {
           />
           } @else {
           <span class="breadcrumb-nav-item-label">
-            {{ breadcrumb.label }}
+            {{ breadcrumb.label | rcTranslate }}
           </span>
           }
         </li>
