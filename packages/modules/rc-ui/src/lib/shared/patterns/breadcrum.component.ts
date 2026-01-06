@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -27,7 +27,7 @@ export interface IBreadcrumb {
 @Component({
   selector: 'rc-breadcrumb',
   standalone: true,
-  imports: [NgClass, RouterModule, VCLIconModule, RcTranslatePipe],
+  imports: [NgClass, AsyncPipe, RouterModule, VCLIconModule, RcTranslatePipe],
   template: `
     @if (breadcrumbs.length && !breadcrumbsToExclude.includes(lastLabel)) {
     <nav class="breadcrumb-nav">
@@ -38,7 +38,7 @@ export interface IBreadcrumb {
             [routerLink]="[rootUrl]"
             class="breadcrumb-nav-item-label"
           >
-            {{ rootLabel | rcTranslate }}
+            {{ rootLabel | rcTranslate | async }}
           </a>
           <vcl-icon
             class="breadcrumb-nav-divider"
@@ -56,7 +56,7 @@ export interface IBreadcrumb {
             [routerLink]="breadcrumb.url"
             class="breadcrumb-nav-item-label"
           >
-            {{ breadcrumb.label | rcTranslate }}
+            {{ breadcrumb.label | rcTranslate | async }}
           </a>
           <vcl-icon
             class="breadcrumb-nav-divider"
@@ -64,7 +64,7 @@ export interface IBreadcrumb {
           />
           } @else {
           <span class="breadcrumb-nav-item-label">
-            {{ breadcrumb.label | rcTranslate }}
+            {{ breadcrumb.label | rcTranslate | async }}
           </span>
           }
         </li>
