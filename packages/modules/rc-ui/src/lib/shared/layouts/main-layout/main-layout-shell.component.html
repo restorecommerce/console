@@ -131,22 +131,24 @@
     </button>
     }
 
-    <rc-breadcrumb
-      [rootLabel]="'Home'"
-      [rootUrl]="'/'"
-      [breadcrumbsToExclude]="['Home']"
-    />
+    <ng-content select="[layoutHeader]">
+      <rc-breadcrumb
+        [rootLabel]="'Home'"
+        [rootUrl]="'/'"
+        [breadcrumbsToExclude]="['Home']"
+      />
 
-    <div class="flex"></div>
+      <div class="flex"></div>
 
-    <rc-header-toolbar
-      [organizations]="organizations"
-      [user]="user"
-      [selectedOrganizationId]="selectedOrganizationId"
-      (organizationSelected)="onSelectOrganization($event)"
-      (accountAction)="onAccountItemSelected($event)"
-      (searchChange)="onSearchChange($event)"
-    />
+      <rc-header-toolbar
+        [organizations]="organizations"
+        [user]="user"
+        [selectedOrganizationId]="selectedOrganizationId"
+        (organizationSelected)="onSelectOrganization($event)"
+        (accountAction)="onAccountItemSelected($event)"
+        (searchChange)="onSearchChange($event)"
+      />
+    </ng-content>
   </header>
 
   <main class="flex px-2 rs-main">
