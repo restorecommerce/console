@@ -24,6 +24,15 @@ export interface RcLayoutNavItem {
   categoryId?: RcLayoutNavCategoryId; // e.g. 'home' | 'management'
 }
 
+export interface ShellFooterConfig {
+  enabled?: boolean;
+  text?: string; // e.g. "All rights reserved."
+  companyName?: string; // e.g. "Restorecommerce"
+  companyUrl?: string; // e.g. "https://restorecommerce.io"
+  showYear?: boolean;
+  year?: number; // optional override
+}
+
 export interface RcLayoutConfig {
   appName: string;
   logoUrl?: string;
@@ -44,4 +53,6 @@ export interface RcLayoutConfig {
     preferences?: RcTranslatable;
     signOut?: RcTranslatable;
   };
+
+  footer?: ShellFooterConfig;
 }

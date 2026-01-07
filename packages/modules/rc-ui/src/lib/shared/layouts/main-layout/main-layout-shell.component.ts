@@ -26,6 +26,7 @@ import {
   RcLayoutNavCategoryId,
   RcLayoutNavItem,
   RcTranslatable,
+  ShellFooterConfig,
 } from './main-layout-config.model';
 import { RcLayoutFacade } from './main-layout.facade';
 import { RC_LAYOUT_CONFIG } from './main-layout.tokens';
@@ -127,6 +128,20 @@ export class RcLayoutShellComponent {
   categories$ = this.facade.categories$;
   activeCategory$ = this.facade.activeCategory$;
   visibleNavItems$ = this.facade.visibleNavItems$;
+
+  readonly defaultFooterConfig: Required<ShellFooterConfig> = {
+    enabled: true,
+    text: 'All rights reserved.',
+    companyName: '',
+    companyUrl: '',
+    showYear: true,
+    year: new Date().getFullYear(),
+  };
+
+  footerConfig = {
+    ...this.defaultFooterConfig,
+    ...this.config.footer,
+  };
 
   label$(v: RcTranslatable) {
     return this.t(v);

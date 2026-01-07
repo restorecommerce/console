@@ -98,19 +98,29 @@
         categories) {
         <rc-category-select
           [label]="(label$(config.uiText?.selectCategory || '') | async) || ''"
-          [categories]="(categories$ | async) || []"
+          [categories]="categories"
           [value]="activeCategory$ | async"
           (valueChange)="onSelectCategory($event)"
         />
-        } }
-
-        <vcl-navigation-item>
-          <vcl-navigation-label>
-            ©2025
-            <a href="#">Restorecommerce</a>
-            . All rights reserved.
-          </vcl-navigation-label>
-        </vcl-navigation-item>
+        } } @if (footerConfig.enabled) {
+        <div class="vcl-text-muted vcl-text-xs mt-2">
+          @if (footerConfig.showYear) { © {{ footerConfig.year }}
+          } @if (footerConfig.companyName) { @if (footerConfig.companyUrl) {
+          <a
+            [href]="footerConfig.companyUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="vcl-link"
+          >
+            {{ footerConfig.companyName }}
+          </a>
+          } @else {
+          {{ footerConfig.companyName }}
+          } } @if (footerConfig.text) { .
+          {{ label$(footerConfig.text) | async }}
+          }
+        </div>
+        }
       </div>
     </vcl-navigation>
   </vcl-drawer>

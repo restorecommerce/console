@@ -1,27 +1,28 @@
 import { Component, Input } from '@angular/core';
-import { VCLPopoverDirective } from '@vcl/ng-vcl';
+import { VCLButtonComponent, VCLPopoverDirective } from '@vcl/ng-vcl';
 
 @Component({
-  selector: 'ui-profile-thumbnail',
-  imports: [VCLPopoverDirective],
+  selector: 'rc-profile-thumbnail',
+  imports: [VCLPopoverDirective, VCLButtonComponent],
   template: `
-    <button
-      #profileTarget
-      vcl-button
-      square
-      class="profile-trigger transparent"
-      (click)="popover.toggle()"
-      (keydown.enter)="popover.toggle()"
-      (keydown.space)="popover.toggle()"
-      aria-haspopup="menu"
-      aria-label="User menu"
-    >
-      <img
-        [src]="avatarUrl"
-        alt="User avatar"
-        class="responsive-image img-shape-circular"
-      />
-    </button>
+    <span #profileTarget>
+      <button
+        vcl-button
+        square
+        class="profile-trigger transparent"
+        (click)="popover.toggle()"
+        (keydown.enter)="popover.toggle()"
+        (keydown.space)="popover.toggle()"
+        aria-haspopup="menu"
+        aria-label="User menu"
+      >
+        <img
+          [src]="avatarUrl"
+          alt="User avatar"
+          class="responsive-image img-shape-circular"
+        />
+      </button>
+    </span>
 
     <!-- Popover -->
     <ng-template

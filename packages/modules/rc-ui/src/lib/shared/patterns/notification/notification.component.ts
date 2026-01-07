@@ -6,7 +6,7 @@ import {
 } from '@vcl/ng-vcl';
 
 @Component({
-  selector: 'ui-notification',
+  selector: 'rc-notification',
   imports: [VCLPopoverDirective, VCLButtonComponent, VCLIconComponent],
   template: `
     <div>
