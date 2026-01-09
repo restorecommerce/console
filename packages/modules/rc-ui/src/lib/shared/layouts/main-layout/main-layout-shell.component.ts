@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 import {
   VCLButtonModule,
@@ -109,6 +109,9 @@ export class RcLayoutShellComponent {
 
   private readonly destroyRef = inject(DestroyRef);
 
+  readonly defaultOpenIcon = 'mdi mdi-page-layout-sidebar-left';
+  readonly defaultCloseIcon = 'mdi mdi-page-layout-sidebar-right';
+
   constructor() {
     this.facade.initConfig(this.config);
 
@@ -128,6 +131,16 @@ export class RcLayoutShellComponent {
   categories$ = this.facade.categories$;
   activeCategory$ = this.facade.activeCategory$;
   visibleNavItems$ = this.facade.visibleNavItems$;
+
+  icon$ = this.collapsed$.pipe(
+    map((collapsed) =>
+      collapsed
+        ? this.config.sidebarToggle?.closeIcon ?? this.defaultCloseIcon
+        : this.config.sidebarToggle?.openIcon ?? this.defaultOpenIcon
+    )
+  );
+
+  iconClass = this.config.sidebarToggle?.iconClass ?? 'scale155p';
 
   readonly defaultFooterConfig: Required<ShellFooterConfig> = {
     enabled: true,

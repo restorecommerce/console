@@ -41,10 +41,16 @@ export interface RcLayoutConfig {
   basePath?: string;
   categories?: RcLayoutNavCategory[];
 
+  sidebarToggle?: {
+    openIcon?: string; // when sidebar is expanded
+    closeIcon?: string; // when sidebar is collapsed
+    iconClass?: string; // optional CSS classes
+  };
+
   uiText?: {
     showSidebar?: RcTranslatable;
     hideSidebar?: RcTranslatable;
-    selectCategory?: RcTranslatable;
+    selectCategory?: RcTranslatable; // Somewhat deprecated. Not in use. Remove in the feature
     selectOrganization?: RcTranslatable;
   };
 

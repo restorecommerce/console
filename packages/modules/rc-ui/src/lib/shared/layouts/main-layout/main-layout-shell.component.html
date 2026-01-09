@@ -25,8 +25,8 @@
           (click)="toggleSidebar()"
         >
           <vcl-icon
-            class="scale155p"
-            icon="mdi mdi-page-layout-sidebar-left"
+            [class]="iconClass"
+            [icon]="(icon$ | async) || ''"
           />
         </button>
       </div>
@@ -135,8 +135,8 @@
       (click)="toggleSidebar()"
     >
       <vcl-icon
-        class="scale155p"
-        icon="mdi mdi-page-layout-sidebar-left"
+        [class]="iconClass"
+        [icon]="(icon$ | async) || ''"
       />
     </button>
     }
