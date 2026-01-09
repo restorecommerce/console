@@ -27,7 +27,7 @@ import { RC_TRANSLATE } from '../../i18n/i18n.tokens';
   ],
   template: `
     <vcl-form-control-group>
-      <vcl-label>{{ label }}</vcl-label>
+      <!-- <vcl-label>{{ label }}</vcl-label> -->
 
       <vcl-select>
         <vcl-select-list
