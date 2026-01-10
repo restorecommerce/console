@@ -1,25 +1,33 @@
 <rc-auth-layout>
   <div class="w-100p col justify-center align-items-center mt-3 mb-2">
-    @if (branding.branding.logoUrl) {
-    <span>
-      <img
-        width="100"
-        [src]="branding.branding.logoUrl"
-        [alt]="branding.branding.logoAlt"
-      />
-    </span>
+    @if (config.branding.logoUrl) {
+    <img
+      width="100"
+      [src]="config.branding.logoUrl"
+      [alt]="config.branding.logoAlt"
+    />
     }
-    <h3 class="p-2">{{ branding.branding.appName }}</h3>
+    <h3 class="p-2">{{ config.branding.appName }}</h3>
   </div>
+
   <div class="mt-1 row justify-center align-item-center">
     <span>{{ t().title | rcTranslate | async }}</span>
   </div>
+
+  @if (state.error) {
+
+  <div class="mt-2">
+    {{ state.error | rcTranslate | async }}
+  </div>
+  }
+
   <hr />
+
   <form
     vclForm
     class="form"
     [formGroup]="form"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="submit()"
   >
     <vcl-form-control-group>
       <vcl-label>
@@ -52,19 +60,25 @@
     </vcl-form-control-group>
 
     <div class="row">
+      @let loading = state.loading || false;
+
       <button
-        [disabled]="form.invalid"
         vcl-button
         type="submit"
         class="w-100p"
+        [disabled]="form.invalid || loading"
       >
+        @if (loading) {
+        {{ t().loading | rcTranslate | async }}
+        } @else {
         {{ t().submit | rcTranslate | async }}
+        }
       </button>
     </div>
 
     <p class="mt-3">
-      <a routerLink="asRouteLink(branding.forgotPasswordRoute)">
-        {{ t().submit | rcTranslate | async }}
+      <a (click)="forgotPassword()">
+        {{ t().forgotPassword | rcTranslate | async }}
       </a>
     </p>
   </form>

@@ -1,21 +1,61 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RcSignInComponent, SignInCredentials } from '@console/rc-ui';
+import {
+  AUTH_LAYOUT_CONFIG,
+  RcSignInAction,
+  RcSignInComponent,
+  RcSignInState,
+} from '@console/rc-ui';
+import { combineLatest, map, Observable } from 'rxjs';
 
 import { AuthnFacade } from '@console-core/state';
 
 @Component({
   selector: 'app-sign-in',
-  template: ` <rc-sign-in (signIn)="onSignIn($event)" /> `,
-  imports: [RcSignInComponent],
+  template: `
+    @if (signInState$ | async; as state) {
+    <rc-sign-in
+      [config]="config"
+      [state]="state"
+      (action)="onSignInAction($event)"
+    />
+    }
+  `,
+  imports: [AsyncPipe, RcSignInComponent],
 })
 export class SignInComponent {
+  readonly config = inject(AUTH_LAYOUT_CONFIG);
   private readonly authnFacade = inject(AuthnFacade);
 
-  onSignIn(payload: SignInCredentials) {
-    this.authnFacade.signIn({
-      identifier: payload.identifier,
-      password: payload.password,
-      // remember: this.formFields.remember.value
-    });
+  loading$ = this.authnFacade.isRequesting$;
+  error$ = this.authnFacade.error$;
+
+  readonly signInState$: Observable<RcSignInState> = combineLatest([
+    this.loading$,
+    this.error$,
+  ]).pipe(
+    map(([loading, error]) => {
+      console.log('LOADING', loading);
+      return {
+        error: error ?? '',
+        loading,
+      };
+    })
+  );
+
+  onSignInAction(action: RcSignInAction) {
+    if (action.type === 'submit') {
+      const { identifier, password } = action.payload;
+
+      this.authnFacade.signIn({
+        identifier: identifier,
+        password: password,
+        // remember: this.formFields.remember.value
+      });
+    }
+
+    if (action.type === 'forgot-password') {
+      console.log("this.router.navigate(['/auth/password-recovery'])");
+    }
   }
 }

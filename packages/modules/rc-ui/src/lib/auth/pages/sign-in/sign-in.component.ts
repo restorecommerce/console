@@ -1,53 +1,33 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  computed,
   EventEmitter,
-  inject,
   Input,
   Output,
+  computed,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { RcSignInAction, RcSignInState } from './sign-in.models';
 import {
-  VCLCheckboxModule,
-  VCLInputModule,
-  VCLFormControlGroupModule,
-  VCLPasswordInputModule,
+  DEFAULT_SIGN_IN_TRANSLATIONS,
+  RcSignInTranslations,
+} from './sign-in.i18n';
+import { RcAuthLayoutConfig } from '../../auth.config';
+import {
   VCLButtonModule,
+  VCLCheckboxModule,
+  VCLFormControlGroupModule,
+  VCLInputModule,
+  VCLPasswordInputModule,
 } from '@vcl/ng-vcl';
-
-import { AUTH_LAYOUT_CONFIG, RcAuthLayoutConfig } from '../../auth.config';
+import { RouterModule } from '@angular/router';
 import { RsAuthLayoutComponent } from '../../layouts';
 import { RcTranslatePipe } from '../../../i18n';
 import { AsyncPipe } from '@angular/common';
-import { RcSignInTranslations } from '../../auth.model';
-
-export interface SignInCredentials {
-  identifier: string;
-  password: string;
-  remember: boolean;
-}
-
-export const DEFAULT_SIGN_IN_TRANSLATIONS: RcSignInTranslations = {
-  title: 'Sign in',
-  identifierLabel: 'Email or Username',
-  passwordLabel: 'Password',
-  remember: 'Stay signed in for 7 days',
-  submit: 'Sign in',
-  forgotPassword: 'Forgot password?',
-};
 
 @Component({
   selector: 'rc-sign-in',
   templateUrl: './sign-in.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     VCLCheckboxModule,
@@ -62,78 +42,36 @@ export const DEFAULT_SIGN_IN_TRANSLATIONS: RcSignInTranslations = {
   ],
 })
 export class RcSignInComponent {
-  @Input() appName?: string;
-  @Input() logoUrl?: string;
-  @Input() logoAlt?: string;
-  @Input() tagline?: string;
+  // config
+  @Input({ required: true }) config!: RcAuthLayoutConfig;
 
-  @Output() signIn = new EventEmitter<SignInCredentials>();
+  // workflow state
+  @Input({ required: true }) state!: RcSignInState;
 
-  fb = inject(FormBuilder);
-  readonly config = inject(AUTH_LAYOUT_CONFIG, { optional: true });
+  // user intent
+  @Output() action = new EventEmitter<RcSignInAction>();
 
-  form = this.fb.group({
-    identifier: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    remember: [false, []],
+  readonly form = new FormGroup({
+    identifier: new FormControl('', { nonNullable: true }),
+    password: new FormControl('', { nonNullable: true }),
+    remember: new FormControl(false, { nonNullable: true }),
   });
-
-  get formFields() {
-    return {
-      identifier: this.form.get('identifier') as FormControl,
-      password: this.form.get('password') as FormControl,
-      remember: this.form.get('remember') as FormControl,
-    };
-  }
-
-  get branding(): RcAuthLayoutConfig {
-    const fallback: RcAuthLayoutConfig = {
-      branding: {
-        appName: 'My App',
-        logoUrl: '',
-        logoAlt: 'App logo',
-        tagline: '',
-        // forgotPasswordRoute: 'password-recovery',
-      },
-      i18n: {
-        signIn: DEFAULT_SIGN_IN_TRANSLATIONS,
-      },
-    };
-
-    const base = this.config ?? fallback;
-
-    return {
-      branding: {
-        appName: this.appName ?? base.branding.appName,
-        logoUrl: this.logoUrl ?? base.branding.logoUrl,
-        logoAlt: this.logoAlt ?? base.branding.logoAlt ?? base.branding.appName,
-        tagline: this.tagline ?? base.branding.tagline,
-        // forgotPasswordRoute: base.branding?.forgotPasswordRoute,
-      },
-    };
-  }
 
   readonly t = computed<RcSignInTranslations>(() => ({
     ...DEFAULT_SIGN_IN_TRANSLATIONS,
-    ...this.config?.i18n?.signIn,
+    ...this.config.i18n?.signIn,
   }));
 
-  asRouteLink(route: string | any[]) {
-    return Array.isArray(route) ? route : [route];
+  submit(): void {
+    if (this.form.invalid || this.state.loading) return;
+
+    this.action.emit({
+      type: 'submit',
+      payload: this.form.getRawValue(),
+    });
   }
 
-  onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    const payload: SignInCredentials = {
-      identifier: this.form.value.identifier?.trim() ?? '',
-      password: this.form.value.password ?? '',
-      remember: this.form.value.remember || false,
-    };
-
-    this.signIn.emit(payload);
+  forgotPassword(): void {
+    this.action.emit({ type: 'forgot-password' });
   }
 }
