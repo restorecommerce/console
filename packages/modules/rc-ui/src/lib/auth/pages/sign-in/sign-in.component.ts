@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   EventEmitter,
   inject,
   Input,
@@ -22,16 +23,26 @@ import {
   VCLButtonModule,
 } from '@vcl/ng-vcl';
 
-import { AUTH_BRANDING_CONFIG, AuthBrandingConfig } from '../../auth.config';
+import { AUTH_LAYOUT_CONFIG, RcAuthLayoutConfig } from '../../auth.config';
 import { RsAuthLayoutComponent } from '../../layouts';
 import { RcTranslatePipe } from '../../../i18n';
 import { AsyncPipe } from '@angular/common';
+import { RcSignInTranslations } from '../../auth.model';
 
 export interface SignInCredentials {
   identifier: string;
   password: string;
   remember: boolean;
 }
+
+export const DEFAULT_SIGN_IN_TRANSLATIONS: RcSignInTranslations = {
+  title: 'Sign in',
+  identifierLabel: 'Email or Username',
+  passwordLabel: 'Password',
+  remember: 'Stay signed in for 7 days',
+  submit: 'Sign in',
+  forgotPassword: 'Forgot password?',
+};
 
 @Component({
   selector: 'rc-sign-in',
@@ -59,7 +70,7 @@ export class RcSignInComponent {
   @Output() signIn = new EventEmitter<SignInCredentials>();
 
   fb = inject(FormBuilder);
-  readonly config = inject(AUTH_BRANDING_CONFIG, { optional: true });
+  readonly config = inject(AUTH_LAYOUT_CONFIG, { optional: true });
 
   form = this.fb.group({
     identifier: ['', [Validators.required]],
@@ -75,25 +86,37 @@ export class RcSignInComponent {
     };
   }
 
-  get branding(): AuthBrandingConfig {
-    const fallback: AuthBrandingConfig = {
-      appName: 'My App',
-      logoUrl: '',
-      logoAlt: 'App logo',
-      tagline: '',
-      forgotPasswordRoute: 'password-recovery',
+  get branding(): RcAuthLayoutConfig {
+    const fallback: RcAuthLayoutConfig = {
+      branding: {
+        appName: 'My App',
+        logoUrl: '',
+        logoAlt: 'App logo',
+        tagline: '',
+        // forgotPasswordRoute: 'password-recovery',
+      },
+      i18n: {
+        signIn: DEFAULT_SIGN_IN_TRANSLATIONS,
+      },
     };
 
     const base = this.config ?? fallback;
 
     return {
-      appName: this.appName ?? base.appName,
-      logoUrl: this.logoUrl ?? base.logoUrl,
-      logoAlt: this.logoAlt ?? base.logoAlt ?? base.appName,
-      tagline: this.tagline ?? base.tagline,
-      forgotPasswordRoute: base?.forgotPasswordRoute,
+      branding: {
+        appName: this.appName ?? base.branding.appName,
+        logoUrl: this.logoUrl ?? base.branding.logoUrl,
+        logoAlt: this.logoAlt ?? base.branding.logoAlt ?? base.branding.appName,
+        tagline: this.tagline ?? base.branding.tagline,
+        // forgotPasswordRoute: base.branding?.forgotPasswordRoute,
+      },
     };
   }
+
+  readonly t = computed<RcSignInTranslations>(() => ({
+    ...DEFAULT_SIGN_IN_TRANSLATIONS,
+    ...this.config?.i18n?.signIn,
+  }));
 
   asRouteLink(route: string | any[]) {
     return Array.isArray(route) ? route : [route];

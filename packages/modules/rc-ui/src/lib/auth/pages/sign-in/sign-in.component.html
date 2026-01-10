@@ -1,20 +1,18 @@
 <rc-auth-layout>
   <div class="w-100p col justify-center align-items-center mt-3 mb-2">
-    @if (branding.logoUrl) {
+    @if (branding.branding.logoUrl) {
     <span>
       <img
         width="100"
-        [src]="branding.logoUrl"
-        [alt]="branding.logoAlt"
+        [src]="branding.branding.logoUrl"
+        [alt]="branding.branding.logoAlt"
       />
     </span>
     }
-    <h3 class="p-2">{{ branding.appName }}</h3>
+    <h3 class="p-2">{{ branding.branding.appName }}</h3>
   </div>
   <div class="mt-1 row justify-center align-item-center">
-    <span>{{
-      { key: 'auth.signIn.title', fallback: 'Sign in' } | rcTranslate | async
-    }}</span>
+    <span>{{ t().title | rcTranslate | async }}</span>
   </div>
   <hr />
   <form
@@ -24,11 +22,9 @@
     (ngSubmit)="onSubmit()"
   >
     <vcl-form-control-group>
-      <vcl-label>{{
-        { key: 'auth.signIn.identifierLabel', fallback: 'Email or Username' }
-          | rcTranslate
-          | async
-      }}</vcl-label>
+      <vcl-label>
+        {{ t().identifierLabel | rcTranslate | async }}
+      </vcl-label>
       <vcl-input-field>
         <input
           vclInput
@@ -39,11 +35,7 @@
 
     <vcl-form-control-group>
       <vcl-label>
-        {{
-          { key: 'auth.signIn.passwordLabel', fallback: 'Password' }
-            | rcTranslate
-            | async
-        }}
+        {{ t().passwordLabel | rcTranslate | async }}
       </vcl-label>
       <vcl-password-input>
         <input
@@ -55,14 +47,7 @@
 
     <vcl-form-control-group>
       <vcl-checkbox formControlName="remember">
-        {{
-          {
-            key: 'auth.signIn.remember7Days',
-            fallback: 'Stay signed in for 7 days'
-          }
-            | rcTranslate
-            | async
-        }}
+        {{ t().remember | rcTranslate | async }}
       </vcl-checkbox>
     </vcl-form-control-group>
 
@@ -73,27 +58,13 @@
         type="submit"
         class="w-100p"
       >
-        {{
-          {
-            key: 'auth.signIn.submit',
-            fallback: 'Sign in'
-          }
-            | rcTranslate
-            | async
-        }}
+        {{ t().submit | rcTranslate | async }}
       </button>
     </div>
 
     <p class="mt-3">
       <a routerLink="asRouteLink(branding.forgotPasswordRoute)">
-        {{
-          {
-            key: 'auth.signIn.forgotPassword',
-            fallback: 'Forgot Password?'
-          }
-            | rcTranslate
-            | async
-        }}
+        {{ t().submit | rcTranslate | async }}
       </a>
     </p>
   </form>

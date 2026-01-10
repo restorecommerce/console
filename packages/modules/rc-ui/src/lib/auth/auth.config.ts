@@ -3,22 +3,37 @@ import {
   InjectionToken,
   makeEnvironmentProviders,
 } from '@angular/core';
+import {
+  RcPasswordRecoveryTranslations,
+  RcSignInTranslations,
+  RcSignUpTranslations,
+} from './auth.model';
 
 export type RcAuthForgotPasswordTarget =
   | { kind: 'route'; route: string | string[] }
   | { kind: 'url'; url: string };
 
-export interface AuthBrandingConfig {
-  appName: string;
-  logoUrl: string;
-  logoAlt?: string;
-  tagline?: string;
-
-  forgotPasswordRoute?: string | any[];
+export interface RcAuthI18nConfig {
+  signIn?: Partial<RcSignInTranslations>;
+  signUp?: Partial<RcSignUpTranslations>;
+  passwordRecovery?: Partial<RcPasswordRecoveryTranslations>;
 }
 
-export const AUTH_BRANDING_CONFIG = new InjectionToken<AuthBrandingConfig>(
-  'AUTH_BRANDING_CONFIG'
+export interface RcAuthLayoutConfig {
+  branding: {
+    appName: string;
+    logoUrl: string;
+    logoAlt?: string;
+    tagline?: string;
+  };
+
+  i18n?: RcAuthI18nConfig;
+
+  // forgotPasswordRoute?: string | any[];
+}
+
+export const AUTH_LAYOUT_CONFIG = new InjectionToken<RcAuthLayoutConfig>(
+  'AUTH_LAYOUT_CONFIG'
 );
 
 /**
@@ -30,11 +45,11 @@ export const AUTH_BRANDING_CONFIG = new InjectionToken<AuthBrandingConfig>(
  *   })
  */
 export function provideAuthBranding(
-  config: AuthBrandingConfig
+  config: RcAuthLayoutConfig
 ): EnvironmentProviders {
   return makeEnvironmentProviders([
     {
-      provide: AUTH_BRANDING_CONFIG,
+      provide: AUTH_LAYOUT_CONFIG,
       useValue: config,
     },
   ]);
