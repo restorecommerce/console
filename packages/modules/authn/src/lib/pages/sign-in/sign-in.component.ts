@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AUTH_LAYOUT_CONFIG,
   RcSignInAction,
@@ -8,6 +9,7 @@ import {
 } from '@console/rc-ui';
 import { combineLatest, map, Observable } from 'rxjs';
 
+import { ROUTER } from '@console-core/config';
 import { AuthnFacade } from '@console-core/state';
 
 @Component({
@@ -25,6 +27,7 @@ import { AuthnFacade } from '@console-core/state';
 })
 export class SignInComponent {
   readonly config = inject(AUTH_LAYOUT_CONFIG);
+  readonly router = inject(Router);
   private readonly authnFacade = inject(AuthnFacade);
 
   loading$ = this.authnFacade.isRequesting$;
@@ -55,7 +58,9 @@ export class SignInComponent {
     }
 
     if (action.type === 'forgot-password') {
-      console.log("this.router.navigate(['/auth/password-recovery'])");
+      this.router.navigate([
+        ROUTER.pages.main.children.auth.children.passwordRecovery.link,
+      ]);
     }
   }
 }
