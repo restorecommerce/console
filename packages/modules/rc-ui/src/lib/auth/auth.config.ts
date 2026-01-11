@@ -25,6 +25,7 @@ export interface RcAuthLayoutConfig {
     logoUrl: string;
     logoAlt?: string;
     tagline?: string;
+    logoSize?: number;
   };
 
   i18n?: RcAuthI18nConfig;

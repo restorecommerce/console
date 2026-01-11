@@ -23,7 +23,7 @@ import {
 import { RouterModule } from '@angular/router';
 import { RsAuthLayoutComponent } from '../../layouts';
 import { RcTranslatePipe } from '../../../i18n';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'rc-sign-in',
@@ -39,6 +39,7 @@ import { AsyncPipe } from '@angular/common';
     RsAuthLayoutComponent,
     RcTranslatePipe,
     AsyncPipe,
+    NgClass,
   ],
 })
 export class RcSignInComponent {

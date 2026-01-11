@@ -2,7 +2,7 @@
   <div class="w-100p col justify-center align-items-center mt-3 mb-2">
     @if (config.branding.logoUrl) {
     <img
-      width="100"
+      [width]="config.branding.logoSize || 100"
       [src]="config.branding.logoUrl"
       [alt]="config.branding.logoAlt"
     />
@@ -65,7 +65,8 @@
       <button
         vcl-button
         type="submit"
-        class="w-100p"
+        class="w-100p emphasized"
+        [ngClass]="{ disabled: form.invalid || loading }"
         [disabled]="form.invalid || loading"
       >
         @if (loading) {
