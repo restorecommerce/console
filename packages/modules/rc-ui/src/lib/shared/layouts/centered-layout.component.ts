@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div
-      class="rs-centered-page row justify-center align-items-center p-5 w-100p"
-    >
+    <div class="rs-centered-page row justify-center align-items-center w-100p">
       <div class="rs-centered-page__content w-100p">
         <ng-content></ng-content>
       </div>
@@ -16,6 +14,10 @@ import { Component } from '@angular/core';
   `,
   styles: [
     `
+      @use '@vcl/theme' as *;
+
+      @debug 'breakpoint' $breakpoints;
+
       :host {
         display: block;
         width: 100%;
@@ -26,8 +28,16 @@ import { Component } from '@angular/core';
         min-height: 100vh;
       }
 
-      .rs-centered-page__content {
-        max-width: 480px;
+      @media (min-width: 900px) {
+        .rs-centered-page__content {
+          max-width: 60%;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .rs-centered-page__content {
+          max-width: 30%;
+        }
       }
     `,
   ],

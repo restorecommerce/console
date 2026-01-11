@@ -13,11 +13,11 @@ import {
           <ng-content></ng-content>
         </rc-card>
 
-        <rc-copyright />
+        <!-- <rc-copyright /> -->
       </div>
     </rc-centered-page>
   `,
   selector: 'rc-auth-layout',
-  imports: [RcCenteredPageComponent, RcCardComponent, RcCopyrightComponent],
+  imports: [RcCenteredPageComponent, RcCardComponent],
 })
 export class RsAuthLayoutComponent {}
