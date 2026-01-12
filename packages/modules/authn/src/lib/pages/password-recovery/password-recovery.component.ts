@@ -13,6 +13,8 @@ import { AuthnFacade } from '@console-core/state';
     <rc-password-recovery
       [config]="config"
       [state]="state"
+      (requestReset)="onRequestReset($event)"
+      (submitNewPassword)="onSubmitNewPassword($event)"
     />
   `,
   imports: [RcPasswordRecoveryComponent],
@@ -26,6 +28,11 @@ export class PasswordRecoveryComponent {
     reason: 'invalid',
   } as RcPasswordRecoveryState;
 
-  loading$ = this.authnFacade.isRequesting$;
-  error$ = this.authnFacade.error$;
+  onRequestReset(_: { identifier: string }) {
+    // Dispatch Request and track state....
+  }
+
+  onSubmitNewPassword(_: { password: string }) {
+    // Dispatch submit and track state....
+  }
 }
