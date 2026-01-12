@@ -14,13 +14,6 @@
     <span>{{ t().title | rcTranslate | async }}</span>
   </div>
 
-  @if (state.error) {
-
-  <div class="mt-2 callout danger">
-    {{ state.error | rcTranslate | async }}
-  </div>
-  }
-
   <hr />
 
   <form
