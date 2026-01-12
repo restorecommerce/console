@@ -3,7 +3,12 @@ import {
   InjectionToken,
   makeEnvironmentProviders,
 } from '@angular/core';
-import { RcPasswordRecoveryTranslations, RcSignInTranslations } from './pages';
+
+import {
+  RcPasswordRecoveryTranslations,
+  RcSignUpTranslations,
+  RcSignInTranslations,
+} from './pages';
 
 export type RcAuthForgotPasswordTarget =
   | { kind: 'route'; route: string | string[] }
@@ -11,7 +16,7 @@ export type RcAuthForgotPasswordTarget =
 
 export interface RcAuthI18nConfig {
   signIn?: Partial<RcSignInTranslations>;
-  // signUp?: Partial<RcSignUpTranslations>;
+  signUp?: Partial<RcSignUpTranslations>;
   passwordRecovery?: Partial<RcPasswordRecoveryTranslations>;
 }
 

@@ -1,0 +1,116 @@
+<rc-auth-layout>
+  <div class="w-100p col justify-center align-items-center mt-3 mb-2">
+    @if (config.branding.logoUrl) {
+    <img
+      [width]="config.branding.logoSize || 100"
+      [src]="config.branding.logoUrl"
+      [alt]="config.branding.logoAlt"
+    />
+    }
+    <h3 class="p-2">{{ config.branding.appName }}</h3>
+  </div>
+
+  <div class="mt-1 row justify-center align-item-center">
+    <span>{{ t().title | rcTranslate | async }}</span>
+  </div>
+
+  <hr />
+
+  <!-- Sign-Up Form -->
+  <form
+    vclForm
+    class="form"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
+    <!-- First Name -->
+    <vcl-form-control-group>
+      <vcl-label>{{ t().firstNameLabel | rcTranslate | async }}</vcl-label>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="firstName"
+        />
+      </vcl-input-field>
+    </vcl-form-control-group>
+
+    <!-- Last Name -->
+    <vcl-form-control-group>
+      <vcl-label>{{ t().lastNameLabel | rcTranslate | async }}</vcl-label>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="lastName"
+        />
+      </vcl-input-field>
+    </vcl-form-control-group>
+
+    <!-- Email -->
+    <vcl-form-control-group>
+      <vcl-label>{{ t().emailLabel | rcTranslate | async }}</vcl-label>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="email"
+          type="email"
+        />
+      </vcl-input-field>
+    </vcl-form-control-group>
+
+    <!-- Username -->
+    <vcl-form-control-group>
+      <vcl-label>{{ t().usernameLabel | rcTranslate | async }}</vcl-label>
+      <vcl-input-field>
+        <input
+          vclInput
+          formControlName="username"
+        />
+      </vcl-input-field>
+    </vcl-form-control-group>
+
+    <!-- Password -->
+    <vcl-form-control-group>
+      <vcl-label>{{ t().passwordLabel | rcTranslate | async }}</vcl-label>
+      <vcl-password-input>
+        <input
+          vclInput
+          formControlName="password"
+          type="password"
+        />
+      </vcl-password-input>
+    </vcl-form-control-group>
+
+    <!-- Confirm Password -->
+    <vcl-form-control-group>
+      <vcl-label>{{
+        t().confirmPasswordLabel | rcTranslate | async
+      }}</vcl-label>
+      <vcl-password-input>
+        <input
+          vclInput
+          formControlName="confirmPassword"
+          type="password"
+        />
+      </vcl-password-input>
+    </vcl-form-control-group>
+
+    <!-- Submit Button -->
+    <div class="row">
+      @let loading = state.loading || false;
+
+      <button
+        vcl-button
+        type="submit"
+        class="w-100p emphasized"
+        [ngClass]="{ disabled: form.invalid || loading }"
+        [disabled]="form.invalid || loading"
+      >
+        @if (loading) {
+        {{ t().loading | rcTranslate | async }}
+        } @else {
+        {{ t().submit | rcTranslate | async }}
+        }
+      </button>
+    </div>
+  </form>
+</rc-auth-layout>
