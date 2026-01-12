@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { ForgotPasswordComponent, SignInComponent } from './pages';
+import { PasswordRecoveryComponent, SignInComponent } from './pages';
 
 export const modulesAuthnRoutes: Route[] = [
   {
@@ -18,7 +18,7 @@ export const modulesAuthnRoutes: Route[] = [
   },
   {
     path: ROUTER.pages.main.children.auth.children.passwordRecovery.path,
-    component: ForgotPasswordComponent,
+    component: PasswordRecoveryComponent,
 
     title: ROUTER.pages.main.children.auth.children.passwordRecovery.title,
   },

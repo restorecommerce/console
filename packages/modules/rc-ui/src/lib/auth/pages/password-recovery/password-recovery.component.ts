@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,20 +9,23 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RcPasswordRecoveryState } from './password-recovery.models';
-import { AsyncPipe } from '@angular/common';
-import { RcTranslatePipe } from '../../../i18n';
-import { RsAuthLayoutComponent } from '../../layouts';
+
 import {
+  VCLButtonComponent,
   VCLFormControlGroupModule,
   VCLInputModule,
   VCLPasswordInputModule,
 } from '@vcl/ng-vcl';
+
+import { RcTranslatePipe } from '../../../i18n';
 import { RcAuthLayoutConfig } from '../../auth.config';
+import { RsAuthLayoutComponent } from '../../layouts';
+
 import {
   DEFAULT_PASSWORD_RECOVERY_TRANSLATIONS,
   RcPasswordRecoveryTranslations,
 } from './password-recovery.i18n';
+import { RcPasswordRecoveryState } from './password-recovery.models';
 
 @Component({
   selector: 'rc-password-recovery',
@@ -30,6 +34,7 @@ import {
   imports: [
     ReactiveFormsModule,
     VCLInputModule,
+    VCLButtonComponent,
     VCLFormControlGroupModule,
     VCLPasswordInputModule,
     RsAuthLayoutComponent,
@@ -64,7 +69,7 @@ export class RcPasswordRecoveryComponent {
     if (this.identifierForm.invalid) return;
 
     this.requestReset.emit({
-      identifier: this.identifierForm.value.identifier!,
+      identifier: this.identifierForm.value.identifier as string,
     });
   }
 
@@ -72,7 +77,7 @@ export class RcPasswordRecoveryComponent {
     if (this.passwordForm.invalid) return;
 
     this.submitNewPassword.emit({
-      password: this.passwordForm.value.password!,
+      password: this.passwordForm.value.password as string,
     });
   }
 }

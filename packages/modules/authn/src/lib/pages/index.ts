@@ -1,2 +1,2 @@
-export * from './forgot-password/forgot-password.component';
+export * from './password-recovery/password-recovery.component';
 export * from './sign-in/sign-in.component';
