@@ -1,16 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   EventEmitter,
   inject,
   Input,
   Output,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  RcPasswordRecoveryConfig,
-  RcPasswordRecoveryState,
-} from './password-recovery.types';
+import { RcPasswordRecoveryState } from './password-recovery.models';
 import { AsyncPipe } from '@angular/common';
 import { RcTranslatePipe } from '../../../i18n';
 import { RsAuthLayoutComponent } from '../../layouts';
@@ -19,6 +17,11 @@ import {
   VCLInputModule,
   VCLPasswordInputModule,
 } from '@vcl/ng-vcl';
+import { RcAuthLayoutConfig } from '../../auth.config';
+import {
+  DEFAULT_PASSWORD_RECOVERY_TRANSLATIONS,
+  RcPasswordRecoveryTranslations,
+} from './password-recovery.i18n';
 
 @Component({
   selector: 'rc-password-recovery',
@@ -35,11 +38,16 @@ import {
   ],
 })
 export class RcPasswordRecoveryComponent {
-  @Input({ required: true }) config!: RcPasswordRecoveryConfig;
+  @Input({ required: true }) config!: RcAuthLayoutConfig;
   @Input({ required: true }) state!: RcPasswordRecoveryState;
 
   @Output() requestReset = new EventEmitter<{ identifier: string }>();
   @Output() submitNewPassword = new EventEmitter<{ password: string }>();
+
+  readonly t = computed<RcPasswordRecoveryTranslations>(() => ({
+    ...DEFAULT_PASSWORD_RECOVERY_TRANSLATIONS,
+    ...this.config.i18n?.passwordRecovery,
+  }));
 
   private readonly fb = inject(FormBuilder);
 
