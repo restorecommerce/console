@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  RcCenteredPageComponent,
-  RcCardComponent,
-  RcCopyrightComponent,
-} from '../../shared';
+
+import { RcCenteredPageComponent, RcCardComponent } from '../../shared';
 
 @Component({
   template: `
