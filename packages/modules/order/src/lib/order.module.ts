@@ -4,13 +4,23 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { modulesOrderRoutes } from './order.routes';
-import { orderListFeatureKey, orderListReducer } from './store/order-list';
+import {
+  loadOrderListEffect,
+  loadOrderListOnNavigationEffect,
+  OrderListFacade,
+  orderListFeatureKey,
+  orderListReducer,
+} from './store/order-list';
 
 @NgModule({
   imports: [
     RouterModule.forChild(modulesOrderRoutes),
     StoreModule.forFeature(orderListFeatureKey, orderListReducer),
-    EffectsModule.forFeature([]),
+    EffectsModule.forFeature({
+      loadOrderListOnNavigationEffect,
+      loadOrderListEffect,
+    }),
   ],
+  providers: [OrderListFacade],
 })
 export class OrderModule {}

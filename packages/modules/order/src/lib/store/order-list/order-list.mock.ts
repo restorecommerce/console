@@ -1,3 +1,5 @@
+import { EOrderStatus } from '@console-core/types';
+
 import { IOrderListItem } from '../../models';
 import { Money } from '../../models/money';
 
@@ -6,7 +8,7 @@ export const mockOrderListItem: IOrderListItem = {
 
   displayNumber: 'ORD-2026-0001',
 
-  status: 'CONFIRMED',
+  status: EOrderStatus.Pending,
 
   total: new Money(125_00, 'EUR'),
 

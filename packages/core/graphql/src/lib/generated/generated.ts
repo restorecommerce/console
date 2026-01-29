@@ -12271,6 +12271,86 @@ export type OrderingInvoiceCreateMutation = {
   };
 };
 
+export type OrderListFragmentFragment = {
+  __typename?: 'IoRestorecommerceOrderOrder';
+  id?: string | null;
+  orderState?: IoRestorecommerceOrderOrderState | null;
+  customerOrderNr?: string | null;
+  customer?: {
+    __typename?: 'IoRestorecommerceCustomerCustomer';
+    name?: string | null;
+  } | null;
+  totalAmounts?: Array<{
+    __typename?: 'IoRestorecommerceAmountAmount';
+    gross?: number | null;
+    net?: number | null;
+    currency?: {
+      __typename?: 'IoRestorecommerceCurrencyCurrency';
+      name?: string | null;
+    } | null;
+  }> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+  } | null;
+};
+
+export type OrderListReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type OrderListReadQuery = {
+  __typename?: 'Query';
+  ordering: {
+    __typename?: 'OrderingQuery';
+    order: {
+      __typename?: 'OrderingOrderQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceOrderOrderListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceOrderOrderListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceOrderOrderResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceOrderOrder';
+              id?: string | null;
+              orderState?: IoRestorecommerceOrderOrderState | null;
+              customerOrderNr?: string | null;
+              customer?: {
+                __typename?: 'IoRestorecommerceCustomerCustomer';
+                name?: string | null;
+              } | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currency?: {
+                  __typename?: 'IoRestorecommerceCurrencyCurrency';
+                  name?: string | null;
+                } | null;
+              }> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type OrderingOrderMutateMutationVariables = Exact<{
   input: IIoRestorecommerceOrderOrderList;
 }>;
@@ -14498,6 +14578,26 @@ export const UserRoleFragmentFragmentDoc = gql`
   }
   ${RoleFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
+`;
+export const OrderListFragmentFragmentDoc = gql`
+  fragment OrderListFragment on IoRestorecommerceOrderOrder {
+    id
+    orderState
+    customerOrderNr
+    customer {
+      name
+    }
+    totalAmounts {
+      currency {
+        name
+      }
+      gross
+      net
+    }
+    meta {
+      created
+    }
+  }
 `;
 export const PolicyReadDocument = gql`
   query PolicyRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
@@ -16786,6 +16886,46 @@ export class OrderingInvoiceCreateGQL extends Apollo.Mutation<
   OrderingInvoiceCreateMutationVariables
 > {
   override document = OrderingInvoiceCreateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const OrderListReadDocument = gql`
+  query OrderListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    ordering {
+      order {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                ...OrderListFragment
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+  ${OrderListFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderListReadGQL extends Apollo.Query<
+  OrderListReadQuery,
+  OrderListReadQueryVariables
+> {
+  override document = OrderListReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

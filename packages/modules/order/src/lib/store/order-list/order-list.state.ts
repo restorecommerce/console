@@ -1,7 +1,5 @@
 import { IOrderListItem } from '../../models';
 
-import { mockOrderListItem } from './order-list.mock';
-
 export interface OrderListState {
   items: IOrderListItem[];
   loading: boolean;
@@ -9,6 +7,6 @@ export interface OrderListState {
 }
 
 export const initialOrderListState: OrderListState = {
-  items: [mockOrderListItem],
+  items: [],
   loading: false,
 };

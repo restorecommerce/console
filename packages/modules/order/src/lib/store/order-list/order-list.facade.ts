@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import * as orderListActions from './order-list.actions';
 import * as orderListSelectors from './order-list.selectors';
 
 @Injectable()
@@ -14,4 +15,8 @@ export class OrderListFacade {
   readonly error = this.store.selectSignal(
     orderListSelectors.selectOrderListError
   );
+
+  loadList() {
+    this.store.dispatch(orderListActions.loadOrderList());
+  }
 }

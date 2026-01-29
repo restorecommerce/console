@@ -1,19 +1,21 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { routerNavigatedAction } from '@ngrx/router-store';
-import { Store } from '@ngrx/store';
-import { filter, map } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import * as OrderListActions from './order-list.actions';
-import { mockOrderListItem } from './order-list.mock';
+import { OrderRepository } from '../../data/order.repository';
+import { of } from 'rxjs';
+import { mapOrderToListItem } from '../../models/order-list.mapper';
+import { IoRestorecommerceOrderOrder } from '@console-core/graphql';
 
 export const loadOrderListOnNavigationEffect = createEffect(
   (actions$ = inject(Actions)) => {
     return actions$.pipe(
       ofType(routerNavigatedAction),
-      filter(({ payload }) =>
-        /^\/job-management(\?.*)?$/.test(payload.routerState.url)
-      ),
+      filter(({ payload }) => {
+        return /^\/orders(\?.*)?$/.test(payload.routerState.url);
+      }),
       map(() => OrderListActions.loadOrderList())
     );
   },
@@ -21,14 +23,30 @@ export const loadOrderListOnNavigationEffect = createEffect(
 );
 
 export const loadOrderListEffect = createEffect(
-  (actions$ = inject(Actions), _ = inject(Store)) => {
+  (actions$ = inject(Actions), orderRepository = inject(OrderRepository)) => {
     return actions$.pipe(
       ofType(OrderListActions.loadOrderList),
-      map(() => {
-        return OrderListActions.loadOrderListSuccess({
-          items: [mockOrderListItem],
-        });
-      })
+      switchMap(() =>
+        orderRepository.list({}).pipe(
+          map(({ data }) =>
+            OrderListActions.loadOrderListSuccess({
+              items: (data.ordering.order.Read?.details?.items || []).map(
+                (item) =>
+                  mapOrderToListItem(
+                    item.payload as IoRestorecommerceOrderOrder
+                  )
+              ),
+            })
+          ),
+          catchError((error) =>
+            of(
+              OrderListActions.loadOrderListFailure({
+                error: error.message ?? 'Failed to load orders',
+              })
+            )
+          )
+        )
+      )
     );
   },
   { functional: true }

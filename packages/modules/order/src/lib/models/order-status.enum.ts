@@ -1,1 +1,3 @@
-export type OrderStatus = 'CREATED' | 'CONFIRMED' | 'PAID' | 'CANCELLED';
+import { IoRestorecommerceOrderOrderState } from '@console-core/graphql';
+
+export type EOrderStatus = IoRestorecommerceOrderOrderState;

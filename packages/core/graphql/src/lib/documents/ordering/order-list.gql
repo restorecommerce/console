@@ -1,0 +1,42 @@
+fragment OrderListFragment on IoRestorecommerceOrderOrder {
+  id
+  orderState
+  customerOrderNr
+  customer {
+    name
+  }
+  totalAmounts {
+    currency {
+      name
+    }
+    gross
+    net
+  }
+  meta {
+    created
+  }
+}
+
+query OrderListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  ordering {
+    order {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...OrderListFragment
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
