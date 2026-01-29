@@ -1,11 +1,11 @@
 <rc-resource-page-layout title="Applications">
   <ng-container rcResourceSidebar>
-    <router-outlet name="sidebar"/>
+    <app-module-order-list />
   </ng-container>
 
   <ng-container rcResourceContent>
     <div class="w-100p h-100p">
-      <router-outlet name="content" />
+      <router-outlet />
     </div>
   </ng-container>
 </rc-resource-page-layout>
