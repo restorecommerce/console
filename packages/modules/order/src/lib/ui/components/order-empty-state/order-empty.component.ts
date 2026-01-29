@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-module-order',
+  selector: 'app-module-order-empty-state',
   template: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [],
 })
-export class OrderIndexComponent {}
+export class OrderEmptyStateComponent {}

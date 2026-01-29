@@ -36,7 +36,7 @@ export const modulesMainRoutes: Route[] = [
       {
         path: ROUTER.pages.main.children.orders.path,
         loadChildren: () =>
-          import('@console-modules/order').then((m) => m.ModulesOrderModule),
+          import('@console-modules/order').then((m) => m.modulesOrderRoutes),
       },
       {
         path: ROUTER.pages.main.children.fulfillments.path,

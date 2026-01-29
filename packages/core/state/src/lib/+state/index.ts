@@ -7,7 +7,6 @@ export * from './management';
 export * from './manufacturer';
 export * from './organization-context';
 export * from './object-upload';
-export * from './order';
 export * from './product';
 export * from './product-category';
 export * from './product-prototype';
