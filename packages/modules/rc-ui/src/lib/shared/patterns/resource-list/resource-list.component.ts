@@ -16,7 +16,14 @@ import {
   VCLIconModule,
   VCLInputModule,
 } from '@vcl/ng-vcl';
+
 import { RcId, RcResourceListHeaderCtx } from './resource-list.models';
+
+export interface RcResourceContext<T> {
+  $implicit: T;
+  // index: number;
+  // add other properties you provide, like 'count' or 'selected'
+}
 
 @Component({
   selector: 'rc-resource-list',
@@ -100,7 +107,7 @@ import { RcId, RcResourceListHeaderCtx } from './resource-list.models';
         (click)="itemSelected.emit(item)"
       >
         <ng-container
-          *ngTemplateOutlet="itemTpl; context: { $implicit: item, item: item }"
+          *ngTemplateOutlet="itemTpl; context: { $implicit: item }"
         />
       </vcl-data-list-item>
       } } @else {
@@ -112,7 +119,9 @@ import { RcId, RcResourceListHeaderCtx } from './resource-list.models';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcResourceListComponent<TItem = unknown> implements OnChanges {
+export class RcResourceListComponent<TItem extends { id: RcId }>
+  implements OnChanges
+{
   @Input({ required: true }) items: TItem[] = [];
   @Input({ required: true }) getId!: (item: TItem) => RcId;
 
@@ -126,7 +135,7 @@ export class RcResourceListComponent<TItem = unknown> implements OnChanges {
 
   // Templates
   @ContentChild('itemTemplate', { read: TemplateRef })
-  itemTpl!: TemplateRef<any>;
+  itemTpl!: TemplateRef<RcResourceContext<TItem>>;
 
   @ContentChild('headerTemplate', { read: TemplateRef })
   headerTpl?: TemplateRef<any>;

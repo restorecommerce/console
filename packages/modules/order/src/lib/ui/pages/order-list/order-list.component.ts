@@ -2,6 +2,8 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
+
+import { OrderListFacade } from '../../../store';
 @Component({
   selector: 'app-module-order-list',
   template: `
@@ -21,14 +23,16 @@ import { RcResourceListComponent } from '@console/rc-ui';
             <div class="col">
               <div class="title">{{ order.customerName || '—' }}</div>
               <div class="muted small">
-                {{ order.id }} · @if (order.createdAt) {
+                {{ order.displayNumber }} · @if (order.createdAt) {
                 <span>{{ order.createdAt | date : 'medium' }}</span>
                 }
               </div>
             </div>
             <div class="col right">
-              <div class="badge">{{ order.state }}</div>
-              <div class="muted small">{{ order.itemsCount ?? 0 }} items</div>
+              <div class="badge">{{ order.status }}</div>
+              <div class="muted small">
+                {{ order.total.amount }} - {{ order.total.currency }}
+              </div>
             </div>
           </div>
 
@@ -42,6 +46,7 @@ import { RcResourceListComponent } from '@console/rc-ui';
     </rc-resource-list>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [OrderListFacade],
   imports: [DatePipe, RcResourceListComponent],
   styles: [
     `
@@ -58,12 +63,11 @@ import { RcResourceListComponent } from '@console/rc-ui';
   ],
 })
 export class OrderListComponent {
-  // private readonly orderFacade = inject(OrderFacade);
+  private readonly orderFacade = inject(OrderListFacade);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
-  // { id: string; status: string; createdAt: string; itemsCount: number }
-  items = [];
+  items = this.orderFacade.orders();
 
   onSelect(order: { id: string }): void {
     this.router.navigate([order.id, 'view'], {
