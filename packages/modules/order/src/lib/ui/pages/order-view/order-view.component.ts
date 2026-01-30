@@ -1,6 +1,13 @@
 import { DatePipe, JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RcResourceDetailComponent } from '@console/rc-ui';
+import { distinctUntilChanged, filter, map } from 'rxjs';
 
 import {
   VCLLabelDirective,
@@ -29,10 +36,24 @@ import { OrderViewFacade } from '../../../store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [OrderViewFacade],
 })
-export class OrderViewComponent {
+export class OrderViewComponent implements OnInit {
   private readonly orderFacade = inject(OrderViewFacade);
+  private readonly route = inject(ActivatedRoute);
 
   readonly order = this.orderFacade.order;
+
+  ngOnInit(): void {
+    this.route.paramMap
+      .pipe(
+        map((p) => p.get('id')),
+        filter((id): id is string => !!id),
+        distinctUntilChanged()
+      )
+      .subscribe((orderId) => {
+        console.log('OrderID', orderId);
+        this.orderFacade.enterPage(orderId);
+      });
+  }
 
   goBack() {
     // TODO

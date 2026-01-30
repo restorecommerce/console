@@ -8178,11 +8178,6 @@ export type OrderFragmentFragment = {
       regularPrice?: number | null;
       sale?: boolean | null;
       salePrice?: number | null;
-      currency?: {
-        __typename?: 'IoRestorecommerceCurrencyCurrency';
-        name?: string | null;
-        symbol?: string | null;
-      } | null;
     } | null;
   }> | null;
   shop?: {
@@ -8367,76 +8362,6 @@ export type OrderFragmentFragment = {
       } | null;
     } | null;
   } | null;
-  billingAddress?: {
-    __typename?: 'IoRestorecommerceAddressBillingAddress';
-    comments?: string | null;
-    contact?: {
-      __typename?: 'IoRestorecommerceAddressContact';
-      name?: string | null;
-      email?: string | null;
-      phone?: string | null;
-    } | null;
-    address?: {
-      __typename?: 'IoRestorecommerceAddressAddress';
-      id?: string | null;
-      buildingNumber?: string | null;
-      street?: string | null;
-      postcode?: string | null;
-      locality?: string | null;
-      region?: string | null;
-      addressAddition?: {
-        __typename?: 'IoRestorecommerceAddressAddressAddition';
-        field1?: string | null;
-        field2?: string | null;
-      } | null;
-      businessAddress?: {
-        __typename?: 'IoRestorecommerceAddressBusinessAddress';
-        name?: string | null;
-      } | null;
-      packStation?: {
-        __typename?: 'IoRestorecommerceAddressPackStation';
-        postNumber?: string | null;
-        provider?: string | null;
-        stationNumber?: string | null;
-      } | null;
-      residentialAddress?: {
-        __typename?: 'IoRestorecommerceAddressResidentialAddress';
-        title?: string | null;
-        givenName?: string | null;
-        familyName?: string | null;
-        midName?: string | null;
-      } | null;
-      country?: {
-        __typename?: 'IoRestorecommerceCountryCountry';
-        id?: string | null;
-        name?: string | null;
-        countryCode?: string | null;
-        geographicalName?: string | null;
-      } | null;
-      geoCoordinates?: {
-        __typename?: 'IoRestorecommerceAddressGeoPoint';
-        latitude?: number | null;
-        longitude?: number | null;
-      } | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-        owners?: Array<{
-          __typename?: 'IoRestorecommerceAttributeAttribute';
-          id?: string | null;
-          value?: string | null;
-          attributes?: Array<{
-            __typename?: 'IoRestorecommerceAttributeAttribute';
-            id?: string | null;
-            value?: string | null;
-          }> | null;
-        }> | null;
-      } | null;
-    } | null;
-  } | null;
   totalAmounts?: Array<{
     __typename?: 'IoRestorecommerceAmountAmount';
     gross?: number | null;
@@ -8466,6 +8391,13 @@ export type OrderFragmentFragment = {
         } | null;
       } | null;
     }> | null;
+  }> | null;
+  history?: Array<{
+    __typename?: 'IoRestorecommerceOrderEvent';
+    code?: number | null;
+    message?: string | null;
+    state?: IoRestorecommerceOrderOrderState | null;
+    timestamp?: unknown | null;
   }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -12743,11 +12675,6 @@ export type OrderingOrderMutateMutation = {
                   regularPrice?: number | null;
                   sale?: boolean | null;
                   salePrice?: number | null;
-                  currency?: {
-                    __typename?: 'IoRestorecommerceCurrencyCurrency';
-                    name?: string | null;
-                    symbol?: string | null;
-                  } | null;
                 } | null;
               }> | null;
               shop?: {
@@ -12932,76 +12859,6 @@ export type OrderingOrderMutateMutation = {
                   } | null;
                 } | null;
               } | null;
-              billingAddress?: {
-                __typename?: 'IoRestorecommerceAddressBillingAddress';
-                comments?: string | null;
-                contact?: {
-                  __typename?: 'IoRestorecommerceAddressContact';
-                  name?: string | null;
-                  email?: string | null;
-                  phone?: string | null;
-                } | null;
-                address?: {
-                  __typename?: 'IoRestorecommerceAddressAddress';
-                  id?: string | null;
-                  buildingNumber?: string | null;
-                  street?: string | null;
-                  postcode?: string | null;
-                  locality?: string | null;
-                  region?: string | null;
-                  addressAddition?: {
-                    __typename?: 'IoRestorecommerceAddressAddressAddition';
-                    field1?: string | null;
-                    field2?: string | null;
-                  } | null;
-                  businessAddress?: {
-                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
-                    name?: string | null;
-                  } | null;
-                  packStation?: {
-                    __typename?: 'IoRestorecommerceAddressPackStation';
-                    postNumber?: string | null;
-                    provider?: string | null;
-                    stationNumber?: string | null;
-                  } | null;
-                  residentialAddress?: {
-                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
-                    title?: string | null;
-                    givenName?: string | null;
-                    familyName?: string | null;
-                    midName?: string | null;
-                  } | null;
-                  country?: {
-                    __typename?: 'IoRestorecommerceCountryCountry';
-                    id?: string | null;
-                    name?: string | null;
-                    countryCode?: string | null;
-                    geographicalName?: string | null;
-                  } | null;
-                  geoCoordinates?: {
-                    __typename?: 'IoRestorecommerceAddressGeoPoint';
-                    latitude?: number | null;
-                    longitude?: number | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                    owners?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                      attributes?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                      }> | null;
-                    }> | null;
-                  } | null;
-                } | null;
-              } | null;
               totalAmounts?: Array<{
                 __typename?: 'IoRestorecommerceAmountAmount';
                 gross?: number | null;
@@ -13031,6 +12888,13 @@ export type OrderingOrderMutateMutation = {
                     } | null;
                   } | null;
                 }> | null;
+              }> | null;
+              history?: Array<{
+                __typename?: 'IoRestorecommerceOrderEvent';
+                code?: number | null;
+                message?: string | null;
+                state?: IoRestorecommerceOrderOrderState | null;
+                timestamp?: unknown | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -13480,11 +13344,6 @@ export type OrderingOrderReadQuery = {
                   regularPrice?: number | null;
                   sale?: boolean | null;
                   salePrice?: number | null;
-                  currency?: {
-                    __typename?: 'IoRestorecommerceCurrencyCurrency';
-                    name?: string | null;
-                    symbol?: string | null;
-                  } | null;
                 } | null;
               }> | null;
               shop?: {
@@ -13669,76 +13528,6 @@ export type OrderingOrderReadQuery = {
                   } | null;
                 } | null;
               } | null;
-              billingAddress?: {
-                __typename?: 'IoRestorecommerceAddressBillingAddress';
-                comments?: string | null;
-                contact?: {
-                  __typename?: 'IoRestorecommerceAddressContact';
-                  name?: string | null;
-                  email?: string | null;
-                  phone?: string | null;
-                } | null;
-                address?: {
-                  __typename?: 'IoRestorecommerceAddressAddress';
-                  id?: string | null;
-                  buildingNumber?: string | null;
-                  street?: string | null;
-                  postcode?: string | null;
-                  locality?: string | null;
-                  region?: string | null;
-                  addressAddition?: {
-                    __typename?: 'IoRestorecommerceAddressAddressAddition';
-                    field1?: string | null;
-                    field2?: string | null;
-                  } | null;
-                  businessAddress?: {
-                    __typename?: 'IoRestorecommerceAddressBusinessAddress';
-                    name?: string | null;
-                  } | null;
-                  packStation?: {
-                    __typename?: 'IoRestorecommerceAddressPackStation';
-                    postNumber?: string | null;
-                    provider?: string | null;
-                    stationNumber?: string | null;
-                  } | null;
-                  residentialAddress?: {
-                    __typename?: 'IoRestorecommerceAddressResidentialAddress';
-                    title?: string | null;
-                    givenName?: string | null;
-                    familyName?: string | null;
-                    midName?: string | null;
-                  } | null;
-                  country?: {
-                    __typename?: 'IoRestorecommerceCountryCountry';
-                    id?: string | null;
-                    name?: string | null;
-                    countryCode?: string | null;
-                    geographicalName?: string | null;
-                  } | null;
-                  geoCoordinates?: {
-                    __typename?: 'IoRestorecommerceAddressGeoPoint';
-                    latitude?: number | null;
-                    longitude?: number | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                    owners?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                      attributes?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                      }> | null;
-                    }> | null;
-                  } | null;
-                } | null;
-              } | null;
               totalAmounts?: Array<{
                 __typename?: 'IoRestorecommerceAmountAmount';
                 gross?: number | null;
@@ -13768,6 +13557,13 @@ export type OrderingOrderReadQuery = {
                     } | null;
                   } | null;
                 }> | null;
+              }> | null;
+              history?: Array<{
+                __typename?: 'IoRestorecommerceOrderEvent';
+                code?: number | null;
+                message?: string | null;
+                state?: IoRestorecommerceOrderOrderState | null;
+                timestamp?: unknown | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -14369,10 +14165,6 @@ export const OrderFragmentFragmentDoc = gql`
       }
       unitPrice {
         currencyId
-        currency {
-          name
-          symbol
-        }
         regularPrice
         sale
         salePrice
@@ -14388,17 +14180,6 @@ export const OrderFragmentFragmentDoc = gql`
       ...UserFragment
     }
     shippingAddress {
-      comments
-      contact {
-        name
-        email
-        phone
-      }
-      address {
-        ...AddressFragment
-      }
-    }
-    billingAddress {
       comments
       contact {
         name
@@ -14432,6 +14213,12 @@ export const OrderFragmentFragmentDoc = gql`
         }
         vat
       }
+    }
+    history {
+      code
+      message
+      state
+      timestamp
     }
     meta {
       ...MetaFragment

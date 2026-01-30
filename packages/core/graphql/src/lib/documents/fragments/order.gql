@@ -22,10 +22,6 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
     }
     unitPrice {
       currencyId
-      currency {
-        name
-        symbol
-      }
       regularPrice
       sale
       salePrice
@@ -41,17 +37,6 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
     ...UserFragment
   }
   shippingAddress {
-    comments
-    contact {
-      name
-      email
-      phone
-    }
-    address {
-      ...AddressFragment
-    }
-  }
-  billingAddress {
     comments
     contact {
       name
@@ -85,6 +70,12 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
       }
       vat
     }
+  }
+  history {
+    code
+    message
+    state
+    timestamp
   }
   meta {
     ...MetaFragment
