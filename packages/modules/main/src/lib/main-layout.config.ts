@@ -5,6 +5,7 @@ import { APP, ROUTER } from '@console-core/config';
 export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
   appName: APP.name ?? 'Restore Commerce Console',
   logoUrl: APP.logoUrl,
+  logoWidth: 30,
 
   categories: [
     {
