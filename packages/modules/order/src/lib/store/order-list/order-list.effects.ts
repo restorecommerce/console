@@ -27,15 +27,10 @@ export const loadOrderListEffect = createEffect(
     return actions$.pipe(
       ofType(OrderListActions.loadOrderList),
       switchMap(() =>
-        orderRepository.list({}).pipe(
-          map(({ data }) =>
+        orderRepository.list().pipe(
+          map((orders) =>
             OrderListActions.loadOrderListSuccess({
-              items: (data.ordering.order.Read?.details?.items || []).map(
-                (item) =>
-                  mapOrderToListItem(
-                    item.payload as IoRestorecommerceOrderOrder
-                  )
-              ),
+              items: orders.map((order) => mapOrderToListItem(order)),
             })
           ),
           catchError((error) =>

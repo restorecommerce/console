@@ -1,3 +1,1 @@
-import { IoRestorecommerceOrderOrderState } from '@console-core/graphql';
-
-export type EOrderStatus = IoRestorecommerceOrderOrderState;
+export { IoRestorecommerceOrderOrderState as EOrderStatus } from '@console-core/graphql';

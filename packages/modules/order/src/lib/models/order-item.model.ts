@@ -5,6 +5,6 @@ export interface OrderItem {
   productName: string;
   sku?: string;
   quantity: number;
-  unitPrice: Money;
-  totalPrice: Money;
+  unitPrice?: Money;
+  totalPrice?: Money;
 }

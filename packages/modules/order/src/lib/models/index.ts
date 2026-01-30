@@ -6,3 +6,7 @@ export * from './order-customer.model';
 export * from './order-item.model';
 export * from './order-total.model';
 export * from './order-history.model';
+export * from './order.model';
+
+// Mapper
+export * from './order.mapper';

@@ -1,5 +1,5 @@
 export interface OrderHistoryEntry {
-  code: string;
+  code: number;
   message: string;
-  timestamp?: string;
+  // timestamp?: string;
 }

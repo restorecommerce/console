@@ -3,7 +3,7 @@ import { OrderHistoryEntry } from './order-history.model';
 import { OrderItem } from './order-item.model';
 import { OrderMeta } from './order-meta.model';
 import { EOrderStatus } from './order-status.enum';
-import { OrderTotals } from './order-total.model';
+// import { OrderTotals } from './order-total.model';
 import { OrderUser } from './order-user.model';
 
 export interface Order {
@@ -15,6 +15,6 @@ export interface Order {
   customer?: OrderCustomer;
   user?: OrderUser;
   items: OrderItem[];
-  totals: OrderTotals;
+  // totals: OrderTotals;
   history: OrderHistoryEntry[];
 }
