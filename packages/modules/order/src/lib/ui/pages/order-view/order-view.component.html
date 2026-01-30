@@ -1,3 +1,4 @@
+@if (order(); as order) {
 <rc-resource-detail
   [title]="'Order details'"
   (back)="goBack()"
@@ -6,8 +7,8 @@
 >
   <header class="mb-3 row justify-between">
     <div class="title">
-      <h3 class="m-0 mb-1">Order 2a73d21bc9b0417db2393b30f556c063</h3>
-      <vcl-badge>SUBMITTED</vcl-badge>
+      <h3 class="m-0 mb-1">Order {{ order.id }}</h3>
+      <vcl-badge>{{ order.status }}</vcl-badge>
     </div>
 
     <div class="actions mt-2">
@@ -38,22 +39,22 @@ title, state badge, actions (cancel/refund/mark paid etc.)
       <div class="grid">
         <div>
           <div class="muted small">State</div>
-          <div>{{ order?.orderState }}</div>
+          <div>{{ order.status }}</div>
         </div>
 
         <div>
           <div class="muted small">Created</div>
-          <div>{{ order?.meta?.created | date : 'medium' }}</div>
+          <div>{{ order.meta.created | date : 'medium' }}</div>
         </div>
 
         <div>
           <div class="muted small">Shop</div>
-          <div>{{ order?.shopId }}</div>
+          <div>{{ order.shopId }}</div>
         </div>
 
         <div>
           <div class="muted small">Notification Email</div>
-          <div>{{ order?.notificationEmail || '—' }}</div>
+          <div>{{ order.notificationEmail || '—' }}</div>
         </div>
       </div>
 
@@ -62,8 +63,8 @@ title, state badge, actions (cancel/refund/mark paid etc.)
       <div class="grid">
         <div>
           <div class="muted small">Customer</div>
-          <div>{{ order?.customer?.name || '—' }}</div>
-          <div class="muted small">{{ order?.customer?.id }}</div>
+          <div>{{ order.customer?.name || '—' }}</div>
+          <div class="muted small">{{ order.customer?.id }}</div>
         </div>
 
         <div>
@@ -189,3 +190,4 @@ title, state badge, actions (cancel/refund/mark paid etc.)
     </vcl-tab>
   </vcl-tab-nav>
 </rc-resource-detail>
+}

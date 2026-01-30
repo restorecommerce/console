@@ -1,7 +1,6 @@
 import { DatePipe, JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RcResourceDetailComponent } from '@console/rc-ui';
-import { of } from 'rxjs';
 
 import {
   VCLLabelDirective,
@@ -11,7 +10,7 @@ import {
   VCLButtonComponent,
 } from '@vcl/ng-vcl';
 
-// import { OrderFacade } from '@console-core/state';
+import { OrderViewFacade } from '../../../store';
 
 @Component({
   selector: 'app-module-order-view',
@@ -28,11 +27,12 @@ import {
   ],
   styleUrl: './order-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [OrderViewFacade],
 })
 export class OrderViewComponent {
-  // private readonly orderFacade = inject(OrderFacade);
+  private readonly orderFacade = inject(OrderViewFacade);
 
-  readonly selectedOrder$ = of(null);
+  readonly order = this.orderFacade.order;
 
   goBack() {
     // TODO
