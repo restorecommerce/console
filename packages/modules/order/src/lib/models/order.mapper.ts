@@ -17,8 +17,10 @@ export function mapOrderDto(dto: IoRestorecommerceOrderOrder): Order {
       updated: dto?.meta?.modified as string, // ISO Date,
     },
     customer: {
-      id: dto?.customer?.id ?? '',
-      name: dto?.customer?.name ?? '',
+      id: dto.userId || '',
+      name: dto.shippingAddress?.contact?.name ?? '',
+      email: dto.shippingAddress?.contact?.email || '',
+      type: dto.customerType || 'PRIVATE',
     },
     user: {
       id: dto?.user?.id ?? '',

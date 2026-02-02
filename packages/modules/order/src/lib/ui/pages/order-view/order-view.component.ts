@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
+import { CurrencyPipe, DecimalPipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,14 +18,13 @@ import {
   VCLButtonComponent,
 } from '@vcl/ng-vcl';
 
-import { Money } from '../../../models';
+import { CUSTOMER_TYPE_LABEL, Money } from '../../../models';
 import { OrderViewFacade } from '../../../store';
 
 @Component({
   selector: 'app-module-order-view',
   templateUrl: './order-view.component.html',
   imports: [
-    DatePipe,
     CurrencyPipe,
     DecimalPipe,
     JsonPipe,
@@ -68,6 +67,23 @@ export class OrderViewComponent implements OnInit {
   invoiceCount = computed(() => this.order()?.invoices?.length ?? 0);
 
   hasInvoices = computed(() => this.invoiceCount() > 0);
+
+  customer = computed(() => this.order()?.customer);
+
+  customerTypeLabel = computed(() => {
+    const type = this.customer()?.type;
+    return type ? CUSTOMER_TYPE_LABEL[type] : '—';
+  });
+
+  customerDisplayName = computed(() => {
+    const c = this.customer();
+    return c?.name || '—';
+  });
+
+  customerEmail = computed(() => {
+    const c = this.customer();
+    return c?.email || '—';
+  });
 
   formattedMoney = (m?: Money) =>
     m ? `${m.amount.toFixed(2)} ${m.currency}` : '—';

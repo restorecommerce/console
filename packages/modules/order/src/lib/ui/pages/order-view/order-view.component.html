@@ -36,7 +36,82 @@ title, state badge, actions (cancel/refund/mark paid etc.)
     <vcl-tab>
       <vcl-label>Basic</vcl-label>
       <!-- TODO New tab -->
-      <p>summay about Orders</p>
+      <div class="row grid-gutter-1">
+        <div class="flex-6">
+          <div class="secondary-text-color scale85p">Destination</div>
+          <div>{{ destination() }}</div>
+        </div>
+        <div class="flex-6">
+          <div class="secondary-text-color scale85p">Items</div>
+          <div>{{ itemCount() }}</div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row grid-gutter-1">
+        <div class="flex-4">
+          <div class="secondary-text-color scale85p">Customer</div>
+          <div>{{ customerDisplayName() }}</div>
+          <div class="secondary-text-color scale85p">{{ customer()?.id }}</div>
+        </div>
+
+        <div class="flex-4">
+          <div class="secondary-text-color scale85p">Email</div>
+          <div>{{ customerEmail() }}</div>
+        </div>
+
+        <div class="flex-4">
+          <div class="secondary-text-color scale85p">Customer type</div>
+          <div>{{ customerTypeLabel() }}</div>
+        </div>
+      </div>
+
+      <hr />
+      <!-- Totals -->
+      <div class="row grid-gutter-1">
+        <div class="flex-4">
+          <div class="secondary-text-color scale85p">Subtotal</div>
+          <div>{{ formattedMoney(totals()?.subtotal) }}</div>
+        </div>
+
+        <div class="flex-4">
+          <div class="secondary-text-color scale85p">Tax</div>
+          <div>{{ formattedMoney(totals()?.tax) }}</div>
+        </div>
+
+        <div class="flex-4">
+          <div class="secondary-text-color scale85p">Total</div>
+          <strong>{{ formattedMoney(totals()?.grandTotal) }}</strong>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Fulfilment & Invoice -->
+      <div class="row grid-gutter-1">
+        <!-- Fulfilments -->
+        <div class="flex-6">
+          <div class="secondary-text-color scale85p">Fulfilments</div>
+
+          @if (hasFulfilments()) {
+          <a class="link"> {{ fulfilmentCount() }} fulfilment(s) </a>
+          } @else {
+          <div>None</div>
+          }
+        </div>
+
+        <!-- Invoices -->
+        <div class="flex-6">
+          <div class="secondary-text-color scale85p">Invoices</div>
+
+          @if (hasInvoices()) {
+          <a class="link"> {{ invoiceCount() }} invoice(s) </a>
+          } @else {
+          <div>None</div>
+          }
+        </div>
+      </div>
     </vcl-tab>
     <vcl-tab>
       <vcl-label>Items</vcl-label>
@@ -125,7 +200,7 @@ title, state badge, actions (cancel/refund/mark paid etc.)
       <div class="history">
         @for (h of order.history; track $index) {
         <div class="history-row">
-          <div class="muted small">{{ h.code }}</div>
+          <div class="secondary-text-color scale85p">{{ h.code }}</div>
           <div>{{ h.message }}</div>
         </div>
         } @empty {
@@ -137,7 +212,7 @@ title, state badge, actions (cancel/refund/mark paid etc.)
       <vcl-label>Raw JSON / Meta</vcl-label>
 
       <div class="raw">
-        <div class="muted small">Raw payload</div>
+        <div class="secondary-text-color scale85p">Raw payload</div>
         <pre class="pre">{{ order | json }}</pre>
       </div>
     </vcl-tab>

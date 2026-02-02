@@ -24,7 +24,7 @@ export function mapTotals(
       currency: 'EUR',
     },
     shipping: {
-      amount: total.net || 0,
+      amount: 0,
       currency: 'EUR',
     },
     tax: {

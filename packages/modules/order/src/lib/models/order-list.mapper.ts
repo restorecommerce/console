@@ -17,6 +17,6 @@ export function mapOrderToListItem(
       currency: 'EUR',
     },
     createdAt: new Date(created),
-    customerName: order.customer?.name || '',
+    // customerName: order.customer?.name || '',
   };
 }
