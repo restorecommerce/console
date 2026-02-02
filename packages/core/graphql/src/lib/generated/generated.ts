@@ -8029,147 +8029,6 @@ export type OrderFragmentFragment = {
       product?: {
         __typename?: 'IoRestorecommerceProductIndividualProduct';
         name?: string | null;
-        description?: string | null;
-        taxIds?: Array<string> | null;
-        gtin?: string | null;
-        manufacturerId?: string | null;
-        originCountryId?: string | null;
-        categoryId?: string | null;
-        prototypeId?: string | null;
-        physical?: {
-          __typename?: 'IoRestorecommerceProductPhysicalProduct';
-          templates?: Array<{
-            __typename?: 'IoRestorecommerceProductPhysicalVariant';
-            id?: string | null;
-            name?: string | null;
-            description?: string | null;
-            taricCode?: string | null;
-            stockLevel?: number | null;
-            stockKeepingUnit?: string | null;
-            parentVariantId?: string | null;
-            taxIds?: Array<string> | null;
-            images?: Array<{
-              __typename?: 'IoRestorecommerceImageImage';
-              id?: string | null;
-              index?: number | null;
-              filename?: string | null;
-              url?: string | null;
-              caption?: string | null;
-              contentType?: string | null;
-              tags?: Array<string> | null;
-              height?: number | null;
-              width?: number | null;
-            }> | null;
-            files?: Array<{
-              __typename?: 'IoRestorecommerceFileFile';
-              id?: string | null;
-              url?: string | null;
-              filename?: string | null;
-              caption?: string | null;
-              contentType?: string | null;
-              tags?: Array<string> | null;
-              thumbnail?: {
-                __typename?: 'IoRestorecommerceImageImage';
-                id?: string | null;
-                index?: number | null;
-                filename?: string | null;
-                url?: string | null;
-                caption?: string | null;
-                contentType?: string | null;
-                tags?: Array<string> | null;
-                height?: number | null;
-                width?: number | null;
-              } | null;
-            }> | null;
-            price?: {
-              __typename?: 'IoRestorecommercePricePrice';
-              currencyId?: string | null;
-              regularPrice?: number | null;
-              sale?: boolean | null;
-              salePrice?: number | null;
-            } | null;
-            properties?: Array<{
-              __typename?: 'IoRestorecommercePropertyProperty';
-              id?: string | null;
-              value?: string | null;
-              unitCode?: string | null;
-            }> | null;
-          }> | null;
-          variants?: Array<{
-            __typename?: 'IoRestorecommerceProductPhysicalVariant';
-            id?: string | null;
-            name?: string | null;
-            description?: string | null;
-            taricCode?: string | null;
-            stockLevel?: number | null;
-            stockKeepingUnit?: string | null;
-            parentVariantId?: string | null;
-            taxIds?: Array<string> | null;
-            images?: Array<{
-              __typename?: 'IoRestorecommerceImageImage';
-              id?: string | null;
-              index?: number | null;
-              filename?: string | null;
-              url?: string | null;
-              caption?: string | null;
-              contentType?: string | null;
-              tags?: Array<string> | null;
-              height?: number | null;
-              width?: number | null;
-            }> | null;
-            files?: Array<{
-              __typename?: 'IoRestorecommerceFileFile';
-              id?: string | null;
-              url?: string | null;
-              filename?: string | null;
-              caption?: string | null;
-              contentType?: string | null;
-              tags?: Array<string> | null;
-              thumbnail?: {
-                __typename?: 'IoRestorecommerceImageImage';
-                id?: string | null;
-                index?: number | null;
-                filename?: string | null;
-                url?: string | null;
-                caption?: string | null;
-                contentType?: string | null;
-                tags?: Array<string> | null;
-                height?: number | null;
-                width?: number | null;
-              } | null;
-            }> | null;
-            price?: {
-              __typename?: 'IoRestorecommercePricePrice';
-              currencyId?: string | null;
-              regularPrice?: number | null;
-              sale?: boolean | null;
-              salePrice?: number | null;
-            } | null;
-            properties?: Array<{
-              __typename?: 'IoRestorecommercePropertyProperty';
-              id?: string | null;
-              value?: string | null;
-              unitCode?: string | null;
-            }> | null;
-          }> | null;
-        } | null;
-      } | null;
-      meta?: {
-        __typename?: 'IoRestorecommerceMetaMeta';
-        created?: unknown | null;
-        modified?: unknown | null;
-        createdBy?: string | null;
-        modifiedBy?: string | null;
-        owners?: Array<{
-          __typename?: 'IoRestorecommerceAttributeAttribute';
-          id?: string | null;
-          value?: string | null;
-          attributes?: Array<{
-            __typename?: 'IoRestorecommerceAttributeAttribute';
-            id?: string | null;
-            value?: string | null;
-          }> | null;
-        }> | null;
       } | null;
     } | null;
     unitPrice?: {
@@ -8178,6 +8037,17 @@ export type OrderFragmentFragment = {
       regularPrice?: number | null;
       sale?: boolean | null;
       salePrice?: number | null;
+    } | null;
+    amount?: {
+      __typename?: 'IoRestorecommerceAmountAmount';
+      net?: number | null;
+      currencyId?: string | null;
+      gross?: number | null;
+      vats?: Array<{
+        __typename?: 'IoRestorecommerceAmountVAT';
+        vat?: number | null;
+        taxId?: string | null;
+      }> | null;
     } | null;
   }> | null;
   shop?: {
@@ -12526,147 +12396,6 @@ export type OrderingOrderMutateMutation = {
                   product?: {
                     __typename?: 'IoRestorecommerceProductIndividualProduct';
                     name?: string | null;
-                    description?: string | null;
-                    taxIds?: Array<string> | null;
-                    gtin?: string | null;
-                    manufacturerId?: string | null;
-                    originCountryId?: string | null;
-                    categoryId?: string | null;
-                    prototypeId?: string | null;
-                    physical?: {
-                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
-                      templates?: Array<{
-                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
-                        id?: string | null;
-                        name?: string | null;
-                        description?: string | null;
-                        taricCode?: string | null;
-                        stockLevel?: number | null;
-                        stockKeepingUnit?: string | null;
-                        parentVariantId?: string | null;
-                        taxIds?: Array<string> | null;
-                        images?: Array<{
-                          __typename?: 'IoRestorecommerceImageImage';
-                          id?: string | null;
-                          index?: number | null;
-                          filename?: string | null;
-                          url?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          height?: number | null;
-                          width?: number | null;
-                        }> | null;
-                        files?: Array<{
-                          __typename?: 'IoRestorecommerceFileFile';
-                          id?: string | null;
-                          url?: string | null;
-                          filename?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          thumbnail?: {
-                            __typename?: 'IoRestorecommerceImageImage';
-                            id?: string | null;
-                            index?: number | null;
-                            filename?: string | null;
-                            url?: string | null;
-                            caption?: string | null;
-                            contentType?: string | null;
-                            tags?: Array<string> | null;
-                            height?: number | null;
-                            width?: number | null;
-                          } | null;
-                        }> | null;
-                        price?: {
-                          __typename?: 'IoRestorecommercePricePrice';
-                          currencyId?: string | null;
-                          regularPrice?: number | null;
-                          sale?: boolean | null;
-                          salePrice?: number | null;
-                        } | null;
-                        properties?: Array<{
-                          __typename?: 'IoRestorecommercePropertyProperty';
-                          id?: string | null;
-                          value?: string | null;
-                          unitCode?: string | null;
-                        }> | null;
-                      }> | null;
-                      variants?: Array<{
-                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
-                        id?: string | null;
-                        name?: string | null;
-                        description?: string | null;
-                        taricCode?: string | null;
-                        stockLevel?: number | null;
-                        stockKeepingUnit?: string | null;
-                        parentVariantId?: string | null;
-                        taxIds?: Array<string> | null;
-                        images?: Array<{
-                          __typename?: 'IoRestorecommerceImageImage';
-                          id?: string | null;
-                          index?: number | null;
-                          filename?: string | null;
-                          url?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          height?: number | null;
-                          width?: number | null;
-                        }> | null;
-                        files?: Array<{
-                          __typename?: 'IoRestorecommerceFileFile';
-                          id?: string | null;
-                          url?: string | null;
-                          filename?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          thumbnail?: {
-                            __typename?: 'IoRestorecommerceImageImage';
-                            id?: string | null;
-                            index?: number | null;
-                            filename?: string | null;
-                            url?: string | null;
-                            caption?: string | null;
-                            contentType?: string | null;
-                            tags?: Array<string> | null;
-                            height?: number | null;
-                            width?: number | null;
-                          } | null;
-                        }> | null;
-                        price?: {
-                          __typename?: 'IoRestorecommercePricePrice';
-                          currencyId?: string | null;
-                          regularPrice?: number | null;
-                          sale?: boolean | null;
-                          salePrice?: number | null;
-                        } | null;
-                        properties?: Array<{
-                          __typename?: 'IoRestorecommercePropertyProperty';
-                          id?: string | null;
-                          value?: string | null;
-                          unitCode?: string | null;
-                        }> | null;
-                      }> | null;
-                    } | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                    owners?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                      attributes?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                      }> | null;
-                    }> | null;
                   } | null;
                 } | null;
                 unitPrice?: {
@@ -12675,6 +12404,17 @@ export type OrderingOrderMutateMutation = {
                   regularPrice?: number | null;
                   sale?: boolean | null;
                   salePrice?: number | null;
+                } | null;
+                amount?: {
+                  __typename?: 'IoRestorecommerceAmountAmount';
+                  net?: number | null;
+                  currencyId?: string | null;
+                  gross?: number | null;
+                  vats?: Array<{
+                    __typename?: 'IoRestorecommerceAmountVAT';
+                    vat?: number | null;
+                    taxId?: string | null;
+                  }> | null;
                 } | null;
               }> | null;
               shop?: {
@@ -13195,147 +12935,6 @@ export type OrderingOrderReadQuery = {
                   product?: {
                     __typename?: 'IoRestorecommerceProductIndividualProduct';
                     name?: string | null;
-                    description?: string | null;
-                    taxIds?: Array<string> | null;
-                    gtin?: string | null;
-                    manufacturerId?: string | null;
-                    originCountryId?: string | null;
-                    categoryId?: string | null;
-                    prototypeId?: string | null;
-                    physical?: {
-                      __typename?: 'IoRestorecommerceProductPhysicalProduct';
-                      templates?: Array<{
-                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
-                        id?: string | null;
-                        name?: string | null;
-                        description?: string | null;
-                        taricCode?: string | null;
-                        stockLevel?: number | null;
-                        stockKeepingUnit?: string | null;
-                        parentVariantId?: string | null;
-                        taxIds?: Array<string> | null;
-                        images?: Array<{
-                          __typename?: 'IoRestorecommerceImageImage';
-                          id?: string | null;
-                          index?: number | null;
-                          filename?: string | null;
-                          url?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          height?: number | null;
-                          width?: number | null;
-                        }> | null;
-                        files?: Array<{
-                          __typename?: 'IoRestorecommerceFileFile';
-                          id?: string | null;
-                          url?: string | null;
-                          filename?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          thumbnail?: {
-                            __typename?: 'IoRestorecommerceImageImage';
-                            id?: string | null;
-                            index?: number | null;
-                            filename?: string | null;
-                            url?: string | null;
-                            caption?: string | null;
-                            contentType?: string | null;
-                            tags?: Array<string> | null;
-                            height?: number | null;
-                            width?: number | null;
-                          } | null;
-                        }> | null;
-                        price?: {
-                          __typename?: 'IoRestorecommercePricePrice';
-                          currencyId?: string | null;
-                          regularPrice?: number | null;
-                          sale?: boolean | null;
-                          salePrice?: number | null;
-                        } | null;
-                        properties?: Array<{
-                          __typename?: 'IoRestorecommercePropertyProperty';
-                          id?: string | null;
-                          value?: string | null;
-                          unitCode?: string | null;
-                        }> | null;
-                      }> | null;
-                      variants?: Array<{
-                        __typename?: 'IoRestorecommerceProductPhysicalVariant';
-                        id?: string | null;
-                        name?: string | null;
-                        description?: string | null;
-                        taricCode?: string | null;
-                        stockLevel?: number | null;
-                        stockKeepingUnit?: string | null;
-                        parentVariantId?: string | null;
-                        taxIds?: Array<string> | null;
-                        images?: Array<{
-                          __typename?: 'IoRestorecommerceImageImage';
-                          id?: string | null;
-                          index?: number | null;
-                          filename?: string | null;
-                          url?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          height?: number | null;
-                          width?: number | null;
-                        }> | null;
-                        files?: Array<{
-                          __typename?: 'IoRestorecommerceFileFile';
-                          id?: string | null;
-                          url?: string | null;
-                          filename?: string | null;
-                          caption?: string | null;
-                          contentType?: string | null;
-                          tags?: Array<string> | null;
-                          thumbnail?: {
-                            __typename?: 'IoRestorecommerceImageImage';
-                            id?: string | null;
-                            index?: number | null;
-                            filename?: string | null;
-                            url?: string | null;
-                            caption?: string | null;
-                            contentType?: string | null;
-                            tags?: Array<string> | null;
-                            height?: number | null;
-                            width?: number | null;
-                          } | null;
-                        }> | null;
-                        price?: {
-                          __typename?: 'IoRestorecommercePricePrice';
-                          currencyId?: string | null;
-                          regularPrice?: number | null;
-                          sale?: boolean | null;
-                          salePrice?: number | null;
-                        } | null;
-                        properties?: Array<{
-                          __typename?: 'IoRestorecommercePropertyProperty';
-                          id?: string | null;
-                          value?: string | null;
-                          unitCode?: string | null;
-                        }> | null;
-                      }> | null;
-                    } | null;
-                  } | null;
-                  meta?: {
-                    __typename?: 'IoRestorecommerceMetaMeta';
-                    created?: unknown | null;
-                    modified?: unknown | null;
-                    createdBy?: string | null;
-                    modifiedBy?: string | null;
-                    owners?: Array<{
-                      __typename?: 'IoRestorecommerceAttributeAttribute';
-                      id?: string | null;
-                      value?: string | null;
-                      attributes?: Array<{
-                        __typename?: 'IoRestorecommerceAttributeAttribute';
-                        id?: string | null;
-                        value?: string | null;
-                      }> | null;
-                    }> | null;
                   } | null;
                 } | null;
                 unitPrice?: {
@@ -13344,6 +12943,17 @@ export type OrderingOrderReadQuery = {
                   regularPrice?: number | null;
                   sale?: boolean | null;
                   salePrice?: number | null;
+                } | null;
+                amount?: {
+                  __typename?: 'IoRestorecommerceAmountAmount';
+                  net?: number | null;
+                  currencyId?: string | null;
+                  gross?: number | null;
+                  vats?: Array<{
+                    __typename?: 'IoRestorecommerceAmountVAT';
+                    vat?: number | null;
+                    taxId?: string | null;
+                  }> | null;
                 } | null;
               }> | null;
               shop?: {
@@ -13880,92 +13490,6 @@ export const OpsStatusFragmentFragmentDoc = gql`
     message
   }
 `;
-export const ImageFragmentFragmentDoc = gql`
-  fragment ImageFragment on IoRestorecommerceImageImage {
-    id
-    index
-    filename
-    url
-    caption
-    contentType
-    tags
-    height
-    width
-  }
-`;
-export const FileFragmentFragmentDoc = gql`
-  fragment FileFragment on IoRestorecommerceFileFile {
-    id
-    url
-    filename
-    caption
-    contentType
-    tags
-    thumbnail {
-      ...ImageFragment
-    }
-  }
-  ${ImageFragmentFragmentDoc}
-`;
-export const ProductVariantFragmentFragmentDoc = gql`
-  fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
-    id
-    name
-    description
-    taricCode
-    images {
-      ...ImageFragment
-    }
-    files {
-      ...FileFragment
-    }
-    stockLevel
-    stockKeepingUnit
-    parentVariantId
-    taxIds
-    price {
-      currencyId
-      regularPrice
-      sale
-      salePrice
-    }
-    properties {
-      id
-      value
-      unitCode
-    }
-  }
-  ${ImageFragmentFragmentDoc}
-  ${FileFragmentFragmentDoc}
-`;
-export const ProductFragmentFragmentDoc = gql`
-  fragment ProductFragment on IoRestorecommerceProductProduct {
-    id
-    product {
-      name
-      description
-      taxIds
-      gtin
-      manufacturerId
-      originCountryId
-      categoryId
-      prototypeId
-      physical {
-        templates {
-          ...ProductVariantFragment
-        }
-        variants {
-          ...ProductVariantFragment
-        }
-      }
-    }
-    meta {
-      ...MetaFragment
-    }
-  }
-  ${ProductVariantFragmentFragmentDoc}
-  ${MetaFragmentFragmentDoc}
-`;
 export const OrganizationFragmentFragmentDoc = gql`
   fragment OrganizationFragment on IoRestorecommerceOrganizationOrganization {
     id
@@ -14161,13 +13685,25 @@ export const OrderFragmentFragmentDoc = gql`
       variantId
       parentItemId
       product {
-        ...ProductFragment
+        id
+        product {
+          name
+        }
       }
       unitPrice {
         currencyId
         regularPrice
         sale
         salePrice
+      }
+      amount {
+        net
+        currencyId
+        gross
+        vats {
+          vat
+          taxId
+        }
       }
     }
     shop {
@@ -14224,12 +13760,24 @@ export const OrderFragmentFragmentDoc = gql`
       ...MetaFragment
     }
   }
-  ${ProductFragmentFragmentDoc}
   ${ShopFragmentFragmentDoc}
   ${CustomerFragmentFragmentDoc}
   ${UserFragmentFragmentDoc}
   ${AddressFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
+`;
+export const ImageFragmentFragmentDoc = gql`
+  fragment ImageFragment on IoRestorecommerceImageImage {
+    id
+    index
+    filename
+    url
+    caption
+    contentType
+    tags
+    height
+    width
+  }
 `;
 export const PriceGroupFragmentFragmentDoc = gql`
   fragment PriceGroupFragment on IoRestorecommercePriceGroupPriceGroup {
@@ -14275,6 +13823,79 @@ export const ProductPrototypeFragmentFragmentDoc = gql`
       ...MetaFragment
     }
   }
+  ${MetaFragmentFragmentDoc}
+`;
+export const FileFragmentFragmentDoc = gql`
+  fragment FileFragment on IoRestorecommerceFileFile {
+    id
+    url
+    filename
+    caption
+    contentType
+    tags
+    thumbnail {
+      ...ImageFragment
+    }
+  }
+  ${ImageFragmentFragmentDoc}
+`;
+export const ProductVariantFragmentFragmentDoc = gql`
+  fragment ProductVariantFragment on IoRestorecommerceProductPhysicalVariant {
+    id
+    name
+    description
+    taricCode
+    images {
+      ...ImageFragment
+    }
+    files {
+      ...FileFragment
+    }
+    stockLevel
+    stockKeepingUnit
+    parentVariantId
+    taxIds
+    price {
+      currencyId
+      regularPrice
+      sale
+      salePrice
+    }
+    properties {
+      id
+      value
+      unitCode
+    }
+  }
+  ${ImageFragmentFragmentDoc}
+  ${FileFragmentFragmentDoc}
+`;
+export const ProductFragmentFragmentDoc = gql`
+  fragment ProductFragment on IoRestorecommerceProductProduct {
+    id
+    product {
+      name
+      description
+      taxIds
+      gtin
+      manufacturerId
+      originCountryId
+      categoryId
+      prototypeId
+      physical {
+        templates {
+          ...ProductVariantFragment
+        }
+        variants {
+          ...ProductVariantFragment
+        }
+      }
+    }
+    meta {
+      ...MetaFragment
+    }
+  }
+  ${ProductVariantFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
 export const StatusFragmentFragmentDoc = gql`

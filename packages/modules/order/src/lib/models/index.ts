@@ -7,6 +7,8 @@ export * from './order-item.model';
 export * from './order-total.model';
 export * from './order-history.model';
 export * from './order.model';
+export * from './order-destination.model';
+export * from './money.model';
 
 // Mapper
 export * from './order.mapper';

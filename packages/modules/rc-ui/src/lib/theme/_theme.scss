@@ -18,7 +18,11 @@
   $brand-accent-lighter: tokens.$brand-accent-lighter,
 
   // panel setting
-  $panel-border-color: transparent
+  $panel-border-color: transparent,
+
+  // table
+  $table-header-bg-color: #fff,
+  $table-header-color: rgb(119, 119, 119)
 );
 
 @use '@vcl/vcl';

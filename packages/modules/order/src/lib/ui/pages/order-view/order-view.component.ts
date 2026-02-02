@@ -1,7 +1,8 @@
-import { DatePipe, JsonPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   OnInit,
 } from '@angular/core';
@@ -17,6 +18,7 @@ import {
   VCLButtonComponent,
 } from '@vcl/ng-vcl';
 
+import { Money } from '../../../models';
 import { OrderViewFacade } from '../../../store';
 
 @Component({
@@ -24,6 +26,8 @@ import { OrderViewFacade } from '../../../store';
   templateUrl: './order-view.component.html',
   imports: [
     DatePipe,
+    CurrencyPipe,
+    DecimalPipe,
     JsonPipe,
     VCLTabNavComponent,
     VCLTabComponent,
@@ -42,6 +46,32 @@ export class OrderViewComponent implements OnInit {
 
   readonly order = this.orderFacade.order;
 
+  destination = computed(() => {
+    const d = this.order()?.destination;
+    if (!d) return '—';
+
+    return [d.addressLine1, d.postalCode, d.city, d.country]
+      .filter(Boolean)
+      .join(', ');
+  });
+
+  totals = computed(() => this.order()?.totals);
+
+  itemCount = computed(() => this.order()?.items.length ?? 0);
+
+  // Fulfilment
+  fulfilmentCount = computed(() => this.order()?.fulfilments?.length ?? 0);
+
+  hasFulfilments = computed(() => this.fulfilmentCount() > 0);
+
+  // Invoice
+  invoiceCount = computed(() => this.order()?.invoices?.length ?? 0);
+
+  hasInvoices = computed(() => this.invoiceCount() > 0);
+
+  formattedMoney = (m?: Money) =>
+    m ? `${m.amount.toFixed(2)} ${m.currency}` : '—';
+
   ngOnInit(): void {
     this.route.paramMap
       .pipe(
@@ -50,7 +80,6 @@ export class OrderViewComponent implements OnInit {
         distinctUntilChanged()
       )
       .subscribe((orderId) => {
-        console.log('OrderID', orderId);
         this.orderFacade.enterPage(orderId);
       });
   }

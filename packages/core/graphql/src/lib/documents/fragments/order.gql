@@ -18,13 +18,25 @@ fragment OrderFragment on IoRestorecommerceOrderOrder {
     variantId
     parentItemId
     product {
-      ...ProductFragment
+      id
+      product {
+        name
+      }
     }
     unitPrice {
       currencyId
       regularPrice
       sale
       salePrice
+    }
+    amount {
+      net
+      currencyId
+      gross
+      vats {
+        vat
+        taxId
+      }
     }
   }
   shop {

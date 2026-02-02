@@ -3,6 +3,7 @@ import { IoRestorecommerceOrderOrder } from '@console-core/graphql';
 import { mapHistory } from './order-history.mapper';
 import { mapItem } from './order-item.mapper';
 import { EOrderStatus } from './order-status.enum';
+import { mapTotals } from './order-total.mapper';
 import { Order } from './order.model';
 
 export function mapOrderDto(dto: IoRestorecommerceOrderOrder): Order {
@@ -26,7 +27,7 @@ export function mapOrderDto(dto: IoRestorecommerceOrderOrder): Order {
       email: dto?.user?.email ?? '',
     },
     items: (dto.items || []).map(mapItem), //dto.items.map(mapItem),
-    // totals: mapTotals(dto.totals),
+    totals: mapTotals(dto.totalAmounts?.[0]),
     history: mapHistory(dto.history),
   };
 }

@@ -11,7 +11,13 @@ export function mapItem(dto: IoRestorecommerceOrderItem): OrderItem {
 
     quantity: dto.quantity ?? 0,
 
-    // unitPrice: mapMoney(dto.unitPrice),
-    // totalPrice: mapMoney(dto.amount),
+    unitPrice: {
+      amount: dto.unitPrice?.regularPrice ?? 0,
+      currency: dto.unitPrice?.currencyId ?? '',
+    },
+    totalPrice: {
+      amount: dto.amount?.net ?? 0,
+      currency: dto.amount?.currencyId ?? '',
+    },
   };
 }
