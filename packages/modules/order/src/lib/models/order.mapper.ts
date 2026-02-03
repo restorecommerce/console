@@ -12,6 +12,15 @@ export function mapOrderDto(dto: IoRestorecommerceOrderOrder): Order {
     status: dto.orderState ?? EOrderStatus.Pending,
     shopId: dto.shopId ?? '',
     notificationEmail: dto.notificationEmail ?? '',
+    destination: {
+      country: dto.shippingAddress?.address?.country?.name || '', // TOOD Fix the country resolver in the order srv
+      city: dto.shippingAddress?.address?.region || '',
+      postalCode: dto.shippingAddress?.address?.postcode || '',
+      addressLine1:
+        dto.shippingAddress?.address?.buildingNumber +
+        ' ' +
+        dto.shippingAddress?.address?.street,
+    },
     meta: {
       created: dto?.meta?.created as string, // ISO Date
       updated: dto?.meta?.modified as string, // ISO Date,

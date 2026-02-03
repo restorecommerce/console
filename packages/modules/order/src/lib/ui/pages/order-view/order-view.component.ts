@@ -45,6 +45,10 @@ export class OrderViewComponent implements OnInit {
 
   readonly order = this.orderFacade.order;
 
+  // TODO
+  // readonly -> get fuflfilment links,
+  // readonly -> get invoices links...
+
   destination = computed(() => {
     const d = this.order()?.destination;
     if (!d) return '—';
@@ -59,14 +63,14 @@ export class OrderViewComponent implements OnInit {
   itemCount = computed(() => this.order()?.items.length ?? 0);
 
   // Fulfilment
-  fulfilmentCount = computed(() => this.order()?.fulfilments?.length ?? 0);
+  fulfilmentCount = this.orderFacade.fulfilmentCount;
 
-  hasFulfilments = computed(() => this.fulfilmentCount() > 0);
+  hasFulfilments = this.orderFacade.hasFulfilments;
 
   // Invoice
-  invoiceCount = computed(() => this.order()?.invoices?.length ?? 0);
+  invoiceCount = this.orderFacade.invoiceCount;
 
-  hasInvoices = computed(() => this.invoiceCount() > 0);
+  hasInvoices = this.orderFacade.hasInvoices;
 
   customer = computed(() => this.order()?.customer);
 

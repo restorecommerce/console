@@ -1,4 +1,4 @@
-import { Order } from '../../models';
+import { Fulfilment, Invoice, Order } from '../../models';
 
 export interface OrderViewState {
   orderId: string | null;
@@ -8,14 +8,26 @@ export interface OrderViewState {
   loading: boolean;
   error: string | null;
 
-  // UI-only state
-  activeTab: number;
+  fulfilments: RelatedResourceState<Fulfilment>;
+  invoices: RelatedResourceState<Invoice>;
 }
+
+export interface RelatedResourceState<T> {
+  loading: boolean;
+  error?: unknown;
+  items: T[];
+}
+
+const emptyRelated = {
+  loading: false,
+  items: [],
+};
 
 export const initialOrderViewState: OrderViewState = {
   orderId: null,
   order: null,
   loading: false,
   error: null,
-  activeTab: 0,
+  fulfilments: emptyRelated,
+  invoices: emptyRelated,
 };

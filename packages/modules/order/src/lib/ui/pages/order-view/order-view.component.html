@@ -7,13 +7,13 @@
 >
   <header class="mb-3 row justify-between">
     <div class="title">
-      <h3 class="m-0 mb-1">Order {{ order.id }}</h3>
+      <h3 class="m-0 mb-2">Order {{ order.id }}</h3>
       <vcl-badge>{{ order.status }}</vcl-badge>
     </div>
 
     <div class="actions mt-2">
       <!-- slot: add buttons like "Cancel", "Refund", "Resend email" -->
-      <button
+      <!-- <button
         vcl-button
         class="emphasized-transparent scale85p"
       >
@@ -25,7 +25,7 @@
         class="ml-2 emphasized-transparent scale85p"
       >
         Create invoice
-      </button>
+      </button> -->
     </div>
     <!--
 title, state badge, actions (cancel/refund/mark paid etc.)
@@ -35,7 +35,6 @@ title, state badge, actions (cancel/refund/mark paid etc.)
   <vcl-tab-nav [selectedTabIndex]="0">
     <vcl-tab>
       <vcl-label>Basic</vcl-label>
-      <!-- TODO New tab -->
       <div class="row grid-gutter-1">
         <div class="flex-6">
           <div class="secondary-text-color scale85p">Destination</div>

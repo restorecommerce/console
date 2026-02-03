@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Order } from '../../models/order.model';
+import { Fulfilment, Order, Invoice } from '../../models';
 
 export const enterPage = createAction(
   '[Order View] Enter Page',
@@ -34,12 +34,42 @@ export const cancelOrder = createAction(
   props<{ orderId: string }>()
 );
 
-export const createInvoice = createAction(
-  '[Order View] Create Invoice',
+export const loadFulfilments = createAction(
+  '[Order Detail] Load Fulfilments',
   props<{ orderId: string }>()
+);
+
+export const loadFulfilmentsSuccess = createAction(
+  '[Order Detail] Load Fulfilments Success',
+  props<{ fulfilments: Fulfilment[] }>()
+);
+
+export const loadFulfilmentsFailure = createAction(
+  '[Order Detail] Load Fulfilments Failure',
+  props<{ error: unknown }>()
 );
 
 export const createFulfilment = createAction(
   '[Order View] Create Fulfilment',
+  props<{ orderId: string }>()
+);
+
+export const loadInvoices = createAction(
+  '[Order Detail] Load Invoices',
+  props<{ orderId: string }>()
+);
+
+export const loadInvoicesSuccess = createAction(
+  '[Order Detail] Load Invoices Success',
+  props<{ invoices: Invoice[] }>()
+);
+
+export const loadInvoicesFailure = createAction(
+  '[Order Detail] Load Invoices Failure',
+  props<{ error: unknown }>()
+);
+
+export const createInvoice = createAction(
+  '[Order View] Create Invoice',
   props<{ orderId: string }>()
 );

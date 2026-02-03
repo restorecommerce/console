@@ -10,11 +10,11 @@ export function mapOrderToListItem(
 
   return {
     id: order.id ?? '',
-    displayNumber: order.customerOrderNr ?? '',
+    displayNumber: order.id ?? '',
     status: order.orderState || EOrderStatus.Pending,
     total: {
-      amount: 999,
-      currency: 'EUR',
+      amount: order?.totalAmounts?.[0].gross || 0,
+      currency: order?.totalAmounts?.[0].currency?.code || 'EUR',
     },
     createdAt: new Date(created),
     // customerName: order.customer?.name || '',

@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
@@ -9,20 +9,7 @@ import { OrderListFacade } from '../../../store';
   templateUrl: './order-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [OrderListFacade],
-  imports: [DatePipe, RcResourceListComponent],
-  styles: [
-    `
-      .title {
-        font-weight: 600;
-      }
-      .muted {
-        opacity: 0.7;
-      }
-      .small {
-        font-size: 12px;
-      }
-    `,
-  ],
+  imports: [DatePipe, CurrencyPipe, RcResourceListComponent],
 })
 export class OrderListComponent {
   private readonly orderFacade = inject(OrderListFacade);

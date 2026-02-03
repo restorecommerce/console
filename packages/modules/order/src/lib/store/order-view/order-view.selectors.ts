@@ -16,12 +16,37 @@ export const selectLoading = createSelector(
   (state) => state.loading
 );
 
-export const selectActiveTab = createSelector(
-  selectOrderViewState,
-  (state) => state.activeTab
-);
-
 export const selectError = createSelector(
   selectOrderViewState,
   (state) => state.error
+);
+
+export const selectFulfilments = createSelector(
+  selectOrderViewState,
+  (state) => state.fulfilments.items
+);
+
+export const selectFulfilmentCount = createSelector(
+  selectFulfilments,
+  (items) => items.length
+);
+
+export const selectHasFulfilment = createSelector(
+  selectFulfilmentCount,
+  (count) => count > 0
+);
+
+export const selectInvoices = createSelector(
+  selectOrderViewState,
+  (state) => state.invoices.items
+);
+
+export const selectInvoiceCount = createSelector(
+  selectInvoices,
+  (items) => items.length
+);
+
+export const selectHasInvoice = createSelector(
+  selectInvoiceCount,
+  (count) => count > 0
 );

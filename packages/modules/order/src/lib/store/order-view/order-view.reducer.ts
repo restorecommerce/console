@@ -39,12 +39,54 @@ export const orderViewReducer = createReducer(
       error,
     })
   ),
+  on(OrderViewActions.leavePage, (): OrderViewState => initialOrderViewState),
+  // Fulfilments
   on(
-    OrderViewActions.changeOrderTab,
-    (state, { index }): OrderViewState => ({
+    OrderViewActions.loadFulfilments,
+    (state): OrderViewState => ({
       ...state,
-      activeTab: index,
+      fulfilments: { ...state.fulfilments, loading: true },
     })
   ),
-  on(OrderViewActions.leavePage, (): OrderViewState => initialOrderViewState)
+
+  on(
+    OrderViewActions.loadFulfilmentsSuccess,
+    (state, { fulfilments }): OrderViewState => ({
+      ...state,
+      fulfilments: { loading: false, items: fulfilments },
+    })
+  ),
+
+  on(
+    OrderViewActions.loadFulfilmentsFailure,
+    (state, { error }): OrderViewState => ({
+      ...state,
+      fulfilments: { loading: false, items: [], error },
+    })
+  ),
+
+  // Invoices
+  on(
+    OrderViewActions.loadInvoices,
+    (state): OrderViewState => ({
+      ...state,
+      invoices: { ...state.invoices, loading: true },
+    })
+  ),
+
+  on(
+    OrderViewActions.loadInvoicesSuccess,
+    (state, { invoices }): OrderViewState => ({
+      ...state,
+      invoices: { loading: false, items: invoices },
+    })
+  ),
+
+  on(
+    OrderViewActions.loadInvoicesFailure,
+    (state, { error }): OrderViewState => ({
+      ...state,
+      invoices: { loading: false, items: [], error },
+    })
+  )
 );

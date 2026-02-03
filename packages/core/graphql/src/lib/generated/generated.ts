@@ -12044,6 +12044,43 @@ export type CreateOrderFulfillmentMutation = {
   };
 };
 
+export type OrderFulfillmentReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type OrderFulfillmentReadQuery = {
+  __typename?: 'Query';
+  fulfillment: {
+    __typename?: 'FulfillmentQuery';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+              id?: string | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type OrderingInvoiceCreateMutationVariables = Exact<{
   input: IIoRestorecommerceOrderOrderingInvoiceRequestList;
 }>;
@@ -12067,6 +12104,43 @@ export type OrderingInvoiceCreateMutation = {
               paymentState?: IoRestorecommerceInvoicePaymentState | null;
             } | null;
           }> | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
+export type OrderInvoiceReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type OrderInvoiceReadQuery = {
+  __typename?: 'Query';
+  invoicing: {
+    __typename?: 'InvoicingQuery';
+    invoice: {
+      __typename?: 'InvoicingInvoiceQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceInvoiceInvoiceListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceInvoiceInvoiceListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceInvoiceInvoiceResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceInvoiceInvoice';
+              id?: string | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
         } | null;
       } | null;
     };
@@ -16264,6 +16338,47 @@ export class CreateOrderFulfillmentGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const OrderFulfillmentReadDocument = gql`
+  query OrderFulfillmentRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    fulfillment {
+      fulfillment {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                id
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderFulfillmentReadGQL extends Apollo.Query<
+  OrderFulfillmentReadQuery,
+  OrderFulfillmentReadQueryVariables
+> {
+  override document = OrderFulfillmentReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const OrderingInvoiceCreateDocument = gql`
   mutation OrderingInvoiceCreate(
     $input: IIoRestorecommerceOrderOrderingInvoiceRequestList!
@@ -16294,6 +16409,45 @@ export class OrderingInvoiceCreateGQL extends Apollo.Mutation<
   OrderingInvoiceCreateMutationVariables
 > {
   override document = OrderingInvoiceCreateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const OrderInvoiceReadDocument = gql`
+  query OrderInvoiceRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+    invoicing {
+      invoice {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                id
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class OrderInvoiceReadGQL extends Apollo.Query<
+  OrderInvoiceReadQuery,
+  OrderInvoiceReadQueryVariables
+> {
+  override document = OrderInvoiceReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

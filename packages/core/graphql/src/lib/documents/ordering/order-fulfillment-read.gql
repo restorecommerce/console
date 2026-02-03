@@ -1,0 +1,23 @@
+query OrderFulfillmentRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  fulfillment {
+    fulfillment {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              id
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

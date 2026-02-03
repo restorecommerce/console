@@ -12,8 +12,8 @@
     <div class="p-2">
       <div class="row justify-between">
         <div class="col">
-          <div class="title">{{ order.customerName || '—' }}</div>
-          <div class="muted small">
+          <div class="title">{{ order.displayNumber || '—' }}</div>
+          <div class="secondary-text-color scale85p">
             @if (order.createdAt) {
             <span>{{ order.createdAt | date : 'medium' }}</span>
             }
@@ -21,14 +21,14 @@
         </div>
         <div class="col right">
           <div class="badge">{{ order.status }}</div>
-          <div class="muted small">
-            {{ order.total.amount }} - {{ order.total.currency }}
+          <div class="secondary-text-color scale85p">
+            {{ order.total.amount | currency : order.total.currency }}
           </div>
         </div>
       </div>
 
       @if (order.email) {
-      <div class="muted small">
+      <div class="secondary-text-color scale85p">
         {{ order.email }}
       </div>
       }

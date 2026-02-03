@@ -9,6 +9,8 @@ export * from './order-history.model';
 export * from './order.model';
 export * from './order-destination.model';
 export * from './money.model';
+export * from './order-fulfilment.model';
+export * from './order-invoice.model';
 
 // Mapper
 export * from './order.mapper';

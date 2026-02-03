@@ -21,11 +21,4 @@ export interface Order {
   history: OrderHistoryEntry[];
 
   destination?: OrderDestination;
-
-  fulfilments?: {
-    id: string;
-  }[];
-  invoices?: {
-    id: string;
-  }[];
 }

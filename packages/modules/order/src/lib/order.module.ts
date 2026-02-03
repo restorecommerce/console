@@ -5,7 +5,10 @@ import { StoreModule } from '@ngrx/store';
 
 import { modulesOrderRoutes } from './order.routes';
 import {
+  loadFulfilmentsEffect,
+  loadInvoicesEffect,
   loadOrderViewEffect,
+  orderDetailEnteredEffect,
   orderViewFeatureKey,
   orderViewReducer,
 } from './store';
@@ -26,6 +29,9 @@ import {
       loadOrderListOnNavigationEffect,
       loadOrderListEffect,
       loadOrderViewEffect,
+      loadInvoicesEffect,
+      loadFulfilmentsEffect,
+      orderDetailEnteredEffect,
     }),
   ],
   providers: [OrderListFacade],

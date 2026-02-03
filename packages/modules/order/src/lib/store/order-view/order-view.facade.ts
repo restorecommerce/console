@@ -12,6 +12,22 @@ export class OrderViewFacade {
 
   readonly loading = this.store.selectSignal(orderViewSelectors.selectLoading);
 
+  readonly fulfilmentCount = this.store.selectSignal(
+    orderViewSelectors.selectFulfilmentCount
+  );
+
+  readonly hasFulfilments = this.store.selectSignal(
+    orderViewSelectors.selectHasFulfilment
+  );
+
+  readonly invoiceCount = this.store.selectSignal(
+    orderViewSelectors.selectInvoiceCount
+  );
+
+  readonly hasInvoices = this.store.selectSignal(
+    orderViewSelectors.selectHasInvoice
+  );
+
   readonly error = this.store.selectSignal(orderViewSelectors.selectError);
 
   enterPage(orderId: string) {
