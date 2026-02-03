@@ -1,4 +1,4 @@
-import { CurrencyPipe, DecimalPipe, JsonPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +15,7 @@ import {
   VCLTabComponent,
   VCLTabNavComponent,
   VCLBadgeComponent,
-  VCLButtonComponent,
+  VCLIconComponent,
 } from '@vcl/ng-vcl';
 
 import { CUSTOMER_TYPE_LABEL, Money } from '../../../models';
@@ -26,14 +26,15 @@ import { OrderViewFacade } from '../../../store';
   templateUrl: './order-view.component.html',
   imports: [
     CurrencyPipe,
+    DatePipe,
     DecimalPipe,
     JsonPipe,
     VCLTabNavComponent,
     VCLTabComponent,
     VCLLabelDirective,
+    VCLIconComponent,
     RcResourceDetailComponent,
     VCLBadgeComponent,
-    VCLButtonComponent,
   ],
   styleUrl: './order-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,10 +45,6 @@ export class OrderViewComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
 
   readonly order = this.orderFacade.order;
-
-  // TODO
-  // readonly -> get fuflfilment links,
-  // readonly -> get invoices links...
 
   destination = computed(() => {
     const d = this.order()?.destination;

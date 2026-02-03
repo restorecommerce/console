@@ -1,6 +1,6 @@
 import { OrderCustomer } from './order-customer.model';
 import { OrderDestination } from './order-destination.model';
-import { OrderHistoryEntry } from './order-history.model';
+import { OrderHistoryTimelineItem } from './order-history.model';
 import { OrderItem } from './order-item.model';
 import { OrderMeta } from './order-meta.model';
 import { EOrderStatus } from './order-status.enum';
@@ -18,7 +18,7 @@ export interface Order {
   user?: OrderUser;
   items: OrderItem[];
   totals: OrderTotals;
-  history: OrderHistoryEntry[];
+  history: OrderHistoryTimelineItem[];
 
   destination?: OrderDestination;
 }

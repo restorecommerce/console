@@ -1,17 +1,16 @@
 import { IoRestorecommerceOrderEvent } from '@console-core/graphql';
 
-import { OrderHistoryEntry } from './order-history.model';
+import { OrderHistoryTimelineItem } from './order-history.model';
+import { EOrderStatus } from './order-status.enum';
+import { mapStatusToIcon } from './status-icon.mapper';
 
-export function mapHistory(
-  entries?: IoRestorecommerceOrderEvent[] | null
-): OrderHistoryEntry[] {
-  if (!entries?.length) {
-    return [];
-  }
-
-  return entries.map((h) => ({
-    code: h.code ?? 0,
-    message: h.message ?? '',
-    // timestamp: h.timestamp ?? '',
-  }));
+export function mapHistoryToTimeline(
+  entry: IoRestorecommerceOrderEvent
+): OrderHistoryTimelineItem {
+  return {
+    title: entry.message ?? '',
+    date: new Date((entry.timestamp as string) ?? new Date().toISOString()),
+    status: entry.state ?? EOrderStatus.Pending,
+    icon: mapStatusToIcon(entry.state ?? EOrderStatus.Pending),
+  };
 }

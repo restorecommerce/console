@@ -27,9 +27,6 @@
         Create invoice
       </button> -->
     </div>
-    <!--
-title, state badge, actions (cancel/refund/mark paid etc.)
--->
   </header>
 
   <vcl-tab-nav [selectedTabIndex]="0">
@@ -114,10 +111,6 @@ title, state badge, actions (cancel/refund/mark paid etc.)
     </vcl-tab>
     <vcl-tab>
       <vcl-label>Items</vcl-label>
-
-      <!--
-
-      table" role="listbox-->
       <table
         class="table no-border fixed v-align-middle row-hover-highlight row-selectability"
         role="table"
@@ -196,14 +189,44 @@ title, state badge, actions (cancel/refund/mark paid etc.)
     <vcl-tab>
       <vcl-label>History / Timeline</vcl-label>
 
-      <div class="history">
-        @for (h of order.history; track $index) {
-        <div class="history-row">
-          <div class="secondary-text-color scale85p">{{ h.code }}</div>
-          <div>{{ h.message }}</div>
+      <div class="py-2 px-1">
+        @for (item of order.history; track item.date) {
+        <div class="row align-items-center">
+          <!-- Timeline axis -->
+          <div class="col align-items-center">
+            <vcl-icon [icon]="item.icon ?? 'clock'" />
+          </div>
+
+          <!-- Timeline content -->
+          <div class="flex col pl-3">
+            <div class="row justify-between flex">
+              <span class="timeline-title">
+                {{ item.title }}
+              </span>
+
+              <span class="timeline-date secondary-text-color scale85p">
+                {{ item.date | date : 'medium' }}
+              </span>
+            </div>
+
+            @if (item.description) {
+            <div class="timeline-description secondary-text-color">
+              {{ item.description }}
+            </div>
+            }
+          </div>
         </div>
         } @empty {
-        <h4>No history available for this Order</h4>
+        <div class="align-centered py-4">
+          <vcl-icon
+            icon="history"
+            size="24"
+          />
+          <h4>No history available</h4>
+          <p class="secondary-text-color">
+            This order has no recorded events yet.
+          </p>
+        </div>
         }
       </div>
     </vcl-tab>

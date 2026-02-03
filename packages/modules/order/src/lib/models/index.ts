@@ -11,6 +11,10 @@ export * from './order-destination.model';
 export * from './money.model';
 export * from './order-fulfilment.model';
 export * from './order-invoice.model';
+export * from './status-icon.model';
 
 // Mapper
 export * from './order.mapper';
+export * from './order-history.mapper';
+export * from './order-item.mapper';
+export * from './status-icon.mapper';
