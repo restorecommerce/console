@@ -1,0 +1,50 @@
+fragment FulfillmentListFragment on IoRestorecommerceFulfillmentFulfillment {
+  id
+  fulfillmentState
+  packaging {
+    parcels {
+      id
+      items {
+        name
+      }
+    }
+  }
+  references {
+    instanceId
+    instanceType
+  }
+  totalAmounts {
+    currency {
+      name
+    }
+    gross
+    net
+  }
+  meta {
+    created
+  }
+}
+
+query FulfillmentListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  fulfillment {
+    fulfillment {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...FulfillmentListFragment
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

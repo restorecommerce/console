@@ -8930,6 +8930,108 @@ export type UserFragmentFragment = {
   } | null;
 };
 
+export type FulfillmentListFragmentFragment = {
+  __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+  id?: string | null;
+  fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+  packaging?: {
+    __typename?: 'IoRestorecommerceFulfillmentPackaging';
+    parcels?: Array<{
+      __typename?: 'IoRestorecommerceFulfillmentParcel';
+      id?: string | null;
+      items?: Array<{
+        __typename?: 'IoRestorecommerceFulfillmentItem';
+        name?: string | null;
+      }> | null;
+    }> | null;
+  } | null;
+  references?: Array<{
+    __typename?: 'IoRestorecommerceReferenceReference';
+    instanceId?: string | null;
+    instanceType?: string | null;
+  }> | null;
+  totalAmounts?: Array<{
+    __typename?: 'IoRestorecommerceAmountAmount';
+    gross?: number | null;
+    net?: number | null;
+    currency?: {
+      __typename?: 'IoRestorecommerceCurrencyCurrency';
+      name?: string | null;
+    } | null;
+  }> | null;
+  meta?: {
+    __typename?: 'IoRestorecommerceMetaMeta';
+    created?: unknown | null;
+  } | null;
+};
+
+export type FulfillmentListReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+export type FulfillmentListReadQuery = {
+  __typename?: 'Query';
+  fulfillment: {
+    __typename?: 'FulfillmentQuery';
+    fulfillment: {
+      __typename?: 'FulfillmentFulfillmentQuery';
+      Read?: {
+        __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse';
+        details?: {
+          __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse';
+          items?: Array<{
+            __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse';
+            payload?: {
+              __typename?: 'IoRestorecommerceFulfillmentFulfillment';
+              id?: string | null;
+              fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null;
+              packaging?: {
+                __typename?: 'IoRestorecommerceFulfillmentPackaging';
+                parcels?: Array<{
+                  __typename?: 'IoRestorecommerceFulfillmentParcel';
+                  id?: string | null;
+                  items?: Array<{
+                    __typename?: 'IoRestorecommerceFulfillmentItem';
+                    name?: string | null;
+                  }> | null;
+                }> | null;
+              } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceId?: string | null;
+                instanceType?: string | null;
+              }> | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currency?: {
+                  __typename?: 'IoRestorecommerceCurrencyCurrency';
+                  name?: string | null;
+                } | null;
+              }> | null;
+              meta?: {
+                __typename?: 'IoRestorecommerceMetaMeta';
+                created?: unknown | null;
+              } | null;
+            } | null;
+            status?: {
+              __typename?: 'IoRestorecommerceStatusStatus';
+              code?: number | null;
+              message?: string | null;
+            } | null;
+          }> | null;
+          operationStatus?: {
+            __typename?: 'IoRestorecommerceStatusOperationStatus';
+            code?: number | null;
+            message?: string | null;
+          } | null;
+        } | null;
+      } | null;
+    };
+  };
+};
+
 export type FulfillmentFulfillmentMutateMutationVariables = Exact<{
   input: IIoRestorecommerceFulfillmentFulfillmentList;
 }>;
@@ -14061,6 +14163,34 @@ export const UserRoleFragmentFragmentDoc = gql`
   ${RoleFragmentFragmentDoc}
   ${MetaFragmentFragmentDoc}
 `;
+export const FulfillmentListFragmentFragmentDoc = gql`
+  fragment FulfillmentListFragment on IoRestorecommerceFulfillmentFulfillment {
+    id
+    fulfillmentState
+    packaging {
+      parcels {
+        id
+        items {
+          name
+        }
+      }
+    }
+    references {
+      instanceId
+      instanceType
+    }
+    totalAmounts {
+      currency {
+        name
+      }
+      gross
+      net
+    }
+    meta {
+      created
+    }
+  }
+`;
 export const OrderListFragmentFragmentDoc = gql`
   fragment OrderListFragment on IoRestorecommerceOrderOrder {
     id
@@ -14701,6 +14831,48 @@ export class ProductPrototypeReadGQL extends Apollo.Query<
   ProductPrototypeReadQueryVariables
 > {
   override document = ProductPrototypeReadDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FulfillmentListReadDocument = gql`
+  query FulfillmentListRead(
+    $input: IIoRestorecommerceResourcebaseReadRequest!
+  ) {
+    fulfillment {
+      fulfillment {
+        Read(input: $input) {
+          details {
+            items {
+              payload {
+                ...FulfillmentListFragment
+              }
+              status {
+                code
+                message
+              }
+            }
+            operationStatus {
+              code
+              message
+            }
+          }
+        }
+      }
+    }
+  }
+  ${FulfillmentListFragmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FulfillmentListReadGQL extends Apollo.Query<
+  FulfillmentListReadQuery,
+  FulfillmentListReadQueryVariables
+> {
+  override document = FulfillmentListReadDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
