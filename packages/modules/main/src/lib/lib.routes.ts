@@ -42,7 +42,7 @@ export const modulesMainRoutes: Route[] = [
         path: ROUTER.pages.main.children.fulfillments.path,
         loadChildren: () =>
           import('@console-modules/fulfillment').then(
-            (m) => m.modulesFulfillmentRoutes
+            (m) => m.ModulesFulfillmentModule
           ),
       },
     ],
