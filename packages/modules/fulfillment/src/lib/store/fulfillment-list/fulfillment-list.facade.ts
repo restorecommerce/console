@@ -8,7 +8,7 @@ import * as orderListSelectors from './fulfillment-list.selectors';
 export class FulfillmentListFacade {
   private readonly store = inject(Store);
 
-  readonly orders = this.store.selectSignal(
+  readonly fulfillments = this.store.selectSignal(
     orderListSelectors.selectFulfillmentListItems
   );
 

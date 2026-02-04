@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RcResourcePageLayoutComponent } from '@console/rc-ui';
 
-// import { FulfillmentListComponent } from '../../pages/fulfillment-list/fulfillment-list.component';
+import { FulfillmentListComponent } from '../../pages/fulfillment-list/fulfillment-list.component';
 
 @Component({
   selector: 'app-module-fulfillment-template',
@@ -11,7 +11,7 @@ import { RcResourcePageLayoutComponent } from '@console/rc-ui';
   imports: [
     RcResourcePageLayoutComponent,
     RouterOutlet,
-    // FulfillmentListComponent,
+    FulfillmentListComponent,
   ],
 })
 export class FulfillmentTemplateComponent {}

@@ -1,0 +1,18 @@
+<rc-resource-list
+  title="Fulfillments"
+  [items]="items()"
+  [getId]="getId"
+  [total]="items.length"
+  (itemSelected)="onSelect($event)"
+>
+  <ng-template
+    #itemTemplate
+    let-fulfillment
+  >
+    <div class="p-2">
+      <div class="row justify-between">
+        {{ fulfillment | json }}
+      </div>
+    </div>
+  </ng-template>
+</rc-resource-list>
