@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe, SlicePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { FulfillmentListItem } from '../../../models';
 import { FulfillmentStateBadgeComponent } from '../fulfillment-state-badge/fulfillment-state-badge.component';
@@ -12,7 +12,4 @@ import { FulfillmentStateBadgeComponent } from '../fulfillment-state-badge/fulfi
 export class FulfillmentDataListItemComponent {
   @Input({ required: true })
   item!: FulfillmentListItem;
-
-  @Output()
-  selectItem = new EventEmitter<FulfillmentListItem>();
 }
