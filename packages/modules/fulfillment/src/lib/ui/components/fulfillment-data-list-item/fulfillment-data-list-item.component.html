@@ -6,7 +6,7 @@
   <div class="row align-items-center justify-between">
     <div class="font-medium">Fulfillment {{ item.id | slice : 0 : 8 }}…</div>
 
-    <vcl-badge>{{ item.state }}</vcl-badge>
+    <app-fulfillment-state-badge [state]="item.state" />
   </div>
 
   <!-- Row 2 -->
