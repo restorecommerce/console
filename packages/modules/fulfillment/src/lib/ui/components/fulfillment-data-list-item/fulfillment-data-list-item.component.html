@@ -1,0 +1,28 @@
+<div
+  class="p-3"
+  (click)="selectItem.emit(item)"
+>
+  <!-- Row 1 -->
+  <div class="row align-items-center justify-between">
+    <div class="font-medium">Fulfillment {{ item.id | slice : 0 : 8 }}…</div>
+
+    <vcl-badge>{{ item.state }}</vcl-badge>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="scale85p secondary-text-color mt-1">
+    Order: {{ item.orderId || '—' }}
+  </div>
+
+  <!-- Row 3 -->
+  <div class="scale85p mt-2">
+    Parcels: {{ item.parcelCount }} • Items: {{ item.itemCount }} •
+    {{ item.shippingCost?.gross | currency : item.shippingCost?.currency }}
+  </div>
+
+  <!-- Row 4 -->
+  <div class="scale75p secondary-text-color mt-1">
+    Created:
+    {{ item.createdAt | date : 'mediumDate' }}
+  </div>
+</div>

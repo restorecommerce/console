@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,13 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
 
 import { FulfillmentListFacade } from '../../../store';
+import { FulfillmentDataListItemComponent } from '../../components/fulfillment-data-list-item/fulfillment-data-list-item.component';
 
 @Component({
   selector: 'app-module-fulfillment-list',
   templateUrl: './fulfillment-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [FulfillmentListFacade],
-  imports: [JsonPipe, RcResourceListComponent],
+  imports: [RcResourceListComponent, FulfillmentDataListItemComponent],
 })
 export class FulfillmentListComponent implements OnInit {
   private readonly fulfillmentFacade = inject(FulfillmentListFacade);

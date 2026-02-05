@@ -17,7 +17,10 @@ export function mapFulfillmentToListItem(
 
     itemCount: parcels.reduce((sum, p) => sum + (p.items?.length ?? 0), 0),
 
-    // shippingCost: payload.totalAmounts?.[0],
+    shippingCost: {
+      gross: payload.totalAmounts?.[0].gross ?? 0,
+      currency: payload.totalAmounts?.[0]?.currency?.code ?? 'EUR',
+    },
 
     createdAt: new Date(payload.meta?.created as string),
 

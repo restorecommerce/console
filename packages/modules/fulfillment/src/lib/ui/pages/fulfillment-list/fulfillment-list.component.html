@@ -9,10 +9,6 @@
     #itemTemplate
     let-fulfillment
   >
-    <div class="p-2">
-      <div class="row justify-between">
-        {{ fulfillment | json }}
-      </div>
-    </div>
+    <app-fulfillment-data-list-item [item]="fulfillment" />
   </ng-template>
 </rc-resource-list>

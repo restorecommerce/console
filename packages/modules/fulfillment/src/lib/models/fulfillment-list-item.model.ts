@@ -1,4 +1,5 @@
 import { FulfillmentState } from './fulfillment-state.model';
+import { Money } from './money.model';
 
 export interface FulfillmentListItem {
   id: string;
@@ -8,7 +9,7 @@ export interface FulfillmentListItem {
   parcelCount: number;
   itemCount: number;
 
-  // shippingCost?: Money;
+  shippingCost?: Money;
 
   createdAt: Date;
 
