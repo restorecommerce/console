@@ -1,7 +1,6 @@
 export * from './account';
 export * from './app';
 export * from './authn';
-export * from './fulfillment';
 export * from './invoice';
 export * from './management';
 export * from './manufacturer';
