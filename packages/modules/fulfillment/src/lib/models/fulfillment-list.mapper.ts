@@ -20,6 +20,8 @@ export function mapFulfillmentToListItem(
     shippingCost: {
       gross: payload.totalAmounts?.[0].gross ?? 0,
       currency: payload.totalAmounts?.[0]?.currency?.code ?? 'EUR',
+      net: payload.totalAmounts?.[0].net ?? 0,
+      tax: payload.totalAmounts?.[0].vats?.[0].vat ?? 0,
     },
 
     createdAt: new Date(payload.meta?.created as string),

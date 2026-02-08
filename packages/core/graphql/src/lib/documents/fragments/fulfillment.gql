@@ -92,6 +92,14 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
       }
     }
   }
+  totalAmounts {
+    gross
+    net
+    currencyId
+    vats {
+      vat
+    }
+  }
   fulfillmentState
   meta {
     ...MetaFragment

@@ -20,6 +20,10 @@ export class FulfillmentViewFacade {
     fulfillmentViewSelectors.selectError
   );
 
+  readonly hasLabels = this.store.selectSignal(
+    fulfillmentViewSelectors.selectHasLabels
+  );
+
   enterPage(fulfillmentId: string) {
     this.store.dispatch(fulfillmentViewActions.enterPage({ fulfillmentId }));
   }

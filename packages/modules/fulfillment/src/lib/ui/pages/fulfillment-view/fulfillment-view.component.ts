@@ -7,14 +7,19 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RcResourceDetailComponent } from '@console/rc-ui';
+import { distinctUntilChanged, filter, map } from 'rxjs';
 
 import {
   VCLLabelDirective,
   VCLTabComponent,
   VCLTabNavComponent,
-  VCLBadgeComponent,
   VCLIconComponent,
 } from '@vcl/ng-vcl';
+
+import { FulfillmentViewFacade } from '../../../store';
+import { FulfillmentDataListItemComponent } from '../../components/fulfillment-data-list-item/fulfillment-data-list-item.component';
+import { FulfillmentOverviewTab } from '../../components/fulfillment-overview-tab/fulfillment-overview-tab.component';
+import { FulfillmentStateBadgeComponent } from '../../components/fulfillment-state-badge/fulfillment-state-badge.component';
 
 @Component({
   selector: 'app-module-fulfillment-view',
@@ -29,38 +34,42 @@ import {
     VCLLabelDirective,
     VCLIconComponent,
     RcResourceDetailComponent,
-    VCLBadgeComponent,
+    FulfillmentOverviewTab,
+    FulfillmentStateBadgeComponent,
+    FulfillmentDataListItemComponent,
   ],
   styleUrl: './fulfillment-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // providers: [OrderViewFacade],
+  providers: [FulfillmentViewFacade],
 })
 export class FulfillmentViewComponent implements OnInit {
-  // private readonly orderFacade = inject(OrderViewFacade);
-  // private readonly route = inject(ActivatedRoute);
+  private readonly fulfillmentFacade = inject(FulfillmentViewFacade);
+  private readonly route = inject(ActivatedRoute);
+
+  readonly fulfillment = this.fulfillmentFacade.fulfillment;
+  readonly hasLabels = this.fulfillmentFacade.hasLabels;
 
   ngOnInit(): void {
-    console.log('Onint');
-    // this.route.paramMap
-    //   .pipe(
-    //     map((p) => p.get('id')),
-    //     filter((id): id is string => !!id),
-    //     distinctUntilChanged()
-    //   )
-    //   .subscribe((orderId) => {
-    //     this.orderFacade.enterPage(orderId);
-    //   });
+    this.route.paramMap
+      .pipe(
+        map((p) => p.get('id')),
+        filter((id): id is string => !!id),
+        distinctUntilChanged()
+      )
+      .subscribe((fulfillmentId) => {
+        this.fulfillmentFacade.enterPage(fulfillmentId);
+      });
   }
 
   goBack() {
     // TODO
   }
 
-  editOrder() {
+  editFulfillment() {
     // TODO
   }
 
-  deleteOrder() {
+  deleteFulfillment() {
     // TODO
   }
 }

@@ -13,14 +13,14 @@ export function mapFulfillmentDto(
       productId: p.productId ?? undefined,
       variantId: p.variantId ?? undefined,
 
-      weightKg: p.package?.weightInKg ?? undefined,
+      weightKg: p.package?.weightInKg ?? 0,
 
       items:
         p.items?.map((i) => ({
           name: i.name ?? '',
           quantity: i.quantity ?? 0,
           productId: i.productId ?? '',
-          weightKg: i.package?.weightInKg ?? undefined,
+          weightKg: i.package?.weightInKg ?? 0,
         })) ?? [],
     })) ?? [];
 
@@ -49,6 +49,8 @@ export function mapFulfillmentDto(
     shippingCost: {
       currency: dto.totalAmounts?.[0].currency?.code ?? 'EUR',
       gross: dto.totalAmounts?.[0].gross ?? 0,
+      net: dto.totalAmounts?.[0].net ?? 0,
+      tax: dto.totalAmounts?.[0].vats?.[0].vat ?? 0,
     },
 
     orderId:

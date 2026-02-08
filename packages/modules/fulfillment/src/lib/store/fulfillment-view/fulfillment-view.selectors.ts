@@ -20,3 +20,14 @@ export const selectError = createSelector(
   selectFulfillmentViewState,
   (state) => state.error
 );
+
+export const selectHasLabels = createSelector(
+  selectFulfillment,
+  (fulfillment) => {
+    if (!fulfillment) {
+      return false;
+    }
+
+    return fulfillment.labels.length > 0;
+  }
+);

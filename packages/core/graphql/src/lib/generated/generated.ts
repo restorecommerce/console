@@ -7539,6 +7539,16 @@ export type FulfillmentFragmentFragment = {
       } | null;
     }> | null;
   }> | null;
+  totalAmounts?: Array<{
+    __typename?: 'IoRestorecommerceAmountAmount';
+    gross?: number | null;
+    net?: number | null;
+    currencyId?: string | null;
+    vats?: Array<{
+      __typename?: 'IoRestorecommerceAmountVAT';
+      vat?: number | null;
+    }> | null;
+  }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
     created?: unknown | null;
@@ -9170,6 +9180,16 @@ export type FulfillmentFulfillmentMutateMutation = {
                   } | null;
                 }> | null;
               }> | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currencyId?: string | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
+                }> | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -9358,6 +9378,16 @@ export type FulfillmentFulfillmentReadQuery = {
                   } | null;
                 }> | null;
               }> | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currencyId?: string | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
+                }> | null;
+              }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
                 created?: unknown | null;
@@ -9519,6 +9549,16 @@ export type FulfillmentFulfillmentSubmitMutation = {
                     code?: number | null;
                     message?: string | null;
                   } | null;
+                }> | null;
+              }> | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                net?: number | null;
+                currencyId?: string | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
                 }> | null;
               }> | null;
               meta?: {
@@ -13510,6 +13550,14 @@ export const FulfillmentFragmentFragmentDoc = gql`
           code
           message
         }
+      }
+    }
+    totalAmounts {
+      gross
+      net
+      currencyId
+      vats {
+        vat
       }
     }
     fulfillmentState

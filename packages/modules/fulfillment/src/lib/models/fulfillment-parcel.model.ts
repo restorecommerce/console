@@ -1,10 +1,12 @@
+import { ParcelItem } from './fulfillment-parcel-item.model';
+
 export interface Parcel {
   id: string;
 
   productId?: string;
   variantId?: string;
 
-  weightKg?: number;
+  weightKg: number;
 
-  // items: ParcelItem[];
+  items: ParcelItem[];
 }

@@ -1,0 +1,58 @@
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Parcels</div>
+    <div>{{ vm.parcels.length }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Items</div>
+    <div>{{ itemCount() }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Total Weight (kg)</div>
+    <div>{{ totalWeight() }}</div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Gross</div>
+    <div>
+      {{ vm.shippingCost?.gross | currency : vm.shippingCost?.currency }}
+    </div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Net</div>
+    <div>
+      {{ vm.shippingCost?.net | currency : vm.shippingCost?.currency }}
+    </div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Tax</div>
+    <div>
+      {{ vm.shippingCost?.tax | currency : vm.shippingCost?.currency }}
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Order</div>
+    <div>{{ vm.orderId || '—' }}</div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Customer</div>
+    <div>{{ vm.customerId || '—' }}</div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Shop</div>
+    <div>{{ vm.shopId || '—' }}</div>
+  </div>
+</div>

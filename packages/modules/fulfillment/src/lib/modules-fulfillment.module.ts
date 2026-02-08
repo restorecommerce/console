@@ -7,16 +7,20 @@ import { modulesFulfillmentRoutes } from './fulfillment.routes';
 import {
   fulfillmentListFeatureKey,
   fulfillmentListReducer,
+  fulfillmentViewFeatureKey,
+  fulfillmentViewReducer,
   loadFulfillmentListEffect,
+  loadFulfillmentViewEffect,
 } from './store';
 
 @NgModule({
   imports: [
     RouterModule.forChild(modulesFulfillmentRoutes),
     StoreModule.forFeature(fulfillmentListFeatureKey, fulfillmentListReducer),
-    // StoreModule.forFeature(fulfillmentViewFeatureKey, fulfillmentViewReducer),
+    StoreModule.forFeature(fulfillmentViewFeatureKey, fulfillmentViewReducer),
     EffectsModule.forFeature({
       loadFulfillmentListEffect,
+      loadFulfillmentViewEffect,
     }),
   ],
 })
