@@ -8,7 +8,7 @@ import { Fulfillment } from '../../../models';
   templateUrl: './fulfillment-overview-tab.component.html',
   imports: [CurrencyPipe],
 })
-export class FulfillmentOverviewTab {
+export class FulfillmentOverviewTabComponent {
   @Input({ required: true }) vm!: Fulfillment;
 
   itemCount = computed(() => {

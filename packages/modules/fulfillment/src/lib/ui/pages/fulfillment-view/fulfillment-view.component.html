@@ -25,55 +25,7 @@
     </vcl-tab>
     <vcl-tab>
       <vcl-label>Items</vcl-label>
-      <table
-        class="table no-border fixed v-align-middle row-hover-highlight row-selectability"
-        role="table"
-      >
-        <thead>
-          <tr role="row">
-            <th
-              class="w-70p"
-              role="columnheader"
-              scope="col"
-            >
-              <span>Item</span>
-            </th>
-
-            <th
-              class="w-10p"
-              role="columnheader"
-              scope="col"
-              class="text-right"
-            >
-              <span>Qty</span>
-            </th>
-
-            <th
-              class="w-10p"
-              role="columnheader"
-              scope="col"
-              class="text-right"
-            >
-              <span>Unit price</span>
-            </th>
-
-            <th
-              class="w-10p"
-              role="columnheader"
-              scope="col"
-              class="text-right"
-            >
-              <span>Total</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </vcl-tab>
-    <vcl-tab>
-      <vcl-label>History / Timeline</vcl-label>
-
-      <div class="py-2 px-1"></div>
+      <app-fulfillment-parcels-tab [parcels]="fulfillment.parcels" />
     </vcl-tab>
     <vcl-tab>
       <vcl-label>Raw JSON / Meta</vcl-label>

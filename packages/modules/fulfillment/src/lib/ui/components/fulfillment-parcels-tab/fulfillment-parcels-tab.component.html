@@ -1,0 +1,75 @@
+<!-- Parcel selector -->
+<div class="mb-4 w-80p">
+  <vcl-form-control-group>
+    <vcl-label>Parcel</vcl-label>
+    <vcl-select>
+      <vcl-select-list [value]="selectedParcelId">
+        @for (parcel of parcels; track $index) {
+        <vcl-select-list-item [value]="parcel.id">
+          Parcel {{ parcel.id }}
+        </vcl-select-list-item>
+        }
+      </vcl-select-list>
+    </vcl-select>
+  </vcl-form-control-group>
+</div>
+
+<table
+  class="table no-border fixed v-align-middle row-hover-highlight row-selectability"
+  role="table"
+>
+  <thead>
+    <tr role="row">
+      <th
+        class="w-70p"
+        role="columnheader"
+        scope="col"
+      >
+        <span>Product</span>
+      </th>
+
+      <th
+        class="w-10p"
+        role="columnheader"
+        scope="col"
+        class="text-right"
+      >
+        <span>Qty</span>
+      </th>
+
+      <th
+        class="w-10p"
+        role="columnheader"
+        scope="col"
+        class="text-right"
+      >
+        <span>Weight (kg)</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of selectedParcel?.items; track item.productId) {
+    <tr
+      role="row"
+      class="row-selectable"
+    >
+      <td role="cell">{{ item.name }}</td>
+      <td role="cell">
+        {{ item.quantity }}
+      </td>
+      <td role="cell">
+        {{ item.weightKg }}
+      </td>
+    </tr>
+    } @empty {
+    <tr>
+      <td
+        colspan="4"
+        class="muted"
+      >
+        No items in this parcel
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

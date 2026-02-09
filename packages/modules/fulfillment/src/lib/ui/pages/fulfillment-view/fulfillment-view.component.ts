@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,30 +13,25 @@ import {
   VCLLabelDirective,
   VCLTabComponent,
   VCLTabNavComponent,
-  VCLIconComponent,
 } from '@vcl/ng-vcl';
 
 import { FulfillmentViewFacade } from '../../../store';
-import { FulfillmentDataListItemComponent } from '../../components/fulfillment-data-list-item/fulfillment-data-list-item.component';
-import { FulfillmentOverviewTab } from '../../components/fulfillment-overview-tab/fulfillment-overview-tab.component';
+import { FulfillmentOverviewTabComponent } from '../../components/fulfillment-overview-tab/fulfillment-overview-tab.component';
+import { FulfillmentParcelsTabComponent } from '../../components/fulfillment-parcels-tab/fulfillment-parcels-tab.component';
 import { FulfillmentStateBadgeComponent } from '../../components/fulfillment-state-badge/fulfillment-state-badge.component';
 
 @Component({
   selector: 'app-module-fulfillment-view',
   templateUrl: './fulfillment-view.component.html',
   imports: [
-    CurrencyPipe,
-    DatePipe,
-    DecimalPipe,
     JsonPipe,
     VCLTabNavComponent,
     VCLTabComponent,
     VCLLabelDirective,
-    VCLIconComponent,
     RcResourceDetailComponent,
-    FulfillmentOverviewTab,
+    FulfillmentOverviewTabComponent,
+    FulfillmentParcelsTabComponent,
     FulfillmentStateBadgeComponent,
-    FulfillmentDataListItemComponent,
   ],
   styleUrl: './fulfillment-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
