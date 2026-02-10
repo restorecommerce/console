@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './iam.html',
   styleUrl: './iam.css',
 })
-export class Iam {}
+export class Iam {
+  constructor() {
+    console.log('***I am loaded!!!');
+  }
+}

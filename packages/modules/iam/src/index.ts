@@ -1,1 +1,1 @@
-export * from './lib/iam/iam';
+export * from './lib/iam.routes';

@@ -16,11 +16,11 @@ import { AuthnFacade } from '@console-core/state';
   selector: 'app-sign-in',
   template: `
     @if (signInState$ | async; as state) {
-    <rc-sign-in
-      [config]="config"
-      [state]="state"
-      (action)="onSignInAction($event)"
-    />
+      <rc-sign-in
+        [config]="config"
+        [state]="state"
+        (action)="onSignInAction($event)"
+      />
     }
   `,
   imports: [AsyncPipe, RcSignInComponent],
@@ -38,7 +38,6 @@ export class SignInComponent {
     this.error$,
   ]).pipe(
     map(([loading, error]) => {
-      console.log('LOADING', loading);
       return {
         error: error ?? '',
         loading,

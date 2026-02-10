@@ -45,6 +45,11 @@ export const modulesMainRoutes: Route[] = [
             (m) => m.ModulesFulfillmentModule
           ),
       },
+      {
+        path: ROUTER.pages.main.children.iam.path,
+        loadChildren: () =>
+          import('@console-modules/iam').then((m) => m.modulesIAMRoutes),
+      },
     ],
   },
   {

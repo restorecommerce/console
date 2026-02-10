@@ -24,7 +24,6 @@ import {
 import { ErrorHandlingService, InvoiceService } from '../../services';
 import { AppFacade } from '../app';
 import * as CustomerActions from '../management/customer/customer.actions';
-import * as IamActions from '../management/iam/iam.actions';
 import * as ShopActions from '../management/shop/shop.actions';
 
 import * as invoiceActions from './invoice.actions';
@@ -120,7 +119,6 @@ export class InvoiceEffects {
       mergeMap(() => [
         CustomerActions.customerReadRequest({ payload: {} }),
         ShopActions.shopReadRequest({ payload: {} }),
-        IamActions.userReadRequest({ payload: {} }),
       ])
     );
   });
@@ -134,7 +132,6 @@ export class InvoiceEffects {
       mergeMap(() => [
         CustomerActions.customerReadRequest({ payload: {} }),
         ShopActions.shopReadRequest({ payload: {} }),
-        IamActions.userReadRequest({ payload: {} }),
       ])
     );
   });

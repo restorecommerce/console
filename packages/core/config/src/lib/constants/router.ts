@@ -1,6 +1,4 @@
-import { IRouterConstant } from '@console-core/types';
-
-export const ROUTER: Readonly<IRouterConstant> = {
+export const ROUTER = {
   pages: {
     main: {
       path: '',
@@ -442,6 +440,44 @@ export const ROUTER: Readonly<IRouterConstant> = {
             },
           },
         },
+        iam: {
+          path: 'iam',
+          link: '/iam',
+          title: 'IAM',
+          getLink: () => ['', 'management', 'iam'],
+          children: {
+            index: {
+              path: 'index',
+              link: '/iam/index',
+              getLink: () => ['', 'management', 'iam', 'index'],
+              title: 'IAM',
+            },
+            create: {
+              path: 'create',
+              link: '/iam/create',
+              title: 'Create',
+              getLink: () => ['', 'management', 'iam', 'create'],
+            },
+            view: {
+              path: ':id/view',
+              link: '/iam/:id/view',
+              title: 'User',
+              getLink: (params?: { id?: string }) =>
+                params?.id
+                  ? ['', 'management', 'iam', params.id, 'view']
+                  : ['', 'management', 'iam'],
+            },
+            edit: {
+              path: ':id/edit',
+              link: '/iam/:id/edit',
+              title: 'Edit',
+              getLink: (params?: { id?: string }) =>
+                params?.id
+                  ? ['', 'management', 'iam', params.id, 'edit']
+                  : ['', 'management', 'iam'],
+            },
+          },
+        },
         layout: {
           path: 'layout',
           link: '/layout',
@@ -465,53 +501,6 @@ export const ROUTER: Readonly<IRouterConstant> = {
               link: '/management',
               getLink: () => ['', 'management'],
               title: 'Management',
-            },
-            iam: {
-              path: 'iam',
-              link: '/management/iam',
-              title: 'IAM',
-              getLink: () => ['', 'management', 'iam'],
-              children: {
-                index: {
-                  path: 'index',
-                  link: '/management/iam/index',
-                  getLink: () => ['', 'management', 'iam', 'index'],
-                  title: 'IAM',
-                },
-                create: {
-                  path: 'create',
-                  link: '/management/iam/create',
-                  title: 'Create',
-                  getLink: () => ['', 'management', 'iam', 'create'],
-                },
-                view: {
-                  path: ':id/view',
-                  link: '/management/iam/:id/view',
-                  title: 'User',
-                  getLink: (params?: { id?: string }) =>
-                    params?.id
-                      ? ['', 'management', 'iam', params.id, 'view']
-                      : ['', 'management', 'iam'],
-                },
-                edit: {
-                  path: ':id/edit',
-                  link: '/management/iam/:id/edit',
-                  title: 'Edit',
-                  getLink: (params?: { id?: string }) =>
-                    params?.id
-                      ? ['', 'management', 'iam', params.id, 'edit']
-                      : ['', 'management', 'iam'],
-                },
-                'change-password': {
-                  path: ':id/change-password',
-                  link: '/management/iam/:id/change-password',
-                  title: 'Change Password',
-                  getLink: (params?: { id?: string }) =>
-                    params?.id
-                      ? ['', 'management', 'iam', params.id, 'change-password']
-                      : ['', 'management', 'iam'],
-                },
-              },
             },
             shops: {
               path: 'shops',
@@ -1011,4 +1000,4 @@ export const ROUTER: Readonly<IRouterConstant> = {
       },
     },
   },
-};
+} as const;
