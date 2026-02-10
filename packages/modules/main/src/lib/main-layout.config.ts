@@ -11,7 +11,7 @@ export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
     {
       id: 'home',
       label: 'Home',
-      defaultRoute: ROUTER.pages.main.children.fulfillments.link,
+      defaultRoute: ROUTER.pages.main.children.orders.link,
     },
     {
       id: 'management',
@@ -46,7 +46,7 @@ export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
       id: 'fulfillments',
       label: 'Fulfillments',
       icon: 'mdi mdi-truck-outline',
-      route: ROUTER.pages.main.children.fulfillments.path,
+      route: ROUTER.pages.main.children.fulfillments.link,
       categoryId: 'home',
       // same: admin-only handled outside config
     },
