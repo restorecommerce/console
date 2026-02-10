@@ -39,7 +39,8 @@
       "@console-modules/shared": ["packages/modules/shared/src/index.ts"],
       "@console-modules/ui": ["packages/modules/ui/src/index.ts"],
       "@console/rc-ui": ["packages/modules/rc-ui/src/index.ts"],
-      "data-mapper": ["packages/core/src/index.ts"]
+      "data-mapper": ["packages/core/src/index.ts"],
+      "@console-modules/iam": ["packages/modules/iam/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
