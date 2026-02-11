@@ -1,0 +1,14 @@
+<rc-resource-list
+  title="Users"
+  [items]="items"
+  [getId]="getId"
+  [total]="items.length"
+  (itemSelected)="onSelect($event)"
+>
+  <ng-template
+    #itemTemplate
+    let-iamUser
+  >
+    <!-- <app-iam-user-list-item [item]="iamUser" /> -->
+  </ng-template>
+</rc-resource-list>

@@ -2,12 +2,12 @@ import { Route } from '@angular/router';
 
 import { ROUTER } from '@console-core/config';
 
-import { Iam } from './iam/iam';
+import { IamUserTemplateComponent } from './ui/components/iam-user-template/iam-user-template.component';
 
-export const modulesIAMRoutes: Route[] = [
+export const modulesIamUserRoutes: Route[] = [
   {
     path: '',
-    component: Iam,
+    component: IamUserTemplateComponent,
     title: ROUTER.pages.main.children.iam.title,
     children: [
       /** Sidebar: always show fulfillment list */
