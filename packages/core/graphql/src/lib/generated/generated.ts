@@ -6359,7 +6359,7 @@ export type UserListReadQueryVariables = Exact<{
 }>;
 
 
-export type UserListReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', user: { __typename?: 'IdentityUserQuery', Read?: { __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse', details?: { __typename?: 'IoRestorecommerceUserUserListWithRoleResponse', items?: Array<{ __typename?: 'IoRestorecommerceUserUserRoleResponse', payload?: { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, email?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, active?: boolean | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null }> | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
+export type UserListReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', user: { __typename?: 'IdentityUserQuery', Read?: { __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse', details?: { __typename?: 'IoRestorecommerceUserUserListWithRoleResponse', items?: Array<{ __typename?: 'IoRestorecommerceUserUserRoleResponse', payload?: { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, email?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, lastAccess?: unknown | null, active?: boolean | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null } | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
 
 export type IdentityUserMutateMutationVariables = Exact<{
   input: IIoRestorecommerceUserUserList;
@@ -8433,10 +8433,14 @@ export const UserListReadDocument = gql`
               name
               firstName
               lastName
+              lastAccess
               active
               roles {
                 id
                 name
+              }
+              meta {
+                created
               }
             }
             status {

@@ -15,7 +15,12 @@
   </div>
 
   <!-- Row 3 -->
-  <div class="scale85p mt-2">Roles: {{ item.roles.length || 0 }}</div>
+  <div class="scale85p mt-2">
+    Roles: {{ item.roles.length || 0 }}
+
+    • Last access:
+    {{ item.lastAccess ? (item.lastAccess | date: 'mediumDate') : '—' }}
+  </div>
 
   <!-- Row 4 -->
   <div class="scale75p secondary-text-color mt-1">

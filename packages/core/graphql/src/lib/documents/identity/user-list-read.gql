@@ -10,10 +10,14 @@ query UserListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
               name
               firstName
               lastName
+              lastAccess
               active
               roles {
                 id
                 name
+              }
+              meta {
+                created
               }
             }
             status {

@@ -12,6 +12,9 @@ export const mapUserToListItem = (
     status: payload.active ? UserStatus.ACTIVE : UserStatus.DISABLED,
     email: `${payload.email}`,
     roles: payload.roles?.map((role) => `${role.name}`) ?? [],
+    lastAccess: payload.lastAccess
+      ? new Date(payload.lastAccess as string)
+      : undefined,
     createdAt: new Date(payload.meta?.created as string),
   };
 };

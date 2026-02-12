@@ -6,5 +6,6 @@ export interface UserListItem {
   displayName: string;
   status: UserStatus;
   roles: string[];
+  lastAccess: Date | undefined;
   createdAt: Date;
 }
