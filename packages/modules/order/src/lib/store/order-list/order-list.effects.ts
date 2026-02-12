@@ -1,26 +1,11 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { routerNavigatedAction } from '@ngrx/router-store';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import * as OrderListActions from './order-list.actions';
 import { OrderRepository } from '../../data/order.repository';
 import { of } from 'rxjs';
 import { mapOrderToListItem } from '../../models/order-list.mapper';
-import { IoRestorecommerceOrderOrder } from '@console-core/graphql';
-
-export const loadOrderListOnNavigationEffect = createEffect(
-  (actions$ = inject(Actions)) => {
-    return actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => {
-        return /^\/orders(\?.*)?$/.test(payload.routerState.url);
-      }),
-      map(() => OrderListActions.loadOrderList())
-    );
-  },
-  { functional: true }
-);
 
 export const loadOrderListEffect = createEffect(
   (actions$ = inject(Actions), orderRepository = inject(OrderRepository)) => {

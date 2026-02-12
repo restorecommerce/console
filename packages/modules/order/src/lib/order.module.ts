@@ -14,7 +14,6 @@ import {
 } from './store';
 import {
   loadOrderListEffect,
-  loadOrderListOnNavigationEffect,
   OrderListFacade,
   orderListFeatureKey,
   orderListReducer,
@@ -26,7 +25,6 @@ import {
     StoreModule.forFeature(orderListFeatureKey, orderListReducer),
     StoreModule.forFeature(orderViewFeatureKey, orderViewReducer),
     EffectsModule.forFeature({
-      loadOrderListOnNavigationEffect,
       loadOrderListEffect,
       loadOrderViewEffect,
       loadInvoicesEffect,
