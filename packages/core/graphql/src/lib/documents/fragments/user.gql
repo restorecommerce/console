@@ -1,9 +1,7 @@
 fragment UserFragment on IoRestorecommerceUserUser {
   id
   active
-  activationCode
   email
-  newEmail
   name
   firstName
   lastName
@@ -11,6 +9,12 @@ fragment UserFragment on IoRestorecommerceUserUser {
   defaultScope
   localeId
   timezoneId
+  tokens {
+    name
+    token
+    type
+    expiresIn
+  }
   roleAssociations {
     role
     attributes {

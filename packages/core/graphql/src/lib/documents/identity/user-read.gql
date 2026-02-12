@@ -1,16 +1,59 @@
-query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+fragment UserDetailFragment on IoRestorecommerceUserUserRole {
+  id
+  active
+  email
+  name
+  firstName
+  lastName
+  lastAccess
+  defaultScope
+  localeId
+  timezoneId
+  tokens {
+    name
+    token
+    type
+    expiresIn
+  }
+  roles {
+    id
+    name
+    description
+    assignableByRoles
+  }
+  roleAssociations {
+    role
+    attributes {
+      id
+      value
+      attributes {
+        id
+        value
+      }
+    }
+  }
+  meta {
+    ...MetaFragment
+  }
+}
+
+query UserDetailRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
   identity {
     user {
       Read(input: $input) {
         details {
+          items {
+            payload {
+              ...UserDetailFragment
+            }
+            status {
+              code
+              message
+            }
+          }
           operationStatus {
             code
             message
-          }
-          items {
-            payload {
-              ...UserRoleFragment
-            }
           }
         }
       }

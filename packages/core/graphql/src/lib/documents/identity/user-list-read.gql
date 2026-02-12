@@ -1,0 +1,32 @@
+query UserListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  identity {
+    user {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              id
+              email
+              name
+              firstName
+              lastName
+              active
+              roles {
+                id
+                name
+              }
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
