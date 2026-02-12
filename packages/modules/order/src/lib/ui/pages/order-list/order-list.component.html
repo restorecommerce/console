@@ -15,22 +15,22 @@
           <div class="title">{{ order.displayNumber || '—' }}</div>
           <div class="secondary-text-color scale85p">
             @if (order.createdAt) {
-            <span>{{ order.createdAt | date : 'medium' }}</span>
+              <span>{{ order.createdAt | date: 'medium' }}</span>
             }
           </div>
         </div>
         <div class="col right">
-          <div class="badge">{{ order.status }}</div>
+          <app-order-state-badge [state]="order.status" />
           <div class="secondary-text-color scale85p">
-            {{ order.total.amount | currency : order.total.currency }}
+            {{ order.total.amount | currency: order.total.currency }}
           </div>
         </div>
       </div>
 
       @if (order.email) {
-      <div class="secondary-text-color scale85p">
-        {{ order.email }}
-      </div>
+        <div class="secondary-text-color scale85p">
+          {{ order.email }}
+        </div>
       }
     </div>
   </ng-template>

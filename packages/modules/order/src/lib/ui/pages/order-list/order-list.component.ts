@@ -9,12 +9,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
 
 import { OrderListFacade } from '../../../store';
+import { EOrderStatusBadgeComponent } from '../../components/order-state-badge/order-state-badge.component';
 @Component({
   selector: 'app-module-order-list',
   templateUrl: './order-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [OrderListFacade],
-  imports: [DatePipe, CurrencyPipe, RcResourceListComponent],
+  imports: [
+    DatePipe,
+    CurrencyPipe,
+    RcResourceListComponent,
+    EOrderStatusBadgeComponent,
+  ],
 })
 export class OrderListComponent implements OnInit {
   private readonly orderFacade = inject(OrderListFacade);
