@@ -5,10 +5,10 @@ import * as orderListActions from './user-list.actions';
 import * as orderListSelectors from './user-list.selectors';
 
 @Injectable()
-export class UserListFacade {
+export class IamUserListFacade {
   private readonly store = inject(Store);
 
-  readonly fulfillments = this.store.selectSignal(
+  readonly users = this.store.selectSignal(
     orderListSelectors.selectUserListItems
   );
 

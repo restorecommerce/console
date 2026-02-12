@@ -1,6 +1,6 @@
 <rc-resource-list
   title="Users"
-  [items]="items"
+  [items]="items()"
   [getId]="getId"
   [total]="items.length"
   (itemSelected)="onSelect($event)"
@@ -9,6 +9,6 @@
     #itemTemplate
     let-iamUser
   >
-    <!-- <app-iam-user-list-item [item]="iamUser" /> -->
+    <app-user-list-item [item]="iamUser" />
   </ng-template>
 </rc-resource-list>

@@ -6331,6 +6331,15 @@ export type IdentityRoleReadQueryVariables = Exact<{
 
 export type IdentityRoleReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', role: { __typename?: 'IdentityRoleQuery', Read?: { __typename?: 'ProtoIoRestorecommerceRoleRoleListResponse', details?: { __typename?: 'IoRestorecommerceRoleRoleListResponse', operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null, items?: Array<{ __typename?: 'IoRestorecommerceRoleRoleResponse', payload?: { __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null, assignableByRoles?: Array<string> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null } | null }> | null } | null } | null } } };
 
+export type UserDetailFragmentFragment = { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, active?: boolean | null, email?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, lastAccess?: unknown | null, defaultScope?: string | null, localeId?: string | null, timezoneId?: string | null, tokens?: Array<{ __typename?: 'IoRestorecommerceAuthTokens', name?: string | null, token?: string | null, type?: string | null, expiresIn?: unknown | null }> | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null, assignableByRoles?: Array<string> | null }> | null, roleAssociations?: Array<{ __typename?: 'IoRestorecommerceAuthRoleAssociation', role?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null };
+
+export type UserDetailReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+
+export type UserDetailReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', user: { __typename?: 'IdentityUserQuery', Read?: { __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse', details?: { __typename?: 'IoRestorecommerceUserUserListWithRoleResponse', items?: Array<{ __typename?: 'IoRestorecommerceUserUserRoleResponse', payload?: { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, active?: boolean | null, email?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, lastAccess?: unknown | null, defaultScope?: string | null, localeId?: string | null, timezoneId?: string | null, tokens?: Array<{ __typename?: 'IoRestorecommerceAuthTokens', name?: string | null, token?: string | null, type?: string | null, expiresIn?: unknown | null }> | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null, assignableByRoles?: Array<string> | null }> | null, roleAssociations?: Array<{ __typename?: 'IoRestorecommerceAuthRoleAssociation', role?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
+
 export type IdentityUserFindByTokenQueryVariables = Exact<{
   input: IIoRestorecommerceUserFindByTokenRequest;
 }>;
@@ -6415,14 +6424,12 @@ export type IdentityUserDeleteMutateMutationVariables = Exact<{
 
 export type IdentityUserDeleteMutateMutation = { __typename?: 'Mutation', identity: { __typename?: 'IdentityMutation', user: { __typename?: 'IdentityUserMutation', Delete?: { __typename?: 'ProtoIoRestorecommerceResourcebaseDeleteResponse', details?: { __typename?: 'IoRestorecommerceResourcebaseDeleteResponse', operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
 
-export type UserDetailFragmentFragment = { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, active?: boolean | null, email?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, lastAccess?: unknown | null, defaultScope?: string | null, localeId?: string | null, timezoneId?: string | null, tokens?: Array<{ __typename?: 'IoRestorecommerceAuthTokens', name?: string | null, token?: string | null, type?: string | null, expiresIn?: unknown | null }> | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null, assignableByRoles?: Array<string> | null }> | null, roleAssociations?: Array<{ __typename?: 'IoRestorecommerceAuthRoleAssociation', role?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null };
-
-export type UserDetailReadQueryVariables = Exact<{
+export type IdentityUserReadQueryVariables = Exact<{
   input: IIoRestorecommerceResourcebaseReadRequest;
 }>;
 
 
-export type UserDetailReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', user: { __typename?: 'IdentityUserQuery', Read?: { __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse', details?: { __typename?: 'IoRestorecommerceUserUserListWithRoleResponse', items?: Array<{ __typename?: 'IoRestorecommerceUserUserRoleResponse', payload?: { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, active?: boolean | null, email?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, lastAccess?: unknown | null, defaultScope?: string | null, localeId?: string | null, timezoneId?: string | null, tokens?: Array<{ __typename?: 'IoRestorecommerceAuthTokens', name?: string | null, token?: string | null, type?: string | null, expiresIn?: unknown | null }> | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null, assignableByRoles?: Array<string> | null }> | null, roleAssociations?: Array<{ __typename?: 'IoRestorecommerceAuthRoleAssociation', role?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
+export type IdentityUserReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', user: { __typename?: 'IdentityUserQuery', Read?: { __typename?: 'ProtoIoRestorecommerceUserUserListWithRoleResponse', details?: { __typename?: 'IoRestorecommerceUserUserListWithRoleResponse', operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null, items?: Array<{ __typename?: 'IoRestorecommerceUserUserRoleResponse', payload?: { __typename?: 'IoRestorecommerceUserUserRole', id?: string | null, active?: boolean | null, activationCode?: string | null, email?: string | null, newEmail?: string | null, name?: string | null, firstName?: string | null, lastName?: string | null, userType?: IoRestorecommerceUserUserType | null, defaultScope?: string | null, lastAccess?: unknown | null, localeId?: string | null, timezoneId?: string | null, tokens?: Array<{ __typename?: 'IoRestorecommerceAuthTokens', name?: string | null, token?: string | null, lastLogin?: unknown | null, expiresIn?: unknown | null, clientId?: string | null, interactive?: boolean | null, type?: string | null, scopes?: Array<string> | null }> | null, roles?: Array<{ __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null, assignableByRoles?: Array<string> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null }> | null, roleAssociations?: Array<{ __typename?: 'IoRestorecommerceAuthRoleAssociation', role?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null } | null }> | null } | null } | null } } };
 
 export type InvoicingInvoiceMutateMutationVariables = Exact<{
   input: IIoRestorecommerceInvoiceInvoiceList;
@@ -8315,6 +8322,42 @@ export const IdentityRoleReadDocument = gql`
       super(apollo);
     }
   }
+export const UserDetailReadDocument = gql`
+    query UserDetailRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  identity {
+    user {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...UserDetailFragment
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+    ${UserDetailFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UserDetailReadGQL extends Apollo.Query<UserDetailReadQuery, UserDetailReadQueryVariables> {
+    override document = UserDetailReadDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const IdentityUserFindByTokenDocument = gql`
     query IdentityUserFindByToken($input: IIoRestorecommerceUserFindByTokenRequest!) {
   identity {
@@ -8673,37 +8716,33 @@ export const IdentityUserDeleteMutateDocument = gql`
       super(apollo);
     }
   }
-export const UserDetailReadDocument = gql`
-    query UserDetailRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+export const IdentityUserReadDocument = gql`
+    query IdentityUserRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
   identity {
     user {
       Read(input: $input) {
         details {
-          items {
-            payload {
-              ...UserDetailFragment
-            }
-            status {
-              code
-              message
-            }
-          }
           operationStatus {
             code
             message
+          }
+          items {
+            payload {
+              ...UserRoleFragment
+            }
           }
         }
       }
     }
   }
 }
-    ${UserDetailFragmentFragmentDoc}`;
+    ${UserRoleFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class UserDetailReadGQL extends Apollo.Query<UserDetailReadQuery, UserDetailReadQueryVariables> {
-    override document = UserDetailReadDocument;
+  export class IdentityUserReadGQL extends Apollo.Query<IdentityUserReadQuery, IdentityUserReadQueryVariables> {
+    override document = IdentityUserReadDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

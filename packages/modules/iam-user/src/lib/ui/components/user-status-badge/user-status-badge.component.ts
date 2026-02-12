@@ -7,7 +7,7 @@ import { UserStatus } from '../../../models';
 @Component({
   selector: 'app-user-status-badge',
   template: `
-    <vcl-badge [type]="getStatusType(status)">{{ status }}</vcl-badge>
+    <vcl-badge [type]="getStatusType(status)">{{ status }} </vcl-badge>
   `,
   imports: [VCLBadgeComponent],
 })

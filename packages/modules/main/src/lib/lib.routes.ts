@@ -49,7 +49,7 @@ export const modulesMainRoutes: Route[] = [
         path: ROUTER.pages.main.children.iam.path,
         loadChildren: () =>
           import('@console-modules/iam-user').then(
-            (m) => m.modulesIamUserRoutes
+            (m) => m.ModulesIamUserModule
           ),
       },
     ],

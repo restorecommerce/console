@@ -1,1 +1,1 @@
-export * from './lib/iam-user.routes';
+export * from './lib/modules-iam-user.module';
