@@ -1,0 +1,25 @@
+<div class="p-3">
+  <!-- Row 1 -->
+  <div class="row align-items-center justify-between">
+    <div>
+      {{ item.displayName }}
+    </div>
+
+    <!-- Status badge -->
+    <app-user-status-badge [status]="item.status" />
+  </div>
+
+  <!-- Row 2 -->
+  <div class="scale85p secondary-text-color mt-1">
+    {{ item.email || '—' }}
+  </div>
+
+  <!-- Row 3 -->
+  <div class="scale85p mt-2">Roles: {{ item.roles.length || 0 }}</div>
+
+  <!-- Row 4 -->
+  <div class="scale75p secondary-text-color mt-1">
+    Created:
+    {{ item.createdAt | date: 'mediumDate' }}
+  </div>
+</div>
