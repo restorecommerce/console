@@ -21,7 +21,7 @@
     <vcl-tab-nav [selectedTabIndex]="0">
       <vcl-tab>
         <vcl-label>Basic</vcl-label>
-        <pre class="pre">{{ user | json }}</pre>
+        <app-iam-user-overview-tab [vm]="user" />
       </vcl-tab>
 
       <vcl-tab>

@@ -1,0 +1,51 @@
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Name</div>
+    <div>{{ vm.fullName }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Email</div>
+    <div>{{ vm.email }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Username</div>
+    <div>{{ vm.username }}</div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Status</div>
+    <div>
+      <app-iam-user-status-badge [status]="vm.status" />
+    </div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Guest</div>
+    <div>
+      {{ vm.guest ? 'Yes' : 'No' }}
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Roles</div>
+    <div>{{ vm.rolesCount }}</div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Sessions</div>
+    <div>{{ vm.sessionsCount }}</div>
+  </div>
+
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Last Access</div>
+    <div>{{ vm.lastAccess ? (vm.lastAccess | date: 'medium') : '—' }}</div>
+  </div>
+</div>

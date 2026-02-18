@@ -16,6 +16,8 @@ import {
 } from '@vcl/ng-vcl';
 
 import { IamUserViewFacade } from '../../../store';
+import { IAMUserOverviewTabComponent } from '../../components/iam-user-overview-tab/iam-user-overview-tab.component';
+import { IAMUserStatusBadgeComponent } from '../../components/iam-user-status-badge/iam-user-status-badge.component';
 
 @Component({
   selector: 'app-module-iam-user-view',
@@ -25,7 +27,9 @@ import { IamUserViewFacade } from '../../../store';
     VCLTabNavComponent,
     VCLTabComponent,
     VCLLabelDirective,
+    IAMUserOverviewTabComponent,
     RcResourceDetailComponent,
+    IAMUserStatusBadgeComponent,
   ],
   styleUrl: './iam-user-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
