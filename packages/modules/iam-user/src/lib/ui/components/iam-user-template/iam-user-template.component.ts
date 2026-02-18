@@ -5,9 +5,9 @@ import { RcResourcePageLayoutComponent } from '@console/rc-ui';
 import { IamUserListComponent } from '../../pages/iam-user-list/iam-user-list.component';
 
 @Component({
-  selector: 'app-module-iam-template',
+  selector: 'app-module-iam-user-template',
   templateUrl: './iam-user-template.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, RcResourcePageLayoutComponent, IamUserListComponent],
 })
-export class IamUserTemplateComponent {}
+export class IAMUserTemplateComponent {}

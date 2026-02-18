@@ -5,13 +5,13 @@ import { VCLBadgeComponent } from '@vcl/ng-vcl';
 import { UserStatus } from '../../../models';
 
 @Component({
-  selector: 'app-user-status-badge',
+  selector: 'app-iam-user-status-badge',
   template: `
     <vcl-badge [type]="getStatusType(status)">{{ status }} </vcl-badge>
   `,
   imports: [VCLBadgeComponent],
 })
-export class UserStatusBadgeComponent {
+export class IAMUserStatusBadgeComponent {
   @Input({ required: true })
   status!: UserStatus;
 

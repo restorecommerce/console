@@ -8,14 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
 
 import { IamUserListFacade } from '../../../store';
-import { UserListItemComponent } from '../../components/user-list-item/user-list-item.component';
+import { IAMUserListItemComponent } from '../../components/iam-user-list-item/iam-user-list-item.component';
 
 @Component({
   selector: 'app-module-iam-user-list',
   templateUrl: './iam-user-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [IamUserListFacade],
-  imports: [RcResourceListComponent, UserListItemComponent],
+  imports: [RcResourceListComponent, IAMUserListItemComponent],
 })
 export class IamUserListComponent implements OnInit {
   private readonly iamUserFacade = inject(IamUserListFacade);
