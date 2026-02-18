@@ -1,0 +1,37 @@
+@if (user(); as user) {
+  <rc-resource-detail
+    [title]="'User details'"
+    (back)="goBack()"
+    (edit)="editUser()"
+    (delete)="deleteUser()"
+  >
+    <header class="mb-3 row justify-between">
+      <div class="title">
+        <h3 class="m-0 mb-2">User {{ user.id }}</h3>
+        <!-- <app-fulfillment-state-badge [state]="fulfillment.state" /> -->
+        <div>
+          <!-- <span class="secondary-text-color scale85p">Labels: </span>
+          <span class="px-2">{{ hasLabels() ? 'Available' : 'None' }}</span> -->
+        </div>
+      </div>
+
+      <div class="actions mt-2"></div>
+    </header>
+
+    <vcl-tab-nav [selectedTabIndex]="0">
+      <vcl-tab>
+        <vcl-label>Basic</vcl-label>
+        <pre class="pre">{{ user | json }}</pre>
+      </vcl-tab>
+
+      <vcl-tab>
+        <vcl-label>Raw JSON / Meta</vcl-label>
+
+        <div class="raw">
+          <div class="secondary-text-color scale85p">Raw payload</div>
+          <pre class="pre">{{ user | json }}</pre>
+        </div>
+      </vcl-tab>
+    </vcl-tab-nav>
+  </rc-resource-detail>
+}
