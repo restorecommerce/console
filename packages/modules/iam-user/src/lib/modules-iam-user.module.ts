@@ -8,16 +8,19 @@ import {
   userListFeatureKey,
   userListReducer,
   loadUserListEffect,
+  userViewFeatureKey,
+  userViewReducer,
+  loadIAMUserViewEffect,
 } from './store';
 
 @NgModule({
   imports: [
     RouterModule.forChild(modulesIamUserRoutes),
     StoreModule.forFeature(userListFeatureKey, userListReducer),
-    // StoreModule.forFeature(userViewFeatureKey, userViewReducer),
+    StoreModule.forFeature(userViewFeatureKey, userViewReducer),
     EffectsModule.forFeature({
       loadUserListEffect,
-      // loadUserViewEffect,
+      loadIAMUserViewEffect,
     }),
   ],
 })
