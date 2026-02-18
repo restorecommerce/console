@@ -1,6 +1,7 @@
 import { IoRestorecommerceUserUserRole } from '@console-core/graphql';
 
 import { UserDetail } from './user-detail.model';
+import { mapUserRolesVM } from './user-role.mapper';
 import { UserStatus } from './user-status.model';
 
 export function mapUserToDetailVM(
@@ -26,7 +27,7 @@ export function mapUserToDetailVM(
     createdAt: dto.meta?.created ? new Date(`${dto.meta.created}`) : undefined,
 
     rolesCount: dto.roles?.length ?? 0,
-    roleNames: dto.roles?.map((r) => r.name as string) ?? [],
+    roles: mapUserRolesVM(dto),
 
     sessionsCount: dto.tokens?.length ?? 0,
 

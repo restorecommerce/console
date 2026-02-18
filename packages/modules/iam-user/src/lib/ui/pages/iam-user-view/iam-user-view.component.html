@@ -25,6 +25,16 @@
       </vcl-tab>
 
       <vcl-tab>
+        <vcl-label>Roles</vcl-label>
+        <app-iam-user-roles-tab [vm]="user" />
+      </vcl-tab>
+
+      <vcl-tab>
+        <vcl-label>Sessions</vcl-label>
+        <app-iam-user-sessions-tab [vm]="user" />
+      </vcl-tab>
+
+      <vcl-tab>
         <vcl-label>Raw JSON / Meta</vcl-label>
 
         <div class="raw">

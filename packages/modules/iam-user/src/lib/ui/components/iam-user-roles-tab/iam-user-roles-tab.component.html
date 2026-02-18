@@ -1,0 +1,29 @@
+<table
+  class="table no-border fixed alt-row-color v-align-middle row-hover-highlight row-selectability"
+  role="listbox"
+>
+  <thead>
+    <tr>
+      <th class="w-20p">
+        <span>Role</span>
+      </th>
+      <th class="w-30p">
+        <span>Description</span>
+      </th>
+      <th>
+        <span>Scope</span>
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (role of vm.roles.roles; track $index) {
+      <tr>
+        <td>{{ role.name }}</td>
+        <td class="align-right">{{ role.description }}</td>
+        <td class="align-centered">{{ role.scopeEntities }}</td>
+        <td class="align-centered"></td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -4,9 +4,10 @@ export interface UserRole {
   description?: string;
   associationId: string;
   scopeEntities: string[];
+  assignableByRoles: string[];
 }
 
 export interface UserRoles {
   roles: UserRole[];
-  canAssign: boolean;
+  total: number;
 }

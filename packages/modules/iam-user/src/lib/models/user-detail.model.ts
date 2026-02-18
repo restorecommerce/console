@@ -1,3 +1,4 @@
+import { UserRoles } from './user-role.model';
 import { UserStatus } from './user-status.model';
 
 export interface UserDetail {
@@ -21,7 +22,7 @@ export interface UserDetail {
   createdAt?: Date;
 
   rolesCount: number;
-  roleNames: string[];
+  roles: UserRoles;
 
   sessionsCount: number;
 

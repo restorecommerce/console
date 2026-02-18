@@ -17,6 +17,8 @@ import {
 
 import { IamUserViewFacade } from '../../../store';
 import { IAMUserOverviewTabComponent } from '../../components/iam-user-overview-tab/iam-user-overview-tab.component';
+import { IAMUserRolesTabComponent } from '../../components/iam-user-roles-tab/iam-user-roles-tab.component';
+import { IAMUserSessionsTabComponent } from '../../components/iam-user-sessions-tab/iam-user-sessions-tab.component';
 import { IAMUserStatusBadgeComponent } from '../../components/iam-user-status-badge/iam-user-status-badge.component';
 
 @Component({
@@ -30,6 +32,8 @@ import { IAMUserStatusBadgeComponent } from '../../components/iam-user-status-ba
     IAMUserOverviewTabComponent,
     RcResourceDetailComponent,
     IAMUserStatusBadgeComponent,
+    IAMUserRolesTabComponent,
+    IAMUserSessionsTabComponent,
   ],
   styleUrl: './iam-user-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
