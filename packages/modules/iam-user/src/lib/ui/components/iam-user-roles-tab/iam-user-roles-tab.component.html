@@ -13,16 +13,14 @@
       <th>
         <span>Scope</span>
       </th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     @for (role of vm.roles.roles; track $index) {
       <tr>
         <td>{{ role.name }}</td>
-        <td class="align-right">{{ role.description }}</td>
-        <td class="align-centered">{{ role.scopeEntities }}</td>
-        <td class="align-centered"></td>
+        <td>{{ role.description }}</td>
+        <td>{{ role.scopeEntities }}</td>
       </tr>
     }
   </tbody>

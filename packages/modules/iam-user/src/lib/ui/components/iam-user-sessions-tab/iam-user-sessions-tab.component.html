@@ -4,33 +4,36 @@
 >
   <thead>
     <tr>
-      <th
-        class="w-30p sortable-col clear-fix"
-        tabindex="0"
-        role="button"
-      >
-        <span>Session</span>
+      <th class="w-40p">
+        <span>Token</span>
       </th>
-      <th
-        tabindex="0"
-        role="button"
-      >
+
+      <th class="w-10p">
         <span>Type</span>
       </th>
-      <th>
+
+      <th class="w-20p">
+        <span>Client</span>
+      </th>
+
+      <th class="w-15p">
         <span>Expires</span>
       </th>
-      <th>
+
+      <th class="w-15p">
         <span>Last login</span>
       </th>
     </tr>
   </thead>
   <tbody>
-    <!-- <tr>
-      <td>Lorem ipsum</td>
-      <td class="align-right">11.000</td>
-      <td class="align-centered">Sent</td>
-      <td class="align-centered"></td>
-    </tr> -->
+    @for (role of vm.sessions.sessions; track $index) {
+      <tr>
+        <td>{{ role.id }}</td>
+        <td>{{ role.type }}</td>
+        <td>{{ role.clientId }}</td>
+        <td>{{ role.expiresAt }}</td>
+        <td>{{ role.lastLogin }}</td>
+      </tr>
+    }
   </tbody>
 </table>

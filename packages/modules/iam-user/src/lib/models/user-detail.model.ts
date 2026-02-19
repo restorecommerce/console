@@ -1,4 +1,5 @@
 import { UserRoles } from './user-role.model';
+import { UserSessions } from './user-sessions.model';
 import { UserStatus } from './user-status.model';
 
 export interface UserDetail {
@@ -25,6 +26,7 @@ export interface UserDetail {
   roles: UserRoles;
 
   sessionsCount: number;
+  sessions: UserSessions;
 
   // ownerOrganizationId?: string;
 }

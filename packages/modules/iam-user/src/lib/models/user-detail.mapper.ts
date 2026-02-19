@@ -2,6 +2,7 @@ import { IoRestorecommerceUserUserRole } from '@console-core/graphql';
 
 import { UserDetail } from './user-detail.model';
 import { mapUserRolesVM } from './user-role.mapper';
+import { mapUserSessions } from './user-sessions.mapper';
 import { UserStatus } from './user-status.model';
 
 export function mapUserToDetailVM(
@@ -30,6 +31,7 @@ export function mapUserToDetailVM(
     roles: mapUserRolesVM(dto),
 
     sessionsCount: dto.tokens?.length ?? 0,
+    sessions: mapUserSessions(dto),
 
     // ownerOrganizationId: extractOrgOwner(dto.meta?.owners),
   };
