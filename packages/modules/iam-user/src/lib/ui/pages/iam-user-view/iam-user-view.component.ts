@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,6 +26,7 @@ import { IAMUserStatusBadgeComponent } from '../../components/iam-user-status-ba
   templateUrl: './iam-user-view.component.html',
   imports: [
     JsonPipe,
+    DatePipe,
     VCLTabNavComponent,
     VCLTabComponent,
     VCLLabelDirective,

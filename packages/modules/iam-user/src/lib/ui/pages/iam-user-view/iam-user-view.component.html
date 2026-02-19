@@ -5,18 +5,29 @@
     (edit)="editUser()"
     (delete)="deleteUser()"
   >
-    <header class="mb-3 row justify-between">
-      <div class="title">
-        <h3 class="m-0 mb-2">User {{ user.id }}</h3>
-        <!-- <app-fulfillment-state-badge [state]="fulfillment.state" /> -->
-        <div>
-          <!-- <span class="secondary-text-color scale85p">Labels: </span>
-          <span class="px-2">{{ hasLabels() ? 'Available' : 'None' }}</span> -->
-        </div>
+    <div class="mb-3">
+      <div class="row align-items-center grid-gutter-3">
+        <span class="scale110p">{{ user.fullName }}</span>
+
+        <span> <app-iam-user-status-badge [status]="user.status" /></span>
       </div>
 
       <div class="actions mt-2"></div>
-    </header>
+
+      <div class="secondary-text-color mt-1">
+        {{ user.email }}
+      </div>
+
+      <div class="secondary-text-color scale85p">
+        {{ user.username }}
+      </div>
+
+      <div class="mt-2 scale85p">
+        Roles: {{ user.rolesCount }} • Sessions: {{ user.sessionsCount }} • Last
+        Access:
+        {{ user.lastAccess ? (user.lastAccess | date: 'mediumDate') : '—' }}
+      </div>
+    </div>
 
     <vcl-tab-nav [selectedTabIndex]="0">
       <vcl-tab>
