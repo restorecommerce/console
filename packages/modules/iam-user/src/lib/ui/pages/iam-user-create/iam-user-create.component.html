@@ -7,35 +7,42 @@
         <vcl-form-control-group>
           <vcl-label>First name</vcl-label>
           <vcl-input-field>
-            <input vclInput />
+            <input
+              vclInput
+              formControlName="firstName"
+            />
           </vcl-input-field>
         </vcl-form-control-group>
 
         <vcl-form-control-group>
           <vcl-label>Last name</vcl-label>
           <vcl-input-field>
-            <input vclInput />
+            <input
+              vclInput
+              formControlName="lastName"
+            />
           </vcl-input-field>
         </vcl-form-control-group>
 
         <vcl-form-control-group>
           <vcl-label>Email</vcl-label>
           <vcl-input-field>
-            <input vclInput />
+            <input
+              vclInput
+              formControlName="email"
+            />
           </vcl-input-field>
         </vcl-form-control-group>
 
         <vcl-form-control-group>
           <vcl-label>Username</vcl-label>
           <vcl-input-field>
-            <input vclInput />
+            <input
+              vclInput
+              formControlName="username"
+            />
           </vcl-input-field>
         </vcl-form-control-group>
-        <!--
-        <vcl-input
-          label=""
-          formControlName="username"
-        ></vcl-input> -->
       </div>
     </section>
 
@@ -45,7 +52,7 @@
       <vcl-form-control-group>
         <vcl-label>Scope</vcl-label>
         <vcl-select>
-          <vcl-select-list>
+          <vcl-select-list formControlName="defaultScope">
             <vcl-select-list-item value="Germany">
               Germany
             </vcl-select-list-item>
@@ -57,16 +64,147 @@
     <section class="rc-section">
       <h4>Role Assignment</h4>
 
-      <vcl-form-control-group>
-        <vcl-label>Roles</vcl-label>
-        <vcl-select>
-          <vcl-select-list>
-            <vcl-select-list-item value="Germany">
-              Germany
-            </vcl-select-list-item>
-          </vcl-select-list>
-        </vcl-select>
-      </vcl-form-control-group>
+      <fieldset>
+        <legend>
+          Add role
+
+          <vcl-icon
+            class="role-add"
+            icon="vcl:add"
+          ></vcl-icon>
+        </legend>
+
+        <div formArrayName="roleAssignments">
+          <fieldset>
+            <legend>
+              Role 1
+              <vcl-icon
+                class="role-remove"
+                icon="vcl:remove"
+              ></vcl-icon>
+            </legend>
+
+            <!-- Role -->
+            <vcl-form-control-group>
+              <vcl-label>Role</vcl-label>
+              <vcl-select
+                [clearable]="true"
+                placeholder="Select role"
+                [search]="true"
+              >
+                <vcl-select-list formControlName="role">
+                  @for (role of roles; track role.id) {
+                    <vcl-select-list-item [value]="role.id">
+                      {{ role.name }}
+                      <vcl-sub-label>{{ role.description }}</vcl-sub-label>
+                    </vcl-select-list-item>
+                  }
+                </vcl-select-list>
+              </vcl-select>
+              <vcl-hint-error error="required"
+                >This field is required.</vcl-hint-error
+              >
+            </vcl-form-control-group>
+
+            <!-- Instance type -->
+            <vcl-form-control-group>
+              <vcl-label>Instance type</vcl-label>
+              <vcl-select
+                [clearable]="true"
+                placeholder="Select scoping instance"
+              >
+                <vcl-select-list formControlName="instanceType">
+                  <vcl-select-list-item
+                    [value]="
+                      'urn:restorecommerce:acs:model:organization.Organization'
+                    "
+                  >
+                    Organization
+                  </vcl-select-list-item>
+
+                  <vcl-select-list-item
+                    [value]="'urn:restorecommerce:acs:model:user.User'"
+                  >
+                    User
+                  </vcl-select-list-item>
+                </vcl-select-list>
+              </vcl-select>
+              <vcl-hint-error error="required"
+                >This field is required.</vcl-hint-error
+              >
+            </vcl-form-control-group>
+
+            <!-- Instance id -->
+            @if (
+              roleAssignments.get('instanceType')?.value ===
+              'urn:restorecommerce:acs:model:user.User'
+            ) {
+              <vcl-form-control-group>
+                <vcl-label>User</vcl-label>
+                <vcl-select
+                  [clearable]="true"
+                  placeholder="Select User"
+                  [search]="true"
+                >
+                  <vcl-select-list formControlName="instanceId">
+                    @for (user of users; track user.id) {
+                      <vcl-select-list-item [value]="user.id">
+                        {{ user.name }}
+                        <vcl-sub-label>{{ user.email }}</vcl-sub-label>
+                      </vcl-select-list-item>
+                    }
+                  </vcl-select-list>
+                </vcl-select>
+                <vcl-hint-error error="required"
+                  >This field is required.</vcl-hint-error
+                >
+              </vcl-form-control-group>
+            } @else {
+              <vcl-form-control-group>
+                <vcl-label>Organization</vcl-label>
+                <vcl-select
+                  [clearable]="true"
+                  placeholder="Select Organization"
+                  [search]="true"
+                >
+                  <vcl-select-list formControlName="instanceId">
+                    @for (
+                      organization of organizations;
+                      track organization.id
+                    ) {
+                      <vcl-select-list-item [value]="organization.id">
+                        {{ organization.name }}
+                      </vcl-select-list-item>
+                    }
+                  </vcl-select-list>
+                </vcl-select>
+                <vcl-hint-error error="required"
+                  >This field is required.</vcl-hint-error
+                >
+              </vcl-form-control-group>
+            }
+          </fieldset>
+        </div>
+      </fieldset>
     </section>
+
+    <div class="row justify-content-end mt-4">
+      <button
+        vcl-button
+        class="transparent outline mr-3"
+        type="button"
+        routerLink="../"
+      >
+        Cancel
+      </button>
+
+      <button
+        vcl-button
+        class="emphasized"
+        type="button"
+      >
+        Create User
+      </button>
+    </div>
   </form>
 </rc-resource-detail>
