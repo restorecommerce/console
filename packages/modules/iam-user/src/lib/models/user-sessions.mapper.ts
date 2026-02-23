@@ -24,8 +24,6 @@ function resolveExpiration(expiresIn?: string | null) {
 export function mapUserSessions(
   payload: IoRestorecommerceUserUserRole
 ): UserSessions {
-  console.log('here is my tokens', payload.tokens);
-
   const now = new Date();
 
   const sessions = (payload.tokens ?? []).map(
@@ -50,8 +48,6 @@ export function mapUserSessions(
       };
     }
   );
-
-  console.log('sessions', sessions);
 
   return {
     sessions,

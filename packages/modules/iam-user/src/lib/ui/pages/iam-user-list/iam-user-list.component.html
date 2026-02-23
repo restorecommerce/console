@@ -4,6 +4,7 @@
   [getId]="getId"
   [total]="items.length"
   (itemSelected)="onSelect($event)"
+  (createItem)="onCreate()"
 >
   <ng-template
     #itemTemplate

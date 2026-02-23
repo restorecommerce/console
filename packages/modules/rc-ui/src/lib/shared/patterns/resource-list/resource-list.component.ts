@@ -54,6 +54,7 @@ export interface RcResourceContext<T> {
               vcl-button
               square
               class="transparent"
+              (click)="createItem.emit()"
               title="Add"
             >
               <vcl-icon icon="mdi mdi-plus"></vcl-icon>
@@ -101,19 +102,21 @@ export interface RcResourceContext<T> {
         </div>
       </vcl-data-list-header>
 
-      @if (items.length) { @for (item of items; track getId(item)) {
-      <vcl-data-list-item
-        [value]="getId(item)"
-        (click)="itemSelected.emit(item)"
-      >
-        <ng-container
-          *ngTemplateOutlet="itemTpl; context: { $implicit: item }"
-        />
-      </vcl-data-list-item>
-      } } @else {
-      <div class="p-2 text-muted">
-        {{ emptyLabel }}
-      </div>
+      @if (items.length) {
+        @for (item of items; track getId(item)) {
+          <vcl-data-list-item
+            [value]="getId(item)"
+            (click)="itemSelected.emit(item)"
+          >
+            <ng-container
+              *ngTemplateOutlet="itemTpl; context: { $implicit: item }"
+            />
+          </vcl-data-list-item>
+        }
+      } @else {
+        <div class="p-2 text-muted">
+          {{ emptyLabel }}
+        </div>
       }
     </vcl-data-list>
   `,
@@ -132,6 +135,7 @@ export class RcResourceListComponent<TItem extends { id: RcId }>
   @Input() filtered = 0;
 
   @Output() itemSelected = new EventEmitter<TItem>();
+  @Output() createItem = new EventEmitter<void>();
 
   // Templates
   @ContentChild('itemTemplate', { read: TemplateRef })

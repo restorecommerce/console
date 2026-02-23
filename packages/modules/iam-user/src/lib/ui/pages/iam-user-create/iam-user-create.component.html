@@ -1,1 +1,72 @@
-<p>Create a user</p>
+<rc-resource-detail [title]="'User create'">
+  <form>
+    <section class="rc-section">
+      <h4>Identity</h4>
+
+      <div class="rc-grid cols-2 gap-4">
+        <vcl-form-control-group>
+          <vcl-label>First name</vcl-label>
+          <vcl-input-field>
+            <input vclInput />
+          </vcl-input-field>
+        </vcl-form-control-group>
+
+        <vcl-form-control-group>
+          <vcl-label>Last name</vcl-label>
+          <vcl-input-field>
+            <input vclInput />
+          </vcl-input-field>
+        </vcl-form-control-group>
+
+        <vcl-form-control-group>
+          <vcl-label>Email</vcl-label>
+          <vcl-input-field>
+            <input vclInput />
+          </vcl-input-field>
+        </vcl-form-control-group>
+
+        <vcl-form-control-group>
+          <vcl-label>Username</vcl-label>
+          <vcl-input-field>
+            <input vclInput />
+          </vcl-input-field>
+        </vcl-form-control-group>
+        <!--
+        <vcl-input
+          label=""
+          formControlName="username"
+        ></vcl-input> -->
+      </div>
+    </section>
+
+    <section class="rc-section">
+      <h4>Default Scope</h4>
+
+      <vcl-form-control-group>
+        <vcl-label>Scope</vcl-label>
+        <vcl-select>
+          <vcl-select-list>
+            <vcl-select-list-item value="Germany">
+              Germany
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+      </vcl-form-control-group>
+    </section>
+
+    <section class="rc-section">
+      <h4>Role Assignment</h4>
+
+      <vcl-form-control-group>
+        <vcl-label>Roles</vcl-label>
+        <vcl-select>
+          <vcl-select-list>
+            <vcl-select-list-item value="Germany">
+              Germany
+            </vcl-select-list-item>
+          </vcl-select-list>
+        </vcl-select>
+      </vcl-form-control-group>
+    </section>
+  </form>
+</rc-resource-detail>

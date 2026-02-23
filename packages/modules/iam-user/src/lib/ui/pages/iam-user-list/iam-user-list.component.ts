@@ -7,6 +7,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
 
+import { ROUTER } from '@console-core/config';
+
 import { IamUserListFacade } from '../../../store';
 import { IAMUserListItemComponent } from '../../components/iam-user-list-item/iam-user-list-item.component';
 
@@ -29,9 +31,15 @@ export class IamUserListComponent implements OnInit {
   }
 
   onSelect(iamUser: { id: string }): void {
-    this.router.navigate([iamUser.id, 'view'], {
-      relativeTo: this.route,
-    });
+    this.router.navigate(
+      ROUTER.pages.main.children.iam.children.view.getLink({
+        id: iamUser.id,
+      })
+    );
+  }
+
+  onCreate(): void {
+    this.router.navigate([ROUTER.pages.main.children.iam.children.create.link]);
   }
 
   getId(item: { id: string }) {

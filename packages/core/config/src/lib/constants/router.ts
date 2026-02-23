@@ -463,18 +463,14 @@ export const ROUTER = {
               link: '/iam/:id/view',
               title: 'User',
               getLink: (params?: { id?: string }) =>
-                params?.id
-                  ? ['', 'management', 'iam', params.id, 'view']
-                  : ['', 'management', 'iam'],
+                params?.id ? ['iam', params.id, 'view'] : ['management', 'iam'],
             },
             edit: {
               path: ':id/edit',
               link: '/iam/:id/edit',
               title: 'Edit',
               getLink: (params?: { id?: string }) =>
-                params?.id
-                  ? ['', 'management', 'iam', params.id, 'edit']
-                  : ['', 'management', 'iam'],
+                params?.id ? ['iam', params.id, 'edit'] : ['iam'],
             },
           },
         },
