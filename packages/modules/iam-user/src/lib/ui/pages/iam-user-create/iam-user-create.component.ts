@@ -1,5 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { RcResourceDetailComponent } from '@console/rc-ui';
 
@@ -26,6 +32,7 @@ import {
     VCLSelectListComponent,
     VCLSelectListItemComponent,
     RcResourceDetailComponent,
+    ReactiveFormsModule,
   ],
 })
 export class IAMUserCreateComponent implements OnInit {
@@ -156,7 +163,7 @@ export class IAMUserCreateComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       username: [''],
-      // defaultScope: ['', Validators.required],
+      defaultScope: ['', Validators.required],
       roleAssignments: this.fb.array([]),
       // roles: [[], Validators.required],
     });
