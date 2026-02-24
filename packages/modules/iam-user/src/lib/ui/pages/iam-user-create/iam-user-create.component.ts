@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,7 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RcResourceDetailComponent } from '@console/rc-ui';
 
 import {
@@ -19,9 +18,13 @@ import {
   VCLSelectListItemComponent,
 } from '@vcl/ng-vcl';
 
+import { mapFormToCreateUserCommand } from '../../../commands/user-create.mapper';
+import { IamUserCreateFacade } from '../../../store/user-create';
+
 @Component({
   selector: 'app-module-iam-user-create',
   templateUrl: './iam-user-create.component.html',
+  providers: [IamUserCreateFacade],
   imports: [
     VCLInputModule,
     VCLSelectComponent,
@@ -35,12 +38,13 @@ import {
     ReactiveFormsModule,
   ],
 })
-export class IAMUserCreateComponent implements OnInit {
+export class IAMUserCreateComponent implements OnInit, OnDestroy {
   form!: FormGroup;
 
   private fb = inject(FormBuilder);
-  // private facade = inject(IamUsersFacade);
-  private router = inject(Router);
+  private facade = inject(IamUserCreateFacade);
+
+  readonly loading = this.facade.loading;
 
   roles = [
     {
@@ -162,13 +166,16 @@ export class IAMUserCreateComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      username: [''],
-      defaultScope: ['', Validators.required],
+      username: ['', Validators.required],
+      defaultScope: [''],
       roleAssignments: this.fb.array([]),
-      // roles: [[], Validators.required],
     });
 
-    // this.autoGenerateUsername();
+    this.addRoleAssignment();
+  }
+
+  ngOnDestroy(): void {
+    this.facade.reset();
   }
 
   addRoleAssignment(): void {
@@ -183,6 +190,18 @@ export class IAMUserCreateComponent implements OnInit {
 
   removeRoleAssignment(index: number): void {
     this.roleAssignments.removeAt(index);
+  }
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const formValue = this.form.getRawValue();
+    const command = mapFormToCreateUserCommand(formValue);
+
+    this.facade.create(command);
   }
 
   get roleAssignments(): FormArray {

@@ -81,10 +81,11 @@
         @for (group of roleAssignments.controls; track $index; let i = $index) {
           <fieldset [formGroupName]="i">
             <legend>
-              Role 1
+              Role {{ i + 1 }}
               <vcl-icon
                 class="role-remove"
                 icon="vcl:remove"
+                (click)="removeRoleAssignment(i)"
               ></vcl-icon>
             </legend>
 
@@ -140,7 +141,7 @@
 
             <!-- Instance id -->
             @if (
-              roleAssignments.get('scopeEntity')?.value ===
+              group.get('scopeEntity')?.value ===
               'urn:restorecommerce:acs:model:user.User'
             ) {
               <vcl-form-control-group>
@@ -192,10 +193,10 @@
       </fieldset>
     </section>
 
-    <div class="row justify-content-end mt-4">
+    <div class="loose-button-group row justify-content-end mt-4">
       <button
         vcl-button
-        class="transparent outline mr-3"
+        class="transparent outline"
         type="button"
         routerLink="../"
       >
@@ -206,6 +207,7 @@
         vcl-button
         class="emphasized"
         type="button"
+        [disabled]="form.invalid || loading()"
       >
         Create User
       </button>
