@@ -1,17 +1,19 @@
 export interface UserCreateFormValue {
   id: string;
-  username: string;
   firstName: string;
   lastName: string;
   email: string;
+  username: string;
+  defaultScope: string;
 
   invite: boolean;
   password?: string;
 
-  roles: UserCreateFormRoleValue[];
+  roleAssignments: UserCreateFormRoleValue[];
 }
 
 export interface UserCreateFormRoleValue {
-  roleId: string;
-  associationId: string;
+  role: string;
+  scopeEntity: string;
+  scopeInstance: string;
 }

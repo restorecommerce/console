@@ -1,14 +1,16 @@
+import { IoRestorecommerceUserUserType } from '@console-core/graphql';
+
 export interface CreateUserCommand {
-  id: string;
+  id?: string;
   name: string;
   firstName: string;
   lastName: string;
   email: string;
   invite?: boolean;
   password?: string;
-  // userType: 'ORG_USER' | 'SYSTEM_USER';
+  userType: IoRestorecommerceUserUserType;
 
-  roleAssociations: RoleAssociationCommand[];
+  roleAssociations?: RoleAssociationCommand[];
 }
 
 export interface RoleAssociationCommand {

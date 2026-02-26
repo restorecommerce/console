@@ -8,6 +8,7 @@ import {
   IoRestorecommerceResourcebaseFilterOperation,
   UserDetailReadGQL,
   IdentityUserCreateGQL,
+  ModeType,
 } from '@console-core/graphql';
 
 import { CreateUserCommand } from '../commands';
@@ -79,6 +80,7 @@ export class UserRepository {
       .mutate({
         input: {
           items: [command],
+          mode: ModeType.Create,
         },
       })
       .pipe(

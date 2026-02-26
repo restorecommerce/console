@@ -1,5 +1,10 @@
 <rc-resource-detail [title]="'User create'">
-  <form [formGroup]="form">
+  <form
+    vclForm
+    novalidate
+    [formGroup]="form"
+    (submit)="onSubmit()"
+  >
     <section class="rc-section">
       <h4>Identity</h4>
 
@@ -46,6 +51,34 @@
       </div>
     </section>
 
+    <vcl-checkbox formControlName="invite">Invite</vcl-checkbox>
+
+    <vcl-form-control-group>
+      <vcl-label>Password</vcl-label>
+      <vcl-password-input>
+        <input
+          vclInput
+          formControlName="password"
+          placeholder="Enter password"
+        />
+      </vcl-password-input>
+      <vcl-hint-error error="required">Password is required</vcl-hint-error>
+      <vcl-hint-error error="pattern">Password must... </vcl-hint-error>
+      <vcl-hint-error error="pattern"
+        >- have at least 8 characters in length</vcl-hint-error
+      >
+      <vcl-hint-error error="pattern"
+        >- contain a lowercase letters</vcl-hint-error
+      >
+      <vcl-hint-error error="pattern"
+        >- contain a uppercase letters</vcl-hint-error
+      >
+      <vcl-hint-error error="pattern">- contain a number</vcl-hint-error>
+      <vcl-hint-error error="pattern"
+        >- contain a special character</vcl-hint-error
+      >
+    </vcl-form-control-group>
+
     <section class="rc-section">
       <h4>Default Scope</h4>
 
@@ -53,9 +86,11 @@
         <vcl-label>Scope</vcl-label>
         <vcl-select>
           <vcl-select-list formControlName="defaultScope">
-            <vcl-select-list-item value="Germany">
-              Germany
-            </vcl-select-list-item>
+            @for (item of organizations; track $index) {
+              <vcl-select-list-item [value]="item.id">
+                {{ item.name }}
+              </vcl-select-list-item>
+            }
           </vcl-select-list>
         </vcl-select>
       </vcl-form-control-group>
@@ -97,7 +132,7 @@
                 placeholder="Select role"
                 [search]="true"
               >
-                <vcl-select-list formControlName="roleId">
+                <vcl-select-list formControlName="role">
                   @for (role of roles; track role.id) {
                     <vcl-select-list-item [value]="role.id">
                       {{ role.name }}
@@ -206,7 +241,7 @@
       <button
         vcl-button
         class="emphasized"
-        type="button"
+        type="submit"
         [disabled]="form.invalid || loading()"
       >
         Create User

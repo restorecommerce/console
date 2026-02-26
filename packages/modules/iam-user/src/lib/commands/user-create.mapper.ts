@@ -1,3 +1,5 @@
+import { IoRestorecommerceUserUserType } from '@console-core/graphql';
+
 import { UserCreateFormValue } from '../models';
 
 import { CreateUserCommand } from './create-user.command';
@@ -12,19 +14,19 @@ export function mapFormToCreateUserCommand(
     lastName: form.lastName,
     email: form.email,
     invite: form.invite,
-    // userType: 'ORG_USER',
-
-    roleAssociations: form.roles.map((role) => ({
-      id: role.associationId,
-      role: role.roleId,
+    ...(!form.invite ? { password: form.password } : {}),
+    userType: IoRestorecommerceUserUserType.OrgUser,
+    roleAssociations: form.roleAssignments.map((role) => ({
+      id: `${form.id.slice(0, 5)}-${role.role}`,
+      role: role.role,
       attributes: [
         {
-          id: 'urn:restorecommerce:acs:names:roleScopingEntity',
-          value: 'urn:restorecommerce:acs:model:user.User',
+          id: role.scopeEntity,
+          value: role.scopeEntity,
           attributes: [
             {
               id: 'urn:restorecommerce:acs:names:roleScopingInstance',
-              value: form.id,
+              value: role.scopeInstance,
             },
           ],
         },

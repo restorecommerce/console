@@ -10,9 +10,11 @@ import { RcResourceDetailComponent } from '@console/rc-ui';
 
 import {
   VCLButtonComponent,
+  VCLCheckboxComponent,
   VCLFormControlGroupModule,
   VCLIconComponent,
   VCLInputModule,
+  VCLPasswordInputComponent,
   VCLSelectComponent,
   VCLSelectListComponent,
   VCLSelectListItemComponent,
@@ -36,6 +38,8 @@ import { IamUserCreateFacade } from '../../../store/user-create';
     VCLSelectListItemComponent,
     RcResourceDetailComponent,
     ReactiveFormsModule,
+    VCLPasswordInputComponent,
+    VCLCheckboxComponent,
   ],
 })
 export class IAMUserCreateComponent implements OnInit, OnDestroy {
@@ -162,13 +166,29 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
+    const generatedId = crypto.randomUUID();
+
     this.form = this.fb.group({
+      id: [generatedId, Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
+      invite: [],
+      password: [''],
       defaultScope: [''],
       roleAssignments: this.fb.array([]),
+    });
+
+    this.form.controls['invite'].valueChanges.subscribe((invite) => {
+      const passwordControl = this.form.controls['password'];
+
+      if (invite) {
+        passwordControl.disable();
+        passwordControl.reset();
+      } else {
+        passwordControl.enable();
+      }
     });
 
     this.addRoleAssignment();
@@ -181,7 +201,7 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
   addRoleAssignment(): void {
     this.roleAssignments.push(
       this.fb.group({
-        roleId: ['', Validators.required],
+        role: ['', Validators.required],
         scopeEntity: ['', Validators.required],
         scopeInstance: ['', Validators.required],
       })
@@ -199,6 +219,7 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
     }
 
     const formValue = this.form.getRawValue();
+
     const command = mapFormToCreateUserCommand(formValue);
 
     this.facade.create(command);
