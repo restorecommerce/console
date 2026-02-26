@@ -80,6 +80,7 @@ export class UserRepository {
       .mutate({
         input: {
           items: [command],
+          scope: command.defaultScope,
           mode: ModeType.Create,
         },
       })

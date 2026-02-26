@@ -8,6 +8,7 @@ export interface CreateUserCommand {
   email: string;
   invite?: boolean;
   password?: string;
+  defaultScope: string;
   userType: IoRestorecommerceUserUserType;
 
   roleAssociations?: RoleAssociationCommand[];

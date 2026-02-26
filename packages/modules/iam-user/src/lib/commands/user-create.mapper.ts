@@ -16,6 +16,7 @@ export function mapFormToCreateUserCommand(
     invite: form.invite,
     ...(!form.invite ? { password: form.password } : {}),
     userType: IoRestorecommerceUserUserType.OrgUser,
+    defaultScope: form.defaultScope,
     roleAssociations: form.roleAssignments.map((role) => ({
       id: `${form.id.slice(0, 5)}-${role.role}`,
       role: role.role,
