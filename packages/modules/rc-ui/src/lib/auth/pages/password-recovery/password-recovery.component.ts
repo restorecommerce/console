@@ -8,7 +8,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 import {
   VCLButtonComponent,
@@ -20,6 +25,7 @@ import {
 import { RcTranslatePipe } from '../../../i18n';
 import { RcAuthLayoutConfig } from '../../auth.config';
 import { RsAuthLayoutComponent } from '../../layouts';
+import { ZxcvbnMinScoreError, zxcvbnMinScoreValidator } from '../../validators';
 
 import {
   DEFAULT_PASSWORD_RECOVERY_TRANSLATIONS,
@@ -61,7 +67,14 @@ export class RcPasswordRecoveryComponent {
   });
 
   readonly passwordForm = this.fb.nonNullable.group({
-    password: ['', Validators.required],
+    password: [
+      '',
+      {
+        validators: [Validators.required, Validators.minLength(12)],
+        asyncValidators: [zxcvbnMinScoreValidator(3)],
+        updateOn: 'blur',
+      },
+    ],
     confirmPassword: ['', Validators.required],
   });
 
@@ -79,5 +92,17 @@ export class RcPasswordRecoveryComponent {
     this.submitNewPassword.emit({
       password: this.passwordForm.value.password as string,
     });
+  }
+
+  minScore = 3;
+
+  get passwordCtrl(): AbstractControl {
+    return this.passwordForm.controls['password'];
+  }
+
+  get zxcvbnErr(): ZxcvbnMinScoreError | null {
+    return this.passwordCtrl.getError(
+      'zxcvbnMinScore'
+    ) as ZxcvbnMinScoreError | null;
   }
 }

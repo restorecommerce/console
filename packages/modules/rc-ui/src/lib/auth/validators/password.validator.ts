@@ -6,6 +6,11 @@ import {
 
 import { checkPasswordStrength } from '../utils';
 
+export type ZxcvbnMinScoreError = {
+  score: number;
+  feedback: { warning?: string; suggestions: string[] };
+};
+
 export function zxcvbnMinScoreValidator(minScore: number): AsyncValidatorFn {
   return async (control: AbstractControl): Promise<ValidationErrors | null> => {
     const pw = control.value ?? '';
