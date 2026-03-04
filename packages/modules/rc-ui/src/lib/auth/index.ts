@@ -1,3 +1,4 @@
 export * from './layouts';
 export * from './auth.config';
-export * from './pages'
+export * from './pages';
+export * from './validators';
