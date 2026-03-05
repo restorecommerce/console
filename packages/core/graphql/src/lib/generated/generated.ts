@@ -6317,6 +6317,13 @@ export type OrganizationListReadQueryVariables = Exact<{
 
 export type OrganizationListReadQuery = { __typename?: 'Query', master_data: { __typename?: 'ResourceQuery', organization: { __typename?: 'ResourceOrganizationQuery', Read?: { __typename?: 'ProtoIoRestorecommerceOrganizationOrganizationListResponse', details?: { __typename?: 'IoRestorecommerceOrganizationOrganizationListResponse', items?: Array<{ __typename?: 'IoRestorecommerceOrganizationOrganizationResponse', payload?: { __typename?: 'IoRestorecommerceOrganizationOrganization', id?: string | null, name?: string | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
 
+export type RoleListReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+
+export type RoleListReadQuery = { __typename?: 'Query', identity: { __typename?: 'IdentityQuery', role: { __typename?: 'IdentityRoleQuery', Read?: { __typename?: 'ProtoIoRestorecommerceRoleRoleListResponse', details?: { __typename?: 'IoRestorecommerceRoleRoleListResponse', items?: Array<{ __typename?: 'IoRestorecommerceRoleRoleResponse', payload?: { __typename?: 'IoRestorecommerceRoleRole', id?: string | null, name?: string | null, description?: string | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
+
 export type IdentityRoleMutateMutationVariables = Exact<{
   input: IIoRestorecommerceRoleRoleList;
 }>;
@@ -8277,6 +8284,44 @@ export const OrganizationListReadDocument = gql`
   })
   export class OrganizationListReadGQL extends Apollo.Query<OrganizationListReadQuery, OrganizationListReadQueryVariables> {
     override document = OrganizationListReadDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RoleListReadDocument = gql`
+    query RoleListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  identity {
+    role {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              id
+              name
+              description
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoleListReadGQL extends Apollo.Query<RoleListReadQuery, RoleListReadQueryVariables> {
+    override document = RoleListReadDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

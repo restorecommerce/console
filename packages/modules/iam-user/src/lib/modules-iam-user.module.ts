@@ -14,6 +14,9 @@ import {
   loadOrganizationListEffect,
   organizationListReducer,
   organizationListFeatureKey,
+  roleListFeatureKey,
+  roleListReducer,
+  loadRoleListEffect,
 } from './store';
 import {
   iamUserCreateFeatureKey,
@@ -31,12 +34,14 @@ import {
     StoreModule.forFeature(userViewFeatureKey, userViewReducer),
     StoreModule.forFeature(iamUserCreateFeatureKey, iamUserCreateReducer),
     StoreModule.forFeature(organizationListFeatureKey, organizationListReducer),
+    StoreModule.forFeature(roleListFeatureKey, roleListReducer),
 
     EffectsModule.forFeature({
       loadUserListEffect,
       loadIAMUserViewEffect,
       loadUserCreationEffect,
       loadOrganizationListEffect,
+      loadRoleListEffect,
       navigateOnUserCreateSuccessEffect,
     }),
   ],

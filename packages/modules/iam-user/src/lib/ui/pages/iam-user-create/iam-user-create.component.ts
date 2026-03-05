@@ -23,12 +23,16 @@ import {
 } from '@vcl/ng-vcl';
 
 import { mapFormToCreateUserCommand } from '../../../commands';
-import { IamUserCreateFacade, OrganizationListFacade } from '../../../store';
+import {
+  IamUserCreateFacade,
+  OrganizationListFacade,
+  RoleListFacade,
+} from '../../../store';
 
 @Component({
   selector: 'app-module-iam-user-create',
   templateUrl: './iam-user-create.component.html',
-  providers: [IamUserCreateFacade, OrganizationListFacade],
+  providers: [IamUserCreateFacade, OrganizationListFacade, RoleListFacade],
   imports: [
     VCLInputModule,
     VCLSelectComponent,
@@ -47,103 +51,14 @@ import { IamUserCreateFacade, OrganizationListFacade } from '../../../store';
 export class IAMUserCreateComponent implements OnInit, OnDestroy {
   form!: FormGroup;
 
-  private fb = inject(FormBuilder);
-  private facade = inject(IamUserCreateFacade);
-  private organizationFacade = inject(OrganizationListFacade);
+  private readonly fb = inject(FormBuilder);
+  private readonly facade = inject(IamUserCreateFacade);
+  private readonly organizationFacade = inject(OrganizationListFacade);
+  private readonly roleFacade = inject(RoleListFacade);
 
   readonly loading = this.facade.loading;
 
-  roles = [
-    {
-      id: 'nextcloud-access-r-id',
-      name: 'Nextcloud Access',
-      description: 'Can access the nextcloud instance',
-    },
-    {
-      id: 'grafana-access-r-id',
-      name: 'Grafana Access',
-      description: 'Can access the grafana instance',
-    },
-    {
-      id: 'gitlab-access-r-id',
-      name: 'GitLab Access',
-      description: 'Can access the gitlab instance',
-    },
-    {
-      id: 'administrator-r-id',
-      name: 'Administrator',
-      description: 'can read and write within organization scope',
-    },
-    {
-      id: 'unauthenticated-r-id',
-      name: 'unauthenticated',
-      description: 'actions for unauthenticated users',
-    },
-    {
-      id: 'sales-r-id',
-      name: 'Sales',
-      description: 'can read and write within shop organization scope',
-    },
-    {
-      id: 'customer-r-id',
-      name: 'customer',
-      description:
-        'can read shops, products and place orders within organization scope',
-    },
-    {
-      id: 'moderator-r-id',
-      name: 'Moderator',
-      description: 'can create and delete users within organization scope',
-    },
-    {
-      id: 'user-r-id',
-      name: 'user',
-      description: 'grands actions on owned resources',
-    },
-    {
-      id: 'member-r-id',
-      name: 'member',
-      description: 'can read within organization scope',
-    },
-    {
-      id: 'scoped-r-id',
-      name: 'scoped',
-      description: 'grands read on scoped resources',
-    },
-    {
-      id: 'superadministrator-r-id',
-      name: 'Super Administrator',
-      description: 'Has read and write access across all orgnizational scopes',
-    },
-  ];
-
-  users = [
-    {
-      id: 'nfuse-shop-000-admin-000',
-      name: 'Shop000 Admin000',
-      email: 'nfuse-shop000.admin000@restorecommerce.io',
-    },
-    {
-      id: 'nfuse-shop-000-sales-000',
-      name: 'Shop000 Sales000',
-      email: 'nfuse-shop000.sales000@restorecommerce.io',
-    },
-    {
-      id: 'nfuse-unauthenticated-user',
-      name: 'Unauthenticated User',
-      email: 'nfuse-unauthenticated.user@restorecommerce.io',
-    },
-    {
-      id: 'root-tech-user',
-      name: 'Root Tech User',
-      email: 'root-tech-user@restorecommerce.io',
-    },
-    {
-      id: 'nfuse-root-admin-000',
-      name: 'Root Admin',
-      email: 'nfuse-root.admin@restorecommerce.io',
-    },
-  ];
+  roles = this.roleFacade.roles;
 
   organizations = this.organizationFacade.organizations;
 
@@ -175,6 +90,7 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
 
     this.addRoleAssignment();
 
+    this.roleFacade.loadList();
     this.organizationFacade.loadList();
   }
 

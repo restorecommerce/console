@@ -109,7 +109,7 @@
                 [search]="true"
               >
                 <vcl-select-list formControlName="role">
-                  @for (role of roles; track role.id) {
+                  @for (role of roles(); track role.id) {
                     <vcl-select-list-item [value]="role.id">
                       {{ role.name }}
                       <vcl-sub-label>{{ role.description }}</vcl-sub-label>
@@ -122,83 +122,29 @@
               >
             </vcl-form-control-group>
 
-            <!-- Instance type -->
+            <!-- Organization -->
             <vcl-form-control-group>
-              <vcl-label>Instance entity</vcl-label>
+              <vcl-label>Organization</vcl-label>
               <vcl-select
                 [clearable]="true"
-                placeholder="Select scoping entity"
+                placeholder="Select Organization"
+                [search]="true"
               >
-                <vcl-select-list formControlName="scopeEntity">
-                  <vcl-select-list-item
-                    [value]="
-                      'urn:restorecommerce:acs:model:organization.Organization'
-                    "
-                  >
-                    Organization
-                  </vcl-select-list-item>
-
-                  <vcl-select-list-item
-                    [value]="'urn:restorecommerce:acs:model:user.User'"
-                  >
-                    User
-                  </vcl-select-list-item>
+                <vcl-select-list formControlName="scopeInstance">
+                  @for (
+                    organization of organizations();
+                    track organization.id
+                  ) {
+                    <vcl-select-list-item [value]="organization.id">
+                      {{ organization.name }}
+                    </vcl-select-list-item>
+                  }
                 </vcl-select-list>
               </vcl-select>
               <vcl-hint-error error="required"
                 >This field is required.</vcl-hint-error
               >
             </vcl-form-control-group>
-
-            <!-- Instance id -->
-            @if (
-              group.get('scopeEntity')?.value ===
-              'urn:restorecommerce:acs:model:user.User'
-            ) {
-              <vcl-form-control-group>
-                <vcl-label>User</vcl-label>
-                <vcl-select
-                  [clearable]="true"
-                  placeholder="Select User"
-                  [search]="true"
-                >
-                  <vcl-select-list formControlName="scopeInstance">
-                    @for (user of users; track user.id) {
-                      <vcl-select-list-item [value]="user.id">
-                        {{ user.name }}
-                        <vcl-sub-label>{{ user.email }}</vcl-sub-label>
-                      </vcl-select-list-item>
-                    }
-                  </vcl-select-list>
-                </vcl-select>
-                <vcl-hint-error error="required"
-                  >This field is required.</vcl-hint-error
-                >
-              </vcl-form-control-group>
-            } @else {
-              <vcl-form-control-group>
-                <vcl-label>Organization</vcl-label>
-                <vcl-select
-                  [clearable]="true"
-                  placeholder="Select Organization"
-                  [search]="true"
-                >
-                  <vcl-select-list formControlName="scopeInstance">
-                    @for (
-                      organization of organizations();
-                      track organization.id
-                    ) {
-                      <vcl-select-list-item [value]="organization.id">
-                        {{ organization.name }}
-                      </vcl-select-list-item>
-                    }
-                  </vcl-select-list>
-                </vcl-select>
-                <vcl-hint-error error="required"
-                  >This field is required.</vcl-hint-error
-                >
-              </vcl-form-control-group>
-            }
           </fieldset>
         }
       </fieldset>
