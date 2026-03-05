@@ -6310,6 +6310,13 @@ export type FulfillmentFulfillmentSubmitMutationVariables = Exact<{
 
 export type FulfillmentFulfillmentSubmitMutation = { __typename?: 'Mutation', fulfillment: { __typename?: 'FulfillmentMutation', fulfillment: { __typename?: 'FulfillmentFulfillmentMutation', Submit?: { __typename?: 'ProtoIoRestorecommerceFulfillmentFulfillmentListResponse', details?: { __typename?: 'IoRestorecommerceFulfillmentFulfillmentListResponse', operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null, items?: Array<{ __typename?: 'IoRestorecommerceFulfillmentFulfillmentResponse', payload?: { __typename?: 'IoRestorecommerceFulfillmentFulfillment', id?: string | null, customerId?: string | null, shopId?: string | null, userId?: string | null, fulfillmentState?: IoRestorecommerceFulfillmentFulfillmentState | null, labels?: Array<{ __typename?: 'IoRestorecommerceFulfillmentLabel', shipmentNumber?: string | null, state?: IoRestorecommerceFulfillmentFulfillmentState | null, parcelId?: string | null, file?: { __typename?: 'IoRestorecommerceFileFile', url?: string | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, packaging?: { __typename?: 'IoRestorecommerceFulfillmentPackaging', notify?: string | null, parcels?: Array<{ __typename?: 'IoRestorecommerceFulfillmentParcel', id?: string | null, productId?: string | null, variantId?: string | null, items?: Array<{ __typename?: 'IoRestorecommerceFulfillmentItem', productId?: string | null, variantId?: string | null, hsCode?: string | null, taricCode?: string | null, name?: string | null, quantity?: number | null, package?: { __typename?: 'IoRestorecommerceProductPackage', rotatable?: boolean | null, weightInKg?: number | null, sizeInCm?: { __typename?: 'IoRestorecommerceGeometryBoundingBox3D', height?: number | null, width?: number | null, length?: number | null } | null } | null }> | null, package?: { __typename?: 'IoRestorecommerceProductPackage', rotatable?: boolean | null, weightInKg?: number | null, sizeInCm?: { __typename?: 'IoRestorecommerceGeometryBoundingBox3D', height?: number | null, width?: number | null, length?: number | null } | null } | null }> | null, sender?: { __typename?: 'IoRestorecommerceAddressShippingAddress', comments?: string | null, address?: { __typename?: 'IoRestorecommerceAddressAddress', id?: string | null, postcode?: string | null } | null, contact?: { __typename?: 'IoRestorecommerceAddressContact', name?: string | null, email?: string | null, phone?: string | null } | null } | null, recipient?: { __typename?: 'IoRestorecommerceAddressShippingAddress', address?: { __typename?: 'IoRestorecommerceAddressAddress', id?: string | null, postcode?: string | null, countryId?: string | null } | null } | null, customsDeclaration?: { __typename?: 'IoRestorecommerceFulfillmentCustomsDeclaration', invoiceNumber?: string | null, exportDescription?: string | null, exportType?: string | null } | null } | null, references?: Array<{ __typename?: 'IoRestorecommerceReferenceReference', instanceType?: string | null, instanceId?: string | null }> | null, trackings?: Array<{ __typename?: 'IoRestorecommerceFulfillmentTracking', shipmentNumber?: string | null, events?: Array<{ __typename?: 'IoRestorecommerceFulfillmentEvent', location?: string | null, timestamp?: unknown | null, details?: { __typename?: 'GoogleProtobufAny', value?: unknown | null, typeUrl?: string | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null }> | null, totalAmounts?: Array<{ __typename?: 'IoRestorecommerceAmountAmount', gross?: number | null, net?: number | null, currencyId?: string | null, vats?: Array<{ __typename?: 'IoRestorecommerceAmountVAT', vat?: number | null }> | null }> | null, meta?: { __typename?: 'IoRestorecommerceMetaMeta', created?: unknown | null, modified?: unknown | null, createdBy?: string | null, modifiedBy?: string | null, owners?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null, attributes?: Array<{ __typename?: 'IoRestorecommerceAttributeAttribute', id?: string | null, value?: string | null }> | null }> | null } | null } | null }> | null } | null } | null } } };
 
+export type OrganizationListReadQueryVariables = Exact<{
+  input: IIoRestorecommerceResourcebaseReadRequest;
+}>;
+
+
+export type OrganizationListReadQuery = { __typename?: 'Query', master_data: { __typename?: 'ResourceQuery', organization: { __typename?: 'ResourceOrganizationQuery', Read?: { __typename?: 'ProtoIoRestorecommerceOrganizationOrganizationListResponse', details?: { __typename?: 'IoRestorecommerceOrganizationOrganizationListResponse', items?: Array<{ __typename?: 'IoRestorecommerceOrganizationOrganizationResponse', payload?: { __typename?: 'IoRestorecommerceOrganizationOrganization', id?: string | null, name?: string | null } | null, status?: { __typename?: 'IoRestorecommerceStatusStatus', code?: number | null, message?: string | null } | null }> | null, operationStatus?: { __typename?: 'IoRestorecommerceStatusOperationStatus', code?: number | null, message?: string | null } | null } | null } | null } } };
+
 export type IdentityRoleMutateMutationVariables = Exact<{
   input: IIoRestorecommerceRoleRoleList;
 }>;
@@ -8233,6 +8240,43 @@ export const FulfillmentFulfillmentSubmitDocument = gql`
   })
   export class FulfillmentFulfillmentSubmitGQL extends Apollo.Mutation<FulfillmentFulfillmentSubmitMutation, FulfillmentFulfillmentSubmitMutationVariables> {
     override document = FulfillmentFulfillmentSubmitDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const OrganizationListReadDocument = gql`
+    query OrganizationListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  master_data {
+    organization {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              id
+              name
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class OrganizationListReadGQL extends Apollo.Query<OrganizationListReadQuery, OrganizationListReadQueryVariables> {
+    override document = OrganizationListReadDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -10,7 +10,7 @@ import {
   iamUserCreateReducer,
 } from './user-create.reducer';
 
-export const provideUserListStore = () => [
+export const provideUserCreateStore = () => [
   provideState(iamUserCreateFeatureKey, iamUserCreateReducer),
   provideEffects({
     loadUserCreationEffect,

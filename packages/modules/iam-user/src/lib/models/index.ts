@@ -4,3 +4,4 @@ export * from './user-status.model';
 export * from './user-detail.model';
 export * from './user-detail.mapper';
 export * from './user-create-form.model';
+export * from './organization-list.model';
