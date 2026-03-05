@@ -22,13 +22,13 @@ import {
   VCLSelectListItemComponent,
 } from '@vcl/ng-vcl';
 
-import { mapFormToCreateUserCommand } from '../../../commands/user-create.mapper';
-import { IamUserCreateFacade } from '../../../store/user-create';
+import { mapFormToCreateUserCommand } from '../../../commands';
+import { IamUserCreateFacade, OrganizationListFacade } from '../../../store';
 
 @Component({
   selector: 'app-module-iam-user-create',
   templateUrl: './iam-user-create.component.html',
-  providers: [IamUserCreateFacade],
+  providers: [IamUserCreateFacade, OrganizationListFacade],
   imports: [
     VCLInputModule,
     VCLSelectComponent,
@@ -49,6 +49,7 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
 
   private fb = inject(FormBuilder);
   private facade = inject(IamUserCreateFacade);
+  private organizationFacade = inject(OrganizationListFacade);
 
   readonly loading = this.facade.loading;
 
@@ -144,28 +145,7 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
     },
   ];
 
-  organizations = [
-    {
-      id: 'system',
-      name: 'SYSTEM',
-    },
-    {
-      id: 'nfuse-root-organization',
-      name: 'Restorecommerce Demo Root',
-    },
-    {
-      id: 'nfuse-shops-organization',
-      name: 'Restorecommerce Demo Shops',
-    },
-    {
-      id: 'nfuse-customers-organization',
-      name: 'Restorecommerce Demo Customers',
-    },
-    {
-      id: 'nfuse-shop-000-organization',
-      name: 'Restorecommerce Demo Shop 000 Organization',
-    },
-  ];
+  organizations = this.organizationFacade.organizations;
 
   ngOnInit(): void {
     const generatedId = crypto.randomUUID();
@@ -194,6 +174,8 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
     });
 
     this.addRoleAssignment();
+
+    this.organizationFacade.loadList();
   }
 
   ngOnDestroy(): void {

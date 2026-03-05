@@ -62,7 +62,7 @@
         <vcl-label>Scope</vcl-label>
         <vcl-select>
           <vcl-select-list formControlName="defaultScope">
-            @for (item of organizations; track $index) {
+            @for (item of organizations(); track $index) {
               <vcl-select-list-item [value]="item.id">
                 {{ item.name }}
               </vcl-select-list-item>
@@ -185,7 +185,7 @@
                 >
                   <vcl-select-list formControlName="scopeInstance">
                     @for (
-                      organization of organizations;
+                      organization of organizations();
                       track organization.id
                     ) {
                       <vcl-select-list-item [value]="organization.id">
