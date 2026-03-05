@@ -6,7 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RcResourceDetailComponent } from '@console/rc-ui';
+import {
+  RcPasswordFieldComponent,
+  RcResourceDetailComponent,
+} from '@console/rc-ui';
 
 import {
   VCLButtonComponent,
@@ -14,7 +17,6 @@ import {
   VCLFormControlGroupModule,
   VCLIconComponent,
   VCLInputModule,
-  VCLPasswordInputComponent,
   VCLSelectComponent,
   VCLSelectListComponent,
   VCLSelectListItemComponent,
@@ -38,8 +40,8 @@ import { IamUserCreateFacade } from '../../../store/user-create';
     VCLSelectListItemComponent,
     RcResourceDetailComponent,
     ReactiveFormsModule,
-    VCLPasswordInputComponent,
     VCLCheckboxComponent,
+    RcPasswordFieldComponent,
   ],
 })
 export class IAMUserCreateComponent implements OnInit, OnDestroy {
