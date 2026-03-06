@@ -1,0 +1,23 @@
+<vcl-form-control-group>
+  <vcl-label>{{ label | rcTranslate | async }}</vcl-label>
+
+  <vcl-input-field>
+    <input
+      vclInput
+      [value]="value"
+      [disabled]="disabled"
+      (input)="onInput($any($event.target).value)"
+      (blur)="onBlur()"
+      required
+      minlength="8"
+      maxlength="40"
+    />
+  </vcl-input-field>
+  <vcl-hint-error error="required">This field is required.</vcl-hint-error>
+  <vcl-hint-error error="minlength"
+    >Username must have a length of atleast 8 characters</vcl-hint-error
+  >
+  <vcl-hint-error error="maxlength"
+    >Username must have a length of atmost 40 characters.</vcl-hint-error
+  >
+</vcl-form-control-group>

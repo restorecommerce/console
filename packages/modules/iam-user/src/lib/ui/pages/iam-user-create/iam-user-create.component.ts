@@ -9,6 +9,7 @@ import {
 import {
   RcPasswordFieldComponent,
   RcResourceDetailComponent,
+  RcUsernameFieldComponent,
 } from '@console/rc-ui';
 
 import {
@@ -46,6 +47,7 @@ import {
     ReactiveFormsModule,
     VCLCheckboxComponent,
     RcPasswordFieldComponent,
+    RcUsernameFieldComponent
   ],
 })
 export class IAMUserCreateComponent implements OnInit, OnDestroy {
@@ -70,7 +72,12 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
+      username: [
+        '',
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(40),
+      ],
       invite: [],
       password: [''],
       defaultScope: [''],
@@ -102,7 +109,6 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
     this.roleAssignments.push(
       this.fb.group({
         role: ['', Validators.required],
-        scopeEntity: ['', Validators.required],
         scopeInstance: ['', Validators.required],
       })
     );

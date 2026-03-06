@@ -23,7 +23,7 @@ export function mapFormToCreateUserCommand(
       attributes: [
         {
           id: role.scopeEntity,
-          value: role.scopeEntity,
+          value: 'urn:restorecommerce:acs:model:organization.Organization',
           attributes: [
             {
               id: 'urn:restorecommerce:acs:names:roleScopingInstance',
@@ -31,6 +31,8 @@ export function mapFormToCreateUserCommand(
             },
           ],
         },
+        /// TODO Implicitly add a user scope... since it would just not be nice to
+        /// expose that in the UI.
       ],
     })),
   };

@@ -37,17 +37,13 @@
               formControlName="email"
             />
           </vcl-input-field>
+          <vcl-hint-error error="required"
+            >This field is required.</vcl-hint-error
+          >
+          <vcl-hint-error error="email">Invalid email address.</vcl-hint-error>
         </vcl-form-control-group>
 
-        <vcl-form-control-group>
-          <vcl-label>Username</vcl-label>
-          <vcl-input-field>
-            <input
-              vclInput
-              formControlName="username"
-            />
-          </vcl-input-field>
-        </vcl-form-control-group>
+        <rc-username-field formControlName="username" />
       </div>
     </section>
 
