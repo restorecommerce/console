@@ -2,15 +2,13 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   EventEmitter,
   inject,
   Input,
   Output,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
+import { map } from 'rxjs';
 
 import {
   VCLButtonModule,
@@ -22,25 +20,21 @@ import {
   VCLNavigationModule,
 } from '@vcl/ng-vcl';
 
+import { RC_TRANSLATE } from '../../../i18n/i18n.tokens';
+import { RcBannerComponent, RcBreadcrumbComponent } from '../../patterns';
 import {
-  RcLayoutNavCategoryId,
+  RcHeaderOrganization,
+  RcHeaderToolbarComponent,
+  RcHeaderUser,
+} from '../header-toolbar';
+
+import {
   RcLayoutNavItem,
   RcTranslatable,
   ShellFooterConfig,
 } from './main-layout-config.model';
 import { RcLayoutFacade } from './main-layout.facade';
 import { RC_LAYOUT_CONFIG } from './main-layout.tokens';
-import {
-  RcBannerComponent,
-  RcBreadcrumbComponent,
-  RcCategorySelectComponent,
-} from '../../patterns';
-import {
-  RcHeaderOrganization,
-  RcHeaderToolbarComponent,
-  RcHeaderUser,
-} from '../header-toolbar';
-import { RC_TRANSLATE } from '../../../i18n/i18n.tokens';
 
 @Component({
   selector: 'rc-layout-shell',
@@ -53,7 +47,6 @@ import { RC_TRANSLATE } from '../../../i18n/i18n.tokens';
     VCLDrawerModule,
     VCLNavigationModule,
     VCLIcogramModule,
-    RcCategorySelectComponent,
     VCLIconModule,
     VCLInputModule,
     VCLButtonModule,
@@ -70,29 +63,9 @@ export class RcLayoutShellComponent {
   public readonly config = inject(RC_LAYOUT_CONFIG, { optional: false });
   private readonly t = inject(RC_TRANSLATE, { optional: false });
 
-  @Input() user: RcHeaderUser | null = {
-    id: 'user-1',
-    fullName: 'Bello Babakolo',
-    email: 'bello.babakolo@example.com',
-  };
+  @Input() user: RcHeaderUser | null = null;
 
-  @Input() organizations: RcHeaderOrganization[] = [
-    {
-      id: 'org-nfuse',
-      name: 'n-fuse GmbH',
-      description: 'IoT & E-commerce platform',
-    },
-    {
-      id: 'org-fieldmorph',
-      name: 'FieldMorph',
-      description: 'Field operations & asset tracking',
-    },
-    {
-      id: 'org-bells',
-      name: 'Bells Transport',
-      description: 'Bus ticketing & logistics',
-    },
-  ];
+  @Input() organizations: RcHeaderOrganization[] = [];
 
   @Input() selectedOrganizationId: string | null = null;
 
@@ -107,36 +80,23 @@ export class RcLayoutShellComponent {
 
   @Output() searchChange = new EventEmitter<string>();
 
-  private readonly destroyRef = inject(DestroyRef);
-
   readonly defaultOpenIcon = 'mdi mdi-page-layout-sidebar-left';
   readonly defaultCloseIcon = 'mdi mdi-page-layout-sidebar-right';
 
   constructor() {
     this.facade.initConfig(this.config);
-
-    this.router.events
-      .pipe(
-        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((e) => {
-        this.syncCategoryWithUrl(e.urlAfterRedirects);
-      });
   }
 
   isHandset$ = this.facade.isHandset$;
 
   collapsed$ = this.facade.collapsed$;
   categories$ = this.facade.categories$;
-  activeCategory$ = this.facade.activeCategory$;
-  visibleNavItems$ = this.facade.visibleNavItems$;
 
   icon$ = this.collapsed$.pipe(
     map((collapsed) =>
       collapsed
-        ? this.config.sidebarToggle?.closeIcon ?? this.defaultCloseIcon
-        : this.config.sidebarToggle?.openIcon ?? this.defaultOpenIcon
+        ? (this.config.sidebarToggle?.closeIcon ?? this.defaultCloseIcon)
+        : (this.config.sidebarToggle?.openIcon ?? this.defaultOpenIcon)
     )
   );
 
@@ -180,30 +140,6 @@ export class RcLayoutShellComponent {
     this.facade.toggleSidebar();
   }
 
-  onSelectCategory(id: RcLayoutNavCategoryId): void {
-    this.facade.setActiveCategory(id);
-
-    const category = this.config.categories?.find((c) => c.id === id);
-    let target = category?.defaultRoute;
-
-    if (!target) {
-      const first = this.getFirstNavItemForCategory(id);
-      if (first) {
-        target = first.route ?? first.children?.[0]?.route;
-      }
-    }
-
-    if (!target) {
-      return;
-    }
-
-    if (Array.isArray(target)) {
-      this.router.navigate(target);
-    } else {
-      this.router.navigate([target]);
-    }
-  }
-
   onSearchChange(term: string): void {
     this.searchChange.emit(term);
   }
@@ -220,59 +156,5 @@ export class RcLayoutShellComponent {
     ) {
       this.accountAction.emit(value);
     }
-  }
-
-  private getFirstNavItemForCategory(
-    id: RcLayoutNavCategoryId
-  ): RcLayoutNavItem | undefined {
-    const flat = this.flattenNavItems(this.config.navItems);
-    const defaultCategoryId = this.config.categories?.[0]?.id;
-
-    return flat.find((item) => {
-      const cid = item.categoryId ?? defaultCategoryId;
-      return cid === id && (item.route || item.children?.some((c) => c.route));
-    });
-  }
-
-  private flattenNavItems(items: RcLayoutNavItem[]): RcLayoutNavItem[] {
-    const out: RcLayoutNavItem[] = [];
-    for (const item of items) {
-      out.push(item);
-      if (item.children?.length) {
-        out.push(...this.flattenNavItems(item.children));
-      }
-    }
-    return out;
-  }
-
-  private syncCategoryWithUrl(url: string): void {
-    const flat = this.flattenNavItems(this.config.navItems);
-    const defaultCategoryId = this.config.categories?.[0]?.id;
-
-    const match = flat.find((item) => this.routeMatchesUrl(item.route, url));
-
-    if (!match) {
-      return;
-    }
-
-    const categoryId = match.categoryId ?? defaultCategoryId;
-    if (!categoryId) {
-      return;
-    }
-
-    this.facade.setActiveCategory(categoryId);
-  }
-
-  private routeMatchesUrl(route: string | undefined, url: string): boolean {
-    if (!route) return false;
-
-    let path: string;
-    if (Array.isArray(route)) {
-      path = this.router.createUrlTree(route).toString();
-    } else {
-      path = this.router.createUrlTree([route]).toString();
-    }
-
-    return url === path || url.startsWith(path + '/');
   }
 }
