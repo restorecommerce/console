@@ -4,6 +4,7 @@
 @use './tokens' as tokens;
 
 @use '@vcl/vcl/theme' with (
+  $drawer-bg-color: rgb(241, 241, 241),
   $app-area-max-width: tokens.$app-area-max-width,
   $block-elem-vertical-gap: tokens.$block-elem-vertical-gap,
   $form-control-vertical-gap: tokens.$form-control-vertical-gap,
@@ -31,6 +32,8 @@
 @use '@mdi/font/scss/materialdesignicons' with (
   $mdi-font-path: '/assets/mdi/fonts'
 );
+
+// Custome properties...
 
 body {
   margin: 0;
@@ -70,4 +73,16 @@ body {
 .panel-content {
   flex: 1;
   overflow-y: auto;
+}
+
+// Addition style to give the data-list body scrolling behavoir
+.data-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.data-list.no-border .data-list-body {
+  flex: 1;
+  overflow-y: scroll;
 }

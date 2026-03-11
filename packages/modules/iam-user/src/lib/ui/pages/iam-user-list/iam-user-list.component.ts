@@ -17,6 +17,7 @@ import { IAMUserListItemComponent } from '../../components/iam-user-list-item/ia
   templateUrl: './iam-user-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [IamUserListFacade],
+  styleUrl: './iam-user-list.component.scss',
   imports: [RcResourceListComponent, IAMUserListItemComponent],
 })
 export class IamUserListComponent implements OnInit {

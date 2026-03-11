@@ -35,96 +35,98 @@ export interface RcResourceContext<T> {
     VCLIconModule,
   ],
   template: `
-    <vcl-data-list
-      [noBorder]="true"
-      class="w-100p h-100p"
-    >
-      <vcl-data-list-header>
-        <div
-          class="toolbar row just align-items-center px-2"
-          role="menubar"
-        >
-          <div class="flex"></div>
-          <span class="flex row justify-content-center overflow-ellipsis">
-            {{ title }}
-          </span>
-          <div class="flex row justify-content-end">
-            <button
-              vclAppend
-              vcl-button
-              square
-              class="transparent"
-              (click)="createItem.emit()"
-              title="Add"
-            >
-              <vcl-icon icon="mdi mdi-plus"></vcl-icon>
-            </button>
+    <section class="col h-100p ">
+      <vcl-data-list
+        [noBorder]="true"
+        class="w-100p flex scrollable"
+      >
+        <vcl-data-list-header>
+          <div
+            class="toolbar row just align-items-center px-2"
+            role="menubar"
+          >
+            <div class="flex"></div>
+            <span class="flex row justify-content-center overflow-ellipsis">
+              {{ title }}
+            </span>
+            <div class="flex row justify-content-end">
+              <button
+                vclAppend
+                vcl-button
+                square
+                class="transparent"
+                (click)="createItem.emit()"
+                title="Add"
+              >
+                <vcl-icon icon="mdi mdi-plus"></vcl-icon>
+              </button>
+
+              <button
+                vclAppend
+                vcl-button
+                square
+                class="transparent"
+                title="Refresh"
+              >
+                <vcl-icon icon="mdi mdi-refresh"></vcl-icon>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="toolbar row justify-between px-2 mt-1 mb-2"
+            role="menubar"
+          >
+            <vcl-input-field class="flex">
+              <input
+                placeholder="Search..."
+                vclInput
+              />
+              <button
+                vclAppend
+                vcl-button
+                square
+                class="transparent"
+              >
+                <vcl-icon icon="mdi mdi-magnify"></vcl-icon>
+              </button>
+            </vcl-input-field>
 
             <button
-              vclAppend
               vcl-button
               square
               class="transparent"
-              title="Refresh"
+              title="Open filter"
             >
-              <vcl-icon icon="mdi mdi-refresh"></vcl-icon>
+              <vcl-icon icon="mdi mdi-filter"></vcl-icon>
             </button>
           </div>
-        </div>
+        </vcl-data-list-header>
 
-        <div
-          class="toolbar row justify-between px-2 mt-1 mb-2"
-          role="menubar"
-        >
-          <vcl-input-field class="flex">
-            <input
-              placeholder="Search..."
-              vclInput
-            />
-            <button
-              vclAppend
-              vcl-button
-              square
-              class="transparent"
+        @if (items.length) {
+          @for (item of items; track getId(item)) {
+            <vcl-data-list-item
+              [value]="getId(item)"
+              (click)="itemSelected.emit(item)"
             >
-              <vcl-icon icon="mdi mdi-magnify"></vcl-icon>
-            </button>
-          </vcl-input-field>
-
-          <button
-            vcl-button
-            square
-            class="transparent"
-            title="Open filter"
-          >
-            <vcl-icon icon="mdi mdi-filter"></vcl-icon>
-          </button>
-        </div>
-      </vcl-data-list-header>
-
-      @if (items.length) {
-        @for (item of items; track getId(item)) {
-          <vcl-data-list-item
-            [value]="getId(item)"
-            (click)="itemSelected.emit(item)"
-          >
-            <ng-container
-              *ngTemplateOutlet="itemTpl; context: { $implicit: item }"
-            />
-          </vcl-data-list-item>
+              <ng-container
+                *ngTemplateOutlet="itemTpl; context: { $implicit: item }"
+              />
+            </vcl-data-list-item>
+          }
+        } @else {
+          <div class="p-2 text-muted">
+            {{ emptyLabel }}
+          </div>
         }
-      } @else {
-        <div class="p-2 text-muted">
-          {{ emptyLabel }}
-        </div>
-      }
-    </vcl-data-list>
+      </vcl-data-list>
+    </section>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcResourceListComponent<TItem extends { id: RcId }>
-  implements OnChanges
-{
+export class RcResourceListComponent<
+  TItem extends { id: RcId },
+> implements OnChanges {
   @Input({ required: true }) items: TItem[] = [];
   @Input({ required: true }) getId!: (item: TItem) => RcId;
 
