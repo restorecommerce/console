@@ -1,10 +1,16 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import {
   RcPasswordFieldComponent,
@@ -24,9 +30,10 @@ import {
 
 import { OrganizationListItem, RoleListItem } from '../../../models';
 
+import { createRoleAssignmentGroup } from './iam-user-form.factory';
+
 @Component({
   selector: 'app-iam-user-form',
-  standalone: true,
   templateUrl: './iam-user-form.component.html',
   imports: [
     ReactiveFormsModule,
@@ -42,7 +49,7 @@ import { OrganizationListItem, RoleListItem } from '../../../models';
     RcUsernameFieldComponent,
   ],
 })
-export class IAMUserFormComponent {
+export class IAMUserFormComponent implements OnInit {
   @Input({ required: true })
   form!: FormGroup;
 
@@ -70,13 +77,12 @@ export class IAMUserFormComponent {
     return this.form.get('roleAssignments') as FormArray;
   }
 
+  ngOnInit(): void {
+    this.addRoleAssignment();
+  }
+
   addRoleAssignment(): void {
-    this.roleAssignments.push(
-      this.fb.group({
-        role: ['', Validators.required],
-        scopeInstance: ['', Validators.required],
-      })
-    );
+    this.roleAssignments.push(createRoleAssignmentGroup(this.fb));
   }
 
   removeRoleAssignment(index: number): void {

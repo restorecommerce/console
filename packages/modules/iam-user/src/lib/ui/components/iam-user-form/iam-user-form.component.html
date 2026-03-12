@@ -46,9 +46,15 @@
     </div>
   </section>
 
+  <vcl-checkbox formControlName="invite"> Invite user via email </vcl-checkbox>
+
+  @if (!form.controls['invite'].value) {
+    <rc-password-field formControlName="password" />
+  }
+  <!--
   <vcl-checkbox formControlName="invite">Invite</vcl-checkbox>
 
-  <rc-password-field formControlName="password" />
+  <rc-password-field formControlName="password" /> -->
 
   <section class="rc-section">
     <h4>Default Scope</h4>
