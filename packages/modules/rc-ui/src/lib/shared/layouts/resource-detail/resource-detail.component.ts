@@ -26,20 +26,20 @@ import { VCLIconModule } from '@vcl/ng-vcl';
         <!-- Left -->
         <div class="row center gap-05">
           @if (showBack) {
-          <button
-            type="button"
-            class="button transparent square"
-            [attr.aria-label]="backLabel"
-            (click)="back.emit()"
-          >
-            <div class="icogram">
-              <div
-                class="icon"
-                [ngClass]="backIcon"
-                aria-hidden="true"
-              ></div>
-            </div>
-          </button>
+            <button
+              type="button"
+              class="button transparent square"
+              [attr.aria-label]="backLabel"
+              (click)="back.emit()"
+            >
+              <div class="icogram">
+                <div
+                  class="icon"
+                  [ngClass]="backIcon"
+                  aria-hidden="true"
+                ></div>
+              </div>
+            </button>
           }
 
           <!-- Title -->
@@ -48,7 +48,7 @@ import { VCLIconModule } from '@vcl/ng-vcl';
           </div>
 
           @if (subtitleTpl) {
-          <ng-container [ngTemplateOutlet]="subtitleTpl" />
+            <ng-container [ngTemplateOutlet]="subtitleTpl" />
           }
         </div>
 
@@ -56,35 +56,37 @@ import { VCLIconModule } from '@vcl/ng-vcl';
         <div class="row center gap-05">
           <!-- Custom actions slot -->
           @if (actionsTpl) {
-          <ng-container [ngTemplateOutlet]="actionsTpl" />
-          } @if (showEdit) {
-          <button
-            type="button"
-            class="button transparent square"
-            aria-label="Edit"
-            (click)="edit.emit()"
-          >
-            <div class="icogram">
-              <div
-                class="icon mdi mdi-pencil"
-                aria-hidden="true"
-              ></div>
-            </div>
-          </button>
-          } @if (showDelete) {
-          <button
-            type="button"
-            class="button transparent square"
-            aria-label="Delete"
-            (click)="delete.emit()"
-          >
-            <div class="icogram">
-              <div
-                class="icon mdi mdi-delete-outline"
-                aria-hidden="true"
-              ></div>
-            </div>
-          </button>
+            <ng-container [ngTemplateOutlet]="actionsTpl" />
+          }
+          @if (showEdit) {
+            <button
+              type="button"
+              class="button transparent square"
+              aria-label="Edit"
+              (click)="edit.emit()"
+            >
+              <div class="icogram">
+                <div
+                  class="icon mdi mdi-pencil"
+                  aria-hidden="true"
+                ></div>
+              </div>
+            </button>
+          }
+          @if (showDelete) {
+            <button
+              type="button"
+              class="button transparent square"
+              aria-label="Delete"
+              (click)="delete.emit()"
+            >
+              <div class="icogram">
+                <div
+                  class="icon mdi mdi-delete-outline"
+                  aria-hidden="true"
+                ></div>
+              </div>
+            </button>
           }
         </div>
       </div>
@@ -122,8 +124,8 @@ export class RcResourceDetailComponent {
   @Input() backLabel = 'Back';
 
   // Right/actions
-  @Input() showEdit = true;
-  @Input() showDelete = true;
+  @Input() showEdit = false;
+  @Input() showDelete = false;
 
   @Output() back = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
@@ -131,8 +133,10 @@ export class RcResourceDetailComponent {
 
   // Slots
   @ContentChild('actionsTemplate', { read: TemplateRef })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   actionsTpl?: TemplateRef<any>;
 
   @ContentChild('subtitleTemplate', { read: TemplateRef })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   subtitleTpl?: TemplateRef<any>;
 }

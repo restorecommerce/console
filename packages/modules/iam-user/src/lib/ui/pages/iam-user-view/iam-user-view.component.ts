@@ -5,7 +5,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RcResourceDetailComponent } from '@console/rc-ui';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 
@@ -14,6 +14,8 @@ import {
   VCLTabComponent,
   VCLTabNavComponent,
 } from '@vcl/ng-vcl';
+
+import { ROUTER } from '@console-core/config';
 
 import { IamUserViewFacade } from '../../../store';
 import { IAMUserOverviewTabComponent } from '../../components/iam-user-overview-tab/iam-user-overview-tab.component';
@@ -43,6 +45,7 @@ import { IAMUserStatusBadgeComponent } from '../../components/iam-user-status-ba
 export class IAMUserViewComponent implements OnInit {
   private readonly iamUserFacade = inject(IamUserViewFacade);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly user = this.iamUserFacade.user;
 
@@ -63,7 +66,16 @@ export class IAMUserViewComponent implements OnInit {
   }
 
   editUser() {
-    // TODO
+    const userId = this.user()?.id;
+
+    return (
+      userId &&
+      this.router.navigate(
+        ROUTER.pages.main.children.iam.children.edit.getLink({
+          id: userId,
+        })
+      )
+    );
   }
 
   deleteUser() {

@@ -1,6 +1,8 @@
 @if (user(); as user) {
   <rc-resource-detail
     [title]="'User details'"
+    [showEdit]="true"
+    [showDelete]="true"
     (back)="goBack()"
     (edit)="editUser()"
     (delete)="deleteUser()"

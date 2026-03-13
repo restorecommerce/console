@@ -1,0 +1,10 @@
+<rc-resource-detail [title]="'Edit User'">
+  <app-iam-user-form
+    [form]="form"
+    [roles]="roles()"
+    [organizations]="organizations()"
+    [loading]="true"
+    submitLabel="Save Changes"
+    (submitForm)="submit()"
+  />
+</rc-resource-detail>

@@ -1,3 +1,4 @@
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -6,13 +7,8 @@ import {
   computed,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { RcSignInAction, RcSignInState } from './sign-in.models';
-import {
-  DEFAULT_SIGN_IN_TRANSLATIONS,
-  RcSignInTranslations,
-} from './sign-in.i18n';
-import { RcAuthLayoutConfig } from '../../auth.config';
 import {
   VCLButtonModule,
   VCLCheckboxModule,
@@ -20,10 +16,16 @@ import {
   VCLInputModule,
   VCLPasswordInputModule,
 } from '@vcl/ng-vcl';
-import { RouterModule } from '@angular/router';
-import { RsAuthLayoutComponent } from '../../layouts';
+
 import { RcTranslatePipe } from '../../../i18n';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { RcAuthLayoutConfig } from '../../auth.config';
+import { RsAuthLayoutComponent } from '../../layouts';
+
+import {
+  DEFAULT_SIGN_IN_TRANSLATIONS,
+  RcSignInTranslations,
+} from './sign-in.i18n';
+import { RcSignInAction, RcSignInState } from './sign-in.models';
 
 @Component({
   selector: 'rc-sign-in',
