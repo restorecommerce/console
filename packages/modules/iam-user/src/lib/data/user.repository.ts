@@ -11,7 +11,7 @@ import {
   ModeType,
 } from '@console-core/graphql';
 
-import { CreateUserCommand } from '../commands';
+import { CreateUserCommand, UpdateUserCommand } from '../commands';
 
 @Injectable({ providedIn: 'root' })
 export class UserRepository {
@@ -115,6 +115,52 @@ export class UserRepository {
           // Normalize GraphQL / network / runtime errors
           const message =
             error?.message || 'Unexpected error during user creation';
+
+          return throwError(() => new Error(message));
+        })
+      );
+  }
+
+  updateUser(command: UpdateUserCommand): Observable<{ id: string }> {
+    return this.userCreateGQL
+      .mutate({
+        input: {
+          items: [command],
+          scope: command.defaultScope,
+          mode: ModeType.Update,
+        },
+      })
+      .pipe(
+        map((result) => {
+          const details = result.data?.identity.user.Mutate?.details;
+
+          const opStatus = details?.operationStatus;
+          const item = details?.items?.[0];
+
+          if (!opStatus || opStatus.code !== 200) {
+            throw new Error(
+              opStatus?.message || 'User update failed (operation error)'
+            );
+          }
+
+          if (!item || item.status?.code !== 200) {
+            throw new Error(
+              `User update failed (item status: ${item?.status})`
+            );
+          }
+
+          const userId = item.payload?.id;
+
+          if (!userId) {
+            throw new Error('User update succeeded but no ID returned');
+          }
+
+          return { id: userId };
+        }),
+        catchError((error) => {
+          // Normalize GraphQL / network / runtime errors
+          const message =
+            error?.message || 'Unexpected error during user update';
 
           return throwError(() => new Error(message));
         })

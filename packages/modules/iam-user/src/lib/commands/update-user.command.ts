@@ -1,12 +1,11 @@
-export interface UpdateUserCommand {
-  id: string;
+import { IoRestorecommerceUserUserType } from '@console-core/graphql';
 
+export interface UpdateUserCommand {
+  id?: string;
+  name: string;
   firstName: string;
   lastName: string;
-
   email: string;
-
-  defaultScope?: string;
-
-  // roleAssignments: RoleAssignment[];
+  defaultScope: string;
+  userType: IoRestorecommerceUserUserType;
 }
