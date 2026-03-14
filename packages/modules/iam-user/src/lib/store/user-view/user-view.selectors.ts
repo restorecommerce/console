@@ -6,7 +6,7 @@ import { IAMUserViewState } from './user-view.state';
 export const selectIAMUserViewState =
   createFeatureSelector<IAMUserViewState>(userViewFeatureKey);
 
-export const selectFulfillment = createSelector(
+export const selectIAMUser = createSelector(
   selectIAMUserViewState,
   (state) => state.iamUser
 );

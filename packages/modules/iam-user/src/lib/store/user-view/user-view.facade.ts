@@ -8,7 +8,7 @@ import * as userViewSelectors from './user-view.selectors';
 export class IamUserViewFacade {
   private readonly store = inject(Store);
 
-  readonly user = this.store.selectSignal(userViewSelectors.selectFulfillment);
+  readonly user = this.store.selectSignal(userViewSelectors.selectIAMUser);
 
   readonly loading = this.store.selectSignal(userViewSelectors.selectLoading);
 
