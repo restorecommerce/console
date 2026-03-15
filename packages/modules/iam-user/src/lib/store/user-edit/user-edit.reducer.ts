@@ -4,7 +4,7 @@ import * as UserActions from './user-edit.actions';
 import { initialState } from './user-edit.state';
 import { IamUserEditState } from './user-edit.state';
 
-export const iamUserUpdateFeatureKey = 'iamUserEdit';
+export const iamUserEditFeatureKey = 'iamUserEdit';
 
 export const iamUserEditReducer = createReducer(
   initialState,

@@ -17,15 +17,16 @@ import {
   roleListFeatureKey,
   roleListReducer,
   loadRoleListEffect,
+  iamUserEditReducer,
+  iamUserEditFeatureKey,
+  loadEditUserEffect,
+  updatedUserEffect,
 } from './store';
 import {
   iamUserCreateFeatureKey,
   iamUserCreateReducer,
 } from './store/user-create';
-import {
-  loadUserCreationEffect,
-  navigateOnUserCreateSuccessEffect,
-} from './store/user-create/user-create.effects';
+import { loadUserCreationEffect } from './store/user-create/user-create.effects';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {
     StoreModule.forFeature(userListFeatureKey, userListReducer),
     StoreModule.forFeature(userViewFeatureKey, userViewReducer),
     StoreModule.forFeature(iamUserCreateFeatureKey, iamUserCreateReducer),
+    StoreModule.forFeature(iamUserEditFeatureKey, iamUserEditReducer),
     StoreModule.forFeature(organizationListFeatureKey, organizationListReducer),
     StoreModule.forFeature(roleListFeatureKey, roleListReducer),
 
@@ -42,7 +44,8 @@ import {
       loadUserCreationEffect,
       loadOrganizationListEffect,
       loadRoleListEffect,
-      navigateOnUserCreateSuccessEffect,
+      loadEditUserEffect,
+      updatedUserEffect,
     }),
   ],
 })

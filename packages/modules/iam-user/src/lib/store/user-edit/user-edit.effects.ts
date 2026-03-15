@@ -7,7 +7,7 @@ import { UserRepository } from '../../data/user.repository';
 import { of } from 'rxjs';
 import { mapUserUpdateFormValue } from '../../models';
 
-export const loadUserEffect = createEffect(
+export const loadEditUserEffect = createEffect(
   (actions$ = inject(Actions), iamUserRepository = inject(UserRepository)) => {
     return actions$.pipe(
       ofType(UserUpdateActions.loadUser),

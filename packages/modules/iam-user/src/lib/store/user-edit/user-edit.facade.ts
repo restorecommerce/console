@@ -12,11 +12,21 @@ export class IamUserEditFacade {
 
   readonly user = this.store.selectSignal(userUpdateSelectors.selectUser);
 
-  readonly loading = this.store.selectSignal(userUpdateSelectors.selectLoading);
+  readonly loading = this.store.selectSignal(
+    userUpdateSelectors.selectUpdateLoading
+  );
 
-  readonly saving = this.store.selectSignal(userUpdateSelectors.selectSaving);
+  readonly saving = this.store.selectSignal(
+    userUpdateSelectors.selectUpdateSaving
+  );
 
-  readonly error = this.store.selectSignal(userUpdateSelectors.selectError);
+  readonly error = this.store.selectSignal(
+    userUpdateSelectors.selectUpdateError
+  );
+
+  load(id: string) {
+    this.store.dispatch(userUpdateActions.loadUser({ id }));
+  }
 
   update(command: UpdateUserCommand) {
     this.store.dispatch(userUpdateActions.updateUser({ command }));

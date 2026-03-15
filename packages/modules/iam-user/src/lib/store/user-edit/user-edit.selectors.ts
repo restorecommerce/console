@@ -1,22 +1,25 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { iamUserUpdateFeatureKey } from './user-edit.reducer';
+import { iamUserEditFeatureKey } from './user-edit.reducer';
 import { IamUserEditState } from './user-edit.state';
 
 export const selectUserEditState = createFeatureSelector<IamUserEditState>(
-  iamUserUpdateFeatureKey
+  iamUserEditFeatureKey
 );
 
 export const selectUser = createSelector(selectUserEditState, (s) => s.user);
 
-export const selectLoading = createSelector(
+export const selectUpdateLoading = createSelector(
   selectUserEditState,
   (s) => s.loading
 );
 
-export const selectSaving = createSelector(
+export const selectUpdateSaving = createSelector(
   selectUserEditState,
   (s) => s.saving
 );
 
-export const selectError = createSelector(selectUserEditState, (s) => s.error);
+export const selectUpdateError = createSelector(
+  selectUserEditState,
+  (s) => s.error
+);

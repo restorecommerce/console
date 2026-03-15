@@ -1,16 +1,13 @@
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 
-import { loadUserEffect, updatedUserEffect } from './user-edit.effects';
-import {
-  iamUserUpdateFeatureKey,
-  iamUserEditReducer,
-} from './user-edit.reducer';
+import { loadEditUserEffect, updatedUserEffect } from './user-edit.effects';
+import { iamUserEditFeatureKey, iamUserEditReducer } from './user-edit.reducer';
 
-export const provideUserCreateStore = () => [
-  provideState(iamUserUpdateFeatureKey, iamUserEditReducer),
+export const provideUserUpdateStore = () => [
+  provideState(iamUserEditFeatureKey, iamUserEditReducer),
   provideEffects({
-    loadUserEffect,
+    loadEditUserEffect,
     updatedUserEffect,
   }),
 ];

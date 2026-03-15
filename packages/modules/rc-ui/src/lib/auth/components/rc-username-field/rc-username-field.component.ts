@@ -2,14 +2,20 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   forwardRef,
   Input,
+  ViewChild,
 } from '@angular/core';
 import {
+  AbstractControl,
+  AsyncValidator,
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
   NG_ASYNC_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
 } from '@angular/forms';
+import { firstValueFrom, isObservable, Observable } from 'rxjs';
 
 import { VCLFormControlGroupModule, VCLInputModule } from '@vcl/ng-vcl';
 
@@ -21,7 +27,6 @@ import { RcTranslatePipe } from '../../../i18n';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     VCLFormControlGroupModule,
-    VCLInputModule,
     VCLInputModule,
     RcTranslatePipe,
     AsyncPipe,
@@ -40,8 +45,19 @@ import { RcTranslatePipe } from '../../../i18n';
     },
   ],
 })
-export class RcUsernameFieldComponent implements ControlValueAccessor {
+export class RcUsernameFieldComponent
+  implements ControlValueAccessor, AsyncValidator
+{
+  @ViewChild('input', { static: true }) input!: ElementRef<HTMLInputElement>;
+
+  @Input() asyncValidator?: (
+    control: AbstractControl
+  ) => Promise<ValidationErrors | null> | Observable<ValidationErrors | null>;
+
   @Input() label = 'Username';
+  @Input() minLength = 8;
+  @Input() maxLength = 40;
+  @Input() required = true;
 
   value = '';
   disabled = false;
@@ -62,7 +78,10 @@ export class RcUsernameFieldComponent implements ControlValueAccessor {
   // ---- ControlValueAccessor ----
 
   writeValue(value: string): void {
-    this.value = value ?? '';
+    // completely bypasses directive interference.
+    if (this.input) {
+      this.input.nativeElement.value = value ?? '';
+    }
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -84,5 +103,42 @@ export class RcUsernameFieldComponent implements ControlValueAccessor {
 
   onBlur(): void {
     this.onTouched();
+  }
+  async validate(control: AbstractControl): Promise<ValidationErrors | null> {
+    const value: string = control.value ?? '';
+
+    if (this.required && !value) {
+      return { required: true };
+    }
+
+    if (value && value.length < this.minLength) {
+      return {
+        minlength: {
+          requiredLength: this.minLength,
+          actualLength: value.length,
+        },
+      };
+    }
+
+    if (value && value.length > this.maxLength) {
+      return {
+        maxlength: {
+          requiredLength: this.maxLength,
+          actualLength: value.length,
+        },
+      };
+    }
+
+    if (!this.asyncValidator) {
+      return null;
+    }
+
+    const validatorResult = this.asyncValidator(control);
+
+    const result = isObservable(validatorResult)
+      ? await firstValueFrom(validatorResult)
+      : await validatorResult;
+
+    return result;
   }
 }

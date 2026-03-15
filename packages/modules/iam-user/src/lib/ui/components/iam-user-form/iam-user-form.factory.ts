@@ -10,7 +10,7 @@ export function createUserForm(fb: FormBuilder) {
     email: ['', [Validators.required, Validators.email]],
     username: [
       '',
-      [Validators.required, Validators.minLength(8), Validators.maxLength(40)],
+      [Validators.required, Validators.minLength(3), Validators.maxLength(40)],
     ],
     invite: [false],
     password: [''],

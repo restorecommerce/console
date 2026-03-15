@@ -1,11 +1,11 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, effect, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RcResourceDetailComponent } from '@console/rc-ui';
 
-// import { mapFormToEditUserCommand } from '../../../commands';
+import { mapFormToUpdateUserCommand } from '../../../commands';
 import {
-  // IamUserEditFacade,
+  IamUserEditFacade,
   OrganizationListFacade,
   RoleListFacade,
 } from '../../../store';
@@ -15,7 +15,7 @@ import { createUserForm } from '../../components/iam-user-form/iam-user-form.fac
 @Component({
   selector: 'app-module-iam-user-edit',
   templateUrl: './iam-user-edit.component.html',
-  providers: [OrganizationListFacade, RoleListFacade],
+  providers: [OrganizationListFacade, RoleListFacade, IamUserEditFacade],
   imports: [RcResourceDetailComponent, IAMUserFormComponent],
 })
 export class IAMUserEditComponent implements OnInit, OnDestroy {
@@ -24,26 +24,39 @@ export class IAMUserEditComponent implements OnInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
 
-  // private readonly facade = inject(IamUserEditFacade);
+  private readonly facade = inject(IamUserEditFacade);
   private readonly organizationFacade = inject(OrganizationListFacade);
   private readonly roleFacade = inject(RoleListFacade);
-
-  // readonly loading = this.facade.loading;
+  readonly loading = this.facade.loading;
 
   roles = this.roleFacade.roles;
   organizations = this.organizationFacade.organizations;
+  user = this.facade.user;
+
+  constructor() {
+    effect(() => {
+      const user = this.user();
+
+      if (!user || !this.form) return;
+
+      this.form.patchValue(user);
+    });
+  }
 
   ngOnInit(): void {
     this.form = createUserForm(this.fb);
-    // const userId = this.route.snapshot.paramMap.get('id');
+    const userId = this.route.snapshot.paramMap.get('id');
+
+    if (userId) {
+      this.facade.load(userId);
+    }
 
     this.roleFacade.loadList();
     this.organizationFacade.loadList();
   }
 
   ngOnDestroy(): void {
-    console.log('On destory');
-    // this.facade.reset();
+    this.facade.reset();
   }
 
   submit(): void {
@@ -52,10 +65,10 @@ export class IAMUserEditComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // const formValue = this.form.getRawValue();
+    const formValue = this.form.getRawValue();
 
-    // const command = mapFormToEditUserCommand(formValue);
+    const command = mapFormToUpdateUserCommand(formValue);
 
-    // this.facade.edit(command);
+    this.facade.update(command);
   }
 }

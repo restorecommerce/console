@@ -3,14 +3,12 @@
 
   <vcl-input-field>
     <input
+      #input
       vclInput
       [value]="value"
       [disabled]="disabled"
       (input)="onInput($any($event.target).value)"
       (blur)="onBlur()"
-      required
-      minlength="8"
-      maxlength="40"
     />
   </vcl-input-field>
   <vcl-hint-error error="required">This field is required.</vcl-hint-error>
