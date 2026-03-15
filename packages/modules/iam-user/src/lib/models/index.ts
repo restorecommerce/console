@@ -7,3 +7,4 @@ export * from './user-create-form.model';
 export * from './user-update-form.model';
 export * from './organization-list.model';
 export * from './role-list.model';
+export * from './user-update-form-value.mapper';
