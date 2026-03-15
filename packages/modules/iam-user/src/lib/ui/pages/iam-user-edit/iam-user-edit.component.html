@@ -1,6 +1,7 @@
 <rc-resource-detail [title]="'Edit User'">
   <app-iam-user-form
     [form]="form"
+    [isEditMode]="true"
     [roles]="roles()"
     [organizations]="organizations()"
     [loading]="loading()"

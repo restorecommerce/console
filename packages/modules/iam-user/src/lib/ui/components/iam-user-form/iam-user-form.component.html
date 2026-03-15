@@ -46,15 +46,15 @@
     </div>
   </section>
 
-  <vcl-checkbox formControlName="invite"> Invite user via email </vcl-checkbox>
+  @if (!isEditMode) {
+    <vcl-checkbox formControlName="invite">
+      Invite user via email
+    </vcl-checkbox>
 
-  @if (!form.controls['invite'].value) {
-    <rc-password-field formControlName="password" />
+    @if (!form.controls['invite'].value) {
+      <rc-password-field formControlName="password" />
+    }
   }
-  <!--
-  <vcl-checkbox formControlName="invite">Invite</vcl-checkbox>
-
-  <rc-password-field formControlName="password" /> -->
 
   <section class="rc-section">
     <h4>Default Scope</h4>
@@ -73,80 +73,82 @@
     </vcl-form-control-group>
   </section>
 
-  <section
-    class="rc-section"
-    formArrayName="roleAssignments"
-  >
-    <h4>Role Assignment</h4>
+  @if (!isEditMode) {
+    <section
+      class="rc-section"
+      formArrayName="roleAssignments"
+    >
+      <h4>Role Assignment</h4>
 
-    <fieldset>
-      <legend>
-        Add role
+      <fieldset>
+        <legend>
+          Add role
 
-        <vcl-icon
-          class="role-add"
-          icon="vcl:add"
-          (click)="addRoleAssignment()"
-        ></vcl-icon>
-      </legend>
+          <vcl-icon
+            class="role-add"
+            icon="vcl:add"
+            (click)="addRoleAssignment()"
+          ></vcl-icon>
+        </legend>
 
-      @for (group of roleAssignments.controls; track $index; let i = $index) {
-        <fieldset [formGroupName]="i">
-          <legend>
-            Role {{ i + 1 }}
-            <vcl-icon
-              class="role-remove"
-              icon="vcl:remove"
-              (click)="removeRoleAssignment(i)"
-            ></vcl-icon>
-          </legend>
+        @for (group of roleAssignments.controls; track $index; let i = $index) {
+          <fieldset [formGroupName]="i">
+            <legend>
+              Role {{ i + 1 }}
+              <vcl-icon
+                class="role-remove"
+                icon="vcl:remove"
+                (click)="removeRoleAssignment(i)"
+              ></vcl-icon>
+            </legend>
 
-          <!-- Role -->
-          <vcl-form-control-group>
-            <vcl-label>Role</vcl-label>
-            <vcl-select
-              [clearable]="true"
-              placeholder="Select role"
-              [search]="true"
-            >
-              <vcl-select-list formControlName="role">
-                @for (role of roles; track role.id) {
-                  <vcl-select-list-item [value]="role.id">
-                    {{ role.name }}
-                    <vcl-sub-label>{{ role.description }}</vcl-sub-label>
-                  </vcl-select-list-item>
-                }
-              </vcl-select-list>
-            </vcl-select>
-            <vcl-hint-error error="required"
-              >This field is required.</vcl-hint-error
-            >
-          </vcl-form-control-group>
+            <!-- Role -->
+            <vcl-form-control-group>
+              <vcl-label>Role</vcl-label>
+              <vcl-select
+                [clearable]="true"
+                placeholder="Select role"
+                [search]="true"
+              >
+                <vcl-select-list formControlName="role">
+                  @for (role of roles; track role.id) {
+                    <vcl-select-list-item [value]="role.id">
+                      {{ role.name }}
+                      <vcl-sub-label>{{ role.description }}</vcl-sub-label>
+                    </vcl-select-list-item>
+                  }
+                </vcl-select-list>
+              </vcl-select>
+              <vcl-hint-error error="required"
+                >This field is required.</vcl-hint-error
+              >
+            </vcl-form-control-group>
 
-          <!-- Organization -->
-          <vcl-form-control-group>
-            <vcl-label>Organization</vcl-label>
-            <vcl-select
-              [clearable]="true"
-              placeholder="Select Organization"
-              [search]="true"
-            >
-              <vcl-select-list formControlName="scopeInstance">
-                @for (organization of organizations; track organization.id) {
-                  <vcl-select-list-item [value]="organization.id">
-                    {{ organization.name }}
-                  </vcl-select-list-item>
-                }
-              </vcl-select-list>
-            </vcl-select>
-            <vcl-hint-error error="required"
-              >This field is required.</vcl-hint-error
-            >
-          </vcl-form-control-group>
-        </fieldset>
-      }
-    </fieldset>
-  </section>
+            <!-- Organization -->
+            <vcl-form-control-group>
+              <vcl-label>Organization</vcl-label>
+              <vcl-select
+                [clearable]="true"
+                placeholder="Select Organization"
+                [search]="true"
+              >
+                <vcl-select-list formControlName="scopeInstance">
+                  @for (organization of organizations; track organization.id) {
+                    <vcl-select-list-item [value]="organization.id">
+                      {{ organization.name }}
+                    </vcl-select-list-item>
+                  }
+                </vcl-select-list>
+              </vcl-select>
+              <vcl-hint-error error="required"
+                >This field is required.</vcl-hint-error
+              >
+            </vcl-form-control-group>
+          </fieldset>
+        }
+      </fieldset>
+    </section>
+  }
 
   <div class="loose-button-group row justify-content-end mt-4">
     <button
@@ -164,7 +166,7 @@
       type="submit"
       [disabled]="form.invalid || loading"
     >
-      Create User
+      {{ isEditMode ? 'Update User' : 'Create User' }}
     </button>
   </div>
 </form>

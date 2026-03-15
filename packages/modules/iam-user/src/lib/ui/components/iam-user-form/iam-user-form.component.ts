@@ -53,6 +53,8 @@ export class IAMUserFormComponent implements OnInit {
   @Input({ required: true })
   form!: FormGroup;
 
+  @Input() isEditMode = false;
+
   @Input()
   organizations: OrganizationListItem[] = [];
 
@@ -78,7 +80,9 @@ export class IAMUserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addRoleAssignment();
+    if (!this.isEditMode) {
+      this.addRoleAssignment();
+    }
   }
 
   addRoleAssignment(): void {
