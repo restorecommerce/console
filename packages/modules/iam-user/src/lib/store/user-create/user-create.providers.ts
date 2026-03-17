@@ -3,7 +3,7 @@ import { provideState } from '@ngrx/store';
 
 import {
   loadUserCreationEffect,
-  navigateOnUserCreateSuccessEffect,
+  navigateAfterCreateEffect,
 } from './user-create.effects';
 import {
   iamUserCreateFeatureKey,
@@ -14,6 +14,6 @@ export const provideUserCreateStore = () => [
   provideState(iamUserCreateFeatureKey, iamUserCreateReducer),
   provideEffects({
     loadUserCreationEffect,
-    navigateOnUserCreateSuccessEffect,
+    navigateAfterCreateEffect,
   }),
 ];

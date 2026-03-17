@@ -21,12 +21,17 @@ import {
   iamUserEditFeatureKey,
   loadEditUserEffect,
   updatedUserEffect,
+  navigateAfterUpdateEffect,
+  reloadUserListOnMutationEffect,
 } from './store';
 import {
   iamUserCreateFeatureKey,
   iamUserCreateReducer,
 } from './store/user-create';
-import { loadUserCreationEffect } from './store/user-create/user-create.effects';
+import {
+  loadUserCreationEffect,
+  navigateAfterCreateEffect,
+} from './store/user-create/user-create.effects';
 
 @NgModule({
   imports: [
@@ -40,12 +45,15 @@ import { loadUserCreationEffect } from './store/user-create/user-create.effects'
 
     EffectsModule.forFeature({
       loadUserListEffect,
+      reloadUserListOnMutationEffect,
       loadIAMUserViewEffect,
       loadUserCreationEffect,
+      navigateAfterCreateEffect,
       loadOrganizationListEffect,
       loadRoleListEffect,
       loadEditUserEffect,
       updatedUserEffect,
+      navigateAfterUpdateEffect,
     }),
   ],
 })

@@ -1,11 +1,13 @@
 import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-import * as UserUpdateActions from './user-edit.actions';
 import { UserRepository } from '../../data/user.repository';
-import { of } from 'rxjs';
 import { mapUserUpdateFormValue } from '../../models';
+
+import * as UserUpdateActions from './user-edit.actions';
 
 export const loadEditUserEffect = createEffect(
   (actions$ = inject(Actions), iamUserRepository = inject(UserRepository)) => {
@@ -47,4 +49,16 @@ export const updatedUserEffect = createEffect(
     );
   },
   { functional: true }
+);
+
+export const navigateAfterUpdateEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(UserUpdateActions.updateUserSuccess),
+      tap(({ id }) => {
+        router.navigate(['/iam', id, 'view']);
+      })
+    );
+  },
+  { functional: true, dispatch: false }
 );

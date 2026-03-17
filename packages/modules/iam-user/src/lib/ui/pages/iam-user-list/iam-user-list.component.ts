@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RcResourceListComponent } from '@console/rc-ui';
 
 import { ROUTER } from '@console-core/config';
@@ -23,7 +23,6 @@ import { IAMUserListItemComponent } from '../../components/iam-user-list-item/ia
 export class IamUserListComponent implements OnInit {
   private readonly iamUserFacade = inject(IamUserListFacade);
   private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
 
   items = this.iamUserFacade.users;
 

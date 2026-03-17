@@ -1,11 +1,12 @@
 import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-import * as UserCreationActions from './user-create.actions';
 import { UserRepository } from '../../data/user.repository';
-import { of } from 'rxjs';
-import { Router } from '@angular/router';
+
+import * as UserCreationActions from './user-create.actions';
 
 export const loadUserCreationEffect = createEffect(
   (actions$ = inject(Actions), userRepository = inject(UserRepository)) => {
@@ -24,12 +25,12 @@ export const loadUserCreationEffect = createEffect(
   { functional: true }
 );
 
-export const navigateOnUserCreateSuccessEffect = createEffect(
+export const navigateAfterCreateEffect = createEffect(
   (actions$ = inject(Actions), router = inject(Router)) => {
     return actions$.pipe(
       ofType(UserCreationActions.createUserSuccess),
       tap(({ id }) => {
-        router.navigate(['/iam/users', id]);
+        router.navigate(['/iam', id, 'view']);
       })
     );
   },
