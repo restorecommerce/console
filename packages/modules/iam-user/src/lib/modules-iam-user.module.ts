@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { RcNotifierService } from '@console/rc-ui';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+
+import { VCLNotifierModule } from '@vcl/ng-vcl';
 
 import { modulesIamUserRoutes } from './iam-user.routes';
 import {
@@ -35,6 +38,7 @@ import {
 
 @NgModule({
   imports: [
+    VCLNotifierModule,
     RouterModule.forChild(modulesIamUserRoutes),
     StoreModule.forFeature(userListFeatureKey, userListReducer),
     StoreModule.forFeature(userViewFeatureKey, userViewReducer),
@@ -56,5 +60,6 @@ import {
       navigateAfterUpdateEffect,
     }),
   ],
+  providers: [RcNotifierService],
 })
 export class ModulesIamUserModule {}

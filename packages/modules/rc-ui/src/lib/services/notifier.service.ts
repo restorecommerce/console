@@ -2,9 +2,7 @@ import { inject, Injectable } from '@angular/core';
 
 import { NotifierPosition, NotifierService } from '@vcl/ng-vcl';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class RcNotifierService {
   readonly notifier = inject(NotifierService);
   readonly position = NotifierPosition.TopRight;
