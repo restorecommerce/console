@@ -22,22 +22,22 @@ export function mapFormToCreateUserCommand(
     roleAssociations: [
       // Implicitly add user-r-id for the user himself...
       // Redundant, an antipattern to add it from the UI
-      {
-        id: `${userId}-user-r-id`,
-        role: 'user-r-id',
-        attributes: [
-          {
-            id: 'urn:restorecommerce:acs:names:roleScopingEntity',
-            value: 'urn:restorecommerce:acs:model:user.User',
-            attributes: [
-              {
-                id: 'urn:restorecommerce:acs:names:roleScopingInstance',
-                value: form.id,
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   id: `${userId}-user-r-id`,
+      //   role: 'user-r-id',
+      //   attributes: [
+      //     {
+      //       id: 'urn:restorecommerce:acs:names:roleScopingEntity',
+      //       value: 'urn:restorecommerce:acs:model:user.User',
+      //       attributes: [
+      //         {
+      //           id: 'urn:restorecommerce:acs:names:roleScopingInstance',
+      //           value: form.id,
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
       ...form.roleAssignments.map((role) => ({
         id: `${userId}-${role.role}`,
         role: role.role,
