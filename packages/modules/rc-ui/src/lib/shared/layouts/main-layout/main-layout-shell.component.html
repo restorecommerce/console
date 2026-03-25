@@ -33,7 +33,7 @@
 
       @for (category of categories$ | async; track $index) {
         <vcl-navigation-heading class="scale115p">
-          {{ category.label }}
+          {{ label$(category.label || 'category.label') | async }}
         </vcl-navigation-heading>
 
         @for (item of facade.getItemsByCategory(category.id); track $index) {
