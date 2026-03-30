@@ -29,16 +29,16 @@ import { AccountFacade, OrganizationContextFacade } from '@console-core/state';
   selector: 'app-module-main-private-template',
   template: `
     @if (vm$ | async; as vm) {
-    <rc-layout-shell
-      [user]="vm.user"
-      [selectedOrganizationId]="vm.selectedOrganizationId"
-      [organizations]="vm.organizations"
-      (organizationSelected)="onHandleSelectedOrganization($event)"
-      (accountAction)="onAccountAction($event)"
-      (searchChange)="onSearch($event)"
-    >
-      <router-outlet />
-    </rc-layout-shell>
+      <rc-layout-shell
+        [user]="user()"
+        [selectedOrganizationId]="vm.selectedOrganizationId"
+        [organizations]="vm.organizations"
+        (organizationSelected)="onHandleSelectedOrganization($event)"
+        (accountAction)="onAccountAction($event)"
+        (searchChange)="onSearch($event)"
+      >
+        <router-outlet />
+      </rc-layout-shell>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,10 +54,10 @@ export class PrivateTemplateComponent implements OnInit {
     OrganizationContextFacade
   );
 
+  readonly user = this.accountFacade.user;
   private readonly orgQueryParamKey = inject(ORG_QUERY_PARAM_KEY);
 
   readonly vm$ = combineLatest({
-    user: this.accountFacade.user$,
     organizations: this.organizationContextFacade.all$,
     selectedOrganizationId: this.organizationContextFacade.selectedId$,
   });

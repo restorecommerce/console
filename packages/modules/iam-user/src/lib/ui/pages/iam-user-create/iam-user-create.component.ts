@@ -2,6 +2,8 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RcResourceDetailComponent } from '@console/rc-ui';
 
+import { AccountFacade } from '@console-core/state';
+
 import { mapFormToCreateUserCommand } from '../../../commands';
 import {
   IamUserCreateFacade,
@@ -24,6 +26,7 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
   private readonly facade = inject(IamUserCreateFacade);
   private readonly organizationFacade = inject(OrganizationListFacade);
   private readonly roleFacade = inject(RoleListFacade);
+  private readonly accountFacade = inject(AccountFacade);
 
   readonly loading = this.facade.loading;
 
@@ -49,8 +52,17 @@ export class IAMUserCreateComponent implements OnInit, OnDestroy {
     }
 
     const formValue = this.form.getRawValue();
+    const authenticatedUser = this.accountFacade.user();
 
-    const command = mapFormToCreateUserCommand(formValue);
+    if (!authenticatedUser) {
+      return;
+    }
+
+    const command = mapFormToCreateUserCommand(formValue, {
+      firstName: authenticatedUser.firstName,
+      lastName: authenticatedUser.lastName,
+      username: authenticatedUser.name,
+    });
 
     this.facade.create(command);
   }

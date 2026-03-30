@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 
 import { IOrganization, IUser } from '@console-core/types';
@@ -30,6 +30,11 @@ const isHierarchical = (
   providedIn: 'root',
 })
 export class AuthzService {
+  private readonly accountFacade = inject(AccountFacade);
+  private readonly organizationContextFacade = inject(
+    OrganizationContextFacade
+  );
+
   private hasRole(user: IUser, roleId: string) {
     return user?.roleAssociations.some((ra) => ra.role === roleId);
   }
@@ -57,21 +62,14 @@ export class AuthzService {
     );
   }
 
-  isSuperAdmin$ = this.accountFacade.user$.pipe(
-    map((user) =>
-      user ? this.hasRole(user, 'superadministrator-r-id') : false
-    )
-  );
-
   private createRoleObservable(roleId: string) {
     return combineLatest([
-      this.accountFacade.user$,
       this.organizationContextFacade.selectedId$,
       this.organizationContextFacade.all$,
     ]).pipe(
-      map(([user, organizationId, organizations]) =>
+      map(([organizationId, organizations]) =>
         this.hasRoleInOrg(
-          user as IUser,
+          this.accountFacade.user() as IUser,
           roleId,
           organizationId as string,
           organizations
@@ -83,9 +81,4 @@ export class AuthzService {
   isAdmin$ = this.createRoleObservable('administrator-r-id');
   isSale$ = this.createRoleObservable('sales-r-id');
   isModerator$ = this.createRoleObservable('moderator-r-id');
-
-  constructor(
-    private readonly accountFacade: AccountFacade,
-    private readonly organizationContextFacade: OrganizationContextFacade
-  ) {}
 }

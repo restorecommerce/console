@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
@@ -16,8 +16,11 @@ import * as accountSelectors from './account.selectors';
 
 @Injectable()
 export class AccountFacade {
+  private readonly store = inject(Store);
+
   // Selectors
-  user$ = this.store.select(accountSelectors.selectUser);
+
+  readonly user = this.store.selectSignal(accountSelectors.selectUser);
   userId$ = this.store.select(accountSelectors.selectUserId);
   actionStatus$ = this.store.select(accountSelectors.selectActionStatus);
   error$ = this.store.select(accountSelectors.selectError);
@@ -45,6 +48,4 @@ export class AccountFacade {
     this.store.dispatch(accountActions.userChangePasswordRequest({ payload }));
   userRemoveRequest = (payload: IIoRestorecommerceResourcebaseDeleteRequest) =>
     this.store.dispatch(accountActions.userRemoveRequest({ payload }));
-
-  constructor(private readonly store: Store) {}
 }
