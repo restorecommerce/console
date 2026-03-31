@@ -1,4 +1,4 @@
-import { UserAccessAssignmentVm } from './user-access-assignment';
+import { UserAccessAssignmentVm } from './user-access-assignment.model';
 import { UserSessions } from './user-sessions.model';
 import { UserStatus } from './user-status.model';
 
