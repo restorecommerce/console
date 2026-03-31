@@ -8,3 +8,4 @@ export * from './user-update-form.model';
 export * from './organization-list.model';
 export * from './role-list.model';
 export * from './user-update-form-value.mapper';
+export * from './user-access-assignment';

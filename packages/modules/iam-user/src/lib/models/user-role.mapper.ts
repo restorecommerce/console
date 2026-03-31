@@ -6,7 +6,7 @@ import {
 
 import { UserRole, UserRoles } from './user-role.model';
 
-export function mapUserRolesVM(
+export function mapUserRolestoAccessVM(
   payload: IoRestorecommerceUserUserRole
 ): UserRoles {
   const roles = (payload.roles ?? []).map(

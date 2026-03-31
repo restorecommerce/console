@@ -1,4 +1,4 @@
-import { UserRoles } from './user-role.model';
+import { UserAccessAssignmentVm } from './user-access-assignment';
 import { UserSessions } from './user-sessions.model';
 import { UserStatus } from './user-status.model';
 
@@ -23,7 +23,7 @@ export interface UserDetail {
   createdAt?: Date;
 
   rolesCount: number;
-  roles: UserRoles;
+  accessAssignments: UserAccessAssignmentVm[];
 
   sessionsCount: number;
   sessions: UserSessions;

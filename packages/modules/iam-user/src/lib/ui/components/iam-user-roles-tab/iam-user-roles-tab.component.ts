@@ -1,12 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { UserDetail } from '../../../models';
+import { IAMUserAssignedAccessTable } from '../iam-user-assigned-access-table/iam-user-assigned-access-table.component';
+import { IAMUserSystemAccessTable } from '../iam-user-system-access-table/iam-user-system-access-table.component';
 
 @Component({
-  selector: 'app-iam-user-roles-tab',
-  templateUrl: './iam-user-roles-tab.component.html',
-  imports: [],
+  selector: 'app-iam-user-access-assignments-tab',
+  templateUrl: './iam-user-access-assignments-tab.component.html',
+  imports: [IAMUserAssignedAccessTable, IAMUserSystemAccessTable],
 })
-export class IAMUserRolesTabComponent {
-  @Input({ required: true }) vm!: UserDetail;
+export class IAMUserAccessAssignmentsTabComponent {
+  vm = input.required<UserDetail>();
+
+  readonly systemAssignments = computed(() =>
+    this.vm().accessAssignments.filter((x) => x.source === 'system')
+  );
+
+  readonly assignedAssignments = computed(() =>
+    this.vm().accessAssignments.filter((x) => x.source === 'manual')
+  );
 }

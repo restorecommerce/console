@@ -38,8 +38,8 @@
       </vcl-tab>
 
       <vcl-tab>
-        <vcl-label>Access Assignments</vcl-label>
-        <app-iam-user-roles-tab [vm]="user" />
+        <vcl-label>Access Assignments ({{ user.rolesCount }})</vcl-label>
+        <app-iam-user-access-assignments-tab [vm]="user" />
       </vcl-tab>
 
       <vcl-tab>
