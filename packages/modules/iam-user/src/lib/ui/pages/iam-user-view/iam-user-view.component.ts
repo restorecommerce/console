@@ -18,8 +18,8 @@ import {
 import { ROUTER } from '@console-core/config';
 
 import { IamUserViewFacade } from '../../../store';
+import { IAMUserAccessAssignmentsTabComponent } from '../../components/iam-user-access-assignments-tab/iam-user-roles-tab.component';
 import { IAMUserOverviewTabComponent } from '../../components/iam-user-overview-tab/iam-user-overview-tab.component';
-import { IAMUserAccessAssignmentsTabComponent } from '../../components/iam-user-roles-tab/iam-user-roles-tab.component';
 import { IAMUserSessionsTabComponent } from '../../components/iam-user-sessions-tab/iam-user-sessions-tab.component';
 import { IAMUserStatusBadgeComponent } from '../../components/iam-user-status-badge/iam-user-status-badge.component';
 
