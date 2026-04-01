@@ -1,17 +1,13 @@
 <section class="mb-4">
-  <h3>Access Summary</h3>
-  <div class="summary row grid-gutter-2">
-    <div class="summary-chip">
-      {{ systemAssignments().length }} System Role(s)
-    </div>
-    <div class="summary-chip">
-      {{ assignedAssignments().length }} Assigned Role(s)
-    </div>
+  <h4>Access Summary</h4>
+  <div class="row grid-gutter-2">
+    <vcl-token>{{ systemAssignments().length }} System Role(s)</vcl-token>
+    <vcl-token>{{ assignedAssignments().length }} Assigned Role(s)</vcl-token>
   </div>
 </section>
 
 <section class="mb-4">
-  <h3>System Access</h3>
+  <h4>System Access</h4>
   <div class="secondary-text-color scale85p mb-2">
     Automatically assigned permissions required for this account.
   </div>
@@ -26,7 +22,7 @@
 </section>
 
 <section>
-  <h3>Assigned Access</h3>
+  <h4>Assigned Access</h4>
   <div class="secondary-text-color scale85p mb-2">
     Roles explicitly granted to this user.
   </div>
