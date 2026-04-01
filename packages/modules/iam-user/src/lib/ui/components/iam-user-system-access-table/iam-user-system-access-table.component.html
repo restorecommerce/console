@@ -1,27 +1,44 @@
 <table
-  class="table no-border fixed alt-row-color v-align-middle row-hover-highlight row-selectability"
-  role="listbox"
+  class="table no-border fixed alt-row-color v-align-middle row-hover-highlight"
+  role="table"
 >
   <thead>
     <tr>
-      <th class="w-20p">
+      <th class="w-30p">
         <span>Role</span>
       </th>
-      <th class="w-30p">
-        <span>Description</span>
+      <th class="w-20p">
+        <span>Scope Type</span>
       </th>
-      <th>
+      <th class="w-30p">
         <span>Scope</span>
+      </th>
+      <th class="w-20p align-centered">
+        <span>Status</span>
       </th>
     </tr>
   </thead>
+
   <tbody>
-    <!-- @for (role of vm.roles.roles; track $index) {
-      <tr>
-        <td>{{ role.name }}</td>
-        <td>{{ role.description }}</td>
-        <td>{{ role.scopeEntities }}</td>
+    @for (assignment of systemAssignments; track assignment.id) {
+      <tr class="disabled">
+        <td>
+          <div class="fw-500">{{ assignment.roleLabel }}</div>
+          <div class="secondary-text-color scale85p">
+            {{ assignment.role }}
+          </div>
+        </td>
+
+        <td>{{ assignment.scopeTypeLabel }}</td>
+
+        <td class="overflow-ellipsis">
+          {{ assignment.scopeLabel }}
+        </td>
+
+        <td class="align-centered">
+          <span class="badge locked-badge">Locked</span>
+        </td>
       </tr>
-    } -->
+    }
   </tbody>
 </table>

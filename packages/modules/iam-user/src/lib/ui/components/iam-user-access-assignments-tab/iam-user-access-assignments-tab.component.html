@@ -17,7 +17,9 @@
   </div>
 
   @if (systemAssignments().length) {
-    <app-iam-user-system-access-table />
+    <app-iam-user-system-access-table
+      [systemAssignments]="systemAssignments()"
+    />
   } @else {
     <div class="secondary-text-color">No system access found.</div>
   }
@@ -30,7 +32,9 @@
   </div>
 
   @if (assignedAssignments().length) {
-    <app-iam-user-assigned-access-table />
+    <app-iam-user-assigned-access-table
+      [manualAssignments]="assignedAssignments()"
+    />
   } @else {
     <div class="secondary-text-color">No additional access assigned.</div>
   }
