@@ -30,8 +30,8 @@ export function mapRoleAssociationsToAccessAssignments(
 export function mapRoleAssociationToAccessAssignmentVm(
   association: RoleAssociation
 ): UserAccessAssignmentVm {
-  const scopeEntity = getScopeEntity(association.attributes);
-  const scopeInstance = getScopeInstance(association.attributes);
+  const scopeEntity = getScopeEntity(association.attributes || []);
+  const scopeInstance = getScopeInstance(association.attributes || []);
   const scopeType = getScopeTypeFromEntity(scopeEntity);
 
   const isSystem = isSystemAssignment(association);
