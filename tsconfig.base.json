@@ -39,7 +39,8 @@
       "@console-modules/shared": ["packages/modules/shared/src/index.ts"],
       "@console-modules/ui": ["packages/modules/ui/src/index.ts"],
       "@console/rc-ui": ["packages/modules/rc-ui/src/index.ts"],
-      "@console-modules/iam-user": ["packages/modules/iam-user/src/index.ts"]
+      "@console-modules/iam-user": ["packages/modules/iam-user/src/index.ts"],
+      "invoice": ["packages/modules/invoice/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
