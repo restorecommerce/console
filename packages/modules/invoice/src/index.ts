@@ -1,1 +1,2 @@
-export * from './lib/invoice/invoice';
+export * from './lib/invoice.modules';
+export * from './lib/invoice.routes';

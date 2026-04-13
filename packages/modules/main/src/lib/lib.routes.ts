@@ -39,6 +39,13 @@ export const modulesMainRoutes: Route[] = [
           import('@console-modules/order').then((m) => m.OrderModule),
       },
       {
+        path: ROUTER.pages.main.children.invoices.path,
+        loadChildren: () =>
+          import('@console-modules/invoice').then(
+            (m) => m.ModulesInvoiceModule
+          ),
+      },
+      {
         path: ROUTER.pages.main.children.fulfillments.path,
         loadChildren: () =>
           import('@console-modules/fulfillment').then(
