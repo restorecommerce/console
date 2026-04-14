@@ -1,0 +1,15 @@
+<rc-resource-list
+  title="Users"
+  [items]="items()"
+  [getId]="getId"
+  [total]="items.length"
+  (itemSelected)="onSelect($event)"
+  (createItem)="onCreate()"
+>
+  <ng-template
+    #itemTemplate
+    let-invoice
+  >
+    <app-invoice-list-item [item]="invoice" />
+  </ng-template>
+</rc-resource-list>

@@ -1,0 +1,24 @@
+<div class="p-3">
+  <div>
+    {{ item.invoiceNumber }}
+  </div>
+
+  <!-- Row 2 -->
+  <div class="scale85p secondary-text-color mt-1">
+    {{ item.customerName || item.recipientName }}
+  </div>
+
+  <!-- Row 3 -->
+  <div class="scale85p mt-2">
+    {{ item.amountLabel }}
+    •
+    {{ item.invoiceDateLabel }}
+  </div>
+
+  <!-- Row 4 -->
+  <div class="scale75p secondary-text-color mt-1">
+    <vcl-badge [type]="getPaymentBadgeType(item.paymentState)"
+      >{{ item.paymentState }}
+    </vcl-badge>
+  </div>
+</div>
