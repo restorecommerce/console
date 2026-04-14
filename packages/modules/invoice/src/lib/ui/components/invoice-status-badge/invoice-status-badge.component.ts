@@ -7,7 +7,7 @@ import { InvoiceStatus } from '../../../models';
 @Component({
   selector: 'app-invoice-status-badge',
   template: `
-    <vcl-badge [type]="getStatusType(status)">{{ status }} </vcl-badge>
+    <vcl-badge [type]="getStatusType(status)">{{ status }}</vcl-badge>
   `,
   imports: [VCLBadgeComponent],
 })

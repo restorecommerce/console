@@ -10,9 +10,9 @@
 
   <!-- Row 3 -->
   <div class="scale85p mt-2">
-    {{ item.amountLabel }}
+    {{ item.totalAmount | currency: 'EUR' }}
     •
-    {{ item.invoiceDateLabel }}
+    {{ item.invoiceDate | date }}
   </div>
 
   <!-- Row 4 -->

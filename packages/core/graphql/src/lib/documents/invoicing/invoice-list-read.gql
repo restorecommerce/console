@@ -1,0 +1,50 @@
+fragment InvoiceListFragment on IoRestorecommerceInvoiceInvoice {
+  id
+  customer {
+    id
+    name
+  }
+  recipient {
+    contact {
+      name
+      email
+      phone
+    }
+  }
+  invoiceNumber
+  totalAmounts {
+    gross
+    currencyId
+  }
+  sent
+  withdrawn
+  paymentState
+  timestamp
+  user {
+    name
+  }
+}
+
+query InvoiceListRead($input: IIoRestorecommerceResourcebaseReadRequest!) {
+  invoicing {
+    invoice {
+      Read(input: $input) {
+        details {
+          items {
+            payload {
+              ...InvoiceListFragment
+            }
+            status {
+              code
+              message
+            }
+          }
+          operationStatus {
+            code
+            message
+          }
+        }
+      }
+    }
+  }
+}

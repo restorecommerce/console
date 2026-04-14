@@ -3,7 +3,7 @@ export interface InvoiceListItem {
   invoiceNumber: string;
   customerName?: string;
   recipientName?: string;
-  invoiceDateLabel?: string;
+  invoiceDate: number;
   amountLabel?: string;
   totalAmount: number;
   currency?: string;

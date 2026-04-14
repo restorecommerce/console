@@ -1,3 +1,4 @@
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import { VCLBadgeComponent } from '@vcl/ng-vcl';
@@ -7,7 +8,7 @@ import { InvoiceListItem } from '../../../models';
 @Component({
   selector: 'app-invoice-list-item',
   templateUrl: './invoice-list-item.component.html',
-  imports: [VCLBadgeComponent],
+  imports: [VCLBadgeComponent, DatePipe, CurrencyPipe],
 })
 export class InvoiceListItemComponent {
   @Input({ required: true })

@@ -24,7 +24,7 @@ export class InvoiceListComponent implements OnInit {
   private readonly invoiceFacade = inject(InvoiceListFacade);
   private readonly router = inject(Router);
 
-  items = this.invoiceFacade.users;
+  items = this.invoiceFacade.invoices;
 
   ngOnInit(): void {
     this.invoiceFacade.loadList();
