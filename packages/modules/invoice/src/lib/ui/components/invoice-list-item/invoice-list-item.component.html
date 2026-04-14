@@ -16,9 +16,19 @@
   </div>
 
   <!-- Row 4 -->
-  <div class="scale75p secondary-text-color mt-1">
+  <div class="scale75p mt-1">
     <vcl-badge [type]="getPaymentBadgeType(item.paymentState)"
       >{{ item.paymentState }}
     </vcl-badge>
+
+    @if (item.sent) {
+      <span class="mx-2">
+        <vcl-badge type="info"> Sent </vcl-badge>
+      </span>
+    }
+
+    @if (item.withdrawn) {
+      <vcl-badge type="error">{{ item.withdrawn }} </vcl-badge>
+    }
   </div>
 </div>
