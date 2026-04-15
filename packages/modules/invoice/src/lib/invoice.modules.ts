@@ -10,7 +10,10 @@ import { modulesInvoiceRoutes } from './invoice.routes';
 import {
   invoiceListFeatureKey,
   invoiceListReducer,
+  invoiceViewFeatureKey,
+  invoiceViewReducer,
   loadInvoiceListEffect,
+  loadInvoiceViewEffect,
 } from './store';
 
 @NgModule({
@@ -18,9 +21,11 @@ import {
     VCLNotifierModule,
     RouterModule.forChild(modulesInvoiceRoutes),
     StoreModule.forFeature(invoiceListFeatureKey, invoiceListReducer),
+    StoreModule.forFeature(invoiceViewFeatureKey, invoiceViewReducer),
 
     EffectsModule.forFeature({
       loadInvoiceListEffect,
+      loadInvoiceViewEffect,
     }),
   ],
   providers: [RcNotifierService],

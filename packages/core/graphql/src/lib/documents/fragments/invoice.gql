@@ -1,76 +1,130 @@
 fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
   id
   invoiceNumber
-  fromDate
-  toDate
-  shopId
+  customer {
+    id
+    name
+  }
+  shop {
+    id
+    name
+  }
+  paymentState
   sent
   withdrawn
-  paymentState
+  fromDate
+  toDate
   customerOrderNumber
-  userId
-  customerId
-  timestamp
+  customerVatId
+  references {
+    instanceId
+    instanceType
+  }
+
+  paymentHints
+
+  sender {
+    address {
+      id
+      buildingNumber
+      street
+      locality
+      region
+      countryId
+    }
+    contact {
+      name
+      email
+      phone
+    }
+    comments
+  }
+
+  recipient {
+    address {
+      id
+      buildingNumber
+      street
+      locality
+      region
+      countryId
+    }
+    contact {
+      name
+      email
+      phone
+    }
+    comments
+  }
+
+  billingAddress {
+    address {
+      id
+      buildingNumber
+      street
+      locality
+      region
+      countryId
+    }
+    contact {
+      name
+      email
+      phone
+    }
+    comments
+  }
+
+  totalAmounts {
+    gross
+    currencyId
+    vats {
+      vat
+      taxId
+    }
+  }
+
   sections {
     id
     customerRemark
-    positions {
-      id
-      toDate
-      quantity
-      unitPrice {
-        salePrice
-        currencyId
-        sale
-        regularPrice
-      }
-      fromDate
-      fulfillmentItem {
-        productId
-        variantId
-      }
-      manualItem {
-        name
-        descritpion
-        stockKeepingUnit
-        properties {
-          id
-          value
-        }
-      }
-      productItem {
-        productId
-        variantId
-        product {
-          id
-          active
-          tags
-          shopIds
-        }
-      }
-    }
     amounts {
       gross
       net
-      currencyId
       vats {
-        taxId
         vat
+        taxId
       }
+      currencyId
+    }
+    positions {
+      id
+      quantity
+      productItem {
+        product {
+          id
+          product {
+            name
+          }
+        }
+      }
+      fulfillmentItem {
+        product {
+          id
+          name
+        }
+      }
+      unitPrice {
+        salePrice
+        regularPrice
+        sale
+      }
+      toDate
+      fromDate
     }
   }
-  totalAmounts {
-    currencyId
-    gross
-    net
-    vats {
-      taxId
-      vat
-    }
-  }
-  references {
-    instanceType
-    instanceId
+
+  documents {
+    id
+    url
   }
   meta {
     ...MetaFragment

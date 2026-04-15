@@ -7592,62 +7592,100 @@ export type InvoiceFragmentFragment = {
   __typename?: 'IoRestorecommerceInvoiceInvoice';
   id?: string | null;
   invoiceNumber?: string | null;
-  fromDate?: unknown | null;
-  toDate?: unknown | null;
-  shopId?: string | null;
+  paymentState?: IoRestorecommerceInvoicePaymentState | null;
   sent?: boolean | null;
   withdrawn?: boolean | null;
-  paymentState?: IoRestorecommerceInvoicePaymentState | null;
+  fromDate?: unknown | null;
+  toDate?: unknown | null;
   customerOrderNumber?: string | null;
-  userId?: string | null;
-  customerId?: string | null;
-  timestamp?: unknown | null;
+  customerVatId?: string | null;
+  paymentHints?: Array<string> | null;
+  customer?: {
+    __typename?: 'IoRestorecommerceCustomerCustomer';
+    id?: string | null;
+    name?: string | null;
+  } | null;
+  shop?: {
+    __typename?: 'IoRestorecommerceShopShop';
+    id?: string | null;
+    name?: string | null;
+  } | null;
+  references?: Array<{
+    __typename?: 'IoRestorecommerceReferenceReference';
+    instanceId?: string | null;
+    instanceType?: string | null;
+  }> | null;
+  sender?: {
+    __typename?: 'IoRestorecommerceAddressShippingAddress';
+    comments?: string | null;
+    address?: {
+      __typename?: 'IoRestorecommerceAddressAddress';
+      id?: string | null;
+      buildingNumber?: string | null;
+      street?: string | null;
+      locality?: string | null;
+      region?: string | null;
+      countryId?: string | null;
+    } | null;
+    contact?: {
+      __typename?: 'IoRestorecommerceAddressContact';
+      name?: string | null;
+      email?: string | null;
+      phone?: string | null;
+    } | null;
+  } | null;
+  recipient?: {
+    __typename?: 'IoRestorecommerceAddressShippingAddress';
+    comments?: string | null;
+    address?: {
+      __typename?: 'IoRestorecommerceAddressAddress';
+      id?: string | null;
+      buildingNumber?: string | null;
+      street?: string | null;
+      locality?: string | null;
+      region?: string | null;
+      countryId?: string | null;
+    } | null;
+    contact?: {
+      __typename?: 'IoRestorecommerceAddressContact';
+      name?: string | null;
+      email?: string | null;
+      phone?: string | null;
+    } | null;
+  } | null;
+  billingAddress?: {
+    __typename?: 'IoRestorecommerceAddressBillingAddress';
+    comments?: string | null;
+    address?: {
+      __typename?: 'IoRestorecommerceAddressAddress';
+      id?: string | null;
+      buildingNumber?: string | null;
+      street?: string | null;
+      locality?: string | null;
+      region?: string | null;
+      countryId?: string | null;
+    } | null;
+    contact?: {
+      __typename?: 'IoRestorecommerceAddressContact';
+      name?: string | null;
+      email?: string | null;
+      phone?: string | null;
+    } | null;
+  } | null;
+  totalAmounts?: Array<{
+    __typename?: 'IoRestorecommerceAmountAmount';
+    gross?: number | null;
+    currencyId?: string | null;
+    vats?: Array<{
+      __typename?: 'IoRestorecommerceAmountVAT';
+      vat?: number | null;
+      taxId?: string | null;
+    }> | null;
+  }> | null;
   sections?: Array<{
     __typename?: 'IoRestorecommerceInvoiceSection';
     id?: string | null;
     customerRemark?: string | null;
-    positions?: Array<{
-      __typename?: 'IoRestorecommerceInvoicePosition';
-      id?: string | null;
-      toDate?: unknown | null;
-      quantity?: number | null;
-      fromDate?: unknown | null;
-      unitPrice?: {
-        __typename?: 'IoRestorecommercePricePrice';
-        salePrice?: number | null;
-        currencyId?: string | null;
-        sale?: boolean | null;
-        regularPrice?: number | null;
-      } | null;
-      fulfillmentItem?: {
-        __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
-        productId?: string | null;
-        variantId?: string | null;
-      } | null;
-      manualItem?: {
-        __typename?: 'IoRestorecommerceInvoiceManualItem';
-        name?: string | null;
-        descritpion?: string | null;
-        stockKeepingUnit?: string | null;
-        properties?: Array<{
-          __typename?: 'IoRestorecommercePropertyProperty';
-          id?: string | null;
-          value?: string | null;
-        }> | null;
-      } | null;
-      productItem?: {
-        __typename?: 'IoRestorecommerceInvoiceProductItem';
-        productId?: string | null;
-        variantId?: string | null;
-        product?: {
-          __typename?: 'IoRestorecommerceProductProduct';
-          id?: string | null;
-          active?: boolean | null;
-          tags?: Array<string> | null;
-          shopIds?: Array<string> | null;
-        } | null;
-      } | null;
-    }> | null;
     amounts?: Array<{
       __typename?: 'IoRestorecommerceAmountAmount';
       gross?: number | null;
@@ -7655,26 +7693,47 @@ export type InvoiceFragmentFragment = {
       currencyId?: string | null;
       vats?: Array<{
         __typename?: 'IoRestorecommerceAmountVAT';
-        taxId?: string | null;
         vat?: number | null;
+        taxId?: string | null;
       }> | null;
     }> | null;
-  }> | null;
-  totalAmounts?: Array<{
-    __typename?: 'IoRestorecommerceAmountAmount';
-    currencyId?: string | null;
-    gross?: number | null;
-    net?: number | null;
-    vats?: Array<{
-      __typename?: 'IoRestorecommerceAmountVAT';
-      taxId?: string | null;
-      vat?: number | null;
+    positions?: Array<{
+      __typename?: 'IoRestorecommerceInvoicePosition';
+      id?: string | null;
+      quantity?: number | null;
+      toDate?: unknown | null;
+      fromDate?: unknown | null;
+      productItem?: {
+        __typename?: 'IoRestorecommerceInvoiceProductItem';
+        product?: {
+          __typename?: 'IoRestorecommerceProductProduct';
+          id?: string | null;
+          product?: {
+            __typename?: 'IoRestorecommerceProductIndividualProduct';
+            name?: string | null;
+          } | null;
+        } | null;
+      } | null;
+      fulfillmentItem?: {
+        __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+        product?: {
+          __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProduct';
+          id?: string | null;
+          name?: string | null;
+        } | null;
+      } | null;
+      unitPrice?: {
+        __typename?: 'IoRestorecommercePricePrice';
+        salePrice?: number | null;
+        regularPrice?: number | null;
+        sale?: boolean | null;
+      } | null;
     }> | null;
   }> | null;
-  references?: Array<{
-    __typename?: 'IoRestorecommerceReferenceReference';
-    instanceType?: string | null;
-    instanceId?: string | null;
+  documents?: Array<{
+    __typename?: 'IoRestorecommerceFileFile';
+    id?: string | null;
+    url?: string | null;
   }> | null;
   meta?: {
     __typename?: 'IoRestorecommerceMetaMeta';
@@ -10810,62 +10869,100 @@ export type InvoicingInvoiceMutateMutation = {
               __typename?: 'IoRestorecommerceInvoiceInvoice';
               id?: string | null;
               invoiceNumber?: string | null;
-              fromDate?: unknown | null;
-              toDate?: unknown | null;
-              shopId?: string | null;
+              paymentState?: IoRestorecommerceInvoicePaymentState | null;
               sent?: boolean | null;
               withdrawn?: boolean | null;
-              paymentState?: IoRestorecommerceInvoicePaymentState | null;
+              fromDate?: unknown | null;
+              toDate?: unknown | null;
               customerOrderNumber?: string | null;
-              userId?: string | null;
-              customerId?: string | null;
-              timestamp?: unknown | null;
+              customerVatId?: string | null;
+              paymentHints?: Array<string> | null;
+              customer?: {
+                __typename?: 'IoRestorecommerceCustomerCustomer';
+                id?: string | null;
+                name?: string | null;
+              } | null;
+              shop?: {
+                __typename?: 'IoRestorecommerceShopShop';
+                id?: string | null;
+                name?: string | null;
+              } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceId?: string | null;
+                instanceType?: string | null;
+              }> | null;
+              sender?: {
+                __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  countryId?: string | null;
+                } | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+              } | null;
+              recipient?: {
+                __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  countryId?: string | null;
+                } | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+              } | null;
+              billingAddress?: {
+                __typename?: 'IoRestorecommerceAddressBillingAddress';
+                comments?: string | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  countryId?: string | null;
+                } | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+              } | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                currencyId?: string | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
+                  taxId?: string | null;
+                }> | null;
+              }> | null;
               sections?: Array<{
                 __typename?: 'IoRestorecommerceInvoiceSection';
                 id?: string | null;
                 customerRemark?: string | null;
-                positions?: Array<{
-                  __typename?: 'IoRestorecommerceInvoicePosition';
-                  id?: string | null;
-                  toDate?: unknown | null;
-                  quantity?: number | null;
-                  fromDate?: unknown | null;
-                  unitPrice?: {
-                    __typename?: 'IoRestorecommercePricePrice';
-                    salePrice?: number | null;
-                    currencyId?: string | null;
-                    sale?: boolean | null;
-                    regularPrice?: number | null;
-                  } | null;
-                  fulfillmentItem?: {
-                    __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
-                    productId?: string | null;
-                    variantId?: string | null;
-                  } | null;
-                  manualItem?: {
-                    __typename?: 'IoRestorecommerceInvoiceManualItem';
-                    name?: string | null;
-                    descritpion?: string | null;
-                    stockKeepingUnit?: string | null;
-                    properties?: Array<{
-                      __typename?: 'IoRestorecommercePropertyProperty';
-                      id?: string | null;
-                      value?: string | null;
-                    }> | null;
-                  } | null;
-                  productItem?: {
-                    __typename?: 'IoRestorecommerceInvoiceProductItem';
-                    productId?: string | null;
-                    variantId?: string | null;
-                    product?: {
-                      __typename?: 'IoRestorecommerceProductProduct';
-                      id?: string | null;
-                      active?: boolean | null;
-                      tags?: Array<string> | null;
-                      shopIds?: Array<string> | null;
-                    } | null;
-                  } | null;
-                }> | null;
                 amounts?: Array<{
                   __typename?: 'IoRestorecommerceAmountAmount';
                   gross?: number | null;
@@ -10873,26 +10970,47 @@ export type InvoicingInvoiceMutateMutation = {
                   currencyId?: string | null;
                   vats?: Array<{
                     __typename?: 'IoRestorecommerceAmountVAT';
-                    taxId?: string | null;
                     vat?: number | null;
+                    taxId?: string | null;
                   }> | null;
                 }> | null;
-              }> | null;
-              totalAmounts?: Array<{
-                __typename?: 'IoRestorecommerceAmountAmount';
-                currencyId?: string | null;
-                gross?: number | null;
-                net?: number | null;
-                vats?: Array<{
-                  __typename?: 'IoRestorecommerceAmountVAT';
-                  taxId?: string | null;
-                  vat?: number | null;
+                positions?: Array<{
+                  __typename?: 'IoRestorecommerceInvoicePosition';
+                  id?: string | null;
+                  quantity?: number | null;
+                  toDate?: unknown | null;
+                  fromDate?: unknown | null;
+                  productItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceProductItem';
+                    product?: {
+                      __typename?: 'IoRestorecommerceProductProduct';
+                      id?: string | null;
+                      product?: {
+                        __typename?: 'IoRestorecommerceProductIndividualProduct';
+                        name?: string | null;
+                      } | null;
+                    } | null;
+                  } | null;
+                  fulfillmentItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+                    product?: {
+                      __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProduct';
+                      id?: string | null;
+                      name?: string | null;
+                    } | null;
+                  } | null;
+                  unitPrice?: {
+                    __typename?: 'IoRestorecommercePricePrice';
+                    salePrice?: number | null;
+                    regularPrice?: number | null;
+                    sale?: boolean | null;
+                  } | null;
                 }> | null;
               }> | null;
-              references?: Array<{
-                __typename?: 'IoRestorecommerceReferenceReference';
-                instanceType?: string | null;
-                instanceId?: string | null;
+              documents?: Array<{
+                __typename?: 'IoRestorecommerceFileFile';
+                id?: string | null;
+                url?: string | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -10969,62 +11087,100 @@ export type InvoicingInvoiceReadQuery = {
               __typename?: 'IoRestorecommerceInvoiceInvoice';
               id?: string | null;
               invoiceNumber?: string | null;
-              fromDate?: unknown | null;
-              toDate?: unknown | null;
-              shopId?: string | null;
+              paymentState?: IoRestorecommerceInvoicePaymentState | null;
               sent?: boolean | null;
               withdrawn?: boolean | null;
-              paymentState?: IoRestorecommerceInvoicePaymentState | null;
+              fromDate?: unknown | null;
+              toDate?: unknown | null;
               customerOrderNumber?: string | null;
-              userId?: string | null;
-              customerId?: string | null;
-              timestamp?: unknown | null;
+              customerVatId?: string | null;
+              paymentHints?: Array<string> | null;
+              customer?: {
+                __typename?: 'IoRestorecommerceCustomerCustomer';
+                id?: string | null;
+                name?: string | null;
+              } | null;
+              shop?: {
+                __typename?: 'IoRestorecommerceShopShop';
+                id?: string | null;
+                name?: string | null;
+              } | null;
+              references?: Array<{
+                __typename?: 'IoRestorecommerceReferenceReference';
+                instanceId?: string | null;
+                instanceType?: string | null;
+              }> | null;
+              sender?: {
+                __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  countryId?: string | null;
+                } | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+              } | null;
+              recipient?: {
+                __typename?: 'IoRestorecommerceAddressShippingAddress';
+                comments?: string | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  countryId?: string | null;
+                } | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+              } | null;
+              billingAddress?: {
+                __typename?: 'IoRestorecommerceAddressBillingAddress';
+                comments?: string | null;
+                address?: {
+                  __typename?: 'IoRestorecommerceAddressAddress';
+                  id?: string | null;
+                  buildingNumber?: string | null;
+                  street?: string | null;
+                  locality?: string | null;
+                  region?: string | null;
+                  countryId?: string | null;
+                } | null;
+                contact?: {
+                  __typename?: 'IoRestorecommerceAddressContact';
+                  name?: string | null;
+                  email?: string | null;
+                  phone?: string | null;
+                } | null;
+              } | null;
+              totalAmounts?: Array<{
+                __typename?: 'IoRestorecommerceAmountAmount';
+                gross?: number | null;
+                currencyId?: string | null;
+                vats?: Array<{
+                  __typename?: 'IoRestorecommerceAmountVAT';
+                  vat?: number | null;
+                  taxId?: string | null;
+                }> | null;
+              }> | null;
               sections?: Array<{
                 __typename?: 'IoRestorecommerceInvoiceSection';
                 id?: string | null;
                 customerRemark?: string | null;
-                positions?: Array<{
-                  __typename?: 'IoRestorecommerceInvoicePosition';
-                  id?: string | null;
-                  toDate?: unknown | null;
-                  quantity?: number | null;
-                  fromDate?: unknown | null;
-                  unitPrice?: {
-                    __typename?: 'IoRestorecommercePricePrice';
-                    salePrice?: number | null;
-                    currencyId?: string | null;
-                    sale?: boolean | null;
-                    regularPrice?: number | null;
-                  } | null;
-                  fulfillmentItem?: {
-                    __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
-                    productId?: string | null;
-                    variantId?: string | null;
-                  } | null;
-                  manualItem?: {
-                    __typename?: 'IoRestorecommerceInvoiceManualItem';
-                    name?: string | null;
-                    descritpion?: string | null;
-                    stockKeepingUnit?: string | null;
-                    properties?: Array<{
-                      __typename?: 'IoRestorecommercePropertyProperty';
-                      id?: string | null;
-                      value?: string | null;
-                    }> | null;
-                  } | null;
-                  productItem?: {
-                    __typename?: 'IoRestorecommerceInvoiceProductItem';
-                    productId?: string | null;
-                    variantId?: string | null;
-                    product?: {
-                      __typename?: 'IoRestorecommerceProductProduct';
-                      id?: string | null;
-                      active?: boolean | null;
-                      tags?: Array<string> | null;
-                      shopIds?: Array<string> | null;
-                    } | null;
-                  } | null;
-                }> | null;
                 amounts?: Array<{
                   __typename?: 'IoRestorecommerceAmountAmount';
                   gross?: number | null;
@@ -11032,26 +11188,47 @@ export type InvoicingInvoiceReadQuery = {
                   currencyId?: string | null;
                   vats?: Array<{
                     __typename?: 'IoRestorecommerceAmountVAT';
-                    taxId?: string | null;
                     vat?: number | null;
+                    taxId?: string | null;
                   }> | null;
                 }> | null;
-              }> | null;
-              totalAmounts?: Array<{
-                __typename?: 'IoRestorecommerceAmountAmount';
-                currencyId?: string | null;
-                gross?: number | null;
-                net?: number | null;
-                vats?: Array<{
-                  __typename?: 'IoRestorecommerceAmountVAT';
-                  taxId?: string | null;
-                  vat?: number | null;
+                positions?: Array<{
+                  __typename?: 'IoRestorecommerceInvoicePosition';
+                  id?: string | null;
+                  quantity?: number | null;
+                  toDate?: unknown | null;
+                  fromDate?: unknown | null;
+                  productItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceProductItem';
+                    product?: {
+                      __typename?: 'IoRestorecommerceProductProduct';
+                      id?: string | null;
+                      product?: {
+                        __typename?: 'IoRestorecommerceProductIndividualProduct';
+                        name?: string | null;
+                      } | null;
+                    } | null;
+                  } | null;
+                  fulfillmentItem?: {
+                    __typename?: 'IoRestorecommerceInvoiceFulfillmentItem';
+                    product?: {
+                      __typename?: 'IoRestorecommerceFulfillmentProductFulfillmentProduct';
+                      id?: string | null;
+                      name?: string | null;
+                    } | null;
+                  } | null;
+                  unitPrice?: {
+                    __typename?: 'IoRestorecommercePricePrice';
+                    salePrice?: number | null;
+                    regularPrice?: number | null;
+                    sale?: boolean | null;
+                  } | null;
                 }> | null;
               }> | null;
-              references?: Array<{
-                __typename?: 'IoRestorecommerceReferenceReference';
-                instanceType?: string | null;
-                instanceId?: string | null;
+              documents?: Array<{
+                __typename?: 'IoRestorecommerceFileFile';
+                id?: string | null;
+                url?: string | null;
               }> | null;
               meta?: {
                 __typename?: 'IoRestorecommerceMetaMeta';
@@ -14096,76 +14273,123 @@ export const InvoiceFragmentFragmentDoc = gql`
   fragment InvoiceFragment on IoRestorecommerceInvoiceInvoice {
     id
     invoiceNumber
-    fromDate
-    toDate
-    shopId
+    customer {
+      id
+      name
+    }
+    shop {
+      id
+      name
+    }
+    paymentState
     sent
     withdrawn
-    paymentState
+    fromDate
+    toDate
     customerOrderNumber
-    userId
-    customerId
-    timestamp
+    customerVatId
+    references {
+      instanceId
+      instanceType
+    }
+    paymentHints
+    sender {
+      address {
+        id
+        buildingNumber
+        street
+        locality
+        region
+        countryId
+      }
+      contact {
+        name
+        email
+        phone
+      }
+      comments
+    }
+    recipient {
+      address {
+        id
+        buildingNumber
+        street
+        locality
+        region
+        countryId
+      }
+      contact {
+        name
+        email
+        phone
+      }
+      comments
+    }
+    billingAddress {
+      address {
+        id
+        buildingNumber
+        street
+        locality
+        region
+        countryId
+      }
+      contact {
+        name
+        email
+        phone
+      }
+      comments
+    }
+    totalAmounts {
+      gross
+      currencyId
+      vats {
+        vat
+        taxId
+      }
+    }
     sections {
       id
       customerRemark
-      positions {
-        id
-        toDate
-        quantity
-        unitPrice {
-          salePrice
-          currencyId
-          sale
-          regularPrice
-        }
-        fromDate
-        fulfillmentItem {
-          productId
-          variantId
-        }
-        manualItem {
-          name
-          descritpion
-          stockKeepingUnit
-          properties {
-            id
-            value
-          }
-        }
-        productItem {
-          productId
-          variantId
-          product {
-            id
-            active
-            tags
-            shopIds
-          }
-        }
-      }
       amounts {
         gross
         net
-        currencyId
         vats {
-          taxId
           vat
+          taxId
         }
+        currencyId
+      }
+      positions {
+        id
+        quantity
+        productItem {
+          product {
+            id
+            product {
+              name
+            }
+          }
+        }
+        fulfillmentItem {
+          product {
+            id
+            name
+          }
+        }
+        unitPrice {
+          salePrice
+          regularPrice
+          sale
+        }
+        toDate
+        fromDate
       }
     }
-    totalAmounts {
-      currencyId
-      gross
-      net
-      vats {
-        taxId
-        vat
-      }
-    }
-    references {
-      instanceType
-      instanceId
+    documents {
+      id
+      url
     }
     meta {
       ...MetaFragment

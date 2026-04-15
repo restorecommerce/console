@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { InvoiceRepository } from '../../data/user.repository';
-import { mapInvoiceToDetailVM } from '../../models';
+import { InvoiceRepository } from '../../data/invoice.repository';
+import { mapInvoiceDetail } from '../../models';
 
 import * as InvoiceViewActions from './invoice-view.actions';
 
@@ -19,7 +19,7 @@ export const loadInvoiceViewEffect = createEffect(
         invoiceRepository.getInvoice(invoiceId).pipe(
           map((invoice) =>
             InvoiceViewActions.loadInvoiceSuccess({
-              invoice: mapInvoiceToDetailVM(invoice),
+              invoice: mapInvoiceDetail(invoice),
             })
           ),
           catchError((error) =>

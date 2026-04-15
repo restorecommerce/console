@@ -32,7 +32,7 @@ export class InvoiceListComponent implements OnInit {
 
   onSelect(invoice: { id: string }): void {
     this.router.navigate(
-      ROUTER.pages.main.children.iam.children.view.getLink({
+      ROUTER.pages.main.children.invoices.children.view.getLink({
         id: invoice.id,
       })
     );

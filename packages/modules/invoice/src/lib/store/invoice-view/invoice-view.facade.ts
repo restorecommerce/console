@@ -1,28 +1,32 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as userViewActions from './invoice-view.actions';
-import * as userViewSelectors from './invoice-view.selectors';
+import * as invoiceViewActions from './invoice-view.actions';
+import * as invoiceViewSelectors from './invoice-view.selectors';
 
 @Injectable()
-export class IamUserViewFacade {
+export class InvoiceViewFacade {
   private readonly store = inject(Store);
 
-  readonly user = this.store.selectSignal(userViewSelectors.selectInvoice);
+  readonly invoice = this.store.selectSignal(
+    invoiceViewSelectors.selectInvoice
+  );
 
-  readonly loading = this.store.selectSignal(userViewSelectors.selectLoading);
+  readonly loading = this.store.selectSignal(
+    invoiceViewSelectors.selectLoading
+  );
 
-  readonly error = this.store.selectSignal(userViewSelectors.selectError);
+  readonly error = this.store.selectSignal(invoiceViewSelectors.selectError);
 
   enterPage(invoiceId: string) {
-    this.store.dispatch(userViewActions.enterPage({ invoiceId }));
+    this.store.dispatch(invoiceViewActions.enterPage({ invoiceId }));
   }
 
   leavePage() {
-    this.store.dispatch(userViewActions.leavePage());
+    this.store.dispatch(invoiceViewActions.leavePage());
   }
 
   loadInvoice(invoiceId: string) {
-    this.store.dispatch(userViewActions.loadInvoice({ invoiceId }));
+    this.store.dispatch(invoiceViewActions.loadInvoice({ invoiceId }));
   }
 }

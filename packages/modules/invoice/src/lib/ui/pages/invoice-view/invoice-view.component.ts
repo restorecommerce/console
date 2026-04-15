@@ -57,18 +57,18 @@ export class InvoiceViewComponent implements OnInit {
     // TODO
   }
 
-  // editInvoice() {
-  //   const invoiceId = this.invoice()?.id;
+  editInvoice() {
+    const invoiceId = this.invoice()?.id;
 
-  //   return (
-  //     invoiceId &&
-  //     this.router.navigate(
-  //       ROUTER.pages.main.children.iam.children.edit.getLink({
-  //         id: invoiceId,
-  //       })
-  //     )
-  //   );
-  // }
+    return (
+      invoiceId &&
+      this.router.navigate(
+        ROUTER.pages.main.children.invoices.children.edit.getLink({
+          id: invoiceId,
+        })
+      )
+    );
+  }
 
   deleteInvoice() {
     // TODO

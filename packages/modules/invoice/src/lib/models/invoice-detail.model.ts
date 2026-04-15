@@ -67,7 +67,7 @@ export interface InvoiceDetail {
   recipient?: InvoiceDetailParty;
   billing?: InvoiceDetailParty;
 
-  totals: InvoiceAmount[];
-  sections: InvoiceSection[];
+  totals?: InvoiceAmount[];
+  sections?: InvoiceSection[];
   documents: InvoiceDocument[];
 }
