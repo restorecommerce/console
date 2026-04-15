@@ -1,6 +1,6 @@
 import { IoRestorecommerceInvoiceInvoice } from '@console-core/graphql';
 
-import { InvoiceListItem } from './user-list-item.model';
+import { InvoiceListItem } from './invoice-list-item.model';
 
 export function mapInvoiceToListItem(
   invoice: IoRestorecommerceInvoiceInvoice

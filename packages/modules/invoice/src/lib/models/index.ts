@@ -1,3 +1,3 @@
-export * from './user-list-item.model';
-export * from './user-status.model';
+export * from './invoice-list-item.model';
 export * from './invoice-list.mapper';
+export * from './invoice-detail.model';

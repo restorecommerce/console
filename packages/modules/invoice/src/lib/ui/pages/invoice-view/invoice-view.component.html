@@ -1,0 +1,58 @@
+@if (invoice(); as invoice) {
+  <rc-resource-detail
+    [title]="'Invoice details'"
+    [showEdit]="true"
+    [showDelete]="true"
+    (back)="goBack()"
+  >
+    <div class="mb-3">
+      <div class="row align-items-center grid-gutter-3">
+        <span class="scale110p">{{ invoice.fullName }}</span>
+
+        <span> </span>
+      </div>
+
+      <div class="actions mt-2"></div>
+
+      <div class="secondary-text-color mt-1">
+        <!-- {{ invoice.email }} -->
+      </div>
+
+      <div class="secondary-text-color scale85p">
+        <!-- {{ invoice.invoicename }} -->
+      </div>
+
+      <div class="mt-2 scale85p">
+        <!-- Roles: {{ invoice.rolesCount }} • Sessions: {{ invoice.sessionsCount }} • Last
+        Access:
+        {{ invoice.lastAccess ? (invoice.lastAccess | date: 'mediumDate') : '—' }} -->
+      </div>
+    </div>
+
+    <vcl-tab-nav [selectedTabIndex]="0">
+      <vcl-tab>
+        <vcl-label>Basic</vcl-label>
+        <p>Basic stuff</p>
+      </vcl-tab>
+
+      <vcl-tab>
+        <vcl-label>Items</vcl-label>
+        <p>Items</p>
+      </vcl-tab>
+
+      <vcl-tab>
+        <vcl-label>Documents</vcl-label>
+        <p>Documents</p>
+      </vcl-tab>
+
+      <vcl-tab>
+        <vcl-label>Raw JSON / Meta</vcl-label>
+
+        <div class="raw">
+          <div class="secondary-text-color scale85p">Raw payload</div>
+          <pre class="pre">{{ invoice | json }}</pre>
+        </div>
+      </vcl-tab>
+    </vcl-tab-nav>
+  </rc-resource-detail>
+}
