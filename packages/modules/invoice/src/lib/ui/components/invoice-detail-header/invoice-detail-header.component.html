@@ -1,0 +1,43 @@
+<div
+  class="row align-items-center"
+  style="gap: 1em"
+>
+  <div class="secondary-text-color scale85p text-upper">Invoice</div>
+  <h2 class="m-0 scale110p">{{ invoice.invoiceNumber }}</h2>
+</div>
+
+<div class="mt-2 scale85p secondary-text-color">
+  {{ invoice.recipient?.name }}
+  @if (invoice.invoiceDate) {
+    <span>•</span>
+  }
+
+  @if (invoice.invoiceDate) {
+    {{ invoice.invoiceDate | date: 'mediumDate' }}
+  }
+
+  @if (invoice.amount) {
+    <span>•</span>
+  }
+
+  @if (invoice.amount) {
+    {{ invoice.amount | currency: 'EUR' }}
+  }
+</div>
+
+<div
+  class="row align-items-center mt-2"
+  style="gap: 1em"
+>
+  <vcl-badge [type]="invoice.paymentState === 'PAYED' ? 'success' : 'warning'"
+    >{{ invoice.paymentState }}
+  </vcl-badge>
+
+  @if (invoice.sent) {
+    <vcl-badge type="info"> Sent </vcl-badge>
+  }
+
+  @if (invoice.withdrawn) {
+    <vcl-badge type="error">{{ invoice.withdrawn }} </vcl-badge>
+  }
+</div>

@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe, JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +10,6 @@ import { RcResourceDetailComponent } from '@console/rc-ui';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 
 import {
-  VCLBadgeComponent,
   VCLLabelDirective,
   VCLTabComponent,
   VCLTabNavComponent,
@@ -19,19 +18,18 @@ import {
 import { ROUTER } from '@console-core/config';
 
 import { InvoiceViewFacade } from '../../../store';
+import { InvoiceDetailHeaderComponent } from '../../components/invoice-detail-header/invoice-detail-header.component';
 
 @Component({
   selector: 'app-module-invoice-view',
   templateUrl: './invoice-view.component.html',
   imports: [
-    JsonPipe,
-    DatePipe,
-    CurrencyPipe,
-    VCLBadgeComponent,
     VCLTabNavComponent,
     VCLTabComponent,
     VCLLabelDirective,
     RcResourceDetailComponent,
+    InvoiceDetailHeaderComponent,
+    JsonPipe,
   ],
   styleUrl: './invoice-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
