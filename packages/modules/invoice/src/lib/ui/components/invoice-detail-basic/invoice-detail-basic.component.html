@@ -1,0 +1,83 @@
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Invoice Number</div>
+    <div>{{ invoice.invoiceNumber }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Invoice Date</div>
+    <div>
+      {{
+        invoice.invoiceDate ? (invoice.invoiceDate | date: 'mediumDate') : '—'
+      }}
+    </div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Period</div>
+    <div>
+      @if (invoice.fromDate && invoice.toDate) {
+        {{ invoice.fromDate | date: 'mediumDate' }}
+        &nbsp;–&nbsp;
+        {{ invoice.toDate | date: 'mediumDate' }}
+      } @else {
+        —
+      }
+    </div>
+  </div>
+  <!--  -->
+</div>
+
+<hr />
+
+<div class="row grid-gutter-1">
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Customer Order Number</div>
+    <div>{{ invoice.customerOrderNumber || '—' }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Customer VAT ID</div>
+    <div>{{ invoice.customerVatId || '—' }}</div>
+  </div>
+  <div class="flex-4">
+    <div class="secondary-text-color scale85p">Shop</div>
+    <div>{{ invoice.shopName || '—' }}</div>
+  </div>
+</div>
+
+<hr />
+
+<!-- Order && Fulfilment -->
+<div class="row grid-gutter-1">
+  <!-- Orders -->
+  <div class="flex-6">
+    <div class="secondary-text-color scale85p">Orders</div>
+
+    @if (hasOrders) {
+      <div class="reference-list">
+        @for (reference of orderReferences; track reference.value) {
+          <a class="link">
+            {{ reference.value }}
+          </a>
+        }
+      </div>
+    } @else {
+      <div>None</div>
+    }
+  </div>
+
+  <!-- Fulfilments -->
+  <div class="flex-6">
+    <div class="secondary-text-color scale85p">Fulfilments</div>
+
+    @if (hasFulfillments) {
+      <div class="reference-list">
+        @for (reference of fulfillmentReferences; track reference.value) {
+          <a class="link">
+            {{ reference.value }}
+          </a>
+        }
+      </div>
+    } @else {
+      <div>None</div>
+    }
+  </div>
+</div>

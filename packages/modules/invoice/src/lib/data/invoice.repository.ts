@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import {
   IIoRestorecommerceResourcebaseReadRequest,
   InvoiceListReadGQL,
+  InvoicingInvoiceReadGQL,
   IoRestorecommerceInvoiceInvoice,
   IoRestorecommerceResourcebaseFilterOperation,
 } from '@console-core/graphql';
@@ -11,6 +12,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class InvoiceRepository {
   private readonly invoiceListReadGQL = inject(InvoiceListReadGQL);
+  private readonly invoiceReadGQL = inject(InvoicingInvoiceReadGQL);
 
   list(): Observable<IoRestorecommerceInvoiceInvoice[]> {
     return this.invoiceListReadGQL
@@ -54,7 +56,7 @@ export class InvoiceRepository {
       ],
     };
 
-    return this.invoiceListReadGQL.fetch({ input }).pipe(
+    return this.invoiceReadGQL.fetch({ input }).pipe(
       map((result) => {
         const invoice =
           result.data?.invoicing?.invoice?.Read?.details?.items?.[0]?.payload;

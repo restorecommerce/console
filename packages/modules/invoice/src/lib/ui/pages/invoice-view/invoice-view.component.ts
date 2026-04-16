@@ -18,6 +18,7 @@ import {
 import { ROUTER } from '@console-core/config';
 
 import { InvoiceViewFacade } from '../../../store';
+import { InvoiceDetailBasicComponent } from '../../components/invoice-detail-basic/invoice-detail-basic.component';
 import { InvoiceDetailHeaderComponent } from '../../components/invoice-detail-header/invoice-detail-header.component';
 
 @Component({
@@ -29,6 +30,7 @@ import { InvoiceDetailHeaderComponent } from '../../components/invoice-detail-he
     VCLLabelDirective,
     RcResourceDetailComponent,
     InvoiceDetailHeaderComponent,
+    InvoiceDetailBasicComponent,
     JsonPipe,
   ],
   styleUrl: './invoice-view.component.scss',

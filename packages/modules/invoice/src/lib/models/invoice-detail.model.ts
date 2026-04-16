@@ -55,7 +55,8 @@ export interface InvoiceDetail {
   withdrawn: boolean;
 
   amount: number;
-  periodLabel?: string;
+  fromDate?: number;
+  toDate?: number;
 
   customerOrderNumber?: string;
   customerVatId?: string;
