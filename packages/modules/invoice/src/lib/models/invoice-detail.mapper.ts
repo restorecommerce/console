@@ -18,8 +18,6 @@ type AddressTypes =
 export function mapInvoiceDetail(
   payload: IoRestorecommerceInvoiceInvoice
 ): InvoiceDetail {
-  console.log('***payload.references', payload.references);
-
   return {
     id: payload.id ?? '',
     invoiceNumber: payload.invoiceNumber ?? 'Untitled invoice',

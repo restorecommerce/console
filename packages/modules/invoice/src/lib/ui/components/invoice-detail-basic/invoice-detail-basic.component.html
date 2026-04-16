@@ -81,3 +81,76 @@
     }
   </div>
 </div>
+
+<hr />
+
+<div class="row grid-gutter-1 mt-3">
+  <!-- Sender -->
+  @if (invoice.sender; as sender) {
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Sender</div>
+
+      <div class="fw-medium">
+        {{ sender.name || '—' }}
+      </div>
+
+      @if (sender.subtitle) {
+        <div>
+          {{ sender.subtitle }}
+        </div>
+      }
+
+      @for (line of sender.addressLines; track $index) {
+        <div>
+          {{ line }}
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Recipient -->
+  @if (invoice.recipient; as recipient) {
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Recipient</div>
+
+      <div class="fw-medium">
+        {{ recipient.name || '—' }}
+      </div>
+
+      @if (recipient.subtitle) {
+        <div>
+          {{ recipient.subtitle }}
+        </div>
+      }
+
+      @for (line of recipient.addressLines; track $index) {
+        <div>
+          {{ line }}
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Billing -->
+  @if (invoice.billing; as billing) {
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Billing Address</div>
+
+      <div class="fw-medium">
+        {{ billing.name || '—' }}
+      </div>
+
+      @if (billing.subtitle) {
+        <div>
+          {{ billing.subtitle }}
+        </div>
+      }
+
+      @for (line of billing.addressLines; track $index) {
+        <div>
+          {{ line }}
+        </div>
+      }
+    </div>
+  }
+</div>
