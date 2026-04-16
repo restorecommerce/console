@@ -5,27 +5,47 @@
     [showDelete]="true"
     (back)="goBack()"
   >
-    <div class="mb-3">
-      <div class="row align-items-center grid-gutter-3">
-        <span class="scale110p">{{ invoice.invoiceNumber }}</span>
-
-        <span> </span>
+    <div class="mb-2">
+      <div class="row align-items-center grid-gutter-2">
+        <div class="secondary-text-color scale85p">Invoice</div>
+        <h2 class="m-0 scale110p">{{ invoice.invoiceNumber }}</h2>
       </div>
 
-      <div class="actions mt-2"></div>
+      <div class="mt-2 scale85p secondary-text-color">
+        {{ invoice.recipient?.name }}
+        @if (invoice.invoiceDate) {
+          <span>•</span>
+        }
 
-      <div class="secondary-text-color mt-1">
-        <!-- {{ invoice.email }} -->
+        @if (invoice.invoiceDate) {
+          {{ invoice.invoiceDate | date: 'mediumDate' }}
+        }
+
+        @if (invoice.amount) {
+          <span>•</span>
+        }
+
+        @if (invoice.amount) {
+          {{ invoice.amount | currency: 'EUR' }}
+        }
       </div>
 
-      <div class="secondary-text-color scale85p">
-        <!-- {{ invoice.invoicename }} -->
-      </div>
+      <div
+        class="row align-items-center mt-2"
+        style="gap: 1em"
+      >
+        <vcl-badge
+          [type]="invoice.paymentState === 'PAYED' ? 'success' : 'warning'"
+          >{{ invoice.paymentState }}
+        </vcl-badge>
 
-      <div class="mt-2 scale85p">
-        <!-- Roles: {{ invoice.rolesCount }} • Sessions: {{ invoice.sessionsCount }} • Last
-        Access:
-        {{ invoice.lastAccess ? (invoice.lastAccess | date: 'mediumDate') : '—' }} -->
+        @if (invoice.sent) {
+          <vcl-badge type="info"> Sent </vcl-badge>
+        }
+
+        @if (invoice.withdrawn) {
+          <vcl-badge type="error">{{ invoice.withdrawn }} </vcl-badge>
+        }
       </div>
     </div>
 
@@ -33,6 +53,11 @@
       <vcl-tab>
         <vcl-label>Basic</vcl-label>
         <p>Basic stuff</p>
+      </vcl-tab>
+
+      <vcl-tab>
+        <vcl-label>Parties</vcl-label>
+        <p>Items</p>
       </vcl-tab>
 
       <vcl-tab>

@@ -54,7 +54,7 @@ export interface InvoiceDetail {
   sent: boolean;
   withdrawn: boolean;
 
-  amountLabel?: string;
+  amount: number;
   periodLabel?: string;
 
   customerOrderNumber?: string;

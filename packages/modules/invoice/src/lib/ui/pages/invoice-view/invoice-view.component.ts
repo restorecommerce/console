@@ -1,4 +1,4 @@
-import { DatePipe, JsonPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +10,7 @@ import { RcResourceDetailComponent } from '@console/rc-ui';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 
 import {
+  VCLBadgeComponent,
   VCLLabelDirective,
   VCLTabComponent,
   VCLTabNavComponent,
@@ -25,6 +26,8 @@ import { InvoiceViewFacade } from '../../../store';
   imports: [
     JsonPipe,
     DatePipe,
+    CurrencyPipe,
+    VCLBadgeComponent,
     VCLTabNavComponent,
     VCLTabComponent,
     VCLLabelDirective,

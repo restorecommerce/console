@@ -27,6 +27,7 @@ export function mapInvoiceDetail(
     paymentState: payload.paymentState ?? 'UNPAYED',
     sent: !!payload.sent,
     withdrawn: !!payload.withdrawn,
+    amount: payload.totalAmounts?.[0].gross ?? 0, // TOTAL assumed from the first item.
 
     customerOrderNumber: payload.customerOrderNumber ?? undefined,
     customerVatId: payload.customerVatId ?? undefined,
