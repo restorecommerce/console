@@ -7,7 +7,13 @@ import { InvoiceDetail } from '../../../models';
   selector: 'app-invoice-detail-basic',
   imports: [DatePipe],
   templateUrl: './invoice-detail-basic.component.html',
-  styles: [``],
+  styles: [
+    `
+      .fw-medium {
+        font-weight: 600;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceDetailBasicComponent {
