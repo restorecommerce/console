@@ -23,7 +23,9 @@
 
   // table
   $table-header-bg-color: #fff,
-  $table-header-color: rgb(119, 119, 119)
+  $table-header-color: rgb(119, 119, 119),
+  // select list.
+  $select-list-border-color: transparent
 );
 
 @use '@vcl/vcl';
@@ -85,4 +87,8 @@ body {
 .data-list.no-border .data-list-body {
   flex: 1;
   overflow-y: scroll;
+}
+
+.rc-search-field {
+  border: none !important;
 }
