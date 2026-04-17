@@ -90,4 +90,9 @@ export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
       categoryId: 'account',
     },
   ],
+
+  footer: {
+    companyName: 'Restorecommerce',
+    companyUrl: 'https://www.n-fuse.co/',
+  },
 };

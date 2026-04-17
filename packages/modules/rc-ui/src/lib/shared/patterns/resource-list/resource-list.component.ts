@@ -74,10 +74,10 @@ export interface RcResourceContext<T> {
           </div>
 
           <div
-            class="toolbar row justify-between px-2 mt-1 mb-2"
+            class="row justify-between mt-1 mb-2"
             role="menubar"
           >
-            <vcl-input-field class="flex">
+            <vcl-input-field class="flex rc-list-input-field">
               <input
                 placeholder="Search..."
                 vclInput
@@ -122,6 +122,13 @@ export interface RcResourceContext<T> {
       </vcl-data-list>
     </section>
   `,
+  styles: [
+    `
+      .rc-list-input-field {
+        border: none !important;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RcResourceListComponent<
@@ -144,6 +151,7 @@ export class RcResourceListComponent<
   itemTpl!: TemplateRef<RcResourceContext<TItem>>;
 
   @ContentChild('headerTemplate', { read: TemplateRef })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   headerTpl?: TemplateRef<any>;
 
   headerCtx = { total: 0, filtered: 0 } as RcResourceListHeaderCtx;
