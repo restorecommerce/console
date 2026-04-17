@@ -8,22 +8,8 @@ import { PublicTemplateComponent } from './components/template/public-template.c
 
 export const modulesMainRoutes: Route[] = [
   {
-    path: ROUTER.pages.main.children.home.path,
-    component: PrivateTemplateComponent,
-    canActivate: [PrivateGuard],
-    canActivateChild: [PrivateGuard],
-    loadChildren: () =>
-      import('@console-modules/home').then((m) => m.ModulesHomeModule),
-  },
-
-  {
     path: ROUTER.pages.main.children.auth.path,
     component: PublicTemplateComponent,
-    loadChildren: () =>
-      import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
-  },
-  {
-    path: ROUTER.pages.main.children.auth.path,
     loadChildren: () =>
       import('@console-modules/authn').then((m) => m.ModulesAuthnModule),
   },
