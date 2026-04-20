@@ -67,4 +67,8 @@ export class FulfillmentViewComponent implements OnInit {
   deleteFulfillment() {
     // TODO
   }
+
+  onSubmitFulfillment() {
+    // TODO
+  }
 }
