@@ -37,4 +37,10 @@ export class FulfillmentViewFacade {
       fulfillmentViewActions.loadFulfillment({ fulfillmentId })
     );
   }
+
+  submitFulfillment(fulfillmentId: string) {
+    this.store.dispatch(
+      fulfillmentViewActions.fulfillmentSubmitRequest({ fulfillmentId })
+    );
+  }
 }

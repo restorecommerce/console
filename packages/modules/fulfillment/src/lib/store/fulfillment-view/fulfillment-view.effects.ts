@@ -17,15 +17,43 @@ export const loadFulfillmentViewEffect = createEffect(
       ofType(FulfillmentViewActions.enterPage),
       switchMap(({ fulfillmentId }) =>
         fulfillmentsRepository.getFulfillment(fulfillmentId).pipe(
-          map((fulfillments) =>
+          map((fulfillment) =>
             FulfillmentViewActions.loadFulfillmentSuccess({
-              fulfillment: mapFulfillmentDto(fulfillments),
+              fulfillment: mapFulfillmentDto(fulfillment),
             })
           ),
           catchError((error) =>
             of(
               FulfillmentViewActions.loadFulfillmentFailure({
                 error: error.message ?? 'Failed to load fulfillmentss',
+              })
+            )
+          )
+        )
+      )
+    );
+  },
+  { functional: true }
+);
+
+export const submitFulfillmentViewEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    fulfillmentsRepository = inject(FulfillmentRepository)
+  ) => {
+    return actions$.pipe(
+      ofType(FulfillmentViewActions.fulfillmentSubmitRequest),
+      switchMap(({ fulfillmentId }) =>
+        fulfillmentsRepository.submit(fulfillmentId).pipe(
+          map((fulfillment) =>
+            FulfillmentViewActions.fulfillmentSubmitSuccess({
+              fulfillment: mapFulfillmentDto(fulfillment),
+            })
+          ),
+          catchError((error) =>
+            of(
+              FulfillmentViewActions.fulfillmentSubmitFailure({
+                error: error.message ?? 'Failed to submit fulfillment',
               })
             )
           )

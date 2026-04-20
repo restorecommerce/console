@@ -45,5 +45,28 @@ export const fulfillmentViewReducer = createReducer(
   on(
     FulfillmentViewActions.leavePage,
     (): FulfillmentViewState => initialFulfillmentViewState
+  ),
+  on(
+    FulfillmentViewActions.fulfillmentSubmitRequest,
+    (state): FulfillmentViewState => ({
+      ...state,
+      loading: true,
+    })
+  ),
+  on(
+    FulfillmentViewActions.fulfillmentSubmitSuccess,
+    (state, { fulfillment }): FulfillmentViewState => ({
+      ...state,
+      fulfillment,
+      loading: false,
+    })
+  ),
+  on(
+    FulfillmentViewActions.fulfillmentSubmitFailure,
+    (state, { error }): FulfillmentViewState => ({
+      ...state,
+      loading: false,
+      error,
+    })
   )
 );

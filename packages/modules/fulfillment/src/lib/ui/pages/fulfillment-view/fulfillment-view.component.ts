@@ -69,6 +69,10 @@ export class FulfillmentViewComponent implements OnInit {
   }
 
   onSubmitFulfillment() {
-    // TODO
+    const fulfillment = this.fulfillment();
+    if (fulfillment) {
+      console.log('Submiting fulfilment for id', fulfillment.id);
+      this.fulfillmentFacade.submitFulfillment(fulfillment.id);
+    }
   }
 }

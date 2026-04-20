@@ -11,6 +11,7 @@ import {
   fulfillmentViewReducer,
   loadFulfillmentListEffect,
   loadFulfillmentViewEffect,
+  submitFulfillmentViewEffect,
 } from './store';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     EffectsModule.forFeature({
       loadFulfillmentListEffect,
       loadFulfillmentViewEffect,
+      submitFulfillmentViewEffect,
     }),
   ],
 })
