@@ -24,6 +24,18 @@ export class FulfillmentViewFacade {
     fulfillmentViewSelectors.selectHasLabels
   );
 
+  readonly isSubmittingFulfillment = this.store.selectSignal(
+    fulfillmentViewSelectors.selectIsSubmittingFulfillment
+  );
+
+  readonly fulfillmentSubmitted = this.store.selectSignal(
+    fulfillmentViewSelectors.selectFulfillmentSubmitted
+  );
+
+  readonly fulfillmentSubmissionError = this.store.select(
+    fulfillmentViewSelectors.selectFulfillmentSubmissionError
+  );
+
   enterPage(fulfillmentId: string) {
     this.store.dispatch(fulfillmentViewActions.enterPage({ fulfillmentId }));
   }

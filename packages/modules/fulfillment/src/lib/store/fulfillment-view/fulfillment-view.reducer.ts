@@ -50,7 +50,11 @@ export const fulfillmentViewReducer = createReducer(
     FulfillmentViewActions.fulfillmentSubmitRequest,
     (state): FulfillmentViewState => ({
       ...state,
-      loading: true,
+      submission: {
+        submitting: true,
+        submitted: false,
+        error: null,
+      },
     })
   ),
   on(
@@ -58,15 +62,22 @@ export const fulfillmentViewReducer = createReducer(
     (state, { fulfillment }): FulfillmentViewState => ({
       ...state,
       fulfillment,
-      loading: false,
+      submission: {
+        submitting: false,
+        submitted: true,
+        error: null,
+      },
     })
   ),
   on(
     FulfillmentViewActions.fulfillmentSubmitFailure,
     (state, { error }): FulfillmentViewState => ({
       ...state,
-      loading: false,
-      error,
+      submission: {
+        submitting: false,
+        submitted: false,
+        error,
+      },
     })
   )
 );

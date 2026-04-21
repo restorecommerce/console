@@ -9,10 +9,26 @@
     <ng-template #actionsTemplate>
       <button
         type="button"
-        class="button transparent"
+        class="button transparent square"
+        title="Submit Fulfillment"
+        [disabled]="isSubmitting() === true || fulfillment.state !== 'PENDING'"
         (click)="onSubmitFulfillment()"
       >
-        Submit
+        @if (isSubmitting()) {
+          <div class="icogram">
+            <div
+              class="icon mdi mdi-loading mdi-spin"
+              aria-hidden="true"
+            ></div>
+          </div>
+        } @else {
+          <div class="icogram">
+            <div
+              class="icon mdi mdi-package-variant-closed-check"
+              aria-hidden="true"
+            ></div>
+          </div>
+        }
       </button>
     </ng-template>
 

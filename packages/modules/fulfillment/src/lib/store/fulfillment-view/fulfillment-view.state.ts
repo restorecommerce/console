@@ -1,5 +1,11 @@
 import { Fulfillment } from '../../models';
 
+export interface FulfillmentSubmissionState {
+  submitting: boolean;
+  submitted: boolean;
+  error: string | null;
+}
+
 export interface FulfillmentViewState {
   fulfillmentId: string | null;
 
@@ -7,6 +13,8 @@ export interface FulfillmentViewState {
 
   loading: boolean;
   error: string | null;
+
+  submission: FulfillmentSubmissionState;
 }
 
 export interface RelatedResourceState<T> {
@@ -25,6 +33,12 @@ export const initialFulfillmentViewState: FulfillmentViewState = {
   fulfillment: null,
   loading: false,
   error: null,
+
+  submission: {
+    submitting: false,
+    submitted: false,
+    error: null,
+  },
   // fulfilments: emptyRelated,
   // invoices: emptyRelated,
 };

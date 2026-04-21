@@ -44,6 +44,8 @@ export class FulfillmentViewComponent implements OnInit {
   readonly fulfillment = this.fulfillmentFacade.fulfillment;
   readonly hasLabels = this.fulfillmentFacade.hasLabels;
 
+  readonly isSubmitting = this.fulfillmentFacade.isSubmittingFulfillment;
+
   ngOnInit(): void {
     this.route.paramMap
       .pipe(

@@ -31,3 +31,23 @@ export const selectHasLabels = createSelector(
     return fulfillment.labels.length > 0;
   }
 );
+
+export const selectFulfillmentSubmissionState = createSelector(
+  selectFulfillmentViewState,
+  (state) => state.submission
+);
+
+export const selectIsSubmittingFulfillment = createSelector(
+  selectFulfillmentSubmissionState,
+  (submission) => submission.submitting
+);
+
+export const selectFulfillmentSubmitted = createSelector(
+  selectFulfillmentSubmissionState,
+  (submission) => submission.submitted
+);
+
+export const selectFulfillmentSubmissionError = createSelector(
+  selectFulfillmentSubmissionState,
+  (submission) => submission.error
+);
