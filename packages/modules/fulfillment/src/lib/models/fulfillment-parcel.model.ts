@@ -1,9 +1,12 @@
+import { FulfillmentState } from './fulfillment-state.model';
+
 export interface FulfillmentParcelItemVM {
   name: string;
   quantity: number;
   hsCode?: string;
-  weightLabel?: string;
+  weightLabel: string;
   sizeLabel?: string;
+  weight: number;
 }
 
 export interface FulfillmentParcelVM {
@@ -18,7 +21,7 @@ export interface FulfillmentParcelVM {
   regularPriceLabel?: string;
 
   shipmentNumber?: string;
-  labelState?: string;
+  labelState?: FulfillmentState;
   labelUrl?: string;
 
   items: FulfillmentParcelItemVM[];

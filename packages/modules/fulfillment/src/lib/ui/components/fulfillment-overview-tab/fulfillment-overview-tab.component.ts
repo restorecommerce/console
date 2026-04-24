@@ -20,7 +20,8 @@ export class FulfillmentOverviewTabComponent {
 
   totalWeight = computed(() => {
     return this.vm.parcels.reduce(
-      (total, parcel) => parcel.weightKg + total,
+      (total, parcel) =>
+        parcel.items.reduce((total, item) => total + item.weight, 0) + total,
       0
     );
   });

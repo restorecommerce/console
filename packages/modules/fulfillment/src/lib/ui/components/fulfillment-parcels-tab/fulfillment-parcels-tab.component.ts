@@ -6,9 +6,11 @@ import {
   VCLSelectComponent,
   VCLSelectListComponent,
   VCLSelectListItemComponent,
+  VCLButtonComponent,
 } from '@vcl/ng-vcl';
 
-import { Parcel } from '../../../models';
+import { FulfillmentParcelVM } from '../../../models';
+import { FulfillmentStateBadgeComponent } from '../fulfillment-state-badge/fulfillment-state-badge.component';
 
 @Component({
   selector: 'app-fulfillment-parcels-tab',
@@ -19,13 +21,15 @@ import { Parcel } from '../../../models';
     VCLFormControlGroupModule,
     VCLSelectListComponent,
     VCLSelectListItemComponent,
+    VCLButtonComponent,
+    FulfillmentStateBadgeComponent,
   ],
 })
 export class FulfillmentParcelsTabComponent implements OnChanges {
-  @Input() parcels: Parcel[] = [];
+  @Input() parcels: FulfillmentParcelVM[] = [];
 
   selectedParcelId?: string;
-  selectedParcel?: Parcel;
+  selectedParcel?: FulfillmentParcelVM;
 
   ngOnChanges(): void {
     if (this.parcels?.length) {

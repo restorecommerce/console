@@ -7490,6 +7490,16 @@ export type FulfillmentFragmentFragment = {
           length?: number | null;
         } | null;
       } | null;
+      amount?: {
+        __typename?: 'IoRestorecommerceAmountAmount';
+        gross?: number | null;
+        net?: number | null;
+        currencyId?: string | null;
+        vats?: Array<{
+          __typename?: 'IoRestorecommerceAmountVAT';
+          vat?: number | null;
+        }> | null;
+      } | null;
     }> | null;
     sender?: {
       __typename?: 'IoRestorecommerceAddressShippingAddress';
@@ -9205,6 +9215,16 @@ export type FulfillmentFulfillmentMutateMutation = {
                       length?: number | null;
                     } | null;
                   } | null;
+                  amount?: {
+                    __typename?: 'IoRestorecommerceAmountAmount';
+                    gross?: number | null;
+                    net?: number | null;
+                    currencyId?: string | null;
+                    vats?: Array<{
+                      __typename?: 'IoRestorecommerceAmountVAT';
+                      vat?: number | null;
+                    }> | null;
+                  } | null;
                 }> | null;
                 sender?: {
                   __typename?: 'IoRestorecommerceAddressShippingAddress';
@@ -9403,6 +9423,16 @@ export type FulfillmentFulfillmentReadQuery = {
                       length?: number | null;
                     } | null;
                   } | null;
+                  amount?: {
+                    __typename?: 'IoRestorecommerceAmountAmount';
+                    gross?: number | null;
+                    net?: number | null;
+                    currencyId?: string | null;
+                    vats?: Array<{
+                      __typename?: 'IoRestorecommerceAmountVAT';
+                      vat?: number | null;
+                    }> | null;
+                  } | null;
                 }> | null;
                 sender?: {
                   __typename?: 'IoRestorecommerceAddressShippingAddress';
@@ -9575,6 +9605,16 @@ export type FulfillmentFulfillmentSubmitMutation = {
                       width?: number | null;
                       length?: number | null;
                     } | null;
+                  } | null;
+                  amount?: {
+                    __typename?: 'IoRestorecommerceAmountAmount';
+                    gross?: number | null;
+                    net?: number | null;
+                    currencyId?: string | null;
+                    vats?: Array<{
+                      __typename?: 'IoRestorecommerceAmountVAT';
+                      vat?: number | null;
+                    }> | null;
                   } | null;
                 }> | null;
                 sender?: {
@@ -14207,6 +14247,14 @@ export const FulfillmentFragmentFragmentDoc = gql`
             length
           }
           weightInKg
+        }
+        amount {
+          gross
+          net
+          currencyId
+          vats {
+            vat
+          }
         }
       }
       sender {

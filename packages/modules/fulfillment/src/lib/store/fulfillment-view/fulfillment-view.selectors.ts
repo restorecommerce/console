@@ -28,7 +28,7 @@ export const selectHasLabels = createSelector(
       return false;
     }
 
-    return fulfillment.labels.length > 0;
+    return fulfillment.parcels.some((parcel) => parcel.labelUrl);
   }
 );
 

@@ -51,6 +51,7 @@ export function mapFulfillmentParcelsToVM(
               name: item.name,
               quantity: item.quantity,
               hsCode: item.hsCode,
+              weight: item.package?.weightInKg,
               weightLabel: item.package?.weightInKg
                 ? `${item.package.weightInKg} kg`
                 : '—',

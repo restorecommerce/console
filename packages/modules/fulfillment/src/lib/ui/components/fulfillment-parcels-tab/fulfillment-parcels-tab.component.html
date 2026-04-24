@@ -4,72 +4,156 @@
     <vcl-label>Parcel</vcl-label>
     <vcl-select>
       <vcl-select-list [value]="selectedParcelId">
-        @for (parcel of parcels; track $index) {
-        <vcl-select-list-item [value]="parcel.id">
-          Parcel {{ parcel.id }}
-        </vcl-select-list-item>
+        @for (parcel of parcels; track parcel.id) {
+          <vcl-select-list-item [value]="parcel.id">
+            Parcel {{ parcel.shortId }}
+          </vcl-select-list-item>
         }
       </vcl-select-list>
     </vcl-select>
   </vcl-form-control-group>
 </div>
 
-<table
-  class="table no-border fixed v-align-middle row-hover-highlight row-selectability"
-  role="table"
->
-  <thead>
-    <tr role="row">
-      <th
-        class="w-70p"
-        role="columnheader"
-        scope="col"
-      >
-        <span>Product</span>
-      </th>
+@if (selectedParcel; as parcel) {
+  <div class="row grid-gutter-1 mb-3">
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Product</div>
+      <div class="fw-medium">{{ parcel.productId || '—' }}</div>
+    </div>
 
-      <th
-        class="w-10p"
-        role="columnheader"
-        scope="col"
-        class="text-right"
-      >
-        <span>Qty</span>
-      </th>
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Variant</div>
+      <div class="fw-medium">{{ parcel.variantId || '—' }}</div>
+    </div>
 
-      <th
-        class="w-10p"
-        role="columnheader"
-        scope="col"
-        class="text-right"
-      >
-        <span>Weight (kg)</span>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (item of selectedParcel?.items; track item.productId) {
-    <tr
-      role="row"
-      class="row-selectable"
-    >
-      <td role="cell">{{ item.name }}</td>
-      <td role="cell">
-        {{ item.quantity }}
-      </td>
-      <td role="cell">
-        {{ item.weightKg }}
-      </td>
-    </tr>
-    } @empty {
-    <tr>
-      <td
-        colspan="4"
-        class="muted"
-      >
-        No items in this parcel
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Gross Amount</div>
+      <div class="fw-medium">{{ parcel.grossLabel }}</div>
+    </div>
+  </div>
+
+  <div class="row grid-gutter-1 mb-3">
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Shipment Number</div>
+      <div class="fw-medium">{{ parcel.shipmentNumber || '—' }}</div>
+    </div>
+
+    <div class="flex-4">
+      <div class="secondary-text-color scale85p">Label State</div>
+
+      @if (parcel.labelState) {
+        <app-fulfillment-state-badge [state]="parcel.labelState" />
+      } @else {
+        <div class="fw-medium">—</div>
+      }
+    </div>
+
+    <div class="flex-4">
+      @if (parcel.labelUrl) {
+        <a
+          class="button emphasized scale85p"
+          vcl-button
+          [href]="parcel.labelUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="icon mdi mdi-file-document-outline"></span>
+          Open Label
+        </a>
+      }
+    </div>
+  </div>
+
+  <table
+    class="table no-border fixed v-align-middle row-hover-highlight row-selectability"
+    role="table"
+  >
+    <thead>
+      <tr role="row">
+        <th
+          class="w-55p"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Product</span>
+        </th>
+
+        <th
+          class="w-10p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Qty</span>
+        </th>
+
+        <th
+          class="w-10p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>HS Code</span>
+        </th>
+
+        <th
+          class="w-10p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Weight</span>
+        </th>
+
+        <th
+          class="w-15p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Size</span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of parcel.items; track item.name) {
+        <tr
+          role="row"
+          class="row-selectable"
+        >
+          <td role="cell">{{ item.name }}</td>
+          <td
+            role="cell"
+            class="text-right"
+          >
+            {{ item.quantity }}
+          </td>
+          <td
+            role="cell"
+            class="text-right"
+          >
+            {{ item.hsCode || '—' }}
+          </td>
+          <td
+            role="cell"
+            class="text-right"
+          >
+            {{ item.weightLabel }}
+          </td>
+          <td
+            role="cell"
+            class="text-right"
+          >
+            {{ item.sizeLabel }}
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td
+            colspan="5"
+            class="muted"
+          >
+            No items in this parcel
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

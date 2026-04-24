@@ -46,6 +46,14 @@ fragment FulfillmentFragment on IoRestorecommerceFulfillmentFulfillment {
         }
         weightInKg
       }
+      amount {
+        gross
+        net
+        currencyId
+        vats {
+          vat
+        }
+      }
     }
     sender {
       address {
