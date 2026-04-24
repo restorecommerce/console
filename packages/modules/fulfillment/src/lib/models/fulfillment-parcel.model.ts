@@ -1,12 +1,25 @@
-import { ParcelItem } from './fulfillment-parcel-item.model';
+export interface FulfillmentParcelItemVM {
+  name: string;
+  quantity: number;
+  hsCode?: string;
+  weightLabel?: string;
+  sizeLabel?: string;
+}
 
-export interface Parcel {
+export interface FulfillmentParcelVM {
   id: string;
-
+  shortId: string;
   productId?: string;
   variantId?: string;
 
-  weightKg: number;
+  grossLabel?: string;
+  netLabel?: string;
+  vatLabel?: string;
+  regularPriceLabel?: string;
 
-  items: ParcelItem[];
+  shipmentNumber?: string;
+  labelState?: string;
+  labelUrl?: string;
+
+  items: FulfillmentParcelItemVM[];
 }

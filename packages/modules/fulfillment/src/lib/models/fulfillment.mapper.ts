@@ -1,37 +1,13 @@
 import { IoRestorecommerceFulfillmentFulfillment } from '@console-core/graphql';
 
+import { mapFulfillmentParcelsToVM } from './fulfillment-parcel.mapper';
 import { FulfillmentState } from './fulfillment-state.model';
 import { Fulfillment } from './fulfillment.model';
 
 export function mapFulfillmentDto(
   dto: IoRestorecommerceFulfillmentFulfillment
 ): Fulfillment {
-  const parcels =
-    dto.packaging?.parcels?.map((p) => ({
-      id: p.id ?? '',
-
-      productId: p.productId ?? undefined,
-      variantId: p.variantId ?? undefined,
-
-      weightKg: p.package?.weightInKg ?? 0,
-
-      items:
-        p.items?.map((i) => ({
-          name: i.name ?? '',
-          quantity: i.quantity ?? 0,
-          productId: i.productId ?? '',
-          weightKg: i.package?.weightInKg ?? 0,
-        })) ?? [],
-    })) ?? [];
-
-  const labels =
-    dto.labels?.map((l) => ({
-      id: l.id ?? '',
-      parcelId: l.parcelId ?? '',
-      shipmentNumber: l.shipmentNumber ?? '',
-      state: l.state ?? '',
-      url: l.file?.url ?? '',
-    })) ?? [];
+  const parcels = mapFulfillmentParcelsToVM(dto);
 
   return {
     id: dto.id ?? '',
@@ -43,15 +19,14 @@ export function mapFulfillmentDto(
       ? new Date(dto.meta.modified as string)
       : undefined,
 
-    parcels,
-    labels,
-
     shippingCost: {
       currency: dto.totalAmounts?.[0].currency?.code ?? 'EUR',
       gross: dto.totalAmounts?.[0].gross ?? 0,
       net: dto.totalAmounts?.[0].net ?? 0,
       tax: dto.totalAmounts?.[0].vats?.[0].vat ?? 0,
     },
+
+    parcels,
 
     orderId:
       dto.references?.find((r) => r.instanceType?.includes('order'))

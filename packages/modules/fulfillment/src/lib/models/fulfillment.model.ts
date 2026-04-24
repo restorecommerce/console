@@ -1,5 +1,4 @@
-import { Label } from './fulfiillment-label.model';
-import { Parcel } from './fulfillment-parcel.model';
+import { FulfillmentParcelVM } from './fulfillment-parcel.model';
 import { FulfillmentState } from './fulfillment-state.model';
 import { Money } from './money.model';
 
@@ -10,8 +9,7 @@ export interface Fulfillment {
   createdAt: Date;
   modifiedAt?: Date;
 
-  parcels: Parcel[];
-  labels: Label[];
+  parcels: FulfillmentParcelVM[];
 
   shippingCost?: Money;
 
