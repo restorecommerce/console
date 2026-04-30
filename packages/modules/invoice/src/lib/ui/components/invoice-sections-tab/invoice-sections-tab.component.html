@@ -1,12 +1,13 @@
-<div class="row">
+<div class="row mb-3">
   <div class="flex-6">
     <vcl-form-control-group>
-      <vcl-label>Parcel</vcl-label>
+      <vcl-label>Section</vcl-label>
       <vcl-select>
         <vcl-select-list [value]="selectedSectionId">
           @for (section of sections; track section.id) {
             <vcl-select-list-item [value]="section.id">
-              Section {{ $index + 1 }} — {{ section.amount || '—' }}
+              Section {{ $index + 1 }} —
+              {{ section.amount | currency: 'EUR' }}
             </vcl-select-list-item>
           }
         </vcl-select-list>
@@ -14,21 +15,22 @@
     </vcl-form-control-group>
   </div>
 
-  <div class="flex-6">
+  <div class="flex-6 px-3">
     <div class="secondary-text-color scale85p">Documents</div>
 
     @if (documents.length > 0) {
       <div class="button-group">
         @for (document of documents; track document.id) {
           <a
-            class="button transparent"
+            class="button emphasized scale85p"
+            vcl-button
             [href]="document.url"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             download
           >
-            <span class="icon mdi mdi-download"></span>
-            <span>{{ document.name || 'Download PDF' }}</span>
+            <span class="icon mdi mdi-file-document-outline"></span>
+            {{ document.name || 'Download PDF' }}
           </a>
         }
       </div>
@@ -54,7 +56,7 @@
         </th>
 
         <th
-          class="w-15p text-right"
+          class="w-15p align-centered"
           role="columnheader"
           scope="col"
         >
@@ -62,7 +64,7 @@
         </th>
 
         <th
-          class="w-10p text-right"
+          class="w-10p align-right"
           role="columnheader"
           scope="col"
         >
@@ -70,7 +72,7 @@
         </th>
 
         <th
-          class="w-20p text-right"
+          class="w-20p align-right"
           role="columnheader"
           scope="col"
         >
@@ -103,7 +105,7 @@
           </td>
 
           <td class="align-right">
-            {{ position.unitPrice }}
+            {{ position.unitPrice | currency: 'EUR' }}
           </td>
         </tr>
       } @empty {

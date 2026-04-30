@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnChanges } from '@angular/core';
 
 import {
@@ -23,6 +24,7 @@ import { InvoiceDocumentVM, InvoiceSectionVM } from '../../../models';
     VCLSelectListItemComponent,
     VCLButtonComponent,
     VCLBadgeComponent,
+    CurrencyPipe,
   ],
 })
 export class InvoiceSectionTabComponent implements OnChanges {
