@@ -1,3 +1,6 @@
+import { InvoiceDocumentVM } from './invoice-document.model';
+import { InvoiceSectionVM } from './invoice-section.model';
+
 export type InvoicePaymentState = 'UNPAYED' | 'PAYED';
 
 export interface InvoiceDetailParty {
@@ -15,33 +18,6 @@ export interface InvoiceAmount {
 export interface InvoiceReference {
   label: string;
   value: string;
-}
-
-export interface InvoiceDocument {
-  id: string;
-  name: string;
-  createdLabel?: string;
-  url?: string;
-}
-
-export interface InvoicePosition {
-  id: string;
-  type: 'product' | 'fulfillment' | 'manual';
-  title: string;
-  subtitle?: string;
-  quantity?: number;
-  unitPriceLabel?: string;
-  amountLabel?: string;
-  periodLabel?: string;
-  attributes?: Array<{ key: string; value: string }>;
-}
-
-export interface InvoiceSection {
-  id: string;
-  title: string;
-  remark?: string;
-  subtotalLabel?: string;
-  positions: InvoicePosition[];
 }
 
 export interface InvoiceDetail {
@@ -69,6 +45,6 @@ export interface InvoiceDetail {
   billing?: InvoiceDetailParty;
 
   totals?: InvoiceAmount[];
-  sections?: InvoiceSection[];
-  documents: InvoiceDocument[];
+  sections: InvoiceSectionVM[];
+  documents: InvoiceDocumentVM[];
 }

@@ -10,6 +10,8 @@ import {
   InvoiceDetailParty,
   InvoiceReference,
 } from './invoice-detail.model';
+import { mapInvoiceDocument } from './invoice-document.mapper';
+import { mapInvoiceSectionToVM } from './invoice-section.mapper';
 
 type AddressTypes =
   | IoRestorecommerceAddressBillingAddress
@@ -41,12 +43,11 @@ export function mapInvoiceDetail(
     recipient: mapParty(payload.recipient, `${payload.customer?.name}`),
     billing: mapParty(payload.billingAddress, `${payload.customer?.name}`),
 
-    documents: (payload.documents ?? []).map((doc, index) => ({
-      id: doc.id ?? `document-${index}`,
-      name: extractDocumentName(doc.url) ?? `Document ${index + 1}`,
-      url: doc.url ?? undefined,
-      createdLabel: undefined,
-    })),
+    sections: (payload.sections ?? []).map((section, index) =>
+      mapInvoiceSectionToVM(section, index)
+    ),
+
+    documents: (payload.documents ?? []).map((doc) => mapInvoiceDocument(doc)),
   };
 }
 
@@ -79,12 +80,6 @@ function joinParts(
 ): string | undefined {
   const filtered = parts.filter((part): part is string => !!part);
   return filtered.length ? filtered.join(' ') : undefined;
-}
-
-function extractDocumentName(url?: string | null): string | undefined {
-  if (!url) return undefined;
-  const parts = url.split('/');
-  return parts[parts.length - 1] || undefined;
 }
 
 function mapReferences(

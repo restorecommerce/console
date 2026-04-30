@@ -20,6 +20,7 @@ import { ROUTER } from '@console-core/config';
 import { InvoiceViewFacade } from '../../../store';
 import { InvoiceDetailBasicComponent } from '../../components/invoice-detail-basic/invoice-detail-basic.component';
 import { InvoiceDetailHeaderComponent } from '../../components/invoice-detail-header/invoice-detail-header.component';
+import { InvoiceSectionTabComponent } from '../../components/invoice-sections-tab/invoice-sections-tab.component';
 
 @Component({
   selector: 'app-module-invoice-view',
@@ -31,6 +32,7 @@ import { InvoiceDetailHeaderComponent } from '../../components/invoice-detail-he
     RcResourceDetailComponent,
     InvoiceDetailHeaderComponent,
     InvoiceDetailBasicComponent,
+    InvoiceSectionTabComponent,
     JsonPipe,
   ],
   styleUrl: './invoice-view.component.scss',

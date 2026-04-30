@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="flex-6">
+    <vcl-form-control-group>
+      <vcl-label>Parcel</vcl-label>
+      <vcl-select>
+        <vcl-select-list [value]="selectedSectionId">
+          @for (section of sections; track section.id) {
+            <vcl-select-list-item [value]="section.id">
+              Section {{ $index + 1 }} — {{ section.amount || '—' }}
+            </vcl-select-list-item>
+          }
+        </vcl-select-list>
+      </vcl-select>
+    </vcl-form-control-group>
+  </div>
+
+  <div class="flex-6">
+    <div class="secondary-text-color scale85p">Documents</div>
+
+    @if (documents.length > 0) {
+      <div class="button-group">
+        @for (document of documents; track document.id) {
+          <a
+            class="button transparent"
+            [href]="document.url"
+            target="_blank"
+            rel="noopener"
+            download
+          >
+            <span class="icon mdi mdi-download"></span>
+            <span>{{ document.name || 'Download PDF' }}</span>
+          </a>
+        }
+      </div>
+    } @else {
+      <div>—</div>
+    }
+  </div>
+</div>
+
+@if (selectedSection; as section) {
+  <table
+    class="table no-border fixed v-align-middle row-hover-highlight row-selectability"
+    role="table"
+  >
+    <thead>
+      <tr role="row">
+        <th
+          class="w-55p"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Item</span>
+        </th>
+
+        <th
+          class="w-15p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Type</span>
+        </th>
+
+        <th
+          class="w-10p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Qty</span>
+        </th>
+
+        <th
+          class="w-20p text-right"
+          role="columnheader"
+          scope="col"
+        >
+          <span>Unit price</span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (position of section.positions; track position.id) {
+        <tr
+          role="row"
+          class="row-selectable"
+        >
+          <td>
+            <div class="fw-medium">{{ position.name }}</div>
+            <div class="secondary-text-color scale85p">{{ position.id }}</div>
+          </td>
+
+          <td class="align-centered">
+            <vcl-badge
+              [type]="position.type === 'product' ? 'info' : 'warning'"
+            >
+              {{ position.type }}
+            </vcl-badge>
+          </td>
+
+          <td class="align-right">
+            {{ position.quantity }}
+          </td>
+
+          <td class="align-right">
+            {{ position.unitPrice }}
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td
+            colspan="4"
+            class="align-centered secondary-text-color"
+          >
+            No positions found for this section.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
