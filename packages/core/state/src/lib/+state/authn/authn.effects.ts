@@ -153,7 +153,6 @@ export class AuthnEffects {
             params['url'] || ROUTER.pages.main.children.orders.link
         ),
         tap((url: string) => {
-          console.log('***Url, ', url);
           this.router.navigate([url]);
         })
       );
