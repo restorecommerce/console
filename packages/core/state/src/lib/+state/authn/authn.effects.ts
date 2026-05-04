@@ -150,9 +150,10 @@ export class AuthnEffects {
         switchMap(() => this.activatedRoute.queryParams.pipe(take(1))),
         map(
           (params: Params) =>
-            params['url'] || ROUTER.pages.main.children.home.link
+            params['url'] || ROUTER.pages.main.children.orders.link
         ),
         tap((url: string) => {
+          console.log('***Url, ', url);
           this.router.navigate([url]);
         })
       );

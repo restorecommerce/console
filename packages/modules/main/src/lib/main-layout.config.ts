@@ -35,14 +35,6 @@ export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
       categoryId: 'home',
     },
     {
-      id: 'invoices',
-      label: 'Invoices',
-      icon: 'mdi mdi-invoice-outline',
-      route: ROUTER.pages.main.children.invoices.link,
-      categoryId: 'home',
-      // visibility (admin-only) can be handled later via authz in the facade
-    },
-    {
       id: 'fulfillments',
       label: 'Fulfillments',
       icon: 'mdi mdi-truck-outline',
@@ -50,7 +42,14 @@ export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
       categoryId: 'home',
       // same: admin-only handled outside config
     },
-
+    {
+      id: 'invoices',
+      label: 'Invoices',
+      icon: 'mdi mdi-invoice-outline',
+      route: ROUTER.pages.main.children.invoices.link,
+      categoryId: 'home',
+      // visibility (admin-only) can be handled later via authz in the facade
+    },
     // MANAGEMENT
     {
       id: 'mgmt.iam',
