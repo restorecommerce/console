@@ -14,12 +14,12 @@ import {
   VCLLabelDirective,
   VCLTabComponent,
   VCLTabNavComponent,
-  VCLBadgeComponent,
   VCLIconComponent,
 } from '@vcl/ng-vcl';
 
 import { CUSTOMER_TYPE_LABEL, Money } from '../../../models';
 import { OrderViewFacade } from '../../../store';
+import { EOrderStatusBadgeComponent } from '../../components/order-state-badge/order-state-badge.component';
 
 @Component({
   selector: 'app-module-order-view',
@@ -34,7 +34,7 @@ import { OrderViewFacade } from '../../../store';
     VCLLabelDirective,
     VCLIconComponent,
     RcResourceDetailComponent,
-    VCLBadgeComponent,
+    EOrderStatusBadgeComponent,
   ],
   styleUrl: './order-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

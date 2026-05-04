@@ -16,6 +16,8 @@ export class EOrderStatusBadgeComponent {
   state!: EOrderStatus;
 
   getStatusType = (state: EOrderStatus) => {
+    console.log('state', state);
+
     switch (state) {
       case EOrderStatus.Completed:
         return 'success';
