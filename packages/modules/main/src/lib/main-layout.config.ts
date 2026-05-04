@@ -59,20 +59,20 @@ export const MAIN_LAYOUT_CONFIG: RcLayoutConfig = {
       route: ROUTER.pages.main.children.iam.link,
       categoryId: 'management',
     },
-    {
-      id: 'mgmt.organizations',
-      label: 'Organizations',
-      icon: 'mdi mdi-domain',
-      route: ROUTER.pages.main.children.management.children.organizations.link,
-      categoryId: 'management',
-    },
-    {
-      id: 'mgmt.shops',
-      label: 'Shops',
-      icon: 'mdi mdi-store',
-      route: ROUTER.pages.main.children.management.children.shops.link,
-      categoryId: 'management',
-    },
+    // {
+    //   id: 'mgmt.organizations',
+    //   label: 'Organizations',
+    //   icon: 'mdi mdi-domain',
+    //   route: ROUTER.pages.main.children.management.children.organizations.link,
+    //   categoryId: 'management',
+    // },
+    // {
+    //   id: 'mgmt.shops',
+    //   label: 'Shops',
+    //   icon: 'mdi mdi-store',
+    //   route: ROUTER.pages.main.children.management.children.shops.link,
+    //   categoryId: 'management',
+    // },
 
     // ACCOUNT (used when /account is active; optional category)
     {
