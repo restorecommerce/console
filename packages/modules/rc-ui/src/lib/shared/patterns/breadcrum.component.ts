@@ -1,12 +1,12 @@
 import { AsyncPipe, NgClass } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   inject,
   Input,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import {
   ActivatedRoute,
@@ -75,7 +75,7 @@ export interface IBreadcrumb {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RcBreadcrumbComponent implements AfterViewInit, OnDestroy {
+export class RcBreadcrumbComponent implements OnInit, OnDestroy {
   /**
    * Text for the root crumb (defaults to "Home").
    * You can change this from the host app: <rc-breadcrumb rootLabel="Dashboard" />
@@ -117,7 +117,7 @@ export class RcBreadcrumbComponent implements AfterViewInit, OnDestroy {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     // Rebuild breadcrumbs on each navigation end
     this.router.events
       .pipe(
